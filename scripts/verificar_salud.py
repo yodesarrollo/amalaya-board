@@ -20,7 +20,7 @@ from pathlib import Path
 
 RAIZ = Path(__file__).resolve().parent.parent
 ESTADO = RAIZ / "public" / "estado.json"
-SITIO = "https://alexpueblag.github.io/amalaya-board/"
+SITIO = "https://yodesarrollo.github.io/amalaya-board/"
 
 
 def leer_url_backend():

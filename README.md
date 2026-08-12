@@ -1,7 +1,7 @@
 # Amalaya Board
 
 Board de control de **Amalaya**, polígono de actuación concertada en el centro de
-Hermosillo, Sonora. Interfaz en `https://alexpueblag.github.io/amalaya-board/`.
+Hermosillo, Sonora. Interfaz en `https://yodesarrollo.github.io/amalaya-board/`.
 
 ## La fórmula de control
 
