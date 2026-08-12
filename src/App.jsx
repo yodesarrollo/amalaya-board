@@ -1,15 +1,35 @@
+import { useState } from 'react'
 import { usarDatos } from './datos.jsx'
 import Acceso from './componentes/Acceso.jsx'
 import Encabezado from './componentes/Encabezado.jsx'
 import LineaAmalaya from './componentes/LineaAmalaya.jsx'
 import Mapa from './componentes/Mapa.jsx'
+import Financiero from './componentes/Financiero.jsx'
 
-// La pantalla principal es el mapa del polígono.
+// Las secciones del board. El mapa es la principal; Finanzas solo
+// aparece si el servidor entregó las líneas al rol de la sesión.
 function Principal() {
-  const { modo } = usarDatos()
+  const { datos, modo } = usarDatos()
+  const [seccion, setSeccion] = useState('mapa')
+  const hayFinanzas = Array.isArray(datos?.Finanzas_Lineas)
+
   return (
     <main>
-      <Mapa />
+      {hayFinanzas && (
+        <nav className="max-w-6xl mx-auto px-4 pt-3 flex gap-1" aria-label="Secciones">
+          {[['mapa', 'Mapa'], ['finanzas', 'Finanzas']].map(([s, titulo]) => (
+            <button
+              key={s}
+              className={`px-3 py-1.5 text-sm rounded-lg transition-colors duration-micro ease-casa
+                ${seccion === s ? 'bg-superficie text-marfil border border-linea' : 'text-terciario hover:text-arena'}`}
+              onClick={() => setSeccion(s)}
+            >
+              {titulo}
+            </button>
+          ))}
+        </nav>
+      )}
+      {seccion === 'mapa' ? <Mapa /> : <Financiero />}
       {modo === 'demo' && (
         <p className="max-w-6xl mx-auto px-4 pb-8 text-terciario text-sm">
           Estás viendo la demostración: todos los nombres y cifras son
