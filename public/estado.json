@@ -1,5 +1,5 @@
 {
- "revisado": "2026-08-12T19:12:37Z",
- "backend": "ok",
+ "revisado": "2026-08-12T22:11:14Z",
+ "backend": "caido (TimeoutError)",
  "sitio": "ok"
 }
