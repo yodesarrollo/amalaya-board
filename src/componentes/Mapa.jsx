@@ -1,8 +1,8 @@
 import { useState, useRef, useCallback } from 'react'
-import { Plus, Pencil, X, Check, ArrowUp, ArrowDown, ArrowLeft, ArrowRight } from 'lucide-react'
+import { Plus, Pencil, Check, ArrowUp, ArrowDown, ArrowLeft, ArrowRight } from 'lucide-react'
 import { usarDatos } from '../datos.jsx'
-import { metros2 } from '../formato.js'
 import { BASE } from '../config.js'
+import FichaEspacio from './FichaEspacio.jsx'
 
 // ============================================================
 // Mapa interactivo del polígono — la pantalla principal.
@@ -57,7 +57,7 @@ export default function Mapa() {
   const tempRef = useRef(null) // espejo de tempArrastre para leerlo al soltar sin efectos dobles
   // La proporción se mide de la imagen real al cargarla — así el plano se
   // puede reemplazar por otro de cualquier tamaño sin tocar código.
-  const [proporcion, setProporcion] = useState('1600 / 1000')
+  const [proporcion, setProporcion] = useState('842 / 692')
 
   // --- gestos de edición ------------------------------------
   const alBajar = useCallback((ev, espacio, tipo) => {
@@ -216,7 +216,7 @@ export default function Mapa() {
             }}
           >
             <img
-              src={`${BASE}mapa-poligono.svg`}
+              src={`${BASE}mapa-poligono.jpg`}
               alt="Plano del polígono de Amalaya"
               className="absolute inset-0 w-full h-full object-cover select-none"
               draggable={false}
@@ -288,58 +288,16 @@ export default function Mapa() {
         </div>
       </div>
 
-      {/* Ficha del espacio (Fase 1: datos básicos; la ficha completa llega en la Fase 2) */}
+      {/* La ficha del espacio: Factores | Fotos | Documentos | Conocimientos | Tareas */}
       <aside
         className={`fixed z-50 bg-elevada border-linea shadow-2xl
-          inset-x-0 bottom-0 rounded-t-2xl border-t max-h-[70dvh]
-          sm:inset-y-0 sm:right-0 sm:left-auto sm:w-96 sm:rounded-none sm:border-t-0 sm:border-l sm:max-h-none
+          inset-x-0 bottom-0 rounded-t-2xl border-t max-h-[85dvh]
+          sm:inset-y-0 sm:right-0 sm:left-auto sm:w-[28rem] sm:rounded-none sm:border-t-0 sm:border-l sm:max-h-none
           transition-transform duration-panel ease-casa overflow-y-auto
           ${espacioAbierto ? 'translate-y-0 sm:translate-x-0' : 'translate-y-full sm:translate-y-0 sm:translate-x-full'}`}
         aria-hidden={!espacioAbierto}
       >
-        {espacioAbierto && (
-          <div className="p-6">
-            <div className="flex items-start gap-3">
-              <div className="flex-1">
-                <div className="text-xs uppercase tracking-wide text-terciario">{espacioAbierto.tipo}</div>
-                <h3 className="font-titulo text-2xl mt-0.5">{espacioAbierto.nombre}</h3>
-              </div>
-              <button className="text-arena hover:text-marfil p-2 -m-2 transition-colors duration-micro ease-casa" onClick={() => setAbierto(null)} aria-label="Cerrar">
-                <X size={20} />
-              </button>
-            </div>
-
-            <dl className="mt-5 space-y-3 text-sm">
-              {espacioAbierto.m2 && (
-                <div className="flex justify-between gap-4">
-                  <dt className="text-arena">Superficie</dt>
-                  <dd className="cifra text-marfil">{metros2(espacioAbierto.m2)}</dd>
-                </div>
-              )}
-              <div className="flex justify-between gap-4">
-                <dt className="text-arena">Estado</dt>
-                <dd className="text-marfil capitalize">{espacioAbierto.estado_desarrollo || 'idea'}</dd>
-              </div>
-              {espacioAbierto.descripcion && (
-                <div>
-                  <dt className="text-arena">Descripción</dt>
-                  <dd className="text-marfil mt-1 leading-relaxed">{espacioAbierto.descripcion}</dd>
-                </div>
-              )}
-              {espacioAbierto.notas && (
-                <div>
-                  <dt className="text-arena">Notas</dt>
-                  <dd className="text-marfil mt-1 leading-relaxed">{espacioAbierto.notas}</dd>
-                </div>
-              )}
-            </dl>
-
-            <p className="text-terciario text-xs mt-6 leading-relaxed">
-              La ficha completa — factores ajustables, fotos, documentos,
-              conocimientos y tareas — llega en la siguiente fase.
-            </p>
-          </div>
-        )}
+        {espacioAbierto && <FichaEspacio espacio={espacioAbierto} onCerrar={() => setAbierto(null)} />}
       </aside>
 
       {/* Fondo clicable para cerrar la ficha */}

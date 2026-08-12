@@ -281,11 +281,47 @@ export function DatosProvider({ children }) {
     return true
   }, [modo])
 
+  // Subir un archivo a la carpeta de Drive del espacio (vía Apps Script).
+  // privado=false → foto con enlace (el board la pinta en <img>).
+  // privado=true  → documento SIN compartir; solo se entrega por verArchivo.
+  const subirArchivo = useCallback(async (espacioId, file, privado) => {
+    if (modo === 'demo') throw new Error('En la demostración no se pueden subir archivos.')
+    if (file.size > 10 * 1024 * 1024) {
+      throw new Error('El archivo pesa más de 10 MB. Usa una versión más ligera.')
+    }
+    const base64 = await new Promise((resolver, rechazar) => {
+      const lector = new FileReader()
+      lector.onload = () => resolver(String(lector.result).split(',')[1] || '')
+      lector.onerror = () => rechazar(new Error('No se pudo leer el archivo.'))
+      lector.readAsDataURL(file)
+    })
+    const r = await apiCall('subirArchivo', {
+      codigo: sesionRef.current?.codigo,
+      espacio_id: espacioId,
+      nombre: file.name,
+      mime: file.type || 'application/octet-stream',
+      base64,
+      privado,
+    })
+    setVersion(r.v ?? null)
+    setDatos((previos) => {
+      if (!previos) return previos
+      return { ...previos, Archivos: [...(previos.Archivos || []), r.fila] }
+    })
+    return r.fila
+  }, [modo])
+
+  // Pedir un documento privado al servidor (validado por rol) como base64.
+  const verArchivo = useCallback(async (fileId) => {
+    return apiCall('verArchivo', { codigo: sesionRef.current?.codigo, file_id: fileId })
+  }, [])
+
   const valor = {
     sesion, arrancando, datos, modo,
     sincronizando, errorSync, ultimaSync, guardados,
     entrar, salir, actualizar, verDemo,
     editarFila, crearFila, borrarFila, reintentarGuardado,
+    subirArchivo, verArchivo,
   }
   return <Ctx.Provider value={valor}>{children}</Ctx.Provider>
 }
