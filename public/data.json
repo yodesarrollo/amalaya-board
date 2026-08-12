@@ -54,7 +54,14 @@
         "puntos": "[[20,30],[40,35],[58,28],[70,40]]", "orden": "1"
       }
     ],
-    "Paradas": [],
+    "Paradas": [
+      {
+        "id": "P-001", "ruta_id": "R-001", "nombre": "Plaza de muestra",
+        "foto_actual_id": "", "foto_vision_id": "",
+        "elementos": "[{\"texto\":\"Arbolado de ejemplo\",\"estado\":\"pendiente\"},{\"texto\":\"Alumbrado de ejemplo\",\"estado\":\"gestionado\"},{\"texto\":\"Mural de ejemplo\",\"estado\":\"logrado\"}]",
+        "notas": "", "orden": "1", "pos_x": "40", "pos_y": "35"
+      }
+    ],
     "Tareas": [],
     "Conocimientos": [],
     "Archivos": []

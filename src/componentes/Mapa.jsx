@@ -1,29 +1,26 @@
 import { useState, useRef, useCallback } from 'react'
-import { Plus, Pencil, Check, ArrowUp, ArrowDown, ArrowLeft, ArrowRight } from 'lucide-react'
+import { Plus, Pencil, Check, ArrowUp, ArrowDown, ArrowLeft, ArrowRight, ClipboardList } from 'lucide-react'
 import { usarDatos } from '../datos.jsx'
 import { BASE } from '../config.js'
 import FichaEspacio from './FichaEspacio.jsx'
+import Peticiones from './Peticiones.jsx'
+import { RutasCapa, PuntosEdicion, BarraRutas, Recorrido, leerPuntos } from './Rutas.jsx'
 
 // ============================================================
 // Mapa interactivo del polígono — la pantalla principal.
+// Dos capas sobre el plano: ESPACIOS (zonas) y RUTAS (polilíneas).
 //
-// - Las zonas viven en PORCENTAJES relativos a la imagen
-//   (pos_x, pos_y, ancho, alto), así se ven igual en cualquier
-//   pantalla. El Sheet guarda esos porcentajes como texto.
-// - Modo edición (admin/editor): arrastrar mueve, el asa de la
-//   esquina redimensiona, las flechas afinan de 1 en 1%.
-//   Reglas táctiles: Pointer Events con setPointerCapture,
-//   umbral de 8 px para distinguir tocar de arrastrar,
-//   touch-action:none SOLO en zonas y SOLO en modo edición
-//   (el mapa conserva su scroll normal), se escribe al Sheet
-//   únicamente al SOLTAR, y pointercancel revierte.
-// - Clic en una zona (modo normal): zoom cinematográfico — velo
-//   sobre el resto, la cámara escala hacia la zona (máx 2.2x,
-//   curva de la casa, 800 ms) y la ficha entra traslapada.
+// - Todo vive en PORCENTAJES relativos a la imagen.
+// - La "cámara" (zoom cinematográfico) es una sola: viaja al
+//   espacio abierto o a la parada activa del recorrido.
+// - Reglas táctiles de edición: Pointer Events + setPointerCapture,
+//   umbral de 8 px tocar-vs-arrastrar, touch-action:none solo en
+//   zonas y solo en edición, escritura únicamente al soltar,
+//   pointercancel revierte.
 // ============================================================
 
 const TIPOS = ['venue', 'museo', 'escuela', 'estacionamiento', 'departamento', 'restaurante', 'otro']
-const UMBRAL_ARRASTRE = 8 // px antes de considerar que es un arrastre
+const UMBRAL_ARRASTRE = 8
 
 function num(v, porDefecto) {
   const n = parseFloat(v)
@@ -44,22 +41,34 @@ const acot = (v, min, max) => Math.min(Math.max(v, min), max)
 export default function Mapa() {
   const { sesion, datos, modo, editarFila, crearFila } = usarDatos()
   const espacios = datos?.Espacios || []
+  const rutas = (datos?.Rutas || []).slice().sort((a, b) => num(a.orden, 999) - num(b.orden, 999))
+  const paradas = datos?.Paradas || []
   const puedeEditar = modo !== 'demo' && ['admin', 'editor'].includes(sesion?.rol)
 
+  // Capa activa
+  const [vista, setVista] = useState('espacios') // 'espacios' | 'rutas'
+
+  // Espacios
   const [modoEdicion, setModoEdicion] = useState(false)
-  const [seleccion, setSeleccion] = useState(null)   // id de zona seleccionada (edición)
-  const [abierto, setAbierto] = useState(null)        // id de espacio con ficha abierta (zoom)
+  const [seleccion, setSeleccion] = useState(null)
+  const [abierto, setAbierto] = useState(null)
   const [creando, setCreando] = useState(false)
-  const [tempArrastre, setTempArrastre] = useState(null) // {id, x, y, w, h} mientras se arrastra
+  const [tempArrastre, setTempArrastre] = useState(null)
+
+  // Rutas
+  const [rutaSel, setRutaSel] = useState(null)
+  const [editandoPuntos, setEditandoPuntos] = useState(false)
+  const [agregandoParada, setAgregandoParada] = useState(false)
+  const [paradaPendiente, setParadaPendiente] = useState(null) // {x,y} esperando nombre
+  const [recorrido, setRecorrido] = useState(null) // {rutaId, idx}
+  const [verPeticiones, setVerPeticiones] = useState(false)
 
   const contRef = useRef(null)
-  const gesto = useRef(null) // {id, tipo:'mover'|'tamano', x0px, y0px, zona0, arrastrando}
-  const tempRef = useRef(null) // espejo de tempArrastre para leerlo al soltar sin efectos dobles
-  // La proporción se mide de la imagen real al cargarla — así el plano se
-  // puede reemplazar por otro de cualquier tamaño sin tocar código.
+  const gesto = useRef(null)
+  const tempRef = useRef(null)
   const [proporcion, setProporcion] = useState('842 / 692')
 
-  // --- gestos de edición ------------------------------------
+  // --- gestos de edición de zonas ---------------------------
   const alBajar = useCallback((ev, espacio, tipo) => {
     if (!modoEdicion) return
     ev.preventDefault()
@@ -96,16 +105,14 @@ export default function Mapa() {
     setTempArrastre(t)
   }, [])
 
-  const alSoltar = useCallback((ev) => {
+  const alSoltar = useCallback(() => {
     const g = gesto.current
     gesto.current = null
     if (!g) return
     if (!g.arrastrando) {
-      // Fue un toque, no un arrastre: seleccionar la zona.
       setSeleccion(g.id)
       return
     }
-    // Un solo guardado, al soltar (nunca ráfagas por pixel).
     const t = tempRef.current
     if (t && t.id === g.id) {
       editarFila('Espacios', g.id, {
@@ -121,13 +128,11 @@ export default function Mapa() {
   }, [editarFila])
 
   const alCancelar = useCallback(() => {
-    // Llamada entrante o gesto del sistema: se revierte sin escribir.
     gesto.current = null
     tempRef.current = null
     setTempArrastre(null)
   }, [])
 
-  // Flechas: ajuste fino de 1% (con el dedo es imposible afinar 1%).
   const empujar = useCallback((dx, dy) => {
     const e = espacios.find((x) => x.id === seleccion)
     if (!e) return
@@ -138,47 +143,106 @@ export default function Mapa() {
     })
   }, [espacios, seleccion, editarFila])
 
-  // --- crear espacio ----------------------------------------
   async function crearEspacio(nombre, tipo) {
     const fila = await crearFila('Espacios', {
-      nombre,
-      tipo,
-      estado_desarrollo: 'idea',
-      descripcion: '',
-      m2: '',
-      pos_x: '40',
-      pos_y: '42',
-      ancho: '20',
-      alto: '14',
-      notas: '',
+      nombre, tipo,
+      estado_desarrollo: 'idea', descripcion: '', m2: '',
+      pos_x: '40', pos_y: '42', ancho: '20', alto: '14', notas: '',
     })
     setCreando(false)
     setModoEdicion(true)
     setSeleccion(fila.id)
   }
 
-  // --- zoom cinematográfico ---------------------------------
+  // --- toques al mapa para trazar rutas y colocar paradas ----
+  const alTocarMapa = useCallback((ev) => {
+    if (!editandoPuntos && !agregandoParada) return
+    const rect = contRef.current?.getBoundingClientRect()
+    if (!rect) return
+    const x = acot(((ev.clientX - rect.left) / rect.width) * 100, 0, 100)
+    const y = acot(((ev.clientY - rect.top) / rect.height) * 100, 0, 100)
+
+    if (editandoPuntos && rutaSel) {
+      const ruta = rutas.find((r) => r.id === rutaSel)
+      if (!ruta) return
+      const pts = leerPuntos(ruta)
+      editarFila('Rutas', rutaSel, {
+        puntos: JSON.stringify([...pts, [Number(x.toFixed(2)), Number(y.toFixed(2))]]),
+      })
+    } else if (agregandoParada && rutaSel) {
+      setParadaPendiente({ x: Number(x.toFixed(2)), y: Number(y.toFixed(2)) })
+    }
+  }, [editandoPuntos, agregandoParada, rutaSel, rutas, editarFila])
+
+  const deshacerPunto = useCallback(() => {
+    const ruta = rutas.find((r) => r.id === rutaSel)
+    if (!ruta) return
+    const pts = leerPuntos(ruta)
+    editarFila('Rutas', rutaSel, { puntos: JSON.stringify(pts.slice(0, -1)) })
+  }, [rutas, rutaSel, editarFila])
+
+  // --- la cámara (una sola, para espacios y recorridos) ------
   const espacioAbierto = espacios.find((e) => e.id === abierto)
-  let origenZoom = '50% 50%'
-  if (espacioAbierto) {
+  const rutaRecorrida = recorrido ? rutas.find((r) => r.id === recorrido.rutaId) : null
+  const paradasDeRuta = rutaRecorrida
+    ? paradas
+        .filter((p) => String(p.ruta_id) === String(rutaRecorrida.id))
+        .sort((a, b) => num(a.orden, 999) - num(b.orden, 999))
+    : []
+  const paradaActiva = rutaRecorrida ? paradasDeRuta[recorrido.idx] : null
+
+  let camara = null
+  if (paradaActiva) {
+    camara = { escala: 1.7, origen: `${num(paradaActiva.pos_x, 50)}% ${num(paradaActiva.pos_y, 50)}%` }
+  } else if (espacioAbierto) {
     const z = zonaDeFila(espacioAbierto)
-    origenZoom = `${z.x + z.w / 2}% ${z.y + z.h / 2}%`
+    camara = { escala: 2.2, origen: `${z.x + z.w / 2}% ${z.y + z.h / 2}%` }
   }
+
+  const enRutas = vista === 'rutas'
 
   return (
     <div className="relative">
       {/* Barra del mapa */}
-      <div className="max-w-6xl mx-auto px-4 pt-4 pb-2 flex items-center gap-2">
-        <h2 className="font-titulo text-xl flex-1">El polígono</h2>
-        {puedeEditar && modoEdicion && seleccion && (
-          <div className="flex items-center gap-1 mr-2" aria-label="Ajuste fino de 1%">
-            <button className="boton-secundario !px-2 !py-2" onClick={() => empujar(-1, 0)} title="Mover 1% a la izquierda"><ArrowLeft size={14} /></button>
-            <button className="boton-secundario !px-2 !py-2" onClick={() => empujar(0, -1)} title="Mover 1% arriba"><ArrowUp size={14} /></button>
-            <button className="boton-secundario !px-2 !py-2" onClick={() => empujar(0, 1)} title="Mover 1% abajo"><ArrowDown size={14} /></button>
-            <button className="boton-secundario !px-2 !py-2" onClick={() => empujar(1, 0)} title="Mover 1% a la derecha"><ArrowRight size={14} /></button>
+      <div className="max-w-6xl mx-auto px-4 pt-4 pb-2 flex items-center gap-2 flex-wrap">
+        <h2 className="font-titulo text-xl">El polígono</h2>
+
+        {/* Selector de capa */}
+        <div className="flex rounded-xl border border-linea overflow-hidden ml-2">
+          {[['espacios', 'Espacios'], ['rutas', 'Rutas']].map(([v, titulo]) => (
+            <button
+              key={v}
+              className={`px-3 py-1.5 text-sm transition-colors duration-micro ease-casa
+                ${vista === v ? 'bg-oro text-noche font-medium' : 'text-arena hover:text-marfil'}`}
+              onClick={() => {
+                setVista(v)
+                setAbierto(null); setRecorrido(null)
+                setModoEdicion(false); setSeleccion(null)
+                setEditandoPuntos(false); setAgregandoParada(false)
+              }}
+            >
+              {titulo}
+            </button>
+          ))}
+        </div>
+
+        <div className="flex-1" />
+
+        {enRutas && (
+          <button className="boton-secundario !px-3 !py-2 text-sm" onClick={() => setVerPeticiones(true)}>
+            <span className="flex items-center gap-1.5"><ClipboardList size={14} /> Peticiones</span>
+          </button>
+        )}
+
+        {!enRutas && puedeEditar && modoEdicion && seleccion && (
+          <div className="flex items-center gap-1" aria-label="Ajuste fino de 1%">
+            <button className="boton-secundario !px-2 !py-2" onClick={() => empujar(-1, 0)} title="1% a la izquierda"><ArrowLeft size={14} /></button>
+            <button className="boton-secundario !px-2 !py-2" onClick={() => empujar(0, -1)} title="1% arriba"><ArrowUp size={14} /></button>
+            <button className="boton-secundario !px-2 !py-2" onClick={() => empujar(0, 1)} title="1% abajo"><ArrowDown size={14} /></button>
+            <button className="boton-secundario !px-2 !py-2" onClick={() => empujar(1, 0)} title="1% a la derecha"><ArrowRight size={14} /></button>
           </div>
         )}
-        {puedeEditar && (
+        {!enRutas && puedeEditar && (
           <>
             <button
               className={modoEdicion ? 'boton-primario !px-3 !py-2 text-sm' : 'boton-secundario !px-3 !py-2 text-sm'}
@@ -193,11 +257,26 @@ export default function Mapa() {
         )}
       </div>
 
-      {modoEdicion && (
+      {!enRutas && modoEdicion && (
         <p className="max-w-6xl mx-auto px-4 pb-2 text-terciario text-sm">
-          Arrastra una zona para moverla; el cuadrito de la esquina la redimensiona.
-          Cada cambio se guarda al soltar.
+          Arrastra una zona para moverla; el cuadrito de la esquina la
+          redimensiona. Cada cambio se guarda al soltar.
         </p>
+      )}
+
+      {enRutas && (
+        <BarraRutas
+          rutas={rutas}
+          editable={puedeEditar}
+          rutaSel={rutaSel}
+          setRutaSel={setRutaSel}
+          editandoPuntos={editandoPuntos}
+          setEditandoPuntos={setEditandoPuntos}
+          agregandoParada={agregandoParada}
+          setAgregandoParada={setAgregandoParada}
+          onCrearRuta={(fila) => crearFila('Rutas', fila)}
+          onDeshacerPunto={deshacerPunto}
+        />
       )}
 
       {/* El mapa */}
@@ -205,14 +284,20 @@ export default function Mapa() {
         <div
           ref={contRef}
           className="relative mx-auto rounded-2xl overflow-hidden border border-linea"
-          style={{ aspectRatio: proporcion, maxHeight: 'calc(100dvh - 150px)', maxWidth: '100%' }}
+          style={{
+            aspectRatio: proporcion,
+            maxHeight: 'calc(100dvh - 150px)',
+            maxWidth: '100%',
+            cursor: editandoPuntos || agregandoParada ? 'crosshair' : 'default',
+          }}
+          onClick={alTocarMapa}
         >
-          {/* Capa con zoom cinematográfico: imagen + velo + zonas viajan juntos */}
+          {/* Lienzo con zoom cinematográfico: todo viaja junto */}
           <div
             className="absolute inset-0 transition-transform duration-cine ease-casa"
             style={{
-              transform: espacioAbierto ? 'scale(2.2)' : 'scale(1)',
-              transformOrigin: origenZoom,
+              transform: camara ? `scale(${camara.escala})` : 'scale(1)',
+              transformOrigin: camara ? camara.origen : '50% 50%',
             }}
           >
             <img
@@ -227,12 +312,30 @@ export default function Mapa() {
                 }
               }}
             />
-            {/* Velo: al abrir una ficha, el resto del mapa baja de luz */}
+
+            {/* Velo al abrir ficha o recorrido */}
             <div
               className="absolute inset-0 bg-noche transition-opacity duration-micro ease-casa pointer-events-none"
-              style={{ opacity: espacioAbierto ? 0.55 : 0 }}
+              style={{ opacity: camara ? 0.55 : 0 }}
             />
 
+            {/* Rutas: siempre visibles como contexto; interactivas en su capa */}
+            <RutasCapa
+              rutas={rutas}
+              paradas={paradas}
+              interactivas={enRutas && !editandoPuntos && !agregandoParada}
+              rutaSel={rutaSel}
+              recorriendo={rutaRecorrida?.id || null}
+              onElegirRuta={(id) => {
+                setRutaSel(id)
+                setRecorrido({ rutaId: id, idx: 0 })
+              }}
+            />
+            {editandoPuntos && rutaSel && (
+              <PuntosEdicion ruta={rutas.find((r) => r.id === rutaSel) || { puntos: '[]' }} />
+            )}
+
+            {/* Zonas de espacios */}
             {espacios.map((e) => {
               const z = tempArrastre?.id === e.id ? tempArrastre : zonaDeFila(e)
               const seleccionada = seleccion === e.id && modoEdicion
@@ -242,7 +345,8 @@ export default function Mapa() {
                   key={e.id}
                   role="button"
                   aria-label={e.nombre}
-                  className={`absolute rounded-lg border transition-colors duration-micro ease-casa
+                  className={`absolute rounded-lg border transition-all duration-micro ease-casa
+                    ${enRutas ? 'opacity-30 pointer-events-none' : ''}
                     ${esLaAbierta ? 'border-oro bg-oro/20 z-10' : seleccionada ? 'border-oro bg-oro/25' : 'border-oro/70 bg-oro/10 hover:bg-oro/20'}`}
                   style={{
                     left: `${z.x}%`,
@@ -256,7 +360,7 @@ export default function Mapa() {
                   onPointerMove={alMover}
                   onPointerUp={modoEdicion ? alSoltar : undefined}
                   onPointerCancel={alCancelar}
-                  onClick={() => { if (!modoEdicion) setAbierto(e.id) }}
+                  onClick={(ev) => { ev.stopPropagation(); if (!modoEdicion && !enRutas) setAbierto(e.id) }}
                 >
                   <span className="absolute -top-6 left-0 text-xs font-medium text-marfil bg-noche/80 rounded px-1.5 py-0.5 whitespace-nowrap max-w-[16rem] overflow-hidden text-ellipsis">
                     {e.nombre}
@@ -277,7 +381,7 @@ export default function Mapa() {
             })}
           </div>
 
-          {espacios.length === 0 && (
+          {espacios.length === 0 && !enRutas && (
             <div className="absolute inset-x-4 bottom-4 tarjeta p-4 text-center bg-noche/85">
               <p className="text-marfil text-sm font-medium">Aún no hay espacios en el mapa.</p>
               <p className="text-terciario text-xs mt-1">
@@ -285,10 +389,17 @@ export default function Mapa() {
               </p>
             </div>
           )}
+          {enRutas && (editandoPuntos || agregandoParada) && (
+            <div className="absolute inset-x-4 top-3 text-center pointer-events-none">
+              <span className="text-xs text-noche bg-oro rounded-full px-3 py-1 font-medium">
+                {editandoPuntos ? 'Toca el mapa para agregar puntos a la ruta' : 'Toca el punto del mapa donde va la parada'}
+              </span>
+            </div>
+          )}
         </div>
       </div>
 
-      {/* La ficha del espacio: Factores | Fotos | Documentos | Conocimientos | Tareas */}
+      {/* Ficha del espacio */}
       <aside
         className={`fixed z-50 bg-elevada border-linea shadow-2xl
           inset-x-0 bottom-0 rounded-t-2xl border-t max-h-[85dvh]
@@ -299,13 +410,46 @@ export default function Mapa() {
       >
         {espacioAbierto && <FichaEspacio espacio={espacioAbierto} onCerrar={() => setAbierto(null)} />}
       </aside>
-
-      {/* Fondo clicable para cerrar la ficha */}
       {espacioAbierto && (
         <div className="fixed inset-0 z-40" onClick={() => setAbierto(null)} aria-hidden="true" />
       )}
 
+      {/* Recorrido de la ruta activa */}
+      {rutaRecorrida && (
+        <Recorrido
+          ruta={rutaRecorrida}
+          paradas={paradas}
+          idx={recorrido.idx}
+          setIdx={(i) => setRecorrido({ ...recorrido, idx: i })}
+          onCerrar={() => setRecorrido(null)}
+        />
+      )}
+
+      {verPeticiones && <Peticiones onCerrar={() => setVerPeticiones(false)} />}
+
       {creando && <FormaNuevoEspacio onCrear={crearEspacio} onCerrar={() => setCreando(false)} />}
+      {paradaPendiente && rutaSel && (
+        <FormaNuevaParada
+          coords={paradaPendiente}
+          orden={paradas.filter((p) => String(p.ruta_id) === String(rutaSel)).length + 1}
+          onCrear={async (nombre) => {
+            await crearFila('Paradas', {
+              ruta_id: rutaSel,
+              nombre,
+              foto_actual_id: '',
+              foto_vision_id: '',
+              elementos: '[]',
+              notas: '',
+              orden: String(paradas.filter((p) => String(p.ruta_id) === String(rutaSel)).length + 1),
+              pos_x: String(paradaPendiente.x),
+              pos_y: String(paradaPendiente.y),
+            })
+            setParadaPendiente(null)
+            setAgregandoParada(false)
+          }}
+          onCerrar={() => setParadaPendiente(null)}
+        />
+      )}
     </div>
   )
 }
@@ -331,36 +475,67 @@ function FormaNuevoEspacio({ onCrear, onCerrar }) {
 
   return (
     <div className="fixed inset-0 z-50 bg-noche/70 flex items-end sm:items-center justify-center p-4" onClick={onCerrar}>
-      <form
-        className="tarjeta bg-elevada p-6 w-full max-w-sm"
-        onClick={(e) => e.stopPropagation()}
-        onSubmit={enviar}
-      >
+      <form className="tarjeta bg-elevada p-6 w-full max-w-sm" onClick={(e) => e.stopPropagation()} onSubmit={enviar}>
         <h3 className="font-titulo text-xl">Nuevo espacio</h3>
         <p className="text-terciario text-sm mt-1">
           Se coloca al centro del mapa; después lo arrastras a su lugar.
         </p>
-
         <label className="block mt-4">
           <span className="text-sm text-arena">Nombre</span>
           <input className="campo mt-1.5" value={nombre} onChange={(e) => setNombre(e.target.value)} autoFocus disabled={ocupado} placeholder="Ej. Venue principal" />
         </label>
-
         <label className="block mt-3">
           <span className="text-sm text-arena">Tipo</span>
           <select className="campo mt-1.5" value={tipo} onChange={(e) => setTipo(e.target.value)} disabled={ocupado}>
-            {TIPOS.map((t) => (
-              <option key={t} value={t}>{t}</option>
-            ))}
+            {TIPOS.map((t) => <option key={t} value={t}>{t}</option>)}
           </select>
         </label>
-
         {error && <p className="text-ladrillo text-sm mt-3" role="alert">{error}</p>}
-
         <div className="flex gap-2 mt-5">
           <button type="button" className="boton-secundario flex-1" onClick={onCerrar} disabled={ocupado}>Cancelar</button>
           <button type="submit" className="boton-primario flex-1" disabled={ocupado || !nombre.trim()}>
             {ocupado ? 'Creando…' : 'Crear'}
+          </button>
+        </div>
+      </form>
+    </div>
+  )
+}
+
+function FormaNuevaParada({ coords, onCrear, onCerrar }) {
+  const [nombre, setNombre] = useState('')
+  const [ocupado, setOcupado] = useState(false)
+  const [error, setError] = useState(null)
+
+  async function enviar(ev) {
+    ev.preventDefault()
+    if (!nombre.trim()) return
+    setOcupado(true)
+    setError(null)
+    try {
+      await onCrear(nombre.trim())
+    } catch (e) {
+      setError(e.message)
+      setOcupado(false)
+    }
+  }
+
+  return (
+    <div className="fixed inset-0 z-50 bg-noche/70 flex items-end sm:items-center justify-center p-4" onClick={onCerrar}>
+      <form className="tarjeta bg-elevada p-6 w-full max-w-sm" onClick={(e) => e.stopPropagation()} onSubmit={enviar}>
+        <h3 className="font-titulo text-xl">Nueva parada</h3>
+        <p className="text-terciario text-sm mt-1">
+          Quedará en el punto que tocaste ({coords.x.toFixed(0)}%, {coords.y.toFixed(0)}%).
+        </p>
+        <label className="block mt-4">
+          <span className="text-sm text-arena">Nombre</span>
+          <input className="campo mt-1.5" value={nombre} onChange={(e) => setNombre(e.target.value)} autoFocus disabled={ocupado} placeholder="Ej. Plaza Hidalgo" />
+        </label>
+        {error && <p className="text-ladrillo text-sm mt-3" role="alert">{error}</p>}
+        <div className="flex gap-2 mt-5">
+          <button type="button" className="boton-secundario flex-1" onClick={onCerrar} disabled={ocupado}>Cancelar</button>
+          <button type="submit" className="boton-primario flex-1" disabled={ocupado || !nombre.trim()}>
+            {ocupado ? 'Creando…' : 'Crear parada'}
           </button>
         </div>
       </form>

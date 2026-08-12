@@ -127,6 +127,19 @@
 }
 
 /* ============================================================
+   Rutas: el trazo se dibuja una sola vez al iniciar el recorrido
+   (permitido: es una pasada, no un bucle).
+   ============================================================ */
+@keyframes trazar-ruta {
+  from { stroke-dashoffset: 100; }
+  to { stroke-dashoffset: 0; }
+}
+.ruta-trazandose {
+  stroke-dasharray: 100;
+  animation: trazar-ruta 800ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* ============================================================
    Impresión (la vista Reporte de la Fase 5 hereda esto):
    papel claro, tinta oscura, y forzar que los colores existan.
    ============================================================ */

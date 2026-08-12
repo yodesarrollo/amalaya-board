@@ -77,7 +77,9 @@ const TABS = {
   },
   Paradas: {
     keyField: 'id',
-    headers: ['id', 'ruta_id', 'nombre', 'foto_actual_id', 'foto_vision_id', 'elementos', 'notas', 'orden'],
+    // pos_x/pos_y (al FINAL, extensión en caliente): dónde vive la parada
+    // sobre el mapa, en porcentajes — el recorrido viaja hacia ese punto.
+    headers: ['id', 'ruta_id', 'nombre', 'foto_actual_id', 'foto_vision_id', 'elementos', 'notas', 'orden', 'pos_x', 'pos_y'],
     prefix: 'P-',
   },
   Tareas: {
