@@ -1,0 +1,140 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+   Tipografías auto-hospedadas (licencias OFL junto a los .woff2
+   en public/fuentes/). Ambas son variables: un archivo cubre
+   todos los pesos que usamos.
+
+   REGLA MEDIDA (no estética): el woff2 de Fraunces NO conserva
+   los números tabulares (tnum); el de Inter sí. Por eso toda
+   cifra que cambia en vivo (sliders, valor por acción, contadores)
+   se pinta con .cifra (Inter + tnum) para que los dígitos no
+   bailen de ancho al recalcular. Fraunces es para títulos y
+   texto que no cambia mientras se lee.
+   ============================================================ */
+@font-face {
+  font-family: 'Fraunces';
+  src: url('/amalaya-board/fuentes/fraunces-latin.woff2') format('woff2');
+  font-weight: 100 900;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Inter';
+  src: url('/amalaya-board/fuentes/inter-latin.woff2') format('woff2');
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+@layer base {
+  html {
+    @apply bg-noche text-marfil font-ui antialiased;
+  }
+  body {
+    margin: 0;
+    min-height: 100dvh;
+  }
+  h1, h2, h3 {
+    @apply font-titulo;
+  }
+}
+
+@layer components {
+  /* Cifras vivas: Inter con números tabulares, siempre. */
+  .cifra {
+    @apply font-ui;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Tarjeta base del sistema */
+  .tarjeta {
+    @apply bg-superficie border border-linea rounded-2xl;
+  }
+
+  /* Botón primario (oro sobre noche: el oro es fondo, el texto va oscuro) */
+  .boton-primario {
+    @apply bg-oro text-noche font-medium rounded-xl px-5 py-3
+           transition-opacity duration-micro ease-casa
+           hover:opacity-90 active:opacity-80
+           disabled:opacity-40 disabled:cursor-not-allowed;
+  }
+
+  .boton-secundario {
+    @apply bg-transparent text-arena border border-linea rounded-xl px-5 py-3
+           transition-colors duration-micro ease-casa
+           hover:text-marfil hover:border-arena;
+  }
+
+  .campo {
+    @apply bg-noche border border-linea rounded-xl px-4 py-3 text-marfil
+           placeholder:text-terciario w-full outline-none
+           transition-colors duration-micro ease-casa
+           focus:border-oro;
+  }
+
+  /* Pastilla de modo demostración: discreta, junto al logo, nunca un banner */
+  .pastilla-demo {
+    @apply text-xs font-medium tracking-wide uppercase text-noche bg-oro/90
+           rounded-full px-2.5 py-0.5;
+  }
+}
+
+/* ============================================================
+   La línea Amalaya — la única alusión musical de la interfaz.
+   Un hairline dorado que, en transiciones y cargas, ondula como
+   una forma de onda y vuelve a ser línea recta.
+
+   Implementación compatible con Safari/iOS: DOS paths superpuestos
+   (recta y onda) con cross-fade de opacidad — jamás animar `d` por
+   CSS, que Safari no soporta.
+   ============================================================ */
+.linea-amalaya {
+  display: block;
+  width: 100%;
+  height: 8px;
+  overflow: visible;
+}
+.linea-amalaya .recta,
+.linea-amalaya .onda {
+  fill: none;
+  stroke: #c9a45c;
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+  transition: opacity 800ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.linea-amalaya .onda { opacity: 0; }
+.linea-amalaya.cargando .onda { opacity: 1; animation: onda-respira 1600ms ease-in-out infinite; }
+.linea-amalaya.cargando .recta { opacity: 0.25; }
+
+/* Única animación en bucle permitida: el indicador de carga. */
+@keyframes onda-respira {
+  0%, 100% { transform: scaleY(0.4); }
+  50% { transform: scaleY(1); }
+}
+.linea-amalaya .onda { transform-origin: center; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+  /* El indicador de carga no ondula: pulsa opacidad. */
+  .linea-amalaya.cargando .onda {
+    animation: none;
+    opacity: 0.6;
+  }
+}
+
+/* ============================================================
+   Impresión (la vista Reporte de la Fase 5 hereda esto):
+   papel claro, tinta oscura, y forzar que los colores existan.
+   ============================================================ */
+@media print {
+  html, body {
+    background: #faf6ee !important;
+    color: #2b211a !important;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "demo": true,
+  "nota": "Maqueta de demostración con datos 100% inventados. Los datos reales de Amalaya nunca viven en este archivo ni en este repositorio: se sirven desde el servidor solo con un código de acceso válido.",
+  "generado": "2026-08-12",
+  "datos": {
+    "Config": [
+      { "clave": "nombre_proyecto", "valor": "Amalaya (demostración)", "notas": "maqueta" },
+      { "clave": "valor_m2_venue", "valor": "10000", "notas": "supuesto de demostración" },
+      { "clave": "valor_m2_museo", "valor": "10000", "notas": "supuesto de demostración" },
+      { "clave": "valor_m2_escuela", "valor": "10000", "notas": "supuesto de demostración" },
+      { "clave": "costo_m2_venue", "valor": "8000", "notas": "supuesto de demostración" },
+      { "clave": "costo_m2_museo", "valor": "8000", "notas": "supuesto de demostración" },
+      { "clave": "costo_m2_escuela", "valor": "8000", "notas": "supuesto de demostración" },
+      { "clave": "gastos_generales", "valor": "1000000", "notas": "supuesto de demostración" },
+      { "clave": "acciones_emitidas", "valor": "10000", "notas": "supuesto de demostración" },
+      { "clave": "multiplo_operativo", "valor": "6", "notas": "supuesto de demostración" },
+      { "clave": "multiplo_regalias", "valor": "4", "notas": "supuesto de demostración" }
+    ],
+    "Espacios": [
+      {
+        "id": "E-001", "nombre": "Foro de ejemplo", "tipo": "venue",
+        "estado_desarrollo": "idea", "descripcion": "Espacio inventado para la demostración.",
+        "m2": "1000", "pos_x": "58", "pos_y": "22", "ancho": "18", "alto": "14", "notas": ""
+      },
+      {
+        "id": "E-002", "nombre": "Museo de muestra", "tipo": "museo",
+        "estado_desarrollo": "idea", "descripcion": "Espacio inventado para la demostración.",
+        "m2": "600", "pos_x": "30", "pos_y": "48", "ancho": "14", "alto": "12", "notas": ""
+      },
+      {
+        "id": "E-003", "nombre": "Escuela de prueba", "tipo": "escuela",
+        "estado_desarrollo": "idea", "descripcion": "Espacio inventado para la demostración.",
+        "m2": "400", "pos_x": "62", "pos_y": "60", "ancho": "15", "alto": "12", "notas": ""
+      }
+    ],
+    "Factores": [
+      { "id": "F-001", "espacio_id": "E-003", "etiqueta": "Alumnos", "tipo_control": "slider", "valor": "20", "min": "5", "max": "60", "paso": "5", "unidad": "alumnos", "ligado_a": "Colegiaturas", "orden": "1" },
+      { "id": "F-002", "espacio_id": "E-003", "etiqueta": "Mensualidad", "tipo_control": "numero", "valor": "2000", "min": "500", "max": "5000", "paso": "100", "unidad": "$/mes", "ligado_a": "Colegiaturas", "orden": "2" }
+    ],
+    "Finanzas_Lineas": [
+      { "id": "L-001", "espacio_id": "E-003", "escenario_id": "", "concepto": "Colegiaturas", "tipo": "ingreso", "monto_anual": "=alumnos * mensualidad * 12", "supuesto": "demostración" },
+      { "id": "L-002", "espacio_id": "E-003", "escenario_id": "", "concepto": "Regalías de grabaciones", "tipo": "ingreso", "monto_anual": "100000", "supuesto": "demostración" },
+      { "id": "L-003", "espacio_id": "E-003", "escenario_id": "", "concepto": "Operación", "tipo": "costo", "monto_anual": "200000", "supuesto": "demostración" },
+      { "id": "L-004", "espacio_id": "E-001", "escenario_id": "", "concepto": "Renta del foro", "tipo": "ingreso", "monto_anual": "500000", "supuesto": "demostración" },
+      { "id": "L-005", "espacio_id": "E-001", "escenario_id": "", "concepto": "Operación", "tipo": "costo", "monto_anual": "200000", "supuesto": "demostración" },
+      { "id": "L-006", "espacio_id": "E-002", "escenario_id": "", "concepto": "Boletos", "tipo": "ingreso", "monto_anual": "300000", "supuesto": "demostración" },
+      { "id": "L-007", "espacio_id": "E-002", "escenario_id": "", "concepto": "Operación", "tipo": "costo", "monto_anual": "150000", "supuesto": "demostración" }
+    ],
+    "Escenarios": [],
+    "Rutas": [
+      {
+        "id": "R-001", "nombre": "Ruta de muestra", "color": "#8FA382",
+        "homenaje_a": "Artista de ejemplo", "artista_mural": "Muralista de ejemplo",
+        "puntos": "[[20,30],[40,35],[58,28],[70,40]]", "orden": "1"
+      }
+    ],
+    "Paradas": [],
+    "Tareas": [],
+    "Conocimientos": [],
+    "Archivos": []
+  }
+}
