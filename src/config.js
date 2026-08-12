@@ -6,8 +6,10 @@
 // código de acceso válido no entrega ni un dato. Ver README.
 // ============================================================
 
-// Se pega aquí la URL /exec al implementar el Apps Script (Fase 0, paso de Chrome).
-export const APPS_SCRIPT_URL = 'PEGA_AQUI_LA_URL_EXEC'
+// La puerta del backend (implementación "Fase 0 — fórmula de control").
+// Para re-desplegar SIN cambiar esta URL: editor de Apps Script → Implementar
+// → Administrar implementaciones → ✎ → Nueva versión.
+export const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzH0ZDLoDOaE3np3MUPWPh7_A-aYSG3sKz2O3zxCFRXPOaJk_6Pk6-krHFmtxycY-Ta/exec'
 
 // Auto-refresh, como yod-obra: cada 10 minutos.
 export const REFRESH_MS = 10 * 60 * 1000

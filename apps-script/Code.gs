@@ -28,6 +28,12 @@
 // Zona horaria del negocio: fechas como texto yyyy-MM-dd, sin sorpresas de hora.
 const TZ = 'America/Hermosillo';
 
+// ID del Sheet SOLO para el primer arranque de setup() en un proyecto
+// independiente (no vinculado). Se llena AL PEGAR este archivo en el editor
+// de Apps Script — en el repo público SIEMPRE queda vacío: el ID real vive
+// en las Propiedades del Script después de correr setup().
+const SHEET_ID_ARRANQUE = '';
+
 // ---------------------------------------------------------------------------
 //  PESTAÑAS DEL SHEET — la única declaración de estructura.
 //  Si un día se agrega una columna, se agrega AQUÍ (al final de su lista) y
@@ -120,10 +126,25 @@ const ESCRITURA_POR_ROL = {
 //  (marcados como supuesto — editable) y crea la carpeta AMALAYA en Drive.
 // ---------------------------------------------------------------------------
 function setup() {
-  const ss = SpreadsheetApp.getActiveSpreadsheet();
   const props = PropertiesService.getScriptProperties();
+  let ss = SpreadsheetApp.getActiveSpreadsheet();
+  if (!ss) {
+    const id = props.getProperty('SHEET_ID') || SHEET_ID_ARRANQUE;
+    if (id) {
+      try {
+        ss = SpreadsheetApp.openById(id);
+        ss.getName(); // openById es perezoso: forzar el acceso real AQUÍ
+      } catch (e) {
+        ss = null; // el ID no existe o no es accesible: se crea una hoja nueva
+      }
+    }
+    if (!ss) {
+      ss = SpreadsheetApp.create('AMALAYA - Control');
+    }
+  }
   props.setProperty('SHEET_ID', ss.getId());
-  const mensajes = ['Sheet: ' + ss.getName()];
+  if (ss.getName().indexOf('AMALAYA') === -1) ss.rename('AMALAYA - Control');
+  const mensajes = ['Sheet: ' + ss.getName(), 'URL del Sheet: ' + ss.getUrl()];
 
   Object.keys(TABS).forEach(function (nombre) {
     const conf = TABS[nombre];
@@ -186,8 +207,38 @@ function setup() {
     mensajes.push('Carpeta de Drive creada: AMALAYA (con subcarpeta Respaldos).');
   }
 
+  // Primer admin: si Usuarios está vacía, se crea aquí con un código generado.
+  // El código se muestra UNA sola vez, en el resultado de esta corrida; después
+  // siempre viaja enmascarado. Sin nombres hardcodeados: el correo es el de la
+  // cuenta dueña, y el nombre se corrige a gusto en la pestaña Usuarios.
+  const hojaUsuarios = ss.getSheetByName('Usuarios');
+  if (hojaUsuarios.getLastRow() < 2) {
+    const codigo = generarCodigo();
+    hojaUsuarios.appendRow(['U-001', 'Administración Amalaya', Session.getEffectiveUser().getEmail(), 'admin', codigo, 'si']);
+    mensajes.push('');
+    mensajes.push('>>> TU CÓDIGO DE ACCESO DE ADMIN (guárdalo; solo se muestra esta vez): ' + codigo + ' <<<');
+  }
+
   mensajes.push('Listo. Ahora: Implementar → Aplicación web (Ejecutar como: yo · Acceso: Cualquier usuario).');
-  return mensajes.join('\n');
+  // Al registro de ejecución (el editor no muestra valores devueltos).
+  const salida = mensajes.join('\n');
+  console.log(salida);
+  return salida;
+}
+
+// Código de acceso: 10 caracteres sin ambiguos (sin 0/O, 1/l/I), derivados de
+// bytes de UUID (Math.random no es apropiado para credenciales).
+function generarCodigo() {
+  const alfabeto = 'ABCDEFGHJKMNPQRSTUVWXYZ23456789';
+  const bytes = Utilities.computeDigest(
+    Utilities.DigestAlgorithm.SHA_256,
+    Utilities.getUuid() + Utilities.getUuid()
+  );
+  let codigo = '';
+  for (let i = 0; i < 10; i++) {
+    codigo += alfabeto.charAt(((bytes[i] % 256) + 256) % alfabeto.length);
+  }
+  return codigo;
 }
 
 // Instala el respaldo nocturno (correr una vez a mano).
@@ -602,17 +653,7 @@ function accNuevoCodigo(usuario, body) {
   const idUsuario = String(body.usuario_id || '').trim();
   if (!idUsuario) return jsonOut({ ok: false, error: 'Falta el usuario.' });
 
-  // 10 caracteres sin ambiguos (sin 0/O, 1/l/I), derivados de bytes de UUID
-  // (Math.random no es apropiado para generar credenciales).
-  const alfabeto = 'ABCDEFGHJKMNPQRSTUVWXYZ23456789';
-  const bytes = Utilities.computeDigest(
-    Utilities.DigestAlgorithm.SHA_256,
-    Utilities.getUuid() + Utilities.getUuid()
-  );
-  let codigo = '';
-  for (let i = 0; i < 10; i++) {
-    codigo += alfabeto.charAt(((bytes[i] % 256) + 256) % alfabeto.length);
-  }
+  const codigo = generarCodigo();
 
   return conCandado(function () {
     const conf = TABS.Usuarios;
