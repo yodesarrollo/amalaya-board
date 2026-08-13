@@ -6,6 +6,8 @@ import LineaAmalaya from './componentes/LineaAmalaya.jsx'
 import Mapa from './componentes/Mapa.jsx'
 import Financiero from './componentes/Financiero.jsx'
 import Reporte from './componentes/Reporte.jsx'
+import Usuarios from './componentes/Usuarios.jsx'
+import Ayuda from './componentes/Ayuda.jsx'
 
 // Las secciones del board según el rol.
 // El inversionista SOLO ve el Reporte (además, el servidor solo le
@@ -27,11 +29,17 @@ function Principal() {
 
   return (
     <main>
-      <nav className="no-imprimir max-w-6xl mx-auto px-4 pt-3 flex gap-1" aria-label="Secciones">
-        {[['mapa', 'Mapa'], ...(hayFinanzas ? [['finanzas', 'Finanzas']] : []), ['reporte', 'Reporte']].map(([s, titulo]) => (
+      <nav className="no-imprimir max-w-6xl mx-auto px-4 pt-3 flex gap-1 overflow-x-auto" aria-label="Secciones">
+        {[
+          ['mapa', 'Mapa'],
+          ...(hayFinanzas ? [['finanzas', 'Finanzas']] : []),
+          ['reporte', 'Reporte'],
+          ...(sesion?.rol === 'admin' ? [['equipo', 'Equipo']] : []),
+          ['ayuda', 'Ayuda'],
+        ].map(([s, titulo]) => (
           <button
             key={s}
-            className={`px-3 py-1.5 text-sm rounded-lg transition-colors duration-micro ease-casa
+            className={`px-3 py-1.5 text-sm rounded-lg whitespace-nowrap transition-colors duration-micro ease-casa
               ${seccion === s ? 'bg-superficie text-marfil border border-linea' : 'text-terciario hover:text-arena'}`}
             onClick={() => setSeccion(s)}
           >
@@ -42,6 +50,8 @@ function Principal() {
       {seccion === 'mapa' && <Mapa />}
       {seccion === 'finanzas' && <Financiero />}
       {seccion === 'reporte' && <Reporte />}
+      {seccion === 'equipo' && <Usuarios />}
+      {seccion === 'ayuda' && <Ayuda />}
       {modo === 'demo' && seccion !== 'reporte' && (
         <p className="max-w-6xl mx-auto px-4 pb-8 text-terciario text-sm">
           Estás viendo la demostración: todos los nombres y cifras son

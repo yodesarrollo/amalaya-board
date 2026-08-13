@@ -316,12 +316,20 @@ export function DatosProvider({ children }) {
     return apiCall('verArchivo', { codigo: sesionRef.current?.codigo, file_id: fileId })
   }, [])
 
+  // Acción directa con la credencial de la sesión (nuevoCodigo, respaldoAhora…).
+  // Sin reintento automático: son acciones que crean cosas.
+  const apiAccion = useCallback(async (action, payload = {}) => {
+    const r = await apiCall(action, { codigo: sesionRef.current?.codigo, ...payload })
+    if (r.v !== undefined) setVersion(r.v)
+    return r
+  }, [])
+
   const valor = {
     sesion, arrancando, datos, modo,
     sincronizando, errorSync, ultimaSync, guardados,
     entrar, salir, actualizar, verDemo,
     editarFila, crearFila, borrarFila, reintentarGuardado,
-    subirArchivo, verArchivo,
+    subirArchivo, verArchivo, apiAccion,
   }
   return <Ctx.Provider value={valor}>{children}</Ctx.Provider>
 }

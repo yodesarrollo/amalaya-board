@@ -40,9 +40,9 @@ Script). En concreto:
 | Correr en local | `npm install && npm run dev` |
 | Pruebas | `npm run pruebas` (motor financiero + premisa de la careta) |
 | Publicar | push a `main` (el Action construye y despliega) |
-| Rotar el código de una persona | El board, sección Usuarios (solo admin): "Generar código nuevo" — se muestra una sola vez |
-| Dar de baja a alguien | Pestaña `Usuarios` del Sheet: columna `activo` → `no` (corta el acceso en su próxima llamada) |
-| Respaldo inmediato | Botón "Respaldo" del board (admin), o Drive → AMALAYA → Respaldos |
+| Rotar el código de una persona | Board → sección **Equipo** (solo admin) → "Código nuevo" — se muestra una sola vez |
+| Dar de baja a alguien | Board → Equipo → apagar su interruptor (o en el Sheet: `activo` → `no`); corta el acceso en su próxima llamada |
+| Respaldo inmediato | Board → Equipo → botón "Respaldo" (también corre solo cada noche) → Drive → AMALAYA → Respaldos |
 | Re-desplegar el Apps Script | Editor de Apps Script → Implementar → Administrar implementaciones → ✎ → Nueva versión (así la URL `/exec` NO cambia) |
 | Ver la salud | `public/estado.json` (vía raw.githubusercontent.com para verlo en vivo) |
 
