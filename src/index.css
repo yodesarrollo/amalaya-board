@@ -140,8 +140,11 @@
 }
 
 /* ============================================================
-   Impresión (la vista Reporte de la Fase 5 hereda esto):
-   papel claro, tinta oscura, y forzar que los colores existan.
+   Impresión — el Reporte sale en PAPEL: fondo claro, tinta
+   oscura, oro de tinta (#7A5E2A, el claro no pasa contraste en
+   papel), y jerarquía sostenida por tipografía aunque el
+   navegador ignore los fondos. print-color-adjust conserva los
+   filetes y las barras.
    ============================================================ */
 @media print {
   html, body {
@@ -150,4 +153,20 @@
     print-color-adjust: exact;
     -webkit-print-color-adjust: exact;
   }
+  .no-imprimir { display: none !important; }
+  .reporte { max-width: none !important; padding: 0 !important; }
+  .reporte, .reporte * {
+    background: transparent !important;
+    color: #2b211a !important;
+    border-color: #d8cfc0 !important;
+    box-shadow: none !important;
+  }
+  .reporte .imp-oro { color: #7a5e2a !important; }
+  .reporte .imp-seccion { break-inside: avoid; }
+  .reporte .imp-salto { break-before: page; }
+  .reporte .imp-barra { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+  .reporte .imp-barra * { background: unset; }
+  .reporte .bg-terracota { background: #b85c38 !important; }
+  .reporte .bg-oro { background: #c9a45c !important; }
+  .reporte .bg-salvia { background: #8fa382 !important; }
 }

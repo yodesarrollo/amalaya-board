@@ -9,7 +9,7 @@ export default function Encabezado() {
   const { sesion, modo, sincronizando, ultimaSync, errorSync, actualizar, salir } = usarDatos()
 
   return (
-    <header className="sticky top-0 z-40 bg-noche/95 backdrop-blur border-b border-linea">
+    <header className="no-imprimir sticky top-0 z-40 bg-noche/95 backdrop-blur border-b border-linea">
       <div className="max-w-6xl mx-auto px-4 py-3 flex items-center gap-3">
         <img src="/amalaya-board/sello.svg" alt="" className="w-8 h-8 rounded-lg" />
         <div className="flex items-center gap-2 min-w-0">

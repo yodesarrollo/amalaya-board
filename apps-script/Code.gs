@@ -110,7 +110,9 @@ const PESTANAS_POR_ROL = {
   admin: ['Config', 'Usuarios', 'Espacios', 'Factores', 'Finanzas_Lineas', 'Escenarios', 'Rutas', 'Paradas', 'Tareas', 'Conocimientos', 'Archivos'],
   editor: ['Config', 'Espacios', 'Factores', 'Finanzas_Lineas', 'Escenarios', 'Rutas', 'Paradas', 'Tareas', 'Conocimientos', 'Archivos'],
   visor: ['Config', 'Espacios', 'Factores', 'Finanzas_Lineas', 'Escenarios', 'Rutas', 'Paradas', 'Tareas', 'Conocimientos', 'Archivos'],
-  inversionista: ['Config', 'Espacios', 'Finanzas_Lineas', 'Escenarios', 'Rutas', 'Paradas'],
+  // Factores va incluido porque las líneas financieras del Reporte se
+  // calculan con ellos (son insumos del modelo, que el Reporte mismo enseña).
+  inversionista: ['Config', 'Espacios', 'Factores', 'Finanzas_Lineas', 'Escenarios', 'Rutas', 'Paradas'],
 };
 
 // Qué pestañas puede ESCRIBIR cada rol.
@@ -175,6 +177,7 @@ function setup() {
   if (hojaConfig.getLastRow() < 2) {
     const supuestos = [
       ['nombre_proyecto', 'Amalaya', ''],
+      ['resumen_proyecto', '', 'texto de presentación que abre el Reporte — se captura aquí, nunca en el código'],
       ['mapa_file_id', '', 'fileId en Drive de la imagen del polígono'],
       ['valor_m2_venue', '0', 'supuesto — editable'],
       ['valor_m2_museo', '0', 'supuesto — editable'],
