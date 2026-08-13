@@ -291,9 +291,9 @@ function PanelValor({ g }) {
   ]
 
   return (
-    <div className="tarjeta bg-elevada border-t-2 border-t-oro p-5">
+    <div className="tarjeta bg-elevada border-t-2 border-t-ambar p-5">
       <div className="text-xs uppercase tracking-[0.2em] text-arena">Valor por acción</div>
-      <div className="cifra text-4xl text-marfil mt-1 font-medium">
+      <div className="cifra font-cartel font-normal text-4xl text-marfil mt-1 glow-ambar">
         {v.porAccion === null ? '—' : moneda(v.porAccion)}
       </div>
       {v.porAccion === null && (
@@ -366,7 +366,7 @@ export default function Financiero() {
   return (
     <div className="max-w-6xl mx-auto px-4 py-5 lg:grid lg:grid-cols-[1fr_20rem] lg:gap-6 lg:items-start">
       <div className="space-y-4 pb-28 lg:pb-8">
-        <h2 className="font-titulo text-xl">El modelo de negocio</h2>
+        <h2 className="font-cartel font-normal uppercase tracking-wide text-2xl">El modelo de negocio</h2>
         {espacios.length === 0 && (
           <div className="tarjeta p-8 text-center">
             <p className="text-marfil font-medium">Aún no hay espacios.</p>
@@ -394,12 +394,12 @@ export default function Financiero() {
           </div>
         )}
         <button
-          className="w-full bg-elevada border-t-2 border-t-oro px-5 py-3 flex items-center gap-3 shadow-2xl"
+          className="w-full bg-elevada border-t-2 border-t-ambar px-5 py-3 flex items-center gap-3 shadow-2xl"
           onClick={() => setPanelAbierto(!panelAbierto)}
           aria-expanded={panelAbierto}
         >
           <span className="text-xs uppercase tracking-widest text-arena">Valor por acción</span>
-          <span className="cifra text-lg text-marfil font-medium flex-1 text-right">
+          <span className="cifra font-cartel font-normal text-xl text-marfil flex-1 text-right glow-ambar">
             {g.valorPorAccion.porAccion === null ? '—' : moneda(g.valorPorAccion.porAccion)}
           </span>
           {panelAbierto ? <ChevronDown size={16} className="text-terciario" /> : <ChevronUp size={16} className="text-terciario" />}

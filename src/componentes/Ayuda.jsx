@@ -66,7 +66,7 @@ export default function Ayuda() {
   const { sesion } = usarDatos()
   return (
     <div className="max-w-2xl mx-auto px-4 py-8">
-      <h2 className="font-titulo text-3xl">Ayuda</h2>
+      <h2 className="font-cartel font-normal uppercase tracking-wide text-3xl">Ayuda</h2>
       <p className="text-arena mt-2">
         La guía corta de Amalaya Board. Cualquier duda que no esté aquí:
         pregúntale al admin.

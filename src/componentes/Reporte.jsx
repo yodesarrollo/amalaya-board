@@ -46,10 +46,10 @@ export default function Reporte() {
         </button>
       </div>
 
-      {/* Portada */}
+      {/* Portada (en papel, la firma cae a Fraunces: sobriedad de documento) */}
       <header className="text-center imp-seccion">
         <div className="text-xs uppercase tracking-[0.35em] text-arena">Plan de negocios</div>
-        <h1 className="font-titulo text-5xl mt-3 tracking-tight">{nombre}</h1>
+        <h1 className="font-firma font-normal print:font-titulo text-6xl print:text-5xl mt-3">{nombre}</h1>
         <p className="text-terciario text-sm mt-2">
           Polígono de actuación concertada · Centro de Hermosillo, Sonora
         </p>
@@ -80,9 +80,9 @@ export default function Reporte() {
 
       {/* El dato estrella */}
       <section className="mt-10 imp-seccion">
-        <div className="tarjeta bg-elevada border-t-2 border-t-oro p-6 text-center">
+        <div className="tarjeta bg-elevada border-t-2 border-t-ambar p-6 text-center">
           <div className="text-xs uppercase tracking-[0.25em] text-arena">Valor por acción</div>
-          <div className="cifra text-5xl mt-2 font-medium imp-oro text-marfil">
+          <div className="cifra font-cartel font-normal print:font-titulo text-5xl mt-2 imp-oro text-marfil glow-ambar">
             {v.porAccion === null ? '—' : moneda(v.porAccion)}
           </div>
           <div className="flex h-2.5 rounded-full overflow-hidden mt-5 bg-linea imp-barra max-w-md mx-auto">

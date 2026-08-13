@@ -13,7 +13,7 @@ export default function Encabezado() {
       <div className="max-w-6xl mx-auto px-4 py-3 flex items-center gap-3">
         <img src="/amalaya-board/sello.svg" alt="" className="w-8 h-8 rounded-lg" />
         <div className="flex items-center gap-2 min-w-0">
-          <span className="font-titulo text-lg font-semibold tracking-tight">Amalaya</span>
+          <span className="font-firma text-2xl leading-none">Amalaya</span>
           {modo === 'demo' && <span className="pastilla-demo">Demostración</span>}
           {modo === 'copia' && (
             <span className="text-xs text-terciario border border-linea rounded-full px-2 py-0.5">

@@ -26,6 +26,20 @@
   font-weight: 100 900;
   font-display: swap;
 }
+/* Estilo "Cartel de Sonora": Anton para la señalética de cartel de gira,
+   Pirata One SOLO para la palabra Amalaya (la firma tumbada de la casa). */
+@font-face {
+  font-family: 'Anton';
+  src: url('/amalaya-board/fuentes/anton-latin.woff2') format('woff2');
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Pirata One';
+  src: url('/amalaya-board/fuentes/pirataone-latin.woff2') format('woff2');
+  font-weight: 400;
+  font-display: swap;
+}
 
 @layer base {
   html {
@@ -38,6 +52,32 @@
   h1, h2, h3 {
     @apply font-titulo;
   }
+}
+
+/* Grano de película sobre todo el board (el "óleo crudo"): 5% de ruido,
+   sin capturar clics. Se apaga al imprimir. */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='0.6'/%3E%3C/svg%3E");
+}
+
+/* El único resplandor del portal: reservado al dato estrella y a Entrar. */
+.glow-ambar {
+  text-shadow: 0 0 40px rgba(255, 184, 77, 0.35);
+}
+
+/* El autorrelleno de Chrome pinta los campos de blanco; se fuerza el tema. */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0 1000px #141010 inset;
+  -webkit-text-fill-color: #f2ead9;
+  caret-color: #f2ead9;
 }
 
 @layer components {
@@ -153,6 +193,8 @@
     print-color-adjust: exact;
     -webkit-print-color-adjust: exact;
   }
+  body::after { display: none; }                 /* sin grano en papel */
+  .reporte * { text-shadow: none !important; }   /* sin glow en papel */
   .no-imprimir { display: none !important; }
   .reporte { max-width: none !important; padding: 0 !important; }
   .reporte, .reporte * {

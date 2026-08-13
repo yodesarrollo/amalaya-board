@@ -57,7 +57,7 @@ export default function Usuarios() {
   return (
     <div className="max-w-2xl mx-auto px-4 py-6 space-y-4">
       <div className="flex items-center gap-2">
-        <h2 className="font-titulo text-xl flex-1">El equipo</h2>
+        <h2 className="font-cartel font-normal uppercase tracking-wide text-2xl flex-1">El equipo</h2>
         <button className="boton-secundario !px-3 !py-2 text-sm" onClick={respaldar} disabled={esDemo || ocupado === 'respaldo'}>
           <span className="flex items-center gap-1.5">
             <Download size={14} /> {ocupado === 'respaldo' ? 'Respaldando…' : 'Respaldo'}

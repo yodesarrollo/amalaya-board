@@ -39,17 +39,22 @@ export default function Acceso() {
   }
 
   return (
-    <div className="min-h-dvh flex items-center justify-center px-6">
+    <div
+      className="min-h-dvh flex items-center justify-center px-6"
+      style={{
+        background:
+          'radial-gradient(ellipse 90% 60% at 50% 110%, rgba(201,164,92,0.16), transparent 60%),' +
+          'radial-gradient(ellipse 60% 40% at 50% -10%, rgba(184,92,56,0.10), transparent 60%)',
+      }}
+    >
       <div className="w-full max-w-sm">
-        <div className="text-center mb-8">
-          <img
-            src="/amalaya-board/sello.svg"
-            alt=""
-            className="w-16 h-16 mx-auto mb-5 rounded-2xl"
-          />
-          <h1 className="text-4xl font-semibold tracking-tight">Amalaya</h1>
-          <p className="text-arena mt-2">
-            El board de control del polígono
+        <div className="text-center mb-6">
+          <p className="text-xs uppercase tracking-[0.3em] text-arena">
+            Distrito de música y ciudad · Hermosillo
+          </p>
+          <h1 className="font-firma font-normal text-7xl mt-4 glow-ambar">Amalaya</h1>
+          <p className="font-cartel uppercase tracking-[0.35em] text-oro text-xs mt-3">
+            De Hermosillo para el mundo
           </p>
         </div>
 
@@ -85,7 +90,8 @@ export default function Acceso() {
 
           <button
             type="submit"
-            className="boton-primario w-full"
+            className="boton-primario w-full font-cartel uppercase tracking-[0.15em] !font-normal"
+            style={{ boxShadow: '0 0 32px rgba(255,184,77,0.30)' }}
             disabled={cargando || !codigo.trim() || !BACKEND_LISTO}
           >
             {cargando ? 'Entrando…' : 'Entrar'}

@@ -75,9 +75,9 @@ function exigir(fg, bg, minimo, etiqueta) {
 }
 
 const P = {
-  noche: '#191411', superficie: '#221B15', elevada: '#2C231C',
+  noche: '#141010', superficie: '#221B15', elevada: '#2C231C',
   marfil: '#F2EAD9', arena: '#B7A890', terciario: '#9E8D78',
-  oro: '#C9A45C', orotinta: '#7A5E2A', terracota: '#B85C38',
+  oro: '#C9A45C', ambar: '#FFB84D', orotinta: '#7A5E2A', terracota: '#B85C38',
   ladrillo: '#E2705A', papel: '#FAF6EE', tinta: '#2B211A',
 }
 
@@ -92,6 +92,9 @@ prueba('texto normal sobre los tres fondos (4.5:1)', () => {
 prueba('acentos como texto grande (3:1)', () => {
   exigir(P.oro, P.noche, 3, 'oro sobre noche')
   exigir(P.terracota, P.noche, 3, 'terracota sobre noche')
+})
+prueba('el ámbar neón como texto (4.5:1 — lleva texto chico en la portada)', () => {
+  exigir(P.ambar, P.noche, 4.5, 'ámbar sobre noche')
 })
 prueba('el papel del Reporte (impresión)', () => {
   exigir(P.tinta, P.papel, 4.5, 'tinta sobre papel')

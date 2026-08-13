@@ -205,7 +205,7 @@ export default function Mapa() {
     <div className="relative">
       {/* Barra del mapa */}
       <div className="max-w-6xl mx-auto px-4 pt-4 pb-2 flex items-center gap-2 flex-wrap">
-        <h2 className="font-titulo text-xl">El polígono</h2>
+        <h2 className="font-cartel font-normal uppercase tracking-wide text-2xl">El polígono</h2>
 
         {/* Selector de capa */}
         <div className="flex rounded-xl border border-linea overflow-hidden ml-2">
@@ -313,6 +313,15 @@ export default function Mapa() {
               }}
             />
 
+            {/* Duotono noche-oro sobre el plano (el "óleo crudo") */}
+            <div
+              className="absolute inset-0 pointer-events-none"
+              style={{
+                background: 'linear-gradient(180deg, rgba(201,164,92,0.10), rgba(20,16,16,0.30))',
+                mixBlendMode: 'overlay',
+              }}
+            />
+
             {/* Velo al abrir ficha o recorrido */}
             <div
               className="absolute inset-0 bg-noche transition-opacity duration-micro ease-casa pointer-events-none"
@@ -362,7 +371,7 @@ export default function Mapa() {
                   onPointerCancel={alCancelar}
                   onClick={(ev) => { ev.stopPropagation(); if (!modoEdicion && !enRutas) setAbierto(e.id) }}
                 >
-                  <span className="absolute -top-6 left-0 text-xs font-medium text-marfil bg-noche/80 rounded px-1.5 py-0.5 whitespace-nowrap max-w-[16rem] overflow-hidden text-ellipsis">
+                  <span className="absolute -top-6 left-0 font-cartel font-normal uppercase tracking-wider text-xs text-marfil bg-noche/85 border-l-2 border-l-ambar rounded px-2 py-0.5 whitespace-nowrap max-w-[16rem] overflow-hidden text-ellipsis">
                     {e.nombre}
                   </span>
                   {seleccionada && (

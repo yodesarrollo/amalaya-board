@@ -10,7 +10,7 @@ export default {
     extend: {
       colors: {
         // Fondos, de atrás hacia adelante
-        noche: '#191411',      // fondo base
+        noche: '#141010',      // fondo base: negro de estadio (estilo Cartel de Sonora)
         superficie: '#221B15', // tarjetas
         elevada: '#2C231C',    // paneles que flotan (fichas, panel financiero)
         linea: '#3A2F26',      // bordes y divisores
@@ -21,7 +21,8 @@ export default {
         terciario: '#9E8D78',  // texto de apoyo (pasa 4.5:1 sobre los TRES fondos)
 
         // Acentos del desierto
-        oro: '#C9A45C',        // oro viejo: acentos, filetes, el dato estrella
+        oro: '#C9A45C',        // oro viejo: acentos, filetes
+        ambar: '#FFB84D',      // ámbar neón: SOLO el dato estrella y el botón de entrar (un solo glow en todo el portal)
         orotinta: '#7A5E2A',   // oro para TEXTO sobre papel claro (el C9A45C no pasa contraste ahí)
         terracota: '#B85C38',  // solo texto grande (≥24px) o elementos no textuales
         salvia: '#8FA382',     // éxito / guardado
@@ -32,7 +33,9 @@ export default {
         tinta: '#2B211A',
       },
       fontFamily: {
-        titulo: ['Fraunces', 'Georgia', 'serif'],
+        titulo: ['Fraunces', 'Georgia', 'serif'],      // el documento: Reporte, fichas
+        cartel: ['Anton', 'Impact', 'sans-serif'],      // señalética: secciones, zonas, la cifra estrella
+        firma: ['"Pirata One"', 'Georgia', 'serif'],    // SOLO la palabra Amalaya
         ui: ['Inter', 'system-ui', 'sans-serif'],
       },
       transitionTimingFunction: {
