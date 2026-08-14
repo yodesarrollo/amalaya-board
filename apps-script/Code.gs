@@ -185,6 +185,7 @@ function setup() {
       ['valor_m2_estacionamiento', '0', 'supuesto — editable'],
       ['valor_m2_departamento', '0', 'supuesto — editable'],
       ['valor_m2_restaurante', '0', 'supuesto — editable'],
+      ['valor_m2_estudio', '0', 'supuesto — editable'],
       ['valor_m2_otro', '0', 'supuesto — editable'],
       ['costo_m2_venue', '0', 'supuesto — editable'],
       ['costo_m2_museo', '0', 'supuesto — editable'],
@@ -192,7 +193,11 @@ function setup() {
       ['costo_m2_estacionamiento', '0', 'supuesto — editable'],
       ['costo_m2_departamento', '0', 'supuesto — editable'],
       ['costo_m2_restaurante', '0', 'supuesto — editable'],
+      ['costo_m2_estudio', '0', 'supuesto — editable'],
       ['costo_m2_otro', '0', 'supuesto — editable'],
+      ['split_distrito', '30', 'supuesto — editable: % de regalías que retiene el distrito'],
+      ['split_artista', '50', 'supuesto — editable: % de regalías del artista'],
+      ['split_compositor', '20', 'supuesto — editable: % de regalías del compositor'],
       ['gastos_generales', '0', 'supuesto — editable'],
       ['acciones_emitidas', '0', 'supuesto — editable'],
       ['multiplo_operativo', '6', 'supuesto — editable: años de utilidad que vale la operación'],
@@ -283,9 +288,26 @@ function doPost(e) {
     }
     const action = String(body.action || '');
 
-    // Única acción sin credencial.
+    // Acciones sin credencial (las únicas dos):
+    // - ping: solo confirma vida.
+    // - peticiones: el tracker PÚBLICO de peticiones al municipio (decisión de
+    //   Alejandro, 2026-08-13). Entrega EXCLUSIVAMENTE rutas (nombre y color) y
+    //   paradas (nombre y elementos deseados con su estado). Ni finanzas, ni
+    //   espacios, ni fotos, ni usuarios. Con freno anti-abuso.
     if (action === 'ping') {
       return jsonOut({ ok: true, servicio: 'amalaya-board', ts: Date.now() });
+    }
+    if (action === 'peticiones') {
+      if (!dentroDeLimite('pet_publicas', 60, 300)) {
+        return jsonOut({ ok: false, error: 'Muchas consultas; espera un momento.' });
+      }
+      const rutas = leerHoja('Rutas').map(function (r) {
+        return { id: r.id, nombre: r.nombre, color: r.color };
+      });
+      const paradas = leerHoja('Paradas').map(function (p) {
+        return { ruta_id: p.ruta_id, nombre: p.nombre, elementos: p.elementos };
+      });
+      return jsonOut({ ok: true, rutas: rutas, paradas: paradas });
     }
 
     // Todo lo demás exige código válido y activo. Fail-closed.

@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import { Plus, X, ChevronDown, ChevronUp } from 'lucide-react'
 import { usarDatos } from '../datos.jsx'
-import { moneda } from '../formato.js'
-import { resumenGlobal, resumenEspacio, montoLinea, mapaConfig, normalizarId } from '../calc.js'
+import { moneda, porcentaje } from '../formato.js'
+import { resumenGlobal, resumenEspacio, montoLinea, mapaConfig, configNum, normalizarId } from '../calc.js'
 
 // ============================================================
 // El motor financiero — la vista donde el modelo de negocio se
@@ -107,7 +107,11 @@ function Linea({ linea, factores, escenarios, editable }) {
 // --- El bloque de un espacio --------------------------------
 function BloqueEspacio({ espacio, editable }) {
   const { datos, crearFila, editarFila } = usarDatos()
-  const [abierto, setAbierto] = useState(true)
+  // "Primero el drama": en teléfono los bloques nacen cerrados — el número
+  // grande arriba y el formulario solo si lo pides (petición 5/6 del panel).
+  const [abierto, setAbierto] = useState(() =>
+    typeof window !== 'undefined' && window.innerWidth >= 1024
+  )
   const [nuevoEscenario, setNuevoEscenario] = useState('')
 
   const lineas = (datos?.Finanzas_Lineas || []).filter((l) => String(l.espacio_id) === String(espacio.id))
@@ -229,9 +233,9 @@ function BloqueEspacio({ espacio, editable }) {
 
 // --- Parámetros globales (Config, solo admin) ----------------
 const PARAMETROS = [
-  { grupo: 'Valor inmobiliario por m² (para el componente inmobiliario)', claves: ['valor_m2_venue', 'valor_m2_museo', 'valor_m2_escuela', 'valor_m2_estacionamiento', 'valor_m2_departamento', 'valor_m2_restaurante', 'valor_m2_otro'] },
-  { grupo: 'Costo de construcción por m²', claves: ['costo_m2_venue', 'costo_m2_museo', 'costo_m2_escuela', 'costo_m2_estacionamiento', 'costo_m2_departamento', 'costo_m2_restaurante', 'costo_m2_otro'] },
-  { grupo: 'Generales', claves: ['gastos_generales', 'acciones_emitidas', 'multiplo_operativo', 'multiplo_regalias'] },
+  { grupo: 'Valor inmobiliario por m² (para el componente inmobiliario)', claves: ['valor_m2_venue', 'valor_m2_museo', 'valor_m2_escuela', 'valor_m2_estacionamiento', 'valor_m2_departamento', 'valor_m2_restaurante', 'valor_m2_estudio', 'valor_m2_otro'] },
+  { grupo: 'Costo de construcción por m²', claves: ['costo_m2_venue', 'costo_m2_museo', 'costo_m2_escuela', 'costo_m2_estacionamiento', 'costo_m2_departamento', 'costo_m2_restaurante', 'costo_m2_estudio', 'costo_m2_otro'] },
+  { grupo: 'Generales', claves: ['gastos_generales', 'acciones_emitidas', 'multiplo_operativo', 'multiplo_regalias', 'split_distrito', 'split_artista', 'split_compositor'] },
 ]
 
 function Parametros({ esAdmin }) {
@@ -280,8 +284,50 @@ function Parametros({ esAdmin }) {
   )
 }
 
+// --- El desglose "en cristiano" ------------------------------
+// El panel lo pidió con 4 votos: el número gordo tocable que se
+// explica en cuatro renglones, sin lenguaje de contador.
+function DesgloseCristiano({ g, config, onCerrar }) {
+  const v = g.valorPorAccion
+  const acciones = configNum(config, 'acciones_emitidas', 0)
+  const rendimiento = v.total > 0 ? (g.utilidadTotal / v.total) * 100 : null
+
+  return (
+    <div className="fixed inset-0 z-50 bg-noche/80 flex items-end sm:items-center justify-center p-4" onClick={onCerrar}>
+      <div className="tarjeta bg-elevada p-6 w-full max-w-sm" onClick={(e) => e.stopPropagation()}>
+        <h3 className="font-cartel font-normal uppercase tracking-wide text-xl">¿Qué es este número?</h3>
+        <div className="mt-4 space-y-3 text-sm leading-relaxed">
+          <p className="text-marfil">
+            El proyecto completo vale <b className="cifra">{moneda(v.total)}</b>, dividido en{' '}
+            <b className="cifra">{acciones > 0 ? acciones.toLocaleString('es-MX') : '—'}</b> acciones:
+            cada una vale <b className="cifra text-ambar">{v.porAccion === null ? '—' : moneda(v.porAccion)}</b>.
+          </p>
+          <div className="space-y-1.5">
+            <p className="text-arena">Ese valor viene de tres lugares:</p>
+            <div className="flex items-center gap-2"><span className="w-2.5 h-2.5 rounded-full bg-terracota shrink-0" /><span className="text-arena flex-1">El terreno y lo construido</span><span className="cifra text-marfil">{moneda(v.inmobiliario)}</span></div>
+            <div className="flex items-center gap-2"><span className="w-2.5 h-2.5 rounded-full bg-oro shrink-0" /><span className="text-arena flex-1">Lo que deja operar los espacios</span><span className="cifra text-marfil">{moneda(v.operativo)}</span></div>
+            <div className="flex items-center gap-2"><span className="w-2.5 h-2.5 rounded-full bg-salvia shrink-0" /><span className="text-arena flex-1">Las regalías de la música</span><span className="cifra text-marfil">{moneda(v.regalias)}</span></div>
+          </div>
+          <p className="text-arena">
+            Con una acción eres dueño de un pedacito de todo eso: del recinto,
+            de su operación y de su música.
+          </p>
+          {rendimiento !== null && (
+            <p className="text-terciario text-xs leading-relaxed border-t border-linea pt-3">
+              La utilidad anual equivale al <b className="cifra">{porcentaje(rendimiento)}</b> del
+              valor del proyecto — además de tu parte del inmueble, que es patrimonio.
+              Esto no es un pagaré: es ser socio de un pedazo de ciudad.
+            </p>
+          )}
+        </div>
+        <button className="boton-primario w-full mt-5 !py-2 text-sm" onClick={onCerrar}>Entendido</button>
+      </div>
+    </div>
+  )
+}
+
 // --- El panel del VALOR POR ACCIÓN ---------------------------
-function PanelValor({ g }) {
+function PanelValor({ g, onExplicar }) {
   const v = g.valorPorAccion
   const total = Math.max(v.total, 1)
   const partes = [
@@ -293,9 +339,16 @@ function PanelValor({ g }) {
   return (
     <div className="tarjeta bg-elevada border-t-2 border-t-ambar p-5">
       <div className="text-xs uppercase tracking-[0.2em] text-arena">Valor por acción</div>
-      <div className="cifra font-cartel font-normal text-4xl text-marfil mt-1 glow-ambar">
+      <button
+        className="cifra font-cartel font-normal text-4xl text-marfil mt-1 glow-ambar text-left"
+        onClick={onExplicar}
+        title="¿Qué significa este número?"
+      >
         {v.porAccion === null ? '—' : moneda(v.porAccion)}
-      </div>
+      </button>
+      <button className="block text-terciario text-xs underline decoration-linea underline-offset-2" onClick={onExplicar}>
+        ¿qué significa?
+      </button>
       {v.porAccion === null && (
         <p className="text-terciario text-xs mt-1">
           Falta capturar acciones_emitidas en los parámetros globales.
@@ -353,15 +406,26 @@ export default function Financiero() {
   const editable = modo !== 'demo' && ['admin', 'editor'].includes(sesion?.rol)
   const esAdmin = modo !== 'demo' && sesion?.rol === 'admin'
   const [panelAbierto, setPanelAbierto] = useState(false)
+  const [explicando, setExplicando] = useState(false)
 
   const espacios = datos?.Espacios || []
+  const config = mapaConfig(datos?.Config || [])
   const g = resumenGlobal({
     espacios,
     lineas: datos?.Finanzas_Lineas || [],
     factores: datos?.Factores || [],
     escenarios: datos?.Escenarios || [],
-    config: mapaConfig(datos?.Config || []),
+    config,
   })
+
+  // Hay regalías en el modelo → se enseña el reparto (mata la duda de
+  // "¿regalías de quién?" que levantó el productor del panel).
+  const hayRegalias = g.regaliasTotal > 0
+  const split = {
+    distrito: configNum(config, 'split_distrito', 30),
+    artista: configNum(config, 'split_artista', 50),
+    compositor: configNum(config, 'split_compositor', 20),
+  }
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-5 lg:grid lg:grid-cols-[1fr_20rem] lg:gap-6 lg:items-start">
@@ -378,19 +442,43 @@ export default function Financiero() {
         {espacios.map((e) => (
           <BloqueEspacio key={e.id} espacio={e} editable={editable} />
         ))}
+
+        {hayRegalias && (
+          <section className="tarjeta p-4">
+            <div className="text-xs uppercase tracking-wide text-terciario mb-2">
+              Cómo se reparten las regalías
+            </div>
+            <div className="flex h-2.5 rounded-full overflow-hidden bg-linea">
+              <span className="bg-salvia" style={{ width: `${split.artista}%` }} />
+              <span className="bg-oro" style={{ width: `${split.compositor}%` }} />
+              <span className="bg-terracota" style={{ width: `${split.distrito}%` }} />
+            </div>
+            <div className="flex gap-4 flex-wrap mt-2 text-xs text-arena">
+              <span className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-full bg-salvia" /> artista {split.artista}%</span>
+              <span className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-full bg-oro" /> compositor {split.compositor}%</span>
+              <span className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-full bg-terracota" /> distrito {split.distrito}%</span>
+            </div>
+            <p className="text-terciario text-xs mt-2 leading-relaxed">
+              El artista graba en la escuela-estudio y conserva la parte mayor;
+              el distrito retiene su porcentaje por producir. Supuesto — editable
+              en los parámetros (split_artista, split_compositor, split_distrito).
+            </p>
+          </section>
+        )}
+
         <Parametros esAdmin={esAdmin} />
       </div>
 
       {/* Panel lateral siempre visible en pantalla ancha */}
       <div className="hidden lg:block sticky top-20">
-        <PanelValor g={g} />
+        <PanelValor g={g} onExplicar={() => setExplicando(true)} />
       </div>
 
       {/* En teléfono: barra inferior fija, colapsada, que se expande */}
       <div className="lg:hidden fixed inset-x-0 bottom-0 z-40">
         {panelAbierto && (
           <div className="mx-3 mb-2 max-h-[60dvh] overflow-y-auto rounded-2xl shadow-2xl">
-            <PanelValor g={g} />
+            <PanelValor g={g} onExplicar={() => setExplicando(true)} />
           </div>
         )}
         <button
@@ -405,6 +493,8 @@ export default function Financiero() {
           {panelAbierto ? <ChevronDown size={16} className="text-terciario" /> : <ChevronUp size={16} className="text-terciario" />}
         </button>
       </div>
+
+      {explicando && <DesgloseCristiano g={g} config={config} onCerrar={() => setExplicando(false)} />}
     </div>
   )
 }

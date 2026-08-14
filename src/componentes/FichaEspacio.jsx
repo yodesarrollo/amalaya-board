@@ -1,8 +1,9 @@
 import { useState, useRef } from 'react'
-import { X, Upload, FileText, Download, Plus, Check } from 'lucide-react'
+import { X, Upload, FileText, Download, Plus, Check, Share2 } from 'lucide-react'
 import { usarDatos } from '../datos.jsx'
 import Factores from './Factores.jsx'
 import ImagenDrive from './ImagenDrive.jsx'
+import { compartirCard } from '../compartir.js'
 
 // ============================================================
 // La ficha de un espacio: Factores | Fotos | Documentos |
@@ -35,6 +36,14 @@ export default function FichaEspacio({ espacio, onCerrar }) {
           <div className="text-xs uppercase tracking-wide text-terciario">{espacio.tipo}</div>
           <h3 className="font-titulo text-2xl mt-0.5 truncate">{espacio.nombre}</h3>
         </div>
+        <button
+          className="text-arena hover:text-marfil p-2 -m-1 transition-colors duration-micro ease-casa"
+          onClick={() => compartirCard({ titulo: espacio.nombre, subtitulo: espacio.tipo, detalle: espacio.descripcion || '' })}
+          aria-label="Compartir"
+          title="Genera la card para tu historia"
+        >
+          <Share2 size={18} />
+        </button>
         <button className="text-arena hover:text-marfil p-2 -m-2 transition-colors duration-micro ease-casa" onClick={onCerrar} aria-label="Cerrar">
           <X size={20} />
         </button>

@@ -85,6 +85,15 @@ function traducirErrorRed(e) {
   return e
 }
 
+// --- Tracker público de peticiones ---------------------------
+// La única lectura sin código (decisión de Alejandro): rutas y
+// paradas con sus elementos deseados, para rendición de cuentas
+// ante la ciudad. El servidor no entrega nada más por esta vía.
+export async function cargarPeticionesPublicas() {
+  if (!BACKEND_LISTO) throw new Error('El servidor aún no está conectado.')
+  return apiCall('peticiones')
+}
+
 // --- Modo demostración --------------------------------------
 // Carga la maqueta pública (public/data.json). Son datos 100%
 // inventados con la bandera demo: true; el board los marca en

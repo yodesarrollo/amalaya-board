@@ -16,7 +16,8 @@ import LineaAmalaya from './LineaAmalaya.jsx'
 // ============================================================
 
 export default function Reporte() {
-  const { datos, modo, ultimaSync } = usarDatos()
+  const { sesion, datos, modo, ultimaSync } = usarDatos()
+  const sesionEsAdmin = modo !== 'demo' && sesion?.rol === 'admin'
   const config = mapaConfig(datos?.Config || [])
   const espacios = datos?.Espacios || []
   const rutas = (datos?.Rutas || [])
@@ -66,7 +67,7 @@ export default function Reporte() {
           <h2 className="font-titulo text-2xl mb-3">El proyecto</h2>
           <p className="text-arena leading-relaxed whitespace-pre-line">{resumen}</p>
         </section>
-      ) : (
+      ) : sesionEsAdmin && (
         <section className="mt-10 imp-seccion no-imprimir">
           <div className="tarjeta p-4">
             <p className="text-terciario text-sm">

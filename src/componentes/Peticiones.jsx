@@ -15,10 +15,12 @@ const GRUPOS = [
   { estado: 'logrado', titulo: 'Logrados', clase: 'text-salvia border-salvia' },
 ]
 
-export default function Peticiones({ onCerrar }) {
-  const { datos } = usarDatos()
-  const rutas = datos?.Rutas || []
-  const paradas = datos?.Paradas || []
+// `publicas`: cuando la vista se abre SIN sesión (el tracker público),
+// los datos llegan del endpoint anónimo en vez del estado del board.
+export default function Peticiones({ onCerrar, publicas = null }) {
+  const contexto = usarDatos()
+  const rutas = publicas ? publicas.rutas : contexto?.datos?.Rutas || []
+  const paradas = publicas ? publicas.paradas : contexto?.datos?.Paradas || []
 
   // Aplanar: cada elemento con su parada y su ruta.
   const todos = paradas.flatMap((p) => {

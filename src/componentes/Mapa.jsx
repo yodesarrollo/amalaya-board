@@ -1,5 +1,5 @@
 import { useState, useRef, useCallback } from 'react'
-import { Plus, Pencil, Check, ArrowUp, ArrowDown, ArrowLeft, ArrowRight, ClipboardList } from 'lucide-react'
+import { Plus, Pencil, Check, ArrowUp, ArrowDown, ArrowLeft, ArrowRight, ClipboardList, Music, Landmark, GraduationCap, SquareParking, Home, UtensilsCrossed, MapPin, Mic2 } from 'lucide-react'
 import { usarDatos } from '../datos.jsx'
 import { BASE } from '../config.js'
 import FichaEspacio from './FichaEspacio.jsx'
@@ -19,8 +19,20 @@ import { RutasCapa, PuntosEdicion, BarraRutas, Recorrido, leerPuntos } from './R
 //   pointercancel revierte.
 // ============================================================
 
-const TIPOS = ['venue', 'museo', 'escuela', 'estacionamiento', 'departamento', 'restaurante', 'otro']
+const TIPOS = ['venue', 'museo', 'escuela', 'estudio', 'estacionamiento', 'departamento', 'restaurante', 'otro']
 const UMBRAL_ARRASTRE = 8
+
+// El ícono de cada tipo de espacio (los pines del mapa; petición 6/6 del panel).
+const ICONO_TIPO = {
+  venue: Music,
+  museo: Landmark,
+  escuela: GraduationCap,
+  estudio: Mic2,
+  estacionamiento: SquareParking,
+  departamento: Home,
+  restaurante: UtensilsCrossed,
+  otro: MapPin,
+}
 
 function num(v, porDefecto) {
   const n = parseFloat(v)
@@ -313,14 +325,22 @@ export default function Mapa() {
               }}
             />
 
-            {/* Duotono noche-oro sobre el plano (el "óleo crudo") */}
+            {/* Duotono noche-oro sobre el plano (el "óleo crudo"). La capa
+                extra atenúa el catastro (números y colores técnicos del plano),
+                que el panel leyó como ruido: los pines son los protagonistas. */}
             <div
               className="absolute inset-0 pointer-events-none"
               style={{
-                background: 'linear-gradient(180deg, rgba(201,164,92,0.10), rgba(20,16,16,0.30))',
+                background: 'linear-gradient(180deg, rgba(201,164,92,0.12), rgba(20,16,16,0.35))',
                 mixBlendMode: 'overlay',
               }}
             />
+            {!modoEdicion && (
+              <div
+                className="absolute inset-0 pointer-events-none"
+                style={{ background: 'rgba(20,16,16,0.30)' }}
+              />
+            )}
 
             {/* Velo al abrir ficha o recorrido */}
             <div
@@ -344,32 +364,61 @@ export default function Mapa() {
               <PuntosEdicion ruta={rutas.find((r) => r.id === rutaSel) || { puntos: '[]' }} />
             )}
 
-            {/* Zonas de espacios */}
+            {/* Espacios. En modo normal: PINES con ícono, grandes y tocables
+                (petición 6/6 del panel). En modo edición: las zonas
+                rectangulares de siempre, para posicionar con precisión. */}
             {espacios.map((e) => {
               const z = tempArrastre?.id === e.id ? tempArrastre : zonaDeFila(e)
               const seleccionada = seleccion === e.id && modoEdicion
               const esLaAbierta = abierto === e.id
+
+              if (!modoEdicion) {
+                const Icono = ICONO_TIPO[String(e.tipo).toLowerCase()] || MapPin
+                return (
+                  <button
+                    key={e.id}
+                    aria-label={e.nombre}
+                    className={`absolute flex flex-col items-center transition-transform duration-micro ease-casa
+                      ${enRutas ? 'opacity-30 pointer-events-none' : 'hover:scale-110'}
+                      ${esLaAbierta ? 'z-10 scale-110' : ''}`}
+                    style={{
+                      left: `${z.x + z.w / 2}%`,
+                      top: `${z.y + z.h / 2}%`,
+                      transform: 'translate(-50%, -50%)',
+                      cursor: 'pointer',
+                    }}
+                    onClick={(ev) => { ev.stopPropagation(); if (!enRutas) setAbierto(e.id) }}
+                  >
+                    <span className={`w-11 h-11 rounded-full flex items-center justify-center border-2 shadow-lg
+                      ${esLaAbierta ? 'bg-ambar border-marfil' : 'bg-oro border-noche/60'}`}>
+                      <Icono size={20} className="text-noche" />
+                    </span>
+                    <span className="mt-1 font-cartel font-normal uppercase tracking-wider text-[11px] text-marfil bg-noche/85 rounded px-1.5 py-0.5 whitespace-nowrap max-w-[9rem] overflow-hidden text-ellipsis">
+                      {e.nombre}
+                    </span>
+                  </button>
+                )
+              }
+
               return (
                 <div
                   key={e.id}
                   role="button"
                   aria-label={e.nombre}
                   className={`absolute rounded-lg border transition-all duration-micro ease-casa
-                    ${enRutas ? 'opacity-30 pointer-events-none' : ''}
                     ${esLaAbierta ? 'border-oro bg-oro/20 z-10' : seleccionada ? 'border-oro bg-oro/25' : 'border-oro/70 bg-oro/10 hover:bg-oro/20'}`}
                   style={{
                     left: `${z.x}%`,
                     top: `${z.y}%`,
                     width: `${z.w}%`,
                     height: `${z.h}%`,
-                    touchAction: modoEdicion ? 'none' : 'auto',
-                    cursor: modoEdicion ? 'move' : 'pointer',
+                    touchAction: 'none',
+                    cursor: 'move',
                   }}
                   onPointerDown={(ev) => alBajar(ev, e, 'mover')}
                   onPointerMove={alMover}
-                  onPointerUp={modoEdicion ? alSoltar : undefined}
+                  onPointerUp={alSoltar}
                   onPointerCancel={alCancelar}
-                  onClick={(ev) => { ev.stopPropagation(); if (!modoEdicion && !enRutas) setAbierto(e.id) }}
                 >
                   <span className="absolute -top-6 left-0 font-cartel font-normal uppercase tracking-wider text-xs text-marfil bg-noche/85 border-l-2 border-l-ambar rounded px-2 py-0.5 whitespace-nowrap max-w-[16rem] overflow-hidden text-ellipsis">
                     {e.nombre}
@@ -402,6 +451,18 @@ export default function Mapa() {
             <div className="absolute inset-x-4 top-3 text-center pointer-events-none">
               <span className="text-xs text-noche bg-oro rounded-full px-3 py-1 font-medium">
                 {editandoPuntos ? 'Toca el mapa para agregar puntos a la ruta' : 'Toca el punto del mapa donde va la parada'}
+              </span>
+            </div>
+          )}
+
+          {/* La leyenda del mapa (petición 6/6: que se explique solo) */}
+          {espacios.length > 0 && !modoEdicion && (
+            <div className="absolute left-3 bottom-3 bg-noche/85 border border-linea rounded-xl px-3 py-2 text-[11px] text-arena leading-relaxed pointer-events-none">
+              <span className="inline-flex items-center gap-1.5 mr-3">
+                <span className="w-3.5 h-3.5 rounded-full bg-oro inline-block" /> espacios del proyecto
+              </span>
+              <span className="inline-flex items-center gap-1.5">
+                <span className="w-5 h-0.5 bg-oro inline-block rounded" /> rutas temáticas
               </span>
             </div>
           )}

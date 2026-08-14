@@ -1,7 +1,8 @@
 import { useState, useRef, useCallback } from 'react'
-import { X, Plus, Undo2, Upload, ChevronLeft, ChevronRight, MapPin } from 'lucide-react'
+import { X, Plus, Undo2, Upload, ChevronLeft, ChevronRight, MapPin, Share2 } from 'lucide-react'
 import { usarDatos } from '../datos.jsx'
 import ImagenDrive from './ImagenDrive.jsx'
+import { compartirCard } from '../compartir.js'
 
 // ============================================================
 // Rutas temáticas: polilíneas de color sobre el mapa, paradas
@@ -317,7 +318,7 @@ function Cortina({ parada, editable, onSubir }) {
     <div>
       <div
         ref={contRef}
-        className="relative aspect-video rounded-xl overflow-hidden border border-linea select-none"
+        className="relative aspect-[4/5] sm:aspect-video rounded-xl overflow-hidden border border-linea select-none"
         onClick={() => { if (!arrastrando) setP(p > 50 ? 0 : 100) }}
       >
         {/* Visión: color pleno, filete dorado interior */}
@@ -461,6 +462,20 @@ export function Recorrido({ ruta, paradas, idx, setIdx, onCerrar }) {
               {parada ? parada.nombre : 'Sin paradas todavía'}
             </h3>
           </div>
+          {parada && (
+            <button
+              className="text-arena hover:text-marfil p-2 -m-1 transition-colors duration-micro ease-casa"
+              onClick={() => compartirCard({
+                titulo: parada.nombre,
+                subtitulo: ruta.nombre,
+                detalle: ruta.homenaje_a ? `Homenaje a ${ruta.homenaje_a}` : '',
+              })}
+              aria-label="Compartir esta esquina"
+              title="Genera la card para tu historia"
+            >
+              <Share2 size={18} />
+            </button>
+          )}
           <button className="text-arena hover:text-marfil p-2 -m-2 transition-colors duration-micro ease-casa" onClick={onCerrar} aria-label="Cerrar recorrido">
             <X size={20} />
           </button>
