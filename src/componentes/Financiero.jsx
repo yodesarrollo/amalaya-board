@@ -455,7 +455,7 @@ export default function Financiero() {
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-5 lg:grid lg:grid-cols-[1fr_20rem] lg:gap-6 lg:items-start">
-      <div className="space-y-4 pb-28 lg:pb-8">
+      <div className="space-y-4 pb-40 sm:pb-28 lg:pb-8">
         <h2 className="font-cartel font-normal uppercase tracking-wide text-2xl">El modelo de negocio</h2>
         {espacios.length === 0 && (
           <div className="tarjeta p-8 text-center">
@@ -501,7 +501,7 @@ export default function Financiero() {
       </div>
 
       {/* En teléfono: barra inferior fija, colapsada, que se expande */}
-      <div className="lg:hidden fixed inset-x-0 bottom-0 z-40">
+      <div className="lg:hidden fixed inset-x-0 bottom-14 sm:bottom-0 z-40">
         {panelAbierto && (
           <div className="mx-3 mb-2 max-h-[60dvh] overflow-y-auto rounded-2xl shadow-2xl">
             <PanelValor g={g} onExplicar={() => setExplicando(true)} />

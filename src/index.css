@@ -71,6 +71,13 @@ body::after {
   text-shadow: 0 0 40px rgba(255, 184, 77, 0.35);
 }
 
+/* Foco visible para navegación con teclado: anillo ámbar, nunca outline azul. */
+:focus-visible {
+  outline: 2px solid rgba(255, 184, 77, 0.7);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
 /* El autorrelleno de Chrome pinta los campos de blanco; se fuerza el tema. */
 input:-webkit-autofill,
 input:-webkit-autofill:hover,

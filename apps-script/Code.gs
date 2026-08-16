@@ -28,6 +28,10 @@
 // Zona horaria del negocio: fechas como texto yyyy-MM-dd, sin sorpresas de hora.
 const TZ = 'America/Hermosillo';
 
+// URL pública del board (para armar las ligas de acceso y los correos).
+// No es un secreto: es la careta.
+const PORTAL_URL = 'https://yodesarrollo.github.io/amalaya-board/';
+
 // ID del Sheet SOLO para el primer arranque de setup() en un proyecto
 // independiente (no vinculado). Se llena AL PEGAR este archivo en el editor
 // de Apps Script — en el repo público SIEMPRE queda vacío: el ID real vive
@@ -47,7 +51,10 @@ const TABS = {
   },
   Usuarios: {
     keyField: 'id',
-    headers: ['id', 'nombre', 'correo', 'rol', 'codigo_acceso', 'activo'],
+    // liga_token (al FINAL, extensión en caliente): el token de la liga de
+    // acceso — la autenticación estilo YOD OS. Entrar con la liga o con el
+    // código es equivalente; ambos se validan igual y se revocan por separado.
+    headers: ['id', 'nombre', 'correo', 'rol', 'codigo_acceso', 'activo', 'liga_token'],
     prefix: 'U-',
   },
   Espacios: {
@@ -297,6 +304,12 @@ function doPost(e) {
     if (action === 'ping') {
       return jsonOut({ ok: true, servicio: 'amalaya-board', ts: Date.now() });
     }
+    // - ligaPorCorreo: manda la liga de acceso al correo REGISTRADO (estilo
+    //   YOD OS). La respuesta es siempre genérica — no confirma ni niega si
+    //   un correo existe — y va con doble freno anti-abuso.
+    if (action === 'ligaPorCorreo') {
+      return accLigaPorCorreo(body);
+    }
     if (action === 'peticiones') {
       if (!dentroDeLimite('pet_publicas', 60, 300)) {
         return jsonOut({ ok: false, error: 'Muchas consultas; espera un momento.' });
@@ -333,6 +346,10 @@ function doPost(e) {
         return accVerArchivo(usuario, body);
       case 'nuevoCodigo':
         return accNuevoCodigo(usuario, body);
+      case 'generarLiga':
+        return accGenerarLiga(usuario, body);
+      case 'revocarLiga':
+        return accRevocarLiga(usuario, body);
       case 'respaldoAhora':
         return accRespaldoAhora(usuario);
       case 'instalarRespaldo':
@@ -364,10 +381,12 @@ function autenticar(codigo) {
   const usuarios = leerHoja('Usuarios');
   for (let i = 0; i < usuarios.length; i++) {
     const u = usuarios[i];
-    if (
-      comparacionConstante(String(u.codigo_acceso || ''), limpio) &&
-      String(u.activo || '').toLowerCase() === 'si'
-    ) {
+    // El código personal y la liga de acceso son equivalentes: ambos se
+    // comparan en tiempo constante y exigen activo = si.
+    const daCodigo = comparacionConstante(String(u.codigo_acceso || ''), limpio);
+    const daLiga = String(u.liga_token || '').length >= 4 &&
+      comparacionConstante(String(u.liga_token || ''), limpio);
+    if ((daCodigo || daLiga) && String(u.activo || '').toLowerCase() === 'si') {
       return { id: u.id, nombre: u.nombre, rol: String(u.rol || '').toLowerCase() };
     }
   }
@@ -419,11 +438,12 @@ function accGetAll(usuario, body) {
   pestanas.forEach(function (tab) {
     let filas = leerHoja(tab);
     if (tab === 'Usuarios') {
-      // Al admin le sirven los usuarios, nunca los códigos en claro.
+      // Al admin le sirven los usuarios, nunca las credenciales en claro.
       filas = filas.map(function (u) {
         return {
           id: u.id, nombre: u.nombre, correo: u.correo, rol: u.rol,
           codigo_enmascarado: enmascarar(u.codigo_acceso), activo: u.activo,
+          tiene_liga: String(u.liga_token || '').length >= 4 ? 'si' : 'no',
         };
       });
     }
@@ -694,6 +714,100 @@ function accNuevoCodigo(usuario, body) {
     // Se devuelve una sola vez; en getAll siempre viaja enmascarado.
     return { ok: true, codigo: codigo, v: subirVersion() };
   });
+}
+
+// ---------------------------------------------------------------------------
+//  Ligas de acceso (autenticación estilo YOD OS)
+//  La liga es una URL con token: PORTAL_URL?t=TOKEN. El token vive en la
+//  columna liga_token, se genera en el servidor, se muestra/manda UNA vez,
+//  y autentica igual que el código (activo = si, tiempo constante).
+// ---------------------------------------------------------------------------
+function accGenerarLiga(usuario, body) {
+  if (usuario.rol !== 'admin') {
+    return jsonOut({ ok: false, error: 'Solo un admin puede generar ligas.' });
+  }
+  const idUsuario = String(body.usuario_id || '').trim();
+  if (!idUsuario) return jsonOut({ ok: false, error: 'Falta el usuario.' });
+
+  const token = generarCodigo() + generarCodigo(); // 20 caracteres: es una URL, que sea larga
+  return conCandado(function () {
+    const conf = TABS.Usuarios;
+    const hoja = obtenerHoja('Usuarios');
+    const fila = buscarFila(hoja, conf, idUsuario);
+    if (fila < 0) return { ok: false, error: 'No se encontró ese usuario.' };
+    hoja.getRange(fila, conf.headers.indexOf('liga_token') + 1).setValue(token);
+    // La URL completa se devuelve UNA vez; después solo se ve tiene_liga.
+    return { ok: true, liga: PORTAL_URL + '?t=' + token, v: subirVersion() };
+  });
+}
+
+function accRevocarLiga(usuario, body) {
+  if (usuario.rol !== 'admin') {
+    return jsonOut({ ok: false, error: 'Solo un admin puede revocar ligas.' });
+  }
+  const idUsuario = String(body.usuario_id || '').trim();
+  if (!idUsuario) return jsonOut({ ok: false, error: 'Falta el usuario.' });
+  return conCandado(function () {
+    const conf = TABS.Usuarios;
+    const hoja = obtenerHoja('Usuarios');
+    const fila = buscarFila(hoja, conf, idUsuario);
+    if (fila < 0) return { ok: false, error: 'No se encontró ese usuario.' };
+    hoja.getRange(fila, conf.headers.indexOf('liga_token') + 1).setValue('');
+    return { ok: true, v: subirVersion() };
+  });
+}
+
+// Manda la liga al correo REGISTRADO. Acción pública con respuesta genérica
+// (nunca confirma si un correo existe) y doble freno: global y por correo.
+function accLigaPorCorreo(body) {
+  const generica = { ok: true, mensaje: 'Si tu correo está registrado, tu liga va en camino. Revisa tu bandeja (y el spam).' };
+  const correo = String(body.correo || '').trim().toLowerCase();
+  if (!correo || correo.indexOf('@') === -1) return jsonOut(generica);
+  if (!dentroDeLimite('liga_global', 20, 3600)) return jsonOut(generica);
+  if (!dentroDeLimite('liga_' + correo, 3, 3600)) return jsonOut(generica);
+
+  const usuarios = leerHoja('Usuarios');
+  let u = null;
+  for (let i = 0; i < usuarios.length; i++) {
+    if (
+      String(usuarios[i].correo || '').trim().toLowerCase() === correo &&
+      String(usuarios[i].activo || '').toLowerCase() === 'si'
+    ) { u = usuarios[i]; break; }
+  }
+  if (!u) return jsonOut(generica);
+
+  // Si no tiene liga, se le genera en este momento.
+  let token = String(u.liga_token || '');
+  if (token.length < 4) {
+    token = generarCodigo() + generarCodigo();
+    const conf = TABS.Usuarios;
+    const lock = LockService.getScriptLock();
+    try { lock.waitLock(10000); } catch (e) { return jsonOut(generica); }
+    try {
+      const hoja = obtenerHoja('Usuarios');
+      const fila = buscarFila(hoja, conf, u.id);
+      if (fila > 0) hoja.getRange(fila, conf.headers.indexOf('liga_token') + 1).setValue(token);
+    } finally { lock.releaseLock(); }
+  }
+
+  const liga = PORTAL_URL + '?t=' + token;
+  try {
+    MailApp.sendEmail({
+      to: correo,
+      subject: 'Tu liga de acceso a Amalaya',
+      htmlBody:
+        '<div style="font-family:Georgia,serif; background:#141010; color:#F2EAD9; padding:32px; border-radius:16px;">' +
+        '<h1 style="font-weight:normal; margin:0 0 4px;">Amalaya</h1>' +
+        '<p style="color:#C9A45C; letter-spacing:3px; font-size:12px; margin:0 0 20px;">DE HERMOSILLO PARA EL MUNDO</p>' +
+        '<p style="color:#B7A890;">Hola ' + (u.nombre || '') + ', esta es tu liga personal para entrar al board:</p>' +
+        '<p style="margin:24px 0;"><a href="' + liga + '" style="background:#C9A45C; color:#141010; padding:12px 28px; border-radius:10px; text-decoration:none; font-weight:bold;">Entrar a Amalaya</a></p>' +
+        '<p style="color:#9E8D78; font-size:12px;">La liga es personal: no la compartas. Si no pediste este correo, ignóralo.</p>' +
+        '</div>',
+    });
+  } catch (e) {
+    console.error('ligaPorCorreo: ' + String(e));
+  }
+  return jsonOut(generica);
 }
 
 // ---------------------------------------------------------------------------

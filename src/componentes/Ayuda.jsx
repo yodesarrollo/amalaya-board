@@ -65,6 +65,7 @@ const SECCIONES = [
     titulo: 'Tu código y la seguridad',
     lineas: [
       'Tu código de acceso es personal: no lo compartas ni lo mandes por canales abiertos. Si crees que alguien lo vio, pídele al admin uno nuevo (el viejo muere al instante).',
+      'También puedes entrar con tu liga personal (una dirección que abre el board directo) o pedir que te llegue al correo registrado desde la pantalla de entrada. La liga es tan personal como el código; el admin puede revocarla cuando quiera.',
       'Los datos del proyecto viven protegidos en Google (Sheet privado + servidor que valida tu código en cada llamada). El sitio público solo lleva la careta y una demostración con cifras inventadas.',
     ],
   },

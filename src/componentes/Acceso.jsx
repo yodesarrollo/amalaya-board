@@ -1,9 +1,9 @@
 import { useState } from 'react'
-import { KeyRound, ClipboardList } from 'lucide-react'
+import { KeyRound, ClipboardList, Mail } from 'lucide-react'
 import { usarDatos } from '../datos.jsx'
 import LineaAmalaya from './LineaAmalaya.jsx'
 import Peticiones from './Peticiones.jsx'
-import { cargarPeticionesPublicas } from '../api.js'
+import { apiCall, cargarPeticionesPublicas } from '../api.js'
 import { BACKEND_LISTO } from '../config.js'
 
 // La puerta de Amalaya — con la visión primero (petición del panel:
@@ -14,6 +14,8 @@ export default function Acceso() {
   const { entrar, verDemo } = usarDatos()
   const [codigo, setCodigo] = useState('')
   const [mostrarCodigo, setMostrarCodigo] = useState(false)
+  const [correo, setCorreo] = useState('')
+  const [correoEnviado, setCorreoEnviado] = useState(null)
   const [error, setError] = useState(null)
   const [cargando, setCargando] = useState(false)
   const [peticiones, setPeticiones] = useState(null) // {rutas, paradas} públicas
@@ -113,33 +115,76 @@ export default function Acceso() {
             )}
           </div>
         ) : (
-          <form onSubmit={enviar} className="mt-6 space-y-3">
-            <label className="block">
-              <span className="text-sm text-arena">Tu código de acceso</span>
-              <input
-                type="password"
-                inputMode="text"
-                autoComplete="off"
-                className="campo mt-2 text-center tracking-[0.3em] text-lg"
-                value={codigo}
-                onChange={(e) => setCodigo(e.target.value)}
-                disabled={cargando}
-                autoFocus
-              />
-            </label>
-            {!BACKEND_LISTO && (
-              <p className="text-terciario text-sm">
-                El servidor aún no está conectado; solo está disponible la demostración.
-              </p>
+          <div className="mt-6 space-y-4">
+            <form onSubmit={enviar} className="space-y-3">
+              <label className="block">
+                <span className="text-sm text-arena">Tu código de acceso</span>
+                <input
+                  type="password"
+                  inputMode="text"
+                  autoComplete="off"
+                  className="campo mt-2 text-center tracking-[0.3em] text-lg"
+                  value={codigo}
+                  onChange={(e) => setCodigo(e.target.value)}
+                  disabled={cargando}
+                  autoFocus
+                />
+              </label>
+              {!BACKEND_LISTO && (
+                <p className="text-terciario text-sm">
+                  El servidor aún no está conectado; solo está disponible la demostración.
+                </p>
+              )}
+              <button
+                type="submit"
+                className="boton-secundario w-full"
+                disabled={cargando || !codigo.trim() || !BACKEND_LISTO}
+              >
+                {cargando ? 'Entrando…' : 'Entrar con mi código'}
+              </button>
+            </form>
+
+            {/* La vía del correo, estilo YOD OS: tu liga llega a tu bandeja */}
+            {correoEnviado ? (
+              <p className="text-salvia text-sm text-center leading-relaxed">{correoEnviado}</p>
+            ) : (
+              <form
+                className="flex gap-2"
+                onSubmit={async (ev) => {
+                  ev.preventDefault()
+                  if (!correo.trim()) return
+                  setCargando(true)
+                  setError(null)
+                  try {
+                    const r = await apiCall('ligaPorCorreo', { correo: correo.trim() })
+                    setCorreoEnviado(r.mensaje)
+                  } catch (e) {
+                    setError(e.message)
+                  } finally {
+                    setCargando(false)
+                  }
+                }}
+              >
+                <input
+                  type="email"
+                  className="campo !py-2 flex-1 text-sm"
+                  placeholder="o escribe tu correo…"
+                  value={correo}
+                  onChange={(e) => setCorreo(e.target.value)}
+                  disabled={cargando || !BACKEND_LISTO}
+                />
+                <button
+                  type="submit"
+                  className="boton-secundario !px-3 !py-2"
+                  disabled={cargando || !correo.trim() || !BACKEND_LISTO}
+                  title="Te mandamos tu liga de acceso"
+                  aria-label="Recibir mi liga por correo"
+                >
+                  <Mail size={16} />
+                </button>
+              </form>
             )}
-            <button
-              type="submit"
-              className="boton-secundario w-full"
-              disabled={cargando || !codigo.trim() || !BACKEND_LISTO}
-            >
-              {cargando ? 'Entrando…' : 'Entrar con mi código'}
-            </button>
-          </form>
+          </div>
         )}
 
         {error && (

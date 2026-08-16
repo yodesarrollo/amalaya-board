@@ -3,6 +3,7 @@ import { Plus, Pencil, Check, ArrowUp, ArrowDown, ArrowLeft, ArrowRight, Clipboa
 import { usarDatos } from '../datos.jsx'
 import { BASE } from '../config.js'
 import FichaEspacio from './FichaEspacio.jsx'
+import ManijaSheet from './ManijaSheet.jsx'
 import Peticiones from './Peticiones.jsx'
 import { RutasCapa, PuntosEdicion, BarraRutas, Recorrido, leerPuntos } from './Rutas.jsx'
 
@@ -262,7 +263,8 @@ export default function Mapa() {
             >
               {modoEdicion ? (<span className="flex items-center gap-1.5"><Check size={14} /> Terminar</span>) : (<span className="flex items-center gap-1.5"><Pencil size={14} /> Editar mapa</span>)}
             </button>
-            <button className="boton-primario !px-3 !py-2 text-sm" onClick={() => setCreando(true)} title="Crear espacio">
+            {/* En pantalla ancha, el alta vive en la barra; en teléfono es el FAB */}
+            <button className="boton-primario !px-3 !py-2 text-sm hidden sm:block" onClick={() => setCreando(true)} title="Crear espacio">
               <span className="flex items-center gap-1.5"><Plus size={16} /> Espacio</span>
             </button>
           </>
@@ -469,6 +471,20 @@ export default function Mapa() {
         </div>
       </div>
 
+      {/* FAB de alta en teléfono: al alcance del pulgar, arriba de la nav */}
+      {!enRutas && puedeEditar && !espacioAbierto && (
+        <button
+          className="sm:hidden fixed right-4 bottom-20 z-40 w-14 h-14 rounded-full bg-oro text-noche
+            flex items-center justify-center shadow-2xl active:scale-95
+            transition-transform duration-micro ease-casa"
+          style={{ boxShadow: '0 0 28px rgba(255,184,77,0.35)' }}
+          onClick={() => setCreando(true)}
+          aria-label="Crear espacio"
+        >
+          <Plus size={26} />
+        </button>
+      )}
+
       {/* Ficha del espacio */}
       <aside
         className={`fixed z-50 bg-elevada border-linea shadow-2xl
@@ -478,7 +494,12 @@ export default function Mapa() {
           ${espacioAbierto ? 'translate-y-0 sm:translate-x-0' : 'translate-y-full sm:translate-y-0 sm:translate-x-full'}`}
         aria-hidden={!espacioAbierto}
       >
-        {espacioAbierto && <FichaEspacio espacio={espacioAbierto} onCerrar={() => setAbierto(null)} />}
+        {espacioAbierto && (
+          <>
+            <ManijaSheet onCerrar={() => setAbierto(null)} />
+            <FichaEspacio espacio={espacioAbierto} onCerrar={() => setAbierto(null)} />
+          </>
+        )}
       </aside>
       {espacioAbierto && (
         <div className="fixed inset-0 z-40" onClick={() => setAbierto(null)} aria-hidden="true" />

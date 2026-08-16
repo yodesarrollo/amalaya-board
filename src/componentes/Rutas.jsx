@@ -427,11 +427,28 @@ export function Recorrido({ ruta, paradas, idx, setIdx, onCerrar }) {
   const editable = modo !== 'demo' && ['admin', 'editor'].includes(sesion?.rol)
   const [nuevoElemento, setNuevoElemento] = useState('')
   const [error, setError] = useState(null)
+  const swipe = useRef(null)
 
   const lista = paradas
     .filter((p) => String(p.ruta_id) === String(ruta.id))
     .sort((a, b) => num(a.orden, 999) - num(b.orden, 999))
   const parada = lista[idx]
+
+  // Deslizar entre paradas con el dedo (la cortina y los controles capturan
+  // sus propios gestos, así que aquí solo llega el swipe del fondo).
+  const alIniciarSwipe = useCallback((ev) => {
+    swipe.current = { x: ev.clientX, y: ev.clientY }
+  }, [])
+  const alTerminarSwipe = useCallback((ev) => {
+    const s = swipe.current
+    swipe.current = null
+    if (!s) return
+    const dx = ev.clientX - s.x
+    const dy = ev.clientY - s.y
+    if (Math.abs(dx) < 60 || Math.abs(dy) > 50) return
+    if (dx < 0 && idx < lista.length - 1) setIdx(idx + 1)
+    if (dx > 0 && idx > 0) setIdx(idx - 1)
+  }, [idx, lista.length, setIdx])
 
   async function subirFoto(campo, file) {
     setError(null)
@@ -448,8 +465,16 @@ export function Recorrido({ ruta, paradas, idx, setIdx, onCerrar }) {
   }
 
   return (
-    <div className="fixed inset-x-0 bottom-0 z-50 bg-elevada border-t border-linea rounded-t-2xl shadow-2xl max-h-[75dvh] overflow-y-auto">
-      <div className="max-w-2xl mx-auto p-5">
+    <div
+      className="fixed inset-x-0 bottom-0 z-50 bg-elevada border-t border-linea rounded-t-2xl shadow-2xl max-h-[75dvh] overflow-y-auto"
+      onPointerDown={alIniciarSwipe}
+      onPointerUp={alTerminarSwipe}
+      onPointerCancel={() => { swipe.current = null }}
+    >
+      <div className="sm:hidden sticky top-0 z-10 flex justify-center py-2 bg-elevada" aria-hidden="true">
+        <span className="w-10 h-1.5 rounded-full bg-linea" />
+      </div>
+      <div className="max-w-2xl mx-auto p-5 pt-2 sm:pt-5">
         <div className="flex items-center gap-3">
           <span className="w-3 h-3 rounded-full shrink-0" style={{ background: ruta.color || '#C9A45C' }} />
           <div className="flex-1 min-w-0">

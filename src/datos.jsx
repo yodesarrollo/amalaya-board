@@ -111,10 +111,32 @@ export function DatosProvider({ children }) {
     }
   }, [])
 
-  // --- arranque: revalidar sesión guardada ------------------
+  // --- arranque: liga en la URL o sesión guardada -----------
   useEffect(() => {
     let cancelado = false
     async function arrancar() {
+      // Liga de acceso estilo YOD OS: PORTAL?t=TOKEN. Se canjea, se limpia
+      // la URL (que el token no viva en la barra ni en el historial), y la
+      // sesión queda igual que si hubieras tecleado tu código.
+      const params = new URLSearchParams(window.location.search)
+      const token = (params.get('t') || '').trim()
+      if (token) {
+        window.history.replaceState({}, '', window.location.pathname)
+        try {
+          const r = await apiCall('login', { codigo: token })
+          if (cancelado) return
+          const s = { codigo: token, rol: r.rol, nombre: r.nombre, ts: Date.now() }
+          setSesion(s)
+          guardarLocal(LLAVE_SESION, s)
+          await cargar(token, { silencioso: true })
+          setArrancando(false)
+          return
+        } catch (e) {
+          if (!cancelado) setErrorSync('La liga no es válida o ya fue revocada. Pide una nueva.')
+          // sigue el arranque normal (sesión guardada o pantalla de acceso)
+        }
+      }
+
       const s = leerLocal(LLAVE_SESION)
       const vencida = s && Date.now() - (s.ts || 0) > SESION_DIAS * 24 * 3600 * 1000
       if (!s || !s.codigo || vencida) {
