@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Plus, KeyRound, Download, Copy, Check } from 'lucide-react'
+import { Plus, KeyRound, Download, Copy, Check, Moon } from 'lucide-react'
 import { usarDatos } from '../datos.jsx'
 
 // ============================================================
@@ -46,7 +46,23 @@ export default function Usuarios() {
     setRespaldo(null)
     try {
       const r = await apiAccion('respaldoAhora')
-      setRespaldo(r.respaldo)
+      setRespaldo(`Respaldo guardado en Drive → AMALAYA → Respaldos: ${r.respaldo}`)
+    } catch (e) {
+      setError(e.message)
+    } finally {
+      setOcupado(null)
+    }
+  }
+
+  async function activarNocturno() {
+    setOcupado('nocturno')
+    setError(null)
+    setRespaldo(null)
+    try {
+      const r = await apiAccion('instalarRespaldo')
+      setRespaldo(r.ya_existia
+        ? 'El respaldo nocturno ya estaba activo (cada noche ~3 am).'
+        : 'Respaldo nocturno activado: cada noche ~3 am a Drive → AMALAYA → Respaldos.')
     } catch (e) {
       setError(e.message)
     } finally {
@@ -58,6 +74,11 @@ export default function Usuarios() {
     <div className="max-w-2xl mx-auto px-4 py-6 space-y-4">
       <div className="flex items-center gap-2">
         <h2 className="font-cartel font-normal uppercase tracking-wide text-2xl flex-1">El equipo</h2>
+        <button className="boton-secundario !px-3 !py-2 text-sm" onClick={activarNocturno} disabled={esDemo || ocupado === 'nocturno'} title="Activa el respaldo automático de cada noche">
+          <span className="flex items-center gap-1.5">
+            <Moon size={14} /> {ocupado === 'nocturno' ? 'Activando…' : 'Nocturno'}
+          </span>
+        </button>
         <button className="boton-secundario !px-3 !py-2 text-sm" onClick={respaldar} disabled={esDemo || ocupado === 'respaldo'}>
           <span className="flex items-center gap-1.5">
             <Download size={14} /> {ocupado === 'respaldo' ? 'Respaldando…' : 'Respaldo'}
@@ -68,11 +89,7 @@ export default function Usuarios() {
         </button>
       </div>
 
-      {respaldo && (
-        <p className="text-salvia text-sm">
-          Respaldo guardado en Drive → AMALAYA → Respaldos: <span className="cifra">{respaldo}</span>
-        </p>
-      )}
+      {respaldo && <p className="text-salvia text-sm">{respaldo}</p>}
       {error && <p className="text-ladrillo text-sm" role="alert">{error}</p>}
 
       {usuarios.length === 0 && (

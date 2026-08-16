@@ -239,9 +239,21 @@ const PARAMETROS = [
 ]
 
 function Parametros({ esAdmin }) {
-  const { datos, editarFila } = usarDatos()
+  const { datos, editarFila, crearFila } = usarDatos()
   const [abierto, setAbierto] = useState(false)
+  const [creandoClave, setCreandoClave] = useState(null)
   const filas = datos?.Config || []
+
+  // Un parámetro esperado que aún no existe en el Sheet se activa con un
+  // clic (fila nueva en Config) — sin abrir la hoja a mano.
+  async function activarClave(clave) {
+    setCreandoClave(clave)
+    try {
+      await crearFila('Config', { clave, valor: '0', notas: 'supuesto — editable' })
+    } finally {
+      setCreandoClave(null)
+    }
+  }
 
   return (
     <section className="tarjeta overflow-hidden">
@@ -262,7 +274,21 @@ function Parametros({ esAdmin }) {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                 {g.claves.map((clave) => {
                   const fila = filas.find((f) => normalizarId(f.clave) === clave)
-                  if (!fila) return null
+                  if (!fila) {
+                    if (!esAdmin) return null
+                    return (
+                      <div key={clave} className="flex items-center gap-2">
+                        <span className="text-xs text-terciario flex-1">{clave}</span>
+                        <button
+                          className="boton-secundario !px-3 !py-1 text-xs"
+                          onClick={() => activarClave(clave)}
+                          disabled={creandoClave === clave}
+                        >
+                          {creandoClave === clave ? 'Creando…' : '+ activar'}
+                        </button>
+                      </div>
+                    )
+                  }
                   return (
                     <label key={clave} className="flex items-center gap-2">
                       <span className="text-xs text-arena flex-1">{fila.clave}</span>

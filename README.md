@@ -23,6 +23,10 @@ Script). En concreto:
 - `public/data.json` es una **maqueta de demostración** con datos 100%
   inventados (`"demo": true`). Nunca se le meten datos reales.
   `scripts/pruebas-careta.mjs` lo verifica en cada build.
+- El backend expone exactamente **dos** acciones sin código de acceso:
+  `ping` (¿estás vivo?) y `peticiones` — el tracker público de peticiones al
+  municipio (solo rutas, paradas y estados de elementos; decisión explícita
+  del dueño). Todo lo demás es fail-closed.
 - `public/estado.json` solo lleva metadatos del guardián de salud (vivo/caído).
 - Los IDs del Sheet y de las carpetas de Drive viven en **Propiedades del
   Script** de Apps Script, no aquí.
@@ -42,7 +46,8 @@ Script). En concreto:
 | Publicar | push a `main` (el Action construye y despliega) |
 | Rotar el código de una persona | Board → sección **Equipo** (solo admin) → "Código nuevo" — se muestra una sola vez |
 | Dar de baja a alguien | Board → Equipo → apagar su interruptor (o en el Sheet: `activo` → `no`); corta el acceso en su próxima llamada |
-| Respaldo inmediato | Board → Equipo → botón "Respaldo" (también corre solo cada noche) → Drive → AMALAYA → Respaldos |
+| Respaldo inmediato | Board → Equipo → botón "Respaldo" → Drive → AMALAYA → Respaldos |
+| Respaldo nocturno | Board → Equipo → botón "Nocturno" lo activa (una vez); corre cada noche ~3 am |
 | Re-desplegar el Apps Script | Editor de Apps Script → Implementar → Administrar implementaciones → ✎ → Nueva versión (así la URL `/exec` NO cambia) |
 | Ver la salud | `public/estado.json` (vía raw.githubusercontent.com para verlo en vivo) |
 

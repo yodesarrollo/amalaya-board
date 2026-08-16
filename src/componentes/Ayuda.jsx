@@ -54,6 +54,14 @@ const SECCIONES = [
     ],
   },
   {
+    titulo: 'Compartir y lo público',
+    lineas: [
+      'El botoncito de compartir en cada espacio y cada parada genera una card vertical con la estética Amalaya, lista para tu historia o para mandar por WhatsApp. Sin cifras privadas.',
+      'En la puerta del board, "Ver el proyecto" abre la demostración a cualquiera, y "Peticiones a la ciudad" enseña públicamente qué se le pide al municipio y qué se ha logrado. Los números reales siguen bajo código.',
+      'Tocar el número del valor por acción abre su explicación en corto: de dónde sale y qué significa una acción.',
+    ],
+  },
+  {
     titulo: 'Tu código y la seguridad',
     lineas: [
       'Tu código de acceso es personal: no lo compartas ni lo mandes por canales abiertos. Si crees que alguien lo vio, pídele al admin uno nuevo (el viejo muere al instante).',

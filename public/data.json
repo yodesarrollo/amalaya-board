@@ -31,6 +31,11 @@
         "id": "E-003", "nombre": "Escuela de prueba", "tipo": "escuela",
         "estado_desarrollo": "idea", "descripcion": "Espacio inventado para la demostración.",
         "m2": "400", "pos_x": "62", "pos_y": "60", "ancho": "15", "alto": "12", "notas": ""
+      },
+      {
+        "id": "E-004", "nombre": "Estudio de muestra", "tipo": "estudio",
+        "estado_desarrollo": "idea", "descripcion": "Espacio inventado para la demostración.",
+        "m2": "300", "pos_x": "22", "pos_y": "26", "ancho": "12", "alto": "10", "notas": ""
       }
     ],
     "Factores": [
@@ -44,7 +49,9 @@
       { "id": "L-004", "espacio_id": "E-001", "escenario_id": "", "concepto": "Renta del foro", "tipo": "ingreso", "monto_anual": "500000", "supuesto": "demostración" },
       { "id": "L-005", "espacio_id": "E-001", "escenario_id": "", "concepto": "Operación", "tipo": "costo", "monto_anual": "200000", "supuesto": "demostración" },
       { "id": "L-006", "espacio_id": "E-002", "escenario_id": "", "concepto": "Boletos", "tipo": "ingreso", "monto_anual": "300000", "supuesto": "demostración" },
-      { "id": "L-007", "espacio_id": "E-002", "escenario_id": "", "concepto": "Operación", "tipo": "costo", "monto_anual": "150000", "supuesto": "demostración" }
+      { "id": "L-007", "espacio_id": "E-002", "escenario_id": "", "concepto": "Operación", "tipo": "costo", "monto_anual": "150000", "supuesto": "demostración" },
+      { "id": "L-008", "espacio_id": "E-004", "escenario_id": "", "concepto": "Renta de cabinas", "tipo": "ingreso", "monto_anual": "200000", "supuesto": "demostración" },
+      { "id": "L-009", "espacio_id": "E-004", "escenario_id": "", "concepto": "Operación", "tipo": "costo", "monto_anual": "80000", "supuesto": "demostración" }
     ],
     "Escenarios": [],
     "Rutas": [

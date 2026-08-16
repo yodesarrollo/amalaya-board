@@ -335,6 +335,8 @@ function doPost(e) {
         return accNuevoCodigo(usuario, body);
       case 'respaldoAhora':
         return accRespaldoAhora(usuario);
+      case 'instalarRespaldo':
+        return accInstalarRespaldo(usuario);
       default:
         return jsonOut({ ok: false, error: 'Acción no reconocida.' });
     }
@@ -707,6 +709,22 @@ function accRespaldoAhora(usuario) {
 
 function respaldoDiario() {
   hacerRespaldo();
+}
+
+// Instala el respaldo nocturno DESDE el board (solo admin): así no hay que
+// volver al editor de Apps Script nunca más.
+function accInstalarRespaldo(usuario) {
+  if (usuario.rol !== 'admin') {
+    return jsonOut({ ok: false, error: 'Solo un admin puede activar el respaldo.' });
+  }
+  const existentes = ScriptApp.getProjectTriggers().filter(function (t) {
+    return t.getHandlerFunction() === 'respaldoDiario';
+  });
+  if (existentes.length > 0) {
+    return jsonOut({ ok: true, ya_existia: true });
+  }
+  ScriptApp.newTrigger('respaldoDiario').timeBased().everyDays(1).atHour(3).create();
+  return jsonOut({ ok: true, ya_existia: false });
 }
 
 function hacerRespaldo() {
