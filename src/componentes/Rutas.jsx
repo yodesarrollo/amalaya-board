@@ -1,15 +1,21 @@
 import { useState, useRef, useCallback } from 'react'
-import { X, Plus, Undo2, Upload, ChevronLeft, ChevronRight, MapPin, Share2 } from 'lucide-react'
+import { X, Plus, Undo2, Upload, ChevronLeft, ChevronRight, Share2 } from 'lucide-react'
 import { usarDatos } from '../datos.jsx'
 import ImagenDrive from './ImagenDrive.jsx'
 import { compartirCard } from '../compartir.js'
 
 // ============================================================
-// Rutas temáticas: polilíneas de color sobre el mapa, paradas
-// con antes/después (Hoy / Visión) y elementos deseados cuyo
-// estado alimenta "Peticiones al municipio".
+// Rutas peatonales temáticas: polilíneas de color sobre el mapa.
+// Son recorridos a pie por las calles del polígono — no líneas
+// de transporte: el TRAZO es el protagonista, sin paradas.
 //
-// - `puntos` de la ruta: JSON [[x,y],...] en porcentajes.
+// - `puntos` de la ruta guarda un JSON con dos formas válidas:
+//     v1 (legado):  [[x,y],...] en porcentajes
+//     v2 (actual):  { v:2, puntos:[[x,y],...], grosor, opacidad }
+//   El estilo viaja DENTRO de la misma columna `puntos` para no
+//   tocar el contrato del Apps Script desplegado.
+// - Las paradas siguen existiendo como datos (alimentan
+//   "Peticiones al municipio"), pero ya no se pintan sobre la ruta.
 // - `elementos` de la parada: JSON [{texto, estado}] con estado
 //   pendiente | gestionado | logrado.
 // ============================================================
@@ -25,13 +31,35 @@ export const COLORES_RUTA = [
   { hex: '#00838F', nombre: 'turquesa' },
 ]
 
-export function leerPuntos(ruta) {
+// Estilo por defecto de una ruta peatonal.
+const GROSOR_DEF = 2.5
+const OPACIDAD_DEF = 0.9
+
+const esPunto = (q) => Array.isArray(q) && q.length === 2
+
+// Lee la ruta completa (trazo + estilo) tolerando ambos formatos.
+export function leerRuta(ruta) {
   try {
-    const p = JSON.parse(ruta.puntos || '[]')
-    return Array.isArray(p) ? p.filter((q) => Array.isArray(q) && q.length === 2) : []
+    const j = JSON.parse(ruta.puntos || '[]')
+    if (Array.isArray(j)) {
+      return { puntos: j.filter(esPunto), grosor: GROSOR_DEF, opacidad: OPACIDAD_DEF }
+    }
+    const grosor = Math.min(Math.max(parseFloat(j.grosor) || GROSOR_DEF, 0.5), 12)
+    const opacidad = Math.min(Math.max(parseFloat(j.opacidad) || OPACIDAD_DEF, 0.1), 1)
+    return { puntos: Array.isArray(j.puntos) ? j.puntos.filter(esPunto) : [], grosor, opacidad }
   } catch {
-    return []
+    return { puntos: [], grosor: GROSOR_DEF, opacidad: OPACIDAD_DEF }
   }
+}
+
+export function leerPuntos(ruta) {
+  return leerRuta(ruta).puntos
+}
+
+// Serializa trazo + estilo (formato v2) para guardarlo en `puntos`.
+export function guardarRuta(ruta, cambios) {
+  const n = { ...leerRuta(ruta), ...cambios }
+  return JSON.stringify({ v: 2, puntos: n.puntos, grosor: n.grosor, opacidad: n.opacidad })
 }
 
 export function leerElementos(parada) {
@@ -51,7 +79,7 @@ function num(v, d) {
 // ------------------------------------------------------------
 // La capa SVG con las polilíneas (vive dentro del lienzo con zoom).
 // ------------------------------------------------------------
-export function RutasCapa({ rutas, paradas, interactivas, rutaSel, recorriendo, onElegirRuta }) {
+export function RutasCapa({ rutas, interactivas, rutaSel, recorriendo, onElegirRuta }) {
   return (
     <svg
       className="absolute inset-0 w-full h-full"
@@ -60,7 +88,7 @@ export function RutasCapa({ rutas, paradas, interactivas, rutaSel, recorriendo, 
       style={{ pointerEvents: 'none' }}
     >
       {rutas.map((r) => {
-        const pts = leerPuntos(r)
+        const { puntos: pts, grosor, opacidad } = leerRuta(r)
         if (pts.length < 2) return null
         const d = pts.map((p) => p.join(',')).join(' ')
         const esLaActiva = recorriendo === r.id
@@ -75,7 +103,7 @@ export function RutasCapa({ rutas, paradas, interactivas, rutaSel, recorriendo, 
                 fill="none"
                 stroke="#000"
                 strokeOpacity="0"
-                strokeWidth="4"
+                strokeWidth={Math.max(grosor + 6, 10)}
                 style={{ pointerEvents: 'stroke', cursor: 'pointer' }}
                 onClick={(ev) => { ev.stopPropagation(); onElegirRuta?.(r.id) }}
               />
@@ -84,7 +112,8 @@ export function RutasCapa({ rutas, paradas, interactivas, rutaSel, recorriendo, 
               points={d}
               fill="none"
               stroke={r.color || '#C9A45C'}
-              strokeWidth="2.5"
+              strokeWidth={grosor}
+              strokeOpacity={opacidad}
               strokeLinecap="round"
               strokeLinejoin="round"
               vectorEffect="non-scaling-stroke"
@@ -92,21 +121,6 @@ export function RutasCapa({ rutas, paradas, interactivas, rutaSel, recorriendo, 
               className={esLaActiva ? 'ruta-trazandose' : ''}
               style={{ pointerEvents: 'none' }}
             />
-            {/* Paradas de la ruta como puntos */}
-            {paradas
-              .filter((p) => String(p.ruta_id) === String(r.id))
-              .map((p) => (
-                <circle
-                  key={p.id}
-                  cx={num(p.pos_x, 50)}
-                  cy={num(p.pos_y, 50)}
-                  r="1.1"
-                  fill={r.color || '#C9A45C'}
-                  stroke="#F2EAD9"
-                  strokeWidth="1"
-                  vectorEffect="non-scaling-stroke"
-                />
-              ))}
           </g>
         )
       })}
@@ -132,10 +146,20 @@ export function PuntosEdicion({ ruta }) {
 export function BarraRutas({
   rutas, editable, rutaSel, setRutaSel,
   editandoPuntos, setEditandoPuntos,
-  agregandoParada, setAgregandoParada,
   onCrearRuta, onDeshacerPunto,
 }) {
+  const { editarFila } = usarDatos()
   const [creando, setCreando] = useState(false)
+  const rutaActiva = rutas.find((r) => r.id === rutaSel) || null
+  const estilo = rutaActiva ? leerRuta(rutaActiva) : null
+
+  // El estilo viaja dentro de `puntos` (formato v2); la escritura es
+  // optimista y con debounce en datos.jsx, así que el slider se ve en
+  // vivo sin ametrallar al servidor.
+  const cambiarEstilo = (cambios) => {
+    if (!rutaActiva) return
+    editarFila('Rutas', rutaActiva.id, { puntos: guardarRuta(rutaActiva, cambios) })
+  }
 
   return (
     <div className="max-w-6xl mx-auto px-4 pb-2 space-y-2">
@@ -153,7 +177,6 @@ export function BarraRutas({
             onClick={() => {
               setRutaSel(rutaSel === r.id ? null : r.id)
               setEditandoPuntos(false)
-              setAgregandoParada(false)
             }}
           >
             <span className="w-2.5 h-2.5 rounded-full" style={{ background: r.color || '#C9A45C' }} />
@@ -167,11 +190,11 @@ export function BarraRutas({
         )}
       </div>
 
-      {editable && rutaSel && (
-        <div className="flex items-center gap-2 flex-wrap">
+      {editable && rutaActiva && (
+        <div className="flex items-center gap-x-4 gap-y-2 flex-wrap">
           <button
             className={`${editandoPuntos ? 'boton-primario' : 'boton-secundario'} !px-3 !py-1.5 text-sm`}
-            onClick={() => { setEditandoPuntos(!editandoPuntos); setAgregandoParada(false) }}
+            onClick={() => setEditandoPuntos(!editandoPuntos)}
           >
             {editandoPuntos ? 'Listo con el trazo' : 'Trazar (toca el mapa)'}
           </button>
@@ -180,12 +203,30 @@ export function BarraRutas({
               <span className="flex items-center gap-1"><Undo2 size={14} /> Deshacer punto</span>
             </button>
           )}
-          <button
-            className={`${agregandoParada ? 'boton-primario' : 'boton-secundario'} !px-3 !py-1.5 text-sm`}
-            onClick={() => { setAgregandoParada(!agregandoParada); setEditandoPuntos(false) }}
-          >
-            <span className="flex items-center gap-1"><MapPin size={14} /> {agregandoParada ? 'Toca el mapa…' : 'Agregar parada'}</span>
-          </button>
+
+          {/* Estilo de la línea peatonal: se ajusta viéndola en vivo */}
+          <label className="flex items-center gap-2 text-xs text-arena">
+            <span className="whitespace-nowrap">Ancho</span>
+            <input
+              type="range" min="0.5" max="10" step="0.5"
+              value={estilo.grosor}
+              onChange={(e) => cambiarEstilo({ grosor: parseFloat(e.target.value) })}
+              className="w-28 accent-[#C9A45C]"
+              aria-label="Ancho de la línea"
+            />
+            <span className="cifra text-terciario w-8">{estilo.grosor}px</span>
+          </label>
+          <label className="flex items-center gap-2 text-xs text-arena">
+            <span className="whitespace-nowrap">Transparencia</span>
+            <input
+              type="range" min="10" max="100" step="5"
+              value={Math.round(estilo.opacidad * 100)}
+              onChange={(e) => cambiarEstilo({ opacidad: parseInt(e.target.value, 10) / 100 })}
+              className="w-28 accent-[#C9A45C]"
+              aria-label="Opacidad de la línea"
+            />
+            <span className="cifra text-terciario w-9">{Math.round(estilo.opacidad * 100)}%</span>
+          </label>
         </div>
       )}
 
@@ -590,8 +631,8 @@ export function Recorrido({ ruta, paradas, idx, setIdx, onCerrar }) {
           </div>
         ) : (
           <p className="text-terciario text-sm mt-3">
-            Esta ruta aún no tiene paradas. Con la ruta elegida, toca
-            "Agregar parada" y luego el punto del mapa donde va.
+            Ruta peatonal: el trazo sobre el mapa es el recorrido.
+            {ruta.homenaje_a ? '' : ' Falta definir a quién rinde homenaje y el artista del mural.'}
           </p>
         )}
       </div>

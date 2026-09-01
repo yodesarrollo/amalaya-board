@@ -20,6 +20,45 @@ const PESTANAS = [
   { clave: 'tareas', titulo: 'Tareas', requiere: 'Tareas' },
 ]
 
+// ------------------------------------------------------------
+// Representante: el artista de música regional que le pone cara
+// al espacio. Vive como fila de `Archivos` con tipo='cara'
+// (nombre = artista, file_id = su cara recortada en Drive), así
+// que NO toca el contrato del Apps Script desplegado.
+// ------------------------------------------------------------
+
+// Candidatos iniciales (regional mexicano con raíz sonorense).
+// Es solo el arranque de la lista: se puede escribir cualquier otro.
+export const ARTISTAS_SEMILLA = [
+  'Carin León',
+  'Christian Nodal',
+  'Natanael Cano',
+  'Alfredo Olivas',
+  'Luis R Conriquez',
+  'Grupo Firme',
+  'Banda MS',
+  'Julión Álvarez',
+  'Alfonso Ortiz Tirado (homenaje)',
+]
+
+// La cara vigente de un espacio: la última fila tipo='cara'.
+export function caraDeEspacio(datos, espacioId) {
+  const caras = (datos?.Archivos || []).filter(
+    (a) => String(a.espacio_id) === String(espacioId) && String(a.tipo) === 'cara'
+  )
+  return caras.length ? caras[caras.length - 1] : null
+}
+
+// Iniciales para el medallón mientras no hay foto.
+export function inicialesDe(nombre) {
+  return String(nombre || '')
+    .split(/\s+/)
+    .filter((p) => p && !/^\(/.test(p))
+    .slice(0, 2)
+    .map((p) => p[0].toUpperCase())
+    .join('')
+}
+
 export default function FichaEspacio({ espacio, onCerrar }) {
   const { sesion, datos, modo, editarFila } = usarDatos()
   const editable = modo !== 'demo' && ['admin', 'editor'].includes(sesion?.rol)
@@ -88,6 +127,8 @@ export default function FichaEspacio({ espacio, onCerrar }) {
         />
       </label>
 
+      <Representante espacio={espacio} editable={editable} />
+
       {/* Pestañas */}
       <div className="flex gap-1 mt-5 border-b border-linea overflow-x-auto" role="tablist">
         {visibles.map((p) => (
@@ -111,6 +152,142 @@ export default function FichaEspacio({ espacio, onCerrar }) {
         {activa === 'conocimientos' && <Conocimientos espacio={espacio} editable={editable} />}
         {activa === 'tareas' && <Tareas espacio={espacio} editable={editable} />}
       </div>
+    </div>
+  )
+}
+
+// ------------------------------------------------------------
+// Representante del espacio: elegir artista + subir su cara
+// recortada. La cara elegida es el ícono del pin en el mapa.
+// ------------------------------------------------------------
+function Representante({ espacio, editable }) {
+  const { datos, crearFila, editarFila, borrarFila, subirArchivo } = usarDatos()
+  const cara = caraDeEspacio(datos, espacio.id)
+  const [eligiendoOtro, setEligiendoOtro] = useState(false)
+  const [nombreOtro, setNombreOtro] = useState('')
+  const [ocupado, setOcupado] = useState(false)
+  const [error, setError] = useState(null)
+  const inputRef = useRef(null)
+
+  const opciones = [...ARTISTAS_SEMILLA]
+  if (cara?.nombre && !opciones.includes(cara.nombre)) opciones.unshift(cara.nombre)
+
+  async function asignar(nombre) {
+    setError(null)
+    setEligiendoOtro(false)
+    try {
+      if (!nombre) {
+        if (cara) await borrarFila('Archivos', cara.id)
+        return
+      }
+      if (cara) {
+        editarFila('Archivos', cara.id, { nombre })
+      } else {
+        await crearFila('Archivos', {
+          espacio_id: espacio.id,
+          tipo: 'cara',
+          nombre,
+          file_id: '',
+          privado: 'no',
+          fecha: new Date().toISOString().slice(0, 10),
+        })
+      }
+    } catch (e) {
+      setError(e.message)
+    }
+  }
+
+  async function subirCara(ev) {
+    const file = ev.target.files?.[0]
+    ev.target.value = ''
+    if (!file) return
+    if (!file.type.startsWith('image/')) {
+      setError('La cara debe ser una imagen (PNG o JPG ya recortada).')
+      return
+    }
+    setOcupado(true)
+    setError(null)
+    try {
+      // Sube como foto normal y se reclasifica a 'cara' con el nombre
+      // del artista; la cara anterior (si había) se retira para que
+      // solo quede una vigente.
+      const fila = await subirArchivo(espacio.id, file, false)
+      editarFila('Archivos', fila.id, { tipo: 'cara', nombre: cara?.nombre || '' })
+      if (cara) await borrarFila('Archivos', cara.id)
+    } catch (e) {
+      setError(e.message)
+    } finally {
+      setOcupado(false)
+    }
+  }
+
+  return (
+    <div className="tarjeta p-3 mt-3">
+      <div className="text-xs uppercase tracking-wide text-terciario">Representante · música regional</div>
+      <div className="flex items-center gap-3 mt-2">
+        {/* El medallón: cara recortada, o iniciales mientras no hay foto */}
+        {cara?.file_id ? (
+          <span className="w-14 h-14 rounded-full overflow-hidden border-2 border-oro shrink-0 bg-noche">
+            <ImagenDrive fileId={cara.file_id} sz="w200" alt={cara.nombre} className="w-full h-full object-cover" />
+          </span>
+        ) : (
+          <span className="w-14 h-14 rounded-full border-2 border-dashed border-oro/60 shrink-0 flex items-center justify-center bg-superficie">
+            <span className="font-cartel text-oro text-lg tracking-wide">{cara ? inicialesDe(cara.nombre) : '?'}</span>
+          </span>
+        )}
+
+        <div className="flex-1 min-w-0 space-y-2">
+          {!eligiendoOtro ? (
+            <select
+              className="campo !py-2"
+              value={cara?.nombre || ''}
+              disabled={!editable || ocupado}
+              onChange={(e) => {
+                const v = e.target.value
+                if (v === '__otro') { setEligiendoOtro(true); setNombreOtro('') } else asignar(v)
+              }}
+            >
+              <option value="">— sin representante todavía —</option>
+              {opciones.map((n) => <option key={n} value={n}>{n}</option>)}
+              <option value="__otro">Otro artista…</option>
+            </select>
+          ) : (
+            <form
+              className="flex gap-2"
+              onSubmit={(ev) => { ev.preventDefault(); if (nombreOtro.trim()) asignar(nombreOtro.trim()) }}
+            >
+              <input
+                className="campo !py-2 flex-1"
+                value={nombreOtro}
+                onChange={(e) => setNombreOtro(e.target.value)}
+                placeholder="Nombre del artista…"
+                autoFocus
+              />
+              <button type="submit" className="boton-primario !px-3 !py-2" disabled={!nombreOtro.trim()} aria-label="Asignar">
+                <Check size={14} />
+              </button>
+              <button type="button" className="boton-secundario !px-3 !py-2" onClick={() => setEligiendoOtro(false)} aria-label="Cancelar">
+                <X size={14} />
+              </button>
+            </form>
+          )}
+
+          {editable && cara && (
+            <>
+              <input ref={inputRef} type="file" accept="image/*" className="hidden" onChange={subirCara} />
+              <button className="boton-secundario !px-3 !py-1.5 text-xs" onClick={() => inputRef.current?.click()} disabled={ocupado}>
+                <span className="flex items-center gap-1.5">
+                  <Upload size={12} /> {ocupado ? 'Subiendo…' : cara.file_id ? 'Cambiar la cara' : 'Subir cara recortada'}
+                </span>
+              </button>
+            </>
+          )}
+        </div>
+      </div>
+      <p className="text-terciario text-[11px] mt-2 leading-snug">
+        La cara recortada del artista se vuelve el ícono de este espacio en el mapa.
+      </p>
+      {error && <p className="text-ladrillo text-xs mt-1" role="alert">{error}</p>}
     </div>
   )
 }
