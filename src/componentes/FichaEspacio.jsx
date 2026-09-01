@@ -4,6 +4,7 @@ import { usarDatos } from '../datos.jsx'
 import Factores from './Factores.jsx'
 import ImagenDrive from './ImagenDrive.jsx'
 import { GLIFO_TIPO } from './Glifos.jsx'
+import { m2Construidos } from '../calc.js'
 import { compartirCard } from '../compartir.js'
 
 // ============================================================
@@ -142,6 +143,9 @@ export default function FichaEspacio({ espacio, onCerrar }) {
         />
       </label>
 
+      <M2Construidos espacio={espacio} />
+      <Llenado espacio={espacio} />
+
       <Representante espacio={espacio} editable={editable} />
 
       {/* Pestañas */}
@@ -167,6 +171,64 @@ export default function FichaEspacio({ espacio, onCerrar }) {
         {activa === 'conocimientos' && <Conocimientos espacio={espacio} editable={editable} />}
         {activa === 'tareas' && <Tareas espacio={espacio} editable={editable} />}
       </div>
+    </div>
+  )
+}
+
+// ------------------------------------------------------------
+// m² construidos: la superficie que de verdad vale y cuesta
+// (m² × COS × pisos, con los factores del espacio). El motor
+// financiero usa este mismo número.
+// ------------------------------------------------------------
+function M2Construidos({ espacio }) {
+  const { datos } = usarDatos()
+  const { m2c, cos, pisos } = m2Construidos(espacio, datos?.Factores || [])
+  if (cos === null && pisos === null) return null
+  const partes = []
+  if (cos !== null) partes.push(`COS ${cos}%`)
+  if (pisos !== null) partes.push(`${pisos} pisos`)
+  return (
+    <p className="text-arena text-xs mt-2">
+      ≈ <span className="cifra text-marfil">{Math.round(m2c).toLocaleString('es-MX')} m² construidos</span>
+      {' '}({partes.join(' × ')}) — con esto se calculan valor y costo.
+    </p>
+  )
+}
+
+// ------------------------------------------------------------
+// Termómetro de llenado: qué ya está capturado y qué falta para
+// que este espacio cuente completo en el reporte.
+// ------------------------------------------------------------
+function Llenado({ espacio }) {
+  const { datos } = usarDatos()
+  const id = String(espacio.id)
+  const lineas = (datos?.Finanzas_Lineas || []).filter((l) => String(l.espacio_id) === id)
+  const pasos = [
+    ['m²', Number(espacio.m2) > 0],
+    ['descripción', String(espacio.descripcion || '').trim() !== ''],
+    ['factores', (datos?.Factores || []).some((f) => String(f.espacio_id) === id)],
+    ['un ingreso', lineas.some((l) => String(l.tipo).toLowerCase() === 'ingreso')],
+    ['un costo', lineas.some((l) => String(l.tipo).toLowerCase() === 'costo')],
+    ['una foto', (datos?.Archivos || []).some((a) => String(a.espacio_id) === id && a.tipo === 'foto')],
+  ]
+  const hechos = pasos.filter(([, ok]) => ok).length
+  const faltan = pasos.filter(([, ok]) => !ok).map(([n]) => n)
+  const completo = hechos === pasos.length
+  return (
+    <div className="mt-3">
+      <div className="flex items-center justify-between text-xs">
+        <span className="uppercase tracking-wide text-terciario">Llenado del espacio</span>
+        <span className={`cifra ${completo ? 'text-salvia' : 'text-arena'}`}>{hechos} de {pasos.length}</span>
+      </div>
+      <div className="mt-1.5 h-1.5 rounded-full bg-superficie overflow-hidden">
+        <div
+          className={`h-full rounded-full transition-all duration-panel ease-casa ${completo ? 'bg-salvia' : 'bg-oro'}`}
+          style={{ width: `${(hechos / pasos.length) * 100}%` }}
+        />
+      </div>
+      {!completo && (
+        <p className="text-terciario text-xs mt-1.5">Falta: {faltan.join(' · ')}.</p>
+      )}
     </div>
   )
 }

@@ -1,8 +1,9 @@
 import { Printer } from 'lucide-react'
 import { usarDatos } from '../datos.jsx'
 import { moneda, metros2, fechaHora } from '../formato.js'
-import { resumenGlobal, mapaConfig, normalizarId } from '../calc.js'
+import { resumenGlobal, mapaConfig, normalizarId, m2Construidos, lineasVigentes } from '../calc.js'
 import { leerPuntos } from './Rutas.jsx'
+import ImagenDrive from './ImagenDrive.jsx'
 import LineaAmalaya from './LineaAmalaya.jsx'
 
 // ============================================================
@@ -79,6 +80,33 @@ export default function Reporte() {
         </section>
       )}
 
+      {/* Artistas de la casa: el gancho emocional del proyecto */}
+      {(() => {
+        const caras = (datos?.Archivos || []).filter((a) => String(a.tipo) === 'cara' && a.file_id && a.nombre)
+        if (caras.length === 0) return null
+        return (
+          <section className="mt-10 imp-seccion">
+            <h2 className="font-titulo text-2xl mb-4 text-center">Artistas de la casa</h2>
+            <div className="flex flex-wrap justify-center gap-x-6 gap-y-4">
+              {caras.map((c) => {
+                const esp = espacios.find((e) => String(e.id) === String(c.espacio_id))
+                return (
+                  <figure key={c.id} className="text-center w-24">
+                    <span className="block w-16 h-16 mx-auto rounded-full overflow-hidden border-2 border-oro imp-barra bg-noche">
+                      <ImagenDrive fileId={c.file_id} sz="w200" alt={c.nombre} className="w-full h-full object-cover" />
+                    </span>
+                    <figcaption className="mt-1.5">
+                      <div className="text-marfil text-xs font-medium leading-tight">{c.nombre}</div>
+                      {esp && <div className="text-terciario text-[10px] leading-tight">{esp.nombre}</div>}
+                    </figcaption>
+                  </figure>
+                )
+              })}
+            </div>
+          </section>
+        )
+      })()}
+
       {/* El dato estrella */}
       <section className="mt-10 imp-seccion">
         <div className="tarjeta bg-elevada border-t-2 border-t-ambar p-6 text-center">
@@ -130,21 +158,48 @@ export default function Reporte() {
           <div className="space-y-2">
             {espacios.map((e) => {
               const r = g.porEspacio.find((x) => x.espacio.id === e.id)
+              const { m2c, cos, pisos } = m2Construidos(e, datos?.Factores || [])
+              const construidoDistinto = (cos !== null || pisos !== null) && Math.round(m2c) !== Math.round(Number(e.m2) || 0)
+              // Los supuestos de las líneas vigentes: la letra chica que
+              // responde el «¿de dónde sale?» del inversionista.
+              const vigentes = lineasVigentes(
+                (datos?.Finanzas_Lineas || []).filter((l) => String(l.espacio_id) === String(e.id)),
+                escenarios.filter((x) => String(x.espacio_id) === String(e.id))
+              )
+              const supuestos = vigentes
+                .filter((l) => String(l.supuesto || '').trim())
+                .map((l) => `${l.concepto}: ${String(l.supuesto).trim()}`)
               return (
-                <div key={e.id} className="tarjeta p-4 flex items-baseline gap-3 flex-wrap">
-                  <div className="flex-1 min-w-[10rem]">
-                    <span className="text-xs uppercase tracking-wide text-terciario mr-2">{e.tipo}</span>
-                    <span className="font-titulo text-lg">{e.nombre}</span>
-                    {e.descripcion && <p className="text-arena text-sm mt-1 leading-relaxed">{e.descripcion}</p>}
+                <div key={e.id} className="tarjeta p-4">
+                  <div className="flex items-baseline gap-3 flex-wrap">
+                    <div className="flex-1 min-w-[10rem]">
+                      <span className="text-xs uppercase tracking-wide text-terciario mr-2">{e.tipo}</span>
+                      <span className="font-titulo text-lg">{e.nombre}</span>
+                      {e.descripcion && <p className="text-arena text-sm mt-1 leading-relaxed">{e.descripcion}</p>}
+                    </div>
+                    <div className="text-right">
+                      <div className="cifra text-sm text-marfil">{e.m2 ? metros2(e.m2) : '—'}</div>
+                      {construidoDistinto && (
+                        <div className="text-xs text-terciario">≈ {metros2(Math.round(m2c))} construidos</div>
+                      )}
+                      <div className="text-xs text-terciario capitalize">{e.estado_desarrollo || 'idea'}</div>
+                    </div>
+                    <div className="text-right w-36">
+                      {r && (r.ingreso !== 0 || r.costo !== 0) && (
+                        <div className="text-xs text-terciario leading-relaxed">
+                          <div>ingreso <span className="cifra text-marfil">{moneda(r.ingreso)}</span></div>
+                          <div>costo <span className="cifra text-marfil">{moneda(r.costo)}</span></div>
+                        </div>
+                      )}
+                      <div className="text-xs text-terciario">utilidad anual</div>
+                      <div className="cifra text-sm imp-oro text-oro">{r ? moneda(r.utilidad) : '—'}</div>
+                    </div>
                   </div>
-                  <div className="text-right">
-                    <div className="cifra text-sm text-marfil">{e.m2 ? metros2(e.m2) : '—'}</div>
-                    <div className="text-xs text-terciario capitalize">{e.estado_desarrollo || 'idea'}</div>
-                  </div>
-                  <div className="text-right w-36">
-                    <div className="text-xs text-terciario">utilidad anual</div>
-                    <div className="cifra text-sm imp-oro text-oro">{r ? moneda(r.utilidad) : '—'}</div>
-                  </div>
+                  {supuestos.length > 0 && (
+                    <p className="text-terciario text-[11px] mt-2 leading-relaxed border-t border-linea pt-2">
+                      Supuestos: {supuestos.join(' · ')}
+                    </p>
+                  )}
                 </div>
               )
             })}
@@ -194,9 +249,8 @@ export default function Reporte() {
                     </div>
                   </div>
                   <div className="text-right text-xs text-terciario shrink-0">
-                    <div className="cifra text-marfil text-sm">{numParadas}</div>
-                    parada{numParadas === 1 ? '' : 's'}
-                    {leerPuntos(r).length > 1 ? '' : ' · sin trazo'}
+                    {leerPuntos(r).length > 1 ? 'ruta peatonal trazada' : 'por trazar'}
+                    {numParadas > 0 ? ` · ${numParadas} punto${numParadas === 1 ? '' : 's'} de interés` : ''}
                   </div>
                 </div>
               )

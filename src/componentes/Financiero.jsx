@@ -165,7 +165,7 @@ function BloqueEspacio({ espacio, editable }) {
           {/* Escenarios comparables */}
           <div>
             <div className="text-xs uppercase tracking-wide text-terciario mb-1.5">
-              Escenarios (prende el que quieras comparar)
+              Escenarios (uno a la vez: prender uno apaga los demás)
             </div>
             <div className="flex items-center gap-2 flex-wrap">
               {escenarios.map((esc) => {
@@ -176,7 +176,16 @@ function BloqueEspacio({ espacio, editable }) {
                     className={`text-xs rounded-full border px-3 py-1.5 transition-colors duration-micro ease-casa
                       ${activo ? 'border-oro text-noche bg-oro font-medium' : 'border-linea text-arena hover:text-marfil'}
                       ${editable ? '' : 'pointer-events-none'}`}
-                    onClick={() => editarFila('Escenarios', esc.id, { activo: activo ? 'no' : 'si' })}
+                    onClick={() => {
+                      // Excluyentes por espacio: dos escenarios activos a la
+                      // vez sumarían sus líneas DOBLE en el reporte al banco.
+                      if (!activo) {
+                        escenarios
+                          .filter((o) => o.id !== esc.id && normalizarId(o.activo) === 'si')
+                          .forEach((o) => editarFila('Escenarios', o.id, { activo: 'no' }))
+                      }
+                      editarFila('Escenarios', esc.id, { activo: activo ? 'no' : 'si' })
+                    }}
                   >
                     {esc.nombre}
                   </button>

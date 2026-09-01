@@ -202,6 +202,32 @@ export function resumenEspacio(espacio, lineas = [], factores = [], escenarios =
   return { ingreso, costo, utilidad: ingreso - costo, regalias, errores }
 }
 
+// --- m² construidos -----------------------------------------
+// El valor inmobiliario y el costo de obra se calculan sobre el
+// área CONSTRUIDA, no sobre el predio: m² × (COS/100) × pisos,
+// leyendo los factores del propio espacio (etiquetas que
+// contengan "cos" y "piso"). Un comercial de 2,000 m² con COS
+// 75% y 4 pisos vale por sus ~6,000 m² vendibles. Sin esos
+// factores, el m² del predio queda tal cual (fallback).
+export function m2Construidos(espacio, factores = []) {
+  const m2 = Number(espacio.m2) || 0
+  const propios = factores.filter((f) => String(f.espacio_id) === String(espacio.id))
+  const busca = (re) => {
+    const f = propios.find((x) => re.test(normalizarId(x.etiqueta)))
+    const v = f ? Number(f.valor) : NaN
+    return Number.isFinite(v) && v > 0 ? v : null
+  }
+  // "cos" como palabra (no "costo"); "piso" en cualquier parte.
+  const cos = busca(/(^|_|\()cos($|_|\))/)
+  const pisos = busca(/piso/)
+  if (cos === null && pisos === null) return { m2c: m2, cos: null, pisos: null }
+  return {
+    m2c: m2 * (cos !== null ? cos / 100 : 1) * (pisos !== null ? pisos : 1),
+    cos,
+    pisos,
+  }
+}
+
 // --- Config -------------------------------------------------
 // La pestaña Config es clave|valor|notas. Aquí la volvemos un
 // mapa y leemos números con un valor por defecto explícito.
@@ -236,10 +262,11 @@ export function resumenGlobal({ espacios = [], lineas = [], factores = [], escen
     utilidadTotal += r.utilidad
     regaliasTotal += r.regalias
 
-    const m2 = Number(e.m2) || 0
+    // Área construida (m² × COS × pisos), no el puro predio.
+    const { m2c } = m2Construidos(e, factores)
     const tipo = normalizarId(e.tipo)
-    inmobiliario += m2 * configNum(config, `valor_m2_${tipo}`, configNum(config, 'valor_m2', 0))
-    costoConstruccion += m2 * configNum(config, `costo_m2_${tipo}`, configNum(config, 'costo_m2', 0))
+    inmobiliario += m2c * configNum(config, `valor_m2_${tipo}`, configNum(config, 'valor_m2', 0))
+    costoConstruccion += m2c * configNum(config, `costo_m2_${tipo}`, configNum(config, 'costo_m2', 0))
   }
 
   costoConstruccion += configNum(config, 'gastos_generales', 0)
