@@ -41,6 +41,20 @@ export const ARTISTAS_SEMILLA = [
   'Alfonso Ortiz Tirado (homenaje)',
 ]
 
+// Caras recortadas ya empacadas con la careta (fotos libres de
+// Wikimedia Commons; créditos en public/caras/CREDITOS.md). Al
+// elegir uno de estos artistas su cara sale de inmediato; subir
+// una foto propia desde la ficha la reemplaza.
+export const CARAS_SEMILLA = {
+  'Carin León': 'local:carin-leon.jpg',
+  'Christian Nodal': 'local:christian-nodal.jpg',
+  'Natanael Cano': 'local:natanael-cano.jpg',
+  'Alfredo Olivas': 'local:alfredo-olivas.jpg',
+  'Luis R Conriquez': 'local:luis-r-conriquez.jpg',
+  'Grupo Firme': 'local:grupo-firme.jpg',
+  'Julión Álvarez': 'local:julion-alvarez.jpg',
+}
+
 // La cara vigente de un espacio: la última fila tipo='cara'.
 export function caraDeEspacio(datos, espacioId) {
   const caras = (datos?.Archivos || []).filter(
@@ -180,14 +194,17 @@ function Representante({ espacio, editable }) {
         if (cara) await borrarFila('Archivos', cara.id)
         return
       }
+      // Si el artista viene con cara empacada, sale de inmediato;
+      // un nombre libre queda sin cara hasta que se suba una.
+      const file_id = CARAS_SEMILLA[nombre] || ''
       if (cara) {
-        editarFila('Archivos', cara.id, { nombre })
+        editarFila('Archivos', cara.id, { nombre, file_id: file_id || cara.file_id })
       } else {
         await crearFila('Archivos', {
           espacio_id: espacio.id,
           tipo: 'cara',
           nombre,
-          file_id: '',
+          file_id,
           privado: 'no',
           fecha: new Date().toISOString().slice(0, 10),
         })

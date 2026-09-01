@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { RefreshCw, ImageOff } from 'lucide-react'
+import { BASE } from '../config.js'
 
 // Imagen guardada en Drive, identificada por su fileId (el Sheet nunca
 // guarda URLs de Drive: cambian de forma; el fileId es estable).
@@ -15,6 +16,17 @@ export default function ImagenDrive({ fileId, sz = 'w800', alt = '', className =
   const [intento, setIntento] = useState(0)
 
   if (!fileId) return null
+
+  // Además de fileIds de Drive, se aceptan dos formas especiales:
+  //  - 'local:archivo.jpg' → imagen empacada con la careta (public/caras/),
+  //    p. ej. las caras libres de artistas (ver public/caras/CREDITOS.md).
+  //  - una URL http(s) directa.
+  if (String(fileId).startsWith('local:') || /^https?:\/\//.test(String(fileId))) {
+    const src = String(fileId).startsWith('local:')
+      ? `${BASE}caras/${String(fileId).slice(6)}`
+      : String(fileId)
+    return <img src={src} alt={alt} loading="lazy" className={className} draggable={false} />
+  }
 
   if (paso >= 2) {
     return (
