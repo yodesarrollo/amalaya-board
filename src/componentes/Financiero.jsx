@@ -233,8 +233,8 @@ function BloqueEspacio({ espacio, editable }) {
 
 // --- Parámetros globales (Config, solo admin) ----------------
 const PARAMETROS = [
-  { grupo: 'Valor inmobiliario por m² (para el componente inmobiliario)', claves: ['valor_m2_venue', 'valor_m2_museo', 'valor_m2_escuela', 'valor_m2_estacionamiento', 'valor_m2_departamento', 'valor_m2_restaurante', 'valor_m2_estudio', 'valor_m2_otro'] },
-  { grupo: 'Costo de construcción por m²', claves: ['costo_m2_venue', 'costo_m2_museo', 'costo_m2_escuela', 'costo_m2_estacionamiento', 'costo_m2_departamento', 'costo_m2_restaurante', 'costo_m2_estudio', 'costo_m2_otro'] },
+  { grupo: 'Valor inmobiliario por m² (para el componente inmobiliario)', claves: ['valor_m2_venue', 'valor_m2_comercial', 'valor_m2_mixto', 'valor_m2_museo', 'valor_m2_escuela', 'valor_m2_estacionamiento', 'valor_m2_departamento', 'valor_m2_restaurante', 'valor_m2_estudio', 'valor_m2_otro'] },
+  { grupo: 'Costo de construcción por m²', claves: ['costo_m2_venue', 'costo_m2_comercial', 'costo_m2_mixto', 'costo_m2_museo', 'costo_m2_escuela', 'costo_m2_estacionamiento', 'costo_m2_departamento', 'costo_m2_restaurante', 'costo_m2_estudio', 'costo_m2_otro'] },
   { grupo: 'Generales', claves: ['gastos_generales', 'acciones_emitidas', 'multiplo_operativo', 'multiplo_regalias', 'split_distrito', 'split_artista', 'split_compositor'] },
 ]
 

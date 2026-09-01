@@ -3,6 +3,7 @@ import { X, Upload, FileText, Download, Plus, Check, Share2 } from 'lucide-react
 import { usarDatos } from '../datos.jsx'
 import Factores from './Factores.jsx'
 import ImagenDrive from './ImagenDrive.jsx'
+import { GLIFO_TIPO } from './Glifos.jsx'
 import { compartirCard } from '../compartir.js'
 
 // ============================================================
@@ -242,10 +243,21 @@ function Representante({ espacio, editable }) {
     <div className="tarjeta p-3 mt-3">
       <div className="text-xs uppercase tracking-wide text-terciario">Representante · música regional</div>
       <div className="flex items-center gap-3 mt-2">
-        {/* El medallón: cara recortada, o iniciales mientras no hay foto */}
+        {/* El medallón: cara recortada (con la insignia del tipo de
+            espacio encima), o iniciales mientras no hay foto */}
         {cara?.file_id ? (
-          <span className="w-14 h-14 rounded-full overflow-hidden border-2 border-oro shrink-0 bg-noche">
-            <ImagenDrive fileId={cara.file_id} sz="w200" alt={cara.nombre} className="w-full h-full object-cover" />
+          <span className="relative shrink-0">
+            <span className="block w-14 h-14 rounded-full overflow-hidden border-2 border-oro bg-noche">
+              <ImagenDrive fileId={cara.file_id} sz="w200" alt={cara.nombre} className="w-full h-full object-cover" />
+            </span>
+            {(() => {
+              const Glifo = GLIFO_TIPO[String(espacio.tipo).toLowerCase()] || GLIFO_TIPO.otro
+              return (
+                <span className="absolute -bottom-1 -right-1 w-6 h-6 rounded-full flex items-center justify-center bg-oro border border-noche/60 shadow">
+                  <span className="text-noche"><Glifo size={13} /></span>
+                </span>
+              )
+            })()}
           </span>
         ) : (
           <span className="w-14 h-14 rounded-full border-2 border-dashed border-oro/60 shrink-0 flex items-center justify-center bg-superficie">
