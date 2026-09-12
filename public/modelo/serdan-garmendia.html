@@ -90,7 +90,7 @@ const mMob=new THREE.MeshLambertMaterial({color:'#C9A45C'});
 const monitos=[]; const mMon=new THREE.MeshLambertMaterial({color:'#FFB84D',emissive:'#7a4d00'});
 D.sv.forEach(p=>{ const g=new THREE.Group(); const cuerpo=new THREE.Mesh(new THREE.CapsuleGeometry(0.35,1.0,4,8),mMon); cuerpo.position.y=1.1; const cab=new THREE.Mesh(new THREE.SphereGeometry(0.32,10,8),mMon); cab.position.y=2.05; g.add(cuerpo,cab); g.position.set(p.x,0,-p.y); g.userData=p; esc.add(g); monitos.push(g); rotulo(p.x,p.y,2.7,'Street View',p.nombre); });
 // --- cámara / controles ---
-let yaw=Math.PI*0.75, pitch=-0.05, vuelo=false; const pos=new THREE.Vector3(-8,1.65,8); const teclas={};
+let yaw=-Math.PI*0.25, pitch=-0.03, vuelo=false; const pos=new THREE.Vector3(-9,1.65,11); const teclas={};
 addEventListener('keydown',e=>{teclas[e.code]=true}); addEventListener('keyup',e=>{teclas[e.code]=false});
 let arr=null; canvas.addEventListener('pointerdown',e=>{arr={x:e.clientX,y:e.clientY,y0:yaw,p0:pitch,mov:false,t:e.pointerType}; canvas.setPointerCapture(e.pointerId)});
 canvas.addEventListener('pointermove',e=>{ if(!arr) return; const dx=e.clientX-arr.x, dy=e.clientY-arr.y; if(Math.hypot(dx,dy)>4) arr.mov=true; yaw=arr.y0-dx*0.004; pitch=Math.max(-1.3,Math.min(1.3,arr.p0-dy*0.004)); });
@@ -102,7 +102,7 @@ document.getElementById('svx').onclick=()=>{svBox.style.display='none'; document
 const joy=document.getElementById('joy'), nub=joy.querySelector('b'); let jv={x:0,y:0};
 joy.addEventListener('pointerdown',e=>{joy.setPointerCapture(e.pointerId); mueveJoy(e)}); joy.addEventListener('pointermove',e=>{ if(e.buttons) mueveJoy(e)}); joy.addEventListener('pointerup',()=>{jv={x:0,y:0}; nub.style.left='40px'; nub.style.top='40px'});
 function mueveJoy(e){ const r=joy.getBoundingClientRect(); let x=(e.clientX-r.left-60)/50, y=(e.clientY-r.top-60)/50; const l=Math.hypot(x,y); if(l>1){x/=l;y/=l} jv={x,y}; nub.style.left=(40+x*40)+'px'; nub.style.top=(40+y*40)+'px' }
-document.getElementById('bVuelo').onclick=function(){ vuelo=!vuelo; this.classList.toggle('on',vuelo); if(vuelo){ pos.set(-40,55,60); pitch=-0.75; yaw=Math.PI*0.78 } else { pos.set(-8,1.65,8); pitch=-0.05 } };
+document.getElementById('bVuelo').onclick=function(){ vuelo=!vuelo; this.classList.toggle('on',vuelo); if(vuelo){ pos.set(-55,60,70); pitch=-0.7; yaw=-Math.PI*0.22 } else { pos.set(-9,1.65,11); pitch=-0.03; yaw=-Math.PI*0.25 } };
 let verEtq=true; document.getElementById('bEtq').onclick=function(){ verEtq=!verEtq; this.classList.toggle('on',verEtq) };
 document.getElementById('bOrto').onclick=function(){ const on=!!matP.map; if(on){ matP.map=null; matP.color.set('#bdb6aa') } else if(ORTO){ new THREE.TextureLoader().load('data:image/jpeg;base64,'+ORTO,(t)=>{t.colorSpace=THREE.SRGBColorSpace; matP.map=t; matP.color.set('#ffffff'); matP.needsUpdate=true}) } matP.needsUpdate=true; this.classList.toggle('on',!on) };
 document.getElementById('bSol').onclick=function(){ tarde=!tarde; this.classList.toggle('on',tarde); ponSol() };
