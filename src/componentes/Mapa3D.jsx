@@ -32,10 +32,12 @@ const SATELITE = 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Ima
 // Hermosillo, alrededor de Serdán / Garmendia / Chihuahua. Se afinan con
 // "Calibrar plano" y quedan guardadas en el Sheet.
 const GEO_DEF = [
-  [-110.95881, 29.07954],
-  [-110.95081, 29.07954],
-  [-110.95081, 29.07364],
-  [-110.95881, 29.07364],
+  // Calibrado 12-sep-2026 por correlación de la red vial (OSM) contra la
+  // foto: 421 × 346 m, norte arriba, coincidencia 0.67. Se afina en el board.
+  [-110.957125, 29.07749],
+  [-110.952798, 29.07749],
+  [-110.952798, 29.074361],
+  [-110.957125, 29.074361],
 ]
 
 // Colores de la lámina "Zona Núcleo" (presentación Foro Amalaya).
