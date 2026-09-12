@@ -299,7 +299,16 @@ export default function Mapa() {
       <div className="px-2 pb-6">
         {en3d && (
           <div className="relative mx-auto rounded-2xl overflow-hidden border border-linea" style={{ height: 'calc(100dvh - 190px)', minHeight: '420px' }}>
-            <Mapa3D espacios={espacios} rutas={rutas} paradas={paradas} onAbrir={setAbierto} />
+            <Mapa3D
+              espacios={espacios} rutas={rutas} paradas={paradas} onAbrir={setAbierto}
+              onRecorrer={(paradaId) => {
+                const p = paradas.find((x) => String(x.id) === String(paradaId))
+                if (!p) return
+                const lista = paradas.filter((x) => String(x.ruta_id) === String(p.ruta_id)).sort((a, b) => num(a.orden, 999) - num(b.orden, 999))
+                setRutaSel(p.ruta_id)
+                setRecorrido({ rutaId: p.ruta_id, idx: Math.max(0, lista.findIndex((x) => String(x.id) === String(paradaId))) })
+              }}
+            />
           </div>
         )}
         <div

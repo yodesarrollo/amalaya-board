@@ -335,3 +335,5 @@ html {
 .maplibregl-ctrl button .maplibregl-ctrl-icon { filter: invert(0.9) sepia(0.3); }
 .maplibregl-ctrl-attrib { background: rgba(20,16,16,.6) !important; color: #9E8D78 !important; font-size: 10px; }
 .maplibregl-ctrl-attrib a { color: #B7A890 !important; }
+.monito3d { width: 34px; height: 34px; border-radius: 50%; background: #FFB84D; color: #141010; display: flex; align-items: center; justify-content: center; border: 2px solid #141010; cursor: grab; box-shadow: 0 0 22px rgba(255,184,77,.65), 0 8px 16px -8px rgba(0,0,0,.9); }
+.monito3d::after { content: ''; position: absolute; left: 50%; bottom: -8px; width: 2px; height: 8px; background: #FFB84D; }

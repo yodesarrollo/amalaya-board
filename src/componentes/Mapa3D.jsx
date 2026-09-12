@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState, useMemo } from 'react'
 import maplibregl from 'maplibre-gl'
 import 'maplibre-gl/dist/maplibre-gl.css'
-import { Layers, Box, Map as MapIcon, Image as ImageIcon, Crosshair, Check, X, RotateCw } from 'lucide-react'
+import { Layers, Box, Map as MapIcon, Image as ImageIcon, Crosshair, Check, X, RotateCw, PersonStanding, ExternalLink, Footprints } from 'lucide-react'
 import { usarDatos } from '../datos.jsx'
 import { BASE } from '../config.js'
 import { leerRuta } from './Rutas.jsx'
@@ -74,6 +74,16 @@ export function pctAGeo(geo, x, y) {
   ]
 }
 
+// [lng, lat] → porcentaje del plano (inversa de pctAGeo).
+export function geoAPct(geo, lng, lat) {
+  const [tl, tr, , bl] = geo
+  const a = tr[0] - tl[0], b = bl[0] - tl[0], c = tr[1] - tl[1], d = bl[1] - tl[1]
+  const det = a * d - b * c || 1e-12
+  const dx = lng - tl[0], dy = lat - tl[1]
+  const u = (dx * d - b * dy) / det, v = (a * dy - c * dx) / det
+  return [Number((u * 100).toFixed(2)), Number((v * 100).toFixed(2))]
+}
+
 function centroGeo(geo) {
   return [(geo[0][0] + geo[2][0]) / 2, (geo[0][1] + geo[2][1]) / 2]
 }
@@ -138,13 +148,16 @@ function geojsonParadas(paradas, geo) {
 
 const CAPAS_DEF = { satelite: false, ciudad: true, espacios: true, rutas: true, calco: false, lamina: false }
 
-export default function Mapa3D({ espacios, rutas, paradas, onAbrir }) {
+export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer }) {
   const { datos, sesion, modo, editarFila, crearFila } = usarDatos()
+  const puedeEditar = modo !== 'demo' && ['admin', 'editor'].includes(sesion?.rol)
   const geoSheet = useMemo(() => leerGeo(datos?.Config), [datos?.Config])
   const puedeCalibrar = modo !== 'demo' && sesion?.rol === 'admin'
 
   const cont = useRef(null)
   const mapa = useRef(null)
+  const onRecorrerRef = useRef(onRecorrer)
+  useEffect(() => { onRecorrerRef.current = onRecorrer }, [onRecorrer])
   const marcadores = useRef([])
   const esquinas = useRef([])
   const [listo, setListo] = useState(false)
@@ -155,6 +168,12 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir }) {
   const [calibrando, setCalibrando] = useState(false)
   const [geoTemp, setGeoTemp] = useState(null)
   const geo = geoTemp || geoSheet
+  // El monito: soltarlo en una calle abre el Street View de ese punto.
+  const [monito, setMonito] = useState(false)          // esperando el clic
+  const [punto, setPunto] = useState(null)              // {lng, lat, heading}
+  const monitoRef = useRef(null)
+  const monitoActivo = useRef(false)
+  useEffect(() => { monitoActivo.current = monito }, [monito])
 
   // --- crear el mapa una sola vez ------------------------------
   useEffect(() => {
@@ -230,7 +249,21 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir }) {
       m.addSource('paradas', { type: 'geojson', data: { type: 'FeatureCollection', features: [] } })
       m.addLayer({ id: 'paradas', type: 'circle', source: 'paradas', paint: { 'circle-radius': 5, 'circle-color': '#141010', 'circle-stroke-color': '#C9A45C', 'circle-stroke-width': 2 } })
 
+      m.on('click', (ev) => {
+        if (!monitoActivo.current) return
+        const { lng, lat } = ev.lngLat
+        setPunto({ lng: Number(lng.toFixed(6)), lat: Number(lat.toFixed(6)), heading: Math.round(m.getBearing()) })
+        setMonito(false)
+      })
+      m.on('click', 'paradas', (ev) => {
+        if (monitoActivo.current) return
+        const id = ev.features?.[0]?.properties?.id
+        if (id) onRecorrerRef.current?.(id)
+      })
+      m.on('mouseenter', 'paradas', () => { m.getCanvas().style.cursor = 'pointer' })
+      m.on('mouseleave', 'paradas', () => { m.getCanvas().style.cursor = '' })
       m.on('click', 'espacios-3d', (ev) => {
+        if (monitoActivo.current) return
         const id = ev.features?.[0]?.properties?.id
         if (id) onAbrir?.(id)
       })
@@ -267,6 +300,37 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir }) {
       return new maplibregl.Marker({ element: el, anchor: 'bottom', offset: [0, -6] }).setLngLat(pctAGeo(geo, x, y)).addTo(m)
     })
   }, [listo, espacios, rutas, paradas, datos?.Factores, geo, onAbrir])
+
+  // --- el monito en el mapa ----------------------------------------
+  useEffect(() => {
+    const m = mapa.current
+    monitoRef.current?.remove(); monitoRef.current = null
+    if (!m || !listo || !punto) return
+    const el = document.createElement('div')
+    el.className = 'monito3d'
+    el.innerHTML = '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="4.5" r="2.5"></circle><path d="M12 7v6l-3 7"></path><path d="M12 13l3 7"></path><path d="M7 10l5-2 5 2"></path></svg>'
+    const mk = new maplibregl.Marker({ element: el, anchor: 'bottom', draggable: true }).setLngLat([punto.lng, punto.lat]).addTo(m)
+    mk.on('dragend', () => { const { lng, lat } = mk.getLngLat(); setPunto((p) => ({ ...p, lng: Number(lng.toFixed(6)), lat: Number(lat.toFixed(6)) })) })
+    monitoRef.current = mk
+    return () => { mk.remove() }
+  }, [listo, punto?.lng, punto?.lat]) // eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(() => {
+    const m = mapa.current
+    if (!m) return
+    m.getCanvas().style.cursor = monito ? 'crosshair' : ''
+  }, [monito])
+
+  async function guardarParada(rutaId, nombre) {
+    const [px, py] = geoAPct(geo, punto.lng, punto.lat)
+    const enRuta = paradas.filter((p) => String(p.ruta_id) === String(rutaId))
+    const fila = await crearFila('Paradas', {
+      ruta_id: rutaId, nombre, foto_actual_id: '', foto_vision_id: '', elementos: '[]',
+      notas: `Street View: ${urlStreetView(punto)}`, orden: String(enRuta.length + 1), pos_x: String(px), pos_y: String(py),
+    })
+    setPunto(null)
+    onRecorrer?.(fila.id)
+  }
 
   // --- visibilidad de capas ---------------------------------------
   useEffect(() => {
@@ -365,6 +429,28 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir }) {
         )}
       </div>
 
+      {/* El monito (Street View) */}
+      <div className="absolute right-3 top-3 sm:right-14 flex gap-2">
+        <button
+          className={`${monito ? 'boton-primario' : 'boton-secundario'} !px-3 !py-2 text-sm bg-noche/80`}
+          onClick={() => { setMonito(!monito); if (monito) setPunto(null) }}
+          title="Suelta al monito en una calle para ver el Street View"
+        >
+          <span className="flex items-center gap-1.5"><PersonStanding size={15} /> {monito ? 'Toca una calle…' : 'Monito'}</span>
+        </button>
+      </div>
+
+      {punto && (
+        <PanelStreetView
+          punto={punto}
+          setPunto={setPunto}
+          rutas={rutas}
+          puedeEditar={puedeEditar}
+          onGuardar={guardarParada}
+          onCerrar={() => setPunto(null)}
+        />
+      )}
+
       {/* Cámara */}
       <div className="absolute right-3 bottom-3 flex gap-2">
         <button className="boton-secundario !px-3 !py-2 text-sm bg-noche/80" onClick={centrar} title="Centrar en el polígono"><Crosshair size={14} /></button>
@@ -403,6 +489,79 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir }) {
           </div>
           <img src={`${BASE}lamina-zona-nucleo.jpg`} alt="Zona Núcleo — lámina de la presentación Foro Amalaya" className="w-full h-auto block" />
         </div>
+      )}
+    </div>
+  )
+}
+
+// Street View de Google embebido sin llave (salida clásica "svembed") y la
+// liga oficial para abrirlo a pantalla completa en Google Maps.
+export function urlStreetView(p) {
+  return `https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=${p.lat},${p.lng}&heading=${p.heading || 0}&pitch=0&fov=80`
+}
+function urlEmbed(p) {
+  return `https://maps.google.com/maps?layer=c&cbll=${p.lat},${p.lng}&cbp=12,${p.heading || 0},0,0,0&output=svembed&hl=es`
+}
+
+function PanelStreetView({ punto, setPunto, rutas, puedeEditar, onGuardar, onCerrar }) {
+  const [rutaId, setRutaId] = useState(rutas[0]?.id || '')
+  const [nombre, setNombre] = useState('')
+  const [ocupado, setOcupado] = useState(false)
+  const [error, setError] = useState(null)
+  const girar = (d) => setPunto({ ...punto, heading: ((punto.heading || 0) + d + 360) % 360 })
+
+  async function guardar(ev) {
+    ev.preventDefault()
+    if (!rutaId || !nombre.trim()) return
+    setOcupado(true); setError(null)
+    try { await onGuardar(rutaId, nombre.trim()) } catch (e) { setError(e.message); setOcupado(false) }
+  }
+
+  return (
+    <div className="absolute inset-x-3 bottom-16 sm:inset-x-auto sm:right-3 sm:top-14 sm:bottom-auto sm:w-[30rem] bg-elevada border border-oro rounded-xl overflow-hidden shadow-2xl z-10">
+      <div className="flex items-center gap-2 px-3 py-2 border-b border-linea">
+        <PersonStanding size={15} className="text-oro" />
+        <span className="font-cartel uppercase tracking-wide text-sm">Street View · la calle hoy</span>
+        <span className="flex-1" />
+        <button className="text-arena hover:text-marfil" onClick={onCerrar} aria-label="Cerrar"><X size={16} /></button>
+      </div>
+      <div className="relative bg-noche" style={{ aspectRatio: '16 / 9' }}>
+        <iframe
+          key={`${punto.lat},${punto.lng},${punto.heading}`}
+          title="Street View"
+          src={urlEmbed(punto)}
+          className="absolute inset-0 w-full h-full"
+          allowFullScreen
+          loading="lazy"
+          referrerPolicy="no-referrer-when-downgrade"
+        />
+      </div>
+      <div className="flex items-center gap-2 px-3 py-2 border-b border-linea text-xs text-terciario">
+        <button className="boton-secundario !px-2 !py-1" onClick={() => girar(-45)} title="Girar a la izquierda">↺ 45°</button>
+        <button className="boton-secundario !px-2 !py-1" onClick={() => girar(45)} title="Girar a la derecha">↻ 45°</button>
+        <span className="cifra">{punto.lat}, {punto.lng} · {punto.heading || 0}°</span>
+        <span className="flex-1" />
+        <a className="inline-flex items-center gap-1 text-oro hover:text-ambar" href={urlStreetView(punto)} target="_blank" rel="noreferrer">
+          Abrir en Google Maps <ExternalLink size={12} />
+        </a>
+      </div>
+      {puedeEditar ? (
+        <form className="p-3 flex flex-col gap-2" onSubmit={guardar}>
+          <p className="text-xs text-arena">Guarda esta esquina como parada: su foto de hoy y el render de la visión se suben en el recorrido.</p>
+          <div className="flex gap-2">
+            <select className="campo !py-2 text-sm flex-1" value={rutaId} onChange={(e) => setRutaId(e.target.value)} disabled={ocupado}>
+              {rutas.length === 0 && <option value="">Primero crea una ruta</option>}
+              {rutas.map((r) => <option key={r.id} value={r.id}>{r.nombre}</option>)}
+            </select>
+            <input className="campo !py-2 text-sm flex-1" placeholder="Nombre de la parada" value={nombre} onChange={(e) => setNombre(e.target.value)} disabled={ocupado} />
+          </div>
+          {error && <p className="text-ladrillo text-xs" role="alert">{error}</p>}
+          <button type="submit" className="boton-primario !py-2 text-sm" disabled={ocupado || !rutaId || !nombre.trim()}>
+            <span className="flex items-center justify-center gap-1.5"><Footprints size={15} /> {ocupado ? 'Guardando…' : 'Guardar como parada · antes / después'}</span>
+          </button>
+        </form>
+      ) : (
+        <p className="p-3 text-xs text-terciario">Un editor puede guardar esta esquina como parada de una ruta.</p>
       )}
     </div>
   )
