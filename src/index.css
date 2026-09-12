@@ -312,3 +312,26 @@ html {
   .tarjeta, .bg-superficie, .bg-elevada, .reporte { box-shadow: none !important; -webkit-backdrop-filter: none; backdrop-filter: none; }
   .font-cartel.uppercase:not(.boton-primario) { background: none; color: #7a5e2a !important; -webkit-text-fill-color: #7a5e2a; }
 }
+
+/* ============================================================
+   Mapa 3D — pines y esquinas de calibración (marcadores DOM de MapLibre)
+   ============================================================ */
+.pin3d {
+  display: flex; flex-direction: column; align-items: center; gap: 2px;
+  background: rgba(20, 16, 16, 0.86); color: #F2EAD9; border: 1px solid rgba(201, 164, 92, 0.6);
+  border-radius: 10px; padding: 4px 9px; cursor: pointer; box-shadow: 0 10px 24px -10px rgba(0,0,0,.9), 0 0 0 1px rgba(0,0,0,.4);
+  font-family: 'Montserrat', Inter, sans-serif; line-height: 1.1; transform: translateZ(0);
+}
+.pin3d::after { content: ''; width: 1px; height: 14px; background: rgba(201,164,92,.7); position: absolute; left: 50%; bottom: -14px; }
+.pin3d:hover { border-color: #FFB84D; }
+.pin3d-nombre { font-weight: 800; text-transform: uppercase; letter-spacing: .06em; font-size: 10px; white-space: nowrap; max-width: 11rem; overflow: hidden; text-overflow: ellipsis; }
+.pin3d-tipo { font-size: 9px; color: #B7A890; white-space: nowrap; }
+.esquina3d {
+  width: 26px; height: 26px; border-radius: 50%; background: #FFB84D; color: #141010; font-weight: 800; font-size: 12px;
+  display: flex; align-items: center; justify-content: center; border: 2px solid #141010; cursor: grab; box-shadow: 0 0 18px rgba(255,184,77,.6);
+}
+.maplibregl-ctrl-group { background: rgba(20,16,16,.85) !important; border: 1px solid rgba(201,164,92,.3); }
+.maplibregl-ctrl-group button + button { border-top-color: rgba(201,164,92,.25) !important; }
+.maplibregl-ctrl button .maplibregl-ctrl-icon { filter: invert(0.9) sepia(0.3); }
+.maplibregl-ctrl-attrib { background: rgba(20,16,16,.6) !important; color: #9E8D78 !important; font-size: 10px; }
+.maplibregl-ctrl-attrib a { color: #B7A890 !important; }

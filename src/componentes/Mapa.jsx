@@ -8,6 +8,7 @@ import ManijaSheet from './ManijaSheet.jsx'
 import Peticiones from './Peticiones.jsx'
 import { RutasCapa, PuntosEdicion, BarraRutas, Recorrido, leerPuntos, guardarRuta } from './Rutas.jsx'
 import { GLIFO_TIPO, NOMBRE_TIPO } from './Glifos.jsx'
+import Mapa3D from './Mapa3D.jsx'
 
 // ============================================================
 // Mapa interactivo del polígono — la pantalla principal.
@@ -66,7 +67,7 @@ export default function Mapa() {
   const puedeEditar = modo !== 'demo' && ['admin', 'editor'].includes(sesion?.rol)
 
   // Capa activa
-  const [vista, setVista] = useState('espacios') // 'espacios' | 'rutas'
+  const [vista, setVista] = useState('3d') // '3d' | 'espacios' | 'rutas'
 
   // Espacios
   const [modoEdicion, setModoEdicion] = useState(false)
@@ -215,6 +216,7 @@ export default function Mapa() {
   }
 
   const enRutas = vista === 'rutas'
+  const en3d = vista === '3d'
 
   return (
     <div className="relative">
@@ -224,7 +226,7 @@ export default function Mapa() {
 
         {/* Selector de capa */}
         <div className="flex rounded-xl border border-linea overflow-hidden ml-2">
-          {[['espacios', 'Espacios'], ['rutas', 'Rutas']].map(([v, titulo]) => (
+          {[['3d', 'Ciudad 3D'], ['espacios', 'Plano'], ['rutas', 'Rutas']].map(([v, titulo]) => (
             <button
               key={v}
               className={`px-3 py-1.5 text-sm transition-colors duration-micro ease-casa
@@ -249,7 +251,7 @@ export default function Mapa() {
           </button>
         )}
 
-        {!enRutas && puedeEditar && modoEdicion && seleccion && (
+        {!enRutas && !en3d && puedeEditar && modoEdicion && seleccion && (
           <div className="flex items-center gap-1" aria-label="Ajuste fino de 1%">
             <button className="boton-secundario !px-2 !py-2" onClick={() => empujar(-1, 0)} title="1% a la izquierda"><ArrowLeft size={14} /></button>
             <button className="boton-secundario !px-2 !py-2" onClick={() => empujar(0, -1)} title="1% arriba"><ArrowUp size={14} /></button>
@@ -257,7 +259,7 @@ export default function Mapa() {
             <button className="boton-secundario !px-2 !py-2" onClick={() => empujar(1, 0)} title="1% a la derecha"><ArrowRight size={14} /></button>
           </div>
         )}
-        {!enRutas && puedeEditar && (
+        {!enRutas && !en3d && puedeEditar && (
           <>
             <button
               className={modoEdicion ? 'boton-primario !px-3 !py-2 text-sm' : 'boton-secundario !px-3 !py-2 text-sm'}
@@ -273,7 +275,7 @@ export default function Mapa() {
         )}
       </div>
 
-      {!enRutas && modoEdicion && (
+      {!enRutas && !en3d && modoEdicion && (
         <p className="max-w-6xl mx-auto px-4 pb-2 text-terciario text-sm">
           Arrastra una zona para moverla; el cuadrito de la esquina la
           redimensiona. Cada cambio se guarda al soltar.
@@ -295,10 +297,16 @@ export default function Mapa() {
 
       {/* El mapa */}
       <div className="px-2 pb-6">
+        {en3d && (
+          <div className="relative mx-auto rounded-2xl overflow-hidden border border-linea" style={{ height: 'calc(100dvh - 190px)', minHeight: '420px' }}>
+            <Mapa3D espacios={espacios} rutas={rutas} paradas={paradas} onAbrir={setAbierto} />
+          </div>
+        )}
         <div
           ref={contRef}
           className="relative mx-auto rounded-2xl overflow-hidden border border-linea"
           style={{
+            display: en3d ? 'none' : undefined,
             aspectRatio: proporcion,
             maxHeight: 'calc(100dvh - 150px)',
             maxWidth: '100%',
@@ -496,7 +504,7 @@ export default function Mapa() {
       </div>
 
       {/* FAB de alta en teléfono: al alcance del pulgar, arriba de la nav */}
-      {!enRutas && puedeEditar && !espacioAbierto && (
+      {!enRutas && !en3d && puedeEditar && !espacioAbierto && (
         <button
           className="sm:hidden fixed right-4 bottom-20 z-40 w-14 h-14 rounded-full bg-oro text-noche
             flex items-center justify-center shadow-2xl active:scale-95
