@@ -463,6 +463,9 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer }
               <input type="checkbox" className="accent-[#C9A45C]" checked={capas.lamina} onChange={() => setCapas({ ...capas, lamina: !capas.lamina })} />
               <span className="text-oro"><ImageIcon size={13} /></span>Lámina «Zona Núcleo»
             </label>
+            <a className="boton-primario w-full !py-1.5 text-xs flex items-center justify-center gap-1.5" href={`${BASE}modelo/serdan-garmendia.html`} target="_blank" rel="noreferrer">
+              <Footprints size={13} /> Recorrer la esquina en 3D
+            </a>
             {puedeCalibrar && !calibrando && (
               <button className="boton-secundario w-full !py-1.5 text-xs" onClick={() => { setCalibrando(true); setGeoTemp(null) }}>
                 Calibrar plano
