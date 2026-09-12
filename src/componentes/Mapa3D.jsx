@@ -32,10 +32,10 @@ const SATELITE = 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Ima
 // Hermosillo, alrededor de Serdán / Garmendia / Chihuahua. Se afinan con
 // "Calibrar plano" y quedan guardadas en el Sheet.
 const GEO_DEF = [
-  [-110.9585, 29.0797],
-  [-110.9505, 29.0797],
-  [-110.9505, 29.0738],
-  [-110.9585, 29.0738],
+  [-110.95881, 29.07954],
+  [-110.95081, 29.07954],
+  [-110.95081, 29.07364],
+  [-110.95881, 29.07364],
 ]
 
 // Colores de la lámina "Zona Núcleo" (presentación Foro Amalaya).
@@ -172,6 +172,20 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir }) {
     })
     m.addControl(new maplibregl.NavigationControl({ visualizePitch: true }), 'top-right')
     m.on('load', () => {
+      // La cartografía base se viste de "desierto de noche": tierra
+      // cálida oscura, calles en oro apagado, agua noche, letras arena.
+      for (const capa of m.getStyle().layers) {
+        try {
+          if (capa.type === 'background') m.setPaintProperty(capa.id, 'background-color', '#151110')
+          else if (capa.type === 'fill') m.setPaintProperty(capa.id, 'fill-color', /water|ocean|river|lake/i.test(capa.id) ? '#10141A' : (/park|grass|wood|green|garden/i.test(capa.id) ? '#1B1A13' : '#1C1613'))
+          else if (capa.type === 'line') m.setPaintProperty(capa.id, 'line-color', /water|river|boundary|admin|rail|ferry/i.test(capa.id) ? '#26201A' : '#4A3D30')
+          else if (capa.type === 'symbol') {
+            m.setPaintProperty(capa.id, 'text-color', '#B7A890')
+            m.setPaintProperty(capa.id, 'text-halo-color', '#141010')
+            m.setPaintProperty(capa.id, 'text-halo-width', 1.2)
+          }
+        } catch { /* alguna capa no admite la propiedad: se deja como viene */ }
+      }
       // Satélite (apagado por defecto)
       m.addSource('satelite', { type: 'raster', tiles: [SATELITE], tileSize: 256, attribution: 'Esri World Imagery' })
       const primeraEtiqueta = m.getStyle().layers.find((l) => l.type === 'symbol')?.id
