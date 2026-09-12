@@ -337,3 +337,12 @@ html {
 .maplibregl-ctrl-attrib a { color: #B7A890 !important; }
 .monito3d { width: 34px; height: 34px; border-radius: 50%; background: #FFB84D; color: #141010; display: flex; align-items: center; justify-content: center; border: 2px solid #141010; cursor: grab; box-shadow: 0 0 22px rgba(255,184,77,.65), 0 8px 16px -8px rgba(0,0,0,.9); }
 .monito3d::after { content: ''; position: absolute; left: 50%; bottom: -8px; width: 2px; height: 8px; background: #FFB84D; }
+
+/* Tema «Lámina» del mapa 3D: etiquetas como en el dibujo de la presentación */
+.mapa3d.tema-lamina .pin3d { background: #FFFFFF; color: #1F1F1F; border: 1.5px solid #1F1F1F; border-radius: 4px; box-shadow: 2px 2px 0 #1F1F1F; }
+.mapa3d.tema-lamina .pin3d::after { background: #1F1F1F; width: 1.5px; height: 18px; bottom: -18px; }
+.mapa3d.tema-lamina .pin3d-tipo { color: #5A5752; }
+.mapa3d.tema-lamina .maplibregl-ctrl-group { background: #FFFFFF !important; border-color: #1F1F1F; }
+.mapa3d.tema-lamina .maplibregl-ctrl button .maplibregl-ctrl-icon { filter: none; }
+.mapa3d.tema-lamina .maplibregl-ctrl-attrib { background: rgba(255,255,255,.75) !important; color: #5A5752 !important; }
+.mapa3d.tema-lamina .maplibregl-ctrl-attrib a { color: #1F1F1F !important; }

@@ -148,6 +148,49 @@ function geojsonParadas(paradas, geo) {
   }
 }
 
+// Dos vestidos para la misma cartografía. «Lámina» copia el carácter del
+// dibujo "Zona Núcleo" de la presentación: papel blanco, calles como
+// dibujo de línea, ciudad en gris claro y los espacios en colores planos.
+export const TEMAS = {
+  lamina: {
+    fondo: '#FFFFFF', tierra: '#F3F1EC', verde: '#E3EBDA', agua: '#DCE6EE',
+    calle: '#FFFFFF', calleBorde: '#5A5752', calleAncho: 1.1, texto: '#2B2B2B', halo: '#FFFFFF',
+    ciudad: '#EDEBE6', ciudadOp: 1, borde: '#1F1F1F', espacioOp: 1,
+  },
+  noche: {
+    fondo: '#151110', tierra: '#1C1613', verde: '#1B1A13', agua: '#10141A',
+    calle: '#4A3D30', calleBorde: '#4A3D30', calleAncho: 1, texto: '#B7A890', halo: '#141010',
+    ciudad: '#2C231C', ciudadOp: 0.85, borde: '#F2EAD9', espacioOp: 0.92,
+  },
+}
+
+function vestir(m, t) {
+  for (const capa of m.getStyle().layers) {
+    try {
+      if (capa.type === 'background') m.setPaintProperty(capa.id, 'background-color', t.fondo)
+      else if (capa.type === 'fill') m.setPaintProperty(capa.id, 'fill-color', /water|ocean|river|lake/i.test(capa.id) ? t.agua : (/park|grass|wood|green|garden/i.test(capa.id) ? t.verde : t.tierra))
+      else if (capa.type === 'line') {
+        const esCasing = /casing|outline/i.test(capa.id)
+        const esCalle = /road|highway|street|motorway|trunk|primary|secondary|tertiary|minor|service|path|bridge|tunnel/i.test(capa.id)
+        if (esCalle) m.setPaintProperty(capa.id, 'line-color', esCasing ? t.calleBorde : t.calle)
+        else m.setPaintProperty(capa.id, 'line-color', /water|river/i.test(capa.id) ? t.agua : t.calleBorde)
+      } else if (capa.type === 'symbol') {
+        m.setPaintProperty(capa.id, 'text-color', t.texto)
+        m.setPaintProperty(capa.id, 'text-halo-color', t.halo)
+        m.setPaintProperty(capa.id, 'text-halo-width', 1.2)
+      }
+    } catch { /* alguna capa no admite la propiedad: se deja como viene */ }
+  }
+  if (m.getLayer('ciudad-3d')) {
+    m.setPaintProperty('ciudad-3d', 'fill-extrusion-color', t.ciudad)
+    m.setPaintProperty('ciudad-3d', 'fill-extrusion-opacity', t.ciudadOp)
+  }
+  if (m.getLayer('ciudad-borde')) m.setPaintProperty('ciudad-borde', 'line-color', t.borde)
+  if (m.getLayer('espacios-borde')) m.setPaintProperty('espacios-borde', 'line-color', t.borde)
+  if (m.getLayer('espacios-3d')) m.setPaintProperty('espacios-3d', 'fill-extrusion-opacity', t.espacioOp)
+  if (m.getLayer('paradas')) { m.setPaintProperty('paradas', 'circle-color', t.halo); m.setPaintProperty('paradas', 'circle-stroke-color', t.borde) }
+}
+
 const CAPAS_DEF = { satelite: false, ciudad: true, espacios: true, rutas: true, calco: false, lamina: false }
 
 export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer }) {
@@ -164,6 +207,9 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer }
   const esquinas = useRef([])
   const [listo, setListo] = useState(false)
   const [capas, setCapas] = useState(CAPAS_DEF)
+  const [tema, setTema] = useState('lamina')
+  const temaRef = useRef('lamina')
+  useEffect(() => { temaRef.current = tema; if (mapa.current && listo) vestir(mapa.current, TEMAS[tema]) }, [tema, listo])
   const [opacidadCalco, setOpacidadCalco] = useState(0.55)
   const [inclinado, setInclinado] = useState(true)
   const [panel, setPanel] = useState(false)
@@ -196,20 +242,7 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer }
     m.on('error', (e) => console.warn('mapa3d', e?.error?.message || e))
     m.on('load', () => {
       console.info('mapa3d load', m.getStyle().layers.length, Object.keys(m.getStyle().sources))
-      // La cartografía base se viste de "desierto de noche": tierra
-      // cálida oscura, calles en oro apagado, agua noche, letras arena.
-      for (const capa of m.getStyle().layers) {
-        try {
-          if (capa.type === 'background') m.setPaintProperty(capa.id, 'background-color', '#151110')
-          else if (capa.type === 'fill') m.setPaintProperty(capa.id, 'fill-color', /water|ocean|river|lake/i.test(capa.id) ? '#10141A' : (/park|grass|wood|green|garden/i.test(capa.id) ? '#1B1A13' : '#1C1613'))
-          else if (capa.type === 'line') m.setPaintProperty(capa.id, 'line-color', /water|river|boundary|admin|rail|ferry/i.test(capa.id) ? '#26201A' : '#4A3D30')
-          else if (capa.type === 'symbol') {
-            m.setPaintProperty(capa.id, 'text-color', '#B7A890')
-            m.setPaintProperty(capa.id, 'text-halo-color', '#141010')
-            m.setPaintProperty(capa.id, 'text-halo-width', 1.2)
-          }
-        } catch { /* alguna capa no admite la propiedad: se deja como viene */ }
-      }
+      vestir(m, TEMAS[temaRef.current])
       // Satélite (apagado por defecto)
       m.addSource('satelite', { type: 'raster', tiles: [SATELITE], tileSize: 256, attribution: 'Esri World Imagery' })
       const primeraEtiqueta = m.getStyle().layers.find((l) => l.type === 'symbol')?.id
@@ -225,6 +258,8 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer }
           'fill-extrusion-opacity': 0.85,
         },
       }, primeraEtiqueta)
+      // Contorno de los edificios de la ciudad a nivel de piso (el "dibujo de línea")
+      m.addLayer({ id: 'ciudad-borde', type: 'line', source: 'openmaptiles', 'source-layer': 'building', minzoom: 15, paint: { 'line-color': '#1F1F1F', 'line-width': 0.6, 'line-opacity': 0.55 } }, primeraEtiqueta)
 
       // Calco del plano (la imagen del tablero, georreferenciada)
       m.addSource('calco', { type: 'image', url: `${BASE}mapa-poligono.jpg`, coordinates: geoSheet })
@@ -238,11 +273,11 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer }
           'fill-extrusion-color': ['get', 'color'],
           'fill-extrusion-height': ['get', 'altura'],
           'fill-extrusion-base': 0,
-          'fill-extrusion-opacity': 0.92,
+          'fill-extrusion-opacity': 1,
           'fill-extrusion-vertical-gradient': true,
         },
       })
-      m.addLayer({ id: 'espacios-borde', type: 'line', source: 'espacios', paint: { 'line-color': '#F2EAD9', 'line-width': 1.2, 'line-opacity': 0.55 } })
+      m.addLayer({ id: 'espacios-borde', type: 'line', source: 'espacios', paint: { 'line-color': '#1F1F1F', 'line-width': 1.6, 'line-opacity': 0.9 } })
 
       // Rutas peatonales
       m.addSource('rutas', { type: 'geojson', data: { type: 'FeatureCollection', features: [] } })
@@ -272,6 +307,7 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer }
       m.on('mouseenter', 'espacios-3d', () => { m.getCanvas().style.cursor = 'pointer' })
       m.on('mouseleave', 'espacios-3d', () => { m.getCanvas().style.cursor = '' })
 
+      vestir(m, TEMAS[temaRef.current])
       setListo(true)
       // La única entrada cinematográfica: de arriba a la vista inclinada.
       m.easeTo({ pitch: 58, bearing: -18, zoom: 16.4, duration: 1800, easing: (t) => 1 - Math.pow(1 - t, 3) })
@@ -340,7 +376,7 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer }
     if (!m || !listo) return
     const vis = (id, on) => m.getLayer(id) && m.setLayoutProperty(id, 'visibility', on ? 'visible' : 'none')
     vis('satelite', capas.satelite)
-    vis('ciudad-3d', capas.ciudad)
+    vis('ciudad-3d', capas.ciudad); vis('ciudad-borde', capas.ciudad)
     vis('espacios-3d', capas.espacios); vis('espacios-borde', capas.espacios)
     vis('rutas', capas.rutas); vis('rutas-halo', capas.rutas); vis('paradas', capas.rutas)
     vis('calco', capas.calco || calibrando)
@@ -393,7 +429,7 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer }
   }
 
   return (
-    <div className="relative w-full h-full">
+    <div className={`relative w-full h-full mapa3d tema-${tema}`}>
       <div ref={cont} className="absolute inset-0" />
 
       {/* Barra de capas */}
@@ -403,6 +439,11 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer }
         </button>
         {panel && (
           <div className="bg-elevada border border-linea rounded-xl p-3 w-60 text-sm space-y-2 shadow-2xl">
+            <div className="flex rounded-lg border border-linea overflow-hidden text-xs">
+              {[['lamina', 'Lámina'], ['noche', 'Noche']].map(([k, n]) => (
+                <button key={k} className={`flex-1 py-1.5 ${tema === k ? 'bg-oro text-noche font-medium' : 'text-arena hover:text-marfil'}`} onClick={() => setTema(k)}>{n}</button>
+              ))}
+            </div>
             {[
               ['satelite', 'Satélite', <ImageIcon size={13} key="s" />],
               ['ciudad', 'Edificios de la ciudad', <Box size={13} key="c" />],
