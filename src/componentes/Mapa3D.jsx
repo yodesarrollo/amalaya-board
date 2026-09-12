@@ -171,7 +171,10 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir }) {
       attributionControl: { compact: true },
     })
     m.addControl(new maplibregl.NavigationControl({ visualizePitch: true }), 'top-right')
+    window.__amalayaMapa = m
+    m.on('error', (e) => console.warn('mapa3d', e?.error?.message || e))
     m.on('load', () => {
+      console.info('mapa3d load', m.getStyle().layers.length, Object.keys(m.getStyle().sources))
       // La cartografía base se viste de "desierto de noche": tierra
       // cálida oscura, calles en oro apagado, agua noche, letras arena.
       for (const capa of m.getStyle().layers) {
