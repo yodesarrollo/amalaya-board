@@ -279,9 +279,16 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
     m.addControl(new maplibregl.AttributionControl({ compact: true }), 'bottom-left')
     window.__amalayaMapa = m
     m.on('error', (e) => console.warn('mapa3d', e?.error?.message || e))
+    // Si el navegador tiene la pestaña dormida, MapLibre no emite ni 'load'
+    // ni 'styledata': por eso además se reintenta con reloj hasta que el
+    // estilo esté de pie. Así el tablero abierto en segundo plano no se queda
+    // colgado en el velo de carga.
     let arrancado = false
+    let reloj = null
     const arrancar = () => {
-      if (arrancado || !m.isStyleLoaded()) return
+      if (arrancado) return
+      if (!m.isStyleLoaded()) { clearTimeout(reloj); reloj = setTimeout(arrancar, 400); return }
+      clearTimeout(reloj)
       arrancado = true
       console.info('mapa3d load', m.getStyle().layers.length, Object.keys(m.getStyle().sources))
       vestir(m, TEMAS[temaRef.current])
@@ -384,8 +391,9 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
     }
     m.on('load', arrancar)
     m.on('styledata', arrancar)
+    reloj = setTimeout(arrancar, 600)
     mapa.current = m
-    return () => { m.remove(); mapa.current = null }
+    return () => { clearTimeout(reloj); m.remove(); mapa.current = null }
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   // --- datos → capas ----------------------------------------------
