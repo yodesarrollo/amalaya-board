@@ -55,7 +55,17 @@ const esc=new THREE.Scene(); const cam=new THREE.PerspectiveCamera(100,1,0.1,100
 const geo=new THREE.SphereGeometry(50,64,48); geo.scale(-1,1,1);
 const matA=new THREE.MeshBasicMaterial({color:'#222'}); const matB=new THREE.MeshBasicMaterial({transparent:true,opacity:0,color:'#fff'});
 const esfA=new THREE.Mesh(geo,matA); const esfB=new THREE.Mesh(geo.clone(),matB); esfB.renderOrder=1; esc.add(esfA,esfB);
-esfA.rotation.y=-Math.PI/2; esfB.rotation.y=-Math.PI/2; // u=0.5 de la equirect = norte (−Z)
+// u=0.5 de la equirect = norte (−Z). Además, las fotos de Street View vienen
+// con el horizonte torcido (mediana 6.7°, hasta 16°): por cada punto medimos
+// la inclinación y enderezamos la esfera para que el horizonte quede a nivel.
+const Q_BASE=new THREE.Quaternion().setFromEuler(new THREE.Euler(0,-Math.PI/2,0));
+let ROLL={};
+function nivelar(id){ const r=ROLL[id]||{roll:0,eje:0};
+  const azEje=(Math.PI/2-r.eje)-Math.PI+Math.PI/2;
+  const e=new THREE.Vector3(Math.sin(azEje),0,-Math.cos(azEje));
+  const q=new THREE.Quaternion().setFromAxisAngle(e,-r.roll).multiply(Q_BASE);
+  esfA.quaternion.copy(q); esfB.quaternion.copy(q) }
+nivelar('');
 const loader=new THREE.TextureLoader();
 function cargarTex(url){ return new Promise((ok)=>loader.load(url,t=>{t.colorSpace=THREE.SRGBColorSpace; ok(t)},undefined,()=>ok(null))) }
 // azimut (desde el norte, horario) → posición en la esfera a radio r y elevación e
@@ -89,6 +99,7 @@ async function irA(i,orientar=true){
   const sig=DATA.puntos[idx+1]||DATA.puntos[idx-1]; if(orientar&&sig) yaw=rumbo(p,sig);
   const [a,b]=await Promise.all([cargarTex(p.id+'.jpg'),cargarTex('despues/'+p.id+'.jpg')]);
   if(a){ matA.map=a; matA.color.set('#fff'); matA.needsUpdate=true }
+  nivelar(p.id);
   const m=document.getElementById('mezcla'), est=document.getElementById('estado');
   if(b){ matB.map=b; matB.needsUpdate=true; m.disabled=false; est.innerHTML='<b style="color:#8FA382;font-weight:700">listo</b> · render del después' } else { matB.map=null; m.disabled=true; m.value=0; matB.opacity=0; est.innerHTML='<b style="color:#FFB84D;font-weight:700">pendiente</b> · el render del después' }
   pintarUI(); pintarMini();
@@ -120,7 +131,7 @@ const sel=document.getElementById('selRuta'); sel.onchange=()=>{ DATA=RUTAS.ruta
 addEventListener('message',(e)=>{ const d=e.data||{}; if(d.tipo==='ir360'&&RUTAS){ const R=RUTAS.rutas.find(r=>r.id===d.ruta)||RUTAS.rutas.find(r=>r.puntos.some(p=>p.id===d.punto)); if(!R) return; DATA=R; sel.value=R.id; irA(Math.max(0,R.puntos.findIndex(p=>p.id===d.punto))) } });
 function ajustar(){ ren.setSize(innerWidth,innerHeight,false); cam.aspect=innerWidth/innerHeight; cam.updateProjectionMatrix() } addEventListener('resize',ajustar); ajustar();
 function frame(){ if(auto) yaw+=0.002; cam.rotation.set(0,0,0,'YXZ'); cam.rotation.y=-yaw; cam.rotation.x=PITCH; ren.render(esc,cam); document.getElementById('aguja').style.transform=`rotate(${-yaw*180/Math.PI}deg)`; requestAnimationFrame(frame) }
-fetch('rutas.json').then(r=>r.json()).then(async d=>{ RUTAS=d; await cargarAcciones(); sel.innerHTML=d.rutas.map(r=>`<option value="${r.id}">${r.nombre} · ${r.puntos.length} pts</option>`).join('');
+fetch('rutas.json').then(r=>r.json()).then(async d=>{ RUTAS=d; ROLL=await fetch('roll.json').then(r=>r.ok?r.json():{}).catch(()=>({})); await cargarAcciones(); sel.innerHTML=d.rutas.map(r=>`<option value="${r.id}">${r.nombre} · ${r.puntos.length} pts</option>`).join('');
   const rq=params.get('r'), q=params.get('p'); DATA=d.rutas.find(r=>r.id===rq)||d.rutas.find(r=>r.puntos.some(p=>p.id===q))||d.rutas[0]; sel.value=DATA.id;
   irA(Math.max(0,DATA.puntos.findIndex(p=>p.id===q))); requestAnimationFrame(frame) });
 </script></body></html>
