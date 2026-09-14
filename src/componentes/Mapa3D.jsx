@@ -279,7 +279,10 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
     m.addControl(new maplibregl.AttributionControl({ compact: true }), 'bottom-left')
     window.__amalayaMapa = m
     m.on('error', (e) => console.warn('mapa3d', e?.error?.message || e))
-    m.on('load', () => {
+    let arrancado = false
+    const arrancar = () => {
+      if (arrancado || !m.isStyleLoaded()) return
+      arrancado = true
       console.info('mapa3d load', m.getStyle().layers.length, Object.keys(m.getStyle().sources))
       vestir(m, TEMAS[temaRef.current])
       // Satélite (apagado por defecto)
@@ -378,7 +381,9 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
       setListo(true)
       // La única entrada cinematográfica: el polígono entra en cuadro y se inclina.
       m.fitBounds(bboxDe(geoSheet), { padding: ENCUADRE, pitch: 58, bearing: 0, duration: 1600, easing: (t) => 1 - Math.pow(1 - t, 3) })
-    })
+    }
+    m.on('load', arrancar)
+    m.on('styledata', arrancar)
     mapa.current = m
     return () => { m.remove(); mapa.current = null }
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
@@ -527,7 +532,7 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
       <div ref={cont} className="absolute inset-0" />
 
       {!listo && (
-        <div className="absolute inset-0 grid place-items-center bg-superficie z-30">
+        <div className="absolute inset-0 grid place-items-center bg-superficie z-30 pointer-events-none">
           <div className="flex flex-col items-center gap-3">
             <span className="w-8 h-8 rounded-full border-2 border-linea border-t-oro animate-spin" />
             <span className="font-cartel uppercase tracking-[0.2em] text-xs text-arena">Levantando la maqueta…</span>
