@@ -191,7 +191,7 @@ function vestir(m, t) {
   if (m.getLayer('paradas')) { m.setPaintProperty('paradas', 'circle-color', t.halo); m.setPaintProperty('paradas', 'circle-stroke-color', t.borde) }
 }
 
-const CAPAS_DEF = { satelite: false, ciudad: true, espacios: true, rutas: true, calco: false, lamina: false }
+const CAPAS_DEF = { satelite: false, ciudad: true, espacios: true, rutas: true, recorrido: true, calco: false, lamina: false }
 
 export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer }) {
   const { datos, sesion, modo, editarFila, crearFila } = usarDatos()
@@ -286,6 +286,24 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer }
       m.addSource('paradas', { type: 'geojson', data: { type: 'FeatureCollection', features: [] } })
       m.addLayer({ id: 'paradas', type: 'circle', source: 'paradas', paint: { 'circle-radius': 5, 'circle-color': '#141010', 'circle-stroke-color': '#C9A45C', 'circle-stroke-width': 2 } })
 
+      // Recorrido 360 (borrador): puntos cada ~10 m con panorama propio
+      m.addSource('recorrido', { type: 'geojson', data: { type: 'FeatureCollection', features: [] } })
+      m.addLayer({ id: 'recorrido-linea', type: 'line', source: 'recorrido', filter: ['==', '$type', 'LineString'], layout: { 'line-cap': 'round', 'line-join': 'round' }, paint: { 'line-color': '#FFB84D', 'line-width': 3, 'line-opacity': 0.6, 'line-dasharray': [1, 1.5] } })
+      m.addLayer({ id: 'recorrido-puntos', type: 'circle', source: 'recorrido', filter: ['==', '$type', 'Point'], paint: { 'circle-radius': ['interpolate', ['linear'], ['zoom'], 14, 3, 17, 7], 'circle-color': '#FFB84D', 'circle-stroke-color': '#141010', 'circle-stroke-width': 2 } })
+      fetch(`${BASE}recorrido/puntos.json`).then((r) => r.json()).then((d) => {
+        const pts = d.puntos || []
+        m.getSource('recorrido')?.setData({ type: 'FeatureCollection', features: [
+          { type: 'Feature', properties: {}, geometry: { type: 'LineString', coordinates: pts.map((q) => [q.lng, q.lat]) } },
+          ...pts.map((q) => ({ type: 'Feature', properties: { id: q.id, nombre: q.nombre, orden: q.orden }, geometry: { type: 'Point', coordinates: [q.lng, q.lat] } })),
+        ] })
+      }).catch(() => {})
+      m.on('click', 'recorrido-puntos', (ev) => {
+        const id = ev.features?.[0]?.properties?.id
+        if (id) window.open(`${BASE}recorrido/?p=${encodeURIComponent(id)}`, '_blank', 'noopener')
+      })
+      m.on('mouseenter', 'recorrido-puntos', () => { m.getCanvas().style.cursor = 'pointer' })
+      m.on('mouseleave', 'recorrido-puntos', () => { m.getCanvas().style.cursor = '' })
+
       m.on('click', (ev) => {
         if (!monitoActivo.current) return
         const { lng, lat } = ev.lngLat
@@ -379,6 +397,7 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer }
     vis('ciudad-3d', capas.ciudad); vis('ciudad-borde', capas.ciudad)
     vis('espacios-3d', capas.espacios); vis('espacios-borde', capas.espacios)
     vis('rutas', capas.rutas); vis('rutas-halo', capas.rutas); vis('paradas', capas.rutas)
+    vis('recorrido-puntos', capas.recorrido); vis('recorrido-linea', capas.recorrido)
     vis('calco', capas.calco || calibrando)
     marcadores.current.forEach((mk) => { mk.getElement().style.display = capas.espacios ? '' : 'none' })
     if (m.getLayer('calco')) m.setPaintProperty('calco', 'raster-opacity', calibrando ? 0.7 : opacidadCalco)
@@ -449,6 +468,7 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer }
               ['ciudad', 'Edificios de la ciudad', <Box size={13} key="c" />],
               ['espacios', 'Espacios de Amalaya', <Box size={13} key="e" />],
               ['rutas', 'Rutas peatonales', <MapIcon size={13} key="r" />],
+              ['recorrido', 'Recorrido 360 · puntos cada 10 m', <PersonStanding size={13} key="p" />],
               ['calco', 'Calco del plano', <Crosshair size={13} key="k" />],
             ].map(([k, titulo, icono]) => (
               <label key={k} className="flex items-center gap-2 cursor-pointer text-arena hover:text-marfil">
@@ -464,7 +484,7 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer }
               <span className="text-oro"><ImageIcon size={13} /></span>Lámina «Zona Núcleo»
             </label>
             <a className="boton-primario w-full !py-1.5 text-xs flex items-center justify-center gap-1.5" href={`${BASE}modelo/serdan-garmendia.html`} target="_blank" rel="noreferrer">
-              <Footprints size={13} /> Recorrer la esquina en 3D
+              <Footprints size={13} /> Modelo 3D de la esquina (borrador)
             </a>
             {puedeCalibrar && !calibrando && (
               <button className="boton-secundario w-full !py-1.5 text-xs" onClick={() => { setCalibrando(true); setGeoTemp(null) }}>

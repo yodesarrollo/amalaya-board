@@ -1,0 +1,1 @@
+Aquí van los renders del 'después' por punto: despues/<id>.jpg, equirectangular 2048×1024 con norte al centro, misma orientación que el 'antes'.

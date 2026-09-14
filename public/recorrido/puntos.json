@@ -1,0 +1,104 @@
+{
+ "ruta": "Serd\u00e1n \u00b7 Garmendia \u2192 Guerrero",
+ "puntos": [
+  {
+   "id": "2MNg6Xk9_yV3lqEALqRg4Q",
+   "x": 1.0,
+   "y": -3.8,
+   "lat": 29.0771196,
+   "lng": -110.95423,
+   "orden": 1,
+   "nombre": "Serd\u00e1n 1 m"
+  },
+  {
+   "id": "Szfjj9vwKLVdbw6QT5xtjw",
+   "x": 8.7,
+   "y": 0.4,
+   "lat": 29.0771576,
+   "lng": -110.9541509,
+   "orden": 2,
+   "nombre": "Serd\u00e1n 9 m"
+  },
+  {
+   "id": "Kuwk3mZuIWZ2RDonhuaV9A",
+   "x": 19.2,
+   "y": 4.0,
+   "lat": 29.0771902,
+   "lng": -110.954043,
+   "orden": 3,
+   "nombre": "Serd\u00e1n 19 m"
+  },
+  {
+   "id": "Cf-Fao4eemggYJRuetSx3w",
+   "x": 29.0,
+   "y": 4.3,
+   "lat": 29.0771929,
+   "lng": -110.9539422,
+   "orden": 4,
+   "nombre": "Serd\u00e1n 29 m"
+  },
+  {
+   "id": "xKQNROLj9VMiBGpjotie5A",
+   "x": 38.8,
+   "y": 6.2,
+   "lat": 29.0772101,
+   "lng": -110.9538415,
+   "orden": 5,
+   "nombre": "Serd\u00e1n 39 m"
+  },
+  {
+   "id": "tpv4y1ErCEndgDHFQBOV6w",
+   "x": 48.8,
+   "y": 8.1,
+   "lat": 29.0772273,
+   "lng": -110.9537387,
+   "orden": 6,
+   "nombre": "Serd\u00e1n 49 m"
+  },
+  {
+   "id": "hLX5pkq4RdjBOs5Vqpw-Fw",
+   "x": 59.5,
+   "y": 9.8,
+   "lat": 29.0772426,
+   "lng": -110.9536287,
+   "orden": 7,
+   "nombre": "Serd\u00e1n 60 m"
+  },
+  {
+   "id": "h7Ur5HsLG4Jz2V7_ePx7zQ",
+   "x": 71.0,
+   "y": 12.2,
+   "lat": 29.0772643,
+   "lng": -110.9535105,
+   "orden": 8,
+   "nombre": "Serd\u00e1n 71 m"
+  },
+  {
+   "id": "dhZr59FbZyCQKcSB4CJb5w",
+   "x": 83.6,
+   "y": 15.2,
+   "lat": 29.0772915,
+   "lng": -110.953381,
+   "orden": 9,
+   "nombre": "Serd\u00e1n 84 m"
+  },
+  {
+   "id": "TgahlLYkg_dqqZBDqpEYNQ",
+   "x": 93.7,
+   "y": 17.4,
+   "lat": 29.0773114,
+   "lng": -110.9532772,
+   "orden": 10,
+   "nombre": "Serd\u00e1n 94 m"
+  },
+  {
+   "id": "Qr8oDbAjuVbJnIJg-alGgQ",
+   "x": 104.0,
+   "y": 19.7,
+   "lat": 29.0773322,
+   "lng": -110.9531713,
+   "orden": 11,
+   "nombre": "Serd\u00e1n 104 m"
+  }
+ ]
+}

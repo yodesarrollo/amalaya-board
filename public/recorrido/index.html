@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Amalaya · Recorrido 360</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+html,body{margin:0;height:100%;background:#141010;color:#F2EAD9;font-family:Montserrat,system-ui,sans-serif;overflow:hidden}
+#c{position:fixed;inset:0;display:block;cursor:grab}
+.top{position:fixed;left:14px;top:14px;z-index:5;display:flex;flex-direction:column;gap:6px;max-width:min(380px,calc(100vw - 28px))}
+.t{font-weight:800;text-transform:uppercase;letter-spacing:.08em;font-size:13px;background:rgba(20,16,16,.82);border:1px solid rgba(201,164,92,.5);padding:8px 12px;border-radius:10px}
+.t small{display:block;font-weight:500;text-transform:none;letter-spacing:0;color:#B7A890;font-size:11px;margin-top:3px}
+.btns{position:fixed;right:14px;top:14px;display:flex;flex-direction:column;gap:6px;z-index:5}
+button,a.b{font:inherit;font-size:12px;font-weight:700;color:#F2EAD9;background:rgba(20,16,16,.82);border:1px solid rgba(201,164,92,.5);padding:8px 12px;border-radius:9px;cursor:pointer;text-decoration:none;text-align:center}
+.slider{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);z-index:5;width:min(560px,calc(100vw - 28px));background:rgba(20,16,16,.85);border:1px solid rgba(201,164,92,.5);border-radius:12px;padding:10px 14px;display:flex;align-items:center;gap:12px}
+.slider b{font-size:11px;letter-spacing:.1em;text-transform:uppercase}
+.slider input{flex:1;accent-color:#FFB84D}
+.slider .est{font-size:10px;color:#B7A890;white-space:nowrap}
+.flecha{position:fixed;transform:translate(-50%,-50%);z-index:4;width:64px;height:64px;border-radius:50%;background:rgba(255,184,77,.85);color:#141010;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 0 30px rgba(255,184,77,.6);border:2px solid #141010;font-weight:800;font-size:11px;text-align:center;line-height:1.1}
+.flecha svg{position:absolute;top:-22px;left:50%;transform:translateX(-50%)}
+.mini{position:fixed;left:14px;bottom:22px;z-index:5;background:rgba(20,16,16,.85);border:1px solid rgba(201,164,92,.5);border-radius:12px;padding:8px 10px}
+.mini svg{display:block}
+.mini circle{cursor:pointer}
+.brujula{position:fixed;right:14px;bottom:22px;z-index:5;width:54px;height:54px;border-radius:50%;background:rgba(20,16,16,.85);border:1px solid rgba(201,164,92,.5);display:flex;align-items:center;justify-content:center}
+.brujula i{display:block;width:3px;height:22px;background:linear-gradient(#E0605A 50%,#F2EAD9 50%);transform-origin:center;border-radius:2px}
+</style></head><body>
+<canvas id="c"></canvas>
+<div class="top"><div class="t" id="titulo">Recorrido 360<small id="sub">cargando…</small></div></div>
+<div class="btns"><a class="b" href="../" target="_top">Volver al tablero</a><button id="bAuto">Girar</button></div>
+<div id="flechas"></div>
+<div class="slider"><b>Antes</b><input id="mezcla" type="range" min="0" max="100" value="0"><b>Después</b><span class="est" id="estado">render pendiente</span></div>
+<div class="mini"><svg id="minisvg" width="220" height="70"></svg></div>
+<div class="brujula"><i id="aguja"></i></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.160.0/three.min.js"></script>
+<script>
+// ============================================================
+// Recorrido 360 (BORRADOR · 13-sep-2026)
+// Puntos cada ~10 m sobre la ruta. Cada punto tiene su panorama
+// «antes» (cosido de Street View) y, cuando exista, un «después»
+// (render del diseño urbano) en despues/<id>.jpg. El slider mezcla
+// ambos con la misma orientación. Flechas doradas = puntos vecinos.
+// ============================================================
+const params=new URLSearchParams(location.search);
+let DATA=null, idx=0, yaw=0, pitch=0, auto=false;
+const canvas=document.getElementById('c'); const ren=new THREE.WebGLRenderer({canvas,antialias:true}); ren.setPixelRatio(Math.min(devicePixelRatio,2)); ren.outputColorSpace=THREE.SRGBColorSpace;
+const esc=new THREE.Scene(); const cam=new THREE.PerspectiveCamera(75,1,0.1,100);
+const geo=new THREE.SphereGeometry(50,64,48); geo.scale(-1,1,1);
+const matA=new THREE.MeshBasicMaterial({color:'#222'}); const matB=new THREE.MeshBasicMaterial({transparent:true,opacity:0,color:'#fff'});
+const esfA=new THREE.Mesh(geo,matA); const esfB=new THREE.Mesh(geo.clone(),matB); esfB.renderOrder=1; esc.add(esfA,esfB);
+const loader=new THREE.TextureLoader();
+function cargarTex(url){ return new Promise((ok)=>loader.load(url,t=>{t.colorSpace=THREE.SRGBColorSpace; ok(t)},undefined,()=>ok(null))) }
+// equirect: yaw 0 = norte. El texel u=0.5 debe quedar al norte (−Z en three). Con la esfera invertida y sin rotar, u=0.5 cae en +X; giramos la esfera −90°.
+esfA.rotation.y=-Math.PI/2; esfB.rotation.y=-Math.PI/2;
+async function irA(i){
+  idx=Math.max(0,Math.min(DATA.puntos.length-1,i)); const p=DATA.puntos[idx];
+  document.getElementById('titulo').firstChild.textContent=p.nombre; document.getElementById('sub').textContent=`${DATA.ruta} · punto ${p.orden} de ${DATA.puntos.length}`;
+  history.replaceState(null,'','?p='+encodeURIComponent(p.id));
+  const [a,b]=await Promise.all([cargarTex(p.id+'.jpg'),cargarTex('despues/'+p.id+'.jpg')]);
+  if(a){ matA.map=a; matA.color.set('#fff'); matA.needsUpdate=true }
+  const m=document.getElementById('mezcla'), est=document.getElementById('estado');
+  if(b){ matB.map=b; matB.needsUpdate=true; m.disabled=false; est.textContent='render del después listo' }
+  else { matB.map=null; m.disabled=true; m.value=0; matB.opacity=0; est.textContent='después: render pendiente (se decide con las mejoras urbanas)' }
+  pintarFlechas(); pintarMini();
+}
+document.getElementById('mezcla').oninput=(e)=>{ matB.opacity=e.target.value/100 };
+function rumbo(a,b){ const dy=(b.lat-a.lat)*110574, dx=(b.lng-a.lng)*111320*Math.cos(a.lat*Math.PI/180); return Math.atan2(dx,dy) } // desde el norte, horario
+const cont=document.getElementById('flechas'); let flechas=[];
+function pintarFlechas(){ cont.innerHTML=''; flechas=[]; const p=DATA.puntos[idx];
+  [[idx-1,'anterior'],[idx+1,'siguiente']].forEach(([j,txt])=>{ if(j<0||j>=DATA.puntos.length) return; const q=DATA.puntos[j];
+    const el=document.createElement('div'); el.className='flecha'; el.innerHTML=`<svg width="18" height="18" viewBox="0 0 24 24" fill="#FFB84D"><path d="M12 2l7 9h-4v11h-6V11H5z"/></svg>${txt}<br>${Math.round(Math.hypot((q.lat-p.lat)*110574,(q.lng-p.lng)*111320*0.874))} m`;
+    el.onclick=()=>irA(j); cont.appendChild(el); flechas.push({el,az:rumbo(p,q)}) }) }
+function pintarMini(){ const s=document.getElementById('minisvg'); const P=DATA.puntos; const xs=P.map(p=>p.lng), ys=P.map(p=>p.lat);
+  const x0=Math.min(...xs),x1=Math.max(...xs),y0=Math.min(...ys),y1=Math.max(...ys); const sx=(v)=>10+(v-x0)/((x1-x0)||1)*200, sy=(v)=>60-(v-y0)/((y1-y0)||1)*50;
+  s.innerHTML=`<polyline points="${P.map(p=>sx(p.lng)+','+sy(p.lat)).join(' ')}" fill="none" stroke="#8FA382" stroke-width="3" stroke-linecap="round"/>`+P.map((p,i)=>`<circle cx="${sx(p.lng)}" cy="${sy(p.lat)}" r="${i===idx?6:4}" fill="${i===idx?'#FFB84D':'#141010'}" stroke="#C9A45C" stroke-width="1.5" data-i="${i}"/>`).join('');
+  s.querySelectorAll('circle').forEach(c=>c.onclick=()=>irA(+c.dataset.i)) }
+// controles
+let arr=null; canvas.addEventListener('pointerdown',e=>{arr={x:e.clientX,y:e.clientY,y0:yaw,p0:pitch}; canvas.setPointerCapture(e.pointerId); auto=false; document.getElementById('bAuto').classList.remove('on')});
+canvas.addEventListener('pointermove',e=>{ if(!arr) return; yaw=arr.y0-(e.clientX-arr.x)*0.0032; pitch=Math.max(-1.2,Math.min(1.2,arr.p0+(e.clientY-arr.y)*0.0032)) });
+canvas.addEventListener('pointerup',()=>{arr=null}); canvas.addEventListener('wheel',e=>{ cam.fov=Math.max(35,Math.min(100,cam.fov+e.deltaY*0.03)); cam.updateProjectionMatrix() },{passive:true});
+document.getElementById('bAuto').onclick=function(){ auto=!auto; this.classList.toggle('on',auto) };
+addEventListener('keydown',e=>{ if(e.key==='ArrowRight'&&e.shiftKey) irA(idx+1); if(e.key==='ArrowLeft'&&e.shiftKey) irA(idx-1) });
+function ajustar(){ ren.setSize(innerWidth,innerHeight,false); cam.aspect=innerWidth/innerHeight; cam.updateProjectionMatrix() } addEventListener('resize',ajustar); ajustar();
+function frame(){ if(auto) yaw-=0.0025;
+  // yaw: 0 = norte (−Z). rotation.y positivo gira a la izquierda; azimut horario ⇒ rotation.y = −yaw
+  cam.rotation.set(0,0,0,'YXZ'); cam.rotation.y=-yaw; cam.rotation.x=-pitch; ren.render(esc,cam);
+  document.getElementById('aguja').style.transform=`rotate(${-yaw*180/Math.PI}deg)`;
+  const f=cam.fov*Math.PI/180; flechas.forEach(({el,az})=>{ let d=az-yaw; d=Math.atan2(Math.sin(d),Math.cos(d)); const vis=Math.abs(d)<f*0.9; el.style.display=vis?'flex':'none'; if(vis){ const x=innerWidth/2+Math.tan(d)/Math.tan(f*cam.aspect/2)*(innerWidth/2)*0.9; el.style.left=x+'px'; el.style.top=(innerHeight*0.72)+'px' } });
+  requestAnimationFrame(frame) }
+fetch('puntos.json').then(r=>r.json()).then(d=>{ DATA=d; const q=params.get('p'); const i=Math.max(0,DATA.puntos.findIndex(p=>p.id===q)); yaw=Math.PI*0.43; irA(i); requestAnimationFrame(frame) });
+</script></body></html>
