@@ -162,7 +162,7 @@ function geojsonParadas(paradas, geo) {
 // dibujo de línea, ciudad en gris claro y los espacios en colores planos.
 export const TEMAS = {
   lamina: {
-    fondo: '#FFFFFF', tierra: '#F3F1EC', verde: '#E3EBDA', agua: '#DCE6EE',
+    fondo: '#FFFFFF', tierra: '#F3F1EC', verde: '#EAEDE5', agua: '#DCE6EE',
     calle: '#FFFFFF', calleBorde: '#5A5752', calleAncho: 1.1, texto: '#2B2B2B', halo: '#FFFFFF',
     ciudad: '#EDEBE6', ciudadOp: 1, borde: '#1F1F1F', espacioOp: 1,
   },
@@ -229,8 +229,9 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
       el.style.setProperty('--esc', esc)
       el.classList.toggle('pin3d-min', min)
       if (min) { el.classList.remove('pin3d-tapado'); continue }
-      const w = el.offsetWidth * esc || 140; const h = el.offsetHeight * esc || 34
-      const caja = { x1: p.x - w / 2, x2: p.x + w / 2, y1: p.y - h, y2: p.y }
+      const aire = 8 // aire entre rótulos: sin esto dos cercanos se ven pegados
+      const w = (el.offsetWidth * esc || 140) + aire; const h = (el.offsetHeight * esc || 34) + aire
+      const caja = { x1: p.x - w / 2, x2: p.x + w / 2, y1: p.y - h, y2: p.y + aire }
       const choca = puestos.some((q) => !(caja.x2 < q.x1 || caja.x1 > q.x2 || caja.y2 < q.y1 || caja.y1 > q.y2))
       el.classList.toggle('pin3d-tapado', choca)
       if (!choca) puestos.push(caja)
@@ -385,6 +386,7 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
       vestir(m, TEMAS[temaRef.current])
       acomodarPines()
       m.on('move', acomodarPines)
+      m.on('idle', acomodarPines)
       setListo(true)
       // La única entrada cinematográfica: el polígono entra en cuadro y se inclina.
       m.fitBounds(bboxDe(geoSheet), { padding: ENCUADRE, pitch: 58, bearing: 0, duration: 1600, easing: (t) => 1 - Math.pow(1 - t, 3) })
