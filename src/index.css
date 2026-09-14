@@ -347,3 +347,69 @@ html {
 .mapa3d.tema-lamina .maplibregl-ctrl-attrib { background: rgba(255,255,255,.75) !important; color: #5A5752 !important; }
 .mapa3d.tema-lamina .maplibregl-ctrl-attrib a { color: #1F1F1F !important; }
 .pin3d-editable { cursor: grab; border-color: #FFB84D !important; box-shadow: 0 0 0 3px rgba(255,184,77,.35), 0 10px 24px -10px rgba(0,0,0,.9); }
+
+/* ============================================================
+   Controles del mapa — un solo sistema (14-sep-2026).
+   Tres carriles: capas arriba-izquierda, monito arriba-derecha,
+   cámara abajo-derecha; la leyenda cede el sitio al panel.
+   Todos parten de 16 px del borde y nunca pisan la atribución.
+   ============================================================ */
+.ctrl-mapa {
+  display: inline-flex; align-items: center; gap: 7px;
+  font-family: 'Montserrat', Inter, sans-serif; font-size: 12px; font-weight: 700;
+  letter-spacing: 0.02em; color: #F2EAD9;
+  background: rgba(20, 16, 16, 0.92); border: 1px solid rgba(201, 164, 92, 0.45);
+  border-radius: 10px; padding: 9px 13px; min-height: 38px; cursor: pointer;
+  box-shadow: 0 10px 24px -12px rgba(0, 0, 0, 0.9);
+  transition: border-color 180ms cubic-bezier(.22,1,.36,1), color 180ms cubic-bezier(.22,1,.36,1);
+}
+.ctrl-mapa:hover { border-color: #C9A45C; }
+.ctrl-mapa.ctrl-on { background: linear-gradient(180deg, #E8C466, #C9A45C 50%, #8F6E2E); color: #141010; border-color: #8F6E2E; }
+.ctrl-mapa .badge { font-style: normal; font-size: 9px; letter-spacing: .12em; text-transform: uppercase; color: #B7A890; border: 1px solid rgba(201,164,92,.4); border-radius: 999px; padding: 1px 6px; margin-left: 4px; }
+
+.grupo-ctrl { display: flex; align-items: stretch; background: rgba(20,16,16,.92); border: 1px solid rgba(201,164,92,.45); border-radius: 10px; overflow: hidden; box-shadow: 0 10px 24px -12px rgba(0,0,0,.9); }
+.grupo-ctrl button { font: 700 13px/1 'Montserrat', sans-serif; color: #B7A890; background: none; border: 0; padding: 0 12px; min-width: 38px; min-height: 38px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: color 180ms; }
+.grupo-ctrl button:hover { color: #F2EAD9; background: rgba(201,164,92,.12); }
+.grupo-ctrl button + button, .grupo-ctrl .cara + button { border-left: 1px solid rgba(201,164,92,.22); }
+.grupo-ctrl button.ancho { font-size: 12px; padding: 0 14px; }
+.grupo-ctrl .cara { font: 800 10px/1 'Montserrat', sans-serif; letter-spacing: .14em; text-transform: uppercase; color: #F2EAD9; display: flex; align-items: center; justify-content: center; min-width: 74px; border-left: 1px solid rgba(201,164,92,.22); }
+
+.panel-mapa {
+  background: rgba(34, 27, 21, 0.97); border: 1px solid rgba(201,164,92,.45); border-radius: 12px;
+  width: 17rem; max-width: calc(100vw - 2.5rem); display: flex; flex-direction: column;
+  max-height: calc(100% - 3.5rem); overflow: hidden;
+  box-shadow: 0 24px 50px -20px rgba(0,0,0,.95);
+  -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
+}
+.panel-mapa .seg { display: flex; margin: 10px 10px 8px; border: 1px solid rgba(201,164,92,.3); border-radius: 8px; overflow: hidden; }
+.panel-mapa .seg button { flex: 1; font: 700 11px/1 'Montserrat', sans-serif; letter-spacing: .1em; text-transform: uppercase; padding: 7px 0; color: #B7A890; background: none; border: 0; cursor: pointer; }
+.panel-mapa .seg button.on { background: #C9A45C; color: #141010; }
+.panel-lista { overflow-y: auto; padding: 0 6px 6px; }
+.fila-capa { display: flex; align-items: center; gap: 10px; width: 100%; background: none; border: 0; padding: 7px 6px; border-radius: 8px; cursor: pointer; text-align: left; }
+.fila-capa:hover { background: rgba(201,164,92,.1); }
+.fila-capa .txt { font: 500 12.5px/1.25 'Montserrat', sans-serif; color: #B7A890; }
+.fila-capa[aria-checked="true"] .txt { color: #F2EAD9; }
+.sw { width: 32px; height: 18px; border-radius: 999px; background: #3A2F26; position: relative; flex: none; transition: background 180ms cubic-bezier(.22,1,.36,1); }
+.sw i { position: absolute; top: 2px; left: 2px; width: 14px; height: 14px; border-radius: 50%; background: #B7A890; transition: transform 180ms cubic-bezier(.22,1,.36,1), background 180ms; }
+.sw[data-on="true"] { background: rgba(201,164,92,.5); }
+.sw[data-on="true"] i { transform: translateX(14px); background: #C9A45C; }
+.panel-pie { display: flex; flex-direction: column; gap: 6px; padding: 8px 10px 10px; border-top: 1px solid rgba(201,164,92,.22); }
+
+.leyenda-mapa { display: flex; flex-wrap: wrap; gap: 4px 12px; max-width: 17rem; pointer-events: none;
+  background: rgba(20,16,16,.9); border: 1px solid rgba(201,164,92,.35); border-radius: 10px; padding: 8px 11px;
+  font: 500 11px/1.3 'Montserrat', sans-serif; color: #B7A890; box-shadow: 0 10px 24px -12px rgba(0,0,0,.9); }
+.leyenda-mapa span { display: inline-flex; align-items: center; gap: 6px; }
+.leyenda-mapa i { width: 10px; height: 10px; border-radius: 2px; display: inline-block; }
+.leyenda-mapa i.linea { width: 16px; height: 2px; border-radius: 1px; background: #C9A45C; }
+
+/* Rótulos de los espacios: escalan con el zoom, se apagan cuando chocan */
+.pin3d { transform: scale(var(--esc, 1)); transform-origin: bottom center; transition: opacity 180ms; }
+.pin3d.pin3d-tapado { opacity: 0; pointer-events: none; }
+.pin3d.pin3d-min { padding: 0; width: 13px; height: 13px; border-radius: 50%; background: #C9A45C; border-color: #141010; box-shadow: 0 0 0 2px rgba(20,16,16,.5); }
+.pin3d.pin3d-min .pin3d-nombre, .pin3d.pin3d-min .pin3d-tipo, .pin3d.pin3d-min::after { display: none; }
+.mapa3d.tema-lamina .pin3d.pin3d-min { background: #1F1F1F; border-color: #FFFFFF; }
+
+/* La atribución no compite: pequeña, discreta, abajo a la izquierda */
+.mapa3d .maplibregl-ctrl-bottom-left { z-index: 1; }
+.mapa3d .maplibregl-ctrl-attrib { font-size: 9px; background: transparent !important; }
+.mapa3d .maplibregl-ctrl-attrib-button { background-color: rgba(20,16,16,.6); border-radius: 50%; }

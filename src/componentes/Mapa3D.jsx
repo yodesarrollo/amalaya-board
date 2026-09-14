@@ -53,7 +53,9 @@ const COLOR_TIPO = {
   restaurante: '#E8923A',
   otro: '#C9A45C',
 }
-const ALTURA_TIPO = { venue: 16, estacionamiento: 14, comercial: 10, mixto: 12, museo: 9, escuela: 8, estudio: 8, departamento: 9, restaurante: 5, otro: 6 }
+// Altura por tipo cuando el Sheet no trae pisos. Mínimo 9 m (3 niveles):
+// por debajo de eso un volumen se lee como losa y desaparece junto a la ciudad.
+const ALTURA_TIPO = { venue: 18, estacionamiento: 15, comercial: 11, mixto: 13, museo: 10, escuela: 9, estudio: 9, departamento: 10, restaurante: 9, otro: 9 }
 
 const num = (v, d) => { const n = parseFloat(v); return Number.isFinite(n) ? n : d }
 
@@ -86,6 +88,13 @@ export function geoAPct(geo, lng, lat) {
   return [Number((u * 100).toFixed(2)), Number((v * 100).toFixed(2))]
 }
 
+// Caja que envuelve las 4 esquinas del plano, para encuadrar siempre el polígono.
+const ENCUADRE = { top: 70, bottom: 96, left: 120, right: 120 }
+export function bboxDe(geo) {
+  const xs = geo.map((p) => p[0]); const ys = geo.map((p) => p[1])
+  return [[Math.min(...xs), Math.min(...ys)], [Math.max(...xs), Math.max(...ys)]]
+}
+
 function centroGeo(geo) {
   return [(geo[0][0] + geo[2][0]) / 2, (geo[0][1] + geo[2][1]) / 2]
 }
@@ -94,8 +103,8 @@ function alturaEspacio(e, factores) {
   const propios = (factores || []).filter((f) => String(f.espacio_id) === String(e.id))
   const pisos = propios.find((f) => /piso/i.test(f.etiqueta || ''))
   const n = pisos ? num(pisos.valor, 0) : 0
-  if (n > 0) return n * 3.6
-  return ALTURA_TIPO[String(e.tipo).toLowerCase()] || 6
+  if (n > 0) return Math.max(n * 3.6, 9)
+  return ALTURA_TIPO[String(e.tipo).toLowerCase()] || 9
 }
 
 function geojsonEspacios(espacios, factores, geo) {
@@ -204,6 +213,29 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
 
   const cont = useRef(null)
   const mapa = useRef(null)
+  // Los rótulos son elementos de pantalla: sin esto crecen contra el mapa y se encinan.
+  const acomodarPines = () => {
+    const m = mapa.current
+    if (!m) return
+    const z = m.getZoom()
+    const esc = Math.max(0.74, Math.min(1.1, 0.74 + (z - 14.4) * 0.1))
+    const min = z < 15.3
+    const puestos = []
+    const lista = marcadores.current
+      .map((mk) => ({ mk, p: m.project(mk.getLngLat()) }))
+      .sort((a, b) => b.p.y - a.p.y) // los de adelante mandan
+    for (const { mk, p } of lista) {
+      const el = mk.getElement()
+      el.style.setProperty('--esc', esc)
+      el.classList.toggle('pin3d-min', min)
+      if (min) { el.classList.remove('pin3d-tapado'); continue }
+      const w = el.offsetWidth * esc || 140; const h = el.offsetHeight * esc || 34
+      const caja = { x1: p.x - w / 2, x2: p.x + w / 2, y1: p.y - h, y2: p.y }
+      const choca = puestos.some((q) => !(caja.x2 < q.x1 || caja.x1 > q.x2 || caja.y2 < q.y1 || caja.y1 > q.y2))
+      el.classList.toggle('pin3d-tapado', choca)
+      if (!choca) puestos.push(caja)
+    }
+  }
   const onRecorrerRef = useRef(onRecorrer)
   useEffect(() => { onRecorrerRef.current = onRecorrer }, [onRecorrer])
   const marcadores = useRef([])
@@ -237,13 +269,14 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
       container: cont.current,
       style: ESTILO_CIUDAD,
       center: centro,
-      zoom: 15.2,
+      zoom: 15.6,
       pitch: 0,
       bearing: 0,
       antialias: true,
-      attributionControl: { compact: true },
+      attributionControl: false,
+      clickTolerance: 5,          // un micro-arrastre ya no se come el clic
     })
-    m.addControl(new maplibregl.NavigationControl({ visualizePitch: true }), 'top-right')
+    m.addControl(new maplibregl.AttributionControl({ compact: true }), 'bottom-left')
     window.__amalayaMapa = m
     m.on('error', (e) => console.warn('mapa3d', e?.error?.message || e))
     m.on('load', () => {
@@ -295,7 +328,9 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
       // Recorrido 360 (borrador): puntos cada ~10 m con panorama propio
       m.addSource('recorrido', { type: 'geojson', data: { type: 'FeatureCollection', features: [] } })
       m.addLayer({ id: 'recorrido-linea', type: 'line', source: 'recorrido', filter: ['==', '$type', 'LineString'], layout: { 'line-cap': 'round', 'line-join': 'round' }, paint: { 'line-color': ['coalesce', ['get', 'color'], '#FFB84D'], 'line-width': 3, 'line-opacity': 0.55, 'line-dasharray': [1, 1.5] } })
-      m.addLayer({ id: 'recorrido-puntos', type: 'circle', source: 'recorrido', filter: ['==', '$type', 'Point'], paint: { 'circle-radius': ['interpolate', ['linear'], ['zoom'], 14, 3, 17, 7], 'circle-color': ['coalesce', ['get', 'color'], '#FFB84D'], 'circle-stroke-color': '#FFFFFF', 'circle-stroke-width': 1.5 } })
+      // El aro invisible es el que recibe el dedo (44 px de objetivo); el círculo pintado es discreto.
+      m.addLayer({ id: 'recorrido-toque', type: 'circle', source: 'recorrido', filter: ['==', '$type', 'Point'], paint: { 'circle-radius': 16, 'circle-color': '#000000', 'circle-opacity': 0 } })
+      m.addLayer({ id: 'recorrido-puntos', type: 'circle', source: 'recorrido', filter: ['==', '$type', 'Point'], paint: { 'circle-radius': ['interpolate', ['linear'], ['zoom'], 14, 2.5, 17, 4.5, 19, 7], 'circle-color': ['coalesce', ['get', 'color'], '#FFB84D'], 'circle-stroke-color': '#FFFFFF', 'circle-stroke-width': 1, 'circle-opacity': 0.9 } })
       m.addSource('recorrido-activo', { type: 'geojson', data: { type: 'FeatureCollection', features: [] } })
       m.addLayer({ id: 'recorrido-activo', type: 'circle', source: 'recorrido-activo', paint: { 'circle-radius': 11, 'circle-color': '#FFB84D', 'circle-opacity': 0.35, 'circle-stroke-color': '#FFB84D', 'circle-stroke-width': 3 } })
       fetch(`${BASE}recorrido/rutas.json`).then((r) => r.json()).then((d) => {
@@ -307,12 +342,12 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
         }
         m.getSource('recorrido')?.setData({ type: 'FeatureCollection', features: feats })
       }).catch(() => {})
-      m.on('click', 'recorrido-puntos', (ev) => {
+      m.on('click', 'recorrido-toque', (ev) => {
         const f = ev.features?.[0]?.properties || {}
         if (f.id) setPop360({ ruta: f.ruta || '', punto: f.id })
       })
-      m.on('mouseenter', 'recorrido-puntos', () => { m.getCanvas().style.cursor = 'pointer' })
-      m.on('mouseleave', 'recorrido-puntos', () => { m.getCanvas().style.cursor = '' })
+      m.on('mouseenter', 'recorrido-toque', () => { m.getCanvas().style.cursor = 'pointer' })
+      m.on('mouseleave', 'recorrido-toque', () => { m.getCanvas().style.cursor = '' })
 
       m.on('click', (ev) => {
         const ed = edRef.current
@@ -338,9 +373,11 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
       m.on('mouseleave', 'espacios-3d', () => { m.getCanvas().style.cursor = '' })
 
       vestir(m, TEMAS[temaRef.current])
+      acomodarPines()
+      m.on('move', acomodarPines)
       setListo(true)
-      // La única entrada cinematográfica: de arriba a la vista inclinada.
-      m.easeTo({ pitch: 58, bearing: 0, zoom: 16.4, duration: 1800, easing: (t) => 1 - Math.pow(1 - t, 3) })
+      // La única entrada cinematográfica: el polígono entra en cuadro y se inclina.
+      m.fitBounds(bboxDe(geoSheet), { padding: ENCUADRE, pitch: 58, bearing: 0, duration: 1600, easing: (t) => 1 - Math.pow(1 - t, 3) })
     })
     mapa.current = m
     return () => { m.remove(); mapa.current = null }
@@ -425,7 +462,7 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
     vis('ciudad-3d', capas.ciudad); vis('ciudad-borde', capas.ciudad)
     vis('espacios-3d', capas.espacios); vis('espacios-borde', capas.espacios)
     vis('rutas', capas.rutas); vis('rutas-halo', capas.rutas); vis('paradas', capas.rutas)
-    vis('recorrido-puntos', capas.recorrido); vis('recorrido-linea', capas.recorrido)
+    vis('recorrido-puntos', capas.recorrido); vis('recorrido-linea', capas.recorrido); vis('recorrido-toque', capas.recorrido)
     vis('calco', capas.calco || calibrando)
     marcadores.current.forEach((mk) => { mk.getElement().style.display = capas.espacios ? '' : 'none' })
     if (m.getLayer('calco')) m.setPaintProperty('calco', 'raster-opacity', calibrando ? 0.7 : opacidadCalco)
@@ -489,58 +526,68 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
     <div className={`relative w-full h-full mapa3d tema-${tema}`}>
       <div ref={cont} className="absolute inset-0" />
 
-      {/* Barra de capas */}
-      <div className="absolute left-3 top-3 flex flex-col gap-2 items-start">
-        <button className="boton-secundario !px-3 !py-2 text-sm bg-noche/80" onClick={() => setPanel(!panel)}>
-          <span className="flex items-center gap-1.5"><Layers size={14} /> Capas</span>
+      {!listo && (
+        <div className="absolute inset-0 grid place-items-center bg-superficie z-30">
+          <div className="flex flex-col items-center gap-3">
+            <span className="w-8 h-8 rounded-full border-2 border-linea border-t-oro animate-spin" />
+            <span className="font-cartel uppercase tracking-[0.2em] text-xs text-arena">Levantando la maqueta…</span>
+          </div>
+        </div>
+      )}
+
+      {/* ── Carril superior izquierdo: capas ─────────────────────── */}
+      <div className="absolute left-4 top-4 bottom-4 z-20 flex flex-col gap-2 items-start pointer-events-none">
+        <button className={`ctrl-mapa pointer-events-auto ${panel ? 'ctrl-on' : ''}`} onClick={() => setPanel(!panel)}>
+          <Layers size={15} /> Capas
         </button>
         {panel && (
-          <div className="bg-elevada border border-linea rounded-xl p-3 w-60 text-sm space-y-2 shadow-2xl">
-            <div className="flex rounded-lg border border-linea overflow-hidden text-xs">
+          <div className="panel-mapa pointer-events-auto">
+            <div className="seg">
               {[['lamina', 'Lámina'], ['noche', 'Noche']].map(([k, n]) => (
-                <button key={k} className={`flex-1 py-1.5 ${tema === k ? 'bg-oro text-noche font-medium' : 'text-arena hover:text-marfil'}`} onClick={() => setTema(k)}>{n}</button>
+                <button key={k} className={tema === k ? 'on' : ''} onClick={() => setTema(k)}>{n}</button>
               ))}
             </div>
-            {[
-              ['satelite', 'Satélite', <ImageIcon size={13} key="s" />],
-              ['ciudad', 'Edificios de la ciudad', <Box size={13} key="c" />],
-              ['espacios', 'Espacios de Amalaya', <Box size={13} key="e" />],
-              ['rutas', 'Rutas peatonales', <MapIcon size={13} key="r" />],
-              ['recorrido', 'Recorrido 360 · puntos cada 10 m', <PersonStanding size={13} key="p" />],
-              ['calco', 'Calco del plano', <Crosshair size={13} key="k" />],
-            ].map(([k, titulo, icono]) => (
-              <label key={k} className="flex items-center gap-2 cursor-pointer text-arena hover:text-marfil">
-                <input type="checkbox" className="accent-[#C9A45C]" checked={!!capas[k]} onChange={() => setCapas({ ...capas, [k]: !capas[k] })} />
-                <span className="text-oro">{icono}</span>{titulo}
-              </label>
-            ))}
-            {capas.calco && (
-              <input type="range" min="0.1" max="1" step="0.05" value={opacidadCalco} onChange={(e) => setOpacidadCalco(parseFloat(e.target.value))} className="w-full accent-[#C9A45C]" aria-label="Opacidad del calco" />
-            )}
-            <label className="flex items-center gap-2 cursor-pointer text-arena hover:text-marfil border-t border-linea pt-2">
-              <input type="checkbox" className="accent-[#C9A45C]" checked={capas.lamina} onChange={() => setCapas({ ...capas, lamina: !capas.lamina })} />
-              <span className="text-oro"><ImageIcon size={13} /></span>Lámina «Zona Núcleo»
-            </label>
-            <a className="boton-primario w-full !py-1.5 text-xs flex items-center justify-center gap-1.5" href={`${BASE}modelo/serdan-garmendia.html`} target="_blank" rel="noreferrer">
-              <Footprints size={13} /> Modelo 3D de la esquina (borrador)
-            </a>
-            {puedeCalibrar && !calibrando && (
-              <button className="boton-secundario w-full !py-1.5 text-xs" onClick={() => { setCalibrando(true); setGeoTemp(null) }}>
-                Calibrar plano
-              </button>
-            )}
+            <div className="panel-lista">
+              {[
+                ['espacios', 'Espacios de Amalaya'],
+                ['ciudad', 'Edificios de la ciudad'],
+                ['rutas', 'Rutas peatonales'],
+                ['recorrido', 'Puntos del recorrido 360'],
+                ['satelite', 'Satélite'],
+                ['calco', 'Calco del plano'],
+                ['lamina', 'Lámina «Zona Núcleo»'],
+              ].map(([k, titulo]) => (
+                <button key={k} type="button" role="switch" aria-checked={!!capas[k]} className="fila-capa" onClick={() => setCapas({ ...capas, [k]: !capas[k] })}>
+                  <span className="sw" data-on={!!capas[k]}><i /></span>
+                  <span className="txt">{titulo}</span>
+                </button>
+              ))}
+              {capas.calco && (
+                <div className="px-1 pt-1">
+                  <input type="range" min="0.1" max="1" step="0.05" value={opacidadCalco} onChange={(e) => setOpacidadCalco(parseFloat(e.target.value))} className="w-full accent-[#C9A45C]" aria-label="Opacidad del calco" />
+                </div>
+              )}
+            </div>
+            <div className="panel-pie">
+              <a className="ctrl-mapa w-full justify-center" href={`${BASE}modelo/serdan-garmendia.html`} target="_blank" rel="noreferrer">
+                <Footprints size={13} /> Modelo 3D de la esquina <em className="badge">borrador</em>
+              </a>
+              {puedeCalibrar && !calibrando && (
+                <button className="ctrl-mapa w-full justify-center" onClick={() => { setCalibrando(true); setGeoTemp(null) }}>Calibrar plano</button>
+              )}
+            </div>
           </div>
         )}
       </div>
 
-      {/* El monito (Street View) */}
-      <div className="absolute right-3 top-3 sm:right-14 flex gap-2">
+      {/* ── Carril superior derecho: monito ──────────────────────── */}
+      <div className="absolute right-4 top-4 z-20 flex gap-2">
         <button
-          className={`${monito ? 'boton-primario' : 'boton-secundario'} !px-3 !py-2 text-sm bg-noche/80`}
+          className={`ctrl-mapa ${monito ? 'ctrl-on' : ''}`}
           onClick={() => { setMonito(!monito); if (monito) setPunto(null) }}
           title="Suelta al monito en una calle para ver el Street View"
         >
-          <span className="flex items-center gap-1.5"><PersonStanding size={15} /> {monito ? 'Toca una calle…' : 'Monito'}</span>
+          <PersonStanding size={15} /> {monito ? 'Toca una calle…' : 'Monito'}
         </button>
       </div>
 
@@ -555,22 +602,36 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
         />
       )}
 
-      {/* Cámara: la maqueta gira por caras */}
-      <div className="absolute right-3 bottom-3 flex gap-2 items-center">
-        <button className="boton-secundario !px-3 !py-2 text-sm bg-noche/80" onClick={centrar} title="Centrar en el polígono"><Crosshair size={14} /></button>
-        <div className="flex rounded-xl border border-linea overflow-hidden bg-noche/80">
-          <button className="px-3 py-2 text-sm text-arena hover:text-marfil" onClick={() => girar(-1)} title="Girar a la izquierda">↺</button>
-          <span className="px-2 py-2 text-xs font-cartel uppercase tracking-wider text-marfil min-w-[6.5rem] text-center">{['Cara norte', 'Cara este', 'Cara sur', 'Cara oeste'][cara]}</span>
-          <button className="px-3 py-2 text-sm text-arena hover:text-marfil" onClick={() => girar(1)} title="Girar a la derecha">↻</button>
+      {/* ── Carril inferior derecho: cámara ──────────────────────── */}
+      <div className={`absolute right-4 bottom-12 z-20 flex-col items-end gap-2 ${pop360 ? 'hidden' : 'flex'}`}>
+        <div className="grupo-ctrl">
+          <button onClick={() => mapa.current?.zoomIn({ duration: 300 })} title="Acercar" aria-label="Acercar">+</button>
+          <button onClick={() => mapa.current?.zoomOut({ duration: 300 })} title="Alejar" aria-label="Alejar">−</button>
         </div>
-        <button className="boton-secundario !px-3 !py-2 text-sm bg-noche/80" onClick={alternarInclinacion}>
-          <span className="flex items-center gap-1.5"><RotateCw size={14} /> {inclinado ? 'Planta' : 'Maqueta'}</span>
-        </button>
+        <div className="grupo-ctrl">
+          <button onClick={() => girar(-1)} title="Girar a la izquierda" aria-label="Girar a la izquierda">↺</button>
+          <span className="cara">{['Norte', 'Este', 'Sur', 'Oeste'][cara]}</span>
+          <button onClick={() => girar(1)} title="Girar a la derecha" aria-label="Girar a la derecha">↻</button>
+        </div>
+        <div className="grupo-ctrl">
+          <button onClick={centrar} title="Centrar en el polígono" aria-label="Centrar"><Crosshair size={14} /></button>
+          <button onClick={alternarInclinacion} className="ancho">{inclinado ? 'Planta' : 'Maqueta'}</button>
+        </div>
       </div>
+
+      {/* ── Carril inferior izquierdo: leyenda (cede el sitio al panel) ── */}
+      {!panel && (
+        <div className="absolute left-4 bottom-12 z-10 leyenda-mapa">
+          {[['venue', 'Foro'], ['comercial', 'Comercial'], ['mixto', 'Mixto'], ['estacionamiento', 'Estacionamiento']].map(([t, n]) => (
+            <span key={t}><i style={{ background: COLOR_TIPO[t] }} />{n}</span>
+          ))}
+          <span><i className="linea" />ruta</span>
+        </div>
+      )}
 
       {/* Pop-up del recorrido 360 (misma pantalla; el mapa sigue al visor) */}
       {pop360 && (
-        <div className="absolute inset-2 sm:inset-auto sm:right-3 sm:bottom-16 sm:w-[min(58rem,calc(100%-1.5rem))] sm:h-[min(34rem,calc(100%-6rem))] z-20 bg-noche border border-oro rounded-2xl overflow-hidden shadow-2xl flex flex-col">
+        <div className="absolute inset-3 sm:inset-x-4 sm:bottom-4 sm:top-auto sm:h-[min(30rem,calc(100%-5rem))] z-30 bg-noche border border-oro rounded-2xl overflow-hidden shadow-2xl flex flex-col">
           <div className="flex items-center gap-2 px-3 py-1.5 border-b border-linea bg-superficie">
             <PersonStanding size={14} className="text-oro" />
             <span className="font-cartel uppercase tracking-wide text-xs">Recorrido 360 · antes / después</span>
@@ -582,13 +643,7 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
         </div>
       )}
 
-      {/* Leyenda con los colores de la lámina */}
-      <div className="absolute left-3 bottom-3 bg-noche/85 border border-linea rounded-xl px-3 py-2 text-[11px] text-arena leading-relaxed pointer-events-none flex flex-wrap gap-x-3 gap-y-1 max-w-[70%]">
-        {[['venue', 'Foro'], ['comercial', 'Comercial'], ['mixto', 'Mixto'], ['estacionamiento', 'Estacionamiento']].map(([t, n]) => (
-          <span key={t} className="inline-flex items-center gap-1.5"><span className="w-3 h-3 rounded-sm inline-block" style={{ background: COLOR_TIPO[t] }} />{n}</span>
-        ))}
-        <span className="inline-flex items-center gap-1.5"><span className="w-5 h-0.5 bg-oro inline-block rounded" /> ruta</span>
-      </div>
+      
 
       {/* Calibración */}
       {calibrando && (

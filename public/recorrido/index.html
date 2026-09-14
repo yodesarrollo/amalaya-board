@@ -5,32 +5,35 @@
 <style>
 html,body{margin:0;height:100%;background:#141010;color:#F2EAD9;font-family:Montserrat,system-ui,sans-serif;overflow:hidden}
 #c{position:fixed;inset:0;display:block;cursor:grab}
-.top{position:fixed;left:14px;top:14px;z-index:5;display:flex;flex-direction:column;gap:6px;max-width:min(380px,calc(100vw - 28px))}
-.t{font-weight:800;text-transform:uppercase;letter-spacing:.08em;font-size:13px;background:rgba(20,16,16,.82);border:1px solid rgba(201,164,92,.5);padding:8px 12px;border-radius:10px}
+.top{position:fixed;left:16px;top:16px;z-index:5;display:flex;flex-direction:column;gap:6px;max-width:min(380px,calc(100vw - 28px))}
+.t{font-weight:800;text-transform:uppercase;letter-spacing:.08em;font-size:12px;background:rgba(20,16,16,.92);border:1px solid rgba(201,164,92,.35);padding:8px 12px;border-radius:10px;box-shadow:0 10px 24px -12px rgba(0,0,0,.9)}
 .t small{display:block;font-weight:500;text-transform:none;letter-spacing:0;color:#B7A890;font-size:11px;margin-top:3px}
-.btns{position:fixed;right:14px;top:14px;display:flex;flex-direction:column;gap:6px;z-index:5}
-button,a.b,select.b{font:inherit;font-size:12px;font-weight:700;color:#F2EAD9;background:rgba(20,16,16,.82);border:1px solid rgba(201,164,92,.5);padding:8px 12px;border-radius:9px;cursor:pointer;text-decoration:none;text-align:center}
+.btns{position:fixed;right:16px;top:16px;display:flex;align-items:center;gap:6px;z-index:6}
+button,a.b,select.b{font:inherit;font-size:12px;font-weight:700;color:#F2EAD9;background:rgba(20,16,16,.92);border:1px solid rgba(201,164,92,.45);padding:9px 12px;min-height:38px;border-radius:10px;cursor:pointer;text-decoration:none;text-align:center;box-shadow:0 10px 24px -12px rgba(0,0,0,.9);display:inline-flex;align-items:center;gap:6px;justify-content:center}
+button:hover,a.b:hover{border-color:#C9A45C}
+a.b.fantasma{background:transparent;border-color:rgba(201,164,92,.45);color:#B7A890}
+select.b{max-width:15rem;text-overflow:ellipsis}
 button.on{background:linear-gradient(180deg,#E8C466,#C9A45C 50%,#8F6E2E);color:#141010;border-color:#8F6E2E}
-.slider{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);z-index:5;width:min(520px,calc(100vw - 28px));background:rgba(20,16,16,.85);border:1px solid rgba(201,164,92,.5);border-radius:12px;padding:9px 14px;display:flex;align-items:center;gap:12px}
+.slider{position:fixed;left:50%;bottom:16px;transform:translateX(-50%);z-index:6;width:min(440px,calc(100vw - 230px));background:rgba(20,16,16,.92);border:1px solid rgba(201,164,92,.45);border-radius:10px;padding:9px 14px;display:flex;align-items:center;gap:11px;box-shadow:0 10px 24px -12px rgba(0,0,0,.9)}
 .slider b{font-size:11px;letter-spacing:.1em;text-transform:uppercase}
 .slider input{flex:1;accent-color:#FFB84D}
 .slider .est{font-size:10px;color:#B7A890;white-space:nowrap}
-.mini{position:fixed;left:14px;bottom:18px;z-index:5;background:rgba(20,16,16,.85);border:1px solid rgba(201,164,92,.5);border-radius:12px;padding:8px 10px}
+.mini{position:fixed;left:16px;bottom:16px;z-index:4;background:rgba(20,16,16,.9);border:1px solid rgba(201,164,92,.35);border-radius:10px;padding:6px 8px;box-shadow:0 10px 24px -12px rgba(0,0,0,.9)}
 .mini svg{display:block}.mini circle{cursor:pointer}
-.brujula{position:fixed;right:14px;bottom:18px;z-index:5;width:54px;height:54px;border-radius:50%;background:rgba(20,16,16,.85);border:1px solid rgba(201,164,92,.5);display:flex;align-items:center;justify-content:center}
-.brujula i{display:block;width:3px;height:22px;background:linear-gradient(#E0605A 50%,#F2EAD9 50%);transform-origin:center;border-radius:2px}
+.brujula{position:fixed;right:16px;bottom:16px;z-index:5;width:44px;height:44px;border-radius:50%;background:rgba(20,16,16,.85);border:1px solid rgba(201,164,92,.5);display:flex;align-items:center;justify-content:center}
+.brujula i{display:block;width:3px;height:18px;background:linear-gradient(#E0605A 50%,#F2EAD9 50%);transform-origin:center;border-radius:2px}
 .form{position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);z-index:8;background:#221B15;border:1px solid #C9A45C;border-radius:12px;padding:14px 16px;width:min(460px,calc(100vw - 28px));display:flex;flex-direction:column;gap:8px}
 .form input,.form select{font:inherit;font-size:13px;background:#141010;color:#F2EAD9;border:1px solid rgba(201,164,92,.5);border-radius:8px;padding:8px 10px}
 .form .fila{display:flex;gap:8px}.form .fila select{flex:1}
-body.embed .top{left:10px;top:10px}body.embed .btns{right:10px;top:10px}body.embed .ocultar-embed{display:none}
-@media (max-width:640px){.mini{display:none}.btns{flex-direction:row;flex-wrap:wrap;justify-content:flex-end;max-width:70vw}button,a.b,select.b{padding:6px 9px;font-size:11px}}
+body.embed .top{left:10px;top:10px}body.embed .btns{right:10px;top:10px}body.embed .ocultar-embed{display:none}body.embed .mini{display:none}body.embed .slider{width:min(420px,calc(100vw - 40px))}body.embed .brujula{width:38px;height:38px}
+@media (max-width:760px){.mini{display:none}.btns{flex-wrap:wrap;justify-content:flex-end;max-width:62vw}button,a.b,select.b{padding:7px 9px;font-size:11px;min-height:34px}.slider{width:calc(100vw - 32px)}}
 </style></head><body>
 <canvas id="c"></canvas>
 <div class="top"><div class="t" id="titulo">Recorrido 360<small id="sub">cargando…</small></div></div>
-<div class="btns"><a class="b ocultar-embed" href="../" target="_top">Volver al tablero</a><select id="selRuta" class="b"></select><button id="bAuto">Girar</button><button id="bAccion">Marcar acción</button><button id="bExportar" title="Copia las acciones marcadas para guardarlas en el repositorio">Copiar acciones</button></div>
+<div class="btns"><a class="b fantasma ocultar-embed" href="../" target="_top">← Tablero</a><select id="selRuta" class="b"></select><button id="bAuto">Girar</button><button id="bAccion">Marcar acción</button><button id="bExportar" title="Copia las acciones marcadas para guardarlas en el repositorio">Copiar acciones</button></div>
 <div id="formAccion" class="form" style="display:none"><b>Nueva acción en este punto</b><input id="txtAccion" placeholder="Ej. Ampliar banqueta a 3 m · sombra con mezquites · mural de Ortiz Tirado"><div class="fila"><select id="tipoAccion"><option>banqueta</option><option>arbolado</option><option>alumbrado</option><option>mural</option><option>mobiliario</option><option>fachada</option><option>cruce</option><option>otro</option></select><button id="okAccion">Guardar</button><button id="noAccion">Cancelar</button></div></div>
-<div class="slider"><b>Antes</b><input id="mezcla" type="range" min="0" max="100" value="0"><b>Después</b><span class="est" id="estado">render pendiente</span></div>
-<div class="mini"><svg id="minisvg" width="220" height="70"></svg></div>
+<div class="slider"><b>Antes</b><input id="mezcla" type="range" min="0" max="100" value="0"><b>Después</b><span class="est" id="estado">…</span></div>
+<div class="mini"><svg id="minisvg" width="150" height="48"></svg></div>
 <div class="brujula"><i id="aguja"></i></div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.160.0/three.min.js"></script>
 <script>
@@ -46,9 +49,9 @@ body.embed .top{left:10px;top:10px}body.embed .btns{right:10px;top:10px}body.emb
 // ============================================================
 const params=new URLSearchParams(location.search); const EMBED=params.get('embed')==='1'; if(EMBED) document.body.classList.add('embed');
 let RUTAS=null, DATA=null, idx=0, yaw=0, auto=false, modoAccion=false, ACCIONES=[], pendiente=null;
-const PITCH=-0.04; // apenas por debajo del horizonte, fijo
+const PITCH=-0.10; // ~6° por debajo del horizonte: encuadra la calle, no el cielo
 const canvas=document.getElementById('c'); const ren=new THREE.WebGLRenderer({canvas,antialias:true}); ren.setPixelRatio(Math.min(devicePixelRatio,2)); ren.outputColorSpace=THREE.SRGBColorSpace;
-const esc=new THREE.Scene(); const cam=new THREE.PerspectiveCamera(95,1,0.1,100);
+const esc=new THREE.Scene(); const cam=new THREE.PerspectiveCamera(100,1,0.1,100);
 const geo=new THREE.SphereGeometry(50,64,48); geo.scale(-1,1,1);
 const matA=new THREE.MeshBasicMaterial({color:'#222'}); const matB=new THREE.MeshBasicMaterial({transparent:true,opacity:0,color:'#fff'});
 const esfA=new THREE.Mesh(geo,matA); const esfB=new THREE.Mesh(geo.clone(),matB); esfB.renderOrder=1; esc.add(esfA,esfB);
@@ -87,13 +90,13 @@ async function irA(i,orientar=true){
   const [a,b]=await Promise.all([cargarTex(p.id+'.jpg'),cargarTex('despues/'+p.id+'.jpg')]);
   if(a){ matA.map=a; matA.color.set('#fff'); matA.needsUpdate=true }
   const m=document.getElementById('mezcla'), est=document.getElementById('estado');
-  if(b){ matB.map=b; matB.needsUpdate=true; m.disabled=false; est.textContent='render del después listo' } else { matB.map=null; m.disabled=true; m.value=0; matB.opacity=0; est.textContent='después: render pendiente' }
+  if(b){ matB.map=b; matB.needsUpdate=true; m.disabled=false; est.innerHTML='<b style="color:#8FA382;font-weight:700">listo</b> · render del después' } else { matB.map=null; m.disabled=true; m.value=0; matB.opacity=0; est.innerHTML='<b style="color:#FFB84D;font-weight:700">pendiente</b> · el render del después' }
   pintarUI(); pintarMini();
 }
 document.getElementById('mezcla').oninput=(e)=>{ matB.opacity=e.target.value/100 };
 function pintarMini(){ const s=document.getElementById('minisvg'); const P=DATA.puntos; const xs=P.map(p=>p.lng), ys=P.map(p=>p.lat);
-  const x0=Math.min(...xs),x1=Math.max(...xs),y0=Math.min(...ys),y1=Math.max(...ys); const sx=(v)=>10+(v-x0)/((x1-x0)||1)*200, sy=(v)=>60-(v-y0)/((y1-y0)||1)*50;
-  s.innerHTML=`<polyline points="${P.map(p=>sx(p.lng)+','+sy(p.lat)).join(' ')}" fill="none" stroke="${DATA.color||'#8FA382'}" stroke-width="3" stroke-linecap="round"/>`+P.map((p,i)=>`<circle cx="${sx(p.lng)}" cy="${sy(p.lat)}" r="${i===idx?6:4}" fill="${i===idx?'#FFB84D':'#141010'}" stroke="#C9A45C" stroke-width="1.5" data-i="${i}"/>`).join('');
+  const x0=Math.min(...xs),x1=Math.max(...xs),y0=Math.min(...ys),y1=Math.max(...ys); const sx=(v)=>9+(v-x0)/((x1-x0)||1)*132, sy=(v)=>40-(v-y0)/((y1-y0)||1)*32;
+  s.innerHTML=`<polyline points="${P.map(p=>sx(p.lng)+','+sy(p.lat)).join(' ')}" fill="none" stroke="${DATA.color||'#8FA382'}" stroke-width="3" stroke-linecap="round"/>`+P.map((p,i)=>`<circle cx="${sx(p.lng)}" cy="${sy(p.lat)}" r="${i===idx?5:3.2}" fill="${i===idx?'#FFB84D':'#141010'}" stroke="#C9A45C" stroke-width="1.5" data-i="${i}"/>`).join('');
   s.querySelectorAll('circle').forEach(c=>c.onclick=()=>irA(+c.dataset.i)) }
 // --- acciones ---
 function cargarAcciones(){ let loc=[]; try{ loc=JSON.parse(localStorage.getItem('amalaya_acciones360')||'[]') }catch{} return fetch('acciones.json').then(r=>r.ok?r.json():[]).catch(()=>[]).then(rep=>{ ACCIONES=[...rep.map(a=>({...a,origen:'repo'})),...loc.map(a=>({...a,origen:'local'}))] }) }
