@@ -288,18 +288,20 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer }
 
       // Recorrido 360 (borrador): puntos cada ~10 m con panorama propio
       m.addSource('recorrido', { type: 'geojson', data: { type: 'FeatureCollection', features: [] } })
-      m.addLayer({ id: 'recorrido-linea', type: 'line', source: 'recorrido', filter: ['==', '$type', 'LineString'], layout: { 'line-cap': 'round', 'line-join': 'round' }, paint: { 'line-color': '#FFB84D', 'line-width': 3, 'line-opacity': 0.6, 'line-dasharray': [1, 1.5] } })
-      m.addLayer({ id: 'recorrido-puntos', type: 'circle', source: 'recorrido', filter: ['==', '$type', 'Point'], paint: { 'circle-radius': ['interpolate', ['linear'], ['zoom'], 14, 3, 17, 7], 'circle-color': '#FFB84D', 'circle-stroke-color': '#141010', 'circle-stroke-width': 2 } })
-      fetch(`${BASE}recorrido/puntos.json`).then((r) => r.json()).then((d) => {
-        const pts = d.puntos || []
-        m.getSource('recorrido')?.setData({ type: 'FeatureCollection', features: [
-          { type: 'Feature', properties: {}, geometry: { type: 'LineString', coordinates: pts.map((q) => [q.lng, q.lat]) } },
-          ...pts.map((q) => ({ type: 'Feature', properties: { id: q.id, nombre: q.nombre, orden: q.orden }, geometry: { type: 'Point', coordinates: [q.lng, q.lat] } })),
-        ] })
+      m.addLayer({ id: 'recorrido-linea', type: 'line', source: 'recorrido', filter: ['==', '$type', 'LineString'], layout: { 'line-cap': 'round', 'line-join': 'round' }, paint: { 'line-color': ['coalesce', ['get', 'color'], '#FFB84D'], 'line-width': 3, 'line-opacity': 0.55, 'line-dasharray': [1, 1.5] } })
+      m.addLayer({ id: 'recorrido-puntos', type: 'circle', source: 'recorrido', filter: ['==', '$type', 'Point'], paint: { 'circle-radius': ['interpolate', ['linear'], ['zoom'], 14, 3, 17, 7], 'circle-color': ['coalesce', ['get', 'color'], '#FFB84D'], 'circle-stroke-color': '#FFFFFF', 'circle-stroke-width': 1.5 } })
+      fetch(`${BASE}recorrido/rutas.json`).then((r) => r.json()).then((d) => {
+        const feats = []
+        for (const R of d.rutas || []) {
+          const pts = R.puntos || []
+          feats.push({ type: 'Feature', properties: { ruta: R.id, color: R.color }, geometry: { type: 'LineString', coordinates: pts.map((q) => [q.lng, q.lat]) } })
+          for (const q of pts) feats.push({ type: 'Feature', properties: { id: q.id, ruta: R.id, color: R.color, nombre: q.nombre, orden: q.orden }, geometry: { type: 'Point', coordinates: [q.lng, q.lat] } })
+        }
+        m.getSource('recorrido')?.setData({ type: 'FeatureCollection', features: feats })
       }).catch(() => {})
       m.on('click', 'recorrido-puntos', (ev) => {
-        const id = ev.features?.[0]?.properties?.id
-        if (id) window.open(`${BASE}recorrido/?p=${encodeURIComponent(id)}`, '_blank', 'noopener')
+        const f = ev.features?.[0]?.properties || {}
+        if (f.id) window.open(`${BASE}recorrido/?r=${encodeURIComponent(f.ruta || '')}&p=${encodeURIComponent(f.id)}`, '_blank', 'noopener')
       })
       m.on('mouseenter', 'recorrido-puntos', () => { m.getCanvas().style.cursor = 'pointer' })
       m.on('mouseleave', 'recorrido-puntos', () => { m.getCanvas().style.cursor = '' })

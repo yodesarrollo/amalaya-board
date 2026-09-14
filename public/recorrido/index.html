@@ -20,11 +20,19 @@ button,a.b{font:inherit;font-size:12px;font-weight:700;color:#F2EAD9;background:
 .mini svg{display:block}
 .mini circle{cursor:pointer}
 .brujula{position:fixed;right:14px;bottom:22px;z-index:5;width:54px;height:54px;border-radius:50%;background:rgba(20,16,16,.85);border:1px solid rgba(201,164,92,.5);display:flex;align-items:center;justify-content:center}
+.form{position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);z-index:8;background:#221B15;border:1px solid #C9A45C;border-radius:12px;padding:14px 16px;width:min(460px,calc(100vw - 28px));display:flex;flex-direction:column;gap:8px}
+.form input,.form select{font:inherit;font-size:13px;background:#141010;color:#F2EAD9;border:1px solid rgba(201,164,92,.5);border-radius:8px;padding:8px 10px}
+.form .fila{display:flex;gap:8px}.form .fila select{flex:1}
+.accion{position:fixed;transform:translate(-50%,-100%);z-index:4;background:rgba(20,16,16,.88);color:#F2EAD9;border:1.5px solid #FFB84D;border-radius:8px;padding:5px 9px;font-size:11px;font-weight:700;max-width:220px;cursor:pointer;box-shadow:0 8px 20px -8px #000}
+.accion small{display:block;font-weight:500;color:#B7A890;font-size:9px;text-transform:uppercase;letter-spacing:.08em}
+.accion::after{content:'';position:absolute;left:50%;bottom:-12px;width:2px;height:12px;background:#FFB84D;transform:translateX(-50%)}
 .brujula i{display:block;width:3px;height:22px;background:linear-gradient(#E0605A 50%,#F2EAD9 50%);transform-origin:center;border-radius:2px}
 </style></head><body>
 <canvas id="c"></canvas>
 <div class="top"><div class="t" id="titulo">Recorrido 360<small id="sub">cargando…</small></div></div>
-<div class="btns"><a class="b" href="../" target="_top">Volver al tablero</a><button id="bAuto">Girar</button></div>
+<div class="btns"><a class="b" href="../" target="_top">Volver al tablero</a><select id="selRuta" class="b"></select><button id="bAuto">Girar</button><button id="bAccion">Marcar acción</button><button id="bExportar" title="Copia las acciones marcadas para guardarlas en el repositorio">Copiar acciones</button></div>
+<div id="acciones"></div>
+<div id="formAccion" class="form" style="display:none"><b>Nueva acción en este punto</b><input id="txtAccion" placeholder="Ej. Ampliar banqueta a 3 m · sombra con mezquites · mural de Ortiz Tirado"><div class="fila"><select id="tipoAccion"><option>banqueta</option><option>arbolado</option><option>alumbrado</option><option>mural</option><option>mobiliario</option><option>fachada</option><option>cruce</option><option>otro</option></select><button id="okAccion">Guardar</button><button id="noAccion">Cancelar</button></div></div>
 <div id="flechas"></div>
 <div class="slider"><b>Antes</b><input id="mezcla" type="range" min="0" max="100" value="0"><b>Después</b><span class="est" id="estado">render pendiente</span></div>
 <div class="mini"><svg id="minisvg" width="220" height="70"></svg></div>
@@ -39,7 +47,7 @@ button,a.b{font:inherit;font-size:12px;font-weight:700;color:#F2EAD9;background:
 // ambos con la misma orientación. Flechas doradas = puntos vecinos.
 // ============================================================
 const params=new URLSearchParams(location.search);
-let DATA=null, idx=0, yaw=0, pitch=0, auto=false;
+let RUTAS=null, DATA=null, idx=0, yaw=0, pitch=0, auto=false, modoAccion=false, ACCIONES=[], pendiente=null;
 const canvas=document.getElementById('c'); const ren=new THREE.WebGLRenderer({canvas,antialias:true}); ren.setPixelRatio(Math.min(devicePixelRatio,2)); ren.outputColorSpace=THREE.SRGBColorSpace;
 const esc=new THREE.Scene(); const cam=new THREE.PerspectiveCamera(75,1,0.1,100);
 const geo=new THREE.SphereGeometry(50,64,48); geo.scale(-1,1,1);
@@ -51,14 +59,14 @@ function cargarTex(url){ return new Promise((ok)=>loader.load(url,t=>{t.colorSpa
 esfA.rotation.y=-Math.PI/2; esfB.rotation.y=-Math.PI/2;
 async function irA(i){
   idx=Math.max(0,Math.min(DATA.puntos.length-1,i)); const p=DATA.puntos[idx];
-  document.getElementById('titulo').firstChild.textContent=p.nombre; document.getElementById('sub').textContent=`${DATA.ruta} · punto ${p.orden} de ${DATA.puntos.length}`;
-  history.replaceState(null,'','?p='+encodeURIComponent(p.id));
+  document.getElementById('titulo').firstChild.textContent=p.nombre; document.getElementById('sub').textContent=`${DATA.nombre} · punto ${p.orden} de ${DATA.puntos.length}${modoAccion?' · modo acción: toca lo que quieras mejorar':''}`;
+  history.replaceState(null,'','?r='+encodeURIComponent(DATA.id)+'&p='+encodeURIComponent(p.id));
   const [a,b]=await Promise.all([cargarTex(p.id+'.jpg'),cargarTex('despues/'+p.id+'.jpg')]);
   if(a){ matA.map=a; matA.color.set('#fff'); matA.needsUpdate=true }
   const m=document.getElementById('mezcla'), est=document.getElementById('estado');
   if(b){ matB.map=b; matB.needsUpdate=true; m.disabled=false; est.textContent='render del después listo' }
   else { matB.map=null; m.disabled=true; m.value=0; matB.opacity=0; est.textContent='después: render pendiente (se decide con las mejoras urbanas)' }
-  pintarFlechas(); pintarMini();
+  pintarFlechas(); pintarMini(); pintarAcciones();
 }
 document.getElementById('mezcla').oninput=(e)=>{ matB.opacity=e.target.value/100 };
 function rumbo(a,b){ const dy=(b.lat-a.lat)*110574, dx=(b.lng-a.lng)*111320*Math.cos(a.lat*Math.PI/180); return Math.atan2(dx,dy) } // desde el norte, horario
@@ -84,5 +92,21 @@ function frame(){ if(auto) yaw-=0.0025;
   document.getElementById('aguja').style.transform=`rotate(${-yaw*180/Math.PI}deg)`;
   const f=cam.fov*Math.PI/180; flechas.forEach(({el,az})=>{ let d=az-yaw; d=Math.atan2(Math.sin(d),Math.cos(d)); const vis=Math.abs(d)<f*0.9; el.style.display=vis?'flex':'none'; if(vis){ const x=innerWidth/2+Math.tan(d)/Math.tan(f*cam.aspect/2)*(innerWidth/2)*0.9; el.style.left=x+'px'; el.style.top=(innerHeight*0.72)+'px' } });
   requestAnimationFrame(frame) }
-fetch('puntos.json').then(r=>r.json()).then(d=>{ DATA=d; const q=params.get('p'); const i=Math.max(0,DATA.puntos.findIndex(p=>p.id===q)); yaw=Math.PI*0.43; irA(i); requestAnimationFrame(frame) });
+// --- acciones (puntos de acción dentro del 360) ---
+// Las del repositorio viven en acciones.json; las que marcas aquí se guardan en tu navegador y se copian con «Copiar acciones» para subirlas.
+function cargarAcciones(){ let loc=[]; try{ loc=JSON.parse(localStorage.getItem('amalaya_acciones360')||'[]') }catch{} return fetch('acciones.json').then(r=>r.ok?r.json():[]).catch(()=>[]).then(rep=>{ ACCIONES=[...rep.map(a=>({...a,origen:'repo'})),...loc.map(a=>({...a,origen:'local'}))] }) }
+function guardarLocal(){ try{ localStorage.setItem('amalaya_acciones360',JSON.stringify(ACCIONES.filter(a=>a.origen==='local').map(({origen,...a})=>a))) }catch{} }
+const contA=document.getElementById('acciones'); let pins=[];
+function pintarAcciones(){ contA.innerHTML=''; pins=[]; const p=DATA.puntos[idx]; ACCIONES.filter(a=>a.punto===p.id).forEach(a=>{ const el=document.createElement('div'); el.className='accion'; el.innerHTML=`<small>${a.tipo}${a.origen==='local'?' · sin subir':''}</small>${a.texto}`; el.title='Clic para borrar (solo las tuyas)'; el.onclick=()=>{ if(a.origen==='local'&&confirm('¿Borrar esta acción?')){ ACCIONES=ACCIONES.filter(x=>x!==a); guardarLocal(); pintarAcciones() } }; contA.appendChild(el); pins.push({el,az:a.yaw,el2:a.pitch}) }) }
+document.getElementById('bAccion').onclick=function(){ modoAccion=!modoAccion; this.classList.toggle('on',modoAccion); canvas.style.cursor=modoAccion?'crosshair':'grab' };
+document.getElementById('bExportar').onclick=async function(){ const txt=JSON.stringify(ACCIONES.map(({origen,...a})=>a),null,1); try{ await navigator.clipboard.writeText(txt); this.textContent='Copiado ✓'; setTimeout(()=>this.textContent='Copiar acciones',1500) }catch{ prompt('Copia este JSON:',txt) } };
+canvas.addEventListener('click',(e)=>{ if(!modoAccion||!DATA) return; if(arr&&arr.mov) return; // dirección del clic
+  const f=cam.fov*Math.PI/180; const nx=(e.clientX/innerWidth)*2-1, ny=1-(e.clientY/innerHeight)*2; const dy=Math.atan(nx*Math.tan(f/2)*cam.aspect), dp=Math.atan(ny*Math.tan(f/2));
+  pendiente={punto:DATA.puntos[idx].id, ruta:DATA.id, yaw:yaw+dy, pitch:pitch-dp}; document.getElementById('formAccion').style.display='flex'; document.getElementById('txtAccion').value=''; document.getElementById('txtAccion').focus() });
+document.getElementById('okAccion').onclick=()=>{ const t=document.getElementById('txtAccion').value.trim(); if(!t||!pendiente) return; ACCIONES.push({...pendiente,texto:t,tipo:document.getElementById('tipoAccion').value,origen:'local'}); guardarLocal(); pendiente=null; document.getElementById('formAccion').style.display='none'; pintarAcciones() };
+document.getElementById('noAccion').onclick=()=>{ pendiente=null; document.getElementById('formAccion').style.display='none' };
+const sel=document.getElementById('selRuta'); sel.onchange=()=>{ DATA=RUTAS.rutas.find(r=>r.id===sel.value); yaw=Math.PI*0.43; irA(0) };
+fetch('rutas.json').then(r=>r.json()).then(async d=>{ RUTAS=d; await cargarAcciones(); sel.innerHTML=d.rutas.map(r=>`<option value="${r.id}">${r.nombre} · ${r.puntos.length} pts</option>`).join('');
+  const rq=params.get('r'), q=params.get('p'); DATA=d.rutas.find(r=>r.id===rq)||d.rutas.find(r=>r.puntos.some(p=>p.id===q))||d.rutas[0]; sel.value=DATA.id;
+  const i=Math.max(0,DATA.puntos.findIndex(p=>p.id===q)); yaw=Math.PI*0.43; irA(i); requestAnimationFrame(frame) });
 </script></body></html>
