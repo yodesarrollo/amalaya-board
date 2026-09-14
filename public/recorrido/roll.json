@@ -1,254 +1,317 @@
 {
 "0c9XB0mGl_CMcjUub6TyIA": {
 "roll": 0.07,
-"eje": -0.8138
+"eje": -0.8138,
+"alto": 0.0427
 },
 "133OIriRrcYkbV0Y2VCPng": {
 "roll": 0.2368,
-"eje": 1.7174
+"eje": 1.7174,
+"alto": 0.034
 },
 "2MNg6Xk9_yV3lqEALqRg4Q": {
 "roll": 0.0492,
-"eje": 0.7884
+"eje": 0.7884,
+"alto": 0.1386
 },
 "2ojGIDTgBIX4RS3Ok9mgkA": {
 "roll": 0.0,
-"eje": 1.4424
+"eje": 1.4424,
+"alto": 0.153
 },
 "3rqimX26IJci58-J4i455A": {
 "roll": 0.1175,
-"eje": 2.7045
+"eje": 2.7045,
+"alto": 0.0691
 },
 "4DxYkyu4zzPEg4vuIzKx-g": {
 "roll": 0.0887,
-"eje": -1.7786
+"eje": -1.7786,
+"alto": -0.0399
 },
 "5FAUCdPN0bi6PQuYj_IQOA": {
 "roll": 0.0663,
-"eje": -0.1827
+"eje": -0.1827,
+"alto": 0.1805
 },
 "77G-ooH2G6Dx2QbnJ20OAQ": {
 "roll": 0.125,
-"eje": 1.2722
+"eje": 1.2722,
+"alto": 0.2478
 },
 "Apyr0uKeZr_XWmfLfLeBjQ": {
 "roll": 0.1596,
-"eje": 2.1296
+"eje": 2.1296,
+"alto": 0.0528
 },
 "Cf-Fao4eemggYJRuetSx3w": {
 "roll": 0.1264,
-"eje": 1.9744
+"eje": 1.9744,
+"alto": 0.0497
 },
 "D5wZYiwv_zEQZVFIh9f9cA": {
 "roll": 0.1543,
-"eje": 2.5216
+"eje": 2.5216,
+"alto": 0.0734
 },
 "DcZ8cdodG5cYJlnY4i-aQg": {
 "roll": 0.0,
-"eje": 2.6794
+"eje": 2.6794,
+"alto": 0.0763
 },
 "G5UapkZfu_gIeRoydqjPBw": {
 "roll": 0.0997,
-"eje": -3.1047
+"eje": -3.1047,
+"alto": 0.1271
 },
 "GWbXoFnCNeQH_VhqWDnnrQ": {
 "roll": 0.1907,
-"eje": 0.9849
+"eje": 0.9849,
+"alto": -0.0568
 },
 "GXCIvmIJXDdWRJaeI9vlXQ": {
 "roll": 0.0508,
-"eje": -0.7516
+"eje": -0.7516,
+"alto": 0.0788
 },
 "H7TCsJ7n1evd_55YFl-aug": {
 "roll": 0.0855,
-"eje": 0.7386
+"eje": 0.7386,
+"alto": 0.1914
 },
 "HpzPBwYFESn1j9oDknI3hw": {
 "roll": 0.0776,
-"eje": 2.6065
+"eje": 2.6065,
+"alto": 0.074
 },
 "Io_SPFymRXGaYeN3dHbdlg": {
 "roll": 0.0497,
-"eje": -2.636
+"eje": -2.636,
+"alto": 0.0777
 },
 "J0kW2gdYZKWviUu-UvbTOg": {
 "roll": 0.1492,
-"eje": 1.4393
+"eje": 1.4393,
+"alto": 0.1879
 },
 "Kuwk3mZuIWZ2RDonhuaV9A": {
 "roll": 0.0,
-"eje": 2.5594
+"eje": 2.5594,
+"alto": -0.0599
 },
 "MRytS_xq5CoXCsOT5hEbPw": {
 "roll": 0.0988,
-"eje": -1.6102
+"eje": -1.6102,
+"alto": 0.1484
 },
 "MtTpU1NWETczZgzdClblwg": {
 "roll": 0.1872,
-"eje": 1.2547
+"eje": 1.2547,
+"alto": 0.1489
 },
 "OfevGEazeoHcizXAeZ0pWQ": {
 "roll": 0.1289,
-"eje": 0.8435
+"eje": 0.8435,
+"alto": 0.1258
 },
 "Q-1EPMRJQAS7noIGDzpR4A": {
 "roll": 0.2204,
-"eje": 2.2528
+"eje": 2.2528,
+"alto": 0.0876
 },
 "Qr8oDbAjuVbJnIJg-alGgQ": {
 "roll": 0.0202,
-"eje": -1.4022
+"eje": -1.4022,
+"alto": -0.0179
 },
 "SlbKXpoh3cRypOn6CYySwg": {
 "roll": 0.0336,
-"eje": 0.6123
+"eje": 0.6123,
+"alto": -0.0398
 },
 "Szfjj9vwKLVdbw6QT5xtjw": {
 "roll": 0.1085,
-"eje": 0.7608
+"eje": 0.7608,
+"alto": 0.1235
 },
 "TMvGKzSUcJSVhkTRRxjHIA": {
 "roll": 0.1456,
-"eje": 1.5604
+"eje": 1.5604,
+"alto": 0.1297
 },
 "TgahlLYkg_dqqZBDqpEYNQ": {
 "roll": 0.0873,
-"eje": 0.7736
+"eje": 0.7736,
+"alto": 0.0473
 },
 "Wp3YHqBDgSnEhCDJ-r4nZA": {
 "roll": 0.2754,
-"eje": 1.8921
+"eje": 1.8921,
+"alto": 0.1127
 },
 "XLuGJnj_XmtAuKd4eXeTDw": {
 "roll": 0.2257,
-"eje": 0.9882
+"eje": 0.9882,
+"alto": -0.0635
 },
 "Y-FW8ND9zbnLF5l6UIWcHw": {
 "roll": 0.041,
-"eje": 3.038
+"eje": 3.038,
+"alto": 0.1727
 },
 "_W5xlEapZ70CzhSCL7yiGw": {
 "roll": 0.2473,
-"eje": 2.244
+"eje": 2.244,
+"alto": 0.1996
 },
 "alYsfrD3GsmusqDduOPDog": {
 "roll": 0.0797,
-"eje": -1.3324
+"eje": -1.3324,
+"alto": 0.1554
 },
 "c_zMMTJvaks8XyIRT6mJCQ": {
 "roll": 0.156,
-"eje": 2.0021
+"eje": 2.0021,
+"alto": 0.1616
 },
 "cjTHuFQqgbHlqPDeYtUDaQ": {
 "roll": 0.0851,
-"eje": 0.3373
+"eje": 0.3373,
+"alto": 0.1776
 },
 "dhZr59FbZyCQKcSB4CJb5w": {
 "roll": 0.0802,
-"eje": 0.3424
+"eje": 0.3424,
+"alto": 0.07
 },
 "ev61pl7bibNDOn39INM-4Q": {
 "roll": 0.1517,
-"eje": -2.9039
+"eje": -2.9039,
+"alto": 0.2374
 },
 "fmtBtDfyhlcpDwVXEfKYcw": {
 "roll": 0.1884,
-"eje": 1.8202
+"eje": 1.8202,
+"alto": 0.1661
 },
 "h45BeWMtTog-TgjPTSYn6g": {
 "roll": 0.2133,
-"eje": 2.3892
+"eje": 2.3892,
+"alto": 0.1741
 },
 "h7Ur5HsLG4Jz2V7_ePx7zQ": {
 "roll": 0.1828,
-"eje": 2.0351
+"eje": 2.0351,
+"alto": 0.1035
 },
 "hLX5pkq4RdjBOs5Vqpw-Fw": {
 "roll": 0.1362,
-"eje": 2.3068
+"eje": 2.3068,
+"alto": 0.1009
 },
 "jq7F20HIPyBLBgfSjH6baQ": {
 "roll": 0.0788,
-"eje": -1.8942
+"eje": -1.8942,
+"alto": 0.295
 },
 "kvThuvZHnPY0bB-quNNqWg": {
 "roll": 0.0582,
-"eje": 0.6714
+"eje": 0.6714,
+"alto": 0.0776
 },
 "kwpqUP9tZmmjDfiFDIJbsg": {
 "roll": 0.138,
-"eje": 1.5337
+"eje": 1.5337,
+"alto": 0.1311
 },
 "lKsrvsfkAzaSnxEQUwrxfA": {
 "roll": 0.1334,
-"eje": -2.4195
+"eje": -2.4195,
+"alto": 0.2305
 },
 "lYkbkN5HLT-6YQS4vIsd2g": {
 "roll": 0.0,
-"eje": 1.5759
+"eje": 1.5759,
+"alto": 0.1285
 },
 "lkwoj4UK5iKKI8Gi9D0E0Q": {
 "roll": 0.1486,
-"eje": 1.9065
+"eje": 1.9065,
+"alto": -0.0218
 },
 "m8xVPsgRmAum3mCww91OOQ": {
 "roll": 0.1998,
-"eje": 1.2642
+"eje": 1.2642,
+"alto": 0.0999
 },
 "mxEvNEtgLgOSxKsRFwCiHg": {
 "roll": 0.0547,
-"eje": 1.9254
+"eje": 1.9254,
+"alto": 0.1817
 },
 "nRi6H48db68OZrlzAj_BrQ": {
 "roll": 0.11,
-"eje": 2.9474
+"eje": 2.9474,
+"alto": 0.1517
 },
 "oPeLVib1XctGRnpbg4mQDA": {
 "roll": 0.0,
-"eje": 2.0025
+"eje": 2.0025,
+"alto": 0.0944
 },
 "pLpyFk8PLd9vgJz2YSZCmg": {
 "roll": 0.1422,
-"eje": 1.313
+"eje": 1.313,
+"alto": 0.1402
 },
 "qU0XiVpeIHZyTixjEBUfgg": {
 "roll": 0.204,
-"eje": 1.7439
+"eje": 1.7439,
+"alto": 0.1637
 },
 "rgjklAAPPcOxEB4RX95K1w": {
 "roll": 0.0367,
-"eje": 0.3141
+"eje": 0.3141,
+"alto": -0.1327
 },
 "so9h7jFxMM5qB1cmB-UwXg": {
 "roll": 0.1624,
-"eje": 1.4578
+"eje": 1.4578,
+"alto": 0.0185
 },
 "tNYb-MC3X0rg9R1waYcY6Q": {
 "roll": 0.1438,
-"eje": 0.491
+"eje": 0.491,
+"alto": 0.1876
 },
 "tpv4y1ErCEndgDHFQBOV6w": {
 "roll": 0.0962,
-"eje": 2.1789
+"eje": 2.1789,
+"alto": 0.0856
 },
 "uBq2wouFEgN5EkwgS-KpnQ": {
 "roll": 0.039,
-"eje": -1.5795
+"eje": -1.5795,
+"alto": 0.2806
 },
 "wgpwXS6VA0MdLRF6oSqDBA": {
 "roll": 0.2011,
-"eje": 1.6656
+"eje": 1.6656,
+"alto": 0.0496
 },
 "xKQNROLj9VMiBGpjotie5A": {
 "roll": 0.1357,
-"eje": 1.6408
+"eje": 1.6408,
+"alto": 0.0302
 },
 "yiypNpljHNv3oHw3QCdiZA": {
 "roll": 0.1381,
-"eje": 0.9058
+"eje": 0.9058,
+"alto": 0.1599
 },
 "ywXPe_aoOm7HUa9l5NTdfg": {
 "roll": 0.0885,
-"eje": 3.1074
+"eje": 3.1074,
+"alto": 0.1725
 }
 }

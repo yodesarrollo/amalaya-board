@@ -49,7 +49,9 @@ body.embed .top{left:10px;top:10px}body.embed .btns{right:10px;top:10px}body.emb
 // ============================================================
 const params=new URLSearchParams(location.search); const EMBED=params.get('embed')==='1'; if(EMBED) document.body.classList.add('embed');
 let RUTAS=null, DATA=null, idx=0, yaw=0, auto=false, modoAccion=false, ACCIONES=[], pendiente=null;
-const PITCH=-0.10; // ~6° por debajo del horizonte: encuadra la calle, no el cielo
+let PITCH=-0.16; // se ajusta por punto: la calle y la fachada mandan, no el cielo
+function encuadrar(id){ const r=ROLL[id]||{}; const alto=r.alto||0;
+  PITCH=Math.max(-0.38,Math.min(0.02,alto-0.31)) } // deja el remate de las fachadas en el tercio alto
 const canvas=document.getElementById('c'); const ren=new THREE.WebGLRenderer({canvas,antialias:true}); ren.setPixelRatio(Math.min(devicePixelRatio,2)); ren.outputColorSpace=THREE.SRGBColorSpace;
 const esc=new THREE.Scene(); const cam=new THREE.PerspectiveCamera(100,1,0.1,100);
 const geo=new THREE.SphereGeometry(50,64,48); geo.scale(-1,1,1);
@@ -99,7 +101,7 @@ async function irA(i,orientar=true){
   const sig=DATA.puntos[idx+1]||DATA.puntos[idx-1]; if(orientar&&sig) yaw=rumbo(p,sig);
   const [a,b]=await Promise.all([cargarTex(p.id+'.jpg'),cargarTex('despues/'+p.id+'.jpg')]);
   if(a){ matA.map=a; matA.color.set('#fff'); matA.needsUpdate=true }
-  nivelar(p.id);
+  nivelar(p.id); encuadrar(p.id);
   const m=document.getElementById('mezcla'), est=document.getElementById('estado');
   if(b){ matB.map=b; matB.needsUpdate=true; m.disabled=false; est.innerHTML='<b style="color:#8FA382;font-weight:700">listo</b> · render del después' } else { matB.map=null; m.disabled=true; m.value=0; matB.opacity=0; est.innerHTML='<b style="color:#FFB84D;font-weight:700">pendiente</b> · el render del después' }
   pintarUI(); pintarMini();
