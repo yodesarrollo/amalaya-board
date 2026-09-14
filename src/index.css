@@ -346,3 +346,4 @@ html {
 .mapa3d.tema-lamina .maplibregl-ctrl button .maplibregl-ctrl-icon { filter: none; }
 .mapa3d.tema-lamina .maplibregl-ctrl-attrib { background: rgba(255,255,255,.75) !important; color: #5A5752 !important; }
 .mapa3d.tema-lamina .maplibregl-ctrl-attrib a { color: #1F1F1F !important; }
+.pin3d-editable { cursor: grab; border-color: #FFB84D !important; box-shadow: 0 0 0 3px rgba(255,184,77,.35), 0 10px 24px -10px rgba(0,0,0,.9); }

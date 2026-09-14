@@ -9,104 +9,115 @@ html,body{margin:0;height:100%;background:#141010;color:#F2EAD9;font-family:Mont
 .t{font-weight:800;text-transform:uppercase;letter-spacing:.08em;font-size:13px;background:rgba(20,16,16,.82);border:1px solid rgba(201,164,92,.5);padding:8px 12px;border-radius:10px}
 .t small{display:block;font-weight:500;text-transform:none;letter-spacing:0;color:#B7A890;font-size:11px;margin-top:3px}
 .btns{position:fixed;right:14px;top:14px;display:flex;flex-direction:column;gap:6px;z-index:5}
-button,a.b{font:inherit;font-size:12px;font-weight:700;color:#F2EAD9;background:rgba(20,16,16,.82);border:1px solid rgba(201,164,92,.5);padding:8px 12px;border-radius:9px;cursor:pointer;text-decoration:none;text-align:center}
-.slider{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);z-index:5;width:min(560px,calc(100vw - 28px));background:rgba(20,16,16,.85);border:1px solid rgba(201,164,92,.5);border-radius:12px;padding:10px 14px;display:flex;align-items:center;gap:12px}
+button,a.b,select.b{font:inherit;font-size:12px;font-weight:700;color:#F2EAD9;background:rgba(20,16,16,.82);border:1px solid rgba(201,164,92,.5);padding:8px 12px;border-radius:9px;cursor:pointer;text-decoration:none;text-align:center}
+button.on{background:linear-gradient(180deg,#E8C466,#C9A45C 50%,#8F6E2E);color:#141010;border-color:#8F6E2E}
+.slider{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);z-index:5;width:min(520px,calc(100vw - 28px));background:rgba(20,16,16,.85);border:1px solid rgba(201,164,92,.5);border-radius:12px;padding:9px 14px;display:flex;align-items:center;gap:12px}
 .slider b{font-size:11px;letter-spacing:.1em;text-transform:uppercase}
 .slider input{flex:1;accent-color:#FFB84D}
 .slider .est{font-size:10px;color:#B7A890;white-space:nowrap}
-.flecha{position:fixed;transform:translate(-50%,-50%);z-index:4;width:64px;height:64px;border-radius:50%;background:rgba(255,184,77,.85);color:#141010;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 0 30px rgba(255,184,77,.6);border:2px solid #141010;font-weight:800;font-size:11px;text-align:center;line-height:1.1}
-.flecha svg{position:absolute;top:-22px;left:50%;transform:translateX(-50%)}
-.mini{position:fixed;left:14px;bottom:22px;z-index:5;background:rgba(20,16,16,.85);border:1px solid rgba(201,164,92,.5);border-radius:12px;padding:8px 10px}
-.mini svg{display:block}
-.mini circle{cursor:pointer}
-.brujula{position:fixed;right:14px;bottom:22px;z-index:5;width:54px;height:54px;border-radius:50%;background:rgba(20,16,16,.85);border:1px solid rgba(201,164,92,.5);display:flex;align-items:center;justify-content:center}
+.mini{position:fixed;left:14px;bottom:18px;z-index:5;background:rgba(20,16,16,.85);border:1px solid rgba(201,164,92,.5);border-radius:12px;padding:8px 10px}
+.mini svg{display:block}.mini circle{cursor:pointer}
+.brujula{position:fixed;right:14px;bottom:18px;z-index:5;width:54px;height:54px;border-radius:50%;background:rgba(20,16,16,.85);border:1px solid rgba(201,164,92,.5);display:flex;align-items:center;justify-content:center}
+.brujula i{display:block;width:3px;height:22px;background:linear-gradient(#E0605A 50%,#F2EAD9 50%);transform-origin:center;border-radius:2px}
 .form{position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);z-index:8;background:#221B15;border:1px solid #C9A45C;border-radius:12px;padding:14px 16px;width:min(460px,calc(100vw - 28px));display:flex;flex-direction:column;gap:8px}
 .form input,.form select{font:inherit;font-size:13px;background:#141010;color:#F2EAD9;border:1px solid rgba(201,164,92,.5);border-radius:8px;padding:8px 10px}
 .form .fila{display:flex;gap:8px}.form .fila select{flex:1}
-.accion{position:fixed;transform:translate(-50%,-100%);z-index:4;background:rgba(20,16,16,.88);color:#F2EAD9;border:1.5px solid #FFB84D;border-radius:8px;padding:5px 9px;font-size:11px;font-weight:700;max-width:220px;cursor:pointer;box-shadow:0 8px 20px -8px #000}
-.accion small{display:block;font-weight:500;color:#B7A890;font-size:9px;text-transform:uppercase;letter-spacing:.08em}
-.accion::after{content:'';position:absolute;left:50%;bottom:-12px;width:2px;height:12px;background:#FFB84D;transform:translateX(-50%)}
-.brujula i{display:block;width:3px;height:22px;background:linear-gradient(#E0605A 50%,#F2EAD9 50%);transform-origin:center;border-radius:2px}
+body.embed .top{left:10px;top:10px}body.embed .btns{right:10px;top:10px}body.embed .ocultar-embed{display:none}
+@media (max-width:640px){.mini{display:none}.btns{flex-direction:row;flex-wrap:wrap;justify-content:flex-end;max-width:70vw}button,a.b,select.b{padding:6px 9px;font-size:11px}}
 </style></head><body>
 <canvas id="c"></canvas>
 <div class="top"><div class="t" id="titulo">Recorrido 360<small id="sub">cargando…</small></div></div>
-<div class="btns"><a class="b" href="../" target="_top">Volver al tablero</a><select id="selRuta" class="b"></select><button id="bAuto">Girar</button><button id="bAccion">Marcar acción</button><button id="bExportar" title="Copia las acciones marcadas para guardarlas en el repositorio">Copiar acciones</button></div>
-<div id="acciones"></div>
+<div class="btns"><a class="b ocultar-embed" href="../" target="_top">Volver al tablero</a><select id="selRuta" class="b"></select><button id="bAuto">Girar</button><button id="bAccion">Marcar acción</button><button id="bExportar" title="Copia las acciones marcadas para guardarlas en el repositorio">Copiar acciones</button></div>
 <div id="formAccion" class="form" style="display:none"><b>Nueva acción en este punto</b><input id="txtAccion" placeholder="Ej. Ampliar banqueta a 3 m · sombra con mezquites · mural de Ortiz Tirado"><div class="fila"><select id="tipoAccion"><option>banqueta</option><option>arbolado</option><option>alumbrado</option><option>mural</option><option>mobiliario</option><option>fachada</option><option>cruce</option><option>otro</option></select><button id="okAccion">Guardar</button><button id="noAccion">Cancelar</button></div></div>
-<div id="flechas"></div>
 <div class="slider"><b>Antes</b><input id="mezcla" type="range" min="0" max="100" value="0"><b>Después</b><span class="est" id="estado">render pendiente</span></div>
 <div class="mini"><svg id="minisvg" width="220" height="70"></svg></div>
 <div class="brujula"><i id="aguja"></i></div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.160.0/three.min.js"></script>
 <script>
 // ============================================================
-// Recorrido 360 (BORRADOR · 13-sep-2026)
-// Puntos cada ~10 m sobre la ruta. Cada punto tiene su panorama
-// «antes» (cosido de Street View) y, cuando exista, un «después»
-// (render del diseño urbano) en despues/<id>.jpg. El slider mezcla
-// ambos con la misma orientación. Flechas doradas = puntos vecinos.
+// Recorrido 360 · v2 (14-sep-2026)
+// - Puntos cada ~20 m. Cada punto: panorama «antes» cosido de Street
+//   View y, cuando exista, «después» en despues/<id>.jpg (slider).
+// - Solo giro horizontal (el horizonte no se mueve), campo amplio.
+// - Al llegar a un punto la vista queda mirando al SIGUIENTE punto.
+// - Flechas y acciones viven DENTRO de la esfera (three.js), así se
+//   mueven con la imagen y no «flotan».
+// - ?embed=1: modo pop-up dentro del tablero (avisa al padre el punto).
 // ============================================================
-const params=new URLSearchParams(location.search);
-let RUTAS=null, DATA=null, idx=0, yaw=0, pitch=0, auto=false, modoAccion=false, ACCIONES=[], pendiente=null;
+const params=new URLSearchParams(location.search); const EMBED=params.get('embed')==='1'; if(EMBED) document.body.classList.add('embed');
+let RUTAS=null, DATA=null, idx=0, yaw=0, auto=false, modoAccion=false, ACCIONES=[], pendiente=null;
+const PITCH=-0.04; // apenas por debajo del horizonte, fijo
 const canvas=document.getElementById('c'); const ren=new THREE.WebGLRenderer({canvas,antialias:true}); ren.setPixelRatio(Math.min(devicePixelRatio,2)); ren.outputColorSpace=THREE.SRGBColorSpace;
-const esc=new THREE.Scene(); const cam=new THREE.PerspectiveCamera(75,1,0.1,100);
+const esc=new THREE.Scene(); const cam=new THREE.PerspectiveCamera(95,1,0.1,100);
 const geo=new THREE.SphereGeometry(50,64,48); geo.scale(-1,1,1);
 const matA=new THREE.MeshBasicMaterial({color:'#222'}); const matB=new THREE.MeshBasicMaterial({transparent:true,opacity:0,color:'#fff'});
 const esfA=new THREE.Mesh(geo,matA); const esfB=new THREE.Mesh(geo.clone(),matB); esfB.renderOrder=1; esc.add(esfA,esfB);
+esfA.rotation.y=-Math.PI/2; esfB.rotation.y=-Math.PI/2; // u=0.5 de la equirect = norte (−Z)
 const loader=new THREE.TextureLoader();
 function cargarTex(url){ return new Promise((ok)=>loader.load(url,t=>{t.colorSpace=THREE.SRGBColorSpace; ok(t)},undefined,()=>ok(null))) }
-// equirect: yaw 0 = norte. El texel u=0.5 debe quedar al norte (−Z en three). Con la esfera invertida y sin rotar, u=0.5 cae en +X; giramos la esfera −90°.
-esfA.rotation.y=-Math.PI/2; esfB.rotation.y=-Math.PI/2;
-async function irA(i){
+// azimut (desde el norte, horario) → posición en la esfera a radio r y elevación e
+function enEsfera(az,elev,r){ return new THREE.Vector3(Math.sin(az)*Math.cos(elev)*r, Math.sin(elev)*r, -Math.cos(az)*Math.cos(elev)*r) }
+function rumbo(a,b){ const dy=(b.lat-a.lat)*110574, dx=(b.lng-a.lng)*111320*Math.cos(a.lat*Math.PI/180); return Math.atan2(dx,dy) }
+function metros(a,b){ return Math.round(Math.hypot((b.lat-a.lat)*110574,(b.lng-a.lng)*111320*Math.cos(a.lat*Math.PI/180))) }
+// --- sprites con texto (etiquetas embebidas) ---
+function spriteTexto(lineas,{fondo='rgba(20,16,16,.86)',borde='#FFB84D',color='#F2EAD9',ancho=300}={}){ const cv=document.createElement('canvas'); cv.width=ancho*2; cv.height=(28+lineas.length*30)*2; const g=cv.getContext('2d'); g.scale(2,2);
+  g.fillStyle=fondo; g.strokeStyle=borde; g.lineWidth=2; g.beginPath(); g.roundRect(2,2,ancho-4,cv.height/2-4,9); g.fill(); g.stroke();
+  g.fillStyle=color; g.textAlign='center'; lineas.forEach((l,i)=>{ g.font=(i?'500 15px':'800 17px')+' Montserrat, sans-serif'; g.fillStyle=i?'#B7A890':color; g.fillText(l,ancho/2,30+i*30) });
+  const t=new THREE.CanvasTexture(cv); t.colorSpace=THREE.SRGBColorSpace; const s=new THREE.Sprite(new THREE.SpriteMaterial({map:t,transparent:true,depthTest:false})); s.scale.set(ancho/44,(cv.height/2)/44,1); s.renderOrder=3; return s }
+// --- flechas embebidas: disco en el piso + chevron + etiqueta ---
+const grupoUI=new THREE.Group(); esc.add(grupoUI); let clicables=[];
+function flechaHacia(az,texto,dist,alClic){ const g=new THREE.Group();
+  const disco=new THREE.Mesh(new THREE.RingGeometry(1.6,2.6,40),new THREE.MeshBasicMaterial({color:'#FFB84D',transparent:true,opacity:.85,side:THREE.DoubleSide,depthTest:false})); disco.rotation.x=-Math.PI/2;
+  const chev=new THREE.Mesh(new THREE.ShapeGeometry((()=>{const s=new THREE.Shape(); s.moveTo(0,2.2); s.lineTo(1.5,0); s.lineTo(0.6,0); s.lineTo(0.6,-1.6); s.lineTo(-0.6,-1.6); s.lineTo(-0.6,0); s.lineTo(-1.5,0); s.closePath(); return s})()),new THREE.MeshBasicMaterial({color:'#141010',transparent:true,opacity:.9,depthTest:false})); chev.rotation.x=-Math.PI/2; chev.position.y=0.02;
+  g.add(disco,chev); g.position.copy(enEsfera(az,-0.32,32)); g.rotation.set(0,-az,0); // el chevron apunta hacia el azimut
+  const et=spriteTexto([texto,`${dist} m`],{ancho:220}); et.position.copy(enEsfera(az,-0.19,32));
+  grupoUI.add(g); grupoUI.add(et); [disco,chev,et].forEach(o=>{o.userData.clic=alClic; clicables.push(o)}); return g }
+function pinAccion(a){ const az=a.yaw, el=a.pitch||0; const s=spriteTexto([a.texto,(a.tipo||'')+(a.origen==='local'?' · sin subir':'')],{borde:'#8FA382',ancho:260}); s.position.copy(enEsfera(az,el,30));
+  const guia=new THREE.Mesh(new THREE.SphereGeometry(0.5,12,10),new THREE.MeshBasicMaterial({color:'#8FA382',depthTest:false})); guia.position.copy(enEsfera(az,el-0.05,30)); grupoUI.add(s,guia);
+  s.userData.clic=()=>{ if(a.origen==='local'&&confirm('¿Borrar esta acción?')){ ACCIONES=ACCIONES.filter(x=>x!==a); guardarLocal(); pintarUI() } }; clicables.push(s) }
+function pintarUI(){ while(grupoUI.children.length) grupoUI.remove(grupoUI.children[0]); clicables=[]; const p=DATA.puntos[idx];
+  [[idx-1,'Anterior'],[idx+1,'Siguiente']].forEach(([j,txt])=>{ if(j<0||j>=DATA.puntos.length) return; const q=DATA.puntos[j]; flechaHacia(rumbo(p,q),txt,metros(p,q),()=>irA(j)) });
+  ACCIONES.filter(a=>a.punto===p.id).forEach(pinAccion) }
+async function irA(i,orientar=true){
   idx=Math.max(0,Math.min(DATA.puntos.length-1,i)); const p=DATA.puntos[idx];
   document.getElementById('titulo').firstChild.textContent=p.nombre; document.getElementById('sub').textContent=`${DATA.nombre} · punto ${p.orden} de ${DATA.puntos.length}${modoAccion?' · modo acción: toca lo que quieras mejorar':''}`;
-  history.replaceState(null,'','?r='+encodeURIComponent(DATA.id)+'&p='+encodeURIComponent(p.id));
+  history.replaceState(null,'','?'+(EMBED?'embed=1&':'')+'r='+encodeURIComponent(DATA.id)+'&p='+encodeURIComponent(p.id));
+  if(EMBED&&window.parent!==window) window.parent.postMessage({tipo:'recorrido360',ruta:DATA.id,punto:p.id,lat:p.lat,lng:p.lng,orden:p.orden},'*');
+  const sig=DATA.puntos[idx+1]||DATA.puntos[idx-1]; if(orientar&&sig) yaw=rumbo(p,sig);
   const [a,b]=await Promise.all([cargarTex(p.id+'.jpg'),cargarTex('despues/'+p.id+'.jpg')]);
   if(a){ matA.map=a; matA.color.set('#fff'); matA.needsUpdate=true }
   const m=document.getElementById('mezcla'), est=document.getElementById('estado');
-  if(b){ matB.map=b; matB.needsUpdate=true; m.disabled=false; est.textContent='render del después listo' }
-  else { matB.map=null; m.disabled=true; m.value=0; matB.opacity=0; est.textContent='después: render pendiente (se decide con las mejoras urbanas)' }
-  pintarFlechas(); pintarMini(); pintarAcciones();
+  if(b){ matB.map=b; matB.needsUpdate=true; m.disabled=false; est.textContent='render del después listo' } else { matB.map=null; m.disabled=true; m.value=0; matB.opacity=0; est.textContent='después: render pendiente' }
+  pintarUI(); pintarMini();
 }
 document.getElementById('mezcla').oninput=(e)=>{ matB.opacity=e.target.value/100 };
-function rumbo(a,b){ const dy=(b.lat-a.lat)*110574, dx=(b.lng-a.lng)*111320*Math.cos(a.lat*Math.PI/180); return Math.atan2(dx,dy) } // desde el norte, horario
-const cont=document.getElementById('flechas'); let flechas=[];
-function pintarFlechas(){ cont.innerHTML=''; flechas=[]; const p=DATA.puntos[idx];
-  [[idx-1,'anterior'],[idx+1,'siguiente']].forEach(([j,txt])=>{ if(j<0||j>=DATA.puntos.length) return; const q=DATA.puntos[j];
-    const el=document.createElement('div'); el.className='flecha'; el.innerHTML=`<svg width="18" height="18" viewBox="0 0 24 24" fill="#FFB84D"><path d="M12 2l7 9h-4v11h-6V11H5z"/></svg>${txt}<br>${Math.round(Math.hypot((q.lat-p.lat)*110574,(q.lng-p.lng)*111320*0.874))} m`;
-    el.onclick=()=>irA(j); cont.appendChild(el); flechas.push({el,az:rumbo(p,q)}) }) }
 function pintarMini(){ const s=document.getElementById('minisvg'); const P=DATA.puntos; const xs=P.map(p=>p.lng), ys=P.map(p=>p.lat);
   const x0=Math.min(...xs),x1=Math.max(...xs),y0=Math.min(...ys),y1=Math.max(...ys); const sx=(v)=>10+(v-x0)/((x1-x0)||1)*200, sy=(v)=>60-(v-y0)/((y1-y0)||1)*50;
-  s.innerHTML=`<polyline points="${P.map(p=>sx(p.lng)+','+sy(p.lat)).join(' ')}" fill="none" stroke="#8FA382" stroke-width="3" stroke-linecap="round"/>`+P.map((p,i)=>`<circle cx="${sx(p.lng)}" cy="${sy(p.lat)}" r="${i===idx?6:4}" fill="${i===idx?'#FFB84D':'#141010'}" stroke="#C9A45C" stroke-width="1.5" data-i="${i}"/>`).join('');
+  s.innerHTML=`<polyline points="${P.map(p=>sx(p.lng)+','+sy(p.lat)).join(' ')}" fill="none" stroke="${DATA.color||'#8FA382'}" stroke-width="3" stroke-linecap="round"/>`+P.map((p,i)=>`<circle cx="${sx(p.lng)}" cy="${sy(p.lat)}" r="${i===idx?6:4}" fill="${i===idx?'#FFB84D':'#141010'}" stroke="#C9A45C" stroke-width="1.5" data-i="${i}"/>`).join('');
   s.querySelectorAll('circle').forEach(c=>c.onclick=()=>irA(+c.dataset.i)) }
-// controles
-let arr=null; canvas.addEventListener('pointerdown',e=>{arr={x:e.clientX,y:e.clientY,y0:yaw,p0:pitch}; canvas.setPointerCapture(e.pointerId); auto=false; document.getElementById('bAuto').classList.remove('on')});
-canvas.addEventListener('pointermove',e=>{ if(!arr) return; yaw=arr.y0-(e.clientX-arr.x)*0.0032; pitch=Math.max(-1.2,Math.min(1.2,arr.p0+(e.clientY-arr.y)*0.0032)) });
-canvas.addEventListener('pointerup',()=>{arr=null}); canvas.addEventListener('wheel',e=>{ cam.fov=Math.max(35,Math.min(100,cam.fov+e.deltaY*0.03)); cam.updateProjectionMatrix() },{passive:true});
-document.getElementById('bAuto').onclick=function(){ auto=!auto; this.classList.toggle('on',auto) };
-addEventListener('keydown',e=>{ if(e.key==='ArrowRight'&&e.shiftKey) irA(idx+1); if(e.key==='ArrowLeft'&&e.shiftKey) irA(idx-1) });
-function ajustar(){ ren.setSize(innerWidth,innerHeight,false); cam.aspect=innerWidth/innerHeight; cam.updateProjectionMatrix() } addEventListener('resize',ajustar); ajustar();
-function frame(){ if(auto) yaw-=0.0025;
-  // yaw: 0 = norte (−Z). rotation.y positivo gira a la izquierda; azimut horario ⇒ rotation.y = −yaw
-  cam.rotation.set(0,0,0,'YXZ'); cam.rotation.y=-yaw; cam.rotation.x=-pitch; ren.render(esc,cam);
-  document.getElementById('aguja').style.transform=`rotate(${-yaw*180/Math.PI}deg)`;
-  const f=cam.fov*Math.PI/180; flechas.forEach(({el,az})=>{ let d=az-yaw; d=Math.atan2(Math.sin(d),Math.cos(d)); const vis=Math.abs(d)<f*0.9; el.style.display=vis?'flex':'none'; if(vis){ const x=innerWidth/2+Math.tan(d)/Math.tan(f*cam.aspect/2)*(innerWidth/2)*0.9; el.style.left=x+'px'; el.style.top=(innerHeight*0.72)+'px' } });
-  requestAnimationFrame(frame) }
-// --- acciones (puntos de acción dentro del 360) ---
-// Las del repositorio viven en acciones.json; las que marcas aquí se guardan en tu navegador y se copian con «Copiar acciones» para subirlas.
+// --- acciones ---
 function cargarAcciones(){ let loc=[]; try{ loc=JSON.parse(localStorage.getItem('amalaya_acciones360')||'[]') }catch{} return fetch('acciones.json').then(r=>r.ok?r.json():[]).catch(()=>[]).then(rep=>{ ACCIONES=[...rep.map(a=>({...a,origen:'repo'})),...loc.map(a=>({...a,origen:'local'}))] }) }
 function guardarLocal(){ try{ localStorage.setItem('amalaya_acciones360',JSON.stringify(ACCIONES.filter(a=>a.origen==='local').map(({origen,...a})=>a))) }catch{} }
-const contA=document.getElementById('acciones'); let pins=[];
-function pintarAcciones(){ contA.innerHTML=''; pins=[]; const p=DATA.puntos[idx]; ACCIONES.filter(a=>a.punto===p.id).forEach(a=>{ const el=document.createElement('div'); el.className='accion'; el.innerHTML=`<small>${a.tipo}${a.origen==='local'?' · sin subir':''}</small>${a.texto}`; el.title='Clic para borrar (solo las tuyas)'; el.onclick=()=>{ if(a.origen==='local'&&confirm('¿Borrar esta acción?')){ ACCIONES=ACCIONES.filter(x=>x!==a); guardarLocal(); pintarAcciones() } }; contA.appendChild(el); pins.push({el,az:a.yaw,el2:a.pitch}) }) }
 document.getElementById('bAccion').onclick=function(){ modoAccion=!modoAccion; this.classList.toggle('on',modoAccion); canvas.style.cursor=modoAccion?'crosshair':'grab' };
 document.getElementById('bExportar').onclick=async function(){ const txt=JSON.stringify(ACCIONES.map(({origen,...a})=>a),null,1); try{ await navigator.clipboard.writeText(txt); this.textContent='Copiado ✓'; setTimeout(()=>this.textContent='Copiar acciones',1500) }catch{ prompt('Copia este JSON:',txt) } };
-canvas.addEventListener('click',(e)=>{ if(!modoAccion||!DATA) return; if(arr&&arr.mov) return; // dirección del clic
-  const f=cam.fov*Math.PI/180; const nx=(e.clientX/innerWidth)*2-1, ny=1-(e.clientY/innerHeight)*2; const dy=Math.atan(nx*Math.tan(f/2)*cam.aspect), dp=Math.atan(ny*Math.tan(f/2));
-  pendiente={punto:DATA.puntos[idx].id, ruta:DATA.id, yaw:yaw+dy, pitch:pitch-dp}; document.getElementById('formAccion').style.display='flex'; document.getElementById('txtAccion').value=''; document.getElementById('txtAccion').focus() });
-document.getElementById('okAccion').onclick=()=>{ const t=document.getElementById('txtAccion').value.trim(); if(!t||!pendiente) return; ACCIONES.push({...pendiente,texto:t,tipo:document.getElementById('tipoAccion').value,origen:'local'}); guardarLocal(); pendiente=null; document.getElementById('formAccion').style.display='none'; pintarAcciones() };
+document.getElementById('okAccion').onclick=()=>{ const t=document.getElementById('txtAccion').value.trim(); if(!t||!pendiente) return; ACCIONES.push({...pendiente,texto:t,tipo:document.getElementById('tipoAccion').value,origen:'local'}); guardarLocal(); pendiente=null; document.getElementById('formAccion').style.display='none'; pintarUI() };
 document.getElementById('noAccion').onclick=()=>{ pendiente=null; document.getElementById('formAccion').style.display='none' };
-const sel=document.getElementById('selRuta'); sel.onchange=()=>{ DATA=RUTAS.rutas.find(r=>r.id===sel.value); yaw=Math.PI*0.43; irA(0) };
+// --- controles: solo giro horizontal ---
+let arr=null; const ray=new THREE.Raycaster();
+canvas.addEventListener('pointerdown',e=>{arr={x:e.clientX,y0:yaw,mov:false}; canvas.setPointerCapture(e.pointerId); auto=false; document.getElementById('bAuto').classList.remove('on')});
+canvas.addEventListener('pointermove',e=>{ if(!arr) return; if(Math.abs(e.clientX-arr.x)>4) arr.mov=true; yaw=arr.y0-(e.clientX-arr.x)*0.0035 });
+canvas.addEventListener('pointerup',e=>{ const mov=arr&&arr.mov; arr=null; if(mov) return;
+  const v=new THREE.Vector2((e.clientX/innerWidth)*2-1,-(e.clientY/innerHeight)*2+1); ray.setFromCamera(v,cam);
+  const h=ray.intersectObjects(clicables,false)[0]; if(h&&h.object.userData.clic){ h.object.userData.clic(); return }
+  if(modoAccion&&DATA){ const f=cam.fov*Math.PI/180; const dy=Math.atan(v.x*Math.tan(f/2)*cam.aspect), dp=Math.atan(v.y*Math.tan(f/2)); pendiente={punto:DATA.puntos[idx].id,ruta:DATA.id,yaw:yaw+dy,pitch:PITCH+dp}; document.getElementById('formAccion').style.display='flex'; document.getElementById('txtAccion').value=''; document.getElementById('txtAccion').focus() } });
+canvas.addEventListener('wheel',e=>{ cam.fov=Math.max(55,Math.min(110,cam.fov+e.deltaY*0.03)); cam.updateProjectionMatrix() },{passive:true});
+document.getElementById('bAuto').onclick=function(){ auto=!auto; this.classList.toggle('on',auto) };
+addEventListener('keydown',e=>{ if(e.key==='ArrowRight'&&e.shiftKey) irA(idx+1); if(e.key==='ArrowLeft'&&e.shiftKey) irA(idx-1) });
+const sel=document.getElementById('selRuta'); sel.onchange=()=>{ DATA=RUTAS.rutas.find(r=>r.id===sel.value); irA(0) };
+addEventListener('message',(e)=>{ const d=e.data||{}; if(d.tipo==='ir360'&&RUTAS){ const R=RUTAS.rutas.find(r=>r.id===d.ruta)||RUTAS.rutas.find(r=>r.puntos.some(p=>p.id===d.punto)); if(!R) return; DATA=R; sel.value=R.id; irA(Math.max(0,R.puntos.findIndex(p=>p.id===d.punto))) } });
+function ajustar(){ ren.setSize(innerWidth,innerHeight,false); cam.aspect=innerWidth/innerHeight; cam.updateProjectionMatrix() } addEventListener('resize',ajustar); ajustar();
+function frame(){ if(auto) yaw+=0.002; cam.rotation.set(0,0,0,'YXZ'); cam.rotation.y=-yaw; cam.rotation.x=PITCH; ren.render(esc,cam); document.getElementById('aguja').style.transform=`rotate(${-yaw*180/Math.PI}deg)`; requestAnimationFrame(frame) }
 fetch('rutas.json').then(r=>r.json()).then(async d=>{ RUTAS=d; await cargarAcciones(); sel.innerHTML=d.rutas.map(r=>`<option value="${r.id}">${r.nombre} · ${r.puntos.length} pts</option>`).join('');
   const rq=params.get('r'), q=params.get('p'); DATA=d.rutas.find(r=>r.id===rq)||d.rutas.find(r=>r.puntos.some(p=>p.id===q))||d.rutas[0]; sel.value=DATA.id;
-  const i=Math.max(0,DATA.puntos.findIndex(p=>p.id===q)); yaw=Math.PI*0.43; irA(i); requestAnimationFrame(frame) });
+  irA(Math.max(0,DATA.puntos.findIndex(p=>p.id===q))); requestAnimationFrame(frame) });
 </script></body></html>

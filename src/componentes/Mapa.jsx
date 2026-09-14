@@ -224,61 +224,48 @@ export default function Mapa() {
       <div className="max-w-6xl mx-auto px-4 pt-4 pb-2 flex items-center gap-2 flex-wrap">
         <h2 className="font-cartel font-normal uppercase tracking-wide text-2xl">El polígono</h2>
 
-        {/* Selector de capa */}
-        <div className="flex rounded-xl border border-linea overflow-hidden ml-2">
-          {[['3d', 'Ciudad 3D'], ['espacios', 'Plano'], ['rutas', 'Rutas']].map(([v, titulo]) => (
-            <button
-              key={v}
-              className={`px-3 py-1.5 text-sm transition-colors duration-micro ease-casa
-                ${vista === v ? 'bg-oro text-noche font-medium' : 'text-arena hover:text-marfil'}`}
-              onClick={() => {
-                setVista(v)
-                setAbierto(null); setRecorrido(null)
-                setModoEdicion(false); setSeleccion(null)
-                setEditandoPuntos(false)
-              }}
-            >
-              {titulo}
-            </button>
-          ))}
-        </div>
+        <span className="text-xs text-terciario ml-2 hidden sm:inline">una sola maqueta · gira por caras · toca un punto para el 360</span>
 
         <div className="flex-1" />
 
+        {/* Rutas: la barra de rutas se abre sobre el mismo mapa */}
+        {puedeEditar && (
+          <button
+            className={enRutas ? 'boton-primario !px-3 !py-2 text-sm' : 'boton-secundario !px-3 !py-2 text-sm'}
+            onClick={() => { setVista(enRutas ? '3d' : 'rutas'); setModoEdicion(false); setSeleccion(null); setEditandoPuntos(false) }}
+          >
+            {enRutas ? 'Cerrar rutas' : 'Rutas'}
+          </button>
+        )}
         {enRutas && (
           <button className="boton-secundario !px-3 !py-2 text-sm" onClick={() => setVerPeticiones(true)}>
             <span className="flex items-center gap-1.5"><ClipboardList size={14} /> Peticiones</span>
           </button>
         )}
-
-        {!enRutas && !en3d && puedeEditar && modoEdicion && seleccion && (
-          <div className="flex items-center gap-1" aria-label="Ajuste fino de 1%">
-            <button className="boton-secundario !px-2 !py-2" onClick={() => empujar(-1, 0)} title="1% a la izquierda"><ArrowLeft size={14} /></button>
-            <button className="boton-secundario !px-2 !py-2" onClick={() => empujar(0, -1)} title="1% arriba"><ArrowUp size={14} /></button>
-            <button className="boton-secundario !px-2 !py-2" onClick={() => empujar(0, 1)} title="1% abajo"><ArrowDown size={14} /></button>
-            <button className="boton-secundario !px-2 !py-2" onClick={() => empujar(1, 0)} title="1% a la derecha"><ArrowRight size={14} /></button>
-          </div>
-        )}
-        {!enRutas && !en3d && puedeEditar && (
+        {!enRutas && puedeEditar && (
           <>
             <button
               className={modoEdicion ? 'boton-primario !px-3 !py-2 text-sm' : 'boton-secundario !px-3 !py-2 text-sm'}
               onClick={() => { setModoEdicion(!modoEdicion); setSeleccion(null); setAbierto(null) }}
             >
-              {modoEdicion ? (<span className="flex items-center gap-1.5"><Check size={14} /> Terminar</span>) : (<span className="flex items-center gap-1.5"><Pencil size={14} /> Editar mapa</span>)}
+              {modoEdicion ? (<span className="flex items-center gap-1.5"><Check size={14} /> Terminar</span>) : (<span className="flex items-center gap-1.5"><Pencil size={14} /> Mover espacios</span>)}
             </button>
-            {/* En pantalla ancha, el alta vive en la barra; en teléfono es el FAB */}
             <button className="boton-primario !px-3 !py-2 text-sm hidden sm:block" onClick={() => setCreando(true)} title="Crear espacio">
               <span className="flex items-center gap-1.5"><Plus size={16} /> Espacio</span>
             </button>
           </>
         )}
+
       </div>
 
-      {!enRutas && !en3d && modoEdicion && (
+      {modoEdicion && (
         <p className="max-w-6xl mx-auto px-4 pb-2 text-terciario text-sm">
-          Arrastra una zona para moverla; el cuadrito de la esquina la
-          redimensiona. Cada cambio se guarda al soltar.
+          Arrastra un pin a su lugar; se guarda en el Sheet al soltar.
+        </p>
+      )}
+      {enRutas && editandoPuntos && (
+        <p className="max-w-6xl mx-auto px-4 pb-2 text-terciario text-sm">
+          Toca el mapa para agregar puntos a la ruta seleccionada.
         </p>
       )}
 
@@ -297,10 +284,27 @@ export default function Mapa() {
 
       {/* El mapa */}
       <div className="px-2 pb-6">
-        {en3d && (
+        {(
           <div className="relative mx-auto rounded-2xl overflow-hidden border border-linea" style={{ height: 'calc(100dvh - 190px)', minHeight: '420px' }}>
             <Mapa3D
               espacios={espacios} rutas={rutas} paradas={paradas} onAbrir={setAbierto}
+              edicion={{
+                modoEdicion,
+                editandoPuntos: enRutas && editandoPuntos,
+                rutaSel,
+                onMoverEspacio: (id, cx, cy) => {
+                  const e = espacios.find((x) => x.id === id)
+                  if (!e) return
+                  const z = zonaDeFila(e)
+                  editarFila('Espacios', id, { pos_x: acot(cx - z.w / 2, 0, 100 - z.w).toFixed(2), pos_y: acot(cy - z.h / 2, 0, 100 - z.h).toFixed(2) })
+                },
+                onAgregarPunto: (px, py) => {
+                  const ruta = rutas.find((r) => r.id === rutaSel)
+                  if (!ruta) return
+                  const pts = leerPuntos(ruta)
+                  editarFila('Rutas', rutaSel, { puntos: guardarRuta(ruta, { puntos: [...pts, [Number(px.toFixed(2)), Number(py.toFixed(2))]] }) })
+                },
+              }}
               onRecorrer={(paradaId) => {
                 const p = paradas.find((x) => String(x.id) === String(paradaId))
                 if (!p) return
@@ -315,7 +319,7 @@ export default function Mapa() {
           ref={contRef}
           className="relative mx-auto rounded-2xl overflow-hidden border border-linea"
           style={{
-            display: en3d ? 'none' : undefined,
+            display: 'none',
             aspectRatio: proporcion,
             maxHeight: 'calc(100dvh - 150px)',
             maxWidth: '100%',
@@ -513,7 +517,7 @@ export default function Mapa() {
       </div>
 
       {/* FAB de alta en teléfono: al alcance del pulgar, arriba de la nav */}
-      {!enRutas && !en3d && puedeEditar && !espacioAbierto && (
+      {!enRutas && puedeEditar && !espacioAbierto && (
         <button
           className="sm:hidden fixed right-4 bottom-20 z-40 w-14 h-14 rounded-full bg-oro text-noche
             flex items-center justify-center shadow-2xl active:scale-95

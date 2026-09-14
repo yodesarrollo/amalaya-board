@@ -13,181 +13,98 @@
      "nombre": "Guerrero peatonal · punto 1"
     },
     {
-     "id": "Y-FW8ND9zbnLF5l6UIWcHw",
-     "lat": 29.0758986,
-     "lng": -110.9554979,
-     "orden": 2,
-     "nombre": "Guerrero peatonal · punto 2"
-    },
-    {
      "id": "XLuGJnj_XmtAuKd4eXeTDw",
      "lat": 29.0758917,
      "lng": -110.9553893,
-     "orden": 3,
-     "nombre": "Guerrero peatonal · punto 3"
-    },
-    {
-     "id": "lkwoj4UK5iKKI8Gi9D0E0Q",
-     "lat": 29.0759011,
-     "lng": -110.955282,
-     "orden": 4,
-     "nombre": "Guerrero peatonal · punto 4"
+     "orden": 2,
+     "nombre": "Guerrero peatonal · punto 2"
     },
     {
      "id": "Apyr0uKeZr_XWmfLfLeBjQ",
      "lat": 29.0759089,
      "lng": -110.9551769,
-     "orden": 5,
-     "nombre": "Guerrero peatonal · punto 5"
-    },
-    {
-     "id": "oPeLVib1XctGRnpbg4mQDA",
-     "lat": 29.0759186,
-     "lng": -110.9550743,
-     "orden": 6,
-     "nombre": "Guerrero peatonal · punto 6"
+     "orden": 3,
+     "nombre": "Guerrero peatonal · punto 3"
     },
     {
      "id": "h45BeWMtTog-TgjPTSYn6g",
      "lat": 29.0759275,
      "lng": -110.9549709,
-     "orden": 7,
-     "nombre": "Guerrero peatonal · punto 7"
-    },
-    {
-     "id": "DcZ8cdodG5cYJlnY4i-aQg",
-     "lat": 29.0758577,
-     "lng": -110.9548904,
-     "orden": 8,
-     "nombre": "Guerrero peatonal · punto 8"
+     "orden": 4,
+     "nombre": "Guerrero peatonal · punto 4"
     },
     {
      "id": "133OIriRrcYkbV0Y2VCPng",
      "lat": 29.0759512,
      "lng": -110.9546564,
-     "orden": 9,
-     "nombre": "Guerrero peatonal · punto 9"
-    },
-    {
-     "id": "so9h7jFxMM5qB1cmB-UwXg",
-     "lat": 29.0759606,
-     "lng": -110.9545539,
-     "orden": 10,
-     "nombre": "Guerrero peatonal · punto 10"
+     "orden": 5,
+     "nombre": "Guerrero peatonal · punto 5"
     },
     {
      "id": "rgjklAAPPcOxEB4RX95K1w",
      "lat": 29.0759672,
      "lng": -110.9544534,
-     "orden": 11,
-     "nombre": "Guerrero peatonal · punto 11"
-    },
-    {
-     "id": "4DxYkyu4zzPEg4vuIzKx-g",
-     "lat": 29.0759728,
-     "lng": -110.9543528,
-     "orden": 12,
-     "nombre": "Guerrero peatonal · punto 12"
+     "orden": 6,
+     "nombre": "Guerrero peatonal · punto 6"
     },
     {
      "id": "kvThuvZHnPY0bB-quNNqWg",
      "lat": 29.0759816,
      "lng": -110.9542519,
-     "orden": 13,
-     "nombre": "Guerrero peatonal · punto 13"
-    },
-    {
-     "id": "nRi6H48db68OZrlzAj_BrQ",
-     "lat": 29.0759905,
-     "lng": -110.9541364,
-     "orden": 14,
-     "nombre": "Guerrero peatonal · punto 14"
+     "orden": 7,
+     "nombre": "Guerrero peatonal · punto 7"
     },
     {
      "id": "mxEvNEtgLgOSxKsRFwCiHg",
      "lat": 29.0759921,
      "lng": -110.9540252,
-     "orden": 15,
-     "nombre": "Guerrero peatonal · punto 15"
-    },
-    {
-     "id": "H7TCsJ7n1evd_55YFl-aug",
-     "lat": 29.0759937,
-     "lng": -110.9539189,
-     "orden": 16,
-     "nombre": "Guerrero peatonal · punto 16"
+     "orden": 8,
+     "nombre": "Guerrero peatonal · punto 8"
     },
     {
      "id": "lKsrvsfkAzaSnxEQUwrxfA",
      "lat": 29.075998,
      "lng": -110.9538125,
-     "orden": 17,
-     "nombre": "Guerrero peatonal · punto 17"
-    },
-    {
-     "id": "2ojGIDTgBIX4RS3Ok9mgkA",
-     "lat": 29.076004,
-     "lng": -110.9537119,
-     "orden": 18,
-     "nombre": "Guerrero peatonal · punto 18"
+     "orden": 9,
+     "nombre": "Guerrero peatonal · punto 9"
     },
     {
      "id": "lYkbkN5HLT-6YQS4vIsd2g",
      "lat": 29.0760107,
      "lng": -110.9536147,
-     "orden": 19,
-     "nombre": "Guerrero peatonal · punto 19"
-    },
-    {
-     "id": "_W5xlEapZ70CzhSCL7yiGw",
-     "lat": 29.0760163,
-     "lng": -110.9535107,
-     "orden": 20,
-     "nombre": "Guerrero peatonal · punto 20"
+     "orden": 10,
+     "nombre": "Guerrero peatonal · punto 10"
     },
     {
      "id": "MtTpU1NWETczZgzdClblwg",
      "lat": 29.0760224,
      "lng": -110.953404,
-     "orden": 21,
-     "nombre": "Guerrero peatonal · punto 21"
-    },
-    {
-     "id": "GWbXoFnCNeQH_VhqWDnnrQ",
-     "lat": 29.076028,
-     "lng": -110.9533003,
-     "orden": 22,
-     "nombre": "Guerrero peatonal · punto 22"
+     "orden": 11,
+     "nombre": "Guerrero peatonal · punto 11"
     },
     {
      "id": "5FAUCdPN0bi6PQuYj_IQOA",
      "lat": 29.0760353,
      "lng": -110.9531972,
-     "orden": 23,
-     "nombre": "Guerrero peatonal · punto 23"
-    },
-    {
-     "id": "OfevGEazeoHcizXAeZ0pWQ",
-     "lat": 29.0760391,
-     "lng": -110.9530935,
-     "orden": 24,
-     "nombre": "Guerrero peatonal · punto 24"
+     "orden": 12,
+     "nombre": "Guerrero peatonal · punto 12"
     },
     {
      "id": "c_zMMTJvaks8XyIRT6mJCQ",
      "lat": 29.076045,
      "lng": -110.9529906,
-     "orden": 25,
-     "nombre": "Guerrero peatonal · punto 25"
+     "orden": 13,
+     "nombre": "Guerrero peatonal · punto 13"
     },
     {
      "id": "ywXPe_aoOm7HUa9l5NTdfg",
      "lat": 29.0760528,
      "lng": -110.9528858,
-     "orden": 26,
-     "nombre": "Guerrero peatonal · punto 26"
+     "orden": 14,
+     "nombre": "Guerrero peatonal · punto 14"
     }
-   ]
+   ],
+   "paso_m": 20
   },
   {
    "id": "R-002",
@@ -202,118 +119,70 @@
      "nombre": "Tumbado · punto 1"
     },
     {
-     "id": "J0kW2gdYZKWviUu-UvbTOg",
-     "lat": 29.0765316,
-     "lng": -110.9529816,
-     "orden": 2,
-     "nombre": "Tumbado · punto 2"
-    },
-    {
      "id": "77G-ooH2G6Dx2QbnJ20OAQ",
      "lat": 29.0765266,
      "lng": -110.9530857,
-     "orden": 3,
-     "nombre": "Tumbado · punto 3"
-    },
-    {
-     "id": "Wp3YHqBDgSnEhCDJ-r4nZA",
-     "lat": 29.0765245,
-     "lng": -110.9531878,
-     "orden": 4,
-     "nombre": "Tumbado · punto 4"
+     "orden": 2,
+     "nombre": "Tumbado · punto 2"
     },
     {
      "id": "Q-1EPMRJQAS7noIGDzpR4A",
      "lat": 29.0765259,
      "lng": -110.9532976,
-     "orden": 5,
-     "nombre": "Tumbado · punto 5"
-    },
-    {
-     "id": "D5wZYiwv_zEQZVFIh9f9cA",
-     "lat": 29.0765237,
-     "lng": -110.9534025,
-     "orden": 6,
-     "nombre": "Tumbado · punto 6"
+     "orden": 3,
+     "nombre": "Tumbado · punto 3"
     },
     {
      "id": "wgpwXS6VA0MdLRF6oSqDBA",
      "lat": 29.0765137,
      "lng": -110.9535049,
-     "orden": 7,
-     "nombre": "Tumbado · punto 7"
-    },
-    {
-     "id": "fmtBtDfyhlcpDwVXEfKYcw",
-     "lat": 29.0765049,
-     "lng": -110.9536031,
-     "orden": 8,
-     "nombre": "Tumbado · punto 8"
+     "orden": 4,
+     "nombre": "Tumbado · punto 4"
     },
     {
      "id": "qU0XiVpeIHZyTixjEBUfgg",
      "lat": 29.0764976,
      "lng": -110.9537044,
-     "orden": 9,
-     "nombre": "Tumbado · punto 9"
-    },
-    {
-     "id": "m8xVPsgRmAum3mCww91OOQ",
-     "lat": 29.0764908,
-     "lng": -110.953809,
-     "orden": 10,
-     "nombre": "Tumbado · punto 10"
+     "orden": 5,
+     "nombre": "Tumbado · punto 5"
     },
     {
      "id": "kwpqUP9tZmmjDfiFDIJbsg",
      "lat": 29.0764875,
      "lng": -110.9539113,
-     "orden": 11,
-     "nombre": "Tumbado · punto 11"
-    },
-    {
-     "id": "HpzPBwYFESn1j9oDknI3hw",
-     "lat": 29.0764898,
-     "lng": -110.9540101,
-     "orden": 12,
-     "nombre": "Tumbado · punto 12"
+     "orden": 6,
+     "nombre": "Tumbado · punto 6"
     },
     {
      "id": "cjTHuFQqgbHlqPDeYtUDaQ",
      "lat": 29.0764803,
      "lng": -110.9540915,
-     "orden": 13,
-     "nombre": "Tumbado · punto 13"
-    },
-    {
-     "id": "tNYb-MC3X0rg9R1waYcY6Q",
-     "lat": 29.0763578,
-     "lng": -110.9540859,
-     "orden": 14,
-     "nombre": "Tumbado · punto 14"
+     "orden": 7,
+     "nombre": "Tumbado · punto 7"
     },
     {
      "id": "uBq2wouFEgN5EkwgS-KpnQ",
      "lat": 29.076271,
      "lng": -110.9540616,
-     "orden": 15,
-     "nombre": "Tumbado · punto 15"
+     "orden": 8,
+     "nombre": "Tumbado · punto 8"
     },
     {
      "id": "alYsfrD3GsmusqDduOPDog",
      "lat": 29.0760868,
      "lng": -110.9540377,
-     "orden": 16,
-     "nombre": "Tumbado · punto 16"
+     "orden": 9,
+     "nombre": "Tumbado · punto 9"
     },
     {
      "id": "mxEvNEtgLgOSxKsRFwCiHg",
      "lat": 29.0759921,
      "lng": -110.9540252,
-     "orden": 17,
-     "nombre": "Tumbado · punto 17"
+     "orden": 10,
+     "nombre": "Tumbado · punto 10"
     }
-   ]
+   ],
+   "paso_m": 20
   },
   {
    "id": "R-003",
@@ -328,83 +197,49 @@
      "nombre": "Tirado · punto 1"
     },
     {
-     "id": "ev61pl7bibNDOn39INM-4Q",
-     "lat": 29.0774054,
-     "lng": -110.9542858,
-     "orden": 2,
-     "nombre": "Tirado · punto 2"
-    },
-    {
      "id": "jq7F20HIPyBLBgfSjH6baQ",
      "lat": 29.0773123,
      "lng": -110.9542672,
-     "orden": 3,
-     "nombre": "Tirado · punto 3"
-    },
-    {
-     "id": "pLpyFk8PLd9vgJz2YSZCmg",
-     "lat": 29.0772169,
-     "lng": -110.95425,
-     "orden": 4,
-     "nombre": "Tirado · punto 4"
+     "orden": 2,
+     "nombre": "Tirado · punto 2"
     },
     {
      "id": "2MNg6Xk9_yV3lqEALqRg4Q",
      "lat": 29.0771196,
      "lng": -110.9542297,
-     "orden": 5,
-     "nombre": "Tirado · punto 5"
-    },
-    {
-     "id": "3rqimX26IJci58-J4i455A",
-     "lat": 29.0770193,
-     "lng": -110.9542278,
-     "orden": 6,
-     "nombre": "Tirado · punto 6"
+     "orden": 3,
+     "nombre": "Tirado · punto 3"
     },
     {
      "id": "MRytS_xq5CoXCsOT5hEbPw",
      "lat": 29.076931,
      "lng": -110.9542097,
-     "orden": 7,
-     "nombre": "Tirado · punto 7"
-    },
-    {
-     "id": "SlbKXpoh3cRypOn6CYySwg",
-     "lat": 29.0768421,
-     "lng": -110.9541897,
-     "orden": 8,
-     "nombre": "Tirado · punto 8"
+     "orden": 4,
+     "nombre": "Tirado · punto 4"
     },
     {
      "id": "GXCIvmIJXDdWRJaeI9vlXQ",
      "lat": 29.0767537,
      "lng": -110.9541673,
-     "orden": 9,
-     "nombre": "Tirado · punto 9"
-    },
-    {
-     "id": "Io_SPFymRXGaYeN3dHbdlg",
-     "lat": 29.0766636,
-     "lng": -110.9541441,
-     "orden": 10,
-     "nombre": "Tirado · punto 10"
+     "orden": 5,
+     "nombre": "Tirado · punto 5"
     },
     {
      "id": "yiypNpljHNv3oHw3QCdiZA",
      "lat": 29.0765671,
      "lng": -110.9541232,
-     "orden": 11,
-     "nombre": "Tirado · punto 11"
+     "orden": 6,
+     "nombre": "Tirado · punto 6"
     },
     {
      "id": "cjTHuFQqgbHlqPDeYtUDaQ",
      "lat": 29.0764803,
      "lng": -110.9540915,
-     "orden": 12,
-     "nombre": "Tirado · punto 12"
+     "orden": 7,
+     "nombre": "Tirado · punto 7"
     }
-   ]
+   ],
+   "paso_m": 20
   },
   {
    "id": "R-000",
@@ -419,76 +254,42 @@
      "nombre": "Serdán · punto 1"
     },
     {
-     "id": "Szfjj9vwKLVdbw6QT5xtjw",
-     "lat": 29.0771576,
-     "lng": -110.9541509,
-     "orden": 2,
-     "nombre": "Serdán · punto 2"
-    },
-    {
      "id": "Kuwk3mZuIWZ2RDonhuaV9A",
      "lat": 29.0771902,
      "lng": -110.954043,
-     "orden": 3,
-     "nombre": "Serdán · punto 3"
-    },
-    {
-     "id": "Cf-Fao4eemggYJRuetSx3w",
-     "lat": 29.0771929,
-     "lng": -110.9539422,
-     "orden": 4,
-     "nombre": "Serdán · punto 4"
+     "orden": 2,
+     "nombre": "Serdán · punto 2"
     },
     {
      "id": "xKQNROLj9VMiBGpjotie5A",
      "lat": 29.0772101,
      "lng": -110.9538415,
-     "orden": 5,
-     "nombre": "Serdán · punto 5"
-    },
-    {
-     "id": "tpv4y1ErCEndgDHFQBOV6w",
-     "lat": 29.0772273,
-     "lng": -110.9537387,
-     "orden": 6,
-     "nombre": "Serdán · punto 6"
+     "orden": 3,
+     "nombre": "Serdán · punto 3"
     },
     {
      "id": "hLX5pkq4RdjBOs5Vqpw-Fw",
      "lat": 29.0772426,
      "lng": -110.9536287,
-     "orden": 7,
-     "nombre": "Serdán · punto 7"
-    },
-    {
-     "id": "h7Ur5HsLG4Jz2V7_ePx7zQ",
-     "lat": 29.0772643,
-     "lng": -110.9535105,
-     "orden": 8,
-     "nombre": "Serdán · punto 8"
+     "orden": 4,
+     "nombre": "Serdán · punto 4"
     },
     {
      "id": "dhZr59FbZyCQKcSB4CJb5w",
      "lat": 29.0772915,
      "lng": -110.953381,
-     "orden": 9,
-     "nombre": "Serdán · punto 9"
-    },
-    {
-     "id": "TgahlLYkg_dqqZBDqpEYNQ",
-     "lat": 29.0773114,
-     "lng": -110.9532772,
-     "orden": 10,
-     "nombre": "Serdán · punto 10"
+     "orden": 5,
+     "nombre": "Serdán · punto 5"
     },
     {
      "id": "Qr8oDbAjuVbJnIJg-alGgQ",
      "lat": 29.0773322,
      "lng": -110.9531713,
-     "orden": 11,
-     "nombre": "Serdán · punto 11"
+     "orden": 6,
+     "nombre": "Serdán · punto 6"
     }
-   ]
+   ],
+   "paso_m": 20
   }
  ]
 }

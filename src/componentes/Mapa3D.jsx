@@ -193,7 +193,10 @@ function vestir(m, t) {
 
 const CAPAS_DEF = { satelite: false, ciudad: true, espacios: true, rutas: true, recorrido: true, calco: false, lamina: false }
 
-export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer }) {
+export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, edicion = {} }) {
+  // edicion: { modoEdicion, editandoPuntos, rutaSel, onMoverEspacio(id, pctCentroX, pctCentroY), onAgregarPunto(pctX, pctY) }
+  const edRef = useRef(edicion)
+  useEffect(() => { edRef.current = edicion }, [edicion])
   const { datos, sesion, modo, editarFila, crearFila } = usarDatos()
   const puedeEditar = modo !== 'demo' && ['admin', 'editor'].includes(sesion?.rol)
   const geoSheet = useMemo(() => leerGeo(datos?.Config), [datos?.Config])
@@ -216,7 +219,10 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer }
   const [calibrando, setCalibrando] = useState(false)
   const [geoTemp, setGeoTemp] = useState(null)
   const geo = geoTemp || geoSheet
+  const geoRef = useRef(geo)
+  useEffect(() => { geoRef.current = geo }, [geo])
   // El monito: soltarlo en una calle abre el Street View de ese punto.
+  const [pop360, setPop360] = useState(null)             // {ruta, punto} → pop-up del recorrido 360
   const [monito, setMonito] = useState(false)          // esperando el clic
   const [punto, setPunto] = useState(null)              // {lng, lat, heading}
   const monitoRef = useRef(null)
@@ -290,6 +296,8 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer }
       m.addSource('recorrido', { type: 'geojson', data: { type: 'FeatureCollection', features: [] } })
       m.addLayer({ id: 'recorrido-linea', type: 'line', source: 'recorrido', filter: ['==', '$type', 'LineString'], layout: { 'line-cap': 'round', 'line-join': 'round' }, paint: { 'line-color': ['coalesce', ['get', 'color'], '#FFB84D'], 'line-width': 3, 'line-opacity': 0.55, 'line-dasharray': [1, 1.5] } })
       m.addLayer({ id: 'recorrido-puntos', type: 'circle', source: 'recorrido', filter: ['==', '$type', 'Point'], paint: { 'circle-radius': ['interpolate', ['linear'], ['zoom'], 14, 3, 17, 7], 'circle-color': ['coalesce', ['get', 'color'], '#FFB84D'], 'circle-stroke-color': '#FFFFFF', 'circle-stroke-width': 1.5 } })
+      m.addSource('recorrido-activo', { type: 'geojson', data: { type: 'FeatureCollection', features: [] } })
+      m.addLayer({ id: 'recorrido-activo', type: 'circle', source: 'recorrido-activo', paint: { 'circle-radius': 11, 'circle-color': '#FFB84D', 'circle-opacity': 0.35, 'circle-stroke-color': '#FFB84D', 'circle-stroke-width': 3 } })
       fetch(`${BASE}recorrido/rutas.json`).then((r) => r.json()).then((d) => {
         const feats = []
         for (const R of d.rutas || []) {
@@ -301,12 +309,14 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer }
       }).catch(() => {})
       m.on('click', 'recorrido-puntos', (ev) => {
         const f = ev.features?.[0]?.properties || {}
-        if (f.id) window.open(`${BASE}recorrido/?r=${encodeURIComponent(f.ruta || '')}&p=${encodeURIComponent(f.id)}`, '_blank', 'noopener')
+        if (f.id) setPop360({ ruta: f.ruta || '', punto: f.id })
       })
       m.on('mouseenter', 'recorrido-puntos', () => { m.getCanvas().style.cursor = 'pointer' })
       m.on('mouseleave', 'recorrido-puntos', () => { m.getCanvas().style.cursor = '' })
 
       m.on('click', (ev) => {
+        const ed = edRef.current
+        if (ed.editandoPuntos && ed.rutaSel && ed.onAgregarPunto) { const [px, py] = geoAPct(geoRef.current, ev.lngLat.lng, ev.lngLat.lat); ed.onAgregarPunto(px, py); return }
         if (!monitoActivo.current) return
         const { lng, lat } = ev.lngLat
         setPunto({ lng: Number(lng.toFixed(6)), lat: Number(lat.toFixed(6)), heading: Math.round(m.getBearing()) })
@@ -330,7 +340,7 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer }
       vestir(m, TEMAS[temaRef.current])
       setListo(true)
       // La única entrada cinematográfica: de arriba a la vista inclinada.
-      m.easeTo({ pitch: 58, bearing: -18, zoom: 16.4, duration: 1800, easing: (t) => 1 - Math.pow(1 - t, 3) })
+      m.easeTo({ pitch: 58, bearing: 0, zoom: 16.4, duration: 1800, easing: (t) => 1 - Math.pow(1 - t, 3) })
     })
     mapa.current = m
     return () => { m.remove(); mapa.current = null }
@@ -354,10 +364,13 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer }
       const tipo = NOMBRE_TIPO[String(e.tipo).toLowerCase()] || ''
       el.className = 'pin3d'
       el.innerHTML = `<span class="pin3d-nombre">${escapar(e.nombre || '')}</span>${tipo ? `<span class="pin3d-tipo">${escapar(tipo)}</span>` : ''}`
-      el.addEventListener('click', (ev) => { ev.stopPropagation(); onAbrir?.(e.id) })
-      return new maplibregl.Marker({ element: el, anchor: 'bottom', offset: [0, -6] }).setLngLat(pctAGeo(geo, x, y)).addTo(m)
+      el.addEventListener('click', (ev) => { ev.stopPropagation(); if (!edicion.modoEdicion) onAbrir?.(e.id) })
+      if (edicion.modoEdicion) el.classList.add('pin3d-editable')
+      const mk = new maplibregl.Marker({ element: el, anchor: 'bottom', offset: [0, -6], draggable: !!edicion.modoEdicion }).setLngLat(pctAGeo(geo, x, y)).addTo(m)
+      if (edicion.modoEdicion) mk.on('dragend', () => { const { lng, lat } = mk.getLngLat(); const [px, py] = geoAPct(geo, lng, lat); edicion.onMoverEspacio?.(e.id, px, py) })
+      return mk
     })
-  }, [listo, espacios, rutas, paradas, datos?.Factores, geo, onAbrir])
+  }, [listo, espacios, rutas, paradas, datos?.Factores, geo, onAbrir, edicion.modoEdicion])
 
   // --- el monito en el mapa ----------------------------------------
   useEffect(() => {
@@ -376,8 +389,8 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer }
   useEffect(() => {
     const m = mapa.current
     if (!m) return
-    m.getCanvas().style.cursor = monito ? 'crosshair' : ''
-  }, [monito])
+    m.getCanvas().style.cursor = (monito || edicion.editandoPuntos) ? 'crosshair' : ''
+  }, [monito, edicion.editandoPuntos])
 
   async function guardarParada(rutaId, nombre) {
     const [px, py] = geoAPct(geo, punto.lng, punto.lat)
@@ -389,6 +402,19 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer }
     setPunto(null)
     onRecorrer?.(fila.id)
   }
+
+  // --- el visor 360 avisa en qué punto va: lo marcamos en el mapa --------
+  useEffect(() => {
+    const alMensaje = (ev) => {
+      const d = ev.data || {}
+      if (d.tipo !== 'recorrido360' || !mapa.current) return
+      mapa.current.getSource('recorrido-activo')?.setData({ type: 'FeatureCollection', features: [{ type: 'Feature', properties: {}, geometry: { type: 'Point', coordinates: [d.lng, d.lat] } }] })
+      mapa.current.easeTo({ center: [d.lng, d.lat], duration: 600 })
+    }
+    window.addEventListener('message', alMensaje)
+    return () => window.removeEventListener('message', alMensaje)
+  }, [])
+  useEffect(() => { if (!pop360 && mapa.current && listo) mapa.current.getSource('recorrido-activo')?.setData({ type: 'FeatureCollection', features: [] }) }, [pop360, listo])
 
   // --- visibilidad de capas ---------------------------------------
   useEffect(() => {
@@ -406,15 +432,25 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer }
   }, [listo, capas, opacidadCalco, calibrando])
 
   // --- inclinación -------------------------------------------------
+  // Una sola maqueta, cuatro caras: el mapa gira 90° por clic y se mira en
+  // isométrica; «Planta» lo pone de arriba. Los volúmenes muestran sus 4 lados.
+  const [cara, setCara] = useState(0) // 0 N · 1 E · 2 S · 3 O
+  function girar(delta) {
+    const m = mapa.current
+    if (!m) return
+    const c = (cara + delta + 4) % 4
+    setCara(c); setInclinado(true)
+    m.easeTo({ bearing: c * 90, pitch: 58, duration: 700, easing: (t) => 1 - Math.pow(1 - t, 3) })
+  }
   function alternarInclinacion() {
     const m = mapa.current
     if (!m) return
     const a = !inclinado
     setInclinado(a)
-    m.easeTo({ pitch: a ? 58 : 0, bearing: a ? -18 : 0, duration: 800 })
+    m.easeTo({ pitch: a ? 58 : 0, bearing: a ? cara * 90 : 0, duration: 800 })
   }
   function centrar() {
-    mapa.current?.easeTo({ center: centroGeo(geo), zoom: 16.4, pitch: inclinado ? 58 : 0, bearing: inclinado ? -18 : 0, duration: 800 })
+    mapa.current?.easeTo({ center: centroGeo(geo), zoom: 16.4, pitch: inclinado ? 58 : 0, bearing: inclinado ? cara * 90 : 0, duration: 800 })
   }
 
   // --- calibración del plano (solo admin) ---------------------------
@@ -519,13 +555,32 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer }
         />
       )}
 
-      {/* Cámara */}
-      <div className="absolute right-3 bottom-3 flex gap-2">
+      {/* Cámara: la maqueta gira por caras */}
+      <div className="absolute right-3 bottom-3 flex gap-2 items-center">
         <button className="boton-secundario !px-3 !py-2 text-sm bg-noche/80" onClick={centrar} title="Centrar en el polígono"><Crosshair size={14} /></button>
+        <div className="flex rounded-xl border border-linea overflow-hidden bg-noche/80">
+          <button className="px-3 py-2 text-sm text-arena hover:text-marfil" onClick={() => girar(-1)} title="Girar a la izquierda">↺</button>
+          <span className="px-2 py-2 text-xs font-cartel uppercase tracking-wider text-marfil min-w-[6.5rem] text-center">{['Cara norte', 'Cara este', 'Cara sur', 'Cara oeste'][cara]}</span>
+          <button className="px-3 py-2 text-sm text-arena hover:text-marfil" onClick={() => girar(1)} title="Girar a la derecha">↻</button>
+        </div>
         <button className="boton-secundario !px-3 !py-2 text-sm bg-noche/80" onClick={alternarInclinacion}>
-          <span className="flex items-center gap-1.5"><RotateCw size={14} /> {inclinado ? 'Ver en planta' : 'Ver en 3D'}</span>
+          <span className="flex items-center gap-1.5"><RotateCw size={14} /> {inclinado ? 'Planta' : 'Maqueta'}</span>
         </button>
       </div>
+
+      {/* Pop-up del recorrido 360 (misma pantalla; el mapa sigue al visor) */}
+      {pop360 && (
+        <div className="absolute inset-2 sm:inset-auto sm:right-3 sm:bottom-16 sm:w-[min(58rem,calc(100%-1.5rem))] sm:h-[min(34rem,calc(100%-6rem))] z-20 bg-noche border border-oro rounded-2xl overflow-hidden shadow-2xl flex flex-col">
+          <div className="flex items-center gap-2 px-3 py-1.5 border-b border-linea bg-superficie">
+            <PersonStanding size={14} className="text-oro" />
+            <span className="font-cartel uppercase tracking-wide text-xs">Recorrido 360 · antes / después</span>
+            <span className="flex-1" />
+            <a className="text-xs text-arena hover:text-marfil" href={`${BASE}recorrido/?r=${encodeURIComponent(pop360.ruta)}&p=${encodeURIComponent(pop360.punto)}`} target="_blank" rel="noreferrer">Pantalla completa</a>
+            <button className="text-arena hover:text-marfil ml-2" onClick={() => setPop360(null)} aria-label="Cerrar"><X size={16} /></button>
+          </div>
+          <iframe title="Recorrido 360" src={`${BASE}recorrido/?embed=1&r=${encodeURIComponent(pop360.ruta)}&p=${encodeURIComponent(pop360.punto)}`} className="flex-1 w-full border-0 bg-noche" allow="fullscreen" />
+        </div>
+      )}
 
       {/* Leyenda con los colores de la lámina */}
       <div className="absolute left-3 bottom-3 bg-noche/85 border border-linea rounded-xl px-3 py-2 text-[11px] text-arena leading-relaxed pointer-events-none flex flex-wrap gap-x-3 gap-y-1 max-w-[70%]">
