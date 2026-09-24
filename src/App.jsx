@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Map as MapIcon, BarChart3, FileText, Users as UsersIcon, LifeBuoy } from 'lucide-react'
+import { Map as MapIcon, BarChart3, FileText, LifeBuoy } from 'lucide-react'
 import { usarDatos } from './datos.jsx'
 import Acceso from './componentes/Acceso.jsx'
 import Encabezado from './componentes/Encabezado.jsx'
@@ -7,7 +7,6 @@ import LineaAmalaya from './componentes/LineaAmalaya.jsx'
 import Mapa from './componentes/Mapa.jsx'
 import Financiero from './componentes/Financiero.jsx'
 import Reporte from './componentes/Reporte.jsx'
-import Usuarios from './componentes/Usuarios.jsx'
 import Ayuda from './componentes/Ayuda.jsx'
 
 // Las secciones del board según el rol.
@@ -32,7 +31,6 @@ function Principal() {
     ['mapa', 'Mapa', MapIcon],
     ...(hayFinanzas ? [['finanzas', 'Finanzas', BarChart3]] : []),
     ['reporte', 'Reporte', FileText],
-    ...(sesion?.rol === 'admin' ? [['equipo', 'Equipo', UsersIcon]] : []),
     ['ayuda', 'Ayuda', LifeBuoy],
   ]
 
@@ -55,7 +53,6 @@ function Principal() {
       {seccion === 'mapa' && <Mapa />}
       {seccion === 'finanzas' && <Financiero />}
       {seccion === 'reporte' && <Reporte />}
-      {seccion === 'equipo' && <Usuarios />}
       {seccion === 'ayuda' && <Ayuda />}
       {modo === 'demo' && seccion !== 'reporte' && (
         <p className="max-w-6xl mx-auto px-4 pb-8 text-terciario text-sm">

@@ -1,6 +1,7 @@
 import { useState, useRef } from 'react'
 import { X, Upload, FileText, Download, Plus, Check, Share2 } from 'lucide-react'
 import { usarDatos } from '../datos.jsx'
+import { puedeEditarRol } from '../roles.js'
 import Factores from './Factores.jsx'
 import ImagenDrive from './ImagenDrive.jsx'
 import { GLIFO_TIPO } from './Glifos.jsx'
@@ -77,7 +78,7 @@ export function inicialesDe(nombre) {
 
 export default function FichaEspacio({ espacio, onCerrar }) {
   const { sesion, datos, modo, editarFila } = usarDatos()
-  const editable = modo !== 'demo' && ['admin', 'editor'].includes(sesion?.rol)
+  const editable = modo !== 'demo' && puedeEditarRol(sesion?.rol)
   const [pestana, setPestana] = useState('factores')
 
   const visibles = PESTANAS.filter((p) => Array.isArray(datos?.[p.requiere]))

@@ -1,17 +1,18 @@
 import { useState } from 'react'
 import { KeyRound, ClipboardList, Mail } from 'lucide-react'
 import { usarDatos } from '../datos.jsx'
+import BotonGoogle from './BotonGoogle.jsx'
 import LineaAmalaya from './LineaAmalaya.jsx'
 import Peticiones from './Peticiones.jsx'
 import { apiCall, cargarPeticionesPublicas } from '../api.js'
 import { BACKEND_LISTO } from '../config.js'
 
-// La puerta de Amalaya — con la visión primero (petición del panel:
-// "que el candado proteja los números, no la visión de ciudad").
-// El código de acceso vive detrás de una liga chica; lo protagonista
-// es VER el proyecto. El código se valida SIEMPRE en el servidor.
+// La puerta de Amalaya (plan UX v2, fase 1). Tres formas de entrar, en
+// este orden: Continuar con Google, mandarme mi liga por correo, y «tengo
+// un código» chiquito abajo. «Peticiones a la ciudad» sigue pública.
+// Todo se valida SIEMPRE en el servidor.
 export default function Acceso() {
-  const { entrar, verDemo } = usarDatos()
+  const { entrar, entrarConGoogle } = usarDatos()
   const [codigo, setCodigo] = useState('')
   const [mostrarCodigo, setMostrarCodigo] = useState(false)
   const [correo, setCorreo] = useState('')
@@ -20,45 +21,37 @@ export default function Acceso() {
   const [cargando, setCargando] = useState(false)
   const [peticiones, setPeticiones] = useState(null) // {rutas, paradas} públicas
 
-  async function enviar(e) {
+  async function con(fn) {
+    setCargando(true)
+    setError(null)
+    try {
+      await fn()
+    } catch (err) {
+      setError(err.message)
+    } finally {
+      setCargando(false)
+    }
+  }
+
+  const enviarCodigo = (e) => {
     e.preventDefault()
     const limpio = codigo.trim()
-    if (!limpio) return
-    setCargando(true)
-    setError(null)
-    try {
-      await entrar(limpio)
-    } catch (err) {
-      setError(err.message)
-    } finally {
-      setCargando(false)
-    }
+    if (limpio) con(() => entrar(limpio))
   }
 
-  async function demo() {
-    setCargando(true)
-    setError(null)
-    try {
-      await verDemo()
-    } catch (err) {
-      setError(err.message)
-    } finally {
-      setCargando(false)
-    }
+  const pedirLiga = (e) => {
+    e.preventDefault()
+    if (!correo.trim()) return
+    con(async () => {
+      const r = await apiCall('ligaPorCorreo', { correo: correo.trim() })
+      setCorreoEnviado(r.mensaje)
+    })
   }
 
-  async function abrirPeticiones() {
-    setCargando(true)
-    setError(null)
-    try {
-      const r = await cargarPeticionesPublicas()
-      setPeticiones({ rutas: r.rutas || [], paradas: r.paradas || [] })
-    } catch (err) {
-      setError(err.message)
-    } finally {
-      setCargando(false)
-    }
-  }
+  const abrirPeticiones = () => con(async () => {
+    const r = await cargarPeticionesPublicas()
+    setPeticiones({ rutas: r.rutas || [], paradas: r.paradas || [] })
+  })
 
   return (
     <div
@@ -72,7 +65,7 @@ export default function Acceso() {
       <div className="w-full max-w-sm">
         <div className="text-center mb-6">
           <p className="text-xs uppercase tracking-[0.3em] text-arena">
-            Distrito de música y ciudad · Hermosillo
+            Distrito de la música · Hermosillo
           </p>
           <h1 className="font-firma font-normal text-7xl mt-4 glow-ambar">Amalaya</h1>
           <p className="font-cartel uppercase tracking-[0.35em] text-oro text-xs mt-3">
@@ -82,105 +75,75 @@ export default function Acceso() {
 
         <LineaAmalaya cargando={cargando} className="mb-8" />
 
-        {/* La visión primero: ver el proyecto sin pedir nada */}
-        <button
-          onClick={demo}
-          className="boton-primario w-full font-cartel uppercase tracking-[0.15em] !font-normal"
-          style={{ boxShadow: '0 0 32px rgba(255,184,77,0.30)' }}
-          disabled={cargando}
-        >
-          {cargando ? 'Abriendo…' : 'Ver el proyecto'}
-        </button>
-        <p className="text-terciario text-xs text-center mt-2">
-          Recorrido de demostración, con cifras de muestra.
-        </p>
-
-        {/* El código, detrás de su liga */}
-        {!mostrarCodigo ? (
-          <div className="flex items-center justify-center gap-5 mt-6">
-            <button
-              className="text-arena hover:text-marfil text-sm flex items-center gap-1.5 transition-colors duration-micro ease-casa"
-              onClick={() => setMostrarCodigo(true)}
-            >
-              <KeyRound size={14} /> Tengo código de acceso
-            </button>
-            {BACKEND_LISTO && (
-              <button
-                className="text-arena hover:text-marfil text-sm flex items-center gap-1.5 transition-colors duration-micro ease-casa"
-                onClick={abrirPeticiones}
-                disabled={cargando}
-              >
-                <ClipboardList size={14} /> Peticiones a la ciudad
-              </button>
-            )}
-          </div>
+        {!BACKEND_LISTO ? (
+          <p className="text-terciario text-sm text-center">El servidor aún no está conectado.</p>
         ) : (
-          <div className="mt-6 space-y-4">
-            <form onSubmit={enviar} className="space-y-3">
-              <label className="block">
-                <span className="text-sm text-arena">Tu código de acceso</span>
+          <div className="space-y-5">
+            {/* 1 · Google */}
+            <BotonGoogle deshabilitado={cargando} onToken={(t) => con(() => entrarConGoogle(t))} />
+
+            {/* 2 · La liga por correo, estilo YOD OS */}
+            {correoEnviado ? (
+              <p className="text-salvia text-sm text-center leading-relaxed">{correoEnviado}</p>
+            ) : (
+              <form className="space-y-2" onSubmit={pedirLiga}>
+                <label className="block text-xs text-arena text-center" htmlFor="correo-liga">
+                  o mándame mi liga por correo
+                </label>
+                <div className="flex gap-2">
+                  <input
+                    id="correo-liga"
+                    type="email"
+                    className="campo !py-2 flex-1 text-sm"
+                    placeholder="tu@correo.com"
+                    value={correo}
+                    onChange={(e) => setCorreo(e.target.value)}
+                    disabled={cargando}
+                  />
+                  <button
+                    type="submit"
+                    className="boton-secundario !px-3 !py-2 text-sm"
+                    disabled={cargando || !correo.trim()}
+                  >
+                    <span className="flex items-center gap-1.5"><Mail size={14} /> Mandar</span>
+                  </button>
+                </div>
+              </form>
+            )}
+
+            {/* 3 · El código, chiquito abajo */}
+            {!mostrarCodigo ? (
+              <div className="flex items-center justify-center gap-5 pt-1">
+                <button
+                  className="text-terciario hover:text-arena text-xs flex items-center gap-1.5 transition-colors duration-micro ease-casa"
+                  onClick={() => setMostrarCodigo(true)}
+                >
+                  <KeyRound size={12} /> Tengo un código
+                </button>
+                <button
+                  className="text-terciario hover:text-arena text-xs flex items-center gap-1.5 transition-colors duration-micro ease-casa"
+                  onClick={abrirPeticiones}
+                  disabled={cargando}
+                >
+                  <ClipboardList size={12} /> Peticiones a la ciudad
+                </button>
+              </div>
+            ) : (
+              <form onSubmit={enviarCodigo} className="flex gap-2">
                 <input
                   type="password"
                   inputMode="text"
                   autoComplete="off"
-                  className="campo mt-2 text-center tracking-[0.3em] text-lg"
+                  aria-label="Tu código de acceso"
+                  placeholder="tu código"
+                  className="campo !py-2 flex-1 text-center tracking-[0.3em]"
                   value={codigo}
                   onChange={(e) => setCodigo(e.target.value)}
                   disabled={cargando}
                   autoFocus
                 />
-              </label>
-              {!BACKEND_LISTO && (
-                <p className="text-terciario text-sm">
-                  El servidor aún no está conectado; solo está disponible la demostración.
-                </p>
-              )}
-              <button
-                type="submit"
-                className="boton-secundario w-full"
-                disabled={cargando || !codigo.trim() || !BACKEND_LISTO}
-              >
-                {cargando ? 'Entrando…' : 'Entrar con mi código'}
-              </button>
-            </form>
-
-            {/* La vía del correo, estilo YOD OS: tu liga llega a tu bandeja */}
-            {correoEnviado ? (
-              <p className="text-salvia text-sm text-center leading-relaxed">{correoEnviado}</p>
-            ) : (
-              <form
-                className="flex gap-2"
-                onSubmit={async (ev) => {
-                  ev.preventDefault()
-                  if (!correo.trim()) return
-                  setCargando(true)
-                  setError(null)
-                  try {
-                    const r = await apiCall('ligaPorCorreo', { correo: correo.trim() })
-                    setCorreoEnviado(r.mensaje)
-                  } catch (e) {
-                    setError(e.message)
-                  } finally {
-                    setCargando(false)
-                  }
-                }}
-              >
-                <input
-                  type="email"
-                  className="campo !py-2 flex-1 text-sm"
-                  placeholder="o escribe tu correo…"
-                  value={correo}
-                  onChange={(e) => setCorreo(e.target.value)}
-                  disabled={cargando || !BACKEND_LISTO}
-                />
-                <button
-                  type="submit"
-                  className="boton-secundario !px-3 !py-2"
-                  disabled={cargando || !correo.trim() || !BACKEND_LISTO}
-                  title="Te mandamos tu liga de acceso"
-                  aria-label="Recibir mi liga por correo"
-                >
-                  <Mail size={16} />
+                <button type="submit" className="boton-secundario !px-3 !py-2 text-sm" disabled={cargando || !codigo.trim()}>
+                  {cargando ? 'Entrando…' : 'Entrar'}
                 </button>
               </form>
             )}
@@ -195,7 +158,7 @@ export default function Acceso() {
 
         <p className="text-terciario text-xs mt-8 text-center leading-relaxed">
           Los números de Amalaya viven protegidos en Google y solo se entregan
-          con un código válido. Tu código es personal: no lo compartas.
+          a quien tiene acceso. Tu liga y tu código son personales: no los compartas.
         </p>
       </div>
 

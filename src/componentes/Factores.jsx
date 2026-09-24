@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Plus } from 'lucide-react'
 import { usarDatos } from '../datos.jsx'
+import { puedeEditarRol } from '../roles.js'
 import { resumenEspacio } from '../calc.js'
 import { moneda } from '../formato.js'
 
@@ -115,7 +116,7 @@ function Control({ factor, editable }) {
 
 export default function Factores({ espacio }) {
   const { sesion, datos, modo, crearFila } = usarDatos()
-  const editable = modo !== 'demo' && ['admin', 'editor'].includes(sesion?.rol)
+  const editable = modo !== 'demo' && puedeEditarRol(sesion?.rol)
   const [agregando, setAgregando] = useState(false)
 
   const factores = (datos?.Factores || [])

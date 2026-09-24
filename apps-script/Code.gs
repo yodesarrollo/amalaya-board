@@ -54,7 +54,8 @@ const TABS = {
     // liga_token (al FINAL, extensión en caliente): el token de la liga de
     // acceso — la autenticación estilo YOD OS. Entrar con la liga o con el
     // código es equivalente; ambos se validan igual y se revocan por separado.
-    headers: ['id', 'nombre', 'correo', 'rol', 'codigo_acceso', 'activo', 'liga_token'],
+    // ultimo_acceso (al FINAL): lo escribe el servidor en login/google.
+    headers: ['id', 'nombre', 'correo', 'rol', 'codigo_acceso', 'activo', 'liga_token', 'ultimo_acceso'],
     prefix: 'U-',
   },
   Espacios: {
@@ -111,11 +112,13 @@ const TABS = {
 // Qué pestañas recibe cada rol. El filtrado es AQUÍ, no en la pantalla.
 //  - admin: todo (Usuarios con códigos ENMASCARADOS; nunca en claro).
 //  - editor: trabaja espacios/rutas/finanzas/tareas; no ve Usuarios ni Config.
+//  - master: lo mismo que editor, y además congela versiones del Reporte.
 //  - visor: solo lectura de lo mismo que editor.
 //  - inversionista: solo los insumos del Reporte (sin factores ni tareas).
 const PESTANAS_POR_ROL = {
   admin: ['Config', 'Usuarios', 'Espacios', 'Factores', 'Finanzas_Lineas', 'Escenarios', 'Rutas', 'Paradas', 'Tareas', 'Conocimientos', 'Archivos'],
   editor: ['Config', 'Espacios', 'Factores', 'Finanzas_Lineas', 'Escenarios', 'Rutas', 'Paradas', 'Tareas', 'Conocimientos', 'Archivos'],
+  master: ['Config', 'Espacios', 'Factores', 'Finanzas_Lineas', 'Escenarios', 'Rutas', 'Paradas', 'Tareas', 'Conocimientos', 'Archivos'],
   visor: ['Config', 'Espacios', 'Factores', 'Finanzas_Lineas', 'Escenarios', 'Rutas', 'Paradas', 'Tareas', 'Conocimientos', 'Archivos'],
   // Factores va incluido porque las líneas financieras del Reporte se
   // calculan con ellos (son insumos del modelo, que el Reporte mismo enseña).
@@ -126,6 +129,7 @@ const PESTANAS_POR_ROL = {
 const ESCRITURA_POR_ROL = {
   admin: Object.keys(TABS),
   editor: ['Espacios', 'Factores', 'Finanzas_Lineas', 'Escenarios', 'Rutas', 'Paradas', 'Tareas', 'Conocimientos', 'Archivos'],
+  master: ['Espacios', 'Factores', 'Finanzas_Lineas', 'Escenarios', 'Rutas', 'Paradas', 'Tareas', 'Conocimientos', 'Archivos'],
   visor: [],
   inversionista: [],
 };
@@ -301,8 +305,15 @@ function doPost(e) {
     //   Alejandro, 2026-08-13). Entrega EXCLUSIVAMENTE rutas (nombre y color) y
     //   paradas (nombre y elementos deseados con su estado). Ni finanzas, ni
     //   espacios, ni fotos, ni usuarios. Con freno anti-abuso.
+    // ping también entrega el client_id de Google (público por diseño; vive
+    // en Config, clave google_client_id) para pintar el botón de la portada.
     if (action === 'ping') {
-      return jsonOut({ ok: true, servicio: 'amalaya-board', ts: Date.now() });
+      return jsonOut({ ok: true, servicio: 'amalaya-board', ts: Date.now(), google_client_id: googleClientId() });
+    }
+    // - google: entrar con Google. Valida el id_token con Google y busca el
+    //   correo en Usuarios (activo = si). Nunca crea usuarios.
+    if (action === 'google') {
+      return accGoogle(body);
     }
     // - ligaPorCorreo: manda la liga de acceso al correo REGISTRADO (estilo
     //   YOD OS). La respuesta es siempre genérica — no confirma ni niega si
@@ -331,6 +342,7 @@ function doPost(e) {
 
     switch (action) {
       case 'login':
+        marcarAcceso(usuario.id);
         return jsonOut({ ok: true, rol: usuario.rol, nombre: usuario.nombre });
       case 'getAll':
         return accGetAll(usuario, body);
@@ -444,6 +456,7 @@ function accGetAll(usuario, body) {
           id: u.id, nombre: u.nombre, correo: u.correo, rol: u.rol,
           codigo_enmascarado: enmascarar(u.codigo_acceso), activo: u.activo,
           tiene_liga: String(u.liga_token || '').length >= 4 ? 'si' : 'no',
+          ultimo_acceso: u.ultimo_acceso,
         };
       });
     }
@@ -604,7 +617,7 @@ function conCandado(fn) {
 //    validación de rol, como base64.
 // ---------------------------------------------------------------------------
 function accSubirArchivo(usuario, body) {
-  if (['admin', 'editor'].indexOf(usuario.rol) === -1) {
+  if (['admin', 'master', 'editor'].indexOf(usuario.rol) === -1) {
     return jsonOut({ ok: false, error: 'Tu rol no puede subir archivos.' });
   }
   const b64 = String(body.base64 || '');
@@ -646,7 +659,7 @@ function accSubirArchivo(usuario, body) {
 
 function accVerArchivo(usuario, body) {
   // Documentos privados: solo admin y editor (los roles de trabajo).
-  if (['admin', 'editor'].indexOf(usuario.rol) === -1) {
+  if (['admin', 'master', 'editor'].indexOf(usuario.rol) === -1) {
     return jsonOut({ ok: false, error: 'Tu rol no puede abrir documentos.' });
   }
   const fileId = String(body.file_id || '').trim();
@@ -755,6 +768,101 @@ function accRevocarLiga(usuario, body) {
     hoja.getRange(fila, conf.headers.indexOf('liga_token') + 1).setValue('');
     return { ok: true, v: subirVersion() };
   });
+}
+
+// ---------------------------------------------------------------------------
+//  Entrar con Google (propio de Amalaya, sin el Portero).
+//  1. El front manda el id_token que le dio Google Identity Services.
+//  2. Aquí se valida con oauth2.googleapis.com/tokeninfo: aud = client_id de
+//     Config y email_verified = true.
+//  3. El correo tiene que existir en Usuarios con activo = si. Si no, no entra
+//     (nunca se crea a nadie solo).
+//  4. La sesión tiene la MISMA forma que la liga: se entrega su liga_token
+//     (se genera si no tenía) y el front lo guarda como su credencial.
+// ---------------------------------------------------------------------------
+function googleClientId() {
+  const filas = leerHoja('Config');
+  for (let i = 0; i < filas.length; i++) {
+    if (String(filas[i].clave) === 'google_client_id') return String(filas[i].valor || '').trim();
+  }
+  return '';
+}
+
+function accGoogle(body) {
+  const negado = { ok: false, error: 'Tu cuenta de Google no tiene acceso a Amalaya. Pídeselo a Alejandro.' };
+  if (!dentroDeLimite('google_global', 60, 300)) {
+    return jsonOut({ ok: false, error: 'Muchos intentos; espera un momento.' });
+  }
+  const clientId = googleClientId();
+  if (!clientId) return jsonOut({ ok: false, error: 'La entrada con Google aún no está configurada.' });
+  const idToken = String(body.id_token || '').trim();
+  if (idToken.length < 20) return jsonOut(negado);
+
+  let info;
+  try {
+    const r = UrlFetchApp.fetch('https://oauth2.googleapis.com/tokeninfo?id_token=' + encodeURIComponent(idToken), { muteHttpExceptions: true });
+    if (r.getResponseCode() !== 200) return jsonOut(negado);
+    info = JSON.parse(r.getContentText());
+  } catch (e) {
+    console.error('google tokeninfo: ' + String(e));
+    return jsonOut({ ok: false, error: 'No se pudo confirmar tu cuenta con Google. Vuelve a intentar.' });
+  }
+  if (String(info.aud) !== clientId) return jsonOut(negado);
+  if (String(info.email_verified) !== 'true') return jsonOut(negado);
+  const correo = String(info.email || '').trim().toLowerCase();
+  if (!correo) return jsonOut(negado);
+
+  const usuarios = leerHoja('Usuarios');
+  let u = null;
+  for (let i = 0; i < usuarios.length; i++) {
+    if (
+      String(usuarios[i].correo || '').trim().toLowerCase() === correo &&
+      String(usuarios[i].activo || '').toLowerCase() === 'si'
+    ) { u = usuarios[i]; break; }
+  }
+  if (!u) return jsonOut(negado);
+
+  let token = String(u.liga_token || '');
+  if (token.length < 4) {
+    token = generarCodigo() + generarCodigo();
+    const r2 = conCandadoCrudo(function () {
+      const conf = TABS.Usuarios;
+      const hoja = obtenerHoja('Usuarios');
+      const fila = buscarFila(hoja, conf, u.id);
+      if (fila > 0) hoja.getRange(fila, conf.headers.indexOf('liga_token') + 1).setValue(token);
+      return true;
+    });
+    if (!r2) return jsonOut({ ok: false, error: 'El servidor está ocupado; vuelve a intentar.' });
+  }
+  marcarAcceso(u.id);
+  return jsonOut({ ok: true, codigo: token, rol: String(u.rol || '').toLowerCase(), nombre: u.nombre });
+}
+
+// Candado sin envoltura JSON (devuelve lo de fn, o null si no hubo candado).
+function conCandadoCrudo(fn) {
+  const lock = LockService.getScriptLock();
+  try { lock.waitLock(10000); } catch (e) { return null; }
+  try { return fn(); } finally { lock.releaseLock(); }
+}
+
+// Anota ultimo_acceso. Como login se llama en cada arranque, se escribe a lo
+// más una vez por hora por persona (cuota de Google).
+function marcarAcceso(idUsuario) {
+  try {
+    const cache = CacheService.getScriptCache();
+    const k = 'acc_' + idUsuario;
+    if (cache.get(k)) return;
+    cache.put(k, '1', 3600);
+    conCandadoCrudo(function () {
+      const conf = TABS.Usuarios;
+      const hoja = obtenerHoja('Usuarios');
+      const fila = buscarFila(hoja, conf, idUsuario);
+      if (fila > 0) hoja.getRange(fila, conf.headers.indexOf('ultimo_acceso') + 1).setValue(new Date().toISOString());
+      return true;
+    });
+  } catch (e) {
+    console.error('marcarAcceso: ' + String(e));
+  }
 }
 
 // Manda la liga al correo REGISTRADO. Acción pública con respuesta genérica

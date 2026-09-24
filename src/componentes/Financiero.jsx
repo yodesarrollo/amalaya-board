@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Plus, X, ChevronDown, ChevronUp } from 'lucide-react'
 import { usarDatos } from '../datos.jsx'
+import { puedeEditarRol } from '../roles.js'
 import { moneda, porcentaje } from '../formato.js'
 import { resumenGlobal, resumenEspacio, montoLinea, mapaConfig, configNum, normalizarId } from '../calc.js'
 
@@ -438,7 +439,7 @@ function PanelValor({ g, onExplicar }) {
 // --- La vista completa ---------------------------------------
 export default function Financiero() {
   const { sesion, datos, modo } = usarDatos()
-  const editable = modo !== 'demo' && ['admin', 'editor'].includes(sesion?.rol)
+  const editable = modo !== 'demo' && puedeEditarRol(sesion?.rol)
   const esAdmin = modo !== 'demo' && sesion?.rol === 'admin'
   const [panelAbierto, setPanelAbierto] = useState(false)
   const [explicando, setExplicando] = useState(false)

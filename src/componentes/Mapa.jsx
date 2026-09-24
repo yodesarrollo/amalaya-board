@@ -1,6 +1,7 @@
 import { useState, useRef, useCallback } from 'react'
 import { Plus, Pencil, Check, ArrowUp, ArrowDown, ArrowLeft, ArrowRight, ClipboardList } from 'lucide-react'
 import { usarDatos } from '../datos.jsx'
+import { puedeEditarRol } from '../roles.js'
 import { BASE } from '../config.js'
 import FichaEspacio, { caraDeEspacio } from './FichaEspacio.jsx'
 import ImagenDrive from './ImagenDrive.jsx'
@@ -64,7 +65,7 @@ export default function Mapa() {
   const espacios = datos?.Espacios || []
   const rutas = (datos?.Rutas || []).slice().sort((a, b) => num(a.orden, 999) - num(b.orden, 999))
   const paradas = datos?.Paradas || []
-  const puedeEditar = modo !== 'demo' && ['admin', 'editor'].includes(sesion?.rol)
+  const puedeEditar = modo !== 'demo' && puedeEditarRol(sesion?.rol)
 
   // Capa activa
   const [vista, setVista] = useState('3d') // '3d' | 'espacios' | 'rutas'

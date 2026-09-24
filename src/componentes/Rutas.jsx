@@ -1,6 +1,7 @@
 import { useState, useRef, useCallback } from 'react'
 import { X, Plus, Undo2, Upload, ChevronLeft, ChevronRight, Share2 } from 'lucide-react'
 import { usarDatos } from '../datos.jsx'
+import { puedeEditarRol } from '../roles.js'
 import ImagenDrive from './ImagenDrive.jsx'
 import { compartirCard } from '../compartir.js'
 
@@ -465,7 +466,7 @@ const COLOR_ESTADO = {
 
 export function Recorrido({ ruta, paradas, idx, setIdx, onCerrar }) {
   const { sesion, modo, editarFila, subirArchivo } = usarDatos()
-  const editable = modo !== 'demo' && ['admin', 'editor'].includes(sesion?.rol)
+  const editable = modo !== 'demo' && puedeEditarRol(sesion?.rol)
   const [nuevoElemento, setNuevoElemento] = useState('')
   const [error, setError] = useState(null)
   const swipe = useRef(null)
