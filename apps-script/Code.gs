@@ -107,6 +107,13 @@ const TABS = {
     headers: ['id', 'espacio_id', 'tipo', 'nombre', 'file_id', 'privado', 'fecha'],
     prefix: 'A-',
   },
+  // Historial: lo escribe SOLO el servidor en cada guardar/crear/borrar.
+  // Nadie lo edita (queda fuera de ESCRITURA_POR_ROL).
+  Historial: {
+    keyField: 'fecha',
+    headers: ['fecha', 'usuario', 'tab', 'llave', 'campo', 'antes', 'despues'],
+    prefix: '',
+  },
 };
 
 // Qué pestañas recibe cada rol. El filtrado es AQUÍ, no en la pantalla.
@@ -116,10 +123,10 @@ const TABS = {
 //  - visor: solo lectura de lo mismo que editor.
 //  - inversionista: solo los insumos del Reporte (sin factores ni tareas).
 const PESTANAS_POR_ROL = {
-  admin: ['Config', 'Usuarios', 'Espacios', 'Factores', 'Finanzas_Lineas', 'Escenarios', 'Rutas', 'Paradas', 'Tareas', 'Conocimientos', 'Archivos'],
-  editor: ['Config', 'Espacios', 'Factores', 'Finanzas_Lineas', 'Escenarios', 'Rutas', 'Paradas', 'Tareas', 'Conocimientos', 'Archivos'],
-  master: ['Config', 'Espacios', 'Factores', 'Finanzas_Lineas', 'Escenarios', 'Rutas', 'Paradas', 'Tareas', 'Conocimientos', 'Archivos'],
-  visor: ['Config', 'Espacios', 'Factores', 'Finanzas_Lineas', 'Escenarios', 'Rutas', 'Paradas', 'Tareas', 'Conocimientos', 'Archivos'],
+  admin: ['Config', 'Usuarios', 'Espacios', 'Factores', 'Finanzas_Lineas', 'Escenarios', 'Rutas', 'Paradas', 'Tareas', 'Conocimientos', 'Archivos', 'Historial'],
+  editor: ['Config', 'Espacios', 'Factores', 'Finanzas_Lineas', 'Escenarios', 'Rutas', 'Paradas', 'Tareas', 'Conocimientos', 'Archivos', 'Historial'],
+  master: ['Config', 'Espacios', 'Factores', 'Finanzas_Lineas', 'Escenarios', 'Rutas', 'Paradas', 'Tareas', 'Conocimientos', 'Archivos', 'Historial'],
+  visor: ['Config', 'Espacios', 'Factores', 'Finanzas_Lineas', 'Escenarios', 'Rutas', 'Paradas', 'Tareas', 'Conocimientos', 'Archivos', 'Historial'],
   // Factores va incluido porque las líneas financieras del Reporte se
   // calculan con ellos (son insumos del modelo, que el Reporte mismo enseña).
   inversionista: ['Config', 'Espacios', 'Factores', 'Finanzas_Lineas', 'Escenarios', 'Rutas', 'Paradas'],
@@ -127,7 +134,7 @@ const PESTANAS_POR_ROL = {
 
 // Qué pestañas puede ESCRIBIR cada rol.
 const ESCRITURA_POR_ROL = {
-  admin: Object.keys(TABS),
+  admin: Object.keys(TABS).filter(function (t) { return t !== 'Historial'; }),
   editor: ['Espacios', 'Factores', 'Finanzas_Lineas', 'Escenarios', 'Rutas', 'Paradas', 'Tareas', 'Conocimientos', 'Archivos'],
   master: ['Espacios', 'Factores', 'Finanzas_Lineas', 'Escenarios', 'Rutas', 'Paradas', 'Tareas', 'Conocimientos', 'Archivos'],
   visor: [],
@@ -449,6 +456,8 @@ function accGetAll(usuario, body) {
   const datos = {};
   pestanas.forEach(function (tab) {
     let filas = leerHoja(tab);
+    // Del historial solo viajan los últimos 300 cambios (la ficha pinta 20).
+    if (tab === 'Historial' && filas.length > 300) filas = filas.slice(filas.length - 300);
     if (tab === 'Usuarios') {
       // Al admin le sirven los usuarios, nunca las credenciales en claro.
       filas = filas.map(function (u) {
@@ -510,9 +519,11 @@ function accGuardar(usuario, body) {
     const obj = {};
     conf.headers.forEach(function (col, i) { obj[col] = actuales[i]; });
 
+    const cambios = [];
     Object.keys(patch).forEach(function (col) {
       if (conf.headers.indexOf(col) === -1) return;      // columnas desconocidas se ignoran
       if (col === conf.keyField) return;                  // la llave no se parcha
+      if (String(obj[col]) !== String(patch[col])) cambios.push([col, obj[col], patch[col]]);
       obj[col] = patch[col];
     });
 
@@ -524,6 +535,7 @@ function accGuardar(usuario, body) {
       return sanitizarValor(v);
     });
     hoja.getRange(fila, 1, 1, conf.headers.length).setValues([valores]);
+    anotarHistorial(usuario, tab, key, cambios);
     return { ok: true, key: key, v: subirVersion() };
   });
 }
@@ -549,6 +561,7 @@ function accCrear(usuario, body) {
       obj[col] = col === conf.keyField ? key : sanitizarValor(filaIn[col] !== undefined ? filaIn[col] : '');
     });
     hoja.appendRow(conf.headers.map(function (col) { return obj[col]; }));
+    anotarHistorial(usuario, tab, key, [['(fila nueva)', '', resumenFila(tab, obj)]]);
     return { ok: true, fila: obj, v: subirVersion() };
   });
 }
@@ -566,9 +579,43 @@ function accBorrar(usuario, body) {
     const hoja = obtenerHoja(tab);
     const fila = buscarFila(hoja, conf, key);
     if (fila < 0) return { ok: false, error: 'No se encontró la fila «' + key + '».' };
+    const previa = {};
+    const vals = hoja.getRange(fila, 1, 1, conf.headers.length).getValues()[0];
+    conf.headers.forEach(function (col, i) { previa[col] = vals[i]; });
     hoja.deleteRow(fila);
+    anotarHistorial(usuario, tab, key, [['(fila borrada)', resumenFila(tab, previa), '']]);
     return { ok: true, v: subirVersion() };
   });
+}
+
+// ---------------------------------------------------------------------------
+//  Historial — un renglón por campo cambiado. Se llama DENTRO del candado de
+//  la escritura. Las credenciales nunca se anotan en claro.
+// ---------------------------------------------------------------------------
+const CAMPOS_SECRETOS = ['codigo_acceso', 'liga_token'];
+function textoHistorial(campo, v) {
+  if (CAMPOS_SECRETOS.indexOf(campo) !== -1) return v === '' || v === null || v === undefined ? '' : '••••';
+  const t = v instanceof Date ? Utilities.formatDate(v, TZ, "yyyy-MM-dd'T'HH:mm") : String(v === null || v === undefined ? '' : v);
+  return sanitizarValor(t.length > 300 ? t.slice(0, 297) + '…' : t);
+}
+function resumenFila(tab, obj) {
+  const copia = {};
+  Object.keys(obj).forEach(function (k) { copia[k] = CAMPOS_SECRETOS.indexOf(k) !== -1 ? (obj[k] ? '••••' : '') : obj[k]; });
+  return JSON.stringify(copia);
+}
+function anotarHistorial(usuario, tab, llave, cambios) {
+  if (!cambios || !cambios.length || tab === 'Historial') return;
+  try {
+    const hoja = obtenerHoja('Historial');
+    const fecha = new Date().toISOString();
+    const filas = cambios.map(function (c) {
+      return [fecha, usuario.nombre || usuario.id, tab, llave, c[0], textoHistorial(c[0], c[1]), textoHistorial(c[0], c[2])];
+    });
+    hoja.getRange(hoja.getLastRow() + 1, 1, filas.length, filas[0].length).setValues(filas);
+  } catch (e) {
+    // El historial nunca tumba una escritura.
+    console.error('anotarHistorial: ' + String(e));
+  }
 }
 
 function validarEscritura(usuario, tab) {
@@ -631,7 +678,10 @@ function accSubirArchivo(usuario, body) {
 
   const nombre = String(body.nombre || 'archivo').replace(/[\\/:*?"<>|]/g, '_').slice(0, 120);
   const mime = String(body.mime || 'application/octet-stream');
-  const privado = body.privado === true || String(body.privado).toLowerCase() === 'si';
+  // render360: el render «después» de un punto del recorrido. espacio_id
+  // lleva el id del PUNTO. Siempre privado: se entrega por verArchivo.
+  const esRender = String(body.tipo || '') === 'render360';
+  const privado = esRender || body.privado === true || String(body.privado).toLowerCase() === 'si';
   const espacioId = String(body.espacio_id || '').trim();
 
   const bytes = Utilities.base64Decode(b64);
@@ -647,7 +697,7 @@ function accSubirArchivo(usuario, body) {
     tab: 'Archivos',
     fila: {
       espacio_id: espacioId,
-      tipo: privado ? 'documento' : 'foto',
+      tipo: esRender ? 'render360' : (privado ? 'documento' : 'foto'),
       nombre: nombre,
       file_id: archivo.getId(),
       privado: privado ? 'si' : 'no',
@@ -658,10 +708,6 @@ function accSubirArchivo(usuario, body) {
 }
 
 function accVerArchivo(usuario, body) {
-  // Documentos privados: solo admin y editor (los roles de trabajo).
-  if (['admin', 'master', 'editor'].indexOf(usuario.rol) === -1) {
-    return jsonOut({ ok: false, error: 'Tu rol no puede abrir documentos.' });
-  }
   const fileId = String(body.file_id || '').trim();
   if (!fileId) return jsonOut({ ok: false, error: 'Falta el identificador del archivo.' });
 
@@ -672,6 +718,13 @@ function accVerArchivo(usuario, body) {
     if (String(registros[i].file_id) === fileId) { registro = registros[i]; break; }
   }
   if (!registro) return jsonOut({ ok: false, error: 'Ese archivo no está registrado.' });
+
+  // Documentos privados: solo los roles de trabajo. Los renders 360 los ve
+  // también el visor (son parte del recorrido que ya ve).
+  const roles = String(registro.tipo) === 'render360' ? ['admin', 'master', 'editor', 'visor'] : ['admin', 'master', 'editor'];
+  if (roles.indexOf(usuario.rol) === -1) {
+    return jsonOut({ ok: false, error: 'Tu rol no puede abrir documentos.' });
+  }
 
   const archivo = DriveApp.getFileById(fileId);
   if (archivo.getSize() > 10 * 1024 * 1024) {

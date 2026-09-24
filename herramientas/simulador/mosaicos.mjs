@@ -52,3 +52,24 @@ export function satelite(z, x, y) {
     trozo('IHDR', cab), trozo('IDAT', deflateSync(Buffer.concat(filas))), trozo('IEND', Buffer.alloc(0)),
   ])
 }
+
+// PNG «render de prueba» (panorama 2:1): franjas de colores de la lámina,
+// para ver en el simulador que el slider revela el «después» sobre la foto.
+export function renderPrueba(w = 1024, h = 512) {
+  const colores = [[217, 143, 163], [232, 146, 58], [233, 211, 106], [143, 184, 217], [138, 163, 130]]
+  const filas = []
+  for (let j = 0; j < h; j++) {
+    const fila = Buffer.alloc(1 + w * 3)
+    for (let i = 0; i < w; i++) {
+      const c = colores[Math.floor((i / w) * colores.length)]
+      const rej = i % 64 === 0 || j % 64 === 0
+      fila[1 + i * 3] = rej ? 255 : c[0]; fila[2 + i * 3] = rej ? 255 : c[1]; fila[3 + i * 3] = rej ? 255 : c[2]
+    }
+    filas.push(fila)
+  }
+  const cab = Buffer.alloc(13); cab.writeUInt32BE(w, 0); cab.writeUInt32BE(h, 4); cab[8] = 8; cab[9] = 2
+  return Buffer.concat([
+    Buffer.from([137, 80, 78, 71, 13, 10, 26, 10]),
+    trozo('IHDR', cab), trozo('IDAT', deflateSync(Buffer.concat(filas))), trozo('IEND', Buffer.alloc(0)),
+  ])
+}

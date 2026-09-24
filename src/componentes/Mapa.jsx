@@ -543,7 +543,13 @@ export default function Mapa() {
         {espacioAbierto && (
           <>
             <ManijaSheet onCerrar={() => setAbierto(null)} />
-            <FichaEspacio espacio={espacioAbierto} onCerrar={() => setAbierto(null)} />
+            <FichaEspacio
+              espacio={espacioAbierto}
+              onCerrar={() => setAbierto(null)}
+              posicion={`${espacios.indexOf(espacioAbierto) + 1} de ${espacios.length}`}
+              onAnterior={espacios.length > 1 ? () => setAbierto(espacios[(espacios.indexOf(espacioAbierto) - 1 + espacios.length) % espacios.length].id) : null}
+              onSiguiente={espacios.length > 1 ? () => setAbierto(espacios[(espacios.indexOf(espacioAbierto) + 1) % espacios.length].id) : null}
+            />
           </>
         )}
       </aside>

@@ -222,7 +222,7 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
   // edicion: { modoEdicion, editandoPuntos, rutaSel, onMoverEspacio(id, pctCentroX, pctCentroY), onAgregarPunto(pctX, pctY) }
   const edRef = useRef(edicion)
   useEffect(() => { edRef.current = edicion }, [edicion])
-  const { datos, sesion, modo, editarFila, crearFila } = usarDatos()
+  const { datos, sesion, modo, editarFila, crearFila, verArchivo, subirArchivo } = usarDatos()
   const puedeEditar = modo !== 'demo' && puedeEditarRol(sesion?.rol)
   const geoSheet = useMemo(() => leerGeo(datos?.Config), [datos?.Config])
   const puedeCalibrar = modo !== 'demo' && sesion?.rol === 'admin'
@@ -558,6 +558,46 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
   }, [])
   useEffect(() => { if (!pop360 && mapa.current && listo) mapa.current.getSource('recorrido-activo')?.setData({ type: 'FeatureCollection', features: [] }) }, [pop360, listo])
 
+  // --- render 360 «después» (Drive, privado) ------------------------
+  // Cada punto del recorrido acepta un render: fila de Archivos con
+  // tipo='render360' y espacio_id = id del punto. El visor pregunta por el
+  // punto en que va; aquí se pide al servidor y se le pasa como data URL.
+  const visor360 = useRef(null)
+  const [puntoVisor, setPuntoVisor] = useState(null)
+  const [subiendoRender, setSubiendoRender] = useState(false)
+  const renderDe = (puntoId) => (datos?.Archivos || []).filter((a) => String(a.tipo) === 'render360' && String(a.espacio_id) === String(puntoId)).pop()
+  useEffect(() => {
+    const alMensaje = async (ev) => {
+      const d = ev.data || {}
+      if (d.tipo !== 'recorrido360' || !visor360.current || ev.source !== visor360.current.contentWindow) return
+      setPuntoVisor(d.punto)
+      const fila = renderDe(d.punto)
+      const responder = (dataUrl, estado) => visor360.current?.contentWindow?.postMessage({ tipo: 'render360', punto: d.punto, dataUrl, estado }, '*')
+      if (!fila || modo === 'demo') return responder(null, 'en-camino')
+      try {
+        const r = await verArchivo(fila.file_id)
+        responder(`data:${r.mime || 'image/jpeg'};base64,${r.base64}`, 'listo')
+      } catch {
+        responder(null, 'error')
+      }
+    }
+    window.addEventListener('message', alMensaje)
+    return () => window.removeEventListener('message', alMensaje)
+  }, [datos?.Archivos, modo]) // eslint-disable-line react-hooks/exhaustive-deps
+  async function subirRender(file) {
+    if (!file || !puntoVisor) return
+    setSubiendoRender(true)
+    try {
+      await subirArchivo(puntoVisor, file, true, 'render360')
+      // Recargar el visor para que pida el render recién subido.
+      if (visor360.current) visor360.current.src = visor360.current.src
+    } catch (e) {
+      alert(e.message)
+    } finally {
+      setSubiendoRender(false)
+    }
+  }
+
   // --- visibilidad de capas ---------------------------------------
   useEffect(() => {
     const m = mapa.current
@@ -795,10 +835,16 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
             <PersonStanding size={14} className="text-oro" />
             <span className="font-cartel uppercase tracking-wide text-xs">Recorrido 360 · antes / después</span>
             <span className="flex-1" />
+            {puedeEditar && puntoVisor && (
+              <label className={`text-xs text-arena hover:text-marfil cursor-pointer mr-3 ${subiendoRender ? 'opacity-60 pointer-events-none' : ''}`} title="Sube el render «después» de este punto (se guarda privado en Drive)">
+                {subiendoRender ? 'Subiendo render…' : renderDe(puntoVisor) ? 'Cambiar render' : 'Subir render'}
+                <input type="file" accept="image/*" className="hidden" onChange={(e) => subirRender(e.target.files?.[0])} />
+              </label>
+            )}
             <a className="text-xs text-arena hover:text-marfil" href={`${BASE}recorrido/?r=${encodeURIComponent(pop360.ruta)}&p=${encodeURIComponent(pop360.punto)}`} target="_blank" rel="noreferrer">Pantalla completa</a>
             <button className="text-arena hover:text-marfil ml-2" onClick={() => setPop360(null)} aria-label="Cerrar"><X size={16} /></button>
           </div>
-          <iframe title="Recorrido 360" src={`${BASE}recorrido/?embed=1&r=${encodeURIComponent(pop360.ruta)}&p=${encodeURIComponent(pop360.punto)}`} className="flex-1 w-full border-0 bg-noche" allow="fullscreen" />
+          <iframe ref={visor360} title="Recorrido 360" src={`${BASE}recorrido/?embed=1&r=${encodeURIComponent(pop360.ruta)}&p=${encodeURIComponent(pop360.punto)}`} className="flex-1 w-full border-0 bg-noche" allow="fullscreen" />
         </div>
       )}
 

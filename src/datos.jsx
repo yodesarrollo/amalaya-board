@@ -61,6 +61,9 @@ export function DatosProvider({ children }) {
   const parchesPendientes = useRef({})   // { 'tab|key': {campo: valor} }
   const temporizadores = useRef({})
   const tocadoReciente = useRef({})      // { 'tab|key': timestamp }
+  const valoresPrevios = useRef({})      // { 'tab|key': {campo: valor antes del primer cambio} }
+  const datosRef = useRef(null)
+  useEffect(() => { datosRef.current = datos }, [datos])
   const sesionRef = useRef(null)
   useEffect(() => { sesionRef.current = sesion }, [sesion])
   const versionRef = useRef(null)
@@ -244,6 +247,11 @@ export function DatosProvider({ children }) {
     if (modo === 'demo') return // en demostración no se escribe nada
     const llave = `${tab}|${key}`
     tocadoReciente.current[llave] = Date.now()
+    // Lo que había antes (para el renglón del historial que se ve al instante).
+    const actual = (datosRef.current?.[tab] || []).find((f) => (f.id ?? f.clave) === key) || {}
+    const previos = valoresPrevios.current[llave] || {}
+    for (const campo of Object.keys(parche)) if (!(campo in previos)) previos[campo] = actual[campo]
+    valoresPrevios.current[llave] = previos
 
     setDatos((previos) => {
       if (!previos || !previos[tab]) return previos
@@ -276,6 +284,17 @@ export function DatosProvider({ children }) {
         patch: parche,
       })
       setVersion(r.v ?? null)
+      // El servidor ya anotó el cambio en Historial; aquí se refleja al
+      // instante (el próximo getAll trae el renglón oficial).
+      const antes = valoresPrevios.current[llave] || {}
+      delete valoresPrevios.current[llave]
+      const fecha = new Date().toISOString()
+      const nuevos = Object.keys(parche)
+        .filter((c) => String(antes[c] ?? '') !== String(parche[c] ?? ''))
+        .map((c) => ({ fecha, usuario: sesionRef.current?.nombre || '', tab, llave: key, campo: c, antes: String(antes[c] ?? ''), despues: String(parche[c] ?? '') }))
+      if (nuevos.length) {
+        setDatos((d) => (d && Array.isArray(d.Historial) ? { ...d, Historial: [...d.Historial, ...nuevos] } : d))
+      }
       setGuardados((g) => ({ ...g, [llave]: 'ok' }))
       setTimeout(() => setGuardados((g) => {
         const { [llave]: _, ...resto } = g
@@ -318,7 +337,8 @@ export function DatosProvider({ children }) {
   // Subir un archivo a la carpeta de Drive del espacio (vía Apps Script).
   // privado=false → foto con enlace (el board la pinta en <img>).
   // privado=true  → documento SIN compartir; solo se entrega por verArchivo.
-  const subirArchivo = useCallback(async (espacioId, file, privado) => {
+  // tipo='render360' → el render «después» de un punto del recorrido (espacioId = id del punto).
+  const subirArchivo = useCallback(async (espacioId, file, privado, tipo) => {
     if (modo === 'demo') throw new Error('En la demostración no se pueden subir archivos.')
     if (file.size > 10 * 1024 * 1024) {
       throw new Error('El archivo pesa más de 10 MB. Usa una versión más ligera.')
@@ -336,6 +356,7 @@ export function DatosProvider({ children }) {
       mime: file.type || 'application/octet-stream',
       base64,
       privado,
+      ...(tipo ? { tipo } : {}),
     })
     setVersion(r.v ?? null)
     setDatos((previos) => {

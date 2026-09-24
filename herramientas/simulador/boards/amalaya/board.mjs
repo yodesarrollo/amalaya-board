@@ -1,6 +1,7 @@
 // Amalaya (repo yodesarrollo/amalaya-board). El Apps Script real está en
 // apps-script/Code.gs de ese repo; esto imita sus acciones con datos inventados.
 import { datos } from './datos.mjs'
+import { renderPrueba } from '../../mosaicos.mjs'
 
 export const base = '/amalaya-board/'
 
@@ -25,6 +26,13 @@ const TOKEN_GOOGLE = 'SIM-GOOGLE-ID-TOKEN-0123456789'
 export const locales = [[/accounts\.google\.com\/gsi\/client/, new URL('./gsi-falso.js', import.meta.url).pathname]]
 
 const db = structuredClone(datos)
+// Historial vacío al arrancar; lo llena el servidor falso como el real.
+db.Historial = []
+// Un render 360 de prueba en el primer punto del recorrido.
+export const PUNTO_CON_RENDER = 'G5UapkZfu_gIeRoydqjPBw'
+db.Archivos.push({ id: 'A-900', espacio_id: PUNTO_CON_RENDER, tipo: 'render360', nombre: 'render-prueba.png', file_id: 'SIM-RENDER', privado: 'si', fecha: '2026-09-24' })
+const anotar = (quien, tab, llave, campo, antes, despues) =>
+  db.Historial.push({ fecha: new Date().toISOString(), usuario: quien.nombre, tab, llave, campo, antes: String(antes ?? ''), despues: String(despues ?? '') })
 let v = 1
 const prefijo = { Espacios: 'E-', Factores: 'F-', Finanzas_Lineas: 'L-', Rutas: 'R-', Paradas: 'P-', Tareas: 'T-', Conocimientos: 'C-', Archivos: 'A-', Escenarios: 'ESC-', Usuarios: 'U-' }
 const llave = (fila) => fila.id ?? fila.clave
@@ -51,17 +59,25 @@ export function servidor(accion, b) {
     case 'guardar': {
       const fila = db[b.tab]?.find((x) => llave(x) === b.key)
       if (!fila) return { ok: false, error: 'No se encontró la fila.' }
+      for (const [k, val] of Object.entries(b.patch)) if (String(fila[k]) !== String(val)) anotar(quien, b.tab, b.key, k, fila[k], val)
       Object.assign(fila, b.patch); return { ok: true, key: b.key, v: ++v }
     }
     case 'crear': {
       const fila = { id: prefijo[b.tab] + String(db[b.tab].length + 1).padStart(3, '0'), ...b.fila }
-      db[b.tab].push(fila); return { ok: true, fila, v: ++v }
+      db[b.tab].push(fila); anotar(quien, b.tab, fila.id, '(fila nueva)', '', JSON.stringify(fila)); return { ok: true, fila, v: ++v }
     }
-    case 'borrar': db[b.tab] = db[b.tab].filter((x) => llave(x) !== b.key); return { ok: true, v: ++v }
+    case 'borrar': {
+      const previa = db[b.tab].find((x) => llave(x) === b.key)
+      db[b.tab] = db[b.tab].filter((x) => llave(x) !== b.key)
+      anotar(quien, b.tab, b.key, '(fila borrada)', JSON.stringify(previa || {}), ''); return { ok: true, v: ++v }
+    }
     case 'nuevoCodigo': return { ok: true, codigo: 'SIM-NUEVO1', v: ++v }
     case 'generarLiga': return { ok: true, liga: 'https://yodesarrollo.github.io/amalaya-board/?t=SIMULADOR', v: ++v }
     case 'revocarLiga': case 'respaldoAhora': case 'instalarRespaldo': return { ok: true, v }
-    case 'subirArchivo': case 'verArchivo': return { ok: false, error: '(simulado) Los archivos de Drive no existen en el simulador.' }
+    case 'verArchivo':
+      if (b.file_id === 'SIM-RENDER') return { ok: true, nombre: 'render-prueba.png', mime: 'image/png', base64: renderPrueba().toString('base64') }
+      return { ok: false, error: '(simulado) Ese archivo de Drive no existe en el simulador.' }
+    case 'subirArchivo': return { ok: false, error: '(simulado) Los archivos de Drive no existen en el simulador.' }
     default: return { ok: false, error: 'Acción no reconocida: ' + accion }
   }
 }
@@ -95,6 +111,17 @@ export async function guion({ pagina, foto, clic, base }) {
   await clic('button[title="Lista y buscador de espacios"]'); await foto('03l-lista-espacios', 500)
   await pagina.locator('.lista-espacios input').fill('foro'); await foto('03m-buscar-foro', 400)
   await clic('.lista-espacios .fila-espacio'); await foto('03n-ficha-desde-lista', 1500)
+
+  // Fase 3 · ficha: resumen, siguiente paso, historial, anterior/siguiente
+  await foto('11-ficha-resumen', 400)
+  await pagina.locator('#campo-m2').fill('2600'); await pagina.waitForTimeout(1800)
+  await clic('[role=tab]:has-text("Historial")'); await foto('11b-ficha-historial', 600)
+  const renglones = await pagina.locator('[aria-label="Historial de cambios"] li').count()
+  console.log(`${renglones > 0 ? '✓' : '✗ SIN RENGLÓN'} historial: ${renglones} renglón(es) tras cambiar los m²`)
+  const oficial = db.Historial.filter((h) => h.campo === 'm2')
+  console.log(`${oficial.length ? '✓' : '✗'} servidor: Historial anotó ${oficial.map((h) => `${h.usuario} · ${h.tab} ${h.llave} · m2 ${h.antes} → ${h.despues}`).join('; ') || 'nada'}`)
+  await clic('button[aria-label="Espacio siguiente"]'); await foto('11c-ficha-siguiente', 600)
+  await clic('button[aria-label="Espacio anterior"]'); await pagina.waitForTimeout(300)
   await pagina.keyboard.press('Escape'); await pagina.goto(base); await pagina.waitForTimeout(2500)
   await salir()
 
@@ -126,6 +153,34 @@ export async function guion({ pagina, foto, clic, base }) {
   await clic('button:has-text("Capas")'); await clic('.fila-capa:has-text("Satélite")')
   await foto('03b-mapa-sin-satelite', 3000); await clic('button:has-text("Capas")')
   await clic('button:has-text("Rutas")'); await foto('04-mapa-rutas')
+  await clic('button:has-text("Rutas")')
+
+  // Fase 3 · 360 antes/después: tocar el punto que tiene render de prueba
+  const xy = await pagina.evaluate((id) => {
+    const m = window.__amalayaMapa
+    const f = m.querySourceFeatures('recorrido').find((x) => x.properties.id === id)
+    if (!f) return null
+    m.jumpTo({ center: f.geometry.coordinates, zoom: 18 })
+    return true
+  }, PUNTO_CON_RENDER)
+  if (xy) {
+    await pagina.waitForTimeout(1200)
+    const p = await pagina.evaluate((id) => {
+      const m = window.__amalayaMapa
+      const f = m.querySourceFeatures('recorrido').find((x) => x.properties.id === id)
+      const r = m.getCanvas().getBoundingClientRect(); const q = m.project(f.geometry.coordinates)
+      return { x: r.left + q.x, y: r.top + q.y }
+    }, PUNTO_CON_RENDER)
+    await pagina.mouse.click(p.x, p.y); await pagina.waitForTimeout(5000)
+    const visor = pagina.frameLocator('iframe[title="Recorrido 360"]')
+    const apagado = await visor.locator('.slider.apagado').count()
+    console.log(`${apagado === 0 ? '✓' : '✗ APAGADO'} slider del punto con render: ${apagado === 0 ? 'encendido' : 'apagado'}`)
+    await visor.locator('#mezcla').fill('65'); await foto('12-360-render-slider', 800)
+    await visor.locator('canvas').first().click({ position: { x: 5, y: 5 } }).catch(() => {})
+    await pagina.keyboard.press('Shift+ArrowRight')
+    await foto('12b-360-render-en-camino', 3000)
+    await clic('button[aria-label="Cerrar"]')
+  } else console.log('✗ no encontré el punto con render en el mapa')
   for (const [seccion, archivo] of [['Finanzas', '05-finanzas'], ['Reporte', '06-reporte'], ['Ayuda', '08-ayuda']]) {
     await clic(`nav button:has-text("${seccion}")`); await foto(archivo)
     if (seccion === 'Finanzas') { await clic('text=¿qué significa?'); await foto('05b-que-significa'); await clic('text=Entendido') }
