@@ -281,6 +281,27 @@ export async function guion({ pagina, foto, clic, base }) {
   await clic('button:has-text("Peticiones")'); await clic('button:has-text("Arbolado")'); await foto('13e-peticion-con-accion', 800)
   await pagina.goto(base); await pagina.waitForTimeout(2500)
 
+  // Fase 7 · «?» de la sección y La Chinche
+  await clic('nav button:has-text("Finanzas")'); await pagina.waitForTimeout(500)
+  await clic('button[aria-label="Ayuda de Finanzas"]'); await foto('14-ayuda-finanzas', 1200)
+  await clic('button[aria-label="Cerrar ayuda"]')
+  await clic('nav button:has-text("Ayuda")'); await foto('14b-ayuda-gifs', 1500)
+  // Clavar una chinche de prueba y ver a dónde la manda «Mandar a Claude»
+  await pagina.evaluate(() => window.YODChinche.anotar({ texto: 'botón de prueba', css: 'nav' }))
+  await pagina.waitForTimeout(600)
+  await pagina.locator('.chn-txt').fill('Chinche de prueba del simulador: el título de Ayuda podría ir más chico')
+  await clic('.chn-btn[data-ok]'); await pagina.waitForTimeout(1200)
+  await pagina.evaluate(() => window.YODChinche.pila()); await pagina.waitForTimeout(800)
+  await foto('14c-chinche-pila', 300)
+  await clic('[data-pedir]'); await pagina.waitForTimeout(2500)
+  const liga = await pagina.locator('a.chn-btn[data-issue]').first().getAttribute('href').catch(() => '')
+  const u = liga ? new URL(liga) : null
+  const bien = u && u.pathname === '/yodesarrollo/amalaya-board/issues/new' && u.searchParams.get('labels') === 'chinche'
+  console.log(`${bien ? '✓' : '✗'} «Mandar a Claude» → ${u ? u.origin + u.pathname + '?labels=' + u.searchParams.get('labels') : 'sin liga'}`)
+  console.log(`${/Alejandro Puebla/.test(decodeURIComponent(liga || '')) ? '✓' : '✗'} quien clava sale de la sesión (Alejandro Puebla)`)
+  await foto('14d-chinche-mandar', 300)
+  await pagina.goto(base); await pagina.waitForTimeout(2500)
+
   // El inversionista ve la última versión congelada
   await salir(); await pagina.goto(base); await pagina.waitForTimeout(1200)
   await clic('text=Tengo un código'); await pagina.waitForTimeout(300)
@@ -291,4 +312,60 @@ export async function guion({ pagina, foto, clic, base }) {
   await foto('06g-inversionista-congelada', 300)
   await pagina.goto(base + 'recorrido/'); await foto('09-recorrido-360', 4000)
   await pagina.goto(base + 'modelo/serdan-garmendia.html'); await foto('10-modelo-esquina', 5000)
+}
+
+// GIFs cortos de la Ayuda (npm run gifs): mover un espacio, trazar una
+// ruta y escribir una fórmula. Datos inventados del simulador.
+export async function gifs({ pagina, clic, base, gif, carpeta }) {
+  const entrar = async () => {
+    await pagina.goto(base); await pagina.waitForTimeout(1200)
+    await clic('text=Tengo un código'); await pagina.waitForTimeout(300)
+    await pagina.locator('input[type=password]').first().fill(CODIGO)
+    await clic('button[type=submit]:has-text("Entrar")')
+    await pagina.waitForSelector('[data-entrada="4"]', { timeout: 30000 }).catch(() => {})
+    await pagina.waitForTimeout(2500)
+    await clic('text=Saltar guía')
+  }
+  await entrar()
+
+  // 1 · Mover un espacio
+  let g = gif()
+  await g.cuadro(600)
+  await clic('button:has-text("Mover espacios")'); await pagina.waitForTimeout(500); await g.cuadro(700)
+  const pin = pagina.locator('.pin3d', { hasText: 'Uso mixto' }).first()
+  const caja = await pin.boundingBox()
+  if (caja) {
+    const x0 = caja.x + caja.width / 2, y0 = caja.y + caja.height / 2
+    await pagina.mouse.move(x0, y0); await pagina.mouse.down(); await g.cuadro(300)
+    for (let i = 1; i <= 8; i++) { await pagina.mouse.move(x0 - i * 14, y0 + i * 6, { steps: 3 }); await g.cuadro(110) }
+    await pagina.mouse.up(); await pagina.waitForTimeout(400); await g.cuadro(700)
+  }
+  await clic('button:has-text("Terminar")'); await pagina.waitForTimeout(400); await g.cuadro(1400)
+  console.log(`gif mover-espacio: ${g.guardar(`${carpeta}/mover-espacio.gif`)} cuadros`)
+
+  // 2 · Trazar una ruta
+  g = gif()
+  await clic('button:has-text("Rutas")'); await pagina.waitForTimeout(700); await g.cuadro(600)
+  await clic('button:has-text("Ruta Serdán")'); await pagina.waitForTimeout(400); await g.cuadro(500)
+  await clic('button:has-text("Trazar (toca el mapa)")'); await pagina.waitForTimeout(400); await g.cuadro(600)
+  const lienzo = await pagina.locator('.mapa3d, main [style*="crosshair"]').first().boundingBox()
+  const cx = lienzo ? lienzo.x + lienzo.width * 0.3 : 500, cy = lienzo ? lienzo.y + lienzo.height * 0.7 : 600
+  for (let i = 0; i < 4; i++) { await pagina.mouse.click(cx + i * 70, cy - i * 25); await pagina.waitForTimeout(350); await g.cuadro(350) }
+  await clic('button:has-text("Listo con el trazo")'); await pagina.waitForTimeout(400); await g.cuadro(1400)
+  console.log(`gif trazar-ruta: ${g.guardar(`${carpeta}/trazar-ruta.gif`)} cuadros`)
+  await clic('button:has-text("Cerrar rutas")')
+
+  // 3 · Escribir una fórmula
+  g = gif()
+  await clic('nav button:has-text("Finanzas")'); await pagina.waitForTimeout(600)
+  await clic('button[aria-expanded]:has-text("Foro Amalaya")'); await pagina.waitForTimeout(500)
+  await clic('button:has-text("Ingreso")'); await pagina.waitForTimeout(700)
+  const monto = pagina.locator('input[aria-autocomplete="list"]').last()
+  await monto.scrollIntoViewIfNeeded(); await pagina.waitForTimeout(300); await g.cuadro(700)
+  for (const t of ['=', 'a', 'f']) { await monto.type(t); await g.cuadro(220) }
+  await g.cuadro(700)
+  await monto.press('Enter'); await g.cuadro(500)
+  for (const t of [' ', '*', ' ', 'b', 'o']) { await monto.type(t); await g.cuadro(200) }
+  await monto.press('Enter'); await pagina.waitForTimeout(600); await g.cuadro(1600)
+  console.log(`gif escribir-formula: ${g.guardar(`${carpeta}/escribir-formula.gif`)} cuadros`)
 }
