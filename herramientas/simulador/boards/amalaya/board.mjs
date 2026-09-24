@@ -32,13 +32,15 @@ const db = structuredClone(datos)
 // Historial vacío al arrancar; lo llena el servidor falso como el real.
 db.Historial = []
 db.Versiones = []
+db.Metas = []
+db.Objetivos = []
 // Un render 360 de prueba en el primer punto del recorrido.
 export const PUNTO_CON_RENDER = 'G5UapkZfu_gIeRoydqjPBw'
 db.Archivos.push({ id: 'A-900', espacio_id: PUNTO_CON_RENDER, tipo: 'render360', nombre: 'render-prueba.png', file_id: 'SIM-RENDER', privado: 'si', fecha: '2026-09-24' })
 const anotar = (quien, tab, llave, campo, antes, despues) =>
   db.Historial.push({ fecha: new Date().toISOString(), usuario: quien.nombre, tab, llave, campo, antes: String(antes ?? ''), despues: String(despues ?? '') })
 let v = 1
-const prefijo = { Espacios: 'E-', Factores: 'F-', Finanzas_Lineas: 'L-', Rutas: 'R-', Paradas: 'P-', Tareas: 'T-', Conocimientos: 'C-', Archivos: 'A-', Escenarios: 'ESC-', Usuarios: 'U-' }
+const prefijo = { Espacios: 'E-', Factores: 'F-', Finanzas_Lineas: 'L-', Rutas: 'R-', Paradas: 'P-', Tareas: 'T-', Conocimientos: 'C-', Archivos: 'A-', Escenarios: 'ESC-', Usuarios: 'U-', Metas: 'M-', Objetivos: 'O-' }
 const llave = (fila) => fila.id ?? fila.clave
 
 export function servidor(accion, b) {
@@ -108,6 +110,10 @@ export async function guion({ pagina, foto, clic, base }) {
   // Portada: Google, liga por correo y «tengo un código»
   await pagina.goto(base); await foto('01-portada')
   await clic('text=Peticiones a la ciudad'); await foto('02-peticiones-publicas')
+  // Fase 6 · detalle de una petición (texto, estado, foto de hoy / visión)
+  await clic('button:has-text("Arbolado")'); await foto('02b-detalle-peticion', 800)
+  const grupos = await pagina.locator('section[aria-label]').count()
+  console.log(`${grupos === db.Rutas.length ? '✓' : '✗'} peticiones agrupadas por ruta: ${grupos} grupo(s)`)
 
   // 1 · Entrar con Google (falso)
   await pagina.goto(base); await pagina.waitForTimeout(1500)
@@ -245,6 +251,36 @@ export async function guion({ pagina, foto, clic, base }) {
       await clic('text=¿qué significa?'); await foto('05b-que-significa'); await clic('text=Entendido')
     }
   }
+  // Fase 6 · mini MOAC: meta → objetivo → acción ligada a una petición
+  await pagina.goto(base); await pagina.waitForSelector('[data-entrada="4"]', { timeout: 30000 }).catch(() => {}); await pagina.waitForTimeout(1500)
+  await clic('nav button:has-text("Plan")'); await foto('13-plan-vacio', 600)
+  const cuenta = async () => Number(await pagina.locator('[aria-label="Acciones sin objetivo"]').first().getAttribute('data-sin-objetivo'))
+  console.log(`  antes: ${await cuenta()} acción(es) sin objetivo`)
+  await pagina.locator('input[aria-label="Nueva meta"]').fill('Foro Amalaya operando en 2028'); await clic('button[type=submit]:has-text("Meta")'); await pagina.waitForTimeout(600)
+  await pagina.locator('input[aria-label^="Nuevo objetivo para"]').first().fill('Calle Guerrero peatonal'); await clic('button[type=submit]:has-text("Objetivo")'); await pagina.waitForTimeout(600)
+  await clic('button:has-text("Acción")'); await pagina.waitForTimeout(300)
+  await pagina.locator('input[aria-label="Texto de la acción"]').fill('Llevar la petición de arbolado a Obras Públicas')
+  await pagina.locator('input[aria-label="Fecha"]').fill('2026-09-28')
+  const valorPeticion = await pagina.locator('select[aria-label="Ligar a"] option', { hasText: 'Arbolado' }).first().getAttribute('value')
+  await pagina.locator('select[aria-label="Ligar a"]').selectOption(valorPeticion)
+  await foto('13b-nueva-accion', 300)
+  await clic('button[type=submit]:has-text("Guardar acción")'); await pagina.waitForTimeout(800)
+  await foto('13c-plan-con-accion', 300)
+  // La acción vieja (T-001) no tiene objetivo: se le asigna y el contador llega a 0
+  const sel = pagina.locator('select[aria-label^="Objetivo para"]').first()
+  if (await sel.count()) { const v1 = await sel.locator('option').nth(1).getAttribute('value'); await sel.selectOption(v1); await pagina.waitForTimeout(1500) }
+  await foto('13d-plan-contador-cero', 400)
+  const final = await cuenta()
+  const ligada = db.Tareas.find((t) => t.peticion_id && t.objetivo_id)
+  console.log(`${db.Metas.length === 1 && db.Objetivos.length === 1 ? '✓' : '✗'} servidor: ${db.Metas.length} meta, ${db.Objetivos.length} objetivo`)
+  console.log(`${ligada ? '✓' : '✗'} acción ligada a la petición ${ligada?.peticion_id || '—'} con objetivo ${ligada?.objetivo_id || '—'}`)
+  console.log(`${final === 0 ? '✓' : '✗'} contador «acciones sin objetivo»: ${final}`)
+  // El detalle de la petición ya muestra su acción del plan
+  await clic('nav button:has-text("Mapa")'); await pagina.waitForTimeout(800)
+  await clic('button:has-text("Rutas")'); await pagina.waitForTimeout(400)
+  await clic('button:has-text("Peticiones")'); await clic('button:has-text("Arbolado")'); await foto('13e-peticion-con-accion', 800)
+  await pagina.goto(base); await pagina.waitForTimeout(2500)
+
   // El inversionista ve la última versión congelada
   await salir(); await pagina.goto(base); await pagina.waitForTimeout(1200)
   await clic('text=Tengo un código'); await pagina.waitForTimeout(300)

@@ -90,10 +90,24 @@ const TABS = {
     headers: ['id', 'ruta_id', 'nombre', 'foto_actual_id', 'foto_vision_id', 'elementos', 'notas', 'orden', 'pos_x', 'pos_y'],
     prefix: 'P-',
   },
+  // Las Tareas son las ACCIONES del mini MOAC. objetivo_id y peticion_id
+  // (al FINAL, extensión en caliente): el objetivo que cierran y, si aplica,
+  // la petición a la ciudad (id de parada + '#' + índice del elemento).
   Tareas: {
     keyField: 'id',
-    headers: ['id', 'espacio_id', 'texto', 'responsable', 'fecha', 'hecho'],
+    headers: ['id', 'espacio_id', 'texto', 'responsable', 'fecha', 'hecho', 'objetivo_id', 'peticion_id'],
     prefix: 'T-',
+  },
+  // Mini MOAC de Amalaya: metas → objetivos → acciones (Tareas).
+  Metas: {
+    keyField: 'id',
+    headers: ['id', 'texto', 'responsable', 'fecha', 'estado'],
+    prefix: 'M-',
+  },
+  Objetivos: {
+    keyField: 'id',
+    headers: ['id', 'meta', 'texto', 'responsable', 'fecha', 'estado'],
+    prefix: 'O-',
   },
   Conocimientos: {
     keyField: 'id',
@@ -130,10 +144,10 @@ const TABS = {
 //  - visor: solo lectura de lo mismo que editor.
 //  - inversionista: solo los insumos del Reporte (sin factores ni tareas).
 const PESTANAS_POR_ROL = {
-  admin: ['Config', 'Usuarios', 'Espacios', 'Factores', 'Finanzas_Lineas', 'Escenarios', 'Rutas', 'Paradas', 'Tareas', 'Conocimientos', 'Archivos', 'Historial', 'Versiones'],
-  editor: ['Config', 'Espacios', 'Factores', 'Finanzas_Lineas', 'Escenarios', 'Rutas', 'Paradas', 'Tareas', 'Conocimientos', 'Archivos', 'Historial'],
-  master: ['Config', 'Espacios', 'Factores', 'Finanzas_Lineas', 'Escenarios', 'Rutas', 'Paradas', 'Tareas', 'Conocimientos', 'Archivos', 'Historial', 'Versiones'],
-  visor: ['Config', 'Espacios', 'Factores', 'Finanzas_Lineas', 'Escenarios', 'Rutas', 'Paradas', 'Tareas', 'Conocimientos', 'Archivos', 'Historial'],
+  admin: ['Config', 'Usuarios', 'Espacios', 'Factores', 'Finanzas_Lineas', 'Escenarios', 'Rutas', 'Paradas', 'Tareas', 'Metas', 'Objetivos', 'Conocimientos', 'Archivos', 'Historial', 'Versiones'],
+  editor: ['Config', 'Espacios', 'Factores', 'Finanzas_Lineas', 'Escenarios', 'Rutas', 'Paradas', 'Tareas', 'Metas', 'Objetivos', 'Conocimientos', 'Archivos', 'Historial'],
+  master: ['Config', 'Espacios', 'Factores', 'Finanzas_Lineas', 'Escenarios', 'Rutas', 'Paradas', 'Tareas', 'Metas', 'Objetivos', 'Conocimientos', 'Archivos', 'Historial', 'Versiones'],
+  visor: ['Config', 'Espacios', 'Factores', 'Finanzas_Lineas', 'Escenarios', 'Rutas', 'Paradas', 'Tareas', 'Metas', 'Objetivos', 'Conocimientos', 'Archivos', 'Historial'],
   // Factores va incluido porque las líneas financieras del Reporte se
   // calculan con ellos (son insumos del modelo, que el Reporte mismo enseña).
   inversionista: ['Config', 'Espacios', 'Factores', 'Finanzas_Lineas', 'Escenarios', 'Rutas', 'Paradas'],
@@ -143,8 +157,8 @@ const PESTANAS_POR_ROL = {
 const ESCRITURA_POR_ROL = {
   // Historial y Versiones solo los escribe el servidor.
   admin: Object.keys(TABS).filter(function (t) { return t !== 'Historial' && t !== 'Versiones'; }),
-  editor: ['Espacios', 'Factores', 'Finanzas_Lineas', 'Escenarios', 'Rutas', 'Paradas', 'Tareas', 'Conocimientos', 'Archivos'],
-  master: ['Espacios', 'Factores', 'Finanzas_Lineas', 'Escenarios', 'Rutas', 'Paradas', 'Tareas', 'Conocimientos', 'Archivos'],
+  editor: ['Espacios', 'Factores', 'Finanzas_Lineas', 'Escenarios', 'Rutas', 'Paradas', 'Tareas', 'Metas', 'Objetivos', 'Conocimientos', 'Archivos'],
+  master: ['Espacios', 'Factores', 'Finanzas_Lineas', 'Escenarios', 'Rutas', 'Paradas', 'Tareas', 'Metas', 'Objetivos', 'Conocimientos', 'Archivos'],
   visor: [],
   inversionista: [],
 };
@@ -343,8 +357,11 @@ function doPost(e) {
       const rutas = leerHoja('Rutas').map(function (r) {
         return { id: r.id, nombre: r.nombre, color: r.color };
       });
+      // Fase 6: para la ventana de detalle viajan también el id de la parada y
+      // sus dos fotos (hoy / visión). Son fotos que el board ya comparte con
+      // enlace (privado = no); nada más de la parada sale por aquí.
       const paradas = leerHoja('Paradas').map(function (p) {
-        return { ruta_id: p.ruta_id, nombre: p.nombre, elementos: p.elementos };
+        return { id: p.id, ruta_id: p.ruta_id, nombre: p.nombre, elementos: p.elementos, foto_actual_id: p.foto_actual_id, foto_vision_id: p.foto_vision_id };
       });
       return jsonOut({ ok: true, rutas: rutas, paradas: paradas });
     }

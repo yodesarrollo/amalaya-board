@@ -319,7 +319,7 @@ function FormaNuevaRuta({ orden, onCrear, onCerrar }) {
 // "Hoy" ligeramente desaturada, "Visión" a color pleno con
 // filete dorado. Al abrir hace un barrido de presentación.
 // ------------------------------------------------------------
-function Cortina({ parada, editable, onSubir }) {
+export function Cortina({ parada, editable, onSubir }) {
   const [p, setP] = useState(30) // % visible de "Hoy" (arranca mostrando la Visión)
   const [arrastrando, setArrastrando] = useState(false)
   const contRef = useRef(null)

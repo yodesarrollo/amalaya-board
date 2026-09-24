@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Map as MapIcon, BarChart3, FileText, LifeBuoy } from 'lucide-react'
+import { Map as MapIcon, BarChart3, FileText, LifeBuoy, ListChecks } from 'lucide-react'
 import { usarDatos } from './datos.jsx'
 import Acceso from './componentes/Acceso.jsx'
 import Encabezado from './componentes/Encabezado.jsx'
@@ -8,6 +8,8 @@ import Mapa from './componentes/Mapa.jsx'
 import Financiero from './componentes/Financiero.jsx'
 import Reporte from './componentes/Reporte.jsx'
 import Ayuda from './componentes/Ayuda.jsx'
+import PlanAccion from './componentes/PlanAccion.jsx'
+import { puedeEditarRol } from './roles.js'
 
 // Las secciones del board según el rol.
 // El inversionista SOLO ve el Reporte (además, el servidor solo le
@@ -31,6 +33,7 @@ function Principal() {
     ['mapa', 'Mapa', MapIcon],
     ...(hayFinanzas ? [['finanzas', 'Finanzas', BarChart3]] : []),
     ['reporte', 'Reporte', FileText],
+    ...(puedeEditarRol(sesion?.rol) && Array.isArray(datos?.Metas) ? [['plan', 'Plan', ListChecks]] : []),
     ['ayuda', 'Ayuda', LifeBuoy],
   ]
 
@@ -53,6 +56,7 @@ function Principal() {
       {seccion === 'mapa' && <Mapa />}
       {seccion === 'finanzas' && <Financiero />}
       {seccion === 'reporte' && <Reporte />}
+      {seccion === 'plan' && <PlanAccion />}
       {seccion === 'ayuda' && <Ayuda />}
       {modo === 'demo' && seccion !== 'reporte' && (
         <p className="max-w-6xl mx-auto px-4 pb-8 text-terciario text-sm">
