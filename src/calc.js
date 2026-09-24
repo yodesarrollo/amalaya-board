@@ -172,7 +172,16 @@ export function lineasVigentes(lineas = [], escenarios = []) {
 }
 
 // --- Resumen por espacio ------------------------------------
-export function resumenEspacio(espacio, lineas = [], factores = [], escenarios = []) {
+// ajuste (opcional, del «¿Y si…?»): multiplica los INGRESOS por
+// (1 + ocupacion%) × (1 + precio%). No guarda nada: solo recalcula.
+export function factorAjuste(ajuste) {
+  const oc = Number(ajuste?.ocupacion) || 0
+  const pr = Number(ajuste?.precio) || 0
+  return (1 + oc / 100) * (1 + pr / 100)
+}
+
+export function resumenEspacio(espacio, lineas = [], factores = [], escenarios = [], ajuste = null) {
+  const k = factorAjuste(ajuste)
   const propias = lineasVigentes(
     lineas.filter((l) => String(l.espacio_id) === String(espacio.id)),
     escenarios.filter((e) => String(e.espacio_id) === String(espacio.id))
@@ -191,10 +200,10 @@ export function resumenEspacio(espacio, lineas = [], factores = [], escenarios =
     }
     const tipo = normalizarId(l.tipo)
     if (tipo === 'ingreso') {
-      ingreso += valor
+      ingreso += valor * k
       // Las líneas de regalías (concepto que las nombre) alimentan
       // el tercer componente del valor por acción.
-      if (normalizarId(l.concepto).includes('regalia')) regalias += valor
+      if (normalizarId(l.concepto).includes('regalia')) regalias += valor * k
     } else if (tipo === 'costo') {
       costo += valor
     }
@@ -249,7 +258,7 @@ export function configNum(config, clave, porDefecto = 0) {
 // valor_por_accion        = suma de componentes / acciones_emitidas
 // costo_construccion      = Σ( m2 × costo_m2_<tipo> ) + gastos_generales
 // La utilidad operativa EXCLUYE regalías para no contarlas doble.
-export function resumenGlobal({ espacios = [], lineas = [], factores = [], escenarios = [], config = {} }) {
+export function resumenGlobal({ espacios = [], lineas = [], factores = [], escenarios = [], config = {}, ajuste = null }) {
   const porEspacio = []
   let utilidadTotal = 0
   let regaliasTotal = 0
@@ -257,7 +266,7 @@ export function resumenGlobal({ espacios = [], lineas = [], factores = [], escen
   let costoConstruccion = 0
 
   for (const e of espacios) {
-    const r = resumenEspacio(e, lineas, factores, escenarios)
+    const r = resumenEspacio(e, lineas, factores, escenarios, ajuste)
     porEspacio.push({ espacio: e, ...r })
     utilidadTotal += r.utilidad
     regaliasTotal += r.regalias
@@ -295,4 +304,30 @@ export function resumenGlobal({ espacios = [], lineas = [], factores = [], escen
       porAccion: acciones > 0 ? valorProyecto / acciones : null,
     },
   }
+}
+
+// --- Comparar escenarios ------------------------------------
+// El resumen del espacio como si SOLO ese escenario estuviera
+// prendido (null = ninguno: solo las líneas que aplican siempre).
+export function resumenConEscenario(espacio, lineas = [], factores = [], escenarios = [], escenarioId = null) {
+  const propios = escenarios
+    .filter((e) => String(e.espacio_id) === String(espacio.id))
+    .map((e) => ({ ...e, activo: escenarioId !== null && String(e.id) === String(escenarioId) ? 'si' : 'no' }))
+  return resumenEspacio(espacio, lineas, factores, propios)
+}
+
+// --- Autocompletar factores en una fórmula ------------------
+// Dado el texto y la posición del cursor, devuelve la palabra a
+// medio escribir y las etiquetas de factores que empiezan igual.
+export function sugerirFactores(texto, cursor, etiquetas = []) {
+  const t = String(texto || '')
+  if (!t.trim().startsWith('=')) return { parcial: '', desde: cursor, sugerencias: [] }
+  const antes = t.slice(0, cursor)
+  const m = antes.match(/[a-zA-ZÀ-ÿ_][a-zA-Z0-9À-ÿ_]*$/)
+  const parcial = m ? m[0] : ''
+  const desde = cursor - parcial.length
+  const p = normalizarId(parcial)
+  const ids = [...new Set(etiquetas.map((e) => normalizarId(e)).filter(Boolean))]
+  const sugerencias = ids.filter((id) => (p ? id.startsWith(p) && id !== p : true)).slice(0, 6)
+  return { parcial, desde, sugerencias }
 }

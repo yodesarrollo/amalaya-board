@@ -11,6 +11,9 @@ import {
   mapaConfig,
   configNum,
   resumenGlobal,
+  resumenConEscenario,
+  sugerirFactores,
+  factorAjuste,
 } from '../src/calc.js'
 
 let fallas = 0
@@ -214,6 +217,54 @@ prueba('lee números con formato y respeta el valor por defecto', () => {
   const c = mapaConfig([{ clave: 'Gastos Generales', valor: '$2,500,000' }])
   casi(configNum(c, 'gastos_generales', 0), 2500000)
   casi(configNum(c, 'no_existe', 42), 42)
+})
+
+console.log('¿Y si…? — ajuste de ingresos que no guarda nada')
+prueba('sin ajuste el factor es 1 y nada cambia', () => {
+  casi(factorAjuste(null), 1)
+  const a = resumenGlobal(datos); const b = resumenGlobal({ ...datos, ajuste: { ocupacion: 0, precio: 0 } })
+  casi(a.utilidadTotal, b.utilidadTotal)
+})
+prueba('+10% ocupación y −10% precio multiplican los ingresos por 0.99', () => {
+  casi(factorAjuste({ ocupacion: 10, precio: -10 }), 0.99)
+  const base = resumenEspacio(datos.espacios[0], datos.lineas, datos.factores, [])
+  const r = resumenEspacio(datos.espacios[0], datos.lineas, datos.factores, [], { ocupacion: 10, precio: -10 })
+  casi(r.ingreso, base.ingreso * 0.99)
+  casi(r.costo, base.costo) // los costos no se mueven
+})
+prueba('el ajuste llega al valor por acción', () => {
+  const a = resumenGlobal(datos); const b = resumenGlobal({ ...datos, ajuste: { precio: 20 } })
+  if (!(b.valorPorAccion.porAccion > a.valorPorAccion.porAccion)) throw new Error('subir precios no subió el valor por acción')
+})
+
+console.log('Comparar escenarios')
+prueba('cada escenario se calcula como si fuera el único prendido', () => {
+  const escenarios = [
+    { id: 'ESC-1', espacio_id: 'E-001', nombre: '20 alumnos', activo: 'si' },
+    { id: 'ESC-2', espacio_id: 'E-001', nombre: '50 alumnos', activo: 'no' },
+  ]
+  const lineas = [
+    ...datos.lineas,
+    { id: 'L-A', espacio_id: 'E-001', escenario_id: 'ESC-1', concepto: 'Extra A', tipo: 'ingreso', monto_anual: '100' },
+    { id: 'L-B', espacio_id: 'E-001', escenario_id: 'ESC-2', concepto: 'Extra B', tipo: 'ingreso', monto_anual: '1000' },
+  ]
+  const base = resumenEspacio(datos.espacios[0], datos.lineas, datos.factores, [])
+  casi(resumenConEscenario(datos.espacios[0], lineas, datos.factores, escenarios, 'ESC-1').ingreso, base.ingreso + 100)
+  casi(resumenConEscenario(datos.espacios[0], lineas, datos.factores, escenarios, 'ESC-2').ingreso, base.ingreso + 1000)
+  casi(resumenConEscenario(datos.espacios[0], lineas, datos.factores, escenarios, null).ingreso, base.ingreso)
+})
+
+console.log('Autocompletar factores')
+prueba('sugiere las etiquetas que empiezan con lo que va escrito', () => {
+  const r = sugerirFactores('=alu', 4, ['Alumnos', 'Mensualidad', 'Aulas'])
+  igual(r.parcial, 'alu'); igual(r.desde, 1); igual(r.sugerencias, ['alumnos'])
+})
+prueba('a media fórmula mira solo la última palabra', () => {
+  const r = sugerirFactores('=alumnos * me', 13, ['Alumnos', 'Mensualidad'])
+  igual(r.sugerencias, ['mensualidad'])
+})
+prueba('sin «=» no sugiere nada (es un número)', () => {
+  igual(sugerirFactores('12000', 5, ['Alumnos']).sugerencias, [])
 })
 
 if (fallas > 0) {
