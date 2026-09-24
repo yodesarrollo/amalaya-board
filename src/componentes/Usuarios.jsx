@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Plus, KeyRound, Download, Copy, Check, Moon, Link as LinkIcon, Unlink, Share2, Power } from 'lucide-react'
+import { Plus, KeyRound, Download, Copy, Check, Moon, Link as LinkIcon, Unlink, Share2, Power, ShieldCheck } from 'lucide-react'
 import { usarDatos } from '../datos.jsx'
 import { ROLES, NOMBRE_ROL } from '../roles.js'
 import { fechaHora } from '../formato.js'
@@ -131,11 +131,20 @@ export default function Usuarios() {
         const activo = String(u.activo).toLowerCase() === 'si'
         const conLiga = String(u.tiene_liga).toLowerCase() === 'si'
         const ocupadoAqui = esDemo || ocupado === u.id
+        // Antifallos: la cuenta maestra y tu propia cuenta no se apagan ni se
+        // degradan desde aquí (el servidor también lo impide).
+        const maestra = String(u.maestra).toLowerCase() === 'si'
+        const yo = String(u.yo).toLowerCase() === 'si'
+        const blindada = maestra || yo
         return (
           <div key={u.id} className={`tarjeta p-4 space-y-3 ${activo ? '' : 'opacity-70'}`}>
             <div className="flex items-start gap-3 flex-wrap">
               <div className="flex-1 min-w-[10rem]">
-                <div className="text-marfil font-medium">{u.nombre}</div>
+                <div className="text-marfil font-medium flex items-center gap-1.5">
+                  {u.nombre}
+                  {maestra && <span className="text-[10px] text-salvia border border-salvia rounded-full px-1.5 flex items-center gap-1" title="Cuenta maestra de recuperación: no se puede apagar ni degradar"><ShieldCheck size={10} /> maestra</span>}
+                  {yo && <span className="text-[10px] text-terciario border border-linea rounded-full px-1.5">tú</span>}
+                </div>
                 <div className="text-terciario text-xs">
                   {u.correo || 'sin correo'} · código <span className="cifra">{u.codigo_enmascarado || '—'}</span>
                   {' · '}
@@ -151,7 +160,8 @@ export default function Usuarios() {
                   className="campo !py-1 !px-2 text-xs !w-auto"
                   value={String(u.rol || '').toLowerCase()}
                   onChange={(e) => editarFila('Usuarios', u.id, { rol: e.target.value })}
-                  disabled={esDemo}
+                  disabled={esDemo || blindada}
+                  title={blindada ? (maestra ? 'Cuenta maestra: siempre admin' : 'No puedes cambiar tu propio rol') : undefined}
                   aria-label={`Rol de ${u.nombre}`}
                 >
                   {ROLES.map((r) => <option key={r} value={r}>{NOMBRE_ROL[r]}</option>)}
@@ -174,13 +184,13 @@ export default function Usuarios() {
                 </button>
               )}
               <div className="flex-1" />
-              <button
+              {!blindada && <button
                 className={`!px-2.5 !py-1.5 text-xs ${activo ? 'boton-secundario' : 'boton-primario'}`}
                 onClick={() => (activo ? setPorApagar(u) : editarFila('Usuarios', u.id, { activo: 'si' }))}
                 disabled={esDemo}
               >
                 <span className="flex items-center gap-1.5"><Power size={13} /> {activo ? 'Apagar acceso' : 'Reactivar'}</span>
-              </button>
+              </button>}
             </div>
           </div>
         )

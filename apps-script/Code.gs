@@ -435,7 +435,7 @@ function autenticar(codigo) {
     const daLiga = String(u.liga_token || '').length >= 4 &&
       comparacionConstante(String(u.liga_token || ''), limpio);
     if ((daCodigo || daLiga) && String(u.activo || '').toLowerCase() === 'si') {
-      return { id: u.id, nombre: u.nombre, rol: String(u.rol || '').toLowerCase() };
+      return { id: u.id, nombre: u.nombre, correo: String(u.correo || '').trim().toLowerCase(), rol: String(u.rol || '').toLowerCase() };
     }
   }
   registrarIntento('global');
@@ -487,7 +487,7 @@ function accGetAll(usuario, body) {
     const ultima = ultimaVersion();
     if (ultima) {
       const foto = leerVersion(ultima);
-      if (foto) return jsonOut({ ok: true, v: v, datos: foto, rol: usuario.rol, congelada: { id: ultima.id, fecha: ultima.fecha, nombre: ultima.nombre } });
+      if (foto) return jsonOut({ ok: true, v: v, datos: foto.datos, rol: usuario.rol, congelada: { id: ultima.id, fecha: ultima.fecha, nombre: ultima.nombre, cifras: foto.cifras } });
     }
   }
 
@@ -504,6 +504,8 @@ function accGetAll(usuario, body) {
           codigo_enmascarado: enmascarar(u.codigo_acceso), activo: u.activo,
           tiene_liga: String(u.liga_token || '').length >= 4 ? 'si' : 'no',
           ultimo_acceso: u.ultimo_acceso,
+          maestra: esMaestra(u.correo) ? 'si' : 'no',
+          yo: String(u.id) === String(usuario.id) ? 'si' : 'no',
         };
       });
     }
@@ -539,6 +541,10 @@ function accGuardar(usuario, body) {
   const tab = String(body.tab || '');
   const permiso = validarEscritura(usuario, tab);
   if (permiso) return permiso;
+  if (tab === 'Usuarios') {
+    const veto = vetoUsuarios(usuario, String(body.key || '').trim(), body.patch || {}, false);
+    if (veto) return jsonOut({ ok: false, error: veto });
+  }
 
   const key = String(body.key || '').trim();
   const patch = body.patch || {};
@@ -608,6 +614,14 @@ function accBorrar(usuario, body) {
   const tab = String(body.tab || '');
   const permiso = validarEscritura(usuario, tab);
   if (permiso) return permiso;
+  if (tab === 'Usuarios') {
+    const veto = vetoUsuarios(usuario, String(body.key || '').trim(), {}, true);
+    if (veto) return jsonOut({ ok: false, error: veto });
+  }
+  // Freno contra un borrado masivo (cuenta robada): 25 borrados por hora.
+  if (!dentroDeLimite('borrar_' + usuario.id, 25, 3600)) {
+    return jsonOut({ ok: false, error: 'Demasiados borrados seguidos; espera una hora o pide ayuda a una cuenta maestra.' });
+  }
 
   const key = String(body.key || '').trim();
   if (!key) return jsonOut({ ok: false, error: 'Falta la llave de la fila.' });
@@ -911,6 +925,9 @@ function accGoogle(body) {
       String(usuarios[i].activo || '').toLowerCase() === 'si'
     ) { u = usuarios[i]; break; }
   }
+  // Cuenta maestra: aunque la hayan apagado, degradado o borrado desde el
+  // board (un hackeo), al entrar con Google se RESTAURA como admin activa.
+  if (esMaestra(correo)) u = restaurarMaestra(correo, usuarios) || u;
   if (!u) return jsonOut(negado);
 
   let token = String(u.liga_token || '');
@@ -927,6 +944,79 @@ function accGoogle(body) {
   }
   marcarAcceso(u.id);
   return jsonOut({ ok: true, codigo: token, rol: String(u.rol || '').toLowerCase(), nombre: u.nombre });
+}
+
+// ---------------------------------------------------------------------------
+//  ANTIFALLOS DE ACCESO (plan UX v2)
+//  - Cuentas MAESTRAS: correos en la Propiedad del Script CUENTAS_MAESTRAS
+//    (separados por coma). Viven FUERA del Sheet y del board: solo se cambian
+//    en el editor de Apps Script (Configuración del proyecto → Propiedades).
+//    Un admin robado no puede apagarlas, degradarlas ni borrarlas, y al entrar
+//    con Google se restauran solas como admin activas.
+//  - Nadie se apaga ni se quita el admin a sí mismo, y nunca puede quedar
+//    cero admins activos.
+//  - Códigos y ligas no se editan por «guardar»: solo con nuevoCodigo,
+//    generarLiga y revocarLiga.
+// ---------------------------------------------------------------------------
+function cuentasMaestras() {
+  const v = PropertiesService.getScriptProperties().getProperty('CUENTAS_MAESTRAS') || '';
+  return v.split(',').map(function (c) { return c.trim().toLowerCase(); }).filter(function (c) { return c.indexOf('@') > 0; });
+}
+function esMaestra(correo) {
+  const c = String(correo || '').trim().toLowerCase();
+  return !!c && cuentasMaestras().indexOf(c) !== -1;
+}
+
+function vetoUsuarios(usuario, key, patch, borrando) {
+  if ('codigo_acceso' in patch || 'liga_token' in patch) {
+    return 'Los códigos y ligas solo se cambian con sus botones.';
+  }
+  const filas = leerHoja('Usuarios');
+  const fila = filas.filter(function (u) { return String(u.id) === key; })[0];
+  if (!fila) return null; // guardar/borrar ya contestan «no se encontró»
+  const apaga = borrando || ('activo' in patch && String(patch.activo).toLowerCase() !== 'si');
+  const degrada = borrando || ('rol' in patch && String(patch.rol).toLowerCase() !== 'admin');
+  const cambiaCorreo = 'correo' in patch && String(patch.correo).trim().toLowerCase() !== String(fila.correo || '').trim().toLowerCase();
+  if (esMaestra(fila.correo) && (apaga || degrada || cambiaCorreo)) {
+    return 'Es una cuenta maestra de recuperación: no se puede apagar, degradar, borrar ni cambiar su correo desde el board.';
+  }
+  if (String(fila.id) === String(usuario.id) && (apaga || degrada)) {
+    return 'No puedes quitarte tu propio acceso de admin; pídeselo a otro admin.';
+  }
+  const esAdminActivo = String(fila.rol).toLowerCase() === 'admin' && String(fila.activo).toLowerCase() === 'si';
+  if (esAdminActivo && (apaga || degrada)) {
+    const otros = filas.filter(function (u) {
+      return String(u.id) !== key && String(u.rol).toLowerCase() === 'admin' && String(u.activo).toLowerCase() === 'si';
+    });
+    if (otros.length === 0) return 'Es el último admin activo: primero da de alta otro admin.';
+  }
+  return null;
+}
+
+// Deja a la cuenta maestra como admin activa (la crea si la borraron).
+function restaurarMaestra(correo, usuarios) {
+  const conf = TABS.Usuarios;
+  return conCandadoCrudo(function () {
+    const hoja = obtenerHoja('Usuarios');
+    const previa = usuarios.filter(function (u) { return String(u.correo || '').trim().toLowerCase() === correo; })[0];
+    if (previa) {
+      const fila = buscarFila(hoja, conf, previa.id);
+      if (fila > 0) {
+        hoja.getRange(fila, conf.headers.indexOf('rol') + 1).setValue('admin');
+        hoja.getRange(fila, conf.headers.indexOf('activo') + 1).setValue('si');
+      }
+      if (String(previa.rol).toLowerCase() !== 'admin' || String(previa.activo).toLowerCase() !== 'si') {
+        anotarHistorial({ id: 'sistema', nombre: 'recuperación maestra' }, 'Usuarios', previa.id, [['rol/activo', previa.rol + '/' + previa.activo, 'admin/si']]);
+        subirVersion();
+      }
+      return Object.assign({}, previa, { rol: 'admin', activo: 'si' });
+    }
+    const nueva = { id: conf.prefix + siguienteNumero(hoja, conf), nombre: correo.split('@')[0], correo: correo, rol: 'admin', codigo_acceso: '', activo: 'si', liga_token: '', ultimo_acceso: '' };
+    hoja.appendRow(conf.headers.map(function (c) { return nueva[c] === undefined ? '' : nueva[c]; }));
+    anotarHistorial({ id: 'sistema', nombre: 'recuperación maestra' }, 'Usuarios', nueva.id, [['(fila nueva)', '', 'cuenta maestra restaurada']]);
+    subirVersion();
+    return nueva;
+  });
 }
 
 // Candado sin envoltura JSON (devuelve lo de fn, o null si no hubo candado).
@@ -1035,7 +1125,11 @@ function accCongelarReporte(usuario, body) {
   PESTANAS_POR_ROL.inversionista.forEach(function (tab) { foto[tab] = leerHoja(tab); });
   const fecha = new Date();
   const nombre = 'amalaya-reporte-' + Utilities.formatDate(fecha, TZ, 'yyyy-MM-dd-HHmm') + '.json';
-  const archivo = carpetaReportes().createFile(nombre, JSON.stringify(foto), 'application/json');
+  // Antifallos: además de los DATOS se guardan las CIFRAS que se vieron al
+  // congelar (las calcula el board). Si un día cambia el motor, la versión
+  // vieja sigue enseñando sus números y el board avisa la diferencia.
+  const cifras = body.cifras && typeof body.cifras === 'object' ? body.cifras : null;
+  const archivo = carpetaReportes().createFile(nombre, JSON.stringify({ formato: 2, datos: foto, cifras: cifras }), 'application/json');
   return conCandado(function () {
     const conf = TABS.Versiones;
     const hoja = obtenerHoja('Versiones');
@@ -1056,9 +1150,11 @@ function ultimaVersion() {
   return filas.length ? filas[filas.length - 1] : null;
 }
 
+// Devuelve {datos, cifras}. Acepta el formato 1 (solo datos).
 function leerVersion(fila) {
   try {
-    return JSON.parse(DriveApp.getFileById(String(fila.file_id)).getBlob().getDataAsString());
+    const j = JSON.parse(DriveApp.getFileById(String(fila.file_id)).getBlob().getDataAsString());
+    return j && j.formato === 2 ? { datos: j.datos, cifras: j.cifras || null } : { datos: j, cifras: null };
   } catch (e) {
     console.error('leerVersion: ' + String(e));
     return null;
@@ -1075,7 +1171,7 @@ function accVerVersion(usuario, body) {
   if (!fila) return jsonOut({ ok: false, error: 'No se encontró esa versión.' });
   const foto = leerVersion(fila);
   if (!foto) return jsonOut({ ok: false, error: 'No se pudo leer esa versión en Drive.' });
-  return jsonOut({ ok: true, datos: foto, version: { id: fila.id, fecha: fila.fecha, nombre: fila.nombre } });
+  return jsonOut({ ok: true, datos: foto.datos, version: { id: fila.id, fecha: fila.fecha, nombre: fila.nombre, cifras: foto.cifras } });
 }
 
 function accRespaldoAhora(usuario) {

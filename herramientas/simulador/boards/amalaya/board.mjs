@@ -9,7 +9,7 @@ export const base = '/amalaya-board/'
 // EDITOR1 como editor (para ver lo que un editor NO ve, como el ⚙️).
 export const CODIGO = 'SIMULADOR'
 const QUIENES = {
-  SIMULADOR: { rol: 'admin', nombre: 'Alejandro Puebla' },
+  SIMULADOR: { id: 'U-001', rol: 'admin', nombre: 'Alejandro Puebla' },
   EDITOR1: { rol: 'editor', nombre: 'Luis Puebla' },
   INVERSOR1: { rol: 'inversionista', nombre: 'Inversionista de prueba' },
 }
@@ -37,6 +37,23 @@ db.Objetivos = []
 // Un render 360 de prueba en el primer punto del recorrido.
 export const PUNTO_CON_RENDER = 'G5UapkZfu_gIeRoydqjPBw'
 db.Archivos.push({ id: 'A-900', espacio_id: PUNTO_CON_RENDER, tipo: 'render360', nombre: 'render-prueba.png', file_id: 'SIM-RENDER', privado: 'si', fecha: '2026-09-24' })
+// Antifallos (espejo de vetoUsuarios en Code.gs). La maestra del simulador
+// vive «fuera del Sheet», como la Propiedad CUENTAS_MAESTRAS del real.
+const MAESTRAS = ['admin@ejemplo.mx']
+const esMaestra = (c) => MAESTRAS.includes(String(c || '').trim().toLowerCase())
+function vetoUsuarios(quien, key, patch, borrando) {
+  if ('codigo_acceso' in patch || 'liga_token' in patch) return 'Los códigos y ligas solo se cambian con sus botones.'
+  const fila = db.Usuarios.find((u) => u.id === key)
+  if (!fila) return null
+  const apaga = borrando || ('activo' in patch && String(patch.activo).toLowerCase() !== 'si')
+  const degrada = borrando || ('rol' in patch && String(patch.rol).toLowerCase() !== 'admin')
+  const cambiaCorreo = 'correo' in patch && String(patch.correo).trim().toLowerCase() !== String(fila.correo || '').trim().toLowerCase()
+  if (esMaestra(fila.correo) && (apaga || degrada || cambiaCorreo)) return 'Es una cuenta maestra de recuperación.'
+  if (fila.id === quien.id && (apaga || degrada)) return 'No puedes quitarte tu propio acceso de admin.'
+  const adminActivo = (u) => u.rol === 'admin' && u.activo === 'si'
+  if (adminActivo(fila) && (apaga || degrada) && !db.Usuarios.some((u) => u.id !== key && adminActivo(u))) return 'Es el último admin activo.'
+  return null
+}
 const anotar = (quien, tab, llave, campo, antes, despues) =>
   db.Historial.push({ fecha: new Date().toISOString(), usuario: quien.nombre, tab, llave, campo, antes: String(antes ?? ''), despues: String(despues ?? '') })
 let v = 1
@@ -58,10 +75,13 @@ export function servidor(accion, b) {
   switch (accion) {
     case 'login': return { ok: true, ...quien }
     case 'getAll': {
-      if (esAdmin) return { ok: true, v, datos: db, rol: quien.rol }
+      if (esAdmin) {
+        const Usuarios = db.Usuarios.map((u) => ({ ...u, maestra: esMaestra(u.correo) ? 'si' : 'no', yo: u.id === quien.id ? 'si' : 'no' }))
+        return { ok: true, v, datos: { ...db, Usuarios }, rol: quien.rol }
+      }
       if (quien.rol === 'inversionista') {
         const ultima = congeladas[congeladas.length - 1]
-        if (ultima) return { ok: true, v, datos: ultima.foto, rol: quien.rol, congelada: { id: ultima.fila.id, fecha: ultima.fila.fecha, nombre: ultima.fila.nombre } }
+        if (ultima) return { ok: true, v, datos: ultima.foto, rol: quien.rol, congelada: { id: ultima.fila.id, fecha: ultima.fila.fecha, nombre: ultima.fila.nombre, cifras: ultima.cifras } }
         return { ok: true, v, datos: Object.fromEntries(TABS_INVERSIONISTA.map((t) => [t, db[t]])), rol: quien.rol }
       }
       const { Usuarios, Versiones, ...resto } = db
@@ -71,14 +91,15 @@ export function servidor(accion, b) {
       if (!['admin', 'master'].includes(quien.rol)) return { ok: false, error: 'Solo admin o máster pueden congelar el reporte.' }
       const foto = structuredClone(Object.fromEntries(TABS_INVERSIONISTA.map((t) => [t, db[t]])))
       const fila = { id: 'V-' + String(db.Versiones.length + 1).padStart(3, '0'), fecha: new Date().toISOString(), usuario: quien.nombre, nombre: 'amalaya-reporte-simulado.json', file_id: 'SIM-V' + (db.Versiones.length + 1), notas: '' }
-      db.Versiones.push(fila); congeladas.push({ fila, foto })
+      db.Versiones.push(fila); congeladas.push({ fila, foto, cifras: b.cifras || null })
       return { ok: true, fila, v: ++v }
     }
     case 'verVersion': {
       const c = congeladas.find((x) => x.fila.id === b.id)
-      return c ? { ok: true, datos: c.foto, version: { id: c.fila.id, fecha: c.fila.fecha, nombre: c.fila.nombre } } : { ok: false, error: 'No se encontró esa versión.' }
+      return c ? { ok: true, datos: c.foto, version: { id: c.fila.id, fecha: c.fila.fecha, nombre: c.fila.nombre, cifras: c.cifras } } : { ok: false, error: 'No se encontró esa versión.' }
     }
     case 'guardar': {
+      if (b.tab === 'Usuarios') { const veto = vetoUsuarios(quien, b.key, b.patch || {}, false); if (veto) return { ok: false, error: veto } }
       const fila = db[b.tab]?.find((x) => llave(x) === b.key)
       if (!fila) return { ok: false, error: 'No se encontró la fila.' }
       for (const [k, val] of Object.entries(b.patch)) if (String(fila[k]) !== String(val)) anotar(quien, b.tab, b.key, k, fila[k], val)
@@ -89,6 +110,7 @@ export function servidor(accion, b) {
       db[b.tab].push(fila); anotar(quien, b.tab, fila.id, '(fila nueva)', '', JSON.stringify(fila)); return { ok: true, fila, v: ++v }
     }
     case 'borrar': {
+      if (b.tab === 'Usuarios') { const veto = vetoUsuarios(quien, b.key, {}, true); if (veto) return { ok: false, error: veto } }
       const previa = db[b.tab].find((x) => llave(x) === b.key)
       db[b.tab] = db[b.tab].filter((x) => llave(x) !== b.key)
       anotar(quien, b.tab, b.key, '(fila borrada)', JSON.stringify(previa || {}), ''); return { ok: true, v: ++v }
@@ -178,6 +200,18 @@ export async function guion({ pagina, foto, clic, base }) {
   await clic('button[type=submit]:has-text("Entrar")')
   await pagina.waitForSelector('[data-entrada="4"]', { timeout: 30000 }).catch(() => {}); await pagina.waitForTimeout(2500)
   await clic('button[aria-label="Accesos"]'); await foto('07-accesos')
+  // Antifallos: la maestra y tu propia cuenta no tienen «Apagar acceso»
+  const tarjetaYo = pagina.locator('.tarjeta', { hasText: 'Alejandro Puebla' }).first()
+  console.log(`${(await tarjetaYo.locator('button:has-text("Apagar acceso")').count()) === 0 ? '✓' : '✗'} la cuenta maestra / propia no se puede apagar desde el ⚙️`)
+  const yo = QUIENES.SIMULADOR
+  const intentos = [
+    ['apagar a la maestra', servidor('guardar', { codigo: CODIGO, tab: 'Usuarios', key: 'U-001', patch: { activo: 'no' } })],
+    ['degradar a la maestra', servidor('guardar', { codigo: CODIGO, tab: 'Usuarios', key: 'U-001', patch: { rol: 'visor' } })],
+    ['borrar a la maestra', servidor('borrar', { codigo: CODIGO, tab: 'Usuarios', key: 'U-001' })],
+    ['escribir un código a mano', servidor('guardar', { codigo: CODIGO, tab: 'Usuarios', key: 'U-002', patch: { codigo_acceso: 'HACK' } })],
+  ]
+  for (const [que, r] of intentos) console.log(`${r.ok === false ? '✓' : '✗'} el servidor rechaza ${que}: ${r.error || 'lo permitió'}`)
+  void yo
   await clic('button:has-text("Apagar acceso")'); await foto('07b-confirmar-apagar', 600)
   await clic('button:has-text("Cancelar")'); await clic('aside button:has-text("Cerrar")')
 
