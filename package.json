@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "pruebas": "node scripts/pruebas-calc.mjs && node scripts/pruebas-careta.mjs"
+    "pruebas": "node scripts/pruebas-calc.mjs && node scripts/pruebas-careta.mjs",
+    "simular": "npm run build && npm --prefix herramientas/simulador ci --no-audit --no-fund && node herramientas/simulador/simular.mjs amalaya dist"
   },
   "dependencies": {
     "lucide-react": "^0.383.0",
