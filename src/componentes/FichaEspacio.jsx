@@ -1,11 +1,13 @@
 import { useState, useRef } from 'react'
-import { X, Upload, FileText, Download, Plus, Check, Share2 } from 'lucide-react'
+import { X, Upload, FileText, Download, Plus, Check, Share2, ChevronLeft, ChevronRight, History, ArrowRight } from 'lucide-react'
 import { usarDatos } from '../datos.jsx'
 import { puedeEditarRol } from '../roles.js'
 import Factores from './Factores.jsx'
 import ImagenDrive from './ImagenDrive.jsx'
 import { GLIFO_TIPO } from './Glifos.jsx'
-import { m2Construidos } from '../calc.js'
+import { m2Construidos, resumenEspacio } from '../calc.js'
+import { nivelAvance } from '../avance.js'
+import { moneda, fechaHora } from '../formato.js'
 import { compartirCard } from '../compartir.js'
 
 // ============================================================
@@ -21,6 +23,7 @@ const PESTANAS = [
   { clave: 'documentos', titulo: 'Documentos', requiere: 'Archivos' },
   { clave: 'conocimientos', titulo: 'Conocimientos', requiere: 'Conocimientos' },
   { clave: 'tareas', titulo: 'Tareas', requiere: 'Tareas' },
+  { clave: 'historial', titulo: 'Historial', requiere: 'Historial' },
 ]
 
 // ------------------------------------------------------------
@@ -76,7 +79,7 @@ export function inicialesDe(nombre) {
     .join('')
 }
 
-export default function FichaEspacio({ espacio, onCerrar }) {
+export default function FichaEspacio({ espacio, onCerrar, onAnterior, onSiguiente, posicion }) {
   const { sesion, datos, modo, editarFila } = usarDatos()
   const editable = modo !== 'demo' && puedeEditarRol(sesion?.rol)
   const [pestana, setPestana] = useState('factores')
@@ -88,10 +91,21 @@ export default function FichaEspacio({ espacio, onCerrar }) {
     <div className="p-5 sm:p-6">
       {/* Encabezado de la ficha */}
       <div className="flex items-start gap-3">
+        {onAnterior && (
+          <button className="text-arena hover:text-marfil p-2 -m-1 mt-3" onClick={onAnterior} aria-label="Espacio anterior" title="Espacio anterior">
+            <ChevronLeft size={20} />
+          </button>
+        )}
         <div className="flex-1 min-w-0">
           <div className="text-xs uppercase tracking-wide text-terciario">{espacio.tipo}</div>
           <h3 className="font-titulo text-2xl mt-0.5 truncate">{espacio.nombre}</h3>
+          {posicion && <div className="text-[11px] text-terciario">{posicion}</div>}
         </div>
+        {onSiguiente && (
+          <button className="text-arena hover:text-marfil p-2 -m-1" onClick={onSiguiente} aria-label="Espacio siguiente" title="Espacio siguiente">
+            <ChevronRight size={20} />
+          </button>
+        )}
         <button
           className="text-arena hover:text-marfil p-2 -m-1 transition-colors duration-micro ease-casa"
           onClick={() => compartirCard({ titulo: espacio.nombre, subtitulo: espacio.tipo, detalle: espacio.descripcion || '' })}
@@ -105,11 +119,14 @@ export default function FichaEspacio({ espacio, onCerrar }) {
         </button>
       </div>
 
+      <ResumenArriba espacio={espacio} />
+
       {/* Datos base editables (los m² alimentan el valor por acción) */}
       <div className="grid grid-cols-2 gap-2 mt-4">
         <label className="block">
           <span className="text-xs text-arena">Superficie (m²)</span>
           <input
+            id="campo-m2"
             type="number"
             className="campo !py-2 mt-1 cifra"
             value={espacio.m2 ?? ''}
@@ -135,6 +152,7 @@ export default function FichaEspacio({ espacio, onCerrar }) {
       <label className="block mt-2">
         <span className="text-xs text-arena">Descripción</span>
         <textarea
+          id="campo-descripcion"
           className="campo !py-2 mt-1 resize-none"
           rows={2}
           value={espacio.descripcion || ''}
@@ -145,7 +163,7 @@ export default function FichaEspacio({ espacio, onCerrar }) {
       </label>
 
       <M2Construidos espacio={espacio} />
-      <Llenado espacio={espacio} />
+      <Llenado espacio={espacio} editable={editable} onIr={setPestana} />
 
       <Representante espacio={espacio} editable={editable} />
 
@@ -171,6 +189,7 @@ export default function FichaEspacio({ espacio, onCerrar }) {
         {activa === 'documentos' && <Documentos espacio={espacio} editable={editable} />}
         {activa === 'conocimientos' && <Conocimientos espacio={espacio} editable={editable} />}
         {activa === 'tareas' && <Tareas espacio={espacio} editable={editable} />}
+        {activa === 'historial' && <Historial espacio={espacio} />}
       </div>
     </div>
   )
@@ -200,18 +219,31 @@ function M2Construidos({ espacio }) {
 // Termómetro de llenado: qué ya está capturado y qué falta para
 // que este espacio cuente completo en el reporte.
 // ------------------------------------------------------------
-function Llenado({ espacio }) {
+function Llenado({ espacio, editable, onIr }) {
   const { datos } = usarDatos()
   const id = String(espacio.id)
   const lineas = (datos?.Finanzas_Lineas || []).filter((l) => String(l.espacio_id) === id)
+  // [nombre, hecho, adónde lleva el botón del «siguiente paso»]
   const pasos = [
-    ['m²', Number(espacio.m2) > 0],
-    ['descripción', String(espacio.descripcion || '').trim() !== ''],
-    ['factores', (datos?.Factores || []).some((f) => String(f.espacio_id) === id)],
-    ['un ingreso', lineas.some((l) => String(l.tipo).toLowerCase() === 'ingreso')],
-    ['un costo', lineas.some((l) => String(l.tipo).toLowerCase() === 'costo')],
-    ['una foto', (datos?.Archivos || []).some((a) => String(a.espacio_id) === id && a.tipo === 'foto')],
+    ['m²', Number(espacio.m2) > 0, 'campo-m2'],
+    ['descripción', String(espacio.descripcion || '').trim() !== '', 'campo-descripcion'],
+    ['factores', (datos?.Factores || []).some((f) => String(f.espacio_id) === id), 'factores'],
+    ['un ingreso', lineas.some((l) => String(l.tipo).toLowerCase() === 'ingreso'), 'finanzas'],
+    ['un costo', lineas.some((l) => String(l.tipo).toLowerCase() === 'costo'), 'finanzas'],
+    ['una foto', (datos?.Archivos || []).some((a) => String(a.espacio_id) === id && a.tipo === 'foto'), 'fotos'],
   ]
+  const siguiente = pasos.find(([, ok]) => !ok)
+  const TEXTO_PASO = {
+    'campo-m2': 'Captura los m² del espacio', 'campo-descripcion': 'Escribe qué es este espacio',
+    factores: 'Agrega sus factores', finanzas: 'Captura sus líneas en Finanzas', fotos: 'Sube una foto',
+  }
+  function irAlPaso() {
+    const destino = siguiente?.[2]
+    if (!destino) return
+    if (destino.startsWith('campo-')) document.getElementById(destino)?.focus()
+    else if (destino === 'finanzas') onIr?.('factores')
+    else onIr?.(destino)
+  }
   const hechos = pasos.filter(([, ok]) => ok).length
   const faltan = pasos.filter(([, ok]) => !ok).map(([n]) => n)
   const completo = hechos === pasos.length
@@ -229,6 +261,14 @@ function Llenado({ espacio }) {
       </div>
       {!completo && (
         <p className="text-terciario text-xs mt-1.5">Falta: {faltan.join(' · ')}.</p>
+      )}
+      {!completo && editable && siguiente && (
+        <p className="text-xs mt-1 flex items-center gap-1.5">
+          <span className="text-arena">Siguiente paso:</span>
+          <button className="text-oro hover:text-ambar flex items-center gap-1" onClick={irAlPaso}>
+            {TEXTO_PASO[siguiente[2]]} <ArrowRight size={12} />
+          </button>
+        </p>
       )}
     </div>
   )
@@ -708,5 +748,86 @@ function Tareas({ espacio, editable }) {
       )}
       {error && <p className="text-ladrillo text-sm" role="alert">{error}</p>}
     </div>
+  )
+}
+
+// ------------------------------------------------------------
+// Resumen arriba: m² construidos, utilidad anual y estado.
+// ------------------------------------------------------------
+function ResumenArriba({ espacio }) {
+  const { datos } = usarDatos()
+  const { m2c } = m2Construidos(espacio, datos?.Factores || [])
+  const r = resumenEspacio(espacio, datos?.Finanzas_Lineas || [], datos?.Factores || [], datos?.Escenarios || [])
+  const hayFinanzas = Array.isArray(datos?.Finanzas_Lineas)
+  const n = nivelAvance(espacio.estado_desarrollo)
+  return (
+    <div className="grid grid-cols-3 gap-2 mt-4" aria-label="Resumen del espacio">
+      <div className="tarjeta p-2.5">
+        <div className="text-[10px] uppercase tracking-wide text-terciario">m² construidos</div>
+        <div className="cifra text-marfil text-lg">{m2c > 0 ? Math.round(m2c).toLocaleString('es-MX') : '—'}</div>
+      </div>
+      <div className="tarjeta p-2.5">
+        <div className="text-[10px] uppercase tracking-wide text-terciario">Utilidad anual</div>
+        <div className={`cifra text-lg ${r.utilidad < 0 ? 'text-ladrillo' : 'text-marfil'}`}>{hayFinanzas ? moneda(r.utilidad) : '—'}</div>
+      </div>
+      <div className="tarjeta p-2.5">
+        <div className="text-[10px] uppercase tracking-wide text-terciario">Estado</div>
+        <div className="text-marfil text-sm capitalize mt-0.5">{espacio.estado_desarrollo || 'idea'}</div>
+        <div className="flex gap-0.5 mt-1" title={`Avance: ${n} de 5`}>
+          {[1, 2, 3, 4, 5].map((k) => <i key={k} className={`h-[3px] flex-1 rounded ${k <= n ? 'bg-oro' : 'bg-linea'}`} />)}
+        </div>
+      </div>
+    </div>
+  )
+}
+
+// ------------------------------------------------------------
+// Historial: los últimos 20 cambios de este espacio y de sus filas
+// ligadas (factores, líneas, tareas…). Lo escribe el servidor.
+// ------------------------------------------------------------
+const TABS_LIGADAS = ['Factores', 'Finanzas_Lineas', 'Escenarios', 'Tareas', 'Conocimientos', 'Archivos']
+export function historialDeEspacio(datos, espacioId) {
+  const id = String(espacioId)
+  const ligadas = new Set()
+  for (const tab of TABS_LIGADAS) {
+    for (const f of datos?.[tab] || []) if (String(f.espacio_id) === id) ligadas.add(`${tab}|${f.id}`)
+  }
+  return (datos?.Historial || [])
+    .filter((h) => (h.tab === 'Espacios' && String(h.llave) === id) || ligadas.has(`${h.tab}|${h.llave}`) ||
+      (String(h.antes || '').includes(`"espacio_id":"${id}"`)) || (String(h.despues || '').includes(`"espacio_id":"${id}"`)))
+    .slice(-20)
+    .reverse()
+}
+
+const NOMBRE_TAB = { Espacios: 'espacio', Factores: 'factor', Finanzas_Lineas: 'finanzas', Escenarios: 'escenario', Tareas: 'tarea', Conocimientos: 'conocimiento', Archivos: 'archivo' }
+function corto(v) {
+  const t = String(v ?? '')
+  if (t.startsWith('{')) return 'fila completa'
+  return t.length > 40 ? t.slice(0, 38) + '…' : t || '—'
+}
+
+function Historial({ espacio }) {
+  const { datos } = usarDatos()
+  const filas = historialDeEspacio(datos, espacio.id)
+  if (filas.length === 0) {
+    return <p className="text-terciario text-sm">Todavía no hay cambios anotados. Cada cambio que se guarde aparecerá aquí.</p>
+  }
+  return (
+    <ul className="space-y-2" aria-label="Historial de cambios">
+      {filas.map((h, i) => (
+        <li key={`${h.fecha}-${i}`} className="text-xs flex gap-2">
+          <History size={12} className="text-terciario mt-0.5 shrink-0" />
+          <div className="min-w-0">
+            <div className="text-arena">
+              <b className="text-marfil font-medium">{h.usuario}</b> · {NOMBRE_TAB[h.tab] || h.tab} · {h.campo}
+            </div>
+            <div className="text-terciario">
+              {h.campo === '(fila nueva)' ? 'creó la fila' : h.campo === '(fila borrada)' ? 'borró la fila' : <>{corto(h.antes)} → <span className="text-marfil">{corto(h.despues)}</span></>}
+              {' · '}{h.fecha ? fechaHora(new Date(h.fecha)) : ''}
+            </div>
+          </div>
+        </li>
+      ))}
+    </ul>
   )
 }

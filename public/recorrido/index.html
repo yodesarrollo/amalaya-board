@@ -18,6 +18,7 @@ button.on{background:linear-gradient(180deg,#E8C466,#C9A45C 50%,#8F6E2E);color:#
 .slider b{font-size:11px;letter-spacing:.1em;text-transform:uppercase}
 .slider input{flex:1;accent-color:#FFB84D}
 .slider .est{font-size:10px;color:#B7A890;white-space:nowrap}
+.slider.apagado{opacity:.55}.slider.apagado input{filter:grayscale(1)}
 .mini{position:fixed;left:16px;bottom:16px;z-index:4;background:rgba(20,16,16,.9);border:1px solid rgba(201,164,92,.35);border-radius:10px;padding:6px 8px;box-shadow:0 10px 24px -12px rgba(0,0,0,.9)}
 .mini svg{display:block}.mini circle{cursor:pointer}
 .brujula{position:fixed;right:16px;bottom:16px;z-index:5;width:44px;height:44px;border-radius:50%;background:rgba(20,16,16,.85);border:1px solid rgba(201,164,92,.5);display:flex;align-items:center;justify-content:center}
@@ -103,10 +104,20 @@ async function irA(i,orientar=true){
   if(a){ matA.map=a; matA.color.set('#fff'); matA.needsUpdate=true }
   nivelar(p.id); encuadrar(p.id);
   const m=document.getElementById('mezcla'), est=document.getElementById('estado');
-  if(b){ matB.map=b; matB.needsUpdate=true; m.disabled=false; est.innerHTML='<b style="color:#8FA382;font-weight:700">listo</b> · render del después' } else { matB.map=null; m.disabled=true; m.value=0; matB.opacity=0; est.innerHTML='<b style="color:#FFB84D;font-weight:700">pendiente</b> · el render del después' }
+  // El «después»: primero el render de Drive (lo pasa el board, ver render360
+  // abajo); si no hay, el de despues/ del repo; si tampoco, «Render en camino».
+  if(RENDERS[p.id]) b=RENDERS[p.id];
+  pintarDespues(b);
   pintarUI(); pintarMini();
 }
 document.getElementById('mezcla').oninput=(e)=>{ matB.opacity=e.target.value/100 };
+const RENDERS={};
+function pintarDespues(b){ const m=document.getElementById('mezcla'), est=document.getElementById('estado'); document.querySelector('.slider').classList.toggle('apagado',!b);
+  if(b){ matB.map=b; matB.needsUpdate=true; m.disabled=false; est.innerHTML='<b style="color:#8FA382;font-weight:700">listo</b> · render del después' } else { matB.map=null; m.disabled=true; m.value=0; matB.opacity=0; est.innerHTML='<b style="color:#FFB84D;font-weight:700">Render en camino</b>' } }
+// El board (padre) contesta con el render de Drive del punto: {tipo:'render360', punto, dataUrl}
+addEventListener('message', async (ev)=>{ const d=ev.data||{}; if(d.tipo!=='render360'||ev.source!==window.parent) return;
+  if(!d.dataUrl) return; const t=await cargarTex(d.dataUrl); if(!t) return; RENDERS[d.punto]=t;
+  if(DATA.puntos[idx]&&DATA.puntos[idx].id===d.punto) pintarDespues(t) });
 function pintarMini(){ const s=document.getElementById('minisvg'); const P=DATA.puntos; const xs=P.map(p=>p.lng), ys=P.map(p=>p.lat);
   const x0=Math.min(...xs),x1=Math.max(...xs),y0=Math.min(...ys),y1=Math.max(...ys); const sx=(v)=>9+(v-x0)/((x1-x0)||1)*132, sy=(v)=>40-(v-y0)/((y1-y0)||1)*32;
   s.innerHTML=`<polyline points="${P.map(p=>sx(p.lng)+','+sy(p.lat)).join(' ')}" fill="none" stroke="${DATA.color||'#8FA382'}" stroke-width="3" stroke-linecap="round"/>`+P.map((p,i)=>`<circle cx="${sx(p.lng)}" cy="${sy(p.lat)}" r="${i===idx?5:3.2}" fill="${i===idx?'#FFB84D':'#141010'}" stroke="#C9A45C" stroke-width="1.5" data-i="${i}"/>`).join('');
