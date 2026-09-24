@@ -109,6 +109,13 @@ const TABS = {
   },
   // Historial: lo escribe SOLO el servidor en cada guardar/crear/borrar.
   // Nadie lo edita (queda fuera de ESCRITURA_POR_ROL).
+  // Versiones congeladas del Reporte (solo admin/máster congelan). La fila
+  // apunta al JSON guardado en Drive → AMALAYA/Reportes.
+  Versiones: {
+    keyField: 'id',
+    headers: ['id', 'fecha', 'usuario', 'nombre', 'file_id', 'notas'],
+    prefix: 'V-',
+  },
   Historial: {
     keyField: 'fecha',
     headers: ['fecha', 'usuario', 'tab', 'llave', 'campo', 'antes', 'despues'],
@@ -123,9 +130,9 @@ const TABS = {
 //  - visor: solo lectura de lo mismo que editor.
 //  - inversionista: solo los insumos del Reporte (sin factores ni tareas).
 const PESTANAS_POR_ROL = {
-  admin: ['Config', 'Usuarios', 'Espacios', 'Factores', 'Finanzas_Lineas', 'Escenarios', 'Rutas', 'Paradas', 'Tareas', 'Conocimientos', 'Archivos', 'Historial'],
+  admin: ['Config', 'Usuarios', 'Espacios', 'Factores', 'Finanzas_Lineas', 'Escenarios', 'Rutas', 'Paradas', 'Tareas', 'Conocimientos', 'Archivos', 'Historial', 'Versiones'],
   editor: ['Config', 'Espacios', 'Factores', 'Finanzas_Lineas', 'Escenarios', 'Rutas', 'Paradas', 'Tareas', 'Conocimientos', 'Archivos', 'Historial'],
-  master: ['Config', 'Espacios', 'Factores', 'Finanzas_Lineas', 'Escenarios', 'Rutas', 'Paradas', 'Tareas', 'Conocimientos', 'Archivos', 'Historial'],
+  master: ['Config', 'Espacios', 'Factores', 'Finanzas_Lineas', 'Escenarios', 'Rutas', 'Paradas', 'Tareas', 'Conocimientos', 'Archivos', 'Historial', 'Versiones'],
   visor: ['Config', 'Espacios', 'Factores', 'Finanzas_Lineas', 'Escenarios', 'Rutas', 'Paradas', 'Tareas', 'Conocimientos', 'Archivos', 'Historial'],
   // Factores va incluido porque las líneas financieras del Reporte se
   // calculan con ellos (son insumos del modelo, que el Reporte mismo enseña).
@@ -134,7 +141,8 @@ const PESTANAS_POR_ROL = {
 
 // Qué pestañas puede ESCRIBIR cada rol.
 const ESCRITURA_POR_ROL = {
-  admin: Object.keys(TABS).filter(function (t) { return t !== 'Historial'; }),
+  // Historial y Versiones solo los escribe el servidor.
+  admin: Object.keys(TABS).filter(function (t) { return t !== 'Historial' && t !== 'Versiones'; }),
   editor: ['Espacios', 'Factores', 'Finanzas_Lineas', 'Escenarios', 'Rutas', 'Paradas', 'Tareas', 'Conocimientos', 'Archivos'],
   master: ['Espacios', 'Factores', 'Finanzas_Lineas', 'Escenarios', 'Rutas', 'Paradas', 'Tareas', 'Conocimientos', 'Archivos'],
   visor: [],
@@ -373,6 +381,10 @@ function doPost(e) {
         return accRespaldoAhora(usuario);
       case 'instalarRespaldo':
         return accInstalarRespaldo(usuario);
+      case 'congelarReporte':
+        return accCongelarReporte(usuario, body);
+      case 'verVersion':
+        return accVerVersion(usuario, body);
       default:
         return jsonOut({ ok: false, error: 'Acción no reconocida.' });
     }
@@ -451,6 +463,15 @@ function accGetAll(usuario, body) {
   const pestanas = PESTANAS_POR_ROL[usuario.rol] || [];
   if (pestanas.length === 0) {
     return jsonOut({ ok: false, error: 'Tu rol no tiene vistas asignadas. Avísale a Alejandro.' });
+  }
+
+  // El inversionista ve la ÚLTIMA versión congelada, si existe (plan UX v2).
+  if (usuario.rol === 'inversionista') {
+    const ultima = ultimaVersion();
+    if (ultima) {
+      const foto = leerVersion(ultima);
+      if (foto) return jsonOut({ ok: true, v: v, datos: foto, rol: usuario.rol, congelada: { id: ultima.id, fecha: ultima.fecha, nombre: ultima.nombre } });
+    }
   }
 
   const datos = {};
@@ -974,6 +995,72 @@ function accLigaPorCorreo(body) {
 // ---------------------------------------------------------------------------
 //  Respaldo — JSON completo a la carpeta PRIVADA "AMALAYA - Respaldos".
 // ---------------------------------------------------------------------------
+// ---------------------------------------------------------------------------
+//  Versiones congeladas del Reporte
+//  Congelar = foto de las pestañas que alimentan el Reporte (las mismas que
+//  recibe el inversionista) como JSON con fecha en Drive → AMALAYA/Reportes,
+//  más una fila en Versiones. Solo admin y máster.
+// ---------------------------------------------------------------------------
+function carpetaReportes() {
+  const raiz = DriveApp.getFolderById(PropertiesService.getScriptProperties().getProperty('CARPETA_ID'));
+  const existentes = raiz.getFoldersByName('Reportes');
+  return existentes.hasNext() ? existentes.next() : raiz.createFolder('Reportes');
+}
+
+function accCongelarReporte(usuario, body) {
+  if (['admin', 'master'].indexOf(usuario.rol) === -1) {
+    return jsonOut({ ok: false, error: 'Solo admin o máster pueden congelar el reporte.' });
+  }
+  if (!dentroDeLimite('congelar_' + usuario.id, 10, 3600)) {
+    return jsonOut({ ok: false, error: 'Ya congelaste varias versiones seguidas; espera un poco.' });
+  }
+  const foto = {};
+  PESTANAS_POR_ROL.inversionista.forEach(function (tab) { foto[tab] = leerHoja(tab); });
+  const fecha = new Date();
+  const nombre = 'amalaya-reporte-' + Utilities.formatDate(fecha, TZ, 'yyyy-MM-dd-HHmm') + '.json';
+  const archivo = carpetaReportes().createFile(nombre, JSON.stringify(foto), 'application/json');
+  return conCandado(function () {
+    const conf = TABS.Versiones;
+    const hoja = obtenerHoja('Versiones');
+    const id = conf.prefix + siguienteNumero(hoja, conf);
+    const fila = {
+      id: id, fecha: fecha.toISOString(), usuario: usuario.nombre || usuario.id,
+      nombre: sanitizarValor(String(body.nombre || nombre).slice(0, 120)), file_id: archivo.getId(),
+      notas: sanitizarValor(String(body.notas || '').slice(0, 300)),
+    };
+    hoja.appendRow(conf.headers.map(function (c) { return fila[c]; }));
+    anotarHistorial(usuario, 'Versiones', id, [['(fila nueva)', '', 'congeló el reporte']]);
+    return { ok: true, fila: fila, v: subirVersion() };
+  });
+}
+
+function ultimaVersion() {
+  const filas = leerHoja('Versiones').filter(function (f) { return f.file_id; });
+  return filas.length ? filas[filas.length - 1] : null;
+}
+
+function leerVersion(fila) {
+  try {
+    return JSON.parse(DriveApp.getFileById(String(fila.file_id)).getBlob().getDataAsString());
+  } catch (e) {
+    console.error('leerVersion: ' + String(e));
+    return null;
+  }
+}
+
+// Admin y máster pueden abrir cualquier versión para revisarla.
+function accVerVersion(usuario, body) {
+  if (['admin', 'master'].indexOf(usuario.rol) === -1) {
+    return jsonOut({ ok: false, error: 'Tu rol no puede abrir versiones.' });
+  }
+  const id = String(body.id || '').trim();
+  const fila = leerHoja('Versiones').filter(function (f) { return String(f.id) === id; })[0];
+  if (!fila) return jsonOut({ ok: false, error: 'No se encontró esa versión.' });
+  const foto = leerVersion(fila);
+  if (!foto) return jsonOut({ ok: false, error: 'No se pudo leer esa versión en Drive.' });
+  return jsonOut({ ok: true, datos: foto, version: { id: fila.id, fecha: fila.fecha, nombre: fila.nombre } });
+}
+
 function accRespaldoAhora(usuario) {
   if (usuario.rol !== 'admin') {
     return jsonOut({ ok: false, error: 'Solo un admin puede generar respaldos.' });

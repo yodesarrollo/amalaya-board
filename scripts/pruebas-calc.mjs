@@ -219,6 +219,22 @@ prueba('lee números con formato y respeta el valor por defecto', () => {
   casi(configNum(c, 'no_existe', 42), 42)
 })
 
+console.log('Valor por acción desglosado por espacio')
+prueba('la suma por espacio da exactamente el valor por acción', () => {
+  const g = resumenGlobal(datos)
+  const suma = g.porEspacio.reduce((a, x) => a + x.porAccion, 0)
+  casi(suma, g.valorPorAccion.porAccion)
+  const sumaValor = g.porEspacio.reduce((a, x) => a + x.valor, 0)
+  casi(sumaValor, g.valorPorAccion.total)
+})
+prueba('cada espacio lleva sus tres componentes', () => {
+  const g = resumenGlobal(datos)
+  const escuela = g.porEspacio.find((x) => x.espacio.id === 'E-001')
+  casi(escuela.inmobiliario, 400 * 15000)
+  casi(escuela.operativo, (500000 - 200000) * 6)
+  casi(escuela.regaliasValor, 200000 * 4)
+})
+
 console.log('¿Y si…? — ajuste de ingresos que no guarda nada')
 prueba('sin ajuste el factor es 1 y nada cambia', () => {
   casi(factorAjuste(null), 1)

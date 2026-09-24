@@ -436,3 +436,13 @@ html {
 @media (prefers-reduced-motion: reduce) { .pin3d { transition: none; } }
 .lista-espacios .avance5 i { background: rgba(183,168,144,.3) !important; }
 .lista-espacios .avance5 i.lleno { background: #C9A45C !important; }
+
+/* ── Fase 5 · vista previa del PDF (lo mismo que @media print, en pantalla) ── */
+.reporte.modo-papel { background: #faf6ee !important; color: #2b211a !important; border-radius: 12px; box-shadow: 0 20px 60px -20px rgba(0,0,0,.9); }
+.reporte.modo-papel * { text-shadow: none !important; }
+.reporte.modo-papel :where(section, header, footer, nav, p, h1, h2, h3, div, span, td, th, li, a, dt, dd, figcaption, table, tr) { color: #2b211a !important; border-color: #d8cfc0 !important; box-shadow: none !important; }
+.reporte.modo-papel :where(.tarjeta, .bg-elevada, .bg-superficie) { background: transparent !important; backdrop-filter: none !important; }
+.reporte.modo-papel .imp-oro { color: #7a5e2a !important; }
+.reporte.modo-papel .no-imprimir, .reporte.modo-papel .no-imprimir * { color: inherit !important; }
+.reporte.modo-papel .no-imprimir { background: #1C1613; border-radius: 10px; padding: 6px; }
+.reporte.modo-papel .no-imprimir :where(button, span, svg) { color: #F2EAD9 !important; }

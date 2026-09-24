@@ -11,7 +11,10 @@ export const CODIGO = 'SIMULADOR'
 const QUIENES = {
   SIMULADOR: { rol: 'admin', nombre: 'Alejandro Puebla' },
   EDITOR1: { rol: 'editor', nombre: 'Luis Puebla' },
+  INVERSOR1: { rol: 'inversionista', nombre: 'Inversionista de prueba' },
 }
+const TABS_INVERSIONISTA = ['Config', 'Espacios', 'Factores', 'Finanzas_Lineas', 'Escenarios', 'Rutas', 'Paradas']
+const congeladas = [] // [{fila, foto}] — lo que el servidor real guarda en Drive/Reportes
 // Graba el recorrido completo (la entrada del mapa se revisa en video).
 export const video = true
 
@@ -28,6 +31,7 @@ export const locales = [[/accounts\.google\.com\/gsi\/client/, new URL('./gsi-fa
 const db = structuredClone(datos)
 // Historial vacío al arrancar; lo llena el servidor falso como el real.
 db.Historial = []
+db.Versiones = []
 // Un render 360 de prueba en el primer punto del recorrido.
 export const PUNTO_CON_RENDER = 'G5UapkZfu_gIeRoydqjPBw'
 db.Archivos.push({ id: 'A-900', espacio_id: PUNTO_CON_RENDER, tipo: 'render360', nombre: 'render-prueba.png', file_id: 'SIM-RENDER', privado: 'si', fecha: '2026-09-24' })
@@ -53,8 +57,24 @@ export function servidor(accion, b) {
     case 'login': return { ok: true, ...quien }
     case 'getAll': {
       if (esAdmin) return { ok: true, v, datos: db, rol: quien.rol }
-      const { Usuarios, ...resto } = db
+      if (quien.rol === 'inversionista') {
+        const ultima = congeladas[congeladas.length - 1]
+        if (ultima) return { ok: true, v, datos: ultima.foto, rol: quien.rol, congelada: { id: ultima.fila.id, fecha: ultima.fila.fecha, nombre: ultima.fila.nombre } }
+        return { ok: true, v, datos: Object.fromEntries(TABS_INVERSIONISTA.map((t) => [t, db[t]])), rol: quien.rol }
+      }
+      const { Usuarios, Versiones, ...resto } = db
       return { ok: true, v, datos: resto, rol: quien.rol }
+    }
+    case 'congelarReporte': {
+      if (!['admin', 'master'].includes(quien.rol)) return { ok: false, error: 'Solo admin o máster pueden congelar el reporte.' }
+      const foto = structuredClone(Object.fromEntries(TABS_INVERSIONISTA.map((t) => [t, db[t]])))
+      const fila = { id: 'V-' + String(db.Versiones.length + 1).padStart(3, '0'), fecha: new Date().toISOString(), usuario: quien.nombre, nombre: 'amalaya-reporte-simulado.json', file_id: 'SIM-V' + (db.Versiones.length + 1), notas: '' }
+      db.Versiones.push(fila); congeladas.push({ fila, foto })
+      return { ok: true, fila, v: ++v }
+    }
+    case 'verVersion': {
+      const c = congeladas.find((x) => x.fila.id === b.id)
+      return c ? { ok: true, datos: c.foto, version: { id: c.fila.id, fecha: c.fila.fecha, nombre: c.fila.nombre } } : { ok: false, error: 'No se encontró esa versión.' }
     }
     case 'guardar': {
       const fila = db[b.tab]?.find((x) => llave(x) === b.key)
@@ -139,6 +159,11 @@ export async function guion({ pagina, foto, clic, base }) {
   await pagina.locator('input[type=password]').first().fill('EDITOR1')
   await clic('button[type=submit]:has-text("Entrar")')
   await pagina.waitForSelector('[data-entrada="4"]', { timeout: 30000 }).catch(() => {}); await foto('03c-editor-sin-engrane', 2500)
+  await clic('nav button:has-text("Reporte")'); await pagina.waitForTimeout(800)
+  const botonEditor = await pagina.locator('button:has-text("Versiones")').count()
+  console.log(`${botonEditor === 0 ? '✓' : '✗'} el editor ${botonEditor === 0 ? 'NO ve' : 'SÍ ve'} el botón de versiones`)
+  await foto('06c-reporte-editor-sin-congelar', 200)
+  await clic('nav button:has-text("Mapa")')
   await salir()
 
   // 5 · El admin entra con código y abre el ⚙️
@@ -182,6 +207,19 @@ export async function guion({ pagina, foto, clic, base }) {
     await clic('button[aria-label="Cerrar"]')
   } else console.log('✗ no encontré el punto con render en el mapa')
   for (const [seccion, archivo] of [['Finanzas', '05-finanzas'], ['Reporte', '06-reporte'], ['Ayuda', '08-ayuda']]) {
+    if (seccion === 'Ayuda') {
+      // Fase 5 · reporte: índice, desglose por espacio, supuestos, versión congelada, vista previa
+      await pagina.locator('#r-por-espacio').scrollIntoViewIfNeeded(); await foto('06a-reporte-por-espacio', 400)
+      await pagina.locator('#r-supuestos').scrollIntoViewIfNeeded(); await foto('06b-reporte-supuestos', 400)
+      await pagina.evaluate(() => window.scrollTo(0, 0))
+      pagina.once('dialog', (d) => d.accept())
+      await clic('button:has-text("Versiones")'); await clic('button:has-text("Congelar esta versión")'); await pagina.waitForTimeout(1500)
+      console.log(`${db.Versiones.length === 1 ? '✓' : '✗'} congelar: ${db.Versiones.length} versión(es) en el servidor (${db.Versiones.map((x) => x.id).join(', ')})`)
+      await foto('06d-versiones', 300)
+      await clic('button:has-text("V-001")'); await foto('06e-viendo-version', 800)
+      await clic('button:has-text("Vista previa")'); await foto('06f-vista-previa', 600)
+      await clic('button:has-text("Salir de la vista previa")')
+    }
     await clic(`nav button:has-text("${seccion}")`); await foto(archivo)
     if (seccion === 'Finanzas') {
       await foto('05-finanzas-cerradas', 300)
@@ -207,6 +245,14 @@ export async function guion({ pagina, foto, clic, base }) {
       await clic('text=¿qué significa?'); await foto('05b-que-significa'); await clic('text=Entendido')
     }
   }
+  // El inversionista ve la última versión congelada
+  await salir(); await pagina.goto(base); await pagina.waitForTimeout(1200)
+  await clic('text=Tengo un código'); await pagina.waitForTimeout(300)
+  await pagina.locator('input[type=password]').first().fill('INVERSOR1')
+  await clic('button[type=submit]:has-text("Entrar")'); await pagina.waitForTimeout(3000)
+  const banda = await pagina.locator('text=Versión congelada').count()
+  console.log(`${banda ? '✓' : '✗'} el inversionista ve la versión congelada`)
+  await foto('06g-inversionista-congelada', 300)
   await pagina.goto(base + 'recorrido/'); await foto('09-recorrido-360', 4000)
   await pagina.goto(base + 'modelo/serdan-garmendia.html'); await foto('10-modelo-esquina', 5000)
 }
