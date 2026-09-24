@@ -267,14 +267,16 @@ export function resumenGlobal({ espacios = [], lineas = [], factores = [], escen
 
   for (const e of espacios) {
     const r = resumenEspacio(e, lineas, factores, escenarios, ajuste)
-    porEspacio.push({ espacio: e, ...r })
+    const entrada = { espacio: e, ...r }
+    porEspacio.push(entrada)
     utilidadTotal += r.utilidad
     regaliasTotal += r.regalias
 
     // Área construida (m² × COS × pisos), no el puro predio.
     const { m2c } = m2Construidos(e, factores)
     const tipo = normalizarId(e.tipo)
-    inmobiliario += m2c * configNum(config, `valor_m2_${tipo}`, configNum(config, 'valor_m2', 0))
+    entrada.inmobiliario = m2c * configNum(config, `valor_m2_${tipo}`, configNum(config, 'valor_m2', 0))
+    inmobiliario += entrada.inmobiliario
     costoConstruccion += m2c * configNum(config, `costo_m2_${tipo}`, configNum(config, 'costo_m2', 0))
   }
 
@@ -288,6 +290,16 @@ export function resumenGlobal({ espacios = [], lineas = [], factores = [], escen
   const compOperativo = utilidadOperativa * multOperativo
   const compRegalias = regaliasTotal * multRegalias
   const valorProyecto = inmobiliario + compOperativo + compRegalias
+
+  // Valor por acción DESGLOSADO POR ESPACIO: qué parte de cada acción
+  // representa cada espacio (sus tres componentes ÷ acciones). La suma de
+  // todos los espacios es exactamente el valor por acción.
+  for (const x of porEspacio) {
+    x.operativo = (x.utilidad - x.regalias) * multOperativo
+    x.regaliasValor = x.regalias * multRegalias
+    x.valor = x.inmobiliario + x.operativo + x.regaliasValor
+    x.porAccion = acciones > 0 ? x.valor / acciones : null
+  }
 
   return {
     porEspacio,

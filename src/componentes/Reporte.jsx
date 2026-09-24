@@ -1,8 +1,10 @@
-import { Printer } from 'lucide-react'
+import { useState } from 'react'
+import { Printer, Snowflake, Eye, X, FileText } from 'lucide-react'
 import { usarDatos } from '../datos.jsx'
 import { moneda, metros2, fechaHora } from '../formato.js'
 import { resumenGlobal, mapaConfig, normalizarId, m2Construidos, lineasVigentes } from '../calc.js'
 import { leerPuntos } from './Rutas.jsx'
+import { puedeCongelarRol } from '../roles.js'
 import ImagenDrive from './ImagenDrive.jsx'
 import LineaAmalaya from './LineaAmalaya.jsx'
 
@@ -16,9 +18,26 @@ import LineaAmalaya from './LineaAmalaya.jsx'
 // entrega únicamente las pestañas que la alimentan.
 // ============================================================
 
+// Índice del reporte (anclas).
+const INDICE = [
+  ['r-proyecto', 'El proyecto'],
+  ['r-valor', 'Valor por acción'],
+  ['r-por-espacio', 'Qué parte de cada acción es cada espacio'],
+  ['r-espacios', 'Los espacios'],
+  ['r-rutas', 'Las rutas temáticas'],
+  ['r-supuestos', 'Supuestos y fuentes'],
+]
+
+const COLORES_ESPACIO = ['#B85C38', '#C9A45C', '#8FA382', '#8FB8D9', '#D98FA3', '#E8923A', '#9E8D78', '#E9D36A']
+
 export default function Reporte() {
-  const { sesion, datos, modo, ultimaSync } = usarDatos()
+  const { sesion, datos: datosVivos, modo, ultimaSync, congelada, apiAccion, actualizar } = usarDatos()
   const sesionEsAdmin = modo !== 'demo' && sesion?.rol === 'admin'
+  const puedeCongelar = modo !== 'demo' && puedeCongelarRol(sesion?.rol)
+  const [viendo, setViendo] = useState(null)   // {version, datos} al abrir una versión congelada
+  const [papel, setPapel] = useState(false)     // vista previa del PDF
+  const datos = viendo?.datos || datosVivos
+  const versionMostrada = viendo?.version || congelada
   const config = mapaConfig(datos?.Config || [])
   const espacios = datos?.Espacios || []
   const rutas = (datos?.Rutas || [])
@@ -40,13 +59,25 @@ export default function Reporte() {
   const hoy = new Date()
 
   return (
-    <div className="reporte max-w-3xl mx-auto px-5 py-8">
-      {/* Botón de exportar (no sale en el PDF) */}
-      <div className="no-imprimir flex justify-end mb-4">
+    <div className={`reporte max-w-3xl mx-auto px-5 py-8 ${papel ? 'modo-papel' : ''}`}>
+      {/* Botones (no salen en el PDF) */}
+      <div className="no-imprimir flex items-center justify-end gap-2 mb-4">
+        {puedeCongelar && <Versiones viendo={viendo} setViendo={setViendo} apiAccion={apiAccion} actualizar={actualizar} versiones={datosVivos?.Versiones || []} />}
+        <button className="text-xs text-arena hover:text-marfil flex items-center gap-1.5 px-2 py-1.5" onClick={() => setPapel(!papel)} aria-pressed={papel}>
+          <Eye size={13} /> {papel ? 'Salir de la vista previa' : 'Vista previa'}
+        </button>
         <button className="boton-primario !px-4 !py-2 text-sm" onClick={() => window.print()}>
           <span className="flex items-center gap-2"><Printer size={15} /> Exportar a PDF</span>
         </button>
       </div>
+
+      {versionMostrada && (
+        <p className="text-xs text-center text-arena border border-linea rounded-lg py-1.5 mb-4">
+          <Snowflake size={12} className="inline -mt-0.5 mr-1" />
+          Versión congelada · {versionMostrada.nombre} · {fechaHora(new Date(versionMostrada.fecha))}
+          {viendo && <button className="ml-2 underline print:hidden" onClick={() => setViendo(null)}>volver a la versión en vivo</button>}
+        </p>
+      )}
 
       {/* Portada (en papel, la firma cae a Fraunces: sobriedad de documento) */}
       <header className="text-center imp-seccion">
@@ -58,13 +89,21 @@ export default function Reporte() {
         <LineaAmalaya className="my-6 max-w-xs mx-auto" />
         <p className="text-terciario text-xs">
           {hoy.toLocaleDateString('es-MX', { day: 'numeric', month: 'long', year: 'numeric' })}
-          {modo === 'demo' ? ' · DEMOSTRACIÓN — cifras inventadas' : ' · documento en vivo: se genera con los datos del momento'}
+          {modo === 'demo' ? ' · DEMOSTRACIÓN — cifras inventadas' : versionMostrada ? ' · versión congelada' : ' · documento en vivo: se genera con los datos del momento'}
         </p>
       </header>
 
+      {/* Índice */}
+      <nav className="mt-8 imp-seccion" aria-label="Índice del reporte">
+        <div className="text-xs uppercase tracking-[0.25em] text-terciario mb-2">Índice</div>
+        <ol className="text-sm space-y-1 list-decimal list-inside text-arena">
+          {INDICE.map(([id, t]) => <li key={id}><a className="hover:text-marfil" href={`#${id}`}>{t}</a></li>)}
+        </ol>
+      </nav>
+
       {/* Resumen */}
       {resumen ? (
-        <section className="mt-10 imp-seccion">
+        <section id="r-proyecto" className="mt-10 imp-seccion">
           <h2 className="font-titulo text-2xl mb-3">El proyecto</h2>
           <p className="text-arena leading-relaxed whitespace-pre-line">{resumen}</p>
         </section>
@@ -108,7 +147,7 @@ export default function Reporte() {
       })()}
 
       {/* El dato estrella */}
-      <section className="mt-10 imp-seccion">
+      <section id="r-valor" className="mt-10 imp-seccion">
         <div className="tarjeta bg-elevada border-t-2 border-t-ambar p-6 text-center">
           <div className="text-xs uppercase tracking-[0.25em] text-arena">Valor por acción</div>
           <div className="cifra font-cartel font-normal print:font-titulo text-5xl mt-2 imp-oro text-marfil glow-ambar">
@@ -149,8 +188,54 @@ export default function Reporte() {
         </div>
       </section>
 
+      {/* Valor por acción desglosado por espacio */}
+      <section id="r-por-espacio" className="mt-10 imp-seccion">
+        <h2 className="font-titulo text-2xl mb-1">Qué parte de cada acción es cada espacio</h2>
+        <p className="text-terciario text-xs mb-3">Cada acción vale {v.porAccion === null ? '—' : moneda(v.porAccion)}; así se reparte entre los espacios.</p>
+        {v.porAccion === null ? (
+          <p className="text-terciario text-sm">Falta capturar acciones_emitidas para repartir la acción.</p>
+        ) : (
+          <>
+            <div className="flex h-4 rounded-full overflow-hidden bg-linea imp-barra" role="img" aria-label="Valor por acción por espacio">
+              {g.porEspacio.filter((x) => x.valor > 0).map((x, i) => (
+                <div key={x.espacio.id} title={`${x.espacio.nombre}: ${moneda(x.porAccion)}`} style={{ width: `${(x.valor / totalValor) * 100}%`, background: COLORES_ESPACIO[i % COLORES_ESPACIO.length] }} />
+              ))}
+            </div>
+            <table className="w-full text-sm mt-3">
+              <thead>
+                <tr className="text-xs text-terciario text-left">
+                  <th className="font-normal py-1">Espacio</th>
+                  <th className="font-normal py-1 text-right">Inmobiliario</th>
+                  <th className="font-normal py-1 text-right">Operativo</th>
+                  <th className="font-normal py-1 text-right">Regalías</th>
+                  <th className="font-normal py-1 text-right">Por acción</th>
+                  <th className="font-normal py-1 text-right">%</th>
+                </tr>
+              </thead>
+              <tbody>
+                {g.porEspacio.filter((x) => x.valor !== 0).map((x, i) => (
+                  <tr key={x.espacio.id} className="border-t border-linea">
+                    <td className="py-1.5"><span className="inline-block w-2.5 h-2.5 rounded-full mr-2 imp-barra" style={{ background: COLORES_ESPACIO[i % COLORES_ESPACIO.length] }} />{x.espacio.nombre}</td>
+                    <td className="cifra text-right text-arena">{moneda(x.inmobiliario / (v.total / v.porAccion))}</td>
+                    <td className="cifra text-right text-arena">{moneda(x.operativo / (v.total / v.porAccion))}</td>
+                    <td className="cifra text-right text-arena">{moneda(x.regaliasValor / (v.total / v.porAccion))}</td>
+                    <td className="cifra text-right text-marfil imp-oro">{moneda(x.porAccion)}</td>
+                    <td className="cifra text-right text-terciario">{((x.valor / totalValor) * 100).toFixed(1)}%</td>
+                  </tr>
+                ))}
+                <tr className="border-t border-linea font-medium">
+                  <td className="py-1.5">Total</td><td /><td /><td />
+                  <td className="cifra text-right text-oro imp-oro">{moneda(v.porAccion)}</td>
+                  <td className="cifra text-right text-terciario">100%</td>
+                </tr>
+              </tbody>
+            </table>
+          </>
+        )}
+      </section>
+
       {/* Espacios */}
-      <section className="mt-10 imp-seccion imp-salto">
+      <section id="r-espacios" className="mt-10 imp-seccion imp-salto">
         <h2 className="font-titulo text-2xl mb-3">Los espacios</h2>
         {espacios.length === 0 ? (
           <p className="text-terciario text-sm">Aún no hay espacios capturados.</p>
@@ -230,7 +315,7 @@ export default function Reporte() {
       )}
 
       {/* Rutas */}
-      <section className="mt-10 imp-seccion">
+      <section id="r-rutas" className="mt-10 imp-seccion">
         <h2 className="font-titulo text-2xl mb-3">Las rutas temáticas</h2>
         {rutas.length === 0 ? (
           <p className="text-terciario text-sm">Aún no hay rutas trazadas.</p>
@@ -264,6 +349,9 @@ export default function Reporte() {
         </p>
       </section>
 
+      {/* Supuestos y fuentes */}
+      <SupuestosYFuentes datos={datos} espacios={espacios} escenarios={escenarios} />
+
       {/* Pie */}
       <footer className="mt-12 pt-4 border-t border-linea text-center">
         <p className="text-terciario text-xs">
@@ -271,6 +359,118 @@ export default function Reporte() {
           {ultimaSync ? `datos sincronizados ${fechaHora(ultimaSync)}` : 'datos del momento'}
         </p>
       </footer>
+    </div>
+  )
+}
+
+// ------------------------------------------------------------
+// Supuestos y fuentes: de dónde sale cada número.
+// ------------------------------------------------------------
+function SupuestosYFuentes({ datos, espacios, escenarios }) {
+  const parametros = (datos?.Config || []).filter((c) => /supuesto/i.test(String(c.notas || '')) && String(c.valor ?? '').trim() !== '' && !/^(mapa_geo|google_client_id|resumen_proyecto|nombre_proyecto)$/.test(String(c.clave)))
+  const lineas = lineasVigentes(datos?.Finanzas_Lineas || [], escenarios)
+  const porEspacio = espacios.map((e) => ({
+    e,
+    items: lineas.filter((l) => String(l.espacio_id) === String(e.id)).map((l) => ({ concepto: l.concepto, supuesto: String(l.supuesto || '').trim() })),
+  })).filter((x) => x.items.length)
+  const fuentes = (datos?.Conocimientos || []).filter((c) => String(c.fuente || '').trim())
+  return (
+    <section id="r-supuestos" className="mt-10 imp-seccion">
+      <h2 className="font-titulo text-2xl mb-3">Supuestos y fuentes</h2>
+      {porEspacio.length > 0 && (
+        <div className="space-y-2">
+          {porEspacio.map(({ e, items }) => (
+            <div key={e.id} className="text-xs">
+              <div className="text-marfil font-medium">{e.nombre}</div>
+              <ul className="text-arena leading-relaxed">
+                {items.map((it, i) => (
+                  <li key={i}>· {it.concepto}: {it.supuesto || <span className="text-terciario italic">sin supuesto escrito</span>}</li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      )}
+      {parametros.length > 0 && (
+        <div className="mt-4 text-xs">
+          <div className="text-marfil font-medium mb-1">Parámetros del modelo (supuestos — editables)</div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 text-arena">
+            {parametros.map((c) => <div key={c.clave} className="flex justify-between border-b border-linea py-0.5"><span>{c.clave}</span><span className="cifra">{String(c.valor)}</span></div>)}
+          </div>
+        </div>
+      )}
+      {fuentes.length > 0 && (
+        <div className="mt-4 text-xs">
+          <div className="text-marfil font-medium mb-1">Fuentes</div>
+          <ul className="text-arena leading-relaxed">
+            {fuentes.map((c) => <li key={c.id}>· {c.texto} — <span className="text-terciario">{c.fuente}</span></li>)}
+          </ul>
+        </div>
+      )}
+      <p className="text-terciario text-[11px] mt-4 leading-relaxed">
+        Todas las cifras son proyecciones calculadas con estos supuestos; no son una promesa de rendimiento.
+      </p>
+    </section>
+  )
+}
+
+// ------------------------------------------------------------
+// Versiones congeladas (solo admin y máster). Congelar guarda en
+// Drive una foto de los datos del Reporte; el inversionista ve la
+// última congelada.
+// ------------------------------------------------------------
+function Versiones({ viendo, setViendo, apiAccion, actualizar, versiones }) {
+  const [abierto, setAbierto] = useState(false)
+  const [ocupado, setOcupado] = useState(null)
+  const [error, setError] = useState(null)
+  const [aviso, setAviso] = useState(null)
+
+  async function congelar() {
+    if (!window.confirm('¿Congelar el reporte tal como está ahora? El inversionista verá esta versión.')) return
+    setOcupado('congelar'); setError(null)
+    try {
+      const r = await apiAccion('congelarReporte', {})
+      setAviso(`Versión ${r.fila.id} congelada.`)
+      await actualizar()
+    } catch (e) { setError(e.message) } finally { setOcupado(null) }
+  }
+  async function ver(v) {
+    setOcupado(v.id); setError(null)
+    try {
+      const r = await apiAccion('verVersion', { id: v.id })
+      setViendo({ version: r.version, datos: r.datos })
+      setAbierto(false)
+    } catch (e) { setError(e.message) } finally { setOcupado(null) }
+  }
+  return (
+    <div className="relative">
+      <button className="text-xs text-arena hover:text-marfil flex items-center gap-1.5 px-2 py-1.5" onClick={() => setAbierto(!abierto)} aria-expanded={abierto}>
+        <Snowflake size={13} /> Versiones{versiones.length ? ` (${versiones.length})` : ''}
+      </button>
+      {abierto && (
+        <div className="absolute right-0 top-full mt-1 z-30 w-72 rounded-xl border border-linea shadow-2xl p-3 text-sm" style={{ background: '#1C1613' }}>
+          <div className="flex items-center mb-2">
+            <span className="text-marfil flex-1">Versiones congeladas</span>
+            <button onClick={() => setAbierto(false)} aria-label="Cerrar"><X size={14} /></button>
+          </div>
+          <button className="boton-secundario w-full !py-1.5 text-xs" onClick={congelar} disabled={ocupado === 'congelar'}>
+            <span className="flex items-center justify-center gap-1.5"><Snowflake size={12} /> {ocupado === 'congelar' ? 'Congelando…' : 'Congelar esta versión'}</span>
+          </button>
+          {aviso && <p className="text-salvia text-xs mt-2">{aviso}</p>}
+          {error && <p className="text-ladrillo text-xs mt-2" role="alert">{error}</p>}
+          <ul className="mt-2 space-y-1 max-h-60 overflow-y-auto">
+            {[...versiones].reverse().map((v) => (
+              <li key={v.id}>
+                <button className={`w-full text-left text-xs px-2 py-1.5 rounded flex items-center gap-2 hover:bg-oro/10 ${viendo?.version?.id === v.id ? 'text-ambar' : 'text-arena'}`} onClick={() => ver(v)} disabled={ocupado === v.id}>
+                  <FileText size={12} /> <span className="flex-1 truncate">{v.id} · {fechaHora(new Date(v.fecha))}</span>
+                  <span className="text-terciario">{v.usuario}</span>
+                </button>
+              </li>
+            ))}
+            {versiones.length === 0 && <li className="text-terciario text-xs">Aún no hay versiones congeladas.</li>}
+          </ul>
+        </div>
+      )}
     </div>
   )
 }

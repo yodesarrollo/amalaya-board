@@ -57,6 +57,7 @@ export function DatosProvider({ children }) {
   const [errorSync, setErrorSync] = useState(null)
   const [ultimaSync, setUltimaSync] = useState(null)
   const [guardados, setGuardados] = useState({})     // { [tab:key]: 'guardando'|'ok'|'error' }
+  const [congelada, setCongelada] = useState(null)   // {id, fecha, nombre} si el servidor entregó una versión congelada
 
   const parchesPendientes = useRef({})   // { 'tab|key': {campo: valor} }
   const temporizadores = useRef({})
@@ -102,6 +103,7 @@ export function DatosProvider({ children }) {
         return fusion
       })
       setVersion(r.v ?? null)
+      setCongelada(r.congelada || null)
       setModo('vivo')
       setUltimaSync(new Date())
       guardarLocal(LLAVE_DATOS, { datos: r.datos, v: r.v ?? null, ts: Date.now() })
@@ -380,7 +382,7 @@ export function DatosProvider({ children }) {
   }, [])
 
   const valor = {
-    sesion, arrancando, datos, modo,
+    sesion, arrancando, datos, modo, congelada,
     sincronizando, errorSync, ultimaSync, guardados,
     entrar, entrarConGoogle, salir, actualizar, verDemo,
     editarFila, crearFila, borrarFila, reintentarGuardado,
