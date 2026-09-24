@@ -65,11 +65,11 @@ export default function Acceso() {
       <div className="w-full max-w-sm">
         <div className="text-center mb-6">
           <p className="text-xs uppercase tracking-[0.3em] text-arena">
-            Distrito de la música · Hermosillo
+            Tierra Sonora · Distrito Cultural y Musical
           </p>
           <h1 className="font-firma font-normal text-7xl mt-4 glow-ambar">Amalaya</h1>
           <p className="font-cartel uppercase tracking-[0.35em] text-oro text-xs mt-3">
-            De Hermosillo para el mundo
+            El corazón acústico de Hermosillo
           </p>
         </div>
 

@@ -62,7 +62,7 @@ export default function Reporte() {
     <div className={`reporte max-w-3xl mx-auto px-5 py-8 ${papel ? 'modo-papel' : ''}`}>
       {/* Botones (no salen en el PDF) */}
       <div className="no-imprimir flex items-center justify-end gap-2 mb-4">
-        {puedeCongelar && <Versiones viendo={viendo} setViendo={setViendo} apiAccion={apiAccion} actualizar={actualizar} versiones={datosVivos?.Versiones || []} />}
+        {puedeCongelar && <Versiones viendo={viendo} setViendo={setViendo} apiAccion={apiAccion} actualizar={actualizar} versiones={datosVivos?.Versiones || []} cifras={cifrasDe(g)} />}
         <button className="text-xs text-arena hover:text-marfil flex items-center gap-1.5 px-2 py-1.5" onClick={() => setPapel(!papel)} aria-pressed={papel}>
           <Eye size={13} /> {papel ? 'Salir de la vista previa' : 'Vista previa'}
         </button>
@@ -71,6 +71,13 @@ export default function Reporte() {
         </button>
       </div>
 
+      {/* Antifallos: la versión congelada trae sus cifras; si el motor de hoy
+          da otro número, se enseña el congelado y se avisa la diferencia. */}
+      {versionMostrada?.cifras && Math.abs((versionMostrada.cifras.porAccion ?? 0) - (v.porAccion ?? 0)) > 0.5 && (
+        <p className="text-xs text-center text-oro border border-oro/60 rounded-lg py-1.5 mb-4" role="status">
+          Al congelarse, el valor por acción era <b className="cifra">{moneda(versionMostrada.cifras.porAccion)}</b>; con el cálculo de hoy sale <b className="cifra">{moneda(v.porAccion)}</b>. Vale lo congelado.
+        </p>
+      )}
       {versionMostrada && (
         <p className="text-xs text-center text-arena border border-linea rounded-lg py-1.5 mb-4">
           <Snowflake size={12} className="inline -mt-0.5 mr-1" />
@@ -151,7 +158,7 @@ export default function Reporte() {
         <div className="tarjeta bg-elevada border-t-2 border-t-ambar p-6 text-center">
           <div className="text-xs uppercase tracking-[0.25em] text-arena">Valor por acción</div>
           <div className="cifra font-cartel font-normal print:font-titulo text-5xl mt-2 imp-oro text-marfil glow-ambar">
-            {v.porAccion === null ? '—' : moneda(v.porAccion)}
+            {versionMostrada?.cifras?.porAccion != null ? moneda(versionMostrada.cifras.porAccion) : v.porAccion === null ? '—' : moneda(v.porAccion)}
           </div>
           <div className="flex h-2.5 rounded-full overflow-hidden mt-5 bg-linea imp-barra max-w-md mx-auto">
             <div className="bg-terracota" style={{ width: `${(v.inmobiliario / totalValor) * 100}%` }} />
@@ -419,7 +426,17 @@ function SupuestosYFuentes({ datos, espacios, escenarios }) {
 // Drive una foto de los datos del Reporte; el inversionista ve la
 // última congelada.
 // ------------------------------------------------------------
-function Versiones({ viendo, setViendo, apiAccion, actualizar, versiones }) {
+// Las cifras que se congelan junto con los datos (antifallos).
+function cifrasDe(g) {
+  const v = g.valorPorAccion
+  return {
+    motor: 2, porAccion: v.porAccion, total: v.total, inmobiliario: v.inmobiliario, operativo: v.operativo, regalias: v.regalias,
+    utilidadTotal: g.utilidadTotal, costoConstruccion: g.costoConstruccion,
+    porEspacio: g.porEspacio.map((x) => ({ id: x.espacio.id, nombre: x.espacio.nombre, utilidad: x.utilidad, porAccion: x.porAccion })),
+  }
+}
+
+function Versiones({ viendo, setViendo, apiAccion, actualizar, versiones, cifras }) {
   const [abierto, setAbierto] = useState(false)
   const [ocupado, setOcupado] = useState(null)
   const [error, setError] = useState(null)
@@ -429,7 +446,7 @@ function Versiones({ viendo, setViendo, apiAccion, actualizar, versiones }) {
     if (!window.confirm('¿Congelar el reporte tal como está ahora? El inversionista verá esta versión.')) return
     setOcupado('congelar'); setError(null)
     try {
-      const r = await apiAccion('congelarReporte', {})
+      const r = await apiAccion('congelarReporte', { cifras })
       setAviso(`Versión ${r.fila.id} congelada.`)
       await actualizar()
     } catch (e) { setError(e.message) } finally { setOcupado(null) }
