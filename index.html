@@ -19,5 +19,23 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
+    <!-- La Chinche de YOD (pendientes que Claude revisa). Solo aparece para quien la
+         encienda UNA vez con ?chinche=1 (se apaga con ?chinche=0): los visitantes de
+         Amalaya no la ven y no hay ningún enlace a YOD OS. Los encargos van como issue
+         a yodesarrollo/amalaya-board. -->
+    <script>
+      (function () {
+        try {
+          var q = new URLSearchParams(location.search).get('chinche');
+          if (q === '1') localStorage.setItem('yod_chinche_on', '1');
+          if (q === '0') localStorage.removeItem('yod_chinche_on');
+          if (localStorage.getItem('yod_chinche_on') !== '1') return;
+        } catch (e) { return; }
+        var s = document.createElement('script');
+        s.src = 'https://yodesarrollomx.github.io/yod-portal/chinche.js?v=org1';
+        s.onload = function () { if (window.YODChinche) YODChinche.init({ pantalla: 'amalaya', repo: 'amalaya-board', org: 'yodesarrollo' }); };
+        document.head.appendChild(s);
+      })();
+    </script>
   </body>
 </html>
