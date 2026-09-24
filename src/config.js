@@ -9,7 +9,7 @@
 // La puerta del backend (implementación "Fase 0 — fórmula de control").
 // Para re-desplegar SIN cambiar esta URL: editor de Apps Script → Implementar
 // → Administrar implementaciones → ✎ → Nueva versión.
-export const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzH0ZDLoDOaE3np3MUPWPh7_A-aYSG3sKz2O3zxCFRXPOaJk_6Pk6-krHFmtxycY-Ta/exec'
+export const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwPFp0H11JHSdsnNjldul7vdvLmOnMx8BjV9JDjdJfU5AMf0OUCdcJpcWUjSQVweuon/exec'
 
 // Auto-refresh, como yod-obra: cada 10 minutos.
 export const REFRESH_MS = 10 * 60 * 1000
