@@ -23,7 +23,7 @@
 // ============================================================
 
 import http from 'node:http'
-import { readFileSync, existsSync, statSync, mkdirSync } from 'node:fs'
+import { readFileSync, existsSync, statSync, mkdirSync, renameSync } from 'node:fs'
 import { join, extname, resolve, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { chromium } from 'playwright'
@@ -61,7 +61,11 @@ const BASE = `http://localhost:${web.address().port}${board.base}`
 // --- navegador ---------------------------------------------------------
 const navegador = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium' })
   .catch(() => chromium.launch())
-const ctx = await navegador.newContext({ viewport: { width: 1360, height: 860 } })
+// board.video = true graba todo el recorrido en <capturas>/recorrido.webm.
+const ctx = await navegador.newContext({
+  viewport: { width: 1360, height: 860 },
+  ...(board.video ? { recordVideo: { dir: salida, size: { width: 1360, height: 860 } } } : {}),
+})
 const bitacora = []
 
 // El Apps Script falso: toda llamada a script.google.com la contesta board.servidor.
@@ -115,7 +119,7 @@ for (const [patron, archivo] of board.locales || []) {
 if (board.antes) await ctx.addInitScript(board.antes)
 
 const pagina = await ctx.newPage()
-pagina.on('pageerror', (e) => bitacora.push('ERROR en la página: ' + e.message))
+pagina.on('pageerror', (e) => bitacora.push('ERROR en la página: ' + e.message + (process.env.PILA ? '\n' + e.stack : '')))
 const foto = async (archivo, espera = 1800) => {
   await pagina.waitForTimeout(espera)
   await pagina.screenshot({ path: join(salida, archivo + '.png') })
@@ -132,6 +136,11 @@ try {
 } finally {
   console.log([...new Set(bitacora)].join('\n'))
   console.log('\nCapturas en: ' + salida)
+  if (board.video) {
+    await pagina.close()
+    const ruta = await pagina.video()?.path()
+    if (ruta) { renameSync(ruta, join(salida, 'recorrido.webm')); console.log('Video: ' + join(salida, 'recorrido.webm')) }
+  }
   await navegador.close()
   web.close()
 }

@@ -11,6 +11,13 @@ const QUIENES = {
   SIMULADOR: { rol: 'admin', nombre: 'Alejandro Puebla' },
   EDITOR1: { rol: 'editor', nombre: 'Luis Puebla' },
 }
+// Graba el recorrido completo (la entrada del mapa se revisa en video).
+export const video = true
+
+// La entrada del mapa dura ~4 s; en el simulador va 4× más lenta para que
+// cada etapa alcance su captura (en el video también se ve completa).
+export const antes = () => { window.__amalayaEntradaX = 4 }
+
 // Google falso: el botón del simulador entrega este id_token.
 const TOKEN_GOOGLE = 'SIM-GOOGLE-ID-TOKEN-0123456789'
 
@@ -68,7 +75,27 @@ export async function guion({ pagina, foto, clic, base }) {
 
   // 1 · Entrar con Google (falso)
   await pagina.goto(base); await pagina.waitForTimeout(1500)
-  await clic('#gsi-falso'); await foto('03-mapa', 4000)
+  await clic('#gsi-falso')
+  // La entrada del mapa por capas: una captura por etapa
+  for (const [n, archivo] of [[0, '03-entrada-0-satelite'], [1, '03-entrada-1-lamina'], [2, '03-entrada-2-rutas'], [3, '03-entrada-3-puntos'], [4, '03-entrada-4-vuelo']]) {
+    await pagina.waitForSelector(`[data-entrada="${n}"]`, { timeout: 15000 }).catch(() => {})
+    await foto(archivo, n === 2 ? 2400 : n === 4 ? 4000 : 800)
+  }
+  await foto('03-mapa', 2000)
+  // Cada pin debe mostrar las rayitas de SU estado_desarrollo
+  const niveles = await pagina.$$eval('.pin3d', (els) => els.map((el) => [el.querySelector('.pin3d-nombre')?.textContent, Number(el.querySelector('.avance5')?.dataset.nivel)]))
+  const esperado = Object.fromEntries(db.Espacios.map((e) => [e.nombre, ['idea', 'negociacion', 'proyecto', 'obra', 'operando'].indexOf(String(e.estado_desarrollo).normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase()) + 1]))
+  for (const [nombre, n] of niveles) {
+    console.log(`${n === esperado[nombre] ? '✓' : '✗ NO COINCIDE'} avance ${nombre}: ${n} de 5 (Sheet: ${esperado[nombre]})`)
+  }
+  // Guía de primera vez (3 globos) y el indicador de avance
+  for (const g of ['03g-guia-1', '03g-guia-2', '03g-guia-3']) {
+    await foto(g, 300); await clic('.globo-guia button.ctrl-mapa')
+  }
+  await clic('button[title="Lista y buscador de espacios"]'); await foto('03l-lista-espacios', 500)
+  await pagina.locator('.lista-espacios input').fill('foro'); await foto('03m-buscar-foro', 400)
+  await clic('.lista-espacios .fila-espacio'); await foto('03n-ficha-desde-lista', 1500)
+  await pagina.keyboard.press('Escape'); await pagina.goto(base); await pagina.waitForTimeout(2500)
   await salir()
 
   // 2 · Entrar con la liga (?t=)
@@ -83,19 +110,21 @@ export async function guion({ pagina, foto, clic, base }) {
   // 4 · Un editor entra con código: no ve el ⚙️
   await clic('text=Tengo un código'); await pagina.waitForTimeout(300)
   await pagina.locator('input[type=password]').first().fill('EDITOR1')
-  await clic('button[type=submit]:has-text("Entrar")'); await foto('03c-editor-sin-engrane', 4000)
+  await clic('button[type=submit]:has-text("Entrar")')
+  await pagina.waitForSelector('[data-entrada="4"]', { timeout: 30000 }).catch(() => {}); await foto('03c-editor-sin-engrane', 2500)
   await salir()
 
   // 5 · El admin entra con código y abre el ⚙️
   await clic('text=Tengo un código'); await pagina.waitForTimeout(300)
   await pagina.locator('input[type=password]').first().fill(CODIGO)
-  await clic('button[type=submit]:has-text("Entrar")'); await pagina.waitForTimeout(4000)
+  await clic('button[type=submit]:has-text("Entrar")')
+  await pagina.waitForSelector('[data-entrada="4"]', { timeout: 30000 }).catch(() => {}); await pagina.waitForTimeout(2500)
   await clic('button[aria-label="Accesos"]'); await foto('07-accesos')
   await clic('button:has-text("Apagar acceso")'); await foto('07b-confirmar-apagar', 600)
   await clic('button:has-text("Cancelar")'); await clic('aside button:has-text("Cerrar")')
 
   await clic('button:has-text("Capas")'); await clic('.fila-capa:has-text("Satélite")')
-  await foto('03b-mapa-satelite', 3000); await clic('button:has-text("Capas")')
+  await foto('03b-mapa-sin-satelite', 3000); await clic('button:has-text("Capas")')
   await clic('button:has-text("Rutas")'); await foto('04-mapa-rutas')
   for (const [seccion, archivo] of [['Finanzas', '05-finanzas'], ['Reporte', '06-reporte'], ['Ayuda', '08-ayuda']]) {
     await clic(`nav button:has-text("${seccion}")`); await foto(archivo)
