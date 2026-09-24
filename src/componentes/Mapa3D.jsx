@@ -3,6 +3,7 @@ import maplibregl from 'maplibre-gl'
 import 'maplibre-gl/dist/maplibre-gl.css'
 import { Layers, Box, Map as MapIcon, Image as ImageIcon, Crosshair, Check, X, RotateCw, PersonStanding, ExternalLink, Footprints } from 'lucide-react'
 import { usarDatos } from '../datos.jsx'
+import { puedeEditarRol } from '../roles.js'
 import { BASE } from '../config.js'
 import { leerRuta } from './Rutas.jsx'
 import { NOMBRE_TIPO } from './Glifos.jsx'
@@ -207,7 +208,7 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
   const edRef = useRef(edicion)
   useEffect(() => { edRef.current = edicion }, [edicion])
   const { datos, sesion, modo, editarFila, crearFila } = usarDatos()
-  const puedeEditar = modo !== 'demo' && ['admin', 'editor'].includes(sesion?.rol)
+  const puedeEditar = modo !== 'demo' && puedeEditarRol(sesion?.rol)
   const geoSheet = useMemo(() => leerGeo(datos?.Config), [datos?.Config])
   const puedeCalibrar = modo !== 'demo' && sesion?.rol === 'admin'
 

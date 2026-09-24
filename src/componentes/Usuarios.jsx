@@ -1,10 +1,12 @@
 import { useState } from 'react'
-import { Plus, KeyRound, Download, Copy, Check, Moon, Link as LinkIcon, Unlink, Share2 } from 'lucide-react'
+import { Plus, KeyRound, Download, Copy, Check, Moon, Link as LinkIcon, Unlink, Share2, Power } from 'lucide-react'
 import { usarDatos } from '../datos.jsx'
+import { ROLES, NOMBRE_ROL } from '../roles.js'
+import { fechaHora } from '../formato.js'
 
 // ============================================================
-// El equipo (solo admin): alta de usuarios, activar/desactivar,
-// y generar códigos de acceso.
+// Accesos (solo admin, desde el engrane ⚙️): alta por correo, rol,
+// activo/inactivo, liga y código. Apagar a alguien pide confirmación.
 //
 // Los códigos NUNCA viajan en claro al navegador: el servidor
 // los manda enmascarados (••••1234). Un código nuevo se genera
@@ -12,7 +14,6 @@ import { usarDatos } from '../datos.jsx'
 // admin se lo pase a la persona por el canal que prefiera.
 // ============================================================
 
-const ROLES = ['admin', 'editor', 'visor', 'inversionista']
 
 export default function Usuarios() {
   const { datos, modo, crearFila, editarFila, apiAccion } = usarDatos()
@@ -23,6 +24,7 @@ export default function Usuarios() {
   const [error, setError] = useState(null)
   const [respaldo, setRespaldo] = useState(null)
   const [copiado, setCopiado] = useState(false)
+  const [porApagar, setPorApagar] = useState(null) // usuario a confirmar
 
   const esDemo = modo === 'demo'
 
@@ -100,7 +102,7 @@ export default function Usuarios() {
   return (
     <div className="max-w-2xl mx-auto px-4 py-6 space-y-4">
       <div className="flex items-center gap-2">
-        <h2 className="font-cartel font-normal uppercase tracking-wide text-2xl flex-1">El equipo</h2>
+        <h2 className="font-cartel font-normal uppercase tracking-wide text-2xl flex-1">Quién entra</h2>
         <button className="boton-secundario !px-3 !py-2 text-sm" onClick={activarNocturno} disabled={esDemo || ocupado === 'nocturno'} title="Activa el respaldo automático de cada noche">
           <span className="flex items-center gap-1.5">
             <Moon size={14} /> {ocupado === 'nocturno' ? 'Activando…' : 'Nocturno'}
@@ -128,60 +130,82 @@ export default function Usuarios() {
       {usuarios.map((u) => {
         const activo = String(u.activo).toLowerCase() === 'si'
         const conLiga = String(u.tiene_liga).toLowerCase() === 'si'
+        const ocupadoAqui = esDemo || ocupado === u.id
         return (
-          <div key={u.id} className="tarjeta p-4 flex items-center gap-3 flex-wrap">
-            <div className="flex-1 min-w-[10rem]">
-              <div className="text-marfil font-medium">{u.nombre}</div>
-              <div className="text-terciario text-xs">
-                {u.rol} {u.correo ? `· ${u.correo}` : ''} · código <span className="cifra">{u.codigo_enmascarado || '—'}</span>
-                {' · '}
-                <span className={conLiga ? 'text-salvia' : ''}>{conLiga ? 'liga activa' : 'sin liga'}</span>
+          <div key={u.id} className={`tarjeta p-4 space-y-3 ${activo ? '' : 'opacity-70'}`}>
+            <div className="flex items-start gap-3 flex-wrap">
+              <div className="flex-1 min-w-[10rem]">
+                <div className="text-marfil font-medium">{u.nombre}</div>
+                <div className="text-terciario text-xs">
+                  {u.correo || 'sin correo'} · código <span className="cifra">{u.codigo_enmascarado || '—'}</span>
+                  {' · '}
+                  <span className={conLiga ? 'text-salvia' : ''}>{conLiga ? 'liga activa' : 'sin liga'}</span>
+                </div>
+                <div className="text-terciario text-xs mt-0.5">
+                  Último acceso: {u.ultimo_acceso ? fechaHora(new Date(u.ultimo_acceso)) : 'nunca'}
+                </div>
               </div>
+              <label className="text-xs text-arena flex items-center gap-1.5">
+                Rol
+                <select
+                  className="campo !py-1 !px-2 text-xs !w-auto"
+                  value={String(u.rol || '').toLowerCase()}
+                  onChange={(e) => editarFila('Usuarios', u.id, { rol: e.target.value })}
+                  disabled={esDemo}
+                  aria-label={`Rol de ${u.nombre}`}
+                >
+                  {ROLES.map((r) => <option key={r} value={r}>{NOMBRE_ROL[r]}</option>)}
+                </select>
+              </label>
             </div>
-            <button
-              className="boton-secundario !px-2.5 !py-1.5 text-xs"
-              onClick={() => generarCodigo(u)}
-              disabled={esDemo || ocupado === u.id}
-              title="Código nuevo (el anterior deja de servir)"
-              aria-label={`Código nuevo para ${u.nombre}`}
-            >
-              <KeyRound size={13} />
-            </button>
-            <button
-              className="boton-secundario !px-2.5 !py-1.5 text-xs"
-              onClick={() => generarLiga(u)}
-              disabled={esDemo || ocupado === u.id}
-              title={conLiga ? 'Generar liga nueva (la anterior deja de servir)' : 'Generar su liga de acceso'}
-              aria-label={`Liga de acceso para ${u.nombre}`}
-            >
-              <LinkIcon size={13} />
-            </button>
-            {conLiga && (
-              <button
-                className="boton-secundario !px-2.5 !py-1.5 text-xs"
-                onClick={() => revocarLiga(u)}
-                disabled={esDemo || ocupado === u.id}
-                title="Revocar su liga (su código sigue funcionando)"
-                aria-label={`Revocar la liga de ${u.nombre}`}
-              >
-                <Unlink size={13} />
+            <div className="flex gap-2 flex-wrap">
+              <button className="boton-secundario !px-2.5 !py-1.5 text-xs" onClick={() => generarCodigo(u)} disabled={ocupadoAqui}
+                title="El código anterior deja de servir">
+                <span className="flex items-center gap-1.5"><KeyRound size={13} /> Código nuevo</span>
               </button>
-            )}
-            <button
-              role="switch"
-              aria-checked={activo}
-              disabled={esDemo}
-              onClick={() => editarFila('Usuarios', u.id, { activo: activo ? 'no' : 'si' })}
-              className={`relative w-12 h-7 rounded-full transition-colors duration-micro ease-casa
-                ${activo ? 'bg-salvia' : 'bg-linea'}`}
-              title={activo ? 'Activo — pícale para cortarle el acceso' : 'Inactivo — pícale para reactivar'}
-            >
-              <span className={`absolute top-1 w-5 h-5 rounded-full bg-marfil transition-transform duration-micro ease-casa
-                ${activo ? 'translate-x-6' : 'translate-x-1'}`} />
-            </button>
+              <button className="boton-secundario !px-2.5 !py-1.5 text-xs" onClick={() => generarLiga(u)} disabled={ocupadoAqui}
+                title={conLiga ? 'La liga anterior deja de servir' : 'Genera su liga de acceso'}>
+                <span className="flex items-center gap-1.5"><LinkIcon size={13} /> {conLiga ? 'Liga nueva' : 'Generar liga'}</span>
+              </button>
+              {conLiga && (
+                <button className="boton-secundario !px-2.5 !py-1.5 text-xs" onClick={() => revocarLiga(u)} disabled={ocupadoAqui}
+                  title="Su código sigue funcionando">
+                  <span className="flex items-center gap-1.5"><Unlink size={13} /> Quitar liga</span>
+                </button>
+              )}
+              <div className="flex-1" />
+              <button
+                className={`!px-2.5 !py-1.5 text-xs ${activo ? 'boton-secundario' : 'boton-primario'}`}
+                onClick={() => (activo ? setPorApagar(u) : editarFila('Usuarios', u.id, { activo: 'si' }))}
+                disabled={esDemo}
+              >
+                <span className="flex items-center gap-1.5"><Power size={13} /> {activo ? 'Apagar acceso' : 'Reactivar'}</span>
+              </button>
+            </div>
           </div>
         )
       })}
+
+      {porApagar && (
+        <div className="fixed inset-0 z-[60] bg-noche/80 flex items-center justify-center p-4" onClick={() => setPorApagar(null)}>
+          <div className="tarjeta bg-elevada p-6 w-full max-w-sm" role="alertdialog" aria-label="Confirmar" onClick={(e) => e.stopPropagation()}>
+            <h3 className="font-titulo text-xl">¿Apagar el acceso de {porApagar.nombre}?</h3>
+            <p className="text-terciario text-sm mt-2 leading-relaxed">
+              Deja de entrar en su siguiente conexión (con Google, liga o código).
+              Puedes reactivarlo cuando quieras.
+            </p>
+            <div className="flex gap-2 mt-5">
+              <button className="boton-secundario flex-1" onClick={() => setPorApagar(null)}>Cancelar</button>
+              <button
+                className="boton-primario flex-1"
+                onClick={() => { editarFila('Usuarios', porApagar.id, { activo: 'no' }); setPorApagar(null) }}
+              >
+                Sí, apagar
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
       <p className="text-terciario text-xs leading-relaxed">
         Desactivar a alguien le corta el acceso en su siguiente conexión: el
@@ -279,25 +303,27 @@ function FormaNuevaPersona({ onCrear, onCerrar }) {
       <form className="tarjeta bg-elevada p-6 w-full max-w-sm" onClick={(e) => e.stopPropagation()} onSubmit={enviar}>
         <h3 className="font-titulo text-xl">Nueva persona</h3>
         <p className="text-terciario text-sm mt-1">
-          Al crearla no tiene código: genera uno con "Código nuevo" y pásaselo.
+          Con su correo ya puede entrar con Google o pedir su liga. Si prefieres,
+          genera un código con «Código nuevo» y pásaselo.
         </p>
         <label className="block mt-4">
           <span className="text-sm text-arena">Nombre</span>
           <input className="campo mt-1.5" value={nombre} onChange={(e) => setNombre(e.target.value)} autoFocus disabled={ocupado} />
         </label>
         <label className="block mt-3">
-          <span className="text-sm text-arena">Correo (opcional)</span>
+          <span className="text-sm text-arena">Correo (con él entra con Google o recibe su liga)</span>
           <input className="campo mt-1.5" type="email" value={correo} onChange={(e) => setCorreo(e.target.value)} disabled={ocupado} />
         </label>
         <label className="block mt-3">
           <span className="text-sm text-arena">Rol</span>
           <select className="campo mt-1.5" value={rol} onChange={(e) => setRol(e.target.value)} disabled={ocupado}>
-            {ROLES.map((r) => <option key={r} value={r}>{r}</option>)}
+            {ROLES.map((r) => <option key={r} value={r}>{NOMBRE_ROL[r]}</option>)}
           </select>
         </label>
         <p className="text-terciario text-xs mt-2 leading-relaxed">
-          admin: todo · editor: espacios, rutas, finanzas y tareas · visor: solo
-          lectura · inversionista: solo el Reporte
+          admin: todo y accesos · máster: editor + congela el Reporte · editor:
+          espacios, rutas, finanzas y tareas · visor: solo lectura ·
+          inversionista: solo el Reporte
         </p>
         {error && <p className="text-ladrillo text-sm mt-3" role="alert">{error}</p>}
         <div className="flex gap-2 mt-5">

@@ -11,8 +11,9 @@ export const datos={
   ['gastos_generales','15000000'],['acciones_emitidas','100000'],['multiplo_operativo','6'],['multiplo_regalias','4'],
   ['split_distrito','30'],['split_artista','50'],['split_compositor','20']].map(([clave,valor])=>({clave,valor,notas:'simulado'})),
  Usuarios:[
-  {id:'U-001',nombre:'Alejandro Puebla',correo:'admin@ejemplo.mx',rol:'admin',codigo_enmascarado:'••••SIM1',activo:'si',tiene_liga:'si'},
-  {id:'U-002',nombre:'Luis Puebla',correo:'luis@ejemplo.mx',rol:'editor',codigo_enmascarado:'••••SIM2',activo:'si',tiene_liga:'no'},
+  {id:'U-001',nombre:'Alejandro Puebla',correo:'admin@ejemplo.mx',rol:'admin',codigo_enmascarado:'••••SIM1',activo:'si',tiene_liga:'si',ultimo_acceso:'2026-09-24T15:10:00Z'},
+  {id:'U-002',nombre:'Luis Puebla',correo:'luis@ejemplo.mx',rol:'editor',codigo_enmascarado:'••••SIM2',activo:'si',tiene_liga:'no',ultimo_acceso:'2026-09-20T18:30:00Z'},
+  {id:'U-004',nombre:'Máster de prueba',correo:'master@ejemplo.mx',rol:'master',codigo_enmascarado:'••••SIM4',activo:'si',tiene_liga:'no'},
   {id:'U-003',nombre:'Inversionista de prueba',correo:'',rol:'inversionista',codigo_enmascarado:'••••SIM3',activo:'si',tiene_liga:'no'}],
  Espacios:[
   E('E-001','Foro Amalaya','venue','proyecto',2500,44,40,16,14,'Foro de 1,428 personas de pie / 952 en butacas.'),

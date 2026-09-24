@@ -202,6 +202,18 @@ export function DatosProvider({ children }) {
     return s
   }, [cargar])
 
+  // Entrar con Google: el servidor valida el id_token y entrega una sesión
+  // con la MISMA forma que la liga (su token hace de código).
+  const entrarConGoogle = useCallback(async (idToken) => {
+    const r = await apiCall('google', { id_token: idToken })
+    const s = { codigo: r.codigo, rol: r.rol, nombre: r.nombre, ts: Date.now() }
+    setSesion(s)
+    guardarLocal(LLAVE_SESION, s)
+    setModo('vivo')
+    await cargar(r.codigo)
+    return s
+  }, [cargar])
+
   const salir = useCallback(() => {
     borrarLocal(LLAVE_SESION)
     borrarLocal(LLAVE_DATOS)
@@ -349,7 +361,7 @@ export function DatosProvider({ children }) {
   const valor = {
     sesion, arrancando, datos, modo,
     sincronizando, errorSync, ultimaSync, guardados,
-    entrar, salir, actualizar, verDemo,
+    entrar, entrarConGoogle, salir, actualizar, verDemo,
     editarFila, crearFila, borrarFila, reintentarGuardado,
     subirArchivo, verArchivo, apiAccion,
   }
