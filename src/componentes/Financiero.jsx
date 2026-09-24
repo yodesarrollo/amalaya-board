@@ -1,9 +1,9 @@
-import { useState } from 'react'
-import { Plus, X, ChevronDown, ChevronUp } from 'lucide-react'
+import { useState, useRef } from 'react'
+import { Plus, X, ChevronDown, ChevronUp, Columns2, SlidersHorizontal, RotateCcw } from 'lucide-react'
 import { usarDatos } from '../datos.jsx'
 import { puedeEditarRol } from '../roles.js'
 import { moneda, porcentaje } from '../formato.js'
-import { resumenGlobal, resumenEspacio, montoLinea, mapaConfig, configNum, normalizarId } from '../calc.js'
+import { resumenGlobal, resumenEspacio, montoLinea, mapaConfig, configNum, normalizarId, resumenConEscenario, sugerirFactores } from '../calc.js'
 
 // ============================================================
 // El motor financiero — la vista donde el modelo de negocio se
@@ -29,6 +29,67 @@ function EstadoGuardado({ tab, id }) {
     <button className="text-ladrillo text-xs underline" onClick={() => reintentarGuardado(tab, id)}>
       No se guardó · Reintentar
     </button>
+  )
+}
+
+// --- Campo del monto con autocompletar ----------------------
+// Al escribir una fórmula (=...) sugiere los factores del espacio.
+function CampoFormula({ valor, onCambio, factores, editable }) {
+  const ref = useRef(null)
+  const [sug, setSug] = useState({ sugerencias: [], desde: 0 })
+  const [elegida, setElegida] = useState(0)
+  const etiquetas = factores.map((f) => f.etiqueta)
+
+  function revisar(texto, cursor) {
+    setSug(sugerirFactores(texto, cursor, etiquetas))
+    setElegida(0)
+  }
+  function insertar(id) {
+    const el = ref.current
+    const texto = String(valor ?? '')
+    const cursor = el?.selectionStart ?? texto.length
+    const nuevo = texto.slice(0, sug.desde) + id + texto.slice(cursor)
+    onCambio(nuevo)
+    setSug({ sugerencias: [], desde: 0 })
+    requestAnimationFrame(() => { el?.focus(); const p = sug.desde + id.length; el?.setSelectionRange(p, p) })
+  }
+  return (
+    <div className="relative flex-1">
+      <input
+        ref={ref}
+        className="campo !py-1.5 w-full text-sm cifra"
+        value={valor ?? ''}
+        onChange={(e) => { onCambio(e.target.value); revisar(e.target.value, e.target.selectionStart) }}
+        onKeyDown={(e) => {
+          if (!sug.sugerencias.length) return
+          if (e.key === 'ArrowDown') { e.preventDefault(); setElegida((elegida + 1) % sug.sugerencias.length) }
+          else if (e.key === 'ArrowUp') { e.preventDefault(); setElegida((elegida - 1 + sug.sugerencias.length) % sug.sugerencias.length) }
+          else if (e.key === 'Enter' || e.key === 'Tab') { e.preventDefault(); insertar(sug.sugerencias[elegida]) }
+          else if (e.key === 'Escape') setSug({ sugerencias: [], desde: 0 })
+        }}
+        onBlur={() => setTimeout(() => setSug({ sugerencias: [], desde: 0 }), 150)}
+        disabled={!editable}
+        placeholder="Monto anual, o =alumnos * mensualidad * 12"
+        aria-autocomplete="list"
+      />
+      {sug.sugerencias.length > 0 && (
+        <ul className="absolute z-30 left-0 right-0 mt-1 border border-oro/60 rounded-lg shadow-2xl overflow-hidden" style={{ background: "#1C1613" }} role="listbox" aria-label="Factores del espacio">
+          {sug.sugerencias.map((id, i) => (
+            <li key={id}>
+              <button
+                type="button"
+                role="option"
+                aria-selected={i === elegida}
+                className={`w-full text-left px-3 py-1.5 text-xs cifra ${i === elegida ? 'bg-oro/20 text-marfil' : 'text-arena'}`}
+                onMouseDown={(e) => { e.preventDefault(); insertar(id) }}
+              >
+                {id} <span className="text-terciario">= {factores.find((f) => normalizarId(f.etiqueta) === id)?.valor ?? ''}</span>
+              </button>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
   )
 }
 
@@ -63,12 +124,11 @@ function Linea({ linea, factores, escenarios, editable }) {
       </div>
 
       <div className="flex items-center gap-2">
-        <input
-          className="campo !py-1.5 flex-1 text-sm cifra"
-          value={linea.monto_anual ?? ''}
-          onChange={(e) => editarFila('Finanzas_Lineas', linea.id, { monto_anual: e.target.value })}
-          disabled={!editable}
-          placeholder="Monto anual, o =alumnos * mensualidad * 12"
+        <CampoFormula
+          valor={linea.monto_anual}
+          onCambio={(v) => editarFila('Finanzas_Lineas', linea.id, { monto_anual: v })}
+          factores={factores}
+          editable={editable}
         />
         <span className="cifra text-sm w-32 text-right shrink-0 text-marfil">
           {r.error ? '—' : moneda(r.valor)}
@@ -92,33 +152,39 @@ function Linea({ linea, factores, escenarios, editable }) {
             <option key={esc.id} value={esc.id}>{esc.nombre}</option>
           ))}
         </select>
+        <div className="flex-1" />
+        <EstadoGuardado tab="Finanzas_Lineas" id={linea.id} />
+      </div>
+
+      {/* El supuesto, visible bajo la línea; marca suave si falta */}
+      <label className={`flex items-center gap-2 text-xs rounded px-2 py-1 ${String(linea.supuesto || '').trim() ? '' : 'border border-dashed border-oro/50'}`}>
+        <span className={String(linea.supuesto || '').trim() ? 'text-terciario' : 'text-oro'}>
+          {String(linea.supuesto || '').trim() ? 'Supuesto:' : 'Falta supuesto:'}
+        </span>
         <input
-          className="campo !py-1.5 flex-1 text-xs"
+          className="bg-transparent flex-1 text-arena placeholder:text-terciario outline-none"
           value={linea.supuesto || ''}
           onChange={(e) => editarFila('Finanzas_Lineas', linea.id, { supuesto: e.target.value })}
           disabled={!editable}
-          placeholder="Supuesto (ej. 12 meses × $2,500 por alumno)"
+          placeholder={editable ? 'de dónde sale este número (ej. 12 meses × $2,500 por alumno)' : '—'}
         />
-        <EstadoGuardado tab="Finanzas_Lineas" id={linea.id} />
-      </div>
+      </label>
     </div>
   )
 }
 
 // --- El bloque de un espacio --------------------------------
-function BloqueEspacio({ espacio, editable }) {
+function BloqueEspacio({ espacio, editable, ajuste }) {
   const { datos, crearFila, editarFila } = usarDatos()
-  // "Primero el drama": en teléfono los bloques nacen cerrados — el número
-  // grande arriba y el formulario solo si lo pides (petición 5/6 del panel).
-  const [abierto, setAbierto] = useState(() =>
-    typeof window !== 'undefined' && window.innerWidth >= 1024
-  )
+  // Tarjetas cerradas por defecto (nombre + utilidad); se abren al tocar.
+  const [abierto, setAbierto] = useState(false)
+  const [comparando, setComparando] = useState(false)
   const [nuevoEscenario, setNuevoEscenario] = useState('')
 
   const lineas = (datos?.Finanzas_Lineas || []).filter((l) => String(l.espacio_id) === String(espacio.id))
   const escenarios = (datos?.Escenarios || []).filter((e) => String(e.espacio_id) === String(espacio.id))
   const factores = (datos?.Factores || []).filter((f) => String(f.espacio_id) === String(espacio.id))
-  const r = resumenEspacio(espacio, datos?.Finanzas_Lineas || [], datos?.Factores || [], datos?.Escenarios || [])
+  const r = resumenEspacio(espacio, datos?.Finanzas_Lineas || [], datos?.Factores || [], datos?.Escenarios || [], ajuste)
 
   async function agregarLinea(tipo) {
     await crearFila('Finanzas_Lineas', {
@@ -198,6 +264,12 @@ function BloqueEspacio({ espacio, editable }) {
                 </span>
               )}
             </div>
+            {escenarios.length >= 2 && (
+              <button className="text-xs text-arena hover:text-marfil flex items-center gap-1.5 mt-2" onClick={() => setComparando(!comparando)}>
+                <Columns2 size={13} /> {comparando ? 'Cerrar comparación' : 'Comparar dos escenarios'}
+              </button>
+            )}
+            {comparando && <CompararEscenarios espacio={espacio} escenarios={escenarios} />}
             {editable && (
               <form className="flex gap-2 mt-2" onSubmit={agregarEscenario}>
                 <input
@@ -238,6 +310,76 @@ function BloqueEspacio({ espacio, editable }) {
         </div>
       )}
     </section>
+  )
+}
+
+// --- Comparar dos escenarios lado a lado --------------------
+function CompararEscenarios({ espacio, escenarios }) {
+  const { datos } = usarDatos()
+  const [a, setA] = useState(escenarios[0]?.id || '')
+  const [b, setB] = useState(escenarios[1]?.id || '')
+  const calc = (id) => resumenConEscenario(espacio, datos?.Finanzas_Lineas || [], datos?.Factores || [], datos?.Escenarios || [], id || null)
+  const ra = calc(a); const rb = calc(b)
+  const filas = [['Ingreso', 'ingreso'], ['Costo', 'costo'], ['Utilidad', 'utilidad']]
+  const sel = (v, set) => (
+    <select className="campo !py-1 !px-2 text-xs !w-full" value={v} onChange={(e) => set(e.target.value)}>
+      <option value="">solo lo que aplica siempre</option>
+      {escenarios.map((e) => <option key={e.id} value={e.id}>{e.nombre}</option>)}
+    </select>
+  )
+  return (
+    <div className="mt-2 rounded-lg border border-linea p-3" aria-label="Comparación de escenarios">
+      <div className="grid grid-cols-[6rem_1fr_1fr] gap-2 items-center text-xs">
+        <span />
+        {sel(a, setA)}
+        {sel(b, setB)}
+        {filas.map(([t, k]) => (
+          <div key={k} className="contents">
+            <span className="text-terciario">{t}</span>
+            <span className={`cifra text-right ${k === 'utilidad' ? 'text-marfil font-medium' : 'text-arena'}`}>{moneda(ra[k])}</span>
+            <span className={`cifra text-right ${k === 'utilidad' ? 'text-marfil font-medium' : 'text-arena'}`}>{moneda(rb[k])}</span>
+          </div>
+        ))}
+      </div>
+      <p className="text-terciario text-[11px] mt-2">
+        Diferencia de utilidad: <b className={`cifra ${rb.utilidad - ra.utilidad >= 0 ? 'text-salvia' : 'text-ladrillo'}`}>{moneda(rb.utilidad - ra.utilidad)}</b> · comparar no cambia qué escenario está prendido.
+      </p>
+    </div>
+  )
+}
+
+// --- ¿Y si…? (no guarda nada) -------------------------------
+function YSi({ ajuste, setAjuste }) {
+  const [abierto, setAbierto] = useState(false)
+  const movido = ajuste.ocupacion !== 0 || ajuste.precio !== 0
+  const control = (clave, titulo) => (
+    <label className="flex items-center gap-2 text-xs">
+      <span className="text-arena w-20">{titulo}</span>
+      <input type="range" min="-30" max="30" step="5" value={ajuste[clave]} className="flex-1 accent-[#C9A45C]"
+        onChange={(e) => setAjuste({ ...ajuste, [clave]: Number(e.target.value) })} aria-label={`${titulo} (%)`} />
+      <span className="cifra w-10 text-right text-marfil">{ajuste[clave] > 0 ? '+' : ''}{ajuste[clave]}%</span>
+    </label>
+  )
+  return (
+    <div className="mt-3 border-t border-linea pt-2">
+      <button className={`text-xs flex items-center gap-1.5 ${movido ? 'text-ambar' : 'text-terciario hover:text-arena'}`} onClick={() => setAbierto(!abierto)} aria-expanded={abierto}>
+        <SlidersHorizontal size={12} /> ¿Y si…?{movido ? ' (activo · no se guarda)' : ''}
+      </button>
+      {abierto && (
+        <div className="mt-2 space-y-1.5">
+          {control('ocupacion', 'Ocupación')}
+          {control('precio', 'Precios')}
+          <div className="flex items-center justify-between">
+            <span className="text-terciario text-[11px]">Mueve los ingresos; no guarda nada.</span>
+            {movido && (
+              <button className="text-[11px] text-arena hover:text-marfil flex items-center gap-1" onClick={() => setAjuste({ ocupacion: 0, precio: 0 })}>
+                <RotateCcw size={11} /> volver
+              </button>
+            )}
+          </div>
+        </div>
+      )}
+    </div>
   )
 }
 
@@ -363,7 +505,7 @@ function DesgloseCristiano({ g, config, onCerrar }) {
 }
 
 // --- El panel del VALOR POR ACCIÓN ---------------------------
-function PanelValor({ g, onExplicar }) {
+function PanelValor({ g, onExplicar, ajuste, setAjuste }) {
   const v = g.valorPorAccion
   const total = Math.max(v.total, 1)
   const partes = [
@@ -374,7 +516,9 @@ function PanelValor({ g, onExplicar }) {
 
   return (
     <div className="tarjeta bg-elevada border-t-2 border-t-ambar p-5">
-      <div className="text-xs uppercase tracking-[0.2em] text-arena">Valor por acción</div>
+      <div className="text-xs uppercase tracking-[0.2em] text-arena">
+        Valor por acción{(ajuste?.ocupacion || ajuste?.precio) ? <span className="text-ambar normal-case tracking-normal"> · ¿y si…?</span> : null}
+      </div>
       <button
         className="cifra font-cartel font-normal text-4xl text-marfil mt-1 glow-ambar text-left"
         onClick={onExplicar}
@@ -420,6 +564,8 @@ function PanelValor({ g, onExplicar }) {
         </div>
       </dl>
 
+      {setAjuste && <YSi ajuste={ajuste} setAjuste={setAjuste} />}
+
       {/* Por espacio */}
       {g.porEspacio.length > 0 && (
         <dl className="mt-4 space-y-1 text-xs border-t border-linea pt-3">
@@ -443,6 +589,7 @@ export default function Financiero() {
   const esAdmin = modo !== 'demo' && sesion?.rol === 'admin'
   const [panelAbierto, setPanelAbierto] = useState(false)
   const [explicando, setExplicando] = useState(false)
+  const [ajuste, setAjuste] = useState({ ocupacion: 0, precio: 0 }) // ¿Y si…? — nunca se guarda
 
   const espacios = datos?.Espacios || []
   const config = mapaConfig(datos?.Config || [])
@@ -452,6 +599,7 @@ export default function Financiero() {
     factores: datos?.Factores || [],
     escenarios: datos?.Escenarios || [],
     config,
+    ajuste,
   })
 
   // Hay regalías en el modelo → se enseña el reparto (mata la duda de
@@ -476,7 +624,7 @@ export default function Financiero() {
           </div>
         )}
         {espacios.map((e) => (
-          <BloqueEspacio key={e.id} espacio={e} editable={editable} />
+          <BloqueEspacio key={e.id} espacio={e} editable={editable} ajuste={ajuste} />
         ))}
 
         {hayRegalias && (
@@ -507,14 +655,14 @@ export default function Financiero() {
 
       {/* Panel lateral siempre visible en pantalla ancha */}
       <div className="hidden lg:block sticky top-20">
-        <PanelValor g={g} onExplicar={() => setExplicando(true)} />
+        <PanelValor g={g} onExplicar={() => setExplicando(true)} ajuste={ajuste} setAjuste={setAjuste} />
       </div>
 
       {/* En teléfono: barra inferior fija, colapsada, que se expande */}
       <div className="lg:hidden fixed inset-x-0 bottom-14 sm:bottom-0 z-40">
         {panelAbierto && (
           <div className="mx-3 mb-2 max-h-[60dvh] overflow-y-auto rounded-2xl shadow-2xl">
-            <PanelValor g={g} onExplicar={() => setExplicando(true)} />
+            <PanelValor g={g} onExplicar={() => setExplicando(true)} ajuste={ajuste} setAjuste={setAjuste} />
           </div>
         )}
         <button

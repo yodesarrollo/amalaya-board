@@ -183,7 +183,29 @@ export async function guion({ pagina, foto, clic, base }) {
   } else console.log('✗ no encontré el punto con render en el mapa')
   for (const [seccion, archivo] of [['Finanzas', '05-finanzas'], ['Reporte', '06-reporte'], ['Ayuda', '08-ayuda']]) {
     await clic(`nav button:has-text("${seccion}")`); await foto(archivo)
-    if (seccion === 'Finanzas') { await clic('text=¿qué significa?'); await foto('05b-que-significa'); await clic('text=Entendido') }
+    if (seccion === 'Finanzas') {
+      await foto('05-finanzas-cerradas', 300)
+      await clic('button[aria-expanded]:has-text("Foro Amalaya")'); await foto('05a-finanzas-foro-abierto', 500)
+      // Autocompletar: escribir «=ev» en el monto de una línea
+      const monto = pagina.locator('input[aria-autocomplete="list"]').nth(1)
+      const previo = await monto.inputValue()
+      await monto.fill(''); await monto.type('=ev'); await foto('05c-autocompletar', 500)
+      const opciones = await pagina.locator('[aria-label="Factores del espacio"] li').count()
+      console.log(`${opciones > 0 ? '✓' : '✗'} autocompletar: ${opciones} sugerencia(s) al escribir «=ev»`)
+      await monto.fill(previo)
+      // Comparar escenarios
+      await clic('text=Comparar dos escenarios'); await foto('05d-comparar-escenarios', 400)
+      const comp = await pagina.locator('[aria-label="Comparación de escenarios"]').count()
+      console.log(`${comp ? '✓' : '✗'} comparar escenarios lado a lado`)
+      // ¿Y si…? — sube precios 20% y vuelve
+      const antes = await pagina.locator('.sticky button[title="¿Qué significa este número?"]').first().textContent().catch(() => '')
+      await clic('.sticky button:has-text("¿Y si…?")')
+      await pagina.locator('.sticky input[aria-label="Precios (%)"]').first().fill('20'); await foto('05e-y-si', 400)
+      const despues = await pagina.locator('.sticky button[title="¿Qué significa este número?"]').first().textContent().catch(() => '')
+      console.log(`${antes !== despues ? '✓' : '✗'} ¿y si…? +20% precios: ${antes} → ${despues} (no se guarda)`)
+      await clic('.sticky button:has-text("volver")')
+      await clic('text=¿qué significa?'); await foto('05b-que-significa'); await clic('text=Entendido')
+    }
   }
   await pagina.goto(base + 'recorrido/'); await foto('09-recorrido-360', 4000)
   await pagina.goto(base + 'modelo/serdan-garmendia.html'); await foto('10-modelo-esquina', 5000)
