@@ -1,6 +1,6 @@
 name: Guardián de salud
 
-# Cada 10 minutos pregunta "¿estás vivo?" al backend y al sitio.
+# Cada hora (antes cada 10 min: el guardián de uptime de aurum-board ya vigila cada 30) pregunta "¿estás vivo?" al backend y al sitio.
 # Escribe public/estado.json SOLO con metadatos (nunca datos del negocio)
 # y solo commitea si el estado cambió — el historial cuenta las caídas
 # sin ruido. El commit lleva [skip ci]: un latido no dispara deploys.
@@ -9,7 +9,7 @@ name: Guardián de salud
 # y se pausa si el repo pasa 60 días sin actividad.
 on:
   schedule:
-    - cron: '*/10 * * * *'
+    - cron: '20 * * * *'
   workflow_dispatch:
 
 permissions:
