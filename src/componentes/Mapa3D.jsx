@@ -1,12 +1,13 @@
 import { useEffect, useRef, useState, useMemo } from 'react'
 import maplibregl from 'maplibre-gl'
 import 'maplibre-gl/dist/maplibre-gl.css'
-import { Layers, Box, Map as MapIcon, Image as ImageIcon, Crosshair, Check, X, RotateCw, PersonStanding, ExternalLink, Footprints } from 'lucide-react'
+import { Layers, Box, Map as MapIcon, Image as ImageIcon, Crosshair, Check, X, RotateCw, PersonStanding, ExternalLink, Footprints, Search, List } from 'lucide-react'
 import { usarDatos } from '../datos.jsx'
 import { puedeEditarRol } from '../roles.js'
 import { BASE } from '../config.js'
 import { leerRuta } from './Rutas.jsx'
 import { NOMBRE_TIPO } from './Glifos.jsx'
+import { rayitasHtml } from '../avance.js'
 
 // ============================================================
 // Mapa 3D — el corazón de Amalaya sobre la ciudad real.
@@ -59,6 +60,20 @@ const COLOR_TIPO = {
 const ALTURA_TIPO = { venue: 18, estacionamiento: 15, comercial: 11, mixto: 13, museo: 10, escuela: 9, estudio: 9, departamento: 10, restaurante: 9, otro: 9 }
 
 const num = (v, d) => { const n = parseFloat(v); return Number.isFinite(n) ? n : d }
+
+// Entrada animada por capas (una sola vez al cargar, ~4 s, se salta tocando):
+// 0 satélite → 1 lámina de colores → 2 rutas trazándose → 3 puntos → 4 vuelo/fin.
+// (El simulador la puede alentar con window.__amalayaEntradaX para capturar cada etapa.)
+const ENTRADA_BASE = { lamina: 600, rutas: 1500, trazo: 1300, puntos: 2900, vuelo: 3400, vueloDur: 2400 }
+const ENTRADA_MS = new Proxy(ENTRADA_BASE, { get: (o, k) => o[k] * ((typeof window !== 'undefined' && window.__amalayaEntradaX) || 1) })
+const GUIA_LLAVE = 'amalaya_guia_mapa_v1'
+const GUIA = [
+  'Gira la maqueta: arrastra con clic derecho (o con dos dedos) o usa ↺ ↻.',
+  'Acerca y aleja con la rueda, pellizcando o con + y −.',
+  'Toca un espacio para abrir su ficha.',
+]
+const leerGuiaVista = () => { try { return localStorage.getItem(GUIA_LLAVE) === 'si' } catch { return false } }
+const marcarGuiaVista = () => { try { localStorage.setItem(GUIA_LLAVE, 'si') } catch { /* modo privado */ } }
 
 export function leerGeo(config) {
   const fila = (config || []).find((c) => String(c.clave) === 'mapa_geo')
@@ -192,8 +207,8 @@ function vestir(m, t) {
     } catch { /* alguna capa no admite la propiedad: se deja como viene */ }
   }
   if (m.getLayer('ciudad-3d')) {
-    m.setPaintProperty('ciudad-3d', 'fill-extrusion-color', t.ciudad)
-    m.setPaintProperty('ciudad-3d', 'fill-extrusion-opacity', t.ciudadOp)
+    m.setPaintProperty('ciudad-3d', 'fill-color', t.ciudad)
+    m.setPaintProperty('ciudad-3d', 'fill-opacity', t.ciudadOp * 0.6)
   }
   if (m.getLayer('ciudad-borde')) m.setPaintProperty('ciudad-borde', 'line-color', t.borde)
   if (m.getLayer('espacios-borde')) m.setPaintProperty('espacios-borde', 'line-color', t.borde)
@@ -201,7 +216,7 @@ function vestir(m, t) {
   if (m.getLayer('paradas')) { m.setPaintProperty('paradas', 'circle-color', t.halo); m.setPaintProperty('paradas', 'circle-stroke-color', t.borde) }
 }
 
-const CAPAS_DEF = { satelite: false, ciudad: true, espacios: true, rutas: true, recorrido: true, calco: false, lamina: false }
+const CAPAS_DEF = { satelite: true, ciudad: false, espacios: true, rutas: true, recorrido: true, calco: false, lamina: false }
 
 export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, edicion = {} }) {
   // edicion: { modoEdicion, editandoPuntos, rutaSel, onMoverEspacio(id, pctCentroX, pctCentroY), onAgregarPunto(pctX, pctY) }
@@ -243,6 +258,17 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
   const marcadores = useRef([])
   const esquinas = useRef([])
   const [listo, setListo] = useState(false)
+  // Entrada por capas: 0 satélite · 1 lámina · 2 rutas · 3 puntos · 4 fin
+  const reducido = useMemo(() => { try { return window.matchMedia('(prefers-reduced-motion: reduce)').matches } catch { return false } }, [])
+  const [etapa, setEtapa] = useState(reducido ? 4 : 0)
+  const etapaRef = useRef(etapa)
+  useEffect(() => { etapaRef.current = etapa }, [etapa])
+  const relojesEntrada = useRef([])
+  const trazo = useRef(null)
+  const rutasGeoRef = useRef(null)
+  const [guia, setGuia] = useState(-1) // índice del globo, -1 = sin guía
+  const [lista, setLista] = useState(false)
+  const [busca, setBusca] = useState('')
   const [capas, setCapas] = useState(CAPAS_DEF)
   const [tema, setTema] = useState('lamina')
   const temaRef = useRef('lamina')
@@ -299,15 +325,11 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
       const primeraEtiqueta = m.getStyle().layers.find((l) => l.type === 'symbol')?.id
       m.addLayer({ id: 'satelite', type: 'raster', source: 'satelite', layout: { visibility: 'none' }, paint: { 'raster-opacity': 0.9, 'raster-saturation': -0.35, 'raster-brightness-max': 0.85 } }, primeraEtiqueta)
 
-      // Edificios de la ciudad en 3D (los que trae el mapa base)
+      // Edificios de la ciudad: PLANOS. El 3D es solo para los espacios del
+      // proyecto (plan UX v2): así la maqueta se lee sin competir con la ciudad.
       m.addLayer({
-        id: 'ciudad-3d', type: 'fill-extrusion', source: 'openmaptiles', 'source-layer': 'building', minzoom: 14,
-        paint: {
-          'fill-extrusion-color': '#2C231C',
-          'fill-extrusion-height': ['coalesce', ['get', 'render_height'], 6],
-          'fill-extrusion-base': ['coalesce', ['get', 'render_min_height'], 0],
-          'fill-extrusion-opacity': 0.85,
-        },
+        id: 'ciudad-3d', type: 'fill', source: 'openmaptiles', 'source-layer': 'building', minzoom: 14,
+        paint: { 'fill-color': '#2C231C', 'fill-opacity': 0.5 },
       }, primeraEtiqueta)
       // Contorno de los edificios de la ciudad a nivel de piso (el "dibujo de línea")
       m.addLayer({ id: 'ciudad-borde', type: 'line', source: 'openmaptiles', 'source-layer': 'building', minzoom: 15, paint: { 'line-color': '#1F1F1F', 'line-width': 0.6, 'line-opacity': 0.55 } }, primeraEtiqueta)
@@ -388,23 +410,90 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
       acomodarPines()
       m.on('move', acomodarPines)
       m.on('idle', acomodarPines)
+      m.setPaintProperty('espacios-3d', 'fill-extrusion-opacity-transition', { duration: 900, delay: 0 })
+      m.setPaintProperty('recorrido-puntos', 'circle-opacity-transition', { duration: 600, delay: 0 })
+      m.setPaintProperty('recorrido-puntos', 'circle-stroke-opacity-transition', { duration: 600, delay: 0 })
       setListo(true)
-      // La única entrada cinematográfica: el polígono entra en cuadro y se inclina.
-      m.fitBounds(bboxDe(geoSheet), { padding: ENCUADRE, pitch: 58, bearing: 0, duration: 1600, easing: (t) => 1 - Math.pow(1 - t, 3) })
+      // Nace en 2D: vista cenital del polígono sobre satélite.
+      m.fitBounds(bboxDe(geoSheet), { padding: ENCUADRE, pitch: 0, bearing: 0, duration: 0 })
+      if (etapaRef.current >= 4) { volar(m, 0); return }
+      const r = relojesEntrada.current
+      r.push(setTimeout(() => setEtapa(1), ENTRADA_MS.lamina))
+      r.push(setTimeout(() => { setEtapa(2); trazarRutas(m) }, ENTRADA_MS.rutas))
+      r.push(setTimeout(() => setEtapa(3), ENTRADA_MS.puntos))
+      r.push(setTimeout(() => { setEtapa(4); volar(m, ENTRADA_MS.vueloDur) }, ENTRADA_MS.vuelo))
     }
     m.on('load', arrancar)
     m.on('styledata', arrancar)
     reloj = setTimeout(arrancar, 600)
     mapa.current = m
-    return () => { clearTimeout(reloj); m.remove(); mapa.current = null }
+    return () => { clearTimeout(reloj); relojesEntrada.current.forEach(clearTimeout); cancelAnimationFrame(trazo.current); m.remove(); mapa.current = null }
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
+
+  // --- entrada por capas ------------------------------------------
+  // Vuelo de dron: la cámara se inclina y gira hacia el 3D.
+  function volar(m, duracion) {
+    // Se mantiene el acercamiento del 2D (fitBounds con inclinación alejaría
+    // demasiado la maqueta): solo se inclina, gira y se arrima un poco.
+    const cam = m.cameraForBounds(bboxDe(geoRef.current), { padding: ENCUADRE }) || {}
+    m.easeTo({
+      center: cam.center || m.getCenter(), zoom: (cam.zoom ?? m.getZoom()) + 0.35, pitch: 58, bearing: -18,
+      duration: duracion, easing: (t) => (t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2),
+    })
+    setCara(0)
+  }
+  // Las rutas se trazan de principio a fin cortando sus coordenadas.
+  function trazarRutas(m) {
+    const completo = rutasGeoRef.current
+    if (!completo) return
+    const t0 = performance.now()
+    const paso = (ahora) => {
+      const f = Math.max(0, Math.min(1, (ahora - t0) / ENTRADA_MS.trazo))
+      const parcial = {
+        type: 'FeatureCollection',
+        features: completo.features.map((ft) => {
+          const c = ft.geometry.coordinates
+          const pos = (c.length - 1) * f
+          const i = Math.floor(pos)
+          const resto = pos - i
+          const sub = c.slice(0, i + 1)
+          if (i < c.length - 1) sub.push([c[i][0] + (c[i + 1][0] - c[i][0]) * resto, c[i][1] + (c[i + 1][1] - c[i][1]) * resto])
+          if (sub.length < 2) sub.push(sub[0])
+          return { ...ft, geometry: { ...ft.geometry, coordinates: sub } }
+        }),
+      }
+      m.getSource('rutas')?.setData(parcial)
+      if (f < 1 && etapaRef.current < 4) trazo.current = requestAnimationFrame(paso)
+      else m.getSource('rutas')?.setData(rutasGeoRef.current)
+    }
+    trazo.current = requestAnimationFrame(paso)
+  }
+  // Tocar durante la entrada la salta: todo a su estado final.
+  function saltarEntrada() {
+    const m = mapa.current
+    if (etapaRef.current >= 4 || !m) return
+    relojesEntrada.current.forEach(clearTimeout)
+    relojesEntrada.current = []
+    cancelAnimationFrame(trazo.current)
+    m.getSource('rutas')?.setData(rutasGeoRef.current || { type: 'FeatureCollection', features: [] })
+    m.stop()
+    setEtapa(4)
+    volar(m, 0)
+  }
+  // Guía de primera vez: al terminar la entrada, 3 globos que no vuelven.
+  useEffect(() => { if (etapa >= 4 && listo && !leerGuiaVista()) setGuia(0) }, [etapa, listo])
+  function siguienteGlobo() {
+    if (guia >= GUIA.length - 1) { setGuia(-1); marcarGuiaVista() } else setGuia(guia + 1)
+  }
 
   // --- datos → capas ----------------------------------------------
   useEffect(() => {
     const m = mapa.current
     if (!m || !listo) return
     m.getSource('espacios')?.setData(geojsonEspacios(espacios, datos?.Factores, geo))
-    m.getSource('rutas')?.setData(geojsonRutas(rutas, geo))
+    rutasGeoRef.current = geojsonRutas(rutas, geo)
+    // Durante la entrada el trazo manda; antes de él las rutas no se ven.
+    if (etapaRef.current !== 2) m.getSource('rutas')?.setData(rutasGeoRef.current)
     m.getSource('paradas')?.setData(geojsonParadas(paradas, geo))
     m.getSource('calco')?.setCoordinates(geo)
 
@@ -416,7 +505,7 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
       const el = document.createElement('button')
       const tipo = NOMBRE_TIPO[String(e.tipo).toLowerCase()] || ''
       el.className = 'pin3d'
-      el.innerHTML = `<span class="pin3d-nombre">${escapar(e.nombre || '')}</span>${tipo ? `<span class="pin3d-tipo">${escapar(tipo)}</span>` : ''}`
+      el.innerHTML = `<span class="pin3d-nombre">${escapar(e.nombre || '')}</span>${tipo ? `<span class="pin3d-tipo">${escapar(tipo)}</span>` : ''}${rayitasHtml(e.estado_desarrollo)}`
       el.addEventListener('click', (ev) => { ev.stopPropagation(); if (!edicion.modoEdicion) onAbrir?.(e.id) })
       if (edicion.modoEdicion) el.classList.add('pin3d-editable')
       const mk = new maplibregl.Marker({ element: el, anchor: 'bottom', offset: [0, -6], draggable: !!edicion.modoEdicion }).setLngLat(pctAGeo(geo, x, y)).addTo(m)
@@ -474,15 +563,21 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
     const m = mapa.current
     if (!m || !listo) return
     const vis = (id, on) => m.getLayer(id) && m.setLayoutProperty(id, 'visibility', on ? 'visible' : 'none')
+    // La entrada por capas va encendiendo lo que el usuario tiene prendido.
     vis('satelite', capas.satelite)
-    vis('ciudad-3d', capas.ciudad); vis('ciudad-borde', capas.ciudad)
-    vis('espacios-3d', capas.espacios); vis('espacios-borde', capas.espacios)
-    vis('rutas', capas.rutas); vis('rutas-halo', capas.rutas); vis('paradas', capas.rutas)
-    vis('recorrido-puntos', capas.recorrido); vis('recorrido-linea', capas.recorrido); vis('recorrido-toque', capas.recorrido)
+    vis('ciudad-3d', capas.ciudad && etapa >= 1); vis('ciudad-borde', capas.ciudad && etapa >= 1)
+    vis('espacios-3d', capas.espacios); vis('espacios-borde', capas.espacios && etapa >= 1)
+    if (m.getLayer('espacios-3d')) m.setPaintProperty('espacios-3d', 'fill-extrusion-opacity', etapa >= 1 ? TEMAS[tema].espacioOp : 0)
+    vis('rutas', capas.rutas && etapa >= 2); vis('rutas-halo', capas.rutas && etapa >= 2); vis('paradas', capas.rutas && etapa >= 3)
+    vis('recorrido-puntos', capas.recorrido); vis('recorrido-linea', capas.recorrido && etapa >= 3); vis('recorrido-toque', capas.recorrido && etapa >= 3)
+    if (m.getLayer('recorrido-puntos')) {
+      m.setPaintProperty('recorrido-puntos', 'circle-opacity', etapa >= 3 ? 0.9 : 0)
+      m.setPaintProperty('recorrido-puntos', 'circle-stroke-opacity', etapa >= 3 ? 1 : 0)
+    }
     vis('calco', capas.calco || calibrando)
-    marcadores.current.forEach((mk) => { mk.getElement().style.display = capas.espacios ? '' : 'none' })
+    marcadores.current.forEach((mk) => { mk.getElement().style.display = capas.espacios && etapa >= 4 ? '' : 'none' })
     if (m.getLayer('calco')) m.setPaintProperty('calco', 'raster-opacity', calibrando ? 0.7 : opacidadCalco)
-  }, [listo, capas, opacidadCalco, calibrando])
+  }, [listo, capas, opacidadCalco, calibrando, etapa, tema, espacios])
 
   // --- inclinación -------------------------------------------------
   // Una sola maqueta, cuatro caras: el mapa gira 90° por clic y se mira en
@@ -539,8 +634,37 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
   }
 
   return (
-    <div className={`relative w-full h-full mapa3d tema-${tema}`}>
+    <div className={`relative w-full h-full mapa3d tema-${tema}`} data-entrada={listo ? etapa : ''}>
       <div ref={cont} className="absolute inset-0" />
+
+      {/* Tocar en cualquier parte durante la entrada la salta */}
+      {listo && etapa < 4 && (
+        <button
+          type="button"
+          className="absolute inset-0 z-30 flex items-end justify-center pb-6 cursor-pointer"
+          onClick={saltarEntrada}
+          aria-label="Saltar la entrada"
+        >
+          <span className="ctrl-mapa pointer-events-none">
+            {['Satélite', 'Espacios', 'Rutas', 'Recorrido', ''][etapa]} · toca para saltar
+          </span>
+        </button>
+      )}
+
+      {/* Guía de primera vez */}
+      {guia >= 0 && (
+        <div className="absolute inset-x-0 top-16 z-30 flex justify-center px-4 pointer-events-none">
+          <div className="globo-guia pointer-events-auto" role="dialog" aria-label="Guía del mapa">
+            <p className="text-sm leading-relaxed">{GUIA[guia]}</p>
+            <div className="flex items-center gap-2 mt-3">
+              <span className="text-xs opacity-70">{guia + 1} de {GUIA.length}</span>
+              <div className="flex-1" />
+              <button className="text-xs underline opacity-80" onClick={() => { setGuia(-1); marcarGuiaVista() }}>Saltar guía</button>
+              <button className="ctrl-mapa ctrl-on" onClick={siguienteGlobo}>{guia >= GUIA.length - 1 ? 'Entendido' : 'Siguiente'}</button>
+            </div>
+          </div>
+        </div>
+      )}
 
       {!listo && (
         <div className="absolute inset-0 grid place-items-center bg-superficie z-30 pointer-events-none">
@@ -596,8 +720,11 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
         )}
       </div>
 
-      {/* ── Carril superior derecho: monito ──────────────────────── */}
+      {/* ── Carril superior derecho: espacios y monito ─────────────── */}
       <div className="absolute right-4 top-4 z-20 flex gap-2">
+        <button className={`ctrl-mapa ${lista ? 'ctrl-on' : ''}`} onClick={() => setLista(!lista)} title="Lista y buscador de espacios">
+          <List size={15} /> Espacios
+        </button>
         <button
           className={`ctrl-mapa ${monito ? 'ctrl-on' : ''}`}
           onClick={() => { setMonito(!monito); if (monito) setPunto(null) }}
@@ -606,6 +733,22 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
           <PersonStanding size={15} /> {monito ? 'Toca una calle…' : 'Monito'}
         </button>
       </div>
+
+      {lista && (
+        <ListaEspacios
+          espacios={espacios}
+          busca={busca}
+          setBusca={setBusca}
+          onElegir={(e) => {
+            const x = num(e.pos_x, 40) + Math.max(num(e.ancho, 18), 3) / 2
+            const y = num(e.pos_y, 40) + Math.max(num(e.alto, 12), 3) / 2
+            mapa.current?.flyTo({ center: pctAGeo(geo, x, y), zoom: 17.2, duration: reducido ? 0 : 900 })
+            setLista(false)
+            onAbrir?.(e.id)
+          }}
+          onCerrar={() => setLista(false)}
+        />
+      )}
 
       {punto && (
         <PanelStreetView
@@ -763,4 +906,40 @@ function PanelStreetView({ punto, setPunto, rutas, puedeEditar, onGuardar, onCer
 
 function escapar(s) {
   return String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]))
+}
+
+// Lista y buscador de espacios: panel al costado (en teléfono, hoja de abajo).
+function ListaEspacios({ espacios, busca, setBusca, onElegir, onCerrar }) {
+  const q = busca.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim()
+  const filtrados = espacios.filter((e) => !q || `${e.nombre} ${e.tipo} ${e.estado_desarrollo}`.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().includes(q))
+  return (
+    <div className="lista-espacios z-30" role="dialog" aria-label="Espacios">
+      <div className="flex items-center gap-2 mb-2">
+        <Search size={14} className="opacity-70" />
+        <input
+          className="campo !py-1.5 text-sm flex-1"
+          placeholder="Buscar espacio…"
+          value={busca}
+          onChange={(ev) => setBusca(ev.target.value)}
+          autoFocus
+        />
+        <button className="p-1.5 opacity-80 hover:opacity-100" onClick={onCerrar} aria-label="Cerrar lista"><X size={16} /></button>
+      </div>
+      <ul className="space-y-1 overflow-y-auto max-h-[50vh] sm:max-h-[60vh]">
+        {filtrados.map((e) => (
+          <li key={e.id}>
+            <button className="fila-espacio" onClick={() => onElegir(e)}>
+              <span className="w-2.5 h-2.5 rounded-full shrink-0" style={{ background: COLOR_TIPO[String(e.tipo || 'otro').toLowerCase()] || COLOR_TIPO.otro }} />
+              <span className="flex-1 min-w-0 text-left">
+                <span className="block truncate text-sm">{e.nombre}</span>
+                <span className="block text-[11px] opacity-70">{NOMBRE_TIPO[String(e.tipo).toLowerCase()] || e.tipo} · {e.estado_desarrollo || 'idea'}</span>
+              </span>
+              <span dangerouslySetInnerHTML={{ __html: rayitasHtml(e.estado_desarrollo) }} />
+            </button>
+          </li>
+        ))}
+        {filtrados.length === 0 && <li className="text-sm opacity-70 px-2 py-3">Ningún espacio con «{busca}».</li>}
+      </ul>
+    </div>
+  )
 }
