@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { Map as MapIcon, BarChart3, FileText, LifeBuoy, ListChecks } from 'lucide-react'
 import { usarDatos } from './datos.jsx'
 import Acceso from './componentes/Acceso.jsx'
@@ -9,7 +9,35 @@ import Financiero from './componentes/Financiero.jsx'
 import Reporte from './componentes/Reporte.jsx'
 import Ayuda from './componentes/Ayuda.jsx'
 import PlanAccion from './componentes/PlanAccion.jsx'
+import AyudaPantalla from './componentes/AyudaPantalla.jsx'
 import { puedeEditarRol } from './roles.js'
+import { BASE } from './config.js'
+
+// La Chinche de Amalaya (pila propia, public/chinche.js): se carga solo con
+// sesión y para los roles de trabajo; quien clava sale de la sesión.
+function usarChinche(sesion, modo, seccion) {
+  const seccionRef = useRef(seccion)
+  useEffect(() => { seccionRef.current = seccion }, [seccion])
+  const activa = !!sesion && modo !== 'demo' && ['admin', 'master', 'editor', 'visor'].includes(sesion?.rol)
+  useEffect(() => {
+    if (!activa || window.YODChinche || document.getElementById('amalaya-chinche')) return
+    const s = document.createElement('script')
+    s.id = 'amalaya-chinche'
+    s.src = `${BASE}chinche.js?v=f7`
+    s.onload = () => window.YODChinche?.init({
+      pantalla: 'amalaya', repo: 'amalaya-board',
+      quien: () => sesion?.nombre || '',
+      seccion: () => seccionRef.current,
+      vista: () => seccionRef.current,
+    })
+    document.body.appendChild(s)
+  }, [activa]) // eslint-disable-line react-hooks/exhaustive-deps
+  // Sin sesión (al salir) la pastilla 📌 se esconde.
+  useEffect(() => {
+    const p = document.querySelector('button[aria-label="Pendientes de cambio"]')
+    if (p) p.style.display = activa ? '' : 'none'
+  }, [activa])
+}
 
 // Las secciones del board según el rol.
 // El inversionista SOLO ve el Reporte (además, el servidor solo le
@@ -19,6 +47,7 @@ function Principal() {
   const { sesion, datos, modo } = usarDatos()
   const esInversionista = sesion?.rol === 'inversionista'
   const [seccion, setSeccion] = useState('mapa')
+  usarChinche(sesion, modo, seccion)
   const hayFinanzas = Array.isArray(datos?.Finanzas_Lineas)
 
   if (esInversionista) {
@@ -51,7 +80,11 @@ function Principal() {
             {titulo}
           </button>
         ))}
+        <div className="flex-1" />
+        <AyudaPantalla seccion={seccion} />
       </nav>
+      {/* En teléfono el «?» flota arriba a la derecha de la sección */}
+      <div className="no-imprimir sm:hidden flex justify-end px-3 pt-2 -mb-2"><AyudaPantalla seccion={seccion} /></div>
 
       {seccion === 'mapa' && <Mapa />}
       {seccion === 'finanzas' && <Financiero />}

@@ -1,5 +1,7 @@
 import { usarDatos } from '../datos.jsx'
 import LineaAmalaya from './LineaAmalaya.jsx'
+import { BASE } from '../config.js'
+import { Bato } from './AyudaPantalla.jsx'
 
 // ============================================================
 // Ayuda — la guía de una página para el equipo.
@@ -17,7 +19,8 @@ const SECCIONES = [
   {
     titulo: 'El mapa (Espacios)',
     lineas: [
-      'Toca un espacio para abrir su ficha. Con "Editar mapa" (admin/editor) arrastras las zonas a su lugar; el cuadrito de la esquina las redimensiona y las flechitas las afinan de 1 en 1%.',
+      'El mapa nace en 2D sobre el satélite, se levanta por capas y vuela al 3D (toca para saltarlo). Las 5 rayitas de cada espacio son su avance.',
+      'Toca un espacio para abrir su ficha, o búscalo en «Espacios». Con "Mover espacios" (editor en adelante) arrastras los rótulos a su lugar.',
       'Con "+ Espacio" creas uno nuevo: nace al centro del mapa y lo arrastras a donde va.',
     ],
   },
@@ -57,7 +60,7 @@ const SECCIONES = [
     titulo: 'Compartir y lo público',
     lineas: [
       'El botoncito de compartir en cada espacio y cada parada genera una card vertical con la estética Amalaya, lista para tu historia o para mandar por WhatsApp. Sin cifras privadas.',
-      'En la puerta del board, "Ver el proyecto" abre la demostración a cualquiera, y "Peticiones a la ciudad" enseña públicamente qué se le pide al municipio y qué se ha logrado. Los números reales siguen bajo código.',
+      'En la puerta del board, "Peticiones a la ciudad" enseña públicamente qué se le pide al municipio, agrupado por ruta, con su detalle. Los números siguen protegidos.',
       'Tocar el número del valor por acción abre su explicación en corto: de dónde sale y qué significa una acción.',
     ],
   },
@@ -65,8 +68,10 @@ const SECCIONES = [
     titulo: 'Tu código y la seguridad',
     lineas: [
       'Tu código de acceso es personal: no lo compartas ni lo mandes por canales abiertos. Si crees que alguien lo vio, pídele al admin uno nuevo (el viejo muere al instante).',
+      'La forma más fácil de entrar es «Continuar con Google» con el correo que el admin registró. '+
       'También puedes entrar con tu liga personal (una dirección que abre el board directo) o pedir que te llegue al correo registrado desde la pantalla de entrada. La liga es tan personal como el código; el admin puede revocarla cuando quiera.',
-      'Los datos del proyecto viven protegidos en Google (Sheet privado + servidor que valida tu código en cada llamada). El sitio público solo lleva la careta y una demostración con cifras inventadas.',
+      'Los datos del proyecto viven protegidos en Google (Sheet privado + servidor que valida tu acceso en cada llamada). El sitio público solo lleva la careta.',
+      'La Chinche (📌, abajo a la derecha): señala algo que quieras cambiar, díctalo y se clava. Luego «Mandar a Claude» lo vuelve un issue en GitHub y la revisión diaria lo atiende.',
     ],
   },
 ]
@@ -81,6 +86,21 @@ export default function Ayuda() {
         pregúntale al admin.
       </p>
       <LineaAmalaya className="my-6" />
+
+      <section className="mb-8">
+        <div className="flex items-center gap-3 mb-3">
+          <Bato />
+          <h3 className="font-titulo text-xl">Así se hace</h3>
+        </div>
+        <div className="grid gap-4 sm:grid-cols-3">
+          {[['mover-espacio.gif', 'Mover un espacio'], ['trazar-ruta.gif', 'Trazar una ruta'], ['escribir-formula.gif', 'Escribir una fórmula']].map(([a, t]) => (
+            <figure key={a}>
+              <img src={`${BASE}ayuda/${a}`} alt={t} loading="lazy" className="w-full rounded-lg border border-linea" />
+              <figcaption className="text-terciario text-xs mt-1">{t}</figcaption>
+            </figure>
+          ))}
+        </div>
+      </section>
 
       <div className="space-y-7">
         {SECCIONES.map((s) => (

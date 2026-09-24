@@ -28,6 +28,7 @@ import { join, extname, resolve, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { chromium } from 'playwright'
 import { estilo, satelite } from './mosaicos.mjs'
+import { crearGif } from './gif.mjs'
 
 const AQUI = dirname(fileURLToPath(import.meta.url))
 const [nombre, sitio, salida = join(AQUI, 'capturas', nombre || '')] = process.argv.slice(2)
@@ -132,7 +133,9 @@ const clic = async (selector) => {
 }
 
 try {
-  await board.guion({ pagina, foto, clic, base: BASE })
+  // GIFS=<carpeta> graba además los GIFs de la Ayuda (board.gifs) en esa carpeta.
+  if (process.env.GIFS && board.gifs) await board.gifs({ pagina, clic, base: BASE, gif: (o) => crearGif(pagina, o), carpeta: resolve(process.env.GIFS) })
+  else await board.guion({ pagina, foto, clic, base: BASE })
 } finally {
   console.log([...new Set(bitacora)].join('\n'))
   console.log('\nCapturas en: ' + salida)
