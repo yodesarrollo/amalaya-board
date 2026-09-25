@@ -8,8 +8,8 @@ name: Guardián de salud
 # Nota: el cron de GitHub es "mejor esfuerzo" (puede tardar 5-15 min extra)
 # y se pausa si el repo pasa 60 días sin actividad.
 on:
-  schedule:
-    - cron: '20 * * * *'
+  # 25-sep-2026: sin horario propio. Amalaya la vigila el vigía único de YOD OS (bloque
+  # aparte, sin marca YOD OS): página, GET de salud del /exec y npm run pruebas, cada hora.
   workflow_dispatch:
 
 permissions:
