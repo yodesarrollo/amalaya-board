@@ -181,11 +181,13 @@ export const TEMAS = {
     fondo: '#FFFFFF', tierra: '#F3F1EC', verde: '#EAEDE5', agua: '#DCE6EE',
     calle: '#FFFFFF', calleBorde: '#5A5752', calleAncho: 1.1, texto: '#2B2B2B', halo: '#FFFFFF',
     ciudad: '#EDEBE6', ciudadOp: 1, borde: '#1F1F1F', espacioOp: 1,
+    luz: '#FFFFFF', luzInt: 0.35, bruma: '#F3F1EC',
   },
   noche: {
     fondo: '#151110', tierra: '#1C1613', verde: '#1B1A13', agua: '#10141A',
     calle: '#4A3D30', calleBorde: '#4A3D30', calleAncho: 1, texto: '#B7A890', halo: '#141010',
     ciudad: '#2C231C', ciudadOp: 0.85, borde: '#F2EAD9', espacioOp: 0.92,
+    luz: '#F2E3C6', luzInt: 0.45, bruma: '#1E1814',
   },
 }
 
@@ -214,6 +216,16 @@ function vestir(m, t) {
   if (m.getLayer('espacios-borde')) m.setPaintProperty('espacios-borde', 'line-color', t.borde)
   if (m.getLayer('espacios-3d')) m.setPaintProperty('espacios-3d', 'fill-extrusion-opacity', t.espacioOp)
   if (m.getLayer('paradas')) { m.setPaintProperty('paradas', 'circle-color', t.halo); m.setPaintProperty('paradas', 'circle-stroke-color', t.borde) }
+  // 24-sep (chinche «que se vea de primer nivel»): luz de maqueta. Una sola fuente cálida y baja,
+  // fija al mapa (no a la cámara), para que cada volumen tenga cara iluminada y cara en sombra
+  // al girar — la diferencia entre «bloques de color» y una maqueta de despacho.
+  try { m.setLight({ anchor: 'map', position: [1.4, 210, 38], color: t.luz || '#F2E3C6', intensity: t.luzInt ?? 0.42 }) } catch { /* motor sin setLight */ }
+  // Horizonte al inclinar: bruma del mismo tono del fondo (no un degradado de color), para que el
+  // borde del mundo no corte en seco. Sin «sky» en navegadores que no lo tengan.
+  try {
+    if (m.setSky) m.setSky({ 'sky-color': t.fondo, 'horizon-color': t.bruma || t.fondo, 'fog-color': t.bruma || t.fondo,
+      'sky-horizon-blend': 0.6, 'horizon-fog-blend': 0.7, 'fog-ground-blend': 0.85, 'atmosphere-blend': 0 })
+  } catch { /* versión sin cielo */ }
 }
 
 const CAPAS_DEF = { satelite: true, ciudad: false, espacios: true, rutas: true, recorrido: true, calco: false, lamina: false }
@@ -350,7 +362,7 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
           'fill-extrusion-vertical-gradient': true,
         },
       })
-      m.addLayer({ id: 'espacios-borde', type: 'line', source: 'espacios', paint: { 'line-color': '#1F1F1F', 'line-width': 1.6, 'line-opacity': 0.9 } })
+      m.addLayer({ id: 'espacios-borde', type: 'line', source: 'espacios', layout: { 'line-join': 'round' }, paint: { 'line-color': '#1F1F1F', 'line-width': ['interpolate', ['exponential', 1.6], ['zoom'], 14, 0.8, 16, 1.6, 18.5, 2.6], 'line-opacity': 0.9 } })
 
       // Rutas peatonales
       m.addSource('rutas', { type: 'geojson', data: { type: 'FeatureCollection', features: [] } })
