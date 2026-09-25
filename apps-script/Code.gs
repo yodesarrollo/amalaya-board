@@ -130,6 +130,13 @@ const TABS = {
     headers: ['id', 'fecha', 'usuario', 'nombre', 'file_id', 'notas'],
     prefix: 'V-',
   },
+  // La Chinche: cada chinche clavada en el board llega aquí sola; el puente
+  // (.github/workflows/chinches.yml) la vuelve issue 📌 en GitHub y la marca.
+  Chinches: {
+    keyField: 'id',
+    headers: ['id', 'fecha', 'quien', 'pantalla', 'vista', 'url', 'texto', 'detalle', 'estado', 'issue'],
+    prefix: '',
+  },
   Historial: {
     keyField: 'fecha',
     headers: ['fecha', 'usuario', 'tab', 'llave', 'campo', 'antes', 'despues'],
@@ -156,7 +163,7 @@ const PESTANAS_POR_ROL = {
 // Qué pestañas puede ESCRIBIR cada rol.
 const ESCRITURA_POR_ROL = {
   // Historial y Versiones solo los escribe el servidor.
-  admin: Object.keys(TABS).filter(function (t) { return t !== 'Historial' && t !== 'Versiones'; }),
+  admin: Object.keys(TABS).filter(function (t) { return t !== 'Historial' && t !== 'Versiones' && t !== 'Chinches'; }),
   editor: ['Espacios', 'Factores', 'Finanzas_Lineas', 'Escenarios', 'Rutas', 'Paradas', 'Tareas', 'Metas', 'Objetivos', 'Conocimientos', 'Archivos'],
   master: ['Espacios', 'Factores', 'Finanzas_Lineas', 'Escenarios', 'Rutas', 'Paradas', 'Tareas', 'Metas', 'Objetivos', 'Conocimientos', 'Archivos'],
   visor: [],
@@ -315,8 +322,11 @@ function blindarColumnas(hoja, headers) {
 // ---------------------------------------------------------------------------
 //  Puerta de entrada
 // ---------------------------------------------------------------------------
-function doGet() {
-  // Solo confirma que el servicio vive. Ni un dato más.
+function doGet(e) {
+  // Sin parámetros: solo confirma que el servicio vive. Ni un dato más.
+  // ?accion=chinches&k=<CHINCHES_TOKEN>: el puente de GitHub pide las chinches nuevas.
+  const p = (e && e.parameter) || {};
+  if (p.accion === 'chinches') return accChinchesPendientes(p.k);
   return jsonOut({ ok: true, servicio: 'amalaya-board', ts: Date.now() });
 }
 
@@ -349,6 +359,10 @@ function doPost(e) {
     //   un correo existe — y va con doble freno anti-abuso.
     if (action === 'ligaPorCorreo') {
       return accLigaPorCorreo(body);
+    }
+    // - chincheTomada: el puente avisa qué issue abrió (con el token del puente).
+    if (action === 'chincheTomada') {
+      return accChincheTomada(body);
     }
     if (action === 'peticiones') {
       if (!dentroDeLimite('pet_publicas', 60, 300)) {
@@ -398,6 +412,8 @@ function doPost(e) {
         return accRespaldoAhora(usuario);
       case 'instalarRespaldo':
         return accInstalarRespaldo(usuario);
+      case 'chinche':
+        return accChinche(usuario, body);
       case 'congelarReporte':
         return accCongelarReporte(usuario, body);
       case 'verVersion':
@@ -1172,6 +1188,63 @@ function accVerVersion(usuario, body) {
   const foto = leerVersion(fila);
   if (!foto) return jsonOut({ ok: false, error: 'No se pudo leer esa versión en Drive.' });
   return jsonOut({ ok: true, datos: foto.datos, version: { id: fila.id, fecha: fila.fecha, nombre: fila.nombre, cifras: foto.cifras } });
+}
+
+// ---------------------------------------------------------------------------
+//  La Chinche — automática (sin «Mandar a Claude»)
+//  1. El board manda cada chinche al clavarla (acción chinche, con sesión).
+//  2. El puente de GitHub (cada hora) pide las nuevas con el token del puente
+//     (Propiedad del script CHINCHES_TOKEN = secreto AMALAYA_CHINCHES_TOKEN del
+//     repo), abre un issue 📌 por cada una y avisa con chincheTomada.
+// ---------------------------------------------------------------------------
+function accChinche(usuario, body) {
+  if (['admin', 'master', 'editor', 'visor'].indexOf(usuario.rol) === -1) {
+    return jsonOut({ ok: false, error: 'Tu rol no clava chinches.' });
+  }
+  if (!dentroDeLimite('chinche_' + usuario.id, 60, 3600)) {
+    return jsonOut({ ok: false, error: 'Muchas chinches seguidas; espera un poco.' });
+  }
+  const c = body.chinche || {};
+  const id = String(c.id || '').slice(0, 60);
+  if (!id || !String(c.texto || '').trim()) return jsonOut({ ok: false, error: 'La chinche llegó vacía.' });
+  return conCandado(function () {
+    const conf = TABS.Chinches;
+    const hoja = obtenerHoja('Chinches');
+    if (buscarFila(hoja, conf, id) > 0) return { ok: true, id: id, repetida: true }; // ya estaba: no duplicar
+    const detalle = JSON.stringify({ tipo: c.tipo, aparato: c.aparato, elemento: c.elemento, ancla: c.ancla, codigo: c.codigo }).slice(0, 4000);
+    const fila = {
+      id: id, fecha: String(c.creado || new Date().toISOString()), quien: usuario.nombre || c.quien || '',
+      pantalla: String(c.pantalla || ''), vista: String(c.vista || ''), url: String(c.url || '').slice(0, 300),
+      texto: String(c.texto).slice(0, 3000), detalle: detalle, estado: 'nueva', issue: '',
+    };
+    hoja.appendRow(conf.headers.map(function (h) { return sanitizarValor(fila[h]); }));
+    return { ok: true, id: id };
+  });
+}
+
+function tokenPuenteValido(k) {
+  const t = PropertiesService.getScriptProperties().getProperty('CHINCHES_TOKEN') || '';
+  return t.length >= 16 && comparacionConstante(t, String(k || ''));
+}
+
+function accChinchesPendientes(k) {
+  if (!tokenPuenteValido(k)) return jsonOut({ ok: false, error: 'No autorizado.' });
+  const nuevas = leerHoja('Chinches').filter(function (c) { return String(c.estado) === 'nueva'; });
+  return jsonOut({ ok: true, chinches: nuevas });
+}
+
+function accChincheTomada(body) {
+  if (!tokenPuenteValido(body.k)) return jsonOut({ ok: false, error: 'No autorizado.' });
+  const id = String(body.id || '');
+  return conCandado(function () {
+    const conf = TABS.Chinches;
+    const hoja = obtenerHoja('Chinches');
+    const fila = buscarFila(hoja, conf, id);
+    if (fila < 0) return { ok: false, error: 'No existe esa chinche.' };
+    hoja.getRange(fila, conf.headers.indexOf('estado') + 1).setValue('tomada');
+    hoja.getRange(fila, conf.headers.indexOf('issue') + 1).setValue(String(body.issue || ''));
+    return { ok: true };
+  });
 }
 
 function accRespaldoAhora(usuario) {

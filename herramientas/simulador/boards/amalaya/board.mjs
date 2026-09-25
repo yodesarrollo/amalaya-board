@@ -33,6 +33,7 @@ const db = structuredClone(datos)
 db.Historial = []
 db.Versiones = []
 db.Metas = []
+db.Chinches = []
 db.Objetivos = []
 // Un render 360 de prueba en el primer punto del recorrido.
 export const PUNTO_CON_RENDER = 'G5UapkZfu_gIeRoydqjPBw'
@@ -86,6 +87,10 @@ export function servidor(accion, b) {
       }
       const { Usuarios, Versiones, ...resto } = db
       return { ok: true, v, datos: resto, rol: quien.rol }
+    }
+    case 'chinche': {
+      if (!db.Chinches.some((c) => c.id === b.chinche?.id)) db.Chinches.push({ ...b.chinche, quien: quien.nombre, estado: 'nueva' })
+      return { ok: true, id: b.chinche?.id }
     }
     case 'congelarReporte': {
       if (!['admin', 'master'].includes(quien.rol)) return { ok: false, error: 'Solo admin o máster pueden congelar el reporte.' }
@@ -324,16 +329,13 @@ export async function guion({ pagina, foto, clic, base }) {
   await pagina.evaluate(() => window.YODChinche.anotar({ texto: 'botón de prueba', css: 'nav' }))
   await pagina.waitForTimeout(600)
   await pagina.locator('.chn-txt').fill('Chinche de prueba del simulador: el título de Ayuda podría ir más chico')
-  await clic('.chn-btn[data-ok]'); await pagina.waitForTimeout(1200)
-  await pagina.evaluate(() => window.YODChinche.pila()); await pagina.waitForTimeout(800)
-  await foto('14c-chinche-pila', 300)
-  await clic('[data-pedir]'); await pagina.waitForTimeout(2500)
-  const liga = await pagina.locator('a.chn-btn[data-issue]').first().getAttribute('href').catch(() => '')
-  const u = liga ? new URL(liga) : null
-  const bien = u && u.pathname === '/yodesarrollo/amalaya-board/issues/new' && u.searchParams.get('labels') === 'chinche'
-  console.log(`${bien ? '✓' : '✗'} «Mandar a Claude» → ${u ? u.origin + u.pathname + '?labels=' + u.searchParams.get('labels') : 'sin liga'}`)
-  console.log(`${/Alejandro Puebla/.test(decodeURIComponent(liga || '')) ? '✓' : '✗'} quien clava sale de la sesión (Alejandro Puebla)`)
-  await foto('14d-chinche-mandar', 300)
+  await clic('.chn-btn[data-ok]'); await pagina.waitForTimeout(2500)
+  // Envío automático: sin «Mandar a Claude», la chinche ya está en el servidor
+  const llegada = db.Chinches.find((c) => /Chinche de prueba del simulador/.test(c.texto || ''))
+  console.log(`${llegada ? '✓' : '✗'} la chinche llegó sola al servidor${llegada ? ` (${llegada.id}, de ${llegada.quien})` : ''}`)
+  const enPila = await pagina.evaluate(() => window.YODChinche.cuantas())
+  console.log(`${enPila === 0 ? "✓" : "✗"} la pastilla queda en ${enPila} pendientes (no hay que mandar nada a mano)`)
+  await foto('14d-chinche-enviada', 300)
   await pagina.goto(base); await pagina.waitForTimeout(2500)
 
   // El inversionista ve la última versión congelada
