@@ -7,7 +7,8 @@ import { puedeEditarRol } from '../roles.js'
 import { BASE } from '../config.js'
 import { leerRuta } from './Rutas.jsx'
 import { NOMBRE_TIPO } from './Glifos.jsx'
-import { rayitasHtml } from '../avance.js'
+import { rayitasHtml, nivelAvance, ETAPAS_DESARROLLO } from '../avance.js'
+import { m2Construidos } from '../calc.js'
 
 // ============================================================
 // Mapa 3D — el corazón de Amalaya sobre la ciudad real.
@@ -228,6 +229,25 @@ function vestir(m, t) {
   } catch { /* versión sin cielo */ }
 }
 
+// --- Cartela técnica (25-sep, chinche #10: «que se vea de primer nivel… que lo vea un profesional
+// y entienda»). Tres convenciones de todo plano de despacho que la maqueta no traía: escala gráfica,
+// norte y cartela con los datos del polígono. Todo sale del Sheet y de la calibración; nada inventado.
+const R_TIERRA = 6371008.8
+function distanciaM(a, b) {
+  const rad = Math.PI / 180, dLat = (b[1] - a[1]) * rad, dLng = (b[0] - a[0]) * rad
+  const h = Math.sin(dLat / 2) ** 2 + Math.cos(a[1] * rad) * Math.cos(b[1] * rad) * Math.sin(dLng / 2) ** 2
+  return 2 * R_TIERRA * Math.asin(Math.sqrt(h))
+}
+// Barra de escala «redonda» (10, 20, 50, 100… m) que quepa en ~96 px al zoom y latitud actuales.
+function escalaDe(m) {
+  const lat = m.getCenter().lat, mpp = 40075016.686 * Math.cos(lat * Math.PI / 180) / (512 * 2 ** m.getZoom())
+  const maxM = mpp * 96
+  const pasos = [5, 10, 20, 25, 50, 100, 200, 250, 500, 1000, 2000]
+  const metros = pasos.filter((x) => x <= maxM).pop() || 5
+  return { px: Math.round(metros / mpp), etiqueta: metros >= 1000 ? `${metros / 1000} km` : `${metros} m` }
+}
+const NOMBRE_ETAPA = { idea: 'idea', negociacion: 'negociación', proyecto: 'proyecto', obra: 'obra', operando: 'operando' }
+
 const CAPAS_DEF = { satelite: true, ciudad: false, espacios: true, rutas: true, recorrido: true, calco: false, lamina: false }
 
 export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, edicion = {} }) {
@@ -288,10 +308,23 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
   const [opacidadCalco, setOpacidadCalco] = useState(0.55)
   const [inclinado, setInclinado] = useState(true)
   const [panel, setPanel] = useState(false)
+  const [escala, setEscala] = useState(null)
+  const [rumbo, setRumbo] = useState(0)
   const [calibrando, setCalibrando] = useState(false)
   const [geoTemp, setGeoTemp] = useState(null)
   const geo = geoTemp || geoSheet
   const geoRef = useRef(geo)
+  const cartela = useMemo(() => {
+    const [tl, tr, , bl] = geo
+    const ancho = distanciaM(tl, tr), fondo = distanciaM(tl, bl)
+    const conteo = Object.fromEntries(ETAPAS_DESARROLLO.map((k) => [k, 0]))
+    let m2c = 0
+    for (const e of espacios || []) {
+      conteo[ETAPAS_DESARROLLO[nivelAvance(e.estado_desarrollo) - 1]]++
+      try { m2c += m2Construidos(e, datos?.Factores || []).m2c || 0 } catch { /* espacio sin datos suficientes */ }
+    }
+    return { ancho, fondo, ha: (ancho * fondo) / 10000, n: (espacios || []).length, m2c, conteo }
+  }, [geo, espacios, datos?.Factores])
   useEffect(() => { geoRef.current = geo }, [geo])
   // El monito: soltarlo en una calle abre el Street View de ese punto.
   const [pop360, setPop360] = useState(null)             // {ruta, punto} → pop-up del recorrido 360
@@ -421,6 +454,9 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
       vestir(m, TEMAS[temaRef.current])
       acomodarPines()
       m.on('move', acomodarPines)
+      let rafEsc = 0
+      const medir = () => { cancelAnimationFrame(rafEsc); rafEsc = requestAnimationFrame(() => { setEscala(escalaDe(m)); setRumbo(m.getBearing()) }) }
+      m.on('move', medir); medir()
       m.on('idle', acomodarPines)
       m.setPaintProperty('espacios-3d', 'fill-extrusion-opacity-transition', { duration: 900, delay: 0 })
       m.setPaintProperty('recorrido-puntos', 'circle-opacity-transition', { duration: 600, delay: 0 })
@@ -830,13 +866,53 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
         </div>
       </div>
 
-      {/* ── Carril inferior izquierdo: leyenda (cede el sitio al panel) ── */}
+      {/* ── Carril inferior izquierdo: cartela técnica (cede el sitio al panel) ── */}
       {!panel && (
-        <div className="absolute left-4 bottom-12 z-10 leyenda-mapa">
-          {[['venue', 'Foro'], ['comercial', 'Comercial'], ['mixto', 'Mixto'], ['estacionamiento', 'Estacionamiento']].map(([t, n]) => (
-            <span key={t}><i style={{ background: COLOR_TIPO[t] }} />{n}</span>
-          ))}
-          <span><i className="linea" />ruta</span>
+        <div className="absolute left-4 bottom-12 z-10 cartela-mapa" aria-label="Cartela del plano">
+          <div className="cartela-cab">
+            <span className="cartela-tit">Amalaya</span>
+            <span className="cartela-sub">Polígono de actuación concertada · Hermosillo</span>
+          </div>
+          <div className="cartela-cifras">
+            <span><b>{Math.round(cartela.ancho)} × {Math.round(cartela.fondo)} m</b>plano</span>
+            <span><b>{cartela.ha.toLocaleString('es-MX', { maximumFractionDigits: 1 })} ha</b>superficie</span>
+            <span><b>{cartela.n}</b>espacios</span>
+            {cartela.m2c > 0 && <span><b>{Math.round(cartela.m2c).toLocaleString('es-MX')} m²</b>construidos</span>}
+          </div>
+          <div className="cartela-avance" title="Las rayitas sobre cada volumen: cuántas etapas lleva ese espacio">
+            <span className="avance5 cartela-muestra" data-nivel="3"><i className="lleno" /><i className="lleno" /><i className="lleno" /><i /><i /></span>
+            <span className="cartela-etapas">
+              {ETAPAS_DESARROLLO.map((k, i) => (
+                <span key={k} className={cartela.conteo[k] ? '' : 'cero'}>{i + 1} {NOMBRE_ETAPA[k]} <b>{cartela.conteo[k]}</b></span>
+              ))}
+            </span>
+          </div>
+          <div className="cartela-ley">
+            {[['venue', 'Foro'], ['comercial', 'Comercial'], ['mixto', 'Mixto'], ['estacionamiento', 'Estacionamiento']].map(([t, n]) => (
+              <span key={t}><i style={{ background: COLOR_TIPO[t] }} />{n}</span>
+            ))}
+            <span><i className="linea" />ruta</span>
+          </div>
+          <div className="cartela-pie">
+            {escala && (
+              <span className="cartela-escala" aria-label={`Escala ${escala.etiqueta}`}>
+                <span className="barra" style={{ width: escala.px }}><i /><i /></span>
+                <span>{escala.etiqueta}</span>
+              </span>
+            )}
+            <button
+              type="button"
+              className="cartela-norte"
+              title="Norte · toca para orientar el plano al norte"
+              aria-label="Orientar al norte"
+              onClick={() => { setCara(0); mapa.current?.easeTo({ bearing: 0, duration: 600 }) }}
+            >
+              <svg viewBox="0 0 24 24" width="22" height="22" style={{ transform: `rotate(${-rumbo}deg)` }} aria-hidden="true">
+                <path d="M12 2 L17 20 L12 16 L7 20 Z" fill="currentColor" />
+                <text x="12" y="13.5" textAnchor="middle" fontSize="6" fontWeight="700" fill="var(--cartela-fondo, #141010)">N</text>
+              </svg>
+            </button>
+          </div>
         </div>
       )}
 

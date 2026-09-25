@@ -446,3 +446,38 @@ html {
 .reporte.modo-papel .no-imprimir, .reporte.modo-papel .no-imprimir * { color: inherit !important; }
 .reporte.modo-papel .no-imprimir { background: #1C1613; border-radius: 10px; padding: 6px; }
 .reporte.modo-papel .no-imprimir :where(button, span, svg) { color: #F2EAD9 !important; }
+
+/* Cartela técnica del mapa (25-sep): escala, norte y datos del polígono, como un plano de despacho */
+.cartela-mapa { --cartela-fondo: #141010; width: 17.5rem; max-width: calc(100vw - 7.5rem); pointer-events: auto;
+  background: rgba(20,16,16,.92); border: 1px solid rgba(201,164,92,.4); border-radius: 10px; padding: 9px 11px 8px;
+  font: 500 11px/1.3 'Inter', 'Montserrat', sans-serif; color: #B7A890; box-shadow: 0 10px 24px -12px rgba(0,0,0,.9); }
+.cartela-cab { display: flex; flex-direction: column; border-bottom: 1px solid rgba(201,164,92,.25); padding-bottom: 6px; margin-bottom: 6px; }
+.cartela-tit { font: 600 14px/1.1 'Fraunces', serif; color: #F2EAD9; letter-spacing: .02em; }
+.cartela-sub { font-size: 9.5px; letter-spacing: .08em; text-transform: uppercase; opacity: .8; margin-top: 2px; }
+.cartela-cifras { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 10px; }
+.cartela-cifras span { display: flex; flex-direction: column; font-size: 9.5px; text-transform: uppercase; letter-spacing: .06em; }
+.cartela-cifras b { font: 600 12.5px/1.2 'Inter', sans-serif; color: #F2EAD9; letter-spacing: 0; text-transform: none; font-variant-numeric: tabular-nums; }
+.cartela-avance { display: flex; gap: 8px; align-items: flex-start; margin-top: 7px; padding-top: 6px; border-top: 1px solid rgba(201,164,92,.25); }
+.cartela-muestra { flex: none; margin-top: 2px; }
+.cartela-etapas { display: flex; flex-wrap: wrap; gap: 1px 8px; font-size: 10px; }
+.cartela-etapas b { color: #F2EAD9; font-variant-numeric: tabular-nums; }
+.cartela-etapas .cero { opacity: .45; }
+.cartela-ley { display: flex; flex-wrap: wrap; gap: 3px 10px; margin-top: 6px; }
+.cartela-ley span { display: inline-flex; align-items: center; gap: 5px; }
+.cartela-ley i { width: 9px; height: 9px; border-radius: 2px; display: inline-block; }
+.cartela-ley i.linea { width: 15px; height: 2px; border-radius: 1px; background: #C9A45C; }
+.cartela-pie { display: flex; align-items: center; justify-content: space-between; margin-top: 7px; padding-top: 6px; border-top: 1px solid rgba(201,164,92,.25); }
+.cartela-escala { display: inline-flex; align-items: center; gap: 6px; font-size: 10px; font-variant-numeric: tabular-nums; }
+.cartela-escala .barra { display: inline-flex; height: 5px; border: 1px solid #F2EAD9; border-top: 0; transition: width 180ms; }
+.cartela-escala .barra i { flex: 1; }
+.cartela-escala .barra i:first-child { background: #F2EAD9; }
+.cartela-norte { background: none; border: 0; padding: 2px; color: #C9A45C; cursor: pointer; line-height: 0; }
+.cartela-norte svg { transition: transform 120ms linear; }
+.mapa3d.tema-lamina .cartela-mapa { --cartela-fondo: #FFFFFF; background: rgba(255,255,255,.95); border-color: #1F1F1F; color: #4A4640; box-shadow: 0 8px 20px -14px rgba(0,0,0,.5); }
+.mapa3d.tema-lamina .cartela-tit, .mapa3d.tema-lamina .cartela-cifras b, .mapa3d.tema-lamina .cartela-etapas b { color: #1F1F1F; }
+.mapa3d.tema-lamina .cartela-cab, .mapa3d.tema-lamina .cartela-avance, .mapa3d.tema-lamina .cartela-pie { border-color: rgba(31,31,31,.18); }
+.mapa3d.tema-lamina .cartela-escala .barra { border-color: #1F1F1F; }
+.mapa3d.tema-lamina .cartela-escala .barra i:first-child { background: #1F1F1F; }
+.mapa3d.tema-lamina .cartela-norte { color: #1F1F1F; }
+@media (max-width: 640px) { .cartela-mapa { width: 12.5rem; padding: 7px 9px 6px; } .cartela-sub, .cartela-ley { display: none; } .cartela-cifras b { font-size: 11.5px; } }
+@media (prefers-reduced-motion: reduce) { .cartela-norte svg, .cartela-escala .barra { transition: none; } }
