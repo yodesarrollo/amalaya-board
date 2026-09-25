@@ -245,7 +245,9 @@ var MAPA = {
   "amalaya|finanzas": "src/componentes/Financiero.jsx y src/calc.js",
   "amalaya|reporte":  "src/componentes/Reporte.jsx",
   "amalaya|plan":     "src/componentes/PlanAccion.jsx y src/moac.js",
-  "amalaya|ayuda":    "src/componentes/Ayuda.jsx"
+  "amalaya|ayuda":    "src/componentes/Ayuda.jsx",
+  "amalaya-modelo|":   "public/modelo/serdan-garmendia.html (modelo 3D de la esquina Serdán–Garmendia)",
+  "amalaya-recorrido|": "public/recorrido/index.html (visor 360 antes/después)"
 };
 function dondeVive(pantalla, clase){
   return MAPA[pantalla + "|" + (clase || "")] || MAPA[pantalla + "|"] || "";

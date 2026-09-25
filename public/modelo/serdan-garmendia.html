@@ -135,4 +135,22 @@ function frame(t){ const dt=Math.min((t-t0)/1000,0.05); t0=t;
   const vp=new THREE.Vector3(); etiquetas.forEach((e,i)=>{ const n=nodos[i]; if(!verEtq){n.style.display='none';return} vp.copy(e.p).project(cam); const d=cam.position.distanceTo(e.p); if(vp.z>1||d>140){n.style.display='none';return} n.style.display='block'; n.style.left=((vp.x+1)/2*innerWidth)+'px'; n.style.top=((1-vp.y)/2*innerHeight)+'px'; n.style.opacity=d>90?0.5:1 });
   requestAnimationFrame(frame) }
 requestAnimationFrame(frame);
-</script></body></html>
+</script><!-- La Chinche de Amalaya: también aquí, para dar retroalimentación de esta pantalla.
+     Solo con sesión de Amalaya (misma pila que el board: public/chinche.js). -->
+<script>
+(function () {
+  try {
+    var s = JSON.parse(localStorage.getItem('amalaya_sesion') || 'null');
+    if (!s || !s.codigo || ['admin', 'master', 'editor', 'visor'].indexOf(s.rol) === -1) return;
+    var el = document.createElement('script');
+    el.src = '../chinche.js?v=f8';
+    el.onload = function () {
+      if (window.YODChinche) YODChinche.init({ pantalla: 'amalaya-modelo', repo: 'amalaya-board',
+        quien: function () { return s.nombre || ''; },
+        seccion: function () { return 'modelo'; }, vista: function () { return 'modelo'; } });
+    };
+    document.body.appendChild(el);
+  } catch (e) {}
+})();
+</script>
+</body></html>
