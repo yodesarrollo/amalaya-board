@@ -383,6 +383,9 @@ async function anotar(op){
          Edición manda cada chinche al Sheet como ENCARGO, y /sala la cosecha sin esperar un zip).
          Opcional y a prueba de errores: si el gancho truena, la chinche ya quedó clavada igual. */
       try { if (typeof CTX.alClavar === "function") CTX.alClavar(ch); } catch (e) {}
+      /* AMALAYA: envío automático. Si la página da CTX.enviar, la chinche viaja sola al
+         servidor de Amalaya (sin «Mandar a Claude») y queda como mandada. */
+      enviarAuto([ch]);
     } catch (e) {
       /* cuota llena o base cerrada: NO fingir que quedó. El texto sigue en la
          hoja para copiarlo a mano. */
@@ -1031,6 +1034,32 @@ function estilo(){
   document.head.appendChild(s);
 }
 
+/* ═══ AMALAYA · envío automático ═══
+   CTX.enviar(ch) → Promise: la página la manda a su servidor. Al confirmar, se marca
+   «mandada» (baja el conteo de la pastilla). Si falla (sin red), se queda nueva y se
+   reintenta al abrir la siguiente vez: nada se pierde ni hay que volver a clavar. */
+async function enviarAuto(lista){
+  if (typeof CTX.enviar !== "function" || !lista || !lista.length) return;
+  var ok = [];
+  for (var i = 0; i < lista.length; i++) {
+    try { await CTX.enviar(lista[i]); ok.push(lista[i].id); } catch (e) {}
+  }
+  if (!ok.length) return;
+  try {
+    await abrirBD();
+    var t = tx(["chinches"], "readwrite"), st = t.objectStore("chinches"), ahora = new Date().toISOString();
+    for (var j = 0; j < ok.length; j++) {
+      var c = await pedir(st.get(ok[j]));
+      if (c) { c.estado = "mandada"; c.mandada = ahora; c.via = "automatica"; st.put(c); }
+    }
+    t.oncomplete = async function () { guardarN((await pendientes()).length); pintarPastilla(); };
+  } catch (e) {}
+}
+async function barrerPendientes(){
+  if (typeof CTX.enviar !== "function") return;
+  try { await abrirBD(); enviarAuto(await pendientes()); } catch (e) {}
+}
+
 /* ═══════════════════════ ARRANQUE ═══════════════════════ */
 function init(op){
   op = op || {};
@@ -1057,7 +1086,7 @@ function init(op){
   };
   document.body.appendChild(pastilla);
   pintarPastilla();
-  abrirBD().then(async function(){ guardarN((await pendientes()).length); pintarPastilla(); })
+  abrirBD().then(async function(){ guardarN((await pendientes()).length); pintarPastilla(); barrerPendientes(); })
     .catch(function () {
       /* navegación privada o almacenamiento bloqueado: que no finja un conteo */
       if (pastilla) { pastilla.textContent = "📌 ×"; pastilla.title = "La base de pendientes no abre en este navegador"; }

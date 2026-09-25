@@ -1,0 +1,83 @@
+name: Chinches · del board a issues
+
+# Cada chinche que se clava en el board de Amalaya viaja sola al Apps Script
+# (pestaña «Chinches» del Sheet). Este puente las recoge cada hora y abre un
+# issue 📌 con etiqueta «chinche» por cada una; la rutina diaria de Claude las
+# atiende. Nadie tiene que tocar «Mandar a Claude».
+#
+# Requiere:
+#   · Propiedad del script CHINCHES_TOKEN (Apps Script → Configuración → Propiedades)
+#   · El mismo valor en el secreto del repo AMALAYA_CHINCHES_TOKEN
+# Solo GET para leer; el POST «chincheTomada» únicamente marca la fila (no toca datos).
+
+on:
+  schedule:
+    - cron: '30 * * * *'
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: chinches
+  cancel-in-progress: false
+
+jobs:
+  puente:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Llevar las chinches nuevas a issues
+        env:
+          GH_TOKEN: ${{ github.token }}
+          K: ${{ secrets.AMALAYA_CHINCHES_TOKEN }}
+        run: |
+          set -euo pipefail
+          if [ -z "${K:-}" ]; then
+            echo "Falta el secreto AMALAYA_CHINCHES_TOKEN: no hay puente todavía."; exit 0
+          fi
+          EXEC=$(grep -oE "https://script.google.com/macros/s/[A-Za-z0-9_-]+/exec" src/config.js | head -1)
+          gh label create "chinche" --color "FBCA04" --description "Pendiente clavado desde el board" --force >/dev/null
+          curl -sL --max-time 60 "$EXEC?accion=chinches&k=$K" -o nuevas.json
+          python3 - <<'PY'
+          import json, sys
+          d = json.load(open('nuevas.json'))
+          if d.get('ok') is not True:
+              print('El servidor no entregó chinches:', d.get('error')); sys.exit(1)
+          items = d.get('chinches', [])
+          print(f'{len(items)} chinche(s) nueva(s)')
+          json.dump(items, open('items.json', 'w'))
+          PY
+          n=$(python3 -c "import json;print(len(json.load(open('items.json'))))")
+          for i in $(seq 0 $((n-1))); do
+            python3 - "$i" <<'PY'
+          import json, sys
+          c = json.load(open('items.json'))[int(sys.argv[1])]
+          try: det = json.loads(c.get('detalle') or '{}')
+          except Exception: det = {}
+          el = det.get('elemento') or {}
+          titulo = f"📌 amalaya · {c.get('pantalla','')} · " + ' '.join(str(c.get('texto','')).split())[:70]
+          cuerpo = "\n".join([
+            f"# Chinche {c.get('id')}",
+            f"{c.get('quien','')} · {c.get('fecha','')} · desde {det.get('aparato','')}",
+            "Repo: yodesarrollo/amalaya-board · publicado en yodesarrollo.github.io/amalaya-board/",
+            "",
+            f"**Dice {c.get('quien','')}:** \"{c.get('texto','')}\"",
+            "",
+            f"- **Página:** {c.get('url','')}",
+            f"- **Pantalla / vista:** {c.get('pantalla','')} · {c.get('vista','')}",
+            f"- **Elemento:** `{el.get('css','')}`" if el.get('css') else "- **Elemento:** (lienzo / sin selector)",
+            f"- **Dice el elemento:** \"{el.get('texto','')}\"" if el.get('texto') else "",
+            f"- **Dónde vive en el código:** {det.get('codigo','')}",
+            "",
+            "_Llegó sola desde el board (pestaña «Chinches» del Sheet) por el puente .github/workflows/chinches.yml._",
+          ])
+          open('titulo.txt','w').write(titulo); open('cuerpo.md','w').write(cuerpo); open('id.txt','w').write(c.get('id',''))
+          PY
+            url=$(gh issue create --title "$(cat titulo.txt)" --body-file cuerpo.md --label chinche)
+            echo "abierto: $url"
+            python3 -c "import json,sys;print(json.dumps({'action':'chincheTomada','k':sys.argv[1],'id':open('id.txt').read(),'issue':sys.argv[2]}))" "$K" "$url" > tomada.json
+            curl -sL --max-time 60 -H 'Content-Type: text/plain;charset=utf-8' --data @tomada.json "$EXEC" | head -c 200; echo
+          done
