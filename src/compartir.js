@@ -84,7 +84,7 @@ export async function generarCard({ titulo, subtitulo, detalle }) {
   ctx.font = '500 34px Inter, sans-serif'
   ctx.fillStyle = '#B7A890'
   ctx.letterSpacing = '10px'
-  ctx.fillText('DISTRITO DE MÚSICA Y CIUDAD · HERMOSILLO', W / 2, 300)
+  ctx.fillText('TIERRA SONORA · DISTRITO CULTURAL Y MUSICAL', W / 2, 300)
   ctx.letterSpacing = '0px'
 
   // La firma con su resplandor
@@ -98,7 +98,7 @@ export async function generarCard({ titulo, subtitulo, detalle }) {
   ctx.font = '400 40px Anton, sans-serif'
   ctx.fillStyle = '#C9A45C'
   ctx.letterSpacing = '14px'
-  ctx.fillText('DE HERMOSILLO PARA EL MUNDO', W / 2, 660)
+  ctx.fillText('EL CORAZÓN ACÚSTICO DE HERMOSILLO', W / 2, 660)
   ctx.letterSpacing = '0px'
 
   ondaAmalaya(ctx, 760, 520, 14, '#FFB84D')
