@@ -58,7 +58,8 @@ jobs:
           try: det = json.loads(c.get('detalle') or '{}')
           except Exception: det = {}
           el = det.get('elemento') or {}
-          titulo = f"📌 amalaya · {c.get('pantalla','')} · " + ' '.join(str(c.get('texto','')).split())[:70]
+          pant = str(c.get('pantalla','')).replace('amalaya-','').replace('amalaya','') or 'board'
+          titulo = f"📌 amalaya · {pant} · " + ' '.join(str(c.get('texto','')).split())[:70]
           cuerpo = "\n".join([
             f"# Chinche {c.get('id')}",
             f"{c.get('quien','')} · {c.get('fecha','')} · desde {det.get('aparato','')}",
