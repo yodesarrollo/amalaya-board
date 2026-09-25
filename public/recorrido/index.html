@@ -147,4 +147,23 @@ function frame(){ if(auto) yaw+=0.002; cam.rotation.set(0,0,0,'YXZ'); cam.rotati
 fetch('rutas.json').then(r=>r.json()).then(async d=>{ RUTAS=d; ROLL=await fetch('roll.json').then(r=>r.ok?r.json():{}).catch(()=>({})); await cargarAcciones(); sel.innerHTML=d.rutas.map(r=>`<option value="${r.id}">${r.nombre} · ${r.puntos.length} pts</option>`).join('');
   const rq=params.get('r'), q=params.get('p'); DATA=d.rutas.find(r=>r.id===rq)||d.rutas.find(r=>r.puntos.some(p=>p.id===q))||d.rutas[0]; sel.value=DATA.id;
   irA(Math.max(0,DATA.puntos.findIndex(p=>p.id===q))); requestAnimationFrame(frame) });
-</script></body></html>
+</script><!-- La Chinche de Amalaya: también aquí, para dar retroalimentación de esta pantalla.
+     Solo con sesión de Amalaya (misma pila que el board: public/chinche.js). -->
+<script>
+(function () {
+  try {
+    if (/[?&]embed=1/.test(location.search)) return; // dentro del mapa, la chinche es la del board
+    var s = JSON.parse(localStorage.getItem('amalaya_sesion') || 'null');
+    if (!s || !s.codigo || ['admin', 'master', 'editor', 'visor'].indexOf(s.rol) === -1) return;
+    var el = document.createElement('script');
+    el.src = '../chinche.js?v=f8';
+    el.onload = function () {
+      if (window.YODChinche) YODChinche.init({ pantalla: 'amalaya-recorrido', repo: 'amalaya-board',
+        quien: function () { return s.nombre || ''; },
+        seccion: function () { return 'recorrido'; }, vista: function () { return 'recorrido'; } });
+    };
+    document.body.appendChild(el);
+  } catch (e) {}
+})();
+</script>
+</body></html>

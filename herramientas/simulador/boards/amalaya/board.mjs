@@ -346,6 +346,17 @@ export async function guion({ pagina, foto, clic, base }) {
   await foto('06g-inversionista-congelada', 300)
   await pagina.goto(base + 'recorrido/'); await foto('09-recorrido-360', 4000)
   await pagina.goto(base + 'modelo/serdan-garmendia.html'); await foto('10-modelo-esquina', 5000)
+  // La Chinche también en las pantallas sueltas (modelo 3D y recorrido a pantalla completa)
+  await pagina.evaluate(() => localStorage.setItem('amalaya_sesion', JSON.stringify({ codigo: 'SIMULADOR', rol: 'admin', nombre: 'Alejandro Puebla', ts: Date.now() })))
+  for (const [ruta, nombre] of [['modelo/serdan-garmendia.html', 'modelo'], ['recorrido/', 'recorrido']]) {
+    await pagina.goto(base + ruta); await pagina.waitForTimeout(3500)
+    const hay = await pagina.locator('button[aria-label="Pendientes de cambio"]').count()
+    console.log(`${hay ? '✓' : '✗'} La Chinche en ${nombre}: ${hay ? 'sí' : 'no'} aparece`)
+    await foto(`15-chinche-${nombre}`, 300)
+  }
+  await pagina.goto(base + 'recorrido/?embed=1'); await pagina.waitForTimeout(2500)
+  const dentro = await pagina.locator('button[aria-label="Pendientes de cambio"]').count()
+  console.log(`${dentro === 0 ? '✓' : '✗'} dentro del mapa (embed) no sale una segunda pastilla`)
 }
 
 // GIFs cortos de la Ayuda (npm run gifs): mover un espacio, trazar una
