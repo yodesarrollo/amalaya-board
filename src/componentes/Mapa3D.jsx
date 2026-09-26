@@ -8,6 +8,7 @@ import { BASE } from '../config.js'
 import { leerRuta } from './Rutas.jsx'
 import { NOMBRE_TIPO } from './Glifos.jsx'
 import { rayitasHtml, nivelAvance, ETAPAS_DESARROLLO } from '../avance.js'
+import { COLOR_TIPO, TIPOS, claveTipo } from '../tipos.js'
 import { m2Construidos } from '../calc.js'
 
 // ============================================================
@@ -43,19 +44,7 @@ const GEO_DEF = [
   [-110.957125, 29.074361],
 ]
 
-// Colores de la lámina "Zona Núcleo" (presentación Foro Amalaya).
-const COLOR_TIPO = {
-  venue: '#D98FA3',
-  museo: '#8FB8D9',
-  escuela: '#E9D36A',
-  estudio: '#E9D36A',
-  comercial: '#E8923A',
-  mixto: '#E9D36A',
-  estacionamiento: '#8A8F99',
-  departamento: '#E9D36A',
-  restaurante: '#E8923A',
-  otro: '#C9A45C',
-}
+// Colores y nombres: catálogo único en src/tipos.js (chinche #17).
 // Altura por tipo cuando el Sheet no trae pisos. Mínimo 9 m (3 niveles):
 // por debajo de eso un volumen se lee como losa y desaparece junto a la ciudad.
 const ALTURA_TIPO = { venue: 18, estacionamiento: 15, comercial: 11, mixto: 13, museo: 10, escuela: 9, estudio: 9, departamento: 10, restaurante: 9, otro: 9 }
@@ -131,7 +120,7 @@ function geojsonEspacios(espacios, factores, geo) {
       const x = num(e.pos_x, 40), y = num(e.pos_y, 40)
       const w = Math.max(num(e.ancho, 18), 3), h = Math.max(num(e.alto, 12), 3)
       const anillo = [[x, y], [x + w, y], [x + w, y + h], [x, y + h], [x, y]].map(([px, py]) => pctAGeo(geo, px, py))
-      const tipo = String(e.tipo || 'otro').toLowerCase()
+      const tipo = claveTipo(e.tipo)
       return {
         type: 'Feature',
         id: e.id,
@@ -302,6 +291,13 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
   const [lista, setLista] = useState(false)
   const [busca, setBusca] = useState('')
   const [capas, setCapas] = useState(CAPAS_DEF)
+  // Leyenda clicable (chinche #17): tipos apagados y cuántos hay de cada uno.
+  const [tiposOcultos, setTiposOcultos] = useState([])
+  const conteoTipos = useMemo(() => {
+    const c = {}
+    for (const e of espacios) { const k = claveTipo(e.tipo); c[k] = (c[k] || 0) + 1 }
+    return c
+  }, [espacios])
   const [tema, setTema] = useState('lamina')
   const temaRef = useRef('lamina')
   useEffect(() => { temaRef.current = tema; if (mapa.current && listo) vestir(mapa.current, TEMAS[tema]) }, [tema, listo])
@@ -663,9 +659,15 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
       m.setPaintProperty('recorrido-puntos', 'circle-stroke-opacity', etapa >= 3 ? 1 : 0)
     }
     vis('calco', capas.calco || calibrando)
-    marcadores.current.forEach((mk) => { mk.getElement().style.display = capas.espacios && etapa >= 4 ? '' : 'none' })
+    const filtro = tiposOcultos.length ? ['!', ['in', ['get', 'tipo'], ['literal', tiposOcultos]]] : null
+    if (m.getLayer('espacios-3d')) m.setFilter('espacios-3d', filtro)
+    if (m.getLayer('espacios-borde')) m.setFilter('espacios-borde', filtro)
+    marcadores.current.forEach((mk, i) => {
+      const oculto = tiposOcultos.includes(claveTipo(espacios[i]?.tipo))
+      mk.getElement().style.display = capas.espacios && etapa >= 4 && !oculto ? '' : 'none'
+    })
     if (m.getLayer('calco')) m.setPaintProperty('calco', 'raster-opacity', calibrando ? 0.7 : opacidadCalco)
-  }, [listo, capas, opacidadCalco, calibrando, etapa, tema, espacios])
+  }, [listo, capas, opacidadCalco, calibrando, etapa, tema, espacios, tiposOcultos])
 
   // --- inclinación -------------------------------------------------
   // Una sola maqueta, cuatro caras: el mapa gira 90° por clic y se mira en
@@ -902,9 +904,18 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
               ))}
             </span>
           </div>
-          <div className="cartela-ley">
-            {[['venue', 'Foro'], ['comercial', 'Comercial'], ['mixto', 'Mixto'], ['estacionamiento', 'Estacionamiento']].map(([t, n]) => (
-              <span key={t}><i style={{ background: COLOR_TIPO[t] }} />{n}</span>
+          <div className="cartela-ley" aria-label="Leyenda: toca un tipo para prenderlo o apagarlo">
+            {TIPOS.filter((t) => conteoTipos[t.clave]).map((t) => (
+              <button
+                key={t.clave}
+                type="button"
+                className={`ley-tipo ${tiposOcultos.includes(t.clave) ? 'apagado' : ''}`}
+                aria-pressed={!tiposOcultos.includes(t.clave)}
+                title={tiposOcultos.includes(t.clave) ? 'Mostrar' : 'Ocultar'}
+                onClick={() => setTiposOcultos((o) => (o.includes(t.clave) ? o.filter((x) => x !== t.clave) : [...o, t.clave]))}
+              >
+                <i style={{ background: t.color }} />{t.nombre} <b>{conteoTipos[t.clave]}</b>
+              </button>
             ))}
             <span><i className="linea" />ruta</span>
           </div>

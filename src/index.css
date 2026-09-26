@@ -481,3 +481,8 @@ html {
 .mapa3d.tema-lamina .cartela-norte { color: #1F1F1F; }
 @media (max-width: 640px) { .cartela-mapa { width: 12.5rem; padding: 7px 9px 6px; } .cartela-sub, .cartela-ley { display: none; } .cartela-cifras b { font-size: 11.5px; } }
 @media (prefers-reduced-motion: reduce) { .cartela-norte svg, .cartela-escala .barra { transition: none; } }
+/* Leyenda clicable (chinche #17) */
+.cartela-ley .ley-tipo { display: inline-flex; align-items: center; gap: 5px; background: none; border: 0; padding: 1px 0; color: inherit; font: inherit; cursor: pointer; }
+.cartela-ley .ley-tipo b { font-weight: 700; opacity: .7; }
+.cartela-ley .ley-tipo.apagado { opacity: .38; text-decoration: line-through; }
+.cartela-ley .ley-tipo:focus-visible { outline: 2px solid #FFB84D; outline-offset: 2px; border-radius: 3px; }

@@ -161,6 +161,15 @@ export async function guion({ pagina, foto, clic, base }) {
   for (const g of ['03g-guia-1', '03g-guia-2', '03g-guia-3']) {
     await foto(g, 300); await clic('.globo-guia button.ctrl-mapa')
   }
+  // Chinche #17: leyenda con los tipos presentes, su cuenta, y clicable
+  const ley = await pagina.$$eval('.cartela-ley .ley-tipo', (bs) => bs.map((b) => b.textContent.trim()))
+  console.log(`${ley.some((t) => /Foro\s*1/.test(t)) && ley.some((t) => /Estacionamiento\s*2/.test(t)) ? '✓' : '✗'} leyenda con cuenta por tipo: ${ley.join(' · ')}`)
+  const antesPins = await pagina.locator('.pin3d:visible').count()
+  await clic('.cartela-ley .ley-tipo:has-text("Estacionamiento")'); await pagina.waitForTimeout(500)
+  const despuesPins = await pagina.locator('.pin3d:visible').count()
+  console.log(`${despuesPins === antesPins - 2 ? '✓' : '✗'} apagar «Estacionamiento» oculta sus 2 espacios (${antesPins} → ${despuesPins})`)
+  await foto('03k-leyenda-apagada', 300)
+  await clic('.cartela-ley .ley-tipo:has-text("Estacionamiento")'); await pagina.waitForTimeout(300)
   await clic('button[title="Lista y buscador de espacios"]'); await foto('03l-lista-espacios', 500)
   await pagina.locator('.lista-espacios input').fill('foro'); await foto('03m-buscar-foro', 400)
   await clic('.lista-espacios .fila-espacio'); await foto('03n-ficha-desde-lista', 1500)
