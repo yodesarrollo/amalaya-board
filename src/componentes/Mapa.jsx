@@ -1,5 +1,5 @@
-import { useState, useRef, useCallback } from 'react'
-import { Plus, Pencil, Check, ArrowUp, ArrowDown, ArrowLeft, ArrowRight, ClipboardList } from 'lucide-react'
+import { useState, useRef, useCallback, useMemo } from 'react'
+import { Plus, Pencil, Check, ArrowUp, ArrowDown, ArrowLeft, ArrowRight, ClipboardList, X } from 'lucide-react'
 import { usarDatos } from '../datos.jsx'
 import { puedeEditarRol } from '../roles.js'
 import { BASE } from '../config.js'
@@ -62,7 +62,12 @@ const acot = (v, min, max) => Math.min(Math.max(v, min), max)
 
 export default function Mapa() {
   const { sesion, datos, modo, editarFila, crearFila } = usarDatos()
-  const espacios = datos?.Espacios || []
+  const espaciosSheet = datos?.Espacios || []
+  // UX-02: mover es una PREVISUALIZACIÓN. Nada llega al Sheet hasta «Aplicar»;
+  // «Cancelar» la descarta sin una sola escritura.
+  const [previa, setPrevia] = useState({}) // { [id]: { pos_x, pos_y, ancho?, alto? } }
+  const espacios = useMemo(() => espaciosSheet.map((e) => (previa[e.id] ? { ...e, ...previa[e.id] } : e)), [espaciosSheet, previa])
+  const proponer = useCallback((id, parche) => setPrevia((p) => ({ ...p, [id]: { ...(p[id] || {}), ...parche } })), [])
   const rutas = (datos?.Rutas || []).slice().sort((a, b) => num(a.orden, 999) - num(b.orden, 999))
   const paradas = datos?.Paradas || []
   const puedeEditar = modo !== 'demo' && puedeEditarRol(sesion?.rol)
@@ -135,7 +140,7 @@ export default function Mapa() {
     }
     const t = tempRef.current
     if (t && t.id === g.id) {
-      editarFila('Espacios', g.id, {
+      proponer(g.id, {
         pos_x: t.x.toFixed(2),
         pos_y: t.y.toFixed(2),
         ancho: t.w.toFixed(2),
@@ -145,7 +150,7 @@ export default function Mapa() {
     tempRef.current = null
     setTempArrastre(null)
     setSeleccion(g.id)
-  }, [editarFila])
+  }, [proponer])
 
   const alCancelar = useCallback(() => {
     gesto.current = null
@@ -157,11 +162,18 @@ export default function Mapa() {
     const e = espacios.find((x) => x.id === seleccion)
     if (!e) return
     const z = zonaDeFila(e)
-    editarFila('Espacios', e.id, {
+    proponer(e.id, {
       pos_x: acot(z.x + dx, 0, 100 - z.w).toFixed(2),
       pos_y: acot(z.y + dy, 0, 100 - z.h).toFixed(2),
     })
-  }, [espacios, seleccion, editarFila])
+  }, [espacios, seleccion, proponer])
+
+  const nPrevia = Object.keys(previa).length
+  function aplicarPrevia() {
+    for (const [id, parche] of Object.entries(previa)) editarFila('Espacios', id, parche)
+    setPrevia({}); setModoEdicion(false); setSeleccion(null)
+  }
+  function cancelarPrevia() { setPrevia({}); setModoEdicion(false); setSeleccion(null) }
 
   async function crearEspacio(nombre, tipo) {
     const fila = await crearFila('Espacios', {
@@ -245,12 +257,18 @@ export default function Mapa() {
         )}
         {!enRutas && puedeEditar && (
           <>
-            <button
-              className={modoEdicion ? 'boton-primario !px-3 !py-2 text-sm' : 'boton-secundario !px-3 !py-2 text-sm'}
-              onClick={() => { setModoEdicion(!modoEdicion); setSeleccion(null); setAbierto(null) }}
-            >
-              {modoEdicion ? (<span className="flex items-center gap-1.5"><Check size={14} /> Terminar</span>) : (<span className="flex items-center gap-1.5"><Pencil size={14} /> Mover espacios</span>)}
-            </button>
+            {modoEdicion ? (<>
+              <button className="boton-secundario !px-3 !py-2 text-sm" onClick={cancelarPrevia}>
+                <span className="flex items-center gap-1.5"><X size={14} /> Cancelar</span>
+              </button>
+              <button className="boton-primario !px-3 !py-2 text-sm" onClick={aplicarPrevia} disabled={nPrevia === 0}>
+                <span className="flex items-center gap-1.5"><Check size={14} /> Aplicar{nPrevia ? ` (${nPrevia})` : ''}</span>
+              </button>
+            </>) : (
+              <button className="boton-secundario !px-3 !py-2 text-sm" onClick={() => { setModoEdicion(true); setSeleccion(null); setAbierto(null) }}>
+                <span className="flex items-center gap-1.5"><Pencil size={14} /> Mover espacios</span>
+              </button>
+            )}
             <button className="boton-primario !px-3 !py-2 text-sm hidden sm:block" onClick={() => setCreando(true)} title="Crear espacio">
               <span className="flex items-center gap-1.5"><Plus size={16} /> Espacio</span>
             </button>
@@ -261,7 +279,7 @@ export default function Mapa() {
 
       {modoEdicion && (
         <p className="max-w-6xl mx-auto px-4 pb-2 text-terciario text-sm">
-          Arrastra un pin a su lugar; se guarda en el Sheet al soltar.
+          Arrastra un pin a su lugar. Es una vista previa: nada se guarda hasta «Aplicar»; «Cancelar» lo deja como estaba.
         </p>
       )}
       {enRutas && editandoPuntos && (
@@ -298,7 +316,7 @@ export default function Mapa() {
                   const e = espacios.find((x) => x.id === id)
                   if (!e) return
                   const z = zonaDeFila(e)
-                  editarFila('Espacios', id, { pos_x: acot(cx - z.w / 2, 0, 100 - z.w).toFixed(2), pos_y: acot(cy - z.h / 2, 0, 100 - z.h).toFixed(2) })
+                  proponer(id, { pos_x: acot(cx - z.w / 2, 0, 100 - z.w).toFixed(2), pos_y: acot(cy - z.h / 2, 0, 100 - z.h).toFixed(2) })
                 },
                 onAgregarPunto: (px, py) => {
                   const ruta = rutas.find((r) => r.id === rutaSel)

@@ -14,7 +14,8 @@ const QUIENES = {
   INVERSOR1: { rol: 'inversionista', nombre: 'Inversionista de prueba' },
 }
 const TABS_INVERSIONISTA = ['Config', 'Espacios', 'Factores', 'Finanzas_Lineas', 'Escenarios', 'Rutas', 'Paradas']
-let caidaRed = false // UX-01: simula que el guardado no llega
+let caidaRed = false
+let escriturasPos = 0 // UX-02: cuántas veces se escribió una posición // UX-01: simula que el guardado no llega
 const congeladas = [] // [{fila, foto}] — lo que el servidor real guarda en Drive/Reportes
 // Graba el recorrido completo (la entrada del mapa se revisa en video).
 export const video = true
@@ -106,6 +107,7 @@ export function servidor(accion, b) {
     }
     case 'guardar': {
       if (caidaRed) return { ok: false, error: 'Sin conexión (simulada).' }
+      if (b.tab === 'Espacios' && b.patch && 'pos_x' in b.patch) escriturasPos++
       if (b.tab === 'Usuarios') { const veto = vetoUsuarios(quien, b.key, b.patch || {}, false); if (veto) return { ok: false, error: veto } }
       const fila = db[b.tab]?.find((x) => llave(x) === b.key)
       if (!fila) return { ok: false, error: 'No se encontró la fila.' }
@@ -172,6 +174,28 @@ export async function guion({ pagina, foto, clic, base }) {
   console.log(`${despuesPins === antesPins - 2 ? '✓' : '✗'} apagar «Estacionamiento» oculta sus 2 espacios (${antesPins} → ${despuesPins})`)
   await foto('03k-leyenda-apagada', 300)
   await clic('.cartela-ley .ley-tipo:has-text("Estacionamiento")'); await pagina.waitForTimeout(300)
+  // UX-02: mover es previsualización — Cancelar = 0 escrituras, Aplicar confirma
+  {
+    const posDe = () => { const e = db.Espacios[0]; return `${e.pos_x},${e.pos_y}` }
+    const antesPos = posDe(); escriturasPos = 0
+    await clic('button:has-text("Mover espacios")'); await pagina.waitForTimeout(600)
+    const arrastrar = async () => {
+      const pin = pagina.locator('.pin3d:not(.pin3d-tapado)').first(); const bx = await pin.boundingBox()
+      await pagina.mouse.move(bx.x + bx.width / 2, bx.y + bx.height / 2); await pagina.mouse.down()
+      await pagina.mouse.move(bx.x + bx.width / 2 + 40, bx.y + bx.height / 2 + 30, { steps: 8 }); await pagina.mouse.up()
+      await pagina.waitForTimeout(1800)
+    }
+    await arrastrar()
+    const aplicarTxt = (await pagina.locator('button:has-text("Aplicar")').textContent()) || ''
+    await foto('03p-ux02-previa', 200)
+    await clic('button:has-text("Cancelar")'); await pagina.waitForTimeout(1800)
+    console.log(`${escriturasPos === 0 && posDe() === antesPos && /\(1\)/.test(aplicarTxt) ? '✓' : '✗'} UX-02 cancelar: «${aplicarTxt.trim()}» y luego Cancelar → ${escriturasPos} escrituras, posición ${posDe()}`)
+    await clic('button:has-text("Mover espacios")'); await pagina.waitForTimeout(600)
+    await arrastrar()
+    await clic('button:has-text("Aplicar")'); await pagina.waitForTimeout(2200)
+    console.log(`${escriturasPos === 1 && posDe() !== antesPos ? '✓' : '✗'} UX-02 aplicar: ${escriturasPos} escritura, ${antesPos} → ${posDe()}`)
+    await foto('03q-ux02-aplicado', 200)
+  }
   // Chinche #15: panel de Capas compacto, sin scroll, y se cierra tocando el mapa
   await clic('button.ctrl-mapa:has-text("Capas")'); await pagina.waitForTimeout(300)
   const sinScroll = await pagina.$eval('.panel-lista', (e) => e.scrollHeight <= e.clientHeight + 1)
