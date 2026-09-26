@@ -496,3 +496,6 @@ html {
 .est-curso { color: #C9A45C; border-color: rgba(201,164,92,.45); }
 .est-copia { color: #B7A890; border-color: rgba(183,168,144,.4); }
 .est-error { color: #E58B6B; border-color: rgba(229,139,107,.6); background: rgba(229,139,107,.08); cursor: pointer; }
+
+/* UX-03 · deshacer propio */
+.deshacer-propio { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; padding: 8px 10px; border: 1px dashed rgba(201,164,92,.4); border-radius: 10px; }
