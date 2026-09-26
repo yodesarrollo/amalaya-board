@@ -20,6 +20,7 @@ import { compartirCard } from '../compartir.js'
 // ============================================================
 
 import { BIBLIOTECA_3D, moduloDeEspacio } from '../modelos3d.js'
+import { MODULOS, zonasDeEspacio } from '../territorio.js'
 const Biblioteca3D = lazy(() => import('./Biblioteca3D.jsx'))
 
 const PESTANAS = [
@@ -89,7 +90,12 @@ export default function FichaEspacio({ espacio, onCerrar, onAnterior, onSiguient
   const editable = modo !== 'demo' && puedeEditarRol(sesion?.rol)
   const [pestana, setPestana] = useState('factores')
 
-  const moduloId = BIBLIOTECA_3D ? moduloDeEspacio(datos?.Modelos3D || [], espacio.id) : null
+  // Modelo 3D: el vínculo validado del Sheet manda; si no hay, el de la lámina puesta en su sitio.
+  const zonasE = zonasDeEspacio(espacio)
+  const deLamina = MODULOS.filter((m) => zonasE.includes(m.zona)).map((m) => m.modulo)
+  const validado = BIBLIOTECA_3D ? moduloDeEspacio(datos?.Modelos3D || [], espacio.id) : null
+  const modulosFicha = validado ? [validado] : (BIBLIOTECA_3D ? deLamina : [])
+  const moduloId = modulosFicha[0] || null
   const visibles = [...PESTANAS.filter((p) => Array.isArray(datos?.[p.requiere])), ...(moduloId ? [{ clave: 'modelo3d', titulo: 'Modelo 3D' }] : [])]
   const activa = visibles.some((p) => p.clave === pestana) ? pestana : visibles[0]?.clave
 
@@ -194,7 +200,7 @@ export default function FichaEspacio({ espacio, onCerrar, onAnterior, onSiguient
       </div>
 
       <div className="mt-4">
-        {activa === 'modelo3d' && moduloId && <Suspense fallback={<p>Cargando modelo…</p>}><Biblioteca3D moduloId={moduloId} /></Suspense>}
+        {activa === 'modelo3d' && moduloId && <Suspense fallback={<p>Cargando modelo…</p>}><Biblioteca3D moduloId={moduloId} soloModulos={modulosFicha} /></Suspense>}
         {activa === 'factores' && <Factores espacio={espacio} />}
         {activa === 'fotos' && <Fotos espacio={espacio} editable={editable} />}
         {activa === 'documentos' && <Documentos espacio={espacio} editable={editable} />}
