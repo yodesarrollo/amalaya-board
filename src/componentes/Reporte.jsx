@@ -8,6 +8,7 @@ import { puedeCongelarRol } from '../roles.js'
 import { nombreTipo } from '../tipos.js'
 import ImagenDrive from './ImagenDrive.jsx'
 import { confianzaEspacio, nombreNivel } from '../confianza.js'
+import AvisoIncompleto, { ListaErrores } from './AvisoIncompleto.jsx'
 import LineaAmalaya from './LineaAmalaya.jsx'
 
 // ============================================================
@@ -162,6 +163,7 @@ export default function Reporte() {
           <div className="cifra font-cartel font-normal print:font-titulo text-5xl mt-2 imp-oro text-marfil glow-ambar">
             {versionMostrada?.cifras?.porAccion != null ? moneda(versionMostrada.cifras.porAccion) : v.porAccion === null ? '—' : moneda(v.porAccion)}
           </div>
+          {versionMostrada?.cifras?.porAccion == null && <><div className="mt-2"><AvisoIncompleto g={g} centrado /></div><ListaErrores g={g} /></>}
           <div className="flex h-2.5 rounded-full overflow-hidden mt-5 bg-linea imp-barra max-w-md mx-auto">
             <div className="bg-terracota" style={{ width: `${(v.inmobiliario / totalValor) * 100}%` }} />
             <div className="bg-oro" style={{ width: `${(v.operativo / totalValor) * 100}%` }} />

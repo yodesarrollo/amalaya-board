@@ -408,7 +408,13 @@ export async function guion({ pagina, foto, clic, base }) {
       await monto.fill(''); await monto.type('=ev'); await foto('05c-autocompletar', 500)
       const opciones = await pagina.locator('[aria-label="Factores del espacio"] li').count()
       console.log(`${opciones > 0 ? '✓' : '✗'} autocompletar: ${opciones} sugerencia(s) al escribir «=ev»`)
-      await monto.fill(previo)
+      // UX-08: una fórmula rota marca el total como incompleto y enlaza al error
+      await monto.fill('=factor_que_no_existe * 2'); await monto.press('Escape'); await pagina.waitForTimeout(700)
+      const aviso8 = (await pagina.locator('.aviso-incompleto').first().textContent().catch(() => '')) || ''
+      const lista8 = await pagina.locator('#errores-formulas li').count()
+      await pagina.locator('.aviso-incompleto').first().scrollIntoViewIfNeeded().catch(() => {}); await foto('05e-ux08-incompleto', 300)
+      console.log(`${/Datos incompletos/.test(aviso8) && /fórmula con error/.test(aviso8) && lista8 >= 1 ? '✓' : '✗'} UX-08 total con fórmula rota: «${aviso8.trim().slice(0, 110)}» · ${lista8} error(es) listados`)
+      await monto.fill(previo); await monto.press('Escape'); await pagina.waitForTimeout(1500)
       // Comparar escenarios
       await clic('text=Comparar dos escenarios'); await foto('05d-comparar-escenarios', 400)
       const comp = await pagina.locator('[aria-label="Comparación de escenarios"]').count()

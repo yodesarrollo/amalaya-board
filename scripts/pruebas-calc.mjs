@@ -212,6 +212,24 @@ prueba('sin acciones emitidas, porAccion es null (no división entre cero)', () 
   igual(g.valorPorAccion.porAccion, null)
 })
 
+prueba('UX-08: sin acciones emitidas el total avisa qué falta', () => {
+  const g = resumenGlobal({ ...datos, config: { ...datos.config, acciones_emitidas: '0' } })
+  igual(g.completo, false)
+  if (!g.faltantes.some((f) => f.clave === 'acciones_emitidas')) throw new Error('no lista acciones_emitidas')
+})
+
+prueba('UX-08: una fórmula rota vuelve el total «incompleto» y se lista', () => {
+  const g = resumenGlobal({ ...datos, lineas: [...datos.lineas, { id: 'L-X', espacio_id: 'E-001', escenario_id: '', concepto: 'Rota', tipo: 'ingreso', monto_anual: '=factor_borrado * 2' }] })
+  igual(g.completo, false)
+  igual(g.errores.length, 1)
+})
+
+prueba('UX-08: sin costo por m² del tipo se lista como faltante (no como cero real)', () => {
+  const c = { ...datos.config }; for (const k of Object.keys(c)) if (k.startsWith('costo_m2')) delete c[k]
+  const g = resumenGlobal({ ...datos, config: c })
+  if (!g.faltantes.some((f) => f.clave.startsWith('costo_m2_'))) throw new Error('no lista costo_m2')
+})
+
 console.log('configNum')
 prueba('lee números con formato y respeta el valor por defecto', () => {
   const c = mapaConfig([{ clave: 'Gastos Generales', valor: '$2,500,000' }])

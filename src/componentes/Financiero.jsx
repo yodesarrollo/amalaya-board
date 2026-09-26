@@ -4,6 +4,7 @@ import { usarDatos } from '../datos.jsx'
 import { puedeEditarRol } from '../roles.js'
 import { nombreTipo } from '../tipos.js'
 import { moneda, porcentaje } from '../formato.js'
+import AvisoIncompleto, { ListaErrores } from './AvisoIncompleto.jsx'
 import { resumenGlobal, resumenEspacio, montoLinea, mapaConfig, configNum, normalizarId, resumenConEscenario, sugerirFactores } from '../calc.js'
 
 // ============================================================
@@ -530,11 +531,8 @@ function PanelValor({ g, onExplicar, ajuste, setAjuste }) {
       <button className="block text-terciario text-xs underline decoration-linea underline-offset-2" onClick={onExplicar}>
         ¿qué significa?
       </button>
-      {v.porAccion === null && (
-        <p className="text-terciario text-xs mt-1">
-          Falta capturar acciones_emitidas en los parámetros globales.
-        </p>
-      )}
+      <AvisoIncompleto g={g} />
+      <ListaErrores g={g} />
 
       {/* Desglose apilado de los 3 componentes */}
       <div className="flex h-2.5 rounded-full overflow-hidden mt-4 bg-linea">
@@ -571,12 +569,16 @@ function PanelValor({ g, onExplicar, ajuste, setAjuste }) {
       {g.porEspacio.length > 0 && (
         <dl className="mt-4 space-y-1 text-xs border-t border-linea pt-3">
           <div className="text-terciario uppercase tracking-wide mb-1">Utilidad por espacio</div>
-          {g.porEspacio.map(({ espacio, utilidad }) => (
+          {g.porEspacio.map(({ espacio, utilidad }) => {
+            // UX-08: sin líneas no es «$0»: es «sin dato».
+            const sinDato = g.faltantes.some((f) => f.clave === 'lineas' && f.ids.includes(String(espacio.id)))
+            return (
             <div key={espacio.id} className="flex justify-between">
               <dt className="text-arena truncate mr-2">{espacio.nombre}</dt>
-              <dd className={`cifra ${utilidad >= 0 ? 'text-marfil' : 'text-ladrillo'}`}>{moneda(utilidad)}</dd>
+              {sinDato ? <dd className="text-ambar text-xs italic">sin dato</dd> : <dd className={`cifra ${utilidad >= 0 ? 'text-marfil' : 'text-ladrillo'}`}>{moneda(utilidad)}</dd>}
             </div>
-          ))}
+            )
+          })}
         </dl>
       )}
     </div>
@@ -674,6 +676,7 @@ export default function Financiero() {
           <span className="text-xs uppercase tracking-widest text-arena">Valor por acción</span>
           <span className="cifra font-cartel font-normal text-xl text-marfil flex-1 text-right glow-ambar">
             {g.valorPorAccion.porAccion === null ? '—' : moneda(g.valorPorAccion.porAccion)}
+            {!g.completo && <span className="block text-[10px] text-ambar tracking-wide normal-case">datos incompletos</span>}
           </span>
           {panelAbierto ? <ChevronDown size={16} className="text-terciario" /> : <ChevronUp size={16} className="text-terciario" />}
         </button>

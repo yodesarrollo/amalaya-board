@@ -520,3 +520,7 @@ html { scroll-padding-top: 84px; }
 .mapa-plan-b { background: #1A1512; }
 .lista-plan-b .lista-espacios { position: static; width: 100%; max-width: none; }
 .lista-plan-b .lista-espacios ul { max-height: none; }
+
+/* UX-08 · totales con datos incompletos */
+.aviso-incompleto { font: 500 11.5px/1.45 'Montserrat', sans-serif; color: #E8C48A; background: rgba(232,146,58,.1); border: 1px dashed rgba(232,146,58,.55); border-radius: 8px; padding: 6px 9px; margin-top: 6px; max-width: 34rem; }
+.aviso-incompleto .etq { font-weight: 700; color: #E8923A; }
