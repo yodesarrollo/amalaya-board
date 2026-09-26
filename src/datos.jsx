@@ -56,6 +56,7 @@ export function DatosProvider({ children }) {
   const [sincronizando, setSincronizando] = useState(false)
   const [errorSync, setErrorSync] = useState(null)
   const [ultimaSync, setUltimaSync] = useState(null)
+  const [copiaTs, setCopiaTs] = useState(null)       // cuándo se guardó la copia que se está viendo
   const [guardados, setGuardados] = useState({})     // { [tab:key]: 'guardando'|'ok'|'error' }
   const [congelada, setCongelada] = useState(null)   // {id, fecha, nombre} si el servidor entregó una versión congelada
 
@@ -77,6 +78,8 @@ export function DatosProvider({ children }) {
     try {
       const r = await apiCall('getAll', { codigo, v: versionRef.current })
       if (r.sinCambios) {
+        // Chinche #19: el servidor contestó "sin cambios" → lo que se ve YA es lo del servidor.
+        setModo((m) => (m === 'copia' ? 'vivo' : m))
         setUltimaSync(new Date())
         return true
       }
@@ -155,6 +158,7 @@ export function DatosProvider({ children }) {
         setDatos(cache.datos)
         setVersion(cache.v ?? null)
         setModo('copia')
+        setCopiaTs(cache.ts || null)
         setSesion(s)
       }
       try {
@@ -383,7 +387,7 @@ export function DatosProvider({ children }) {
 
   const valor = {
     sesion, arrancando, datos, modo, congelada,
-    sincronizando, errorSync, ultimaSync, guardados,
+    sincronizando, errorSync, ultimaSync, copiaTs, guardados,
     entrar, entrarConGoogle, salir, actualizar, verDemo,
     editarFila, crearFila, borrarFila, reintentarGuardado,
     subirArchivo, verArchivo, apiAccion,

@@ -10,7 +10,7 @@ import Usuarios from './Usuarios.jsx'
 // Actualizar y salir. La pastilla DEMOSTRACIÓN o "copia local"
 // aparece junto al logo — discreta, nunca un banner.
 export default function Encabezado() {
-  const { sesion, modo, sincronizando, ultimaSync, errorSync, actualizar, salir } = usarDatos()
+  const { sesion, modo, sincronizando, ultimaSync, errorSync, copiaTs, actualizar, salir } = usarDatos()
   // El engrane ⚙️ (solo admin) abre los accesos como ventana lateral.
   const [accesos, setAccesos] = useState(false)
   const esAdmin = modo !== 'demo' && sesion?.rol === 'admin'
@@ -22,10 +22,16 @@ export default function Encabezado() {
         <div className="flex items-center gap-2 min-w-0">
           <span className="font-firma text-2xl leading-none">Amalaya</span>
           {modo === 'demo' && <span className="pastilla-demo">Demostración</span>}
-          {modo === 'copia' && (
-            <span className="text-xs text-terciario border border-linea rounded-full px-2 py-0.5">
-              copia local
-            </span>
+          {/* Chinche #19: solo se ve si de verdad el servidor no contestó; dice de cuándo es lo que ves. */}
+          {modo === 'copia' && errorSync && (
+            <button
+              onClick={actualizar}
+              disabled={sincronizando}
+              className="text-xs text-oro border border-oro/60 rounded-full px-2 py-0.5 whitespace-nowrap"
+              title="El servidor no contestó. Toca para reintentar."
+            >
+              Sin conexión · copia de {haceCuanto(copiaTs)} · Reintentar
+            </button>
           )}
         </div>
 
@@ -95,4 +101,13 @@ export default function Encabezado() {
       )}
     </header>
   )
+}
+
+function haceCuanto(ts) {
+  if (!ts) return 'antes'
+  const min = Math.max(0, Math.round((Date.now() - ts) / 60000))
+  if (min < 1) return 'hace un momento'
+  if (min < 60) return `hace ${min} min`
+  const h = Math.round(min / 60)
+  return h < 48 ? `hace ${h} h` : `hace ${Math.round(h / 24)} días`
 }

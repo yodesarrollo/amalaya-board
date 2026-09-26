@@ -250,7 +250,7 @@ const NOMBRE_ETAPA = { idea: 'idea', negociacion: 'negociación', proyecto: 'pro
 
 const CAPAS_DEF = { satelite: true, ciudad: false, espacios: true, rutas: true, recorrido: true, calco: false, lamina: false }
 
-export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, edicion = {} }) {
+export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, onNuevo, edicion = {} }) {
   // edicion: { modoEdicion, editandoPuntos, rutaSel, onMoverEspacio(id, pctCentroX, pctCentroY), onAgregarPunto(pctX, pctY) }
   const edRef = useRef(edicion)
   useEffect(() => { edRef.current = edicion }, [edicion])
@@ -483,9 +483,9 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
   function volar(m, duracion) {
     // Se mantiene el acercamiento del 2D (fitBounds con inclinación alejaría
     // demasiado la maqueta): solo se inclina, gira y se arrima un poco.
-    const cam = m.cameraForBounds(bboxDe(geoRef.current), { padding: ENCUADRE }) || {}
+    const cam = m.cameraForBounds(bboxDe(geoRef.current), { padding: ENCUADRE, bearing: -18 }) || {}
     m.easeTo({
-      center: cam.center || m.getCenter(), zoom: (cam.zoom ?? m.getZoom()) + 0.35, pitch: 58, bearing: -18,
+      center: cam.center || m.getCenter(), zoom: cam.zoom ?? m.getZoom(), pitch: 58, bearing: -18,
       duration: duracion, easing: (t) => (t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2),
     })
     setCara(0)
@@ -685,9 +685,23 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
     setInclinado(a)
     m.easeTo({ pitch: a ? 58 : 0, bearing: a ? cara * 90 : 0, duration: 800 })
   }
+  // Chinche #18: encuadra el polígono COMPLETO con margen, siempre igual (al abrir, al tocar ⌖
+  // y al cerrar el 360 o Street View) — ya no un zoom fijo que lo cortaba.
   function centrar() {
-    mapa.current?.easeTo({ center: centroGeo(geo), zoom: 16.4, pitch: inclinado ? 58 : 0, bearing: inclinado ? cara * 90 : 0, duration: 800 })
+    const m = mapa.current
+    if (!m) return
+    const bearing = inclinado ? cara * 90 : 0
+    const cam = m.cameraForBounds(bboxDe(geo), { padding: ENCUADRE, bearing }) || {}
+    m.easeTo({ center: cam.center || centroGeo(geo), zoom: cam.zoom ?? 16.4, pitch: inclinado ? 58 : 0, bearing, duration: reducido ? 0 : 800 })
   }
+  const centrarRef = useRef(centrar)
+  centrarRef.current = centrar
+  const habiaVisor = useRef(false)
+  useEffect(() => {
+    const hay = !!(pop360 || punto)
+    if (habiaVisor.current && !hay) centrarRef.current()
+    habiaVisor.current = hay
+  }, [pop360, punto])
 
   // --- calibración del plano (solo admin) ---------------------------
   useEffect(() => {
@@ -835,6 +849,7 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
             onAbrir?.(e.id)
           }}
           onCerrar={() => setLista(false)}
+          onNuevo={onNuevo ? () => { setLista(false); onNuevo() } : undefined}
         />
       )}
 
@@ -861,7 +876,7 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
           <button onClick={() => girar(1)} title="Girar a la derecha" aria-label="Girar a la derecha">↻</button>
         </div>
         <div className="grupo-ctrl">
-          <button onClick={centrar} title="Centrar en el polígono" aria-label="Centrar"><Crosshair size={14} /></button>
+          <button onClick={centrar} title="Centrar polígono" aria-label="Centrar polígono"><Crosshair size={14} /></button>
           <button onClick={alternarInclinacion} className="ancho">{inclinado ? 'Planta' : 'Maqueta'}</button>
         </div>
       </div>
@@ -1043,9 +1058,13 @@ function escapar(s) {
 }
 
 // Lista y buscador de espacios: panel al costado (en teléfono, hoja de abajo).
-function ListaEspacios({ espacios, busca, setBusca, onElegir, onCerrar }) {
+function ListaEspacios({ espacios, busca, setBusca, onElegir, onCerrar, onNuevo }) {
   const q = busca.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim()
-  const filtrados = espacios.filter((e) => !q || `${e.nombre} ${e.tipo} ${e.estado_desarrollo}`.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().includes(q))
+  const nombreTipo = (e) => NOMBRE_TIPO[String(e.tipo || 'otro').toLowerCase()] || e.tipo || 'Otro'
+  const filtrados = espacios.filter((e) => !q || `${e.nombre} ${e.tipo} ${nombreTipo(e)} ${e.estado_desarrollo}`.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().includes(q))
+  // Chinche #16: sin texto se ven TODOS, agrupados por tipo (color, m² y estado).
+  const grupos = {}
+  for (const e of filtrados) (grupos[nombreTipo(e)] ||= []).push(e)
   return (
     <div className="lista-espacios z-30" role="dialog" aria-label="Espacios">
       <div className="flex items-center gap-2 mb-2">
@@ -1060,19 +1079,35 @@ function ListaEspacios({ espacios, busca, setBusca, onElegir, onCerrar }) {
         <button className="p-1.5 opacity-80 hover:opacity-100" onClick={onCerrar} aria-label="Cerrar lista"><X size={16} /></button>
       </div>
       <ul className="space-y-1 overflow-y-auto max-h-[50vh] sm:max-h-[60vh]">
-        {filtrados.map((e) => (
-          <li key={e.id}>
-            <button className="fila-espacio" onClick={() => onElegir(e)}>
-              <span className="w-2.5 h-2.5 rounded-full shrink-0" style={{ background: COLOR_TIPO[String(e.tipo || 'otro').toLowerCase()] || COLOR_TIPO.otro }} />
-              <span className="flex-1 min-w-0 text-left">
-                <span className="block truncate text-sm">{e.nombre}</span>
-                <span className="block text-[11px] opacity-70">{NOMBRE_TIPO[String(e.tipo).toLowerCase()] || e.tipo} · {e.estado_desarrollo || 'idea'}</span>
-              </span>
-              <span dangerouslySetInnerHTML={{ __html: rayitasHtml(e.estado_desarrollo) }} />
-            </button>
+        {Object.keys(grupos).sort().map((g) => (
+          <li key={g}>
+            <p className="text-[11px] uppercase tracking-wide text-terciario px-2 pt-2 pb-1">{g} · {grupos[g].length}</p>
+            <ul className="space-y-1">
+              {grupos[g].map((e) => (
+                <li key={e.id}>
+                  <button className="fila-espacio" onClick={() => onElegir(e)}>
+                    <span className="w-2.5 h-2.5 rounded-full shrink-0" style={{ background: COLOR_TIPO[String(e.tipo || 'otro').toLowerCase()] || COLOR_TIPO.otro }} />
+                    <span className="flex-1 min-w-0 text-left">
+                      <span className="block truncate text-sm">{e.nombre}</span>
+                      <span className="block text-[11px] opacity-70">
+                        {num(e.m2, 0) > 0 ? `${Math.round(num(e.m2, 0)).toLocaleString('es-MX')} m² · ` : ''}{e.estado_desarrollo || 'idea'}
+                      </span>
+                    </span>
+                    <span dangerouslySetInnerHTML={{ __html: rayitasHtml(e.estado_desarrollo) }} />
+                  </button>
+                </li>
+              ))}
+            </ul>
           </li>
         ))}
-        {filtrados.length === 0 && <li className="text-sm opacity-70 px-2 py-3">Ningún espacio con «{busca}».</li>}
+        {espacios.length === 0 && (
+          <li className="text-sm px-2 py-3 space-y-2">
+            <p>Aún no hay espacios capturados.{onNuevo ? ' Crea el primero:' : ''}</p>
+            {onNuevo && <button className="boton-primario !py-1.5 text-sm" onClick={onNuevo}>+ Espacio</button>}
+            <p className="text-[11px] text-terciario">Los lotes de colores del mapa son el calco del plano «Zona Núcleo», no espacios capturados.</p>
+          </li>
+        )}
+        {espacios.length > 0 && filtrados.length === 0 && <li className="text-sm opacity-70 px-2 py-3">Ningún espacio coincide con «{busca}».</li>}
       </ul>
     </div>
   )
