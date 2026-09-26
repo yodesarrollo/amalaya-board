@@ -7,6 +7,7 @@ import { leerPuntos } from './Rutas.jsx'
 import { puedeCongelarRol } from '../roles.js'
 import { nombreTipo } from '../tipos.js'
 import ImagenDrive from './ImagenDrive.jsx'
+import { confianzaEspacio, nombreNivel } from '../confianza.js'
 import LineaAmalaya from './LineaAmalaya.jsx'
 
 // ============================================================
@@ -272,6 +273,9 @@ export default function Reporte() {
                     </div>
                     <div className="text-right">
                       <div className="cifra text-sm text-marfil">{e.m2 ? metros2(e.m2) : '—'}</div>
+                      {(() => { const c = confianzaEspacio(e); return (
+                        <div className="text-[11px] text-terciario r-confianza">m² {nombreNivel(c.m2)} · posición {nombreNivel(c.posicion)}{c.fuente ? ` · ${c.fuente}` : ''}</div>
+                      ) })()}
                       {construidoDistinto && (
                         <div className="text-xs text-terciario">≈ {metros2(Math.round(m2c))} construidos</div>
                       )}

@@ -3,6 +3,7 @@ import { X, Upload, FileText, Download, Plus, Check, Share2, ChevronLeft, Chevro
 import { usarDatos } from '../datos.jsx'
 import { puedeEditarRol } from '../roles.js'
 import { nombreTipo } from '../tipos.js'
+import { confianzaEspacio, nombreNivel, NIVELES } from '../confianza.js'
 import Factores, { EstadoGuardado } from './Factores.jsx'
 import ImagenDrive from './ImagenDrive.jsx'
 import { GLIFO_TIPO } from './Glifos.jsx'
@@ -101,6 +102,7 @@ export default function FichaEspacio({ espacio, onCerrar, onAnterior, onSiguient
           <div className="text-xs uppercase tracking-wide text-terciario">{nombreTipo(espacio.tipo)}</div>
           <h3 className="font-titulo text-2xl mt-0.5 truncate">{espacio.nombre}</h3>
           {posicion && <div className="text-[11px] text-terciario">{posicion}</div>}
+          <Confianza espacio={espacio} />
         </div>
         {onSiguiente && (
           <button className="text-arena hover:text-marfil p-2 -m-1" onClick={onSiguiente} aria-label="Espacio siguiente" title="Espacio siguiente">
@@ -857,6 +859,20 @@ function DeshacerPropio() {
         </>
       )}
       {aviso && <span className={`text-xs ${/Listo/.test(aviso) ? 'text-salvia' : 'text-ladrillo'}`}>{aviso}</span>}
+    </div>
+  )
+}
+
+// UX-04: confianza del dato, a la vista (no se presenta un aproximado como medido).
+function Confianza({ espacio }) {
+  const c = confianzaEspacio(espacio)
+  const chip = (etq, n) => n && (
+    <span className={`chip-confianza conf-${n}`} title={NIVELES[n]?.nota}>{etq} · {nombreNivel(n)}</span>
+  )
+  return (
+    <div className="flex flex-wrap gap-1.5 mt-1" aria-label="Confianza de los datos">
+      {chip('m²', c.m2)}{chip('Posición', c.posicion)}
+      {c.fuente && <span className="text-[11px] text-terciario self-center">Fuente: {c.fuente}</span>}
     </div>
   )
 }
