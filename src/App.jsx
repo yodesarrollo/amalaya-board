@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, lazy, Suspense } from 'react'
-import { Map as MapIcon, BarChart3, FileText, LifeBuoy, ListChecks } from 'lucide-react'
+import { Map as MapIcon, BarChart3, FileText, LifeBuoy, ListChecks, Box } from 'lucide-react'
 import { usarDatos } from './datos.jsx'
 import Acceso from './componentes/Acceso.jsx'
 import Encabezado from './componentes/Encabezado.jsx'
@@ -70,7 +70,7 @@ function Principal() {
 
   const secciones = [
     ['mapa', 'Mapa', MapIcon],
-    ...(BIBLIOTECA_3D ? [['modelos', 'Modelos 3D', MapIcon]] : []),
+    ...(BIBLIOTECA_3D ? [['modelos', 'Modelos 3D', Box]] : []),
     ...(hayFinanzas ? [['finanzas', 'Finanzas', BarChart3]] : []),
     ['reporte', 'Reporte', FileText],
     ...(puedeEditarRol(sesion?.rol) && Array.isArray(datos?.Metas) ? [['plan', 'Plan', ListChecks]] : []),
