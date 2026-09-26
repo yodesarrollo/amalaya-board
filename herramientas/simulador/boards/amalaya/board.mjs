@@ -202,6 +202,8 @@ export async function guion({ pagina, foto, clic, base }) {
   const sinScroll = await pagina.$eval('.panel-lista', (e) => e.scrollHeight <= e.clientHeight + 1)
   console.log(`${sinScroll ? '✓' : '✗'} panel de Capas cabe sin scroll`)
   await foto('03o-panel-capas', 200)
+  const badge = (await pagina.locator('.panel-pie .badge').textContent().catch(() => '')) || ''
+  console.log(`${/por validar/i.test(badge) ? '✓' : '✗'} UX-04 modelo 3D marcado como «${badge.trim()}» (no como levantamiento)`)
   await pagina.mouse.click(700, 600); await pagina.waitForTimeout(400)
   const cerrado = (await pagina.locator('.panel-mapa').count()) === 0
   console.log(`${cerrado ? '✓' : '✗'} tocar el mapa cierra el panel de Capas`)
@@ -211,6 +213,9 @@ export async function guion({ pagina, foto, clic, base }) {
 
   // Fase 3 · ficha: resumen, siguiente paso, historial, anterior/siguiente
   await foto('11-ficha-resumen', 400)
+  // UX-04: la ficha dice la confianza del dato
+  const chips = await pagina.$$eval('.chip-confianza', (cs) => cs.map((c) => c.textContent.trim()))
+  console.log(`${chips.some((c) => /^Posición · (Medido|Cartografía|Estimado|Por validar)$/.test(c)) && chips.some((c) => /^m² · /.test(c)) ? '✓' : '✗'} UX-04 ficha: ${chips.join(' | ')}`)
   await pagina.locator('#campo-m2').fill('2600'); await pagina.waitForTimeout(1800)
   await clic('[role=tab]:has-text("Historial")'); await foto('11b-ficha-historial', 600)
   const renglones = await pagina.locator('[aria-label="Historial de cambios"] li').count()
@@ -335,6 +340,9 @@ export async function guion({ pagina, foto, clic, base }) {
       // Fase 5 · reporte: índice, desglose por espacio, supuestos, versión congelada, vista previa
       await pagina.locator('#r-por-espacio').scrollIntoViewIfNeeded(); await foto('06a-reporte-por-espacio', 400)
       await pagina.locator('#r-supuestos').scrollIntoViewIfNeeded(); await foto('06b-reporte-supuestos', 400)
+      const confRep = await pagina.$$eval('.r-confianza', (cs) => cs.length)
+      console.log(`${confRep === db.Espacios.length ? '✓' : '✗'} UX-04 reporte: confianza en ${confRep}/${db.Espacios.length} espacios`)
+      await pagina.locator('.r-confianza').first().scrollIntoViewIfNeeded(); await foto('06c-ux04-reporte-confianza', 300)
       await pagina.evaluate(() => window.scrollTo(0, 0))
       pagina.once('dialog', (d) => d.accept())
       await clic('button:has-text("Versiones")'); await clic('button:has-text("Congelar esta versión")'); await pagina.waitForTimeout(1500)

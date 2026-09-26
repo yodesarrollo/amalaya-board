@@ -816,7 +816,7 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
                 ['recorrido', 'Puntos del recorrido 360'],
                 ['satelite', 'Satélite'],
                 ['calco', 'Calco del plano'],
-                ['lamina', 'Lámina «Zona Núcleo»'],
+                ['lamina', 'Lámina «Zona Núcleo» · referencia, sin escala'],
               ].map(([k, titulo]) => (
                 <button key={k} type="button" role="switch" aria-checked={!!capas[k]} className="fila-capa" onClick={() => setCapas({ ...capas, [k]: !capas[k] })}>
                   <span className="sw" data-on={!!capas[k]}><i /></span>
@@ -832,7 +832,7 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
             </div>
             <div className="panel-pie">
               <a className="ctrl-mapa w-full justify-center" href={`${BASE}modelo/serdan-garmendia.html`} target="_blank" rel="noreferrer">
-                <Footprints size={13} /> Modelo 3D de la esquina <em className="badge">borrador</em>
+                <Footprints size={13} /> Modelo 3D de la esquina <em className="badge" title="Volumen conceptual: alturas y norte sin validar">conceptual · por validar</em>
               </a>
               {puedeCalibrar && !calibrando && (<>
                 <p className="panel-titulo">Herramientas · admin</p>
