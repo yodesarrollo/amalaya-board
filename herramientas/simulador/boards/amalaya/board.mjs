@@ -14,6 +14,7 @@ const QUIENES = {
   INVERSOR1: { rol: 'inversionista', nombre: 'Inversionista de prueba' },
 }
 const TABS_INVERSIONISTA = ['Config', 'Espacios', 'Factores', 'Finanzas_Lineas', 'Escenarios', 'Rutas', 'Paradas']
+let caidaRed = false // UX-01: simula que el guardado no llega
 const congeladas = [] // [{fila, foto}] — lo que el servidor real guarda en Drive/Reportes
 // Graba el recorrido completo (la entrada del mapa se revisa en video).
 export const video = true
@@ -104,6 +105,7 @@ export function servidor(accion, b) {
       return c ? { ok: true, datos: c.foto, version: { id: c.fila.id, fecha: c.fila.fecha, nombre: c.fila.nombre, cifras: c.cifras } } : { ok: false, error: 'No se encontró esa versión.' }
     }
     case 'guardar': {
+      if (caidaRed) return { ok: false, error: 'Sin conexión (simulada).' }
       if (b.tab === 'Usuarios') { const veto = vetoUsuarios(quien, b.key, b.patch || {}, false); if (veto) return { ok: false, error: veto } }
       const fila = db[b.tab]?.find((x) => llave(x) === b.key)
       if (!fila) return { ok: false, error: 'No se encontró la fila.' }
@@ -190,6 +192,20 @@ export async function guion({ pagina, foto, clic, base }) {
   console.log(`${renglones > 0 ? '✓' : '✗ SIN RENGLÓN'} historial: ${renglones} renglón(es) tras cambiar los m²`)
   const oficial = db.Historial.filter((h) => h.campo === 'm2')
   console.log(`${oficial.length ? '✓' : '✗'} servidor: Historial anotó ${oficial.map((h) => `${h.usuario} · ${h.tab} ${h.llave} · m2 ${h.antes} → ${h.despues}`).join('; ') || 'nada'}`)
+  // UX-01: con la red caída nada aparece como guardado y el reintento no pierde el valor
+  caidaRed = true
+  await pagina.locator('#campo-m2').fill('2700'); await pagina.waitForTimeout(1800)
+  const pill = (await pagina.locator('.estado-guardado').textContent().catch(() => '')) || ''
+  const valorCampo = await pagina.locator('#campo-m2').inputValue()
+  const enServidor = db.Espacios.find((e) => e.id === 'E-001')?.m2
+  console.log(`${/sin guardar/.test(pill) && valorCampo === '2700' && String(enServidor) !== '2700' ? '✓' : '✗'} UX-01 caída de red: «${pill.trim()}», el campo conserva ${valorCampo}, el servidor sigue en ${enServidor}`)
+  await foto('11d-ux01-sin-guardar', 200)
+  caidaRed = false
+  await clic('button:has-text("No se guardó · Reintentar")'); await pagina.waitForTimeout(1500)
+  const pill2 = (await pagina.locator('.estado-guardado').textContent().catch(() => '')) || ''
+  const ya = db.Espacios.find((e) => e.id === 'E-001')?.m2
+  console.log(`${/Al día/.test(pill2) && String(ya) === '2700' ? '✓' : '✗'} UX-01 reintento: «${pill2.trim()}», servidor = ${ya}`)
+  await foto('11e-ux01-al-dia', 200)
   await clic('button[aria-label="Espacio siguiente"]'); await foto('11c-ficha-siguiente', 600)
   await clic('button[aria-label="Espacio anterior"]'); await pagina.waitForTimeout(300)
   await pagina.keyboard.press('Escape'); await pagina.goto(base); await pagina.waitForTimeout(2500)

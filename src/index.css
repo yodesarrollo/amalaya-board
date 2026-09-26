@@ -489,3 +489,10 @@ html {
 .cartela-ley .ley-tipo b { font-weight: 700; opacity: .7; }
 .cartela-ley .ley-tipo.apagado { opacity: .38; text-decoration: line-through; }
 .cartela-ley .ley-tipo:focus-visible { outline: 2px solid #FFB84D; outline-offset: 2px; border-radius: 3px; }
+
+/* UX-01 · estado global de guardado */
+.estado-guardado { font: 500 11.5px/1 'Montserrat', sans-serif; padding: 5px 10px; border-radius: 999px; white-space: nowrap; border: 1px solid transparent; }
+.est-ok { color: #9FBF8F; border-color: rgba(159,191,143,.35); }
+.est-curso { color: #C9A45C; border-color: rgba(201,164,92,.45); }
+.est-copia { color: #B7A890; border-color: rgba(183,168,144,.4); }
+.est-error { color: #E58B6B; border-color: rgba(229,139,107,.6); background: rgba(229,139,107,.08); cursor: pointer; }

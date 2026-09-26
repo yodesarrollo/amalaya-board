@@ -270,6 +270,8 @@ export function DatosProvider({ children }) {
     })
 
     parchesPendientes.current[llave] = { ...(parchesPendientes.current[llave] || {}), ...parche }
+    // UX-01: desde que se teclea hasta el {ok:true} el cambio cuenta como pendiente.
+    setGuardados((g) => ({ ...g, [llave]: 'pendiente' }))
     if (temporizadores.current[llave]) clearTimeout(temporizadores.current[llave])
     temporizadores.current[llave] = setTimeout(() => enviarParche(tab, key), DEBOUNCE_MS)
   }, [modo]) // eslint-disable-line react-hooks/exhaustive-deps
@@ -315,6 +317,23 @@ export function DatosProvider({ children }) {
   }, [])
 
   const reintentarGuardado = useCallback((tab, key) => enviarParche(tab, key), [enviarParche])
+
+  // UX-01: reintentar de un golpe todo lo que quedó sin guardar.
+  const reintentarTodo = useCallback(() => {
+    for (const llave of Object.keys(parchesPendientes.current)) {
+      if (!Object.keys(parchesPendientes.current[llave] || {}).length) continue
+      const i = llave.indexOf('|'); enviarParche(llave.slice(0, i), llave.slice(i + 1))
+    }
+  }, [enviarParche])
+
+  // UX-01: no dejar cerrar la pestaña con cambios sin guardar.
+  useEffect(() => {
+    const hay = Object.values(guardados).some((e) => e !== 'ok')
+    if (!hay) return
+    const avisar = (ev) => { ev.preventDefault(); ev.returnValue = '' }
+    window.addEventListener('beforeunload', avisar)
+    return () => window.removeEventListener('beforeunload', avisar)
+  }, [guardados])
 
   // Crear una fila nueva: acción directa, sin reintento automático
   // (crear no es idempotente). Devuelve la fila con su id del servidor.
@@ -387,7 +406,7 @@ export function DatosProvider({ children }) {
 
   const valor = {
     sesion, arrancando, datos, modo, congelada,
-    sincronizando, errorSync, ultimaSync, copiaTs, guardados,
+    sincronizando, errorSync, ultimaSync, copiaTs, guardados, reintentarTodo,
     entrar, entrarConGoogle, salir, actualizar, verDemo,
     editarFila, crearFila, borrarFila, reintentarGuardado,
     subirArchivo, verArchivo, apiAccion,
