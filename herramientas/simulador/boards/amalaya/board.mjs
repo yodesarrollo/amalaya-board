@@ -170,6 +170,14 @@ export async function guion({ pagina, foto, clic, base }) {
   console.log(`${despuesPins === antesPins - 2 ? '✓' : '✗'} apagar «Estacionamiento» oculta sus 2 espacios (${antesPins} → ${despuesPins})`)
   await foto('03k-leyenda-apagada', 300)
   await clic('.cartela-ley .ley-tipo:has-text("Estacionamiento")'); await pagina.waitForTimeout(300)
+  // Chinche #15: panel de Capas compacto, sin scroll, y se cierra tocando el mapa
+  await clic('button.ctrl-mapa:has-text("Capas")'); await pagina.waitForTimeout(300)
+  const sinScroll = await pagina.$eval('.panel-lista', (e) => e.scrollHeight <= e.clientHeight + 1)
+  console.log(`${sinScroll ? '✓' : '✗'} panel de Capas cabe sin scroll`)
+  await foto('03o-panel-capas', 200)
+  await pagina.mouse.click(700, 600); await pagina.waitForTimeout(400)
+  const cerrado = (await pagina.locator('.panel-mapa').count()) === 0
+  console.log(`${cerrado ? '✓' : '✗'} tocar el mapa cierra el panel de Capas`)
   await clic('button[title="Lista y buscador de espacios"]'); await foto('03l-lista-espacios', 500)
   await pagina.locator('.lista-espacios input').fill('foro'); await foto('03m-buscar-foro', 400)
   await clic('.lista-espacios .fila-espacio'); await foto('03n-ficha-desde-lista', 1500)

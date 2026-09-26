@@ -425,6 +425,7 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
       m.on('mouseleave', 'recorrido-toque', () => { m.getCanvas().style.cursor = '' })
 
       m.on('click', (ev) => {
+        setPanel(false) // chinche #15: tocar el mapa cierra el panel de Capas
         const ed = edRef.current
         if (ed.editandoPuntos && ed.rutaSel && ed.onAgregarPunto) { const [px, py] = geoAPct(geoRef.current, ev.lngLat.lng, ev.lngLat.lat); ed.onAgregarPunto(px, py); return }
         if (!monitoActivo.current) return
@@ -786,6 +787,7 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
         </button>
         {panel && (
           <div className="panel-mapa pointer-events-auto">
+            <p className="panel-titulo">Fondo del mapa</p>
             <div className="seg">
               {[['lamina', 'Lámina'], ['noche', 'Noche']].map(([k, n]) => (
                 <button key={k} className={tema === k ? 'on' : ''} onClick={() => setTema(k)}>{n}</button>
@@ -808,7 +810,8 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
               ))}
               {capas.calco && (
                 <div className="px-1 pt-1">
-                  <input type="range" min="0.1" max="1" step="0.05" value={opacidadCalco} onChange={(e) => setOpacidadCalco(parseFloat(e.target.value))} className="w-full accent-[#C9A45C]" aria-label="Opacidad del calco" />
+                  <label className="panel-nota" htmlFor="op-calco">Transparencia del calco · {Math.round((1 - opacidadCalco) * 100)}%</label>
+                  <input id="op-calco" type="range" min="0.1" max="1" step="0.05" value={opacidadCalco} onChange={(e) => setOpacidadCalco(parseFloat(e.target.value))} className="w-full accent-[#C9A45C]" aria-label="Opacidad del calco" />
                 </div>
               )}
             </div>
@@ -816,9 +819,10 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
               <a className="ctrl-mapa w-full justify-center" href={`${BASE}modelo/serdan-garmendia.html`} target="_blank" rel="noreferrer">
                 <Footprints size={13} /> Modelo 3D de la esquina <em className="badge">borrador</em>
               </a>
-              {puedeCalibrar && !calibrando && (
+              {puedeCalibrar && !calibrando && (<>
+                <p className="panel-titulo">Herramientas · admin</p>
                 <button className="ctrl-mapa w-full justify-center" onClick={() => { setCalibrando(true); setGeoTemp(null) }}>Calibrar plano</button>
-              )}
+              </>)}
             </div>
           </div>
         )}
