@@ -538,7 +538,16 @@ function enmascarar(codigo) {
 // Contador de versión DURABLE (PropertiesService, no CacheService: el caché
 // se desaloja sin aviso y un contador reiniciado daría {sinCambios} falsos).
 function versionActual() {
-  return PropertiesService.getScriptProperties().getProperty('V') || '0';
+  const props = PropertiesService.getScriptProperties();
+  const v = props.getProperty('V') || '0';
+  // Una edición hecha directo en el Sheet no pasa por subirVersion(): se suma
+  // la hora de la última modificación del archivo para que el tablero la vea
+  // sola, sin «Salir y volver a entrar».
+  try {
+    const id = props.getProperty('SHEET_ID');
+    if (id) return v + '.' + DriveApp.getFileById(id).getLastUpdated().getTime();
+  } catch (e) { /* sin Drive: se queda el contador */ }
+  return v;
 }
 function subirVersion() {
   const props = PropertiesService.getScriptProperties();
