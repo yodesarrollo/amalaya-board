@@ -492,6 +492,26 @@ export async function guion({ pagina, foto, clic, base }) {
   await pagina.goto(base + 'recorrido/?embed=1'); await pagina.waitForTimeout(2500)
   const dentro = await pagina.locator('button[aria-label="Pendientes de cambio"]').count()
   console.log(`${dentro === 0 ? '✓' : '✗'} dentro del mapa (embed) no sale una segunda pastilla`)
+
+  // UX-07: sin WebGL y sin servicio de mapas se encuentra un espacio, se lee su ficha y se baja su documento
+  {
+    const p2 = await pagina.context().newPage()
+    await p2.addInitScript(() => {
+      const orig = HTMLCanvasElement.prototype.getContext
+      HTMLCanvasElement.prototype.getContext = function (t, ...r) { return /webgl/i.test(t) ? null : orig.call(this, t, ...r) }
+    })
+    await p2.route(/openfreemap|arcgisonline/, (r) => r.abort())
+    await p2.goto(base); await p2.waitForTimeout(3000)
+    const aviso = (await p2.locator('.mapa-plan-b p').first().textContent().catch(() => '')) || ''
+    await p2.locator('.lista-plan-b input').fill('foro'); await p2.waitForTimeout(300)
+    await p2.locator('.lista-plan-b .fila-espacio').first().click(); await p2.waitForTimeout(900)
+    const ficha = await p2.locator('aside[role=dialog][aria-modal=true]').getAttribute('aria-label').catch(() => '')
+    await p2.locator('[role=tab]:has-text("Documentos")').click().catch(() => {}); await p2.waitForTimeout(600)
+    const docs = await p2.locator('aside[role=dialog] button:has(svg.lucide-download), aside[role=dialog] a[download]').count()
+    await p2.screenshot({ path: new URL('../../capturas/amalaya/16-ux07-sin-3d.png', import.meta.url).pathname })
+    console.log(`${/no cargó/.test(aviso) && /Ficha/.test(ficha || '') && docs > 0 ? '✓' : '✗'} UX-07 sin 3D: «${aviso.trim().slice(0, 70)}» → ${ficha} · ${docs} documento(s) para descargar`)
+    await p2.close()
+  }
 }
 
 // GIFs cortos de la Ayuda (npm run gifs): mover un espacio, trazar una

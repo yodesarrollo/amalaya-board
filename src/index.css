@@ -515,3 +515,8 @@ html {
 
 /* UX-06 · el foco nunca queda escondido bajo el encabezado pegajoso */
 html { scroll-padding-top: 84px; }
+
+/* UX-07 · plan B sin 3D */
+.mapa-plan-b { background: #1A1512; }
+.lista-plan-b .lista-espacios { position: static; width: 100%; max-width: none; }
+.lista-plan-b .lista-espacios ul { max-height: none; }

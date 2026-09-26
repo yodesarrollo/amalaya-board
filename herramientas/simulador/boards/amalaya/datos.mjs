@@ -47,5 +47,5 @@ export const datos={
           {id:'P-002',ruta_id:'R-002',nombre:'Serdán y Garmendia',foto_actual_id:'',foto_vision_id:'',elementos:JSON.stringify([{texto:'Bocinas con música',estado:'pendiente'},{texto:'Murales',estado:'gestionado'}]),notas:'',orden:'1',pos_x:'30',pos_y:'26'}],
  Tareas:[{id:'T-001',espacio_id:'E-001',texto:'Pedir precios por m² a propietarios',responsable:'Alejandro',fecha:'2026-09-30',hecho:'no'}],
  Conocimientos:[{id:'C-001',espacio_id:'E-001',texto:'Trámite INAH-02-002 modalidad A',estado:'nos falta',fuente:'presentación'}],
- Archivos:[{id:'A-001',espacio_id:'E-001',tipo:'cara',nombre:'Carin León',file_id:'local:carin-leon.jpg',privado:'no',fecha:'2026-09-01'}]
+ Archivos:[{id:'A-001',espacio_id:'E-001',tipo:'cara',nombre:'Carin León',file_id:'local:carin-leon.jpg',privado:'no',fecha:'2026-09-01'},{id:'A-002',espacio_id:'E-001',tipo:'documento',nombre:'Documento de prueba.pdf',file_id:'SIM-DOC-1',privado:'si',fecha:'2026-09-02'}]
 }
