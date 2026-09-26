@@ -5,6 +5,7 @@ import { usarDatos } from '../datos.jsx'
 import { fechaHora } from '../formato.js'
 import { NOMBRE_ROL } from '../roles.js'
 import Usuarios from './Usuarios.jsx'
+import { usarDialogo } from '../usarDialogo.js'
 
 // Encabezado sobrio: sello, nombre, estado de sincronización,
 // Actualizar y salir. La pastilla DEMOSTRACIÓN o "copia local"
@@ -14,6 +15,7 @@ export default function Encabezado() {
   // El engrane ⚙️ (solo admin) abre los accesos como ventana lateral.
   const [accesos, setAccesos] = useState(false)
   const esAdmin = modo !== 'demo' && sesion?.rol === 'admin'
+  const refAccesos = usarDialogo(accesos, () => setAccesos(false))
 
   return (
     <header className="no-imprimir sticky top-0 z-40 bg-noche/95 backdrop-blur border-b border-linea">
@@ -85,6 +87,9 @@ export default function Encabezado() {
       {accesos && createPortal(
         <div className="fixed inset-0 z-50 bg-noche/70 flex justify-end" onClick={() => setAccesos(false)}>
           <aside
+            ref={refAccesos}
+            role="dialog"
+            aria-modal="true"
             className="h-full w-full max-w-xl bg-noche border-l border-linea overflow-y-auto"
             onClick={(e) => e.stopPropagation()}
             aria-label="Accesos"

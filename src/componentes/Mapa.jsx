@@ -10,6 +10,7 @@ import Peticiones from './Peticiones.jsx'
 import { RutasCapa, PuntosEdicion, BarraRutas, Recorrido, leerPuntos, guardarRuta } from './Rutas.jsx'
 import { GLIFO_TIPO, NOMBRE_TIPO } from './Glifos.jsx'
 import Mapa3D from './Mapa3D.jsx'
+import { usarDialogo } from '../usarDialogo.js'
 
 // ============================================================
 // Mapa interactivo del polígono — la pantalla principal.
@@ -212,6 +213,7 @@ export default function Mapa() {
 
   // --- la cámara (una sola, para espacios y recorridos) ------
   const espacioAbierto = espacios.find((e) => e.id === abierto)
+  const refFicha = usarDialogo(!!espacioAbierto, () => setAbierto(null), 'button[title="Lista y buscador de espacios"]')
   const rutaRecorrida = recorrido ? rutas.find((r) => r.id === recorrido.rutaId) : null
   const paradasDeRuta = rutaRecorrida
     ? paradas
@@ -558,6 +560,10 @@ export default function Mapa() {
 
       {/* Ficha del espacio */}
       <aside
+        ref={refFicha}
+        role="dialog"
+        aria-modal={espacioAbierto ? 'true' : undefined}
+        aria-label={espacioAbierto ? `Ficha: ${espacioAbierto.nombre}` : undefined}
         className={`fixed z-50 bg-elevada border-linea shadow-2xl
           inset-x-0 bottom-0 rounded-t-2xl border-t max-h-[85dvh]
           sm:inset-y-0 sm:right-0 sm:left-auto sm:w-[28rem] sm:rounded-none sm:border-t-0 sm:border-l sm:max-h-none
@@ -619,9 +625,10 @@ function FormaNuevoEspacio({ onCrear, onCerrar }) {
     }
   }
 
+  const refNuevo = usarDialogo(true, onCerrar)
   return (
     <div className="fixed inset-0 z-50 bg-noche/70 flex items-end sm:items-center justify-center p-4" onClick={onCerrar}>
-      <form className="tarjeta bg-elevada p-6 w-full max-w-sm" onClick={(e) => e.stopPropagation()} onSubmit={enviar}>
+      <form ref={refNuevo} role="dialog" aria-modal="true" aria-label="Nuevo espacio" className="tarjeta bg-elevada p-6 w-full max-w-sm" onClick={(e) => e.stopPropagation()} onSubmit={enviar}>
         <h3 className="font-titulo text-xl">Nuevo espacio</h3>
         <p className="text-terciario text-sm mt-1">
           Se coloca al centro del mapa; después lo arrastras a su lugar.
