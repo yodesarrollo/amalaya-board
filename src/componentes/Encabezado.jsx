@@ -10,7 +10,7 @@ import Usuarios from './Usuarios.jsx'
 // Actualizar y salir. La pastilla DEMOSTRACIÓN o "copia local"
 // aparece junto al logo — discreta, nunca un banner.
 export default function Encabezado() {
-  const { sesion, modo, sincronizando, ultimaSync, errorSync, copiaTs, actualizar, salir } = usarDatos()
+  const { sesion, modo, sincronizando, ultimaSync, errorSync, copiaTs, actualizar, salir, guardados, reintentarTodo } = usarDatos()
   // El engrane ⚙️ (solo admin) abre los accesos como ventana lateral.
   const [accesos, setAccesos] = useState(false)
   const esAdmin = modo !== 'demo' && sesion?.rol === 'admin'
@@ -36,6 +36,8 @@ export default function Encabezado() {
         </div>
 
         <div className="flex-1" />
+
+        {modo !== 'demo' && <EstadoGuardado guardados={guardados} ultimaSync={ultimaSync} modo={modo} onReintentar={reintentarTodo} />}
 
         {modo !== 'demo' && (
           <button
@@ -110,4 +112,26 @@ function haceCuanto(ts) {
   if (min < 60) return `hace ${min} min`
   const h = Math.round(min / 60)
   return h < 48 ? `hace ${h} h` : `hace ${Math.round(h / 24)} días`
+}
+
+// UX-01: estado global de guardado, siempre a la vista (no solo en tooltip).
+function EstadoGuardado({ guardados = {}, ultimaSync, modo, onReintentar }) {
+  const v = Object.values(guardados)
+  const errores = v.filter((e) => e === 'error').length
+  const enCurso = v.filter((e) => e === 'guardando' || e === 'pendiente').length
+  const plural = (n) => (n === 1 ? '1 cambio' : `${n} cambios`)
+  if (errores) {
+    return (
+      <button type="button" onClick={onReintentar} className="estado-guardado est-error" role="status" aria-live="polite" title="No se guardó. Tus valores siguen aquí; toca para reintentar.">
+        {plural(errores)} sin guardar · Reintentar
+      </button>
+    )
+  }
+  if (enCurso) return <span className="estado-guardado est-curso" role="status" aria-live="polite">Guardando {plural(enCurso)}…</span>
+  if (modo === 'copia') return <span className="estado-guardado est-copia" role="status">Copia local</span>
+  return (
+    <span className="estado-guardado est-ok" role="status" aria-live="polite">
+      Al día{ultimaSync ? ` · ${new Date(ultimaSync).toLocaleTimeString('es-MX', { hour: '2-digit', minute: '2-digit' })}` : ''}
+    </span>
+  )
 }

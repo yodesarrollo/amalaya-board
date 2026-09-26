@@ -24,7 +24,7 @@ function EstadoGuardado({ tab, id }) {
   const { guardados, reintentarGuardado } = usarDatos()
   const estado = guardados[`${tab}|${id}`]
   if (!estado) return null
-  if (estado === 'guardando') return <span className="text-terciario text-xs">Guardando…</span>
+  if (estado === 'guardando' || estado === 'pendiente') return <span className="text-terciario text-xs">Guardando…</span>
   if (estado === 'ok') return <span className="text-salvia text-xs">Guardado</span>
   return (
     <button className="text-ladrillo text-xs underline" onClick={() => reintentarGuardado(tab, id)}>

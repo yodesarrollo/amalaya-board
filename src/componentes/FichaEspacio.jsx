@@ -3,7 +3,7 @@ import { X, Upload, FileText, Download, Plus, Check, Share2, ChevronLeft, Chevro
 import { usarDatos } from '../datos.jsx'
 import { puedeEditarRol } from '../roles.js'
 import { nombreTipo } from '../tipos.js'
-import Factores from './Factores.jsx'
+import Factores, { EstadoGuardado } from './Factores.jsx'
 import ImagenDrive from './ImagenDrive.jsx'
 import { GLIFO_TIPO } from './Glifos.jsx'
 import { m2Construidos, resumenEspacio } from '../calc.js'
@@ -135,6 +135,7 @@ export default function FichaEspacio({ espacio, onCerrar, onAnterior, onSiguient
             disabled={!editable}
             placeholder="—"
           />
+          <span className="block min-h-[1rem] mt-0.5"><EstadoGuardado tab="Espacios" id={espacio.id} /></span>
         </label>
         <label className="block">
           <span className="text-xs text-arena">Estado</span>
