@@ -10,6 +10,7 @@ import { NOMBRE_TIPO } from './Glifos.jsx'
 import { rayitasHtml, nivelAvance, ETAPAS_DESARROLLO } from '../avance.js'
 import { COLOR_TIPO, TIPOS, claveTipo } from '../tipos.js'
 import { m2Construidos } from '../calc.js'
+import { ZONAS, MODULOS, zonasDeEspacio, centroDeZonas, filasModelos } from '../territorio.js'
 
 // ============================================================
 // Mapa 3D — el corazón de Amalaya sobre la ciudad real.
@@ -95,6 +96,7 @@ export function geoAPct(geo, lng, lat) {
 }
 
 // Caja que envuelve las 4 esquinas del plano, para encuadrar siempre el polígono.
+const BBOX_LAMINA = (() => { const p = Object.values(ZONAS).flatMap((z) => z.anillo); const xs = p.map((q) => q[0]), ys = p.map((q) => q[1]); return [[Math.min(...xs), Math.min(...ys)], [Math.max(...xs), Math.max(...ys)]] })()
 const ENCUADRE = { top: 70, bottom: 96, left: 120, right: 120 }
 export function bboxDe(geo) {
   const xs = geo.map((p) => p[0]); const ys = geo.map((p) => p[1])
@@ -116,7 +118,23 @@ function alturaEspacio(e, factores) {
 function geojsonEspacios(espacios, factores, geo) {
   return {
     type: 'FeatureCollection',
-    features: espacios.map((e) => {
+    features: espacios.flatMap((e) => {
+      const zonas = zonasDeEspacio(e)
+      const tipoZ = claveTipo(e.tipo)
+      if (zonas.length) {
+        // La lámina puesta en su sitio: cada zona es su contorno real. Donde hay
+        // modelo 3D, el volumen es solo una plataforma baja y el GLB va encima.
+        return zonas.map((z) => ({
+          type: 'Feature',
+          properties: {
+            id: e.id, nombre: e.nombre, tipo: tipoZ, zona: z,
+            color: COLOR_TIPO[tipoZ] || COLOR_TIPO.otro,
+            altura: MODULOS.some((mo) => mo.zona === z) ? 0.6 : alturaEspacio(e, factores),
+            techo: COLOR_TIPO[tipoZ] || COLOR_TIPO.otro,
+          },
+          geometry: { type: 'Polygon', coordinates: [ZONAS[z].anillo] },
+        }))
+      }
       const x = num(e.pos_x, 40), y = num(e.pos_y, 40)
       const w = Math.max(num(e.ancho, 18), 3), h = Math.max(num(e.alto, 12), 3)
       const anillo = [[x, y], [x + w, y], [x + w, y + h], [x, y + h], [x, y]].map(([px, py]) => pctAGeo(geo, px, py))
@@ -237,7 +255,7 @@ function escalaDe(m) {
 }
 const NOMBRE_ETAPA = { idea: 'idea', negociacion: 'negociación', proyecto: 'proyecto', obra: 'obra', operando: 'operando' }
 
-const CAPAS_DEF = { satelite: true, ciudad: false, espacios: true, rutas: true, recorrido: true, calco: false, lamina: false }
+const CAPAS_DEF = { satelite: true, ciudad: false, modelos: true, espacios: true, rutas: true, recorrido: true, calco: false, lamina: false }
 
 export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, onNuevo, edicion = {} }) {
   // edicion: { modoEdicion, editandoPuntos, rutaSel, onMoverEspacio(id, pctCentroX, pctCentroY), onAgregarPunto(pctX, pctY) }
@@ -292,6 +310,8 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
   const [lista, setLista] = useState(false)
   const [busca, setBusca] = useState('')
   const [capas, setCapas] = useState(CAPAS_DEF)
+  const [cartelaAbierta, setCartelaAbierta] = useState(() => { try { return localStorage.getItem('amalaya_cartela') === '1' } catch { return false } })
+  const [modelosListos, setModelosListos] = useState(false)
   // Leyenda clicable (chinche #17): tipos apagados y cuántos hay de cada uno.
   const [tiposOcultos, setTiposOcultos] = useState([])
   const conteoTipos = useMemo(() => {
@@ -404,6 +424,10 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
           'fill-extrusion-vertical-gradient': true,
         },
       })
+      // Contexto de la lámina que no es un espacio del proyecto (Plaza Hidalgo, conjunto al fondo)
+      m.addSource('contexto', { type: 'geojson', data: { type: 'FeatureCollection', features: Object.entries(ZONAS).filter(([, z]) => !z.espacio).map(([k, z]) => ({ type: 'Feature', properties: { zona: k, nombre: z.nombre, color: z.color }, geometry: { type: 'Polygon', coordinates: [z.anillo] } })) } })
+      m.addLayer({ id: 'contexto-piso', type: 'fill', source: 'contexto', paint: { 'fill-color': ['get', 'color'], 'fill-opacity': 0.35 } })
+      m.addLayer({ id: 'contexto-borde', type: 'line', source: 'contexto', paint: { 'line-color': ['get', 'color'], 'line-width': 1.2, 'line-dasharray': [2, 2] } })
       m.addLayer({ id: 'espacios-borde', type: 'line', source: 'espacios', layout: { 'line-join': 'round' }, paint: { 'line-color': '#1F1F1F', 'line-width': ['interpolate', ['exponential', 1.6], ['zoom'], 14, 0.8, 16, 1.6, 18.5, 2.6], 'line-opacity': 0.9 } })
 
       // Rutas peatonales
@@ -471,6 +495,18 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
       m.setPaintProperty('espacios-3d', 'fill-extrusion-opacity-transition', { duration: 900, delay: 0 })
       m.setPaintProperty('recorrido-puntos', 'circle-opacity-transition', { duration: 600, delay: 0 })
       m.setPaintProperty('recorrido-puntos', 'circle-stroke-opacity-transition', { duration: 600, delay: 0 })
+      // Los 8 volúmenes de la lámina, en su sitio (three.js se carga aparte).
+      window.__amalayaModelos = 0
+      import('../CapaModelos3D.js').then(({ crearCapaModelos3D }) => {
+        if (mapa.current !== m) return
+        try {
+          m.addLayer(crearCapaModelos3D({
+            mercator: maplibregl.MercatorCoordinate, filas: filasModelos(BASE),
+            onEstado: (e) => { if (e.estado === 'error') console.warn('modelo 3D', e.espacio_id, e.error); else window.__amalayaModelos = (window.__amalayaModelos || 0) + 1 },
+          }))
+          setModelosListos(true)
+        } catch (err) { console.warn('modelos 3D', err) }
+      }).catch((err) => console.warn('modelos 3D', err))
       setListo(true)
       // Nace en 2D: vista cenital del polígono sobre satélite.
       m.fitBounds(bboxDe(geoSheet), { padding: ENCUADRE, pitch: 0, bearing: 0, duration: 0 })
@@ -493,9 +529,10 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
   function volar(m, duracion) {
     // Se mantiene el acercamiento del 2D (fitBounds con inclinación alejaría
     // demasiado la maqueta): solo se inclina, gira y se arrima un poco.
-    const cam = m.cameraForBounds(bboxDe(geoRef.current), { padding: ENCUADRE, bearing: -18 }) || {}
+    // Encuadre = la lámina en su sitio (zonas Z01–Z10), no todo el plano.
+    const cam = m.cameraForBounds(BBOX_LAMINA, { padding: { top: 90, bottom: 60, left: 60, right: 60 }, bearing: -18 }) || {}
     m.easeTo({
-      center: cam.center || m.getCenter(), zoom: cam.zoom ?? m.getZoom(), pitch: 58, bearing: -18,
+      center: cam.center || m.getCenter(), zoom: (cam.zoom ?? m.getZoom()) + 0.55, pitch: 55, bearing: -18,
       duration: duracion, easing: (t) => (t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2),
     })
     setCara(0)
@@ -560,14 +597,19 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
     marcadores.current = espacios.map((e) => {
       const x = num(e.pos_x, 40) + Math.max(num(e.ancho, 18), 3) / 2
       const y = num(e.pos_y, 40) + Math.max(num(e.alto, 12), 3) / 2
+      const zonasE = zonasDeEspacio(e)
+      const fijo = zonasE.length > 0 // ubicado por la lámina: no se arrastra
+      const lugar = fijo ? centroDeZonas(zonasE) : pctAGeo(geo, x, y)
       const el = document.createElement('button')
       const tipo = NOMBRE_TIPO[String(e.tipo).toLowerCase()] || ''
       el.className = 'pin3d'
+      el.style.setProperty('--c', COLOR_TIPO[claveTipo(e.tipo)] || COLOR_TIPO.otro)
       el.innerHTML = `<span class="pin3d-nombre">${escapar(e.nombre || '')}</span>${tipo ? `<span class="pin3d-tipo">${escapar(tipo)}</span>` : ''}${rayitasHtml(e.estado_desarrollo)}`
       el.addEventListener('click', (ev) => { ev.stopPropagation(); if (!edicion.modoEdicion) onAbrir?.(e.id) })
-      if (edicion.modoEdicion) el.classList.add('pin3d-editable')
-      const mk = new maplibregl.Marker({ element: el, anchor: 'bottom', offset: [0, -6], draggable: !!edicion.modoEdicion }).setLngLat(pctAGeo(geo, x, y)).addTo(m)
-      if (edicion.modoEdicion) {
+      if (edicion.modoEdicion && !fijo) el.classList.add('pin3d-editable')
+      if (fijo) el.title = 'Ubicado según la lámina «Zona Núcleo» (hipótesis por validar)'
+      const mk = new maplibregl.Marker({ element: el, anchor: 'bottom', offset: [0, -6], draggable: !!edicion.modoEdicion && !fijo }).setLngLat(lugar).addTo(m)
+      if (edicion.modoEdicion && !fijo) {
         // «dragend» de MapLibre no siempre llega con un botón como marcador;
         // al soltar se lee la posición y solo se propone si de verdad cambió.
         let ultimo = mk.getLngLat()
@@ -677,6 +719,7 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
     const vis = (id, on) => m.getLayer(id) && m.setLayoutProperty(id, 'visibility', on ? 'visible' : 'none')
     // La entrada por capas va encendiendo lo que el usuario tiene prendido.
     vis('satelite', capas.satelite)
+    vis('amalaya-modelos-glb', capas.modelos)
     vis('ciudad-3d', capas.ciudad && etapa >= 1); vis('ciudad-borde', capas.ciudad && etapa >= 1)
     vis('espacios-3d', capas.espacios); vis('espacios-borde', capas.espacios && etapa >= 1)
     if (m.getLayer('espacios-3d')) m.setPaintProperty('espacios-3d', 'fill-extrusion-opacity', etapa >= 1 ? TEMAS[tema].espacioOp : 0)
@@ -695,7 +738,7 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
       mk.getElement().style.display = capas.espacios && etapa >= 4 && !oculto ? '' : 'none'
     })
     if (m.getLayer('calco')) m.setPaintProperty('calco', 'raster-opacity', calibrando ? 0.7 : opacidadCalco)
-  }, [listo, capas, opacidadCalco, calibrando, etapa, tema, espacios, tiposOcultos])
+  }, [listo, capas, opacidadCalco, calibrando, etapa, tema, espacios, tiposOcultos, modelosListos])
 
   // --- inclinación -------------------------------------------------
   // Una sola maqueta, cuatro caras: el mapa gira 90° por clic y se mira en
@@ -805,7 +848,7 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
 
       {/* Guía de primera vez */}
       {guia >= 0 && (
-        <div className="absolute inset-x-0 top-16 z-30 flex justify-center px-4 pointer-events-none">
+        <div className="absolute inset-x-0 bottom-6 z-30 flex justify-center px-4 pointer-events-none">
           <div className="globo-guia pointer-events-auto" role="dialog" aria-label="Guía del mapa">
             <p className="text-sm leading-relaxed">{GUIA[guia]}</p>
             <div className="flex items-center gap-2 mt-3">
@@ -842,6 +885,7 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
             </div>
             <div className="panel-lista">
               {[
+                ['modelos', 'Volúmenes de la lámina (3D)'],
                 ['espacios', 'Espacios de Amalaya'],
                 ['ciudad', 'Edificios de la ciudad'],
                 ['rutas', 'Rutas peatonales'],
@@ -936,11 +980,12 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
 
       {/* ── Carril inferior izquierdo: cartela técnica (cede el sitio al panel) ── */}
       {!panel && (
-        <div className="absolute left-4 bottom-12 z-10 cartela-mapa" aria-label="Cartela del plano">
-          <div className="cartela-cab">
-            <span className="cartela-tit">Amalaya</span>
-            <span className="cartela-sub">Polígono de actuación concertada · Hermosillo</span>
-          </div>
+        <div className={`absolute left-4 bottom-12 z-10 cartela-mapa ${cartelaAbierta ? '' : 'plegada'}`} aria-label="Cartela del plano">
+          <button type="button" className="cartela-cab" aria-expanded={cartelaAbierta} onClick={() => { setCartelaAbierta(!cartelaAbierta); try { localStorage.setItem('amalaya_cartela', cartelaAbierta ? '0' : '1') } catch { /* sin almacenamiento */ } }}>
+            <span className="cartela-tit">Amalaya <span className="cartela-flecha">{cartelaAbierta ? '▾' : '▸'}</span></span>
+            {cartelaAbierta && <span className="cartela-sub">Polígono de actuación concertada · Hermosillo</span>}
+          </button>
+          {cartelaAbierta && <>
           <div className="cartela-cifras">
             <span><b>{Math.round(cartela.ancho)} × {Math.round(cartela.fondo)} m</b>plano</span>
             <span><b>{cartela.ha.toLocaleString('es-MX', { maximumFractionDigits: 1 })} ha</b>superficie</span>
@@ -955,6 +1000,7 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
               ))}
             </span>
           </div>
+          </>}
           <div className="cartela-ley" aria-label="Leyenda: toca un tipo para prenderlo o apagarlo">
             {TIPOS.filter((t) => conteoTipos[t.clave]).map((t) => (
               <button
