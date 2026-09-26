@@ -122,6 +122,8 @@ export default function FichaEspacio({ espacio, onCerrar, onAnterior, onSiguient
 
       <ResumenArriba espacio={espacio} />
 
+      {editable && <DeshacerPropio />}
+
       {/* Datos base editables (los m² alimentan el valor por acción) */}
       <div className="grid grid-cols-2 gap-2 mt-4">
         <label className="block">
@@ -831,5 +833,30 @@ function Historial({ espacio }) {
         </li>
       ))}
     </ul>
+  )
+}
+
+// UX-03: deshacer el último cambio propio con resumen; nunca pisa uno ajeno.
+function DeshacerPropio() {
+  const { ultimoPropio, deshacer } = usarDatos()
+  const [aviso, setAviso] = useState(null)
+  const [andando, setAndando] = useState(false)
+  if (!ultimoPropio && !aviso) return null
+  const resumen = ultimoPropio
+    ? Object.keys(ultimoPropio.despues).map((c) => `${c === 'm2' ? 'm²' : c}: ${ultimoPropio.antes[c] || '—'} → ${ultimoPropio.despues[c] || '—'}`).join(' · ')
+    : ''
+  return (
+    <div className="deshacer-propio mt-3" role="status" aria-live="polite">
+      {ultimoPropio && (
+        <>
+          <span className="text-xs text-arena">Tu último cambio · {ultimoPropio.key} · {resumen}</span>
+          <button type="button" className="boton-secundario !px-2 !py-1 text-xs" disabled={andando}
+            onClick={async () => { setAndando(true); const r = await deshacer(); setAndando(false); setAviso(r.ok ? 'Listo: quedó como estaba.' : r.error) }}>
+            {andando ? 'Deshaciendo…' : 'Deshacer'}
+          </button>
+        </>
+      )}
+      {aviso && <span className={`text-xs ${/Listo/.test(aviso) ? 'text-salvia' : 'text-ladrillo'}`}>{aviso}</span>}
+    </div>
   )
 }

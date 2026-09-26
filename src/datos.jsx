@@ -58,6 +58,7 @@ export function DatosProvider({ children }) {
   const [ultimaSync, setUltimaSync] = useState(null)
   const [copiaTs, setCopiaTs] = useState(null)       // cuándo se guardó la copia que se está viendo
   const [guardados, setGuardados] = useState({})     // { [tab:key]: 'guardando'|'ok'|'error' }
+  const [ultimoPropio, setUltimoPropio] = useState(null) // UX-03: {tab, key, antes, despues}
   const [congelada, setCongelada] = useState(null)   // {id, fecha, nombre} si el servidor entregó una versión congelada
 
   const parchesPendientes = useRef({})   // { 'tab|key': {campo: valor} }
@@ -303,6 +304,13 @@ export function DatosProvider({ children }) {
       if (nuevos.length) {
         setDatos((d) => (d && Array.isArray(d.Historial) ? { ...d, Historial: [...d.Historial, ...nuevos] } : d))
       }
+      if (nuevos.length) {
+        setUltimoPropio({
+          tab, key,
+          antes: Object.fromEntries(nuevos.map((n) => [n.campo, n.antes])),
+          despues: Object.fromEntries(nuevos.map((n) => [n.campo, n.despues])),
+        })
+      }
       setGuardados((g) => ({ ...g, [llave]: 'ok' }))
       setTimeout(() => setGuardados((g) => {
         const { [llave]: _, ...resto } = g
@@ -317,6 +325,32 @@ export function DatosProvider({ children }) {
   }, [])
 
   const reintentarGuardado = useCallback((tab, key) => enviarParche(tab, key), [enviarParche])
+
+  // UX-03: deshacer el último cambio propio SIN pisar uno ajeno. Primero se
+  // lee lo que hay hoy en el servidor; si ya no es lo que tú dejaste, no se toca.
+  // El servidor nuevo vuelve a comprobarlo bajo candado («esperado»).
+  const deshacer = useCallback(async () => {
+    const u = ultimoPropio
+    if (!u) return { ok: false, error: 'No hay nada tuyo que deshacer.' }
+    try {
+      const r = await apiCall('getAll', { codigo: sesionRef.current?.codigo })
+      const fila = (r.datos?.[u.tab] || []).find((f) => String(f.id ?? f.clave) === String(u.key))
+      const ajenos = Object.keys(u.despues).filter((c) => String(fila?.[c] ?? '') !== String(u.despues[c]))
+      if (!fila || ajenos.length) {
+        setUltimoPropio(null)
+        // Muestra lo que dejó la otra persona (no tu valor viejo).
+        if (fila) setDatos((d) => (d && d[u.tab] ? { ...d, [u.tab]: d[u.tab].map((f) => (String(f.id ?? f.clave) === String(u.key) ? { ...f, ...fila } : f)) } : d))
+        return { ok: false, conflicto: true, error: `Alguien más cambió ${ajenos.join(', ') || 'la fila'} después de ti (hoy: ${ajenos.map((c) => fila?.[c] ?? '—').join(', ')}). No se deshizo para no pisar su cambio.` }
+      }
+      const g = await apiCall('guardar', { codigo: sesionRef.current?.codigo, tab: u.tab, key: u.key, patch: u.antes, esperado: u.despues })
+      setVersion(g.v ?? null)
+      setDatos((d) => (d && d[u.tab] ? { ...d, [u.tab]: d[u.tab].map((f) => (String(f.id ?? f.clave) === String(u.key) ? { ...f, ...u.antes } : f)) } : d))
+      setUltimoPropio(null)
+      return { ok: true }
+    } catch (e) {
+      return { ok: false, error: e.message }
+    }
+  }, [ultimoPropio])
 
   // UX-01: reintentar de un golpe todo lo que quedó sin guardar.
   const reintentarTodo = useCallback(() => {
@@ -406,7 +440,7 @@ export function DatosProvider({ children }) {
 
   const valor = {
     sesion, arrancando, datos, modo, congelada,
-    sincronizando, errorSync, ultimaSync, copiaTs, guardados, reintentarTodo,
+    sincronizando, errorSync, ultimaSync, copiaTs, guardados, reintentarTodo, ultimoPropio, deshacer,
     entrar, entrarConGoogle, salir, actualizar, verDemo,
     editarFila, crearFila, borrarFila, reintentarGuardado,
     subirArchivo, verArchivo, apiAccion,

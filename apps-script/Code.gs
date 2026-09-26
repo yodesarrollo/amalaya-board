@@ -579,6 +579,18 @@ function accGuardar(usuario, body) {
     const obj = {};
     conf.headers.forEach(function (col, i) { obj[col] = actuales[i]; });
 
+    // UX-03: «esperado» = lo que el cliente cree que hay. Si otra persona ya lo
+    // cambió, no se sobrescribe (deshacer nunca pisa un cambio ajeno).
+    const esperado = body.esperado;
+    if (esperado && typeof esperado === 'object' && !Array.isArray(esperado)) {
+      const distintos = Object.keys(esperado).filter(function (col) {
+        return conf.headers.indexOf(col) !== -1 && String(obj[col]) !== String(esperado[col]);
+      });
+      if (distintos.length) {
+        return { ok: false, conflicto: true, error: 'Alguien más cambió ' + distintos.join(', ') + ' después de ti; no se deshizo para no pisar su cambio.' };
+      }
+    }
+
     const cambios = [];
     Object.keys(patch).forEach(function (col) {
       if (conf.headers.indexOf(col) === -1) return;      // columnas desconocidas se ignoran

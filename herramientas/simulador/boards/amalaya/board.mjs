@@ -111,6 +111,7 @@ export function servidor(accion, b) {
       if (b.tab === 'Usuarios') { const veto = vetoUsuarios(quien, b.key, b.patch || {}, false); if (veto) return { ok: false, error: veto } }
       const fila = db[b.tab]?.find((x) => llave(x) === b.key)
       if (!fila) return { ok: false, error: 'No se encontró la fila.' }
+      if (b.esperado) { const d = Object.keys(b.esperado).filter((k) => String(fila[k]) !== String(b.esperado[k])); if (d.length) return { ok: false, conflicto: true, error: 'Alguien más cambió ' + d.join(', ') + ' después de ti; no se deshizo para no pisar su cambio.' } }
       for (const [k, val] of Object.entries(b.patch)) if (String(fila[k]) !== String(val)) anotar(quien, b.tab, b.key, k, fila[k], val)
       Object.assign(fila, b.patch); return { ok: true, key: b.key, v: ++v }
     }
@@ -230,6 +231,19 @@ export async function guion({ pagina, foto, clic, base }) {
   const ya = db.Espacios.find((e) => e.id === 'E-001')?.m2
   console.log(`${/Al día/.test(pill2) && String(ya) === '2700' ? '✓' : '✗'} UX-01 reintento: «${pill2.trim()}», servidor = ${ya}`)
   await foto('11e-ux01-al-dia', 200)
+  // UX-03: deshacer detecta el cambio ajeno y no lo pisa; sin conflicto sí deshace
+  db.Espacios.find((e) => e.id === 'E-001').m2 = '2800' // «otra persona» cambió los m²
+  await clic('.deshacer-propio button:has-text("Deshacer")'); await pagina.waitForTimeout(1500)
+  const avisoConf = (await pagina.locator('.deshacer-propio').textContent().catch(() => '')) || ''
+  const tras = db.Espacios.find((e) => e.id === 'E-001').m2
+  console.log(`${String(tras) === '2800' && /Alguien más/.test(avisoConf) ? '✓' : '✗'} UX-03 conflicto: el servidor sigue en ${tras} · «${avisoConf.trim().slice(0, 90)}»`)
+  await foto('11f-ux03-conflicto', 200)
+  await pagina.locator('#campo-m2').fill('2900'); await pagina.waitForTimeout(2000)
+  await clic('.deshacer-propio button:has-text("Deshacer")'); await pagina.waitForTimeout(1500)
+  const tras2 = db.Espacios.find((e) => e.id === 'E-001').m2
+  const campo2 = await pagina.locator('#campo-m2').inputValue()
+  console.log(`${String(tras2) === '2800' && campo2 === '2800' ? '✓' : '✗'} UX-03 deshacer propio: 2900 → servidor ${tras2}, campo ${campo2}`)
+  await foto('11g-ux03-deshecho', 200)
   await clic('button[aria-label="Espacio siguiente"]'); await foto('11c-ficha-siguiente', 600)
   await clic('button[aria-label="Espacio anterior"]'); await pagina.waitForTimeout(300)
   await pagina.keyboard.press('Escape'); await pagina.goto(base); await pagina.waitForTimeout(2500)
