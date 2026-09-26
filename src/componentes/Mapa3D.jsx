@@ -257,7 +257,7 @@ const NOMBRE_ETAPA = { idea: 'idea', negociacion: 'negociación', proyecto: 'pro
 
 const CAPAS_DEF = { satelite: true, ciudad: false, modelos: true, espacios: true, rutas: true, recorrido: true, calco: false, lamina: false }
 
-export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, onNuevo, edicion = {} }) {
+export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, onNuevo, edicion = {}, enfocado = null }) {
   // edicion: { modoEdicion, editandoPuntos, rutaSel, onMoverEspacio(id, pctCentroX, pctCentroY), onAgregarPunto(pctX, pctY) }
   const edRef = useRef(edicion)
   useEffect(() => { edRef.current = edicion }, [edicion])
@@ -582,6 +582,21 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
   function siguienteGlobo() {
     if (guia >= GUIA.length - 1) { setGuia(-1); marcarGuiaVista() } else setGuia(guia + 1)
   }
+
+  // Al abrir una ficha, el espacio se lleva a la parte visible (el panel tapa la derecha).
+  useEffect(() => {
+    const m = mapa.current
+    if (!m || !listo || !enfocado) return
+    const e = espacios.find((x) => x.id === enfocado)
+    if (!e) return
+    const zonas = zonasDeEspacio(e)
+    const centro = zonas.length ? centroDeZonas(zonas) : pctAGeo(geoRef.current, num(e.pos_x, 40) + num(e.ancho, 18) / 2, num(e.pos_y, 40) + num(e.alto, 12) / 2)
+    const ancho = m.getContainer().clientWidth
+    const derecha = ancho >= 640 ? Math.min(460, ancho * 0.45) : 0
+    const abajo = ancho < 640 ? m.getContainer().clientHeight * 0.45 : 0
+    m.easeTo({ center: centro, padding: { top: 40, left: 40, right: derecha, bottom: abajo }, duration: 700 })
+    return () => { m.easeTo({ padding: { top: 0, left: 0, right: 0, bottom: 0 }, duration: 500 }) }
+  }, [enfocado, listo]) // eslint-disable-line react-hooks/exhaustive-deps
 
   // --- datos → capas ----------------------------------------------
   useEffect(() => {

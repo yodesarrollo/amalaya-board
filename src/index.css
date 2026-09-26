@@ -541,3 +541,6 @@ html { scroll-padding-top: 84px; }
 .cartela-flecha { font-size: 11px; opacity: .7; margin-left: 4px; }
 .cartela-mapa.plegada { width: auto; max-width: 17.5rem; }
 .cartela-mapa.plegada .cartela-cab { border-bottom: 0; margin-bottom: 4px; padding-bottom: 0; }
+
+/* Deslizadores con el color de la casa (no el azul del navegador) */
+input[type="range"] { accent-color: #C9A45C; }
