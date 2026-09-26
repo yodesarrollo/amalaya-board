@@ -249,6 +249,14 @@ export async function guion({ pagina, foto, clic, base }) {
     await visor.locator('canvas').first().click({ position: { x: 5, y: 5 } }).catch(() => {})
     await pagina.keyboard.press('Shift+ArrowRight')
     await foto('12b-360-render-en-camino', 3000)
+    // Regresión: regresar al punto con render (ya en caché) no debe tronar
+    const errores360 = []
+    const alError = (e) => errores360.push(e.message)
+    pagina.on('pageerror', alError)
+    await pagina.keyboard.press('Shift+ArrowLeft'); await pagina.waitForTimeout(2500)
+    pagina.off('pageerror', alError)
+    const apagado2 = await visor.locator('.slider.apagado').count()
+    console.log(`${errores360.length === 0 && apagado2 === 0 ? '✓' : '✗'} 360: volver al punto con render sin error (${errores360.join('; ') || 'sin errores'})`)
     await clic('button[aria-label="Cerrar"]')
   } else console.log('✗ no encontré el punto con render en el mapa')
   for (const [seccion, archivo] of [['Finanzas', '05-finanzas'], ['Reporte', '06-reporte'], ['Ayuda', '08-ayuda']]) {
