@@ -413,9 +413,15 @@ export async function guion({ pagina, foto, clic, base }) {
     await pagina.waitForTimeout(2500)
     const cargados = await pagina.evaluate(() => window.__amalayaModelos || 0)
     console.log(`${cargados === 8 ? '✓' : '✗'} el mapa carga los 8 volúmenes de la lámina en su sitio (${cargados}/8)`)
-    await clic('button[title="Lista y buscador de espacios"]'); await clic('.lista-espacios .fila-espacio'); await pagina.waitForTimeout(900)
-    const tab = await pagina.locator('[role=tab]:has-text("Modelo 3D")').count()
-    console.log(`${tab === 0 ? '✓' : '✗'} la ficha no muestra «Modelo 3D» sin vínculo validado`)
+    await pagina.waitForSelector('[data-entrada="4"]', { timeout: 20000 }).catch(() => {})
+    if (!(await pagina.locator('.lista-espacios').count())) await clic('button[title="Lista y buscador de espacios"]')
+    await pagina.locator('.lista-espacios input').fill(''); await clic('.lista-espacios .fila-espacio:has-text("Foro")'); await pagina.waitForTimeout(900)
+    const tab = pagina.locator('[role=tab]:has-text("Modelo 3D")')
+    const hayTab = await tab.count()
+    if (hayTab) { await tab.first().click(); await pagina.waitForTimeout(1500) }
+    const visor = await pagina.locator('aside[role=dialog] iframe[title^="Modelo 3D"]').count()
+    await foto('09d-ficha-modelo', 1500)
+    console.log(`${hayTab && visor ? '✓' : '✗'} la ficha del espacio muestra su modelo de la lámina (pestaña ${hayTab ? 'sí' : 'no'}, visor ${visor ? 'sí' : 'no'})`)
     await pagina.keyboard.press('Escape'); await pagina.waitForTimeout(500)
   }
   for (const [seccion, archivo] of [['Finanzas', '05-finanzas'], ['Reporte', '06-reporte'], ['Ayuda', '08-ayuda']]) {

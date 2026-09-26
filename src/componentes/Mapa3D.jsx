@@ -300,7 +300,9 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
   const [listo, setListo] = useState(false)
   // Entrada por capas: 0 satélite · 1 lámina · 2 rutas · 3 puntos · 4 fin
   const reducido = useMemo(() => { try { return window.matchMedia('(prefers-reduced-motion: reduce)').matches } catch { return false } }, [])
-  const [etapa, setEtapa] = useState(reducido ? 4 : 0)
+  // La entrada animada corre una vez por sesión; al volver al mapa, directo a la maqueta.
+  const [etapa, setEtapa] = useState(() => { try { return reducido || sessionStorage.getItem('amalaya_entrada') ? 4 : 0 } catch { return reducido ? 4 : 0 } })
+  useEffect(() => { if (etapa >= 4) { try { sessionStorage.setItem('amalaya_entrada', '1') } catch { /* sin almacenamiento */ } } }, [etapa])
   const etapaRef = useRef(etapa)
   useEffect(() => { etapaRef.current = etapa }, [etapa])
   const relojesEntrada = useRef([])

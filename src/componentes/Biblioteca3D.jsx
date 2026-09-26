@@ -6,7 +6,7 @@ const VISTAS = ['iso_01', 'iso_02', 'iso_03', 'iso_04', 'alzado_A', 'alzado_B', 
 const TITULOS = ['Isométrico 1', 'Isométrico 2', 'Isométrico 3', 'Isométrico 4', 'Fachada A', 'Fachada B', 'Fachada C', 'Fachada D', 'Azoteas']
 
 // Piloto de solo lectura: no llama Apps Script, no sube datos ni modifica cifras.
-export default function Biblioteca3D({ moduloId = null }) {
+export default function Biblioteca3D({ moduloId = null, soloModulos = null }) {
   const [catalogo, setCatalogo] = useState(null)
   const [seleccion, setSeleccion] = useState(moduloId || '01')
   const [error, setError] = useState('')
@@ -35,9 +35,9 @@ export default function Biblioteca3D({ moduloId = null }) {
         <h2 className="font-titulo text-2xl">Volúmenes de Amalaya</h2>
         <p className="text-sm text-arena mt-2">Modelos conceptuales. Dimensiones relativas y fachadas interpretadas; orientación geográfica pendiente.</p>
       </div>
-      {!moduloId && <label className="block text-sm text-arena">Módulo
+      {(!moduloId || (soloModulos && soloModulos.length > 1)) && <label className="block text-sm text-arena">Módulo
         <select className="campo mt-1" value={seleccion} onChange={(e) => { setSeleccion(e.target.value); setVista('3d') }}>
-          {catalogo.modulos.map((item) => <option key={item.id} value={item.id}>{item.id} · {item.nombre}</option>)}
+          {catalogo.modulos.filter((item) => !soloModulos || soloModulos.length < 2 || soloModulos.includes(item.id)).map((item) => <option key={item.id} value={item.id}>{item.id} · {item.nombre}</option>)}
         </select>
       </label>}
       <p className="text-sm text-terciario">{m.nota}</p>
