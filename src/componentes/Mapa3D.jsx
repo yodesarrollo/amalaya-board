@@ -265,7 +265,8 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
       const el = mk.getElement()
       el.style.setProperty('--esc', esc)
       el.classList.toggle('pin3d-min', min)
-      if (min) { el.classList.remove('pin3d-tapado'); continue }
+      // UX-02: al mover espacios ningún pin se esconde (si no, no se podría tomar).
+      if (min || el.classList.contains('pin3d-editable')) { el.classList.remove('pin3d-tapado'); continue }
       const aire = 8 // aire entre rótulos: sin esto dos cercanos se ven pegados
       const w = (el.offsetWidth * esc || 140) + aire; const h = (el.offsetHeight * esc || 34) + aire
       const caja = { x1: p.x - w / 2, x2: p.x + w / 2, y1: p.y - h, y2: p.y + aire }
@@ -554,9 +555,23 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
       el.addEventListener('click', (ev) => { ev.stopPropagation(); if (!edicion.modoEdicion) onAbrir?.(e.id) })
       if (edicion.modoEdicion) el.classList.add('pin3d-editable')
       const mk = new maplibregl.Marker({ element: el, anchor: 'bottom', offset: [0, -6], draggable: !!edicion.modoEdicion }).setLngLat(pctAGeo(geo, x, y)).addTo(m)
-      if (edicion.modoEdicion) mk.on('dragend', () => { const { lng, lat } = mk.getLngLat(); const [px, py] = geoAPct(geo, lng, lat); edicion.onMoverEspacio?.(e.id, px, py) })
+      if (edicion.modoEdicion) {
+        // «dragend» de MapLibre no siempre llega con un botón como marcador;
+        // al soltar se lee la posición y solo se propone si de verdad cambió.
+        let ultimo = mk.getLngLat()
+        const soltar = () => {
+          const ll = mk.getLngLat()
+          if (ll.lng === ultimo.lng && ll.lat === ultimo.lat) return
+          ultimo = ll
+          const [px, py] = geoAPct(geo, ll.lng, ll.lat)
+          edicion.onMoverEspacio?.(e.id, px, py)
+        }
+        mk.on('dragend', soltar)
+        el.addEventListener('pointerup', () => setTimeout(soltar, 0))
+      }
       return mk
     })
+    acomodarPines()
   }, [listo, espacios, rutas, paradas, datos?.Factores, geo, onAbrir, edicion.modoEdicion])
 
   // --- el monito en el mapa ----------------------------------------
