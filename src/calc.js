@@ -315,7 +315,7 @@ export function resumenGlobal({ espacios = [], lineas = [], factores = [], escen
   for (const e of espacios) if (!(Number(e.m2) > 0)) faltantes.push({ clave: `m2:${e.id}`, texto: `m² de ${e.nombre || e.id}` })
   const conLineas = new Set(lineas.map((l) => String(l.espacio_id)))
   const sinLineas = espacios.filter((e) => !conLineas.has(String(e.id)))
-  if (sinLineas.length) faltantes.push({ clave: 'lineas', texto: `ingresos y costos de ${sinLineas.map((e) => e.nombre || e.id).join(', ')}` })
+  if (sinLineas.length) faltantes.push({ clave: 'lineas', ids: sinLineas.map((e) => String(e.id)), texto: `ingresos y costos de ${sinLineas.map((e) => e.nombre || e.id).join(', ')}` })
   const errores = porEspacio.flatMap((x) => x.errores.map((er) => ({ ...er, espacio: x.espacio })))
 
   return {

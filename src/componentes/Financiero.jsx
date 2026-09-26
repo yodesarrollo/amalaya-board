@@ -569,12 +569,16 @@ function PanelValor({ g, onExplicar, ajuste, setAjuste }) {
       {g.porEspacio.length > 0 && (
         <dl className="mt-4 space-y-1 text-xs border-t border-linea pt-3">
           <div className="text-terciario uppercase tracking-wide mb-1">Utilidad por espacio</div>
-          {g.porEspacio.map(({ espacio, utilidad }) => (
+          {g.porEspacio.map(({ espacio, utilidad }) => {
+            // UX-08: sin líneas no es «$0»: es «sin dato».
+            const sinDato = g.faltantes.some((f) => f.clave === 'lineas' && f.ids.includes(String(espacio.id)))
+            return (
             <div key={espacio.id} className="flex justify-between">
               <dt className="text-arena truncate mr-2">{espacio.nombre}</dt>
-              <dd className={`cifra ${utilidad >= 0 ? 'text-marfil' : 'text-ladrillo'}`}>{moneda(utilidad)}</dd>
+              {sinDato ? <dd className="text-ambar text-xs italic">sin dato</dd> : <dd className={`cifra ${utilidad >= 0 ? 'text-marfil' : 'text-ladrillo'}`}>{moneda(utilidad)}</dd>}
             </div>
-          ))}
+            )
+          })}
         </dl>
       )}
     </div>
