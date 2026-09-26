@@ -17,7 +17,7 @@ export const datos={
   {id:'U-003',nombre:'Inversionista de prueba',correo:'',rol:'inversionista',codigo_enmascarado:'••••SIM3',activo:'si',tiene_liga:'no'}],
  Espacios:[
   E('E-001','Foro Amalaya','venue','proyecto',2500,44,40,16,14,'Foro de 1,428 personas de pie / 952 en butacas.'),
-  E('E-002','Área comercial','comercial','idea',2000,62,30,14,12,'Comercio al aire libre, 3-4 pisos.'),
+  {...E('E-002','Área comercial','comercial','idea',2000,62,30,14,12,'Comercio al aire libre, 3-4 pisos.'),zona:'libre'},
   E('E-003','Uso mixto','mixto','idea',2500,26,34,14,12,'Vivienda, oficinas y estudios.'),
   E('E-004','Estacionamiento 1','estacionamiento','negociacion',3000,30,62,14,12,'4 niveles, 300 cajones.'),
   E('E-005','Estacionamiento 2','estacionamiento','idea',4000,62,60,16,13,'4 niveles, 400 cajones.')],

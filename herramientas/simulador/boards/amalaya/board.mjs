@@ -136,6 +136,18 @@ export function servidor(accion, b) {
   }
 }
 
+// RAPIDO=1: solo entra y fotografía el mapa (para iterar el diseño en segundos).
+export async function rapido({ pagina, foto, clic, base }) {
+  await pagina.goto(base); await pagina.waitForTimeout(1200); await clic('#gsi-falso')
+  await pagina.waitForSelector('[data-entrada="4"]', { timeout: 20000 }).catch(() => {})
+  await foto('r1-mapa', 5000)
+  await clic('.globo-guia button:has-text("Saltar")'); await foto('r2-sin-guia', 800)
+  await clic('button:has-text("Planta")'); await foto('r3-planta', 2500)
+  await clic('button:has-text("Maqueta")'); await pagina.waitForTimeout(2500)
+  await pagina.evaluate(() => { const m = window.__amalayaMapa; m.jumpTo({ center: [-110.9547, 29.0759], zoom: 18.3, pitch: 60, bearing: -25 }) })
+  await foto('r4-cerca', 3000)
+}
+
 export async function guion({ pagina, foto, clic, base }) {
   const salir = async () => { await clic('button[title="Salir"]'); await pagina.waitForTimeout(600) }
 
@@ -177,11 +189,11 @@ export async function guion({ pagina, foto, clic, base }) {
   await clic('.cartela-ley .ley-tipo:has-text("Estacionamiento")'); await pagina.waitForTimeout(300)
   // UX-02: mover es previsualización — Cancelar = 0 escrituras, Aplicar confirma
   {
-    const posDe = () => { const e = db.Espacios[0]; return `${e.pos_x},${e.pos_y}` }
+    const posDe = () => { const e = db.Espacios[1]; return `${e.pos_x},${e.pos_y}` } // E-002: fuera de la lámina, se mueve a mano
     const antesPos = posDe(); escriturasPos = 0
     await clic('button:has-text("Mover espacios")'); await pagina.waitForTimeout(600)
     const arrastrar = async () => {
-      const pin = pagina.locator('.pin3d:not(.pin3d-tapado)').first(); const bx = await pin.boundingBox()
+      const pin = pagina.locator('.pin3d.pin3d-editable').first(); const bx = await pin.boundingBox()
       await pagina.mouse.move(bx.x + bx.width / 2, bx.y + bx.height / 2); await pagina.mouse.down()
       await pagina.mouse.move(bx.x + bx.width / 2 + 40, bx.y + bx.height / 2 + 30, { steps: 8 }); await pagina.mouse.up()
       await pagina.waitForTimeout(1800)
@@ -398,8 +410,9 @@ export async function guion({ pagina, foto, clic, base }) {
     console.log(`${ids.length === 8 && vistasOk === 8 ? '✓' : '✗'} biblioteca 3D: ${vistasOk}/${ids.length} módulos con sus 4 isométricos, 4 fachadas y azotea`)
     await clic('button:has-text("Girar modelo")'); await foto('09c-modelo-girar', 3000)
     await clic('nav button:has-text("Mapa")'); await pagina.waitForTimeout(800)
-    const capa = await pagina.evaluate(() => { const m = window.__amalayaMapa; return !!m?.getStyle?.()?.layers?.some((l) => /modelo/i.test(l.id)) })
-    console.log(`${!capa ? '✓' : '✗'} el mapa no carga modelos 3D (sin vínculo confirmado)`)
+    await pagina.waitForTimeout(2500)
+    const cargados = await pagina.evaluate(() => window.__amalayaModelos || 0)
+    console.log(`${cargados === 8 ? '✓' : '✗'} el mapa carga los 8 volúmenes de la lámina en su sitio (${cargados}/8)`)
     await clic('button[title="Lista y buscador de espacios"]'); await clic('.lista-espacios .fila-espacio'); await pagina.waitForTimeout(900)
     const tab = await pagina.locator('[role=tab]:has-text("Modelo 3D")').count()
     console.log(`${tab === 0 ? '✓' : '✗'} la ficha no muestra «Modelo 3D» sin vínculo validado`)

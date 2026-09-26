@@ -43,8 +43,8 @@ export function crearCapaModelos3D({ mercator, filas, origen = [-110.95477, 29.0
     id: 'amalaya-modelos-glb', type: 'custom', renderingMode: '3d',
     onAdd(map, gl) {
       viva = true; mapa = map; camera = new THREE.Camera(); scene = new THREE.Scene()
-      scene.add(new THREE.HemisphereLight(0xffffff, 0x8a8175, 2))
-      const luz = new THREE.DirectionalLight(0xffffff, 2); luz.position.set(100, 200, 80); scene.add(luz)
+      scene.add(new THREE.HemisphereLight(0xffffff, 0x6b6258, 1.1))
+      const luz = new THREE.DirectionalLight(0xfff4e0, 1.6); luz.position.set(-120, 200, 90); scene.add(luz)
       renderer = new THREE.WebGLRenderer({ canvas: map.getCanvas(), context: gl, antialias: true })
       renderer.autoClear = false
       const loader = new GLTFLoader()

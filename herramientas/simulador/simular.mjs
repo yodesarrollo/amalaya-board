@@ -135,6 +135,7 @@ const clic = async (selector) => {
 try {
   // GIFS=<carpeta> graba además los GIFs de la Ayuda (board.gifs) en esa carpeta.
   if (process.env.GIFS && board.gifs) await board.gifs({ pagina, clic, base: BASE, gif: (o) => crearGif(pagina, o), carpeta: resolve(process.env.GIFS) })
+  else if (process.env.RAPIDO && board.rapido) await board.rapido({ pagina, foto, clic, base: BASE })
   else await board.guion({ pagina, foto, clic, base: BASE })
 } finally {
   console.log([...new Set(bitacora)].join('\n'))

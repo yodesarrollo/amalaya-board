@@ -524,3 +524,20 @@ html { scroll-padding-top: 84px; }
 /* UX-08 · totales con datos incompletos */
 .aviso-incompleto { font: 500 11.5px/1.45 'Montserrat', sans-serif; color: #E8C48A; background: rgba(232,146,58,.1); border: 1px dashed rgba(232,146,58,.55); border-radius: 8px; padding: 6px 9px; margin-top: 6px; max-width: 34rem; }
 .aviso-incompleto .etq { font-weight: 700; color: #E8923A; }
+
+/* Rediseño del mapa (26-sep): pines compactos que no se enciman y cartela plegable */
+.pin3d, .mapa3d.tema-lamina .pin3d {
+  flex-direction: row; gap: 6px; padding: 4px 9px 4px 7px; border-radius: 999px;
+  background: rgba(20,16,16,.82); color: #F2EAD9; border: 1px solid rgba(242,234,217,.22);
+  box-shadow: 0 6px 16px -8px rgba(0,0,0,.9); backdrop-filter: blur(4px);
+}
+.pin3d::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: var(--c, #C9A45C); box-shadow: 0 0 0 2px rgba(0,0,0,.35); flex: none; }
+.pin3d::after, .mapa3d.tema-lamina .pin3d::after { width: 1px; height: 10px; bottom: -10px; background: rgba(242,234,217,.55); }
+.pin3d-nombre { font-size: 10.5px; letter-spacing: .04em; font-weight: 700; }
+.pin3d .pin3d-tipo, .pin3d .avance5 { display: none; }
+.pin3d:hover .pin3d-tipo, .pin3d:focus-visible .pin3d-tipo { display: inline; color: #B7A890; }
+.pin3d.pin3d-min::before { width: 11px; height: 11px; }
+.cartela-cab { background: none; border: 0; text-align: left; cursor: pointer; width: 100%; padding: 0; color: inherit; }
+.cartela-flecha { font-size: 11px; opacity: .7; margin-left: 4px; }
+.cartela-mapa.plegada { width: auto; max-width: 17.5rem; }
+.cartela-mapa.plegada .cartela-cab { border-bottom: 0; margin-bottom: 4px; padding-bottom: 0; }
