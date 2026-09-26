@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { createPortal } from 'react-dom'
+import { usarDialogo } from '../usarDialogo.js'
 import { HelpCircle, X } from 'lucide-react'
 import { BASE } from '../config.js'
 
@@ -78,6 +79,7 @@ export function Bato({ tamano = 44 }) {
 
 export default function AyudaPantalla({ seccion }) {
   const [abierta, setAbierta] = useState(false)
+  const refAyuda = usarDialogo(abierta, () => setAbierta(false))
   const [conBato, setConBato] = useState(() => !batoApagado())
   const a = AYUDA_PANTALLA[seccion]
   if (!a) return null
@@ -93,7 +95,7 @@ export default function AyudaPantalla({ seccion }) {
       </button>
       {abierta && createPortal(
         <div className="fixed inset-0 z-[70] bg-noche/70 flex items-end sm:items-center justify-center p-4" onClick={() => setAbierta(false)}>
-          <div className="tarjeta bg-elevada w-full max-w-md max-h-[85dvh] overflow-y-auto p-5" role="dialog" aria-label={`Ayuda: ${a.titulo}`} onClick={(e) => e.stopPropagation()}>
+          <div className="tarjeta bg-elevada w-full max-w-md max-h-[85dvh] overflow-y-auto p-5" ref={refAyuda} role="dialog" aria-modal="true" aria-label={`Ayuda: ${a.titulo}`} onClick={(e) => e.stopPropagation()}>
             <div className="flex items-start gap-3">
               {conBato && <Bato />}
               <div className="flex-1">

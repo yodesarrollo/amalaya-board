@@ -512,3 +512,6 @@ html {
 .ctrl-flecha { display: inline-flex; align-items: center; justify-content: center; width: 30px; height: 30px; border-radius: 8px; border: 1px solid rgba(201,164,92,.45); color: #F2EAD9; background: rgba(34,27,21,.9); }
 .ctrl-flecha:disabled { opacity: .35; }
 .ctrl-flecha:focus-visible { outline: 2px solid #FFB84D; outline-offset: 2px; }
+
+/* UX-06 · el foco nunca queda escondido bajo el encabezado pegajoso */
+html { scroll-padding-top: 84px; }

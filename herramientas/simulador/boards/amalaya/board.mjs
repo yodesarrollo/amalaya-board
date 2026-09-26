@@ -213,6 +213,36 @@ export async function guion({ pagina, foto, clic, base }) {
     const fuera = (await pagina.locator('select[aria-label="Espacio a mover"]').count()) === 0
     console.log(`${/\(1\)/.test(txtAplicar) && escriturasPos === 0 && pos() === antes5 && fuera ? '✓' : '✗'} UX-05 teclado: elegir → Enter (derecha) + ↓↓ → X ${x5} Y ${y5}, «${txtAplicar.trim()}», Esc cancela con ${escriturasPos} escrituras`)
   }
+  // UX-06: paneles con foco inicial, Tab contenido, Esc y regreso al botón de origen
+  {
+    const dentro = (sel) => pagina.evaluate((s) => !!document.querySelector(s)?.contains(document.activeElement), sel)
+    const disparador = pagina.locator('button[aria-label^="Ayuda de"]:visible').first()
+    await disparador.focus(); await pagina.keyboard.press('Enter'); await pagina.waitForTimeout(400)
+    const f1 = await dentro('[role=dialog][aria-label^="Ayuda"]')
+    for (let i = 0; i < 15; i++) await pagina.keyboard.press('Tab')
+    const f2 = await dentro('[role=dialog][aria-label^="Ayuda"]')
+    await pagina.keyboard.press('Escape'); await pagina.waitForTimeout(300)
+    const cerrado = (await pagina.locator('[role=dialog][aria-label^="Ayuda"]').count()) === 0
+    const regreso = await disparador.evaluate((el) => el === document.activeElement)
+    console.log(`${f1 && f2 && cerrado && regreso ? '✓' : '✗'} UX-06 ayuda: foco adentro ${f1}, Tab contenido ${f2}, Esc cierra ${cerrado}, foco regresa ${regreso}`)
+    await clic('button[title="Lista y buscador de espacios"]'); await pagina.waitForTimeout(300)
+    const fila = pagina.locator('.lista-espacios .fila-espacio').first()
+    await fila.focus(); await pagina.keyboard.press('Enter'); await pagina.waitForTimeout(900)
+    const g1 = await dentro('aside[role=dialog][aria-modal=true]')
+    const nombre = await pagina.locator('aside[role=dialog][aria-modal=true]').getAttribute('aria-label').catch(() => '')
+    await foto('03s-ux06-ficha-foco', 200)
+    await pagina.keyboard.press('Escape'); await pagina.waitForTimeout(700)
+    const g2 = (await pagina.locator('aside[role=dialog][aria-modal=true]').count()) === 0
+    const g3 = await pagina.evaluate(() => document.activeElement && document.activeElement !== document.body)
+    console.log(`${g1 && g2 && g3 ? '✓' : '✗'} UX-06 ficha «${nombre}»: foco adentro ${g1}, Esc cierra ${g2}, el foco no se pierde ${g3}`)
+    // Zoom 200 %: la mitad del ancho de la ventana
+    const vp = pagina.viewportSize(); await pagina.setViewportSize({ width: Math.round(vp.width / 2), height: Math.round(vp.height / 2) }); await pagina.waitForTimeout(600)
+    const navOk = await pagina.$$eval('nav[aria-label=Secciones] button', (bs) => { const v = bs.filter((b) => b.getBoundingClientRect().width > 0); return v.length > 0 && v.every((b) => { const r = b.getBoundingClientRect(); return r.right <= window.innerWidth + 1 && r.bottom <= window.innerHeight }) })
+    const capasOk = await pagina.locator('button.ctrl-mapa:has-text("Capas")').isVisible()
+    await foto('03t-ux06-zoom200', 200)
+    await pagina.setViewportSize(vp); await pagina.waitForTimeout(600)
+    console.log(`${navOk && capasOk ? '✓' : '✗'} UX-06 zoom 200 %: navegación ${navOk ? 'a la vista' : 'cortada'}, Capas ${capasOk ? 'a la vista' : 'oculto'}`)
+  }
   // Chinche #15: panel de Capas compacto, sin scroll, y se cierra tocando el mapa
   await clic('button.ctrl-mapa:has-text("Capas")'); await pagina.waitForTimeout(300)
   const sinScroll = await pagina.$eval('.panel-lista', (e) => e.scrollHeight <= e.clientHeight + 1)
@@ -220,7 +250,7 @@ export async function guion({ pagina, foto, clic, base }) {
   await foto('03o-panel-capas', 200)
   const badge = (await pagina.locator('.panel-pie .badge').textContent().catch(() => '')) || ''
   console.log(`${/por validar/i.test(badge) ? '✓' : '✗'} UX-04 modelo 3D marcado como «${badge.trim()}» (no como levantamiento)`)
-  await pagina.mouse.click(700, 600); await pagina.waitForTimeout(400)
+  await pagina.mouse.click(1000, 260); await pagina.waitForTimeout(400)
   const cerrado = (await pagina.locator('.panel-mapa').count()) === 0
   console.log(`${cerrado ? '✓' : '✗'} tocar el mapa cierra el panel de Capas`)
   await clic('button[title="Lista y buscador de espacios"]'); await foto('03l-lista-espacios', 500)
