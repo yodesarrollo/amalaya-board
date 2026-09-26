@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, lazy, Suspense } from 'react'
 import { Map as MapIcon, BarChart3, FileText, LifeBuoy, ListChecks } from 'lucide-react'
 import { usarDatos } from './datos.jsx'
 import Acceso from './componentes/Acceso.jsx'
@@ -13,6 +13,9 @@ import AyudaPantalla from './componentes/AyudaPantalla.jsx'
 import { puedeEditarRol } from './roles.js'
 import { BASE, APPS_SCRIPT_URL } from './config.js'
 import { apiCall } from './api.js'
+
+import { BIBLIOTECA_3D } from './modelos3d.js'
+const Biblioteca3D = lazy(() => import('./componentes/Biblioteca3D.jsx'))
 
 // La Chinche de Amalaya (pila propia, public/chinche.js): se carga solo con
 // sesión y para los roles de trabajo; quien clava sale de la sesión.
@@ -67,6 +70,7 @@ function Principal() {
 
   const secciones = [
     ['mapa', 'Mapa', MapIcon],
+    ...(BIBLIOTECA_3D ? [['modelos', 'Modelos 3D', MapIcon]] : []),
     ...(hayFinanzas ? [['finanzas', 'Finanzas', BarChart3]] : []),
     ['reporte', 'Reporte', FileText],
     ...(puedeEditarRol(sesion?.rol) && Array.isArray(datos?.Metas) ? [['plan', 'Plan', ListChecks]] : []),
@@ -94,6 +98,7 @@ function Principal() {
       <div className="no-imprimir sm:hidden flex justify-end px-3 pt-2 -mb-2"><AyudaPantalla seccion={seccion} /></div>
 
       {seccion === 'mapa' && <Mapa />}
+      {seccion === 'modelos' && BIBLIOTECA_3D && <Suspense fallback={<p className="p-4">Cargando biblioteca…</p>}><Biblioteca3D /></Suspense>}
       {seccion === 'finanzas' && <Financiero />}
       {seccion === 'reporte' && <Reporte />}
       {seccion === 'plan' && <PlanAccion />}

@@ -1,0 +1,1007 @@
+{
+  "version": 1,
+  "fecha": "2026-09-26",
+  "modulos": [
+    {
+      "id": "01",
+      "nombre": "Foro musical Amalaya",
+      "nota": "Identificación por rótulo. Patio, escenario y gradas aproximados; sin aforo inferido.",
+      "zona_id": "Z01",
+      "unidades": "relativas_no_medidas",
+      "orientacion": "local_sin_norte_confirmado",
+      "georreferenciado": false,
+      "glb": "modulos/01/modelo.glb",
+      "obj": "modulos/01/modelo.obj",
+      "mtl": "modulos/01/modelo.mtl",
+      "lamina": "modulos/01/lamina.png",
+      "archivos": [
+        {
+          "path": "modulos/01/alzado_A.png",
+          "bytes": 2583,
+          "sha256": "be42464a62f5ed0b518217b71d161072589b707bb9c74823b56a08479eb0a4d9"
+        },
+        {
+          "path": "modulos/01/alzado_A.svg",
+          "bytes": 2287,
+          "sha256": "e93c3c1897eb531e66204dec5b22b43f8e568e138ed2edd1ca614568ab59eaec"
+        },
+        {
+          "path": "modulos/01/alzado_B.png",
+          "bytes": 2606,
+          "sha256": "be02b8abacf341a5e54193da25cd8cbd4bc146eebce2c6641c94c95d3c3f47b9"
+        },
+        {
+          "path": "modulos/01/alzado_B.svg",
+          "bytes": 2239,
+          "sha256": "8e5efd6c6d730eee63d4fad658cc76f0fb8871ce9892a4edcc874ad95bd71ab4"
+        },
+        {
+          "path": "modulos/01/alzado_C.png",
+          "bytes": 2507,
+          "sha256": "9167cac5e1283e0dc82878f270213c23df7663cb2414463f2659e586c415bcd6"
+        },
+        {
+          "path": "modulos/01/alzado_C.svg",
+          "bytes": 2289,
+          "sha256": "02119255b14b6abf25c0c712c9a0cc9bb0fd1fa3610b76bb354d4cc525cf0a6a"
+        },
+        {
+          "path": "modulos/01/alzado_D.png",
+          "bytes": 2606,
+          "sha256": "3c3c528dc524bae79e457e871aec77a2f93534d124e4d5ebd47c1fdd5ec6210e"
+        },
+        {
+          "path": "modulos/01/alzado_D.svg",
+          "bytes": 2287,
+          "sha256": "b7cac9a38d4c4082e077664b230b43881ba4c2aa65037202121c75cdfe157bd9"
+        },
+        {
+          "path": "modulos/01/azotea.png",
+          "bytes": 3239,
+          "sha256": "09b9749aade552c0d61d2e5ff2038113461d31944532782d9886c311c05ff7ae"
+        },
+        {
+          "path": "modulos/01/azotea.svg",
+          "bytes": 2275,
+          "sha256": "d5166d04531f2e2607f1d5ac59c34415dbf3f77d96ada68a0765e0ad0e6607da"
+        },
+        {
+          "path": "modulos/01/iso_01.png",
+          "bytes": 12014,
+          "sha256": "2e41054bb8231ad8bb8193976b90671714eb09f5e305cd674e0c59685c6d13bc"
+        },
+        {
+          "path": "modulos/01/iso_01.svg",
+          "bytes": 6611,
+          "sha256": "1cbf4f87db89676478f30bb975207d4328742ab0f4009f3027a7d3f1296006d1"
+        },
+        {
+          "path": "modulos/01/iso_02.png",
+          "bytes": 8911,
+          "sha256": "40d99e4956417d44a04af5197d33230cb2da850e9428a22858405d96981856db"
+        },
+        {
+          "path": "modulos/01/iso_02.svg",
+          "bytes": 6607,
+          "sha256": "9f51597124e9317dcdd9f43b6ef8c593a1bbd969b95a2d190556373f95aa46db"
+        },
+        {
+          "path": "modulos/01/iso_03.png",
+          "bytes": 9109,
+          "sha256": "02a502328d5183aed9eea4751e7604c6c580b8cebe258e8425b9bd29349201b1"
+        },
+        {
+          "path": "modulos/01/iso_03.svg",
+          "bytes": 6643,
+          "sha256": "fc8d156bee534645c44c4e1b5311aa7cdce97a582573143547afc67c2ee4626e"
+        },
+        {
+          "path": "modulos/01/iso_04.png",
+          "bytes": 11481,
+          "sha256": "618cd5db3ff3c60d8f5532d264616bdd5cacd123db6fb6c5673c4ab82988c71a"
+        },
+        {
+          "path": "modulos/01/iso_04.svg",
+          "bytes": 6643,
+          "sha256": "285b9940fcb93ccbf620d4656420de5970e35079990dcc4bafb123b830f3faa2"
+        },
+        {
+          "path": "modulos/01/lamina.png",
+          "bytes": 123015,
+          "sha256": "0094a7f0dbf3612e43f2294c3f3e999a46bc3c53ccf711e83ebc2b3f05e14dcb"
+        },
+        {
+          "path": "modulos/01/modelo.glb",
+          "bytes": 27624,
+          "sha256": "bcfdb80335ea581e1a598e70c00c3da09e1bf9a48e214e725910268eff917d60"
+        },
+        {
+          "path": "modulos/01/modelo.mtl",
+          "bytes": 1860,
+          "sha256": "4eb6bc8fde70a13d5826b5edd949678e54799f340a7dd900cdca0a3ed45ebb57"
+        },
+        {
+          "path": "modulos/01/modelo.obj",
+          "bytes": 8449,
+          "sha256": "a659916947d087d9ed7c4cad0250c23bb7ddf464cf65b7477151a877205fff92"
+        }
+      ]
+    },
+    {
+      "id": "02",
+      "nombre": "Locales comerciales y oficina",
+      "nota": "Agrupación naranja al lado izquierdo de la plaza. Volúmenes superiores interpretados como oficinas; división exacta no legible.",
+      "zona_id": "Z03",
+      "unidades": "relativas_no_medidas",
+      "orientacion": "local_sin_norte_confirmado",
+      "georreferenciado": false,
+      "glb": "modulos/02/modelo.glb",
+      "obj": "modulos/02/modelo.obj",
+      "mtl": "modulos/02/modelo.mtl",
+      "lamina": "modulos/02/lamina.png",
+      "archivos": [
+        {
+          "path": "modulos/02/alzado_A.png",
+          "bytes": 2494,
+          "sha256": "bd03df3be51cfa85f3ba8ecbf8e5ca7153005f54866cd86b85a3d7b8d6702dec"
+        },
+        {
+          "path": "modulos/02/alzado_A.svg",
+          "bytes": 1462,
+          "sha256": "ff7912f5738bd5c4a4f61bccdba6c2a38ac27a9ca5847658f81fd19c9440fda4"
+        },
+        {
+          "path": "modulos/02/alzado_B.png",
+          "bytes": 2557,
+          "sha256": "637583b238971a3d703aa57f6b102c1a352206bd66094d2a3510f3135641be7d"
+        },
+        {
+          "path": "modulos/02/alzado_B.svg",
+          "bytes": 1430,
+          "sha256": "c017e362269cbd502ea2eaafa504253656e90df2a8091d0cb3a7a9444561e633"
+        },
+        {
+          "path": "modulos/02/alzado_C.png",
+          "bytes": 2432,
+          "sha256": "c12e4a89bd8604a19b454433752918abb1623dfc83dd085088dfebcf109a2e22"
+        },
+        {
+          "path": "modulos/02/alzado_C.svg",
+          "bytes": 1462,
+          "sha256": "d3e532d752673b4e381d52a6059ba263e973bb629c41e492d475542091b31efd"
+        },
+        {
+          "path": "modulos/02/alzado_D.png",
+          "bytes": 2548,
+          "sha256": "41678948dc23dd54c13d9b9cf6fb93e2dd4ca7996b783ba0a922421e2886a4d7"
+        },
+        {
+          "path": "modulos/02/alzado_D.svg",
+          "bytes": 1462,
+          "sha256": "43e2c7aac8f29b2b2c43abbca88f600ab9b3ab3591ceca4ccf8e88f72ba90b6f"
+        },
+        {
+          "path": "modulos/02/azotea.png",
+          "bytes": 3168,
+          "sha256": "03cb5f8a550b75ceaa9b7c6a0f400a5baa5c7b0cb381919d60a5ab8b95365e5e"
+        },
+        {
+          "path": "modulos/02/azotea.svg",
+          "bytes": 1462,
+          "sha256": "b6883a8607c38e3da60ad61786a38a04cd43237575eb385fcc26dbe5f9b6d39c"
+        },
+        {
+          "path": "modulos/02/iso_01.png",
+          "bytes": 9786,
+          "sha256": "44a9e810e532c579aedb64c36e67bf183cdacf6a17a05688acf08703cb48cba7"
+        },
+        {
+          "path": "modulos/02/iso_01.svg",
+          "bytes": 4152,
+          "sha256": "f56d7e9e07e15cc12c0e6b2e76a811ba83ea90150df1413931678f7c5f7310c2"
+        },
+        {
+          "path": "modulos/02/iso_02.png",
+          "bytes": 8826,
+          "sha256": "b466af9a2a69c0d3005fa0df5f0ba9757d59b49c0c8630aa019af43b74fe14de"
+        },
+        {
+          "path": "modulos/02/iso_02.svg",
+          "bytes": 4156,
+          "sha256": "ba8613b90b05c2f7457e48fd5f65d555e2ef6fde06ad413230c04ad287a0384a"
+        },
+        {
+          "path": "modulos/02/iso_03.png",
+          "bytes": 9045,
+          "sha256": "ff19847daa73db39653fb5087c68560a1df6e1a5b5956648582a7fd68919e2d7"
+        },
+        {
+          "path": "modulos/02/iso_03.svg",
+          "bytes": 4165,
+          "sha256": "85887350046ecd7af78cbdacffc72cc8876ea2b657736cef7e373c223e1410ea"
+        },
+        {
+          "path": "modulos/02/iso_04.png",
+          "bytes": 9388,
+          "sha256": "b475ea47aea057ad819046265fada54e3440bf95dee7b993214b2cbd91a0f264"
+        },
+        {
+          "path": "modulos/02/iso_04.svg",
+          "bytes": 4168,
+          "sha256": "61b964ecfb22454324065852579cdbbb2af636e24f34a9a67b136a737d12123c"
+        },
+        {
+          "path": "modulos/02/lamina.png",
+          "bytes": 113241,
+          "sha256": "fcf47ef8eaed6ad3f30e5e124305bad01d92150382ed84d50fb3e0cff14d06ac"
+        },
+        {
+          "path": "modulos/02/modelo.glb",
+          "bytes": 17540,
+          "sha256": "fa0933c00f1bfa91acf26e2025af8da8bb754aa10329aa8555782e4e0121ae2e"
+        },
+        {
+          "path": "modulos/02/modelo.mtl",
+          "bytes": 1125,
+          "sha256": "648ccca6e51e5e599ff15e7f8cef2d00ecb2f5bdc410b9707f5a777d7245f4a4"
+        },
+        {
+          "path": "modulos/02/modelo.obj",
+          "bytes": 5440,
+          "sha256": "b464c3bcdf9fcbf3c0914d301dfe2af7ec7489d5d84600c752f8d03e32b85850"
+        }
+      ]
+    },
+    {
+      "id": "03",
+      "nombre": "Edificios mixtos vivienda y ensayo",
+      "nota": "Identificación por rótulo de tres niveles. Las alturas y particiones son esquemáticas.",
+      "zona_id": "Z04",
+      "unidades": "relativas_no_medidas",
+      "orientacion": "local_sin_norte_confirmado",
+      "georreferenciado": false,
+      "glb": "modulos/03/modelo.glb",
+      "obj": "modulos/03/modelo.obj",
+      "mtl": "modulos/03/modelo.mtl",
+      "lamina": "modulos/03/lamina.png",
+      "archivos": [
+        {
+          "path": "modulos/03/alzado_A.png",
+          "bytes": 2533,
+          "sha256": "71a51ddbaf88c2809da95261bd220b1967965184dbfce6ed882ca247f598b966"
+        },
+        {
+          "path": "modulos/03/alzado_A.svg",
+          "bytes": 1320,
+          "sha256": "c824adbfbbe9ea661917f599daf5452789c34f94a239061531aed52ac148cbbc"
+        },
+        {
+          "path": "modulos/03/alzado_B.png",
+          "bytes": 3025,
+          "sha256": "f2510eb9af83f721749617a85cec989f84f2c0b55d85ca24d3bfb2d2476b8b7a"
+        },
+        {
+          "path": "modulos/03/alzado_B.svg",
+          "bytes": 1320,
+          "sha256": "fd456865507af56ea0bd1a2e3926f5f43d39d873ed635d9194d6e13a11694e96"
+        },
+        {
+          "path": "modulos/03/alzado_C.png",
+          "bytes": 2614,
+          "sha256": "4db7053b9fc169b17893a7d07ac11113ed7851e3e660099f670ee3f42a0244c9"
+        },
+        {
+          "path": "modulos/03/alzado_C.svg",
+          "bytes": 1320,
+          "sha256": "e94109346e38ca14b38748e7fc530cc6e8605a672db840a65a0b7ffabc863478"
+        },
+        {
+          "path": "modulos/03/alzado_D.png",
+          "bytes": 3101,
+          "sha256": "4a539cb5f8b953204abdc627e3a4b66f13d1ceac537818035186ee3b052c2768"
+        },
+        {
+          "path": "modulos/03/alzado_D.svg",
+          "bytes": 1310,
+          "sha256": "99c5466508e4329a34877aab2a358f1811e1b027ee3240d2960d77829902d4da"
+        },
+        {
+          "path": "modulos/03/azotea.png",
+          "bytes": 3089,
+          "sha256": "bfab5a03f0107544e834917cdeadae6e7c948623facddc92f4a40f78a1190225"
+        },
+        {
+          "path": "modulos/03/azotea.svg",
+          "bytes": 869,
+          "sha256": "f9c894ca3e37d206b338b37430aadd064f050c807a845335e765016fcc027331"
+        },
+        {
+          "path": "modulos/03/iso_01.png",
+          "bytes": 8210,
+          "sha256": "0aeadca17514b22d20739387dcb84d6098b6e92ca0c49ef9be6a4c801fa30784"
+        },
+        {
+          "path": "modulos/03/iso_01.svg",
+          "bytes": 2436,
+          "sha256": "c0b6df9f65cc8ce94a751a7f749f29b68baed11edf1bde346112ad1e578137cc"
+        },
+        {
+          "path": "modulos/03/iso_02.png",
+          "bytes": 7173,
+          "sha256": "562e1262c6f268c66b72954ece82144998cf2a9cd09821d5ed191098f65f6ce3"
+        },
+        {
+          "path": "modulos/03/iso_02.svg",
+          "bytes": 2442,
+          "sha256": "e013309f5946587fc6090ebed935ae56c13af01bcd1149ee88057237a8bfc565"
+        },
+        {
+          "path": "modulos/03/iso_03.png",
+          "bytes": 8218,
+          "sha256": "8858b57387e89d1a836cd946ebc4cf121a5131297285c9e2b091b18f9813983a"
+        },
+        {
+          "path": "modulos/03/iso_03.svg",
+          "bytes": 2440,
+          "sha256": "ebbd296f608c5cfa6658c95a0d873952d6ad58341009b36c2f81053d35a74b1e"
+        },
+        {
+          "path": "modulos/03/iso_04.png",
+          "bytes": 7193,
+          "sha256": "944610d21f8fc996a6b29e2d7d708a2796173d6e2595a36340f79cc9a6138adf"
+        },
+        {
+          "path": "modulos/03/iso_04.svg",
+          "bytes": 2432,
+          "sha256": "5a8b41521181ca02f9ff44c110709dd72eed24b9eed3c53abd7fdcd8640a2a25"
+        },
+        {
+          "path": "modulos/03/lamina.png",
+          "bytes": 94140,
+          "sha256": "32a6456e6c33244899887e59d4c39ba9a7213c1008cdf535f79cce33b82fb019"
+        },
+        {
+          "path": "modulos/03/modelo.glb",
+          "bytes": 8044,
+          "sha256": "83afa205233044183cd08cc8bb4c193c55d40ee758c57f7552e00a131e925b74"
+        },
+        {
+          "path": "modulos/03/modelo.mtl",
+          "bytes": 496,
+          "sha256": "3dc8c7736fcfd8be69959010012bd9908596c15870c2440b7ffbb7b8934ddb3e"
+        },
+        {
+          "path": "modulos/03/modelo.obj",
+          "bytes": 3346,
+          "sha256": "2d141d8404a1aaa0da81913a1d463a5a69e39b354f414883716b9dc1e7c516cc"
+        }
+      ]
+    },
+    {
+      "id": "04",
+      "nombre": "Volumen de cubierta azul",
+      "nota": "Posible Museo de la Ciudad José Alberto Healy por proximidad del rótulo; correspondencia no confirmada.",
+      "zona_id": "Z05",
+      "unidades": "relativas_no_medidas",
+      "orientacion": "local_sin_norte_confirmado",
+      "georreferenciado": false,
+      "glb": "modulos/04/modelo.glb",
+      "obj": "modulos/04/modelo.obj",
+      "mtl": "modulos/04/modelo.mtl",
+      "lamina": "modulos/04/lamina.png",
+      "archivos": [
+        {
+          "path": "modulos/04/alzado_A.png",
+          "bytes": 2407,
+          "sha256": "4a65f58bbdcfeb418835325c03ceed7edc545cc7e89e124e91e57b764d3bd97b"
+        },
+        {
+          "path": "modulos/04/alzado_A.svg",
+          "bytes": 941,
+          "sha256": "2a8ce8f4b945ed90de0299f873c8a3f4adbe518fbcae09d0d47eeb5e3cb86bde"
+        },
+        {
+          "path": "modulos/04/alzado_B.png",
+          "bytes": 2744,
+          "sha256": "8ad7d1ad6bb258d3d7706d648ffaa19a30476b52d5a0545ea32ab882c97e39c1"
+        },
+        {
+          "path": "modulos/04/alzado_B.svg",
+          "bytes": 911,
+          "sha256": "435c00f51e0db057aefd3a3ec394473e64cf14b4ad60791fcd6edeab0287c9c2"
+        },
+        {
+          "path": "modulos/04/alzado_C.png",
+          "bytes": 2346,
+          "sha256": "971951f954dd245c676823697ec4572cfd179e1ff7e024a0dd86e44fc9864e6b"
+        },
+        {
+          "path": "modulos/04/alzado_C.svg",
+          "bytes": 943,
+          "sha256": "463cacbacc9dc4eb39db3acea6d913dde3c1eaadd7e1932c29e78c0056e7c6d5"
+        },
+        {
+          "path": "modulos/04/alzado_D.png",
+          "bytes": 2735,
+          "sha256": "4fe1c7da847b2bcb72281a85b5263d5860ce636124989fa083e07f73a174f75a"
+        },
+        {
+          "path": "modulos/04/alzado_D.svg",
+          "bytes": 943,
+          "sha256": "fd343957f1a4aea0d92f35c4384b265d0a0abad2d9f8befc4287804f3bdbbea2"
+        },
+        {
+          "path": "modulos/04/azotea.png",
+          "bytes": 2629,
+          "sha256": "296c8304bad20a0fe95480414bdc56bc618b38ee79808e9ff705db432533d71c"
+        },
+        {
+          "path": "modulos/04/azotea.svg",
+          "bytes": 941,
+          "sha256": "55b46df2012101aa4535c610f49ccba8bd003d78e9c7567bce0ea725da475611"
+        },
+        {
+          "path": "modulos/04/iso_01.png",
+          "bytes": 8226,
+          "sha256": "4e61541d3b34925c5353461b01b7b2e2a59b9916a171f63eecbc2f16c9cbe74b"
+        },
+        {
+          "path": "modulos/04/iso_01.svg",
+          "bytes": 2586,
+          "sha256": "835dd25b2a8f1a2affa86c1e02375c46afe7b188c652cedec0696a0535fad79f"
+        },
+        {
+          "path": "modulos/04/iso_02.png",
+          "bytes": 6584,
+          "sha256": "21517095ee313dc156c7d5e5c9c65ccf4fa6b658f615894d5607310baf06a9c8"
+        },
+        {
+          "path": "modulos/04/iso_02.svg",
+          "bytes": 2582,
+          "sha256": "d67411c3447f47a60672a706f10f2cc2cc98cd69e6a1f120fde935faeffc4640"
+        },
+        {
+          "path": "modulos/04/iso_03.png",
+          "bytes": 7074,
+          "sha256": "c18ad43ac0e9f86922eea2d93fdee0cf0ea4ff369c52b4c501172afd252c5c16"
+        },
+        {
+          "path": "modulos/04/iso_03.svg",
+          "bytes": 2590,
+          "sha256": "a02cf4aa9c27ae6d0e9bb63c4c395942fbd5388b9bf12cd1b86bae06ad38c8f9"
+        },
+        {
+          "path": "modulos/04/iso_04.png",
+          "bytes": 7400,
+          "sha256": "6b02a052c01d736925c0ad93cbc4f52660ace1f7774fa4ae228d0b030185c666"
+        },
+        {
+          "path": "modulos/04/iso_04.svg",
+          "bytes": 2590,
+          "sha256": "cfdf4d29a4de08475f6882f2d24d5425fe5d69b20bf6c1b839832c86388fdd06"
+        },
+        {
+          "path": "modulos/04/lamina.png",
+          "bytes": 91669,
+          "sha256": "9255434e896eb8035fc753b91b242a5a8b1af615a9964fc812c98cfdb27ef7b0"
+        },
+        {
+          "path": "modulos/04/modelo.glb",
+          "bytes": 10824,
+          "sha256": "c1ed119fd332a4063b0026513aabd6acd6feb58bf24c25fe468a25b096fd2ddd"
+        },
+        {
+          "path": "modulos/04/modelo.mtl",
+          "bytes": 653,
+          "sha256": "79e85374ae2e58f0955ee54833cf54f01dc5724fa571fb4a86b9d90ca2601396"
+        },
+        {
+          "path": "modulos/04/modelo.obj",
+          "bytes": 3560,
+          "sha256": "2749f0f82cd42d73cb9ff191f75871cd7865b2598e54ed717e678bec3ca65547"
+        }
+      ]
+    },
+    {
+      "id": "05",
+      "nombre": "Tiendas y talleres creativos",
+      "nota": "Identificación por rótulo. Edificio en U con patio; aperturas esquemáticas.",
+      "zona_id": "Z06",
+      "unidades": "relativas_no_medidas",
+      "orientacion": "local_sin_norte_confirmado",
+      "georreferenciado": false,
+      "glb": "modulos/05/modelo.glb",
+      "obj": "modulos/05/modelo.obj",
+      "mtl": "modulos/05/modelo.mtl",
+      "lamina": "modulos/05/lamina.png",
+      "archivos": [
+        {
+          "path": "modulos/05/alzado_A.png",
+          "bytes": 2299,
+          "sha256": "719e522ed94ec233cf072593b5c911fd57b874f8a717b28ccf50d80ab144b311"
+        },
+        {
+          "path": "modulos/05/alzado_A.svg",
+          "bytes": 1316,
+          "sha256": "a0b7747debba58ca328971c2bcd9fb0db0b88027aa79b4552b4d4f015b3ed26c"
+        },
+        {
+          "path": "modulos/05/alzado_B.png",
+          "bytes": 2285,
+          "sha256": "59913e1456800c4cac4511a803898c39700ce813af90396b78f20df758994546"
+        },
+        {
+          "path": "modulos/05/alzado_B.svg",
+          "bytes": 1280,
+          "sha256": "7f80265af78c7ddbfa30df6810857460e86a85247dd52503da4ed994b31f78b8"
+        },
+        {
+          "path": "modulos/05/alzado_C.png",
+          "bytes": 2235,
+          "sha256": "41c868248a1c1c1f662a4b3132c57c40b65fff56ad57d6b978824ee68337b5ce"
+        },
+        {
+          "path": "modulos/05/alzado_C.svg",
+          "bytes": 1314,
+          "sha256": "e2b4ec8b5c8f0482f43a6a3b2e4c5cffc06bc25fef757ccb1f056fbefe620001"
+        },
+        {
+          "path": "modulos/05/alzado_D.png",
+          "bytes": 2283,
+          "sha256": "77ee77cc4b04b755dae343908c7ad7fd1f9b3b455911956839e5e029084c5e68"
+        },
+        {
+          "path": "modulos/05/alzado_D.svg",
+          "bytes": 1316,
+          "sha256": "4e0ad68bb81db0625bdda3bb7b3e4ad8b56a760039f6d3eaea62df904aa866f1"
+        },
+        {
+          "path": "modulos/05/azotea.png",
+          "bytes": 3226,
+          "sha256": "e3fd4faf8b5f2ebca2a834ab16691a6ea88ed7d3fa123f11249f598d4387f135"
+        },
+        {
+          "path": "modulos/05/azotea.svg",
+          "bytes": 1308,
+          "sha256": "4ee85785f9d4a44e500eb63908727c7a6865cf5af123e0759ffd82765447184a"
+        },
+        {
+          "path": "modulos/05/iso_01.png",
+          "bytes": 8036,
+          "sha256": "a3c5d43231c63647efbc7f80364f5e8a6be69e6e66ddf9ff2ac9abdb96ff086e"
+        },
+        {
+          "path": "modulos/05/iso_01.svg",
+          "bytes": 3702,
+          "sha256": "34efbd5728dbfb8ef754d3582d4e14dc13411c59ead9c24cf690317e055661c6"
+        },
+        {
+          "path": "modulos/05/iso_02.png",
+          "bytes": 7361,
+          "sha256": "d0da7b5f9c2b9e351363a6714fbfece50882107777cc24c54ab74ae4155e530e"
+        },
+        {
+          "path": "modulos/05/iso_02.svg",
+          "bytes": 3698,
+          "sha256": "6aa74ce5c52ab8a4dc36de7a35dfa37e2d9144c36475f1f2ef4b908dd7d6ad95"
+        },
+        {
+          "path": "modulos/05/iso_03.png",
+          "bytes": 7548,
+          "sha256": "51ed7dac7aad6382e3b6e3f78b18360ae1b62378069824222ac8ba576df0f151"
+        },
+        {
+          "path": "modulos/05/iso_03.svg",
+          "bytes": 3718,
+          "sha256": "fd7c2b62cd0dfe6fc800560a0b52b44b661ee6a22ae64a1b6956eeef7df8b77f"
+        },
+        {
+          "path": "modulos/05/iso_04.png",
+          "bytes": 8150,
+          "sha256": "cc39f3cd0a72354a8318abb7708081f7362477b5f55bf1e3c25166d58ba75fc4"
+        },
+        {
+          "path": "modulos/05/iso_04.svg",
+          "bytes": 3718,
+          "sha256": "26861b99b61fd81d26824f6c1ab7628d1d11cad41ab3502fc806af88e2355deb"
+        },
+        {
+          "path": "modulos/05/lamina.png",
+          "bytes": 103151,
+          "sha256": "8562f6539c25f9484a12d697c99e574e2cd7690137e5d439627aabfd53fe648e"
+        },
+        {
+          "path": "modulos/05/modelo.glb",
+          "bytes": 15724,
+          "sha256": "6ad5c6cdcd13382790756150b8a14e365232f3b14e774a3a5203ffe5c3850963"
+        },
+        {
+          "path": "modulos/05/modelo.mtl",
+          "bytes": 981,
+          "sha256": "74094a85088dd2e52769a444ae92db6788474a0e20c3bf24883feb8f991a8478"
+        },
+        {
+          "path": "modulos/05/modelo.obj",
+          "bytes": 5036,
+          "sha256": "c677630c43a9163726e3d0c75684e2fd13530531f91bb3175b4ad1e72ec3e24c"
+        }
+      ]
+    },
+    {
+      "id": "06",
+      "nombre": "Estacionamiento HEALY primer plano",
+      "nota": "Estacionamiento interpretado a partir del dibujo. Niveles, estructura y paneles son esquemáticos; no valida las 300 plazas indicadas para HEALY.",
+      "zona_id": "Z07",
+      "unidades": "relativas_no_medidas",
+      "orientacion": "local_sin_norte_confirmado",
+      "georreferenciado": false,
+      "glb": "modulos/06/modelo.glb",
+      "obj": "modulos/06/modelo.obj",
+      "mtl": "modulos/06/modelo.mtl",
+      "lamina": "modulos/06/lamina.png",
+      "archivos": [
+        {
+          "path": "modulos/06/alzado_A.png",
+          "bytes": 2843,
+          "sha256": "082bdb9427a9d49dc18555f01b0e50c59dee3b3f9ffe559eea50a9b9aa7720f5"
+        },
+        {
+          "path": "modulos/06/alzado_A.svg",
+          "bytes": 7558,
+          "sha256": "d50e943904bbfa3d17d1b8823565e7a32f4bf9fe24ad2bfe2ca9b22508b34b9d"
+        },
+        {
+          "path": "modulos/06/alzado_B.png",
+          "bytes": 2952,
+          "sha256": "c0b0ecca26a0d6768ce37b93e23feacae101ce200a43615d70c27efe52c8a932"
+        },
+        {
+          "path": "modulos/06/alzado_B.svg",
+          "bytes": 7554,
+          "sha256": "68b68fb9e84ed034abbea5afd8a25869b60acfa5f5932de76a1f416a6892c362"
+        },
+        {
+          "path": "modulos/06/alzado_C.png",
+          "bytes": 2843,
+          "sha256": "320c79990fc8d72b01d13726a0b940ee4246f1440c723a7df7e6955baa43495e"
+        },
+        {
+          "path": "modulos/06/alzado_C.svg",
+          "bytes": 7566,
+          "sha256": "aaf83ce2ca6f249663b5774eb29386a5cb36e116a57f29e9e04851d0d67d8c96"
+        },
+        {
+          "path": "modulos/06/alzado_D.png",
+          "bytes": 2961,
+          "sha256": "9759209bbe02f55b7de71ad1c26abe4534b1b32c0c0d7bd8eb49de97256cf544"
+        },
+        {
+          "path": "modulos/06/alzado_D.svg",
+          "bytes": 7554,
+          "sha256": "2f51e413d875be4f8b3395033ba7839c420d7baf926b409a33709c889e3522d4"
+        },
+        {
+          "path": "modulos/06/azotea.png",
+          "bytes": 3451,
+          "sha256": "ada190be06d8b7e44516ed9d4951cdd2987b6ea1c8476662fcba50509a359e96"
+        },
+        {
+          "path": "modulos/06/azotea.svg",
+          "bytes": 7558,
+          "sha256": "a648c451de7035e9995aa9a3107e7dc04e3e0626cfa07f5919804939b6d44e92"
+        },
+        {
+          "path": "modulos/06/iso_01.png",
+          "bytes": 20443,
+          "sha256": "42ed6371eb85524a45ccf20705105feab3706e5a5622aa3ae1d53a8cd88c03a4"
+        },
+        {
+          "path": "modulos/06/iso_01.svg",
+          "bytes": 22561,
+          "sha256": "5a70ac4d3f7dfb0dd3917f0b0a3fefe68acd676d2e43d8bb60b72ade355c52e2"
+        },
+        {
+          "path": "modulos/06/iso_02.png",
+          "bytes": 21096,
+          "sha256": "618735c6574398077ed881da9a30a379b91797f5884858a3c44d905109fd7cee"
+        },
+        {
+          "path": "modulos/06/iso_02.svg",
+          "bytes": 22561,
+          "sha256": "1abff6084032356bcdcc5865837478d0bc66a3c28783c75ef61a13bb3aeb8243"
+        },
+        {
+          "path": "modulos/06/iso_03.png",
+          "bytes": 21041,
+          "sha256": "61e0d416f6e561ea35b420f8e9d2d09a04e9886de381235d880c14e9fd0f5bd8"
+        },
+        {
+          "path": "modulos/06/iso_03.svg",
+          "bytes": 22561,
+          "sha256": "a44c2b04a772e9f8ffbb694f9f22f38d89943acfa7758d98e680554ed37e45a6"
+        },
+        {
+          "path": "modulos/06/iso_04.png",
+          "bytes": 20727,
+          "sha256": "4398bd64f163a20365c3b19dfd5fac131c9e2b83ac57d362b0707a3c762fcd81"
+        },
+        {
+          "path": "modulos/06/iso_04.svg",
+          "bytes": 22561,
+          "sha256": "f0892f44a99fae9983798c6998a549c67d90858579bb8f97040d9b8f0ee42449"
+        },
+        {
+          "path": "modulos/06/lamina.png",
+          "bytes": 289826,
+          "sha256": "5862af29d89867bfa1fbbcb97326b385225efb370a0de7f7cc10c2a685e07b72"
+        },
+        {
+          "path": "modulos/06/modelo.glb",
+          "bytes": 95740,
+          "sha256": "955bbdc264e83606d37c49c3f443e22ff4a38002a64f09e15aacb0c76777fb4d"
+        },
+        {
+          "path": "modulos/06/modelo.mtl",
+          "bytes": 7052,
+          "sha256": "c8423a1c192c64ee05ca31ce843217c6efc0bf84d441b3b27d1a7275f2c36602"
+        },
+        {
+          "path": "modulos/06/modelo.obj",
+          "bytes": 25885,
+          "sha256": "a3844a1570840e9a981bddc15714ed37e2236360da029827e001d88b8da45771"
+        }
+      ]
+    },
+    {
+      "id": "07",
+      "nombre": "Estacionamiento segundo plano",
+      "nota": "Estacionamiento interpretado a partir del dibujo. Niveles, estructura y paneles son esquemáticos; no valida las 300 plazas indicadas para HEALY.",
+      "zona_id": "Z08",
+      "unidades": "relativas_no_medidas",
+      "orientacion": "local_sin_norte_confirmado",
+      "georreferenciado": false,
+      "glb": "modulos/07/modelo.glb",
+      "obj": "modulos/07/modelo.obj",
+      "mtl": "modulos/07/modelo.mtl",
+      "lamina": "modulos/07/lamina.png",
+      "archivos": [
+        {
+          "path": "modulos/07/alzado_A.png",
+          "bytes": 2843,
+          "sha256": "082bdb9427a9d49dc18555f01b0e50c59dee3b3f9ffe559eea50a9b9aa7720f5"
+        },
+        {
+          "path": "modulos/07/alzado_A.svg",
+          "bytes": 7558,
+          "sha256": "d50e943904bbfa3d17d1b8823565e7a32f4bf9fe24ad2bfe2ca9b22508b34b9d"
+        },
+        {
+          "path": "modulos/07/alzado_B.png",
+          "bytes": 2952,
+          "sha256": "c0b0ecca26a0d6768ce37b93e23feacae101ce200a43615d70c27efe52c8a932"
+        },
+        {
+          "path": "modulos/07/alzado_B.svg",
+          "bytes": 7554,
+          "sha256": "68b68fb9e84ed034abbea5afd8a25869b60acfa5f5932de76a1f416a6892c362"
+        },
+        {
+          "path": "modulos/07/alzado_C.png",
+          "bytes": 2843,
+          "sha256": "320c79990fc8d72b01d13726a0b940ee4246f1440c723a7df7e6955baa43495e"
+        },
+        {
+          "path": "modulos/07/alzado_C.svg",
+          "bytes": 7566,
+          "sha256": "aaf83ce2ca6f249663b5774eb29386a5cb36e116a57f29e9e04851d0d67d8c96"
+        },
+        {
+          "path": "modulos/07/alzado_D.png",
+          "bytes": 2961,
+          "sha256": "9759209bbe02f55b7de71ad1c26abe4534b1b32c0c0d7bd8eb49de97256cf544"
+        },
+        {
+          "path": "modulos/07/alzado_D.svg",
+          "bytes": 7554,
+          "sha256": "2f51e413d875be4f8b3395033ba7839c420d7baf926b409a33709c889e3522d4"
+        },
+        {
+          "path": "modulos/07/azotea.png",
+          "bytes": 3451,
+          "sha256": "ada190be06d8b7e44516ed9d4951cdd2987b6ea1c8476662fcba50509a359e96"
+        },
+        {
+          "path": "modulos/07/azotea.svg",
+          "bytes": 7558,
+          "sha256": "a648c451de7035e9995aa9a3107e7dc04e3e0626cfa07f5919804939b6d44e92"
+        },
+        {
+          "path": "modulos/07/iso_01.png",
+          "bytes": 20443,
+          "sha256": "42ed6371eb85524a45ccf20705105feab3706e5a5622aa3ae1d53a8cd88c03a4"
+        },
+        {
+          "path": "modulos/07/iso_01.svg",
+          "bytes": 22561,
+          "sha256": "5a70ac4d3f7dfb0dd3917f0b0a3fefe68acd676d2e43d8bb60b72ade355c52e2"
+        },
+        {
+          "path": "modulos/07/iso_02.png",
+          "bytes": 21096,
+          "sha256": "618735c6574398077ed881da9a30a379b91797f5884858a3c44d905109fd7cee"
+        },
+        {
+          "path": "modulos/07/iso_02.svg",
+          "bytes": 22561,
+          "sha256": "1abff6084032356bcdcc5865837478d0bc66a3c28783c75ef61a13bb3aeb8243"
+        },
+        {
+          "path": "modulos/07/iso_03.png",
+          "bytes": 21041,
+          "sha256": "61e0d416f6e561ea35b420f8e9d2d09a04e9886de381235d880c14e9fd0f5bd8"
+        },
+        {
+          "path": "modulos/07/iso_03.svg",
+          "bytes": 22561,
+          "sha256": "a44c2b04a772e9f8ffbb694f9f22f38d89943acfa7758d98e680554ed37e45a6"
+        },
+        {
+          "path": "modulos/07/iso_04.png",
+          "bytes": 20727,
+          "sha256": "4398bd64f163a20365c3b19dfd5fac131c9e2b83ac57d362b0707a3c762fcd81"
+        },
+        {
+          "path": "modulos/07/iso_04.svg",
+          "bytes": 22561,
+          "sha256": "f0892f44a99fae9983798c6998a549c67d90858579bb8f97040d9b8f0ee42449"
+        },
+        {
+          "path": "modulos/07/lamina.png",
+          "bytes": 289622,
+          "sha256": "32343a712477cad3836da442f41d2c971b89b434189070f2d1c5492a0eed1146"
+        },
+        {
+          "path": "modulos/07/modelo.glb",
+          "bytes": 95740,
+          "sha256": "955bbdc264e83606d37c49c3f443e22ff4a38002a64f09e15aacb0c76777fb4d"
+        },
+        {
+          "path": "modulos/07/modelo.mtl",
+          "bytes": 7052,
+          "sha256": "c8423a1c192c64ee05ca31ce843217c6efc0bf84d441b3b27d1a7275f2c36602"
+        },
+        {
+          "path": "modulos/07/modelo.obj",
+          "bytes": 25885,
+          "sha256": "a3844a1570840e9a981bddc15714ed37e2236360da029827e001d88b8da45771"
+        }
+      ]
+    },
+    {
+      "id": "08",
+      "nombre": "Conjunto amarillo al fondo",
+      "nota": "Uso no legible y conjunto recortado por el borde de la imagen. Reconstrucción parcial, con menor certeza.",
+      "zona_id": "Z09",
+      "unidades": "relativas_no_medidas",
+      "orientacion": "local_sin_norte_confirmado",
+      "georreferenciado": false,
+      "glb": "modulos/08/modelo.glb",
+      "obj": "modulos/08/modelo.obj",
+      "mtl": "modulos/08/modelo.mtl",
+      "lamina": "modulos/08/lamina.png",
+      "archivos": [
+        {
+          "path": "modulos/08/alzado_A.png",
+          "bytes": 2410,
+          "sha256": "a548be5bf52ff381815fead1c6e1d8530054944cc26178eaf9d5a1ead1457818"
+        },
+        {
+          "path": "modulos/08/alzado_A.svg",
+          "bytes": 720,
+          "sha256": "77dfc5525c5ebe2cdee9a7f0e93ee6315242060d7c8c67ad423c5e6329da66f9"
+        },
+        {
+          "path": "modulos/08/alzado_B.png",
+          "bytes": 2544,
+          "sha256": "3e1d02683e9b5110eede526956d77355c8a7f6f9831b5fcd46e4c693b3235f21"
+        },
+        {
+          "path": "modulos/08/alzado_B.svg",
+          "bytes": 708,
+          "sha256": "1c45c7997ebfd7ce11598f02990f056851880467d2a20953c88a78809da7ab05"
+        },
+        {
+          "path": "modulos/08/alzado_C.png",
+          "bytes": 2376,
+          "sha256": "23eeb1e14cf47a56e0c34ee6154f7144646e582e7c7d3cb8bdbddb21773d4797"
+        },
+        {
+          "path": "modulos/08/alzado_C.svg",
+          "bytes": 714,
+          "sha256": "9c6d76a58cf3bfb76d3f7160cf91984c538390caf2689af4ab6c9344b5c45454"
+        },
+        {
+          "path": "modulos/08/alzado_D.png",
+          "bytes": 2543,
+          "sha256": "13892041efe5cc31bcf5b0616b33a4634e601237bccbc43818851066b4a050c5"
+        },
+        {
+          "path": "modulos/08/alzado_D.svg",
+          "bytes": 720,
+          "sha256": "b0ce3614efe6d393dbf6d841dc0061d6869edc9a2c15d64a9e5e26234fde315a"
+        },
+        {
+          "path": "modulos/08/azotea.png",
+          "bytes": 3035,
+          "sha256": "8224f29bf2fcd2328a90e7a01883f807ec0e20bd59873bd1041ceef6cf8df6db"
+        },
+        {
+          "path": "modulos/08/azotea.svg",
+          "bytes": 720,
+          "sha256": "479d5ca4949fb33dff6f6614f3f110df48b36f5ac628ed8790b09532382b78cb"
+        },
+        {
+          "path": "modulos/08/iso_01.png",
+          "bytes": 9035,
+          "sha256": "0228334e8f71bab7b0e7ba7008aeb95f63d37740d896d9a109ba57960361b9d2"
+        },
+        {
+          "path": "modulos/08/iso_01.svg",
+          "bytes": 1916,
+          "sha256": "c35d5a5e2a27e66949fd94a508515ed0fdae45b7bd83ecd1c725d0540ced6190"
+        },
+        {
+          "path": "modulos/08/iso_02.png",
+          "bytes": 6952,
+          "sha256": "58c63272d591b9465de586506c51a7c0915e551d6219344a3ef6cc888b191ec6"
+        },
+        {
+          "path": "modulos/08/iso_02.svg",
+          "bytes": 1898,
+          "sha256": "3a0d604cc0480f5d7da1e6c83bddb66b9fb9e994b16d9ddb5860953ad9260ed7"
+        },
+        {
+          "path": "modulos/08/iso_03.png",
+          "bytes": 8350,
+          "sha256": "6ddb8b736b70918e50b3861cc522ae0b4711ea689390fb43135a5ed0937e6c04"
+        },
+        {
+          "path": "modulos/08/iso_03.svg",
+          "bytes": 1916,
+          "sha256": "954bf5f060e3b7c569dc448fe8b035b2da09f3f026917456fe071346ddd271b6"
+        },
+        {
+          "path": "modulos/08/iso_04.png",
+          "bytes": 7615,
+          "sha256": "b363a7e4ad46343d68bca1383c2ac10d08467dae46e22f652dc6bd9fcef92a14"
+        },
+        {
+          "path": "modulos/08/iso_04.svg",
+          "bytes": 1918,
+          "sha256": "3c16e7dec52e216004caac04d2843f9328109c81d7d6c8c3dee4cf03690a4bcb"
+        },
+        {
+          "path": "modulos/08/lamina.png",
+          "bytes": 101361,
+          "sha256": "262db0c1f2641ba688e2ab630f77b1dad3a6b79ca29ba5234d004b8fff58742e"
+        },
+        {
+          "path": "modulos/08/modelo.glb",
+          "bytes": 7936,
+          "sha256": "55d5fd0bad3315d5868cca9ce367f09774cdeb9ec218a58aedca8ca07ea325ec"
+        },
+        {
+          "path": "modulos/08/modelo.mtl",
+          "bytes": 535,
+          "sha256": "fc7f9e60986553cf110a2eb61f0fc723fa5194fefcd06d12f8f0f39a8968ed31"
+        },
+        {
+          "path": "modulos/08/modelo.obj",
+          "bytes": 2243,
+          "sha256": "3ce248299c87a2270d4b66a34660dce5111f2a117648b8b71254a38e04cb855f"
+        }
+      ]
+    }
+  ],
+  "atribucion": "Reconstrucciones conceptuales a partir de lámina del usuario. No son levantamientos ni predios medidos."
+}

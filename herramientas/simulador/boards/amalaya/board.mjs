@@ -381,6 +381,26 @@ export async function guion({ pagina, foto, clic, base }) {
     console.log(`${errores360.length === 0 && apagado2 === 0 ? '✓' : '✗'} 360: volver al punto con render sin error (${errores360.join('; ') || 'sin errores'})`)
     await clic('button[aria-label="Cerrar"]')
   } else console.log('✗ no encontré el punto con render en el mapa')
+  // Objetivo 5: biblioteca 3D — recorre los 8 módulos con fachadas y azoteas
+  await clic('nav button:has-text("Modelos 3D")'); await pagina.waitForSelector('select.campo', { timeout: 10000 })
+  await foto('09a-biblioteca-3d', 1500)
+  const ids = await pagina.$$eval('section[aria-label="Biblioteca de modelos 3D"] select option', (os) => os.map((o) => o.value))
+  let vistasOk = 0
+  await clic('button:has-text("Fachadas y azoteas")')
+  for (const id of ids) {
+    await pagina.selectOption('section[aria-label="Biblioteca de modelos 3D"] select', id)
+    await clic('button:has-text("Fachadas y azoteas")'); await pagina.waitForTimeout(600)
+    const ok = await pagina.$$eval('section[aria-label="Biblioteca de modelos 3D"] article img', (im) => im.length === 9 && im.every((i) => i.complete && i.naturalWidth > 0))
+    if (ok) vistasOk++
+    if (id === '01' || id === '08') await foto(`09b-modulo-${id}-fachadas`, 300)
+  }
+  console.log(`${ids.length === 8 && vistasOk === 8 ? '✓' : '✗'} biblioteca 3D: ${vistasOk}/${ids.length} módulos con sus 4 isométricos, 4 fachadas y azotea`)
+  await clic('button:has-text("Girar modelo")'); await foto('09c-modelo-girar', 2500)
+  await clic('nav button:has-text("Mapa")'); await pagina.waitForTimeout(800)
+  const hayCapaModelos = await pagina.evaluate(() => { const m = window.__amalayaMapa; return m ? !!m.getLayer?.('modelos-3d') : false })
+  console.log(`${!hayCapaModelos ? '✓' : '✗'} el mapa no carga modelos 3D (sin vínculo confirmado)`)
+  const tabModelo = await pagina.locator('button:has-text("Modelo 3D")').count()
+  console.log(`${tabModelo === 0 ? '✓' : '✗'} la ficha no muestra «Modelo 3D» sin vínculo validado`)
   for (const [seccion, archivo] of [['Finanzas', '05-finanzas'], ['Reporte', '06-reporte'], ['Ayuda', '08-ayuda']]) {
     if (seccion === 'Ayuda') {
       // Fase 5 · reporte: índice, desglose por espacio, supuestos, versión congelada, vista previa
