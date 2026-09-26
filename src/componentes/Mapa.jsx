@@ -314,7 +314,7 @@ export default function Mapa() {
         {(
           <div className="relative mx-auto rounded-2xl overflow-hidden border border-linea" style={{ height: 'calc(100dvh - 190px)', minHeight: '420px' }}>
             <Mapa3D
-              espacios={espacios} rutas={rutas} paradas={paradas} onAbrir={setAbierto}
+              espacios={espacios} rutas={rutas} paradas={paradas} onAbrir={setAbierto} enfocado={abierto}
               onNuevo={puedeEditar ? () => setCreando(true) : undefined}
               edicion={{
                 modoEdicion,

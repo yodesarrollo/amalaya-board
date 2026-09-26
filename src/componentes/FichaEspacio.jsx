@@ -9,7 +9,7 @@ import ImagenDrive from './ImagenDrive.jsx'
 import { GLIFO_TIPO } from './Glifos.jsx'
 import { m2Construidos, resumenEspacio } from '../calc.js'
 import { nivelAvance } from '../avance.js'
-import { moneda, fechaHora } from '../formato.js'
+import { moneda, monedaCorta, fechaHora } from '../formato.js'
 import { compartirCard } from '../compartir.js'
 
 // ============================================================
@@ -134,7 +134,7 @@ export default function FichaEspacio({ espacio, onCerrar, onAnterior, onSiguient
 
       <ResumenArriba espacio={espacio} />
 
-      {editable && <DeshacerPropio />}
+      {editable && <DeshacerPropio espacioId={espacio.id} />}
 
       {/* Datos base editables (los m² alimentan el valor por acción) */}
       <div className="grid grid-cols-2 gap-2 mt-4">
@@ -785,7 +785,7 @@ function ResumenArriba({ espacio }) {
       </div>
       <div className="tarjeta p-2.5">
         <div className="text-[10px] uppercase tracking-wide text-terciario">Utilidad anual</div>
-        <div className={`cifra text-lg ${r.utilidad < 0 ? 'text-ladrillo' : 'text-marfil'}`}>{hayFinanzas ? moneda(r.utilidad) : '—'}</div>
+        <div className={`cifra text-lg ${r.utilidad < 0 ? 'text-ladrillo' : 'text-marfil'}`}>{hayFinanzas ? <span title={moneda(r.utilidad)}>{monedaCorta(r.utilidad)}</span> : '—'}</div>
       </div>
       <div className="tarjeta p-2.5">
         <div className="text-[10px] uppercase tracking-wide text-terciario">Estado</div>
@@ -850,8 +850,10 @@ function Historial({ espacio }) {
 }
 
 // UX-03: deshacer el último cambio propio con resumen; nunca pisa uno ajeno.
-function DeshacerPropio() {
-  const { ultimoPropio, deshacer } = usarDatos()
+function DeshacerPropio({ espacioId }) {
+  const { ultimoPropio: ultimo, deshacer } = usarDatos()
+  // Solo el último cambio de ESTE espacio (el de otro espacio confundía).
+  const ultimoPropio = ultimo && ultimo.tab === 'Espacios' && String(ultimo.key) !== String(espacioId) ? null : ultimo
   const [aviso, setAviso] = useState(null)
   const [andando, setAndando] = useState(false)
   if (!ultimoPropio && !aviso) return null

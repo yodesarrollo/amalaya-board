@@ -14,6 +14,16 @@ export function moneda(n) {
   return `${fmtMXN.format(v)} MXN`
 }
 
+// "$49.6 M MXN" — para tarjetas chicas donde la cifra completa no cabe.
+export function monedaCorta(n) {
+  const v = Number(n)
+  if (!Number.isFinite(v)) return '—'
+  const a = Math.abs(v)
+  if (a >= 1e6) return `$${(v / 1e6).toLocaleString('es-MX', { maximumFractionDigits: 1 })} M`
+  if (a >= 1e3) return `$${(v / 1e3).toLocaleString('es-MX', { maximumFractionDigits: 0 })} mil`
+  return fmtMXN.format(v)
+}
+
 const fmtNum = new Intl.NumberFormat('es-MX', { maximumFractionDigits: 2 })
 
 export function numero(n) {
