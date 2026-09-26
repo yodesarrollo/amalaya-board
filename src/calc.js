@@ -242,7 +242,14 @@ export function m2Construidos(espacio, factores = []) {
 // mapa y leemos números con un valor por defecto explícito.
 export function mapaConfig(filasConfig = []) {
   const m = {}
-  for (const f of filasConfig) m[normalizarId(f.clave)] = f.valor
+  for (const f of filasConfig) {
+    const k = normalizarId(f.clave)
+    // Una clave repetida con vacío o 0 no pisa un valor real anterior
+    // (el Sheet llegó a tener dos filas valor_m2_mixto: 5741.99 y 0).
+    const vacio = String(f.valor ?? '').trim() === '' || Number(f.valor) === 0
+    if (k in m && vacio) continue
+    m[k] = f.valor
+  }
   return m
 }
 

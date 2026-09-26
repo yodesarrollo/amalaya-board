@@ -53,7 +53,7 @@ export default function Biblioteca3D({ moduloId = null }) {
         <p className="text-xs text-terciario mt-2">Arrastra para girar y usa los botones de 90°. Si tu equipo no muestra 3D, abre las vistas PNG.</p>
       </div> : <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
         {VISTAS.map((v, i) => <article key={v} className="tarjeta p-3">
-          <img src={link(folder + v + '.png')} alt={`${TITULOS[i]} · ${m.nombre}`} loading="lazy" className="w-full rounded bg-white" />
+          <img src={link(folder + v + '.png')} alt={`${TITULOS[i]} · ${m.nombre}`} width="700" height="700" className="w-full h-auto rounded bg-white" />
           <h3 className="text-sm mt-2 text-marfil">{TITULOS[i]}</h3>
           <div className="flex gap-4 text-xs mt-2 text-oro"><a download href={link(folder + v + '.png')}>PNG</a><a download href={link(folder + v + '.svg')}>SVG para calcar</a></div>
         </article>)}
