@@ -331,11 +331,17 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
   const monitoActivo = useRef(false)
   useEffect(() => { monitoActivo.current = monito }, [monito])
 
+  // UX-07: si falla el 3D (sin WebGL o sin cartografía) se sigue trabajando
+  // con la lista, las fichas, la lámina y las descargas.
+  const [falla3d, setFalla3d] = useState(null)
+
   // --- crear el mapa una sola vez ------------------------------
   useEffect(() => {
     if (!cont.current || mapa.current) return
     const centro = centroGeo(geoSheet)
-    const m = new maplibregl.Map({
+    if (!hayWebGL()) { setFalla3d('Este equipo no muestra 3D (WebGL apagado).'); return }
+    let m
+    try { m = new maplibregl.Map({
       container: cont.current,
       style: ESTILO_CIUDAD,
       center: centro,
@@ -345,7 +351,13 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
       antialias: true,
       attributionControl: false,
       clickTolerance: 5,          // un micro-arrastre ya no se come el clic
-    })
+    }) } catch (err) { setFalla3d('El mapa 3D no arrancó en este equipo.'); return }
+    let cargo = false
+    m.once('load', () => { cargo = true })
+    // Sin cartografía el mapa se queda en blanco: a los 15 s se ofrece el plan B.
+    const relojFalla = setTimeout(() => { if (!cargo) setFalla3d('No cargó la cartografía (sin conexión con el servicio de mapas).') }, 15000)
+    m.on('error', (e) => { if (!cargo && /style|fetch|Failed|NetworkError|AJAXError/i.test(String(e?.error?.message || e?.error || ''))) setFalla3d('No cargó la cartografía (sin conexión con el servicio de mapas).') })
+    m.once('remove', () => clearTimeout(relojFalla))
     m.addControl(new maplibregl.AttributionControl({ compact: true }), 'bottom-left')
     window.__amalayaMapa = m
     m.on('error', (e) => console.warn('mapa3d', e?.error?.message || e))
@@ -753,6 +765,26 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
     setGeoTemp(null)
   }
 
+  if (falla3d) {
+    return (
+      <div className="relative w-full h-full mapa-plan-b overflow-y-auto p-4" role="region" aria-label="Mapa sin 3D">
+        <div ref={cont} className="hidden" />
+        <div className="max-w-3xl mx-auto space-y-3">
+          <p className="text-marfil font-medium">El mapa 3D no cargó · {falla3d}</p>
+          <p className="text-arena text-sm">Puedes seguir trabajando: abre cualquier espacio para ver su ficha, sus documentos y descargarlos.</p>
+          <div className="flex flex-wrap gap-2">
+            <button type="button" className="ctrl-mapa" onClick={() => window.location.reload()}>Reintentar el 3D</button>
+            <a className="ctrl-mapa" href={`${BASE}lamina-zona-nucleo.jpg`} target="_blank" rel="noreferrer" download>Lámina «Zona Núcleo» (JPG)</a>
+            <a className="ctrl-mapa" href={`${BASE}mapa-poligono.jpg`} target="_blank" rel="noreferrer" download>Plano del polígono (JPG)</a>
+          </div>
+          <div className="lista-plan-b">
+            <ListaEspacios espacios={espacios} busca={busca} setBusca={setBusca} onElegir={(e) => onAbrir?.(e.id)} onCerrar={() => setBusca('')} onNuevo={onNuevo} />
+          </div>
+        </div>
+      </div>
+    )
+  }
+
   return (
     <div className={`relative w-full h-full mapa3d tema-${tema}`} data-entrada={listo ? etapa : ''}>
       <div ref={cont} className="absolute inset-0" />
@@ -1141,4 +1173,12 @@ function ListaEspacios({ espacios, busca, setBusca, onElegir, onCerrar, onNuevo 
       </ul>
     </div>
   )
+}
+
+// UX-07: ¿este navegador puede dibujar WebGL?
+function hayWebGL() {
+  try {
+    const c = document.createElement('canvas')
+    return !!(c.getContext('webgl2') || c.getContext('webgl'))
+  } catch { return false }
 }
