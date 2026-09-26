@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react'
+import { useState, useRef, lazy, Suspense } from 'react'
 import { X, Upload, FileText, Download, Plus, Check, Share2, ChevronLeft, ChevronRight, History, ArrowRight } from 'lucide-react'
 import { usarDatos } from '../datos.jsx'
 import { puedeEditarRol } from '../roles.js'
@@ -18,6 +18,9 @@ import { compartirCard } from '../compartir.js'
 // Solo se muestran las pestañas cuyos datos el servidor entregó
 // al rol de la sesión (el filtrado real pasa en el servidor).
 // ============================================================
+
+import { BIBLIOTECA_3D, moduloDeEspacio } from '../modelos3d.js'
+const Biblioteca3D = lazy(() => import('./Biblioteca3D.jsx'))
 
 const PESTANAS = [
   { clave: 'factores', titulo: 'Factores', requiere: 'Factores' },
@@ -86,7 +89,8 @@ export default function FichaEspacio({ espacio, onCerrar, onAnterior, onSiguient
   const editable = modo !== 'demo' && puedeEditarRol(sesion?.rol)
   const [pestana, setPestana] = useState('factores')
 
-  const visibles = PESTANAS.filter((p) => Array.isArray(datos?.[p.requiere]))
+  const moduloId = BIBLIOTECA_3D ? moduloDeEspacio(datos?.Modelos3D || [], espacio.id) : null
+  const visibles = [...PESTANAS.filter((p) => Array.isArray(datos?.[p.requiere])), ...(moduloId ? [{ clave: 'modelo3d', titulo: 'Modelo 3D' }] : [])]
   const activa = visibles.some((p) => p.clave === pestana) ? pestana : visibles[0]?.clave
 
   return (
@@ -190,6 +194,7 @@ export default function FichaEspacio({ espacio, onCerrar, onAnterior, onSiguient
       </div>
 
       <div className="mt-4">
+        {activa === 'modelo3d' && moduloId && <Suspense fallback={<p>Cargando modelo…</p>}><Biblioteca3D moduloId={moduloId} /></Suspense>}
         {activa === 'factores' && <Factores espacio={espacio} />}
         {activa === 'fotos' && <Fotos espacio={espacio} editable={editable} />}
         {activa === 'documentos' && <Documentos espacio={espacio} editable={editable} />}

@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "pruebas": "node scripts/pruebas-calc.mjs && node scripts/pruebas-careta.mjs && node scripts/pruebas-avance.mjs && node scripts/pruebas-moac.mjs && node scripts/pruebas-recorrido.mjs",
+    "pruebas": "node scripts/pruebas-calc.mjs && node scripts/pruebas-careta.mjs && node scripts/pruebas-avance.mjs && node scripts/pruebas-moac.mjs && node scripts/pruebas-recorrido.mjs && node scripts/pruebas-modelos3d.mjs",
     "simular": "npm run build && npm --prefix herramientas/simulador ci --no-audit --no-fund && node herramientas/simulador/simular.mjs amalaya dist",
     "gifs": "npm run build && npm --prefix herramientas/simulador ci --no-audit --no-fund && GIFS=public/ayuda node herramientas/simulador/simular.mjs amalaya dist"
   },
@@ -15,7 +15,8 @@
     "lucide-react": "^0.383.0",
     "maplibre-gl": "^4.7.1",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "three": "0.160.0"
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^4.3.1",
