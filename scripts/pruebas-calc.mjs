@@ -230,6 +230,11 @@ prueba('UX-08: sin costo por m² del tipo se lista como faltante (no como cero r
   if (!g.faltantes.some((f) => f.clave.startsWith('costo_m2_'))) throw new Error('no lista costo_m2')
 })
 
+prueba('una clave repetida con 0 no pisa el valor real', () => {
+  const c = mapaConfig([{ clave: 'valor_m2_mixto', valor: '5741.99' }, { clave: 'valor_m2_mixto', valor: '0' }])
+  casi(configNum(c, 'valor_m2_mixto', 0), 5741.99)
+})
+
 console.log('configNum')
 prueba('lee números con formato y respeta el valor por defecto', () => {
   const c = mapaConfig([{ clave: 'Gastos Generales', valor: '$2,500,000' }])
