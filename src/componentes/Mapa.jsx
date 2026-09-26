@@ -282,6 +282,12 @@ export default function Mapa() {
           Arrastra un pin a su lugar. Es una vista previa: nada se guarda hasta «Aplicar»; «Cancelar» lo deja como estaba.
         </p>
       )}
+      {modoEdicion && (
+        <MoverSinArrastre
+          espacios={espacios} seleccion={seleccion} setSeleccion={setSeleccion}
+          empujar={empujar} proponer={proponer} onCancelar={cancelarPrevia}
+        />
+      )}
       {enRutas && editandoPuntos && (
         <p className="max-w-6xl mx-auto px-4 pb-2 text-terciario text-sm">
           Toca el mapa para agregar puntos a la ruta seleccionada.
@@ -638,6 +644,44 @@ function FormaNuevoEspacio({ onCrear, onCerrar }) {
           </button>
         </div>
       </form>
+    </div>
+  )
+}
+
+// UX-05: mover sin arrastrar — elegir espacio, flechas o coordenadas, y
+// teclado (flechas mueven 1 %, Mayús+flecha 0.2 %, Esc cancela). Todo entra a la
+// misma vista previa de UX-02: nada se guarda hasta «Aplicar».
+function MoverSinArrastre({ espacios, seleccion, setSeleccion, empujar, proponer, onCancelar }) {
+  const e = espacios.find((x) => x.id === seleccion)
+  const z = e ? zonaDeFila(e) : null
+  const teclas = (ev) => {
+    if (ev.key === 'Escape') { ev.preventDefault(); onCancelar(); return }
+    if (!e) return
+    const paso = ev.shiftKey ? 0.2 : 1
+    const d = { ArrowUp: [0, -paso], ArrowDown: [0, paso], ArrowLeft: [-paso, 0], ArrowRight: [paso, 0] }[ev.key]
+    if (d && ev.target.tagName !== 'INPUT' && ev.target.tagName !== 'SELECT') { ev.preventDefault(); empujar(d[0], d[1]) }
+  }
+  const campo = (etq, clave, max) => (
+    <label className="flex items-center gap-1 text-xs text-arena">{etq}
+      <input type="number" step="0.5" min="0" max={max} className="campo !py-1 !px-2 w-20 cifra" aria-label={`Posición ${etq}`}
+        value={z ? Number(z[clave === 'pos_x' ? 'x' : 'y']).toFixed(1) : ''} disabled={!e}
+        onChange={(ev) => { const n = parseFloat(ev.target.value); if (Number.isFinite(n) && e) proponer(e.id, { [clave]: acot(n, 0, max).toFixed(2) }) }} />
+    </label>
+  )
+  return (
+    <div className="mover-sin-arrastre max-w-6xl mx-auto px-4 pb-2" role="group" aria-label="Mover sin arrastrar" onKeyDown={teclas}>
+      <select className="campo !py-1 !px-2 text-sm" aria-label="Espacio a mover" value={seleccion || ''} onChange={(ev) => setSeleccion(ev.target.value || null)}>
+        <option value="">Elige un espacio…</option>
+        {espacios.map((x) => <option key={x.id} value={x.id}>{x.nombre}</option>)}
+      </select>
+      <div className="flex items-center gap-1" aria-hidden={!e}>
+        <button type="button" className="ctrl-flecha" aria-label="Mover a la izquierda" disabled={!e} onClick={() => empujar(-1, 0)}><ArrowLeft size={14} /></button>
+        <button type="button" className="ctrl-flecha" aria-label="Mover arriba" disabled={!e} onClick={() => empujar(0, -1)}><ArrowUp size={14} /></button>
+        <button type="button" className="ctrl-flecha" aria-label="Mover abajo" disabled={!e} onClick={() => empujar(0, 1)}><ArrowDown size={14} /></button>
+        <button type="button" className="ctrl-flecha" aria-label="Mover a la derecha" disabled={!e} onClick={() => empujar(1, 0)}><ArrowRight size={14} /></button>
+      </div>
+      {campo('X %', 'pos_x', z ? 100 - z.w : 100)}{campo('Y %', 'pos_y', z ? 100 - z.h : 100)}
+      <span className="text-[11px] text-terciario">Flechas del teclado: 1 % · con Mayús: 0.2 % · Esc cancela</span>
     </div>
   )
 }
