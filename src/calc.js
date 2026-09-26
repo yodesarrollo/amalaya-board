@@ -301,6 +301,23 @@ export function resumenGlobal({ espacios = [], lineas = [], factores = [], escen
     x.porAccion = acciones > 0 ? x.valor / acciones : null
   }
 
+  // UX-08: qué le falta al total para ser una cifra completa. «Sin dato»
+  // (vacío o 0 donde 0 no tiene sentido) no es lo mismo que «cero real», y una
+  // fórmula rota no es cero: todo eso se lista, nunca se esconde en la suma.
+  const sinDato = (clave) => !(configNum(config, clave, 0) > 0)
+  const faltantes = []
+  if (sinDato('acciones_emitidas')) faltantes.push({ clave: 'acciones_emitidas', texto: 'acciones emitidas' })
+  const tipos = [...new Set(espacios.map((e) => normalizarId(e.tipo)).filter(Boolean))]
+  for (const t of tipos) {
+    if (sinDato(`valor_m2_${t}`) && sinDato('valor_m2')) faltantes.push({ clave: `valor_m2_${t}`, texto: `valor por m² de ${t}` })
+    if (sinDato(`costo_m2_${t}`) && sinDato('costo_m2')) faltantes.push({ clave: `costo_m2_${t}`, texto: `costo de construcción por m² de ${t}` })
+  }
+  for (const e of espacios) if (!(Number(e.m2) > 0)) faltantes.push({ clave: `m2:${e.id}`, texto: `m² de ${e.nombre || e.id}` })
+  const conLineas = new Set(lineas.map((l) => String(l.espacio_id)))
+  const sinLineas = espacios.filter((e) => !conLineas.has(String(e.id)))
+  if (sinLineas.length) faltantes.push({ clave: 'lineas', texto: `ingresos y costos de ${sinLineas.map((e) => e.nombre || e.id).join(', ')}` })
+  const errores = porEspacio.flatMap((x) => x.errores.map((er) => ({ ...er, espacio: x.espacio })))
+
   return {
     porEspacio,
     utilidadTotal,
@@ -315,6 +332,9 @@ export function resumenGlobal({ espacios = [], lineas = [], factores = [], escen
       total: valorProyecto,
       porAccion: acciones > 0 ? valorProyecto / acciones : null,
     },
+    faltantes,
+    errores,
+    completo: faltantes.length === 0 && errores.length === 0,
   }
 }
 
