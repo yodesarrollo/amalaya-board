@@ -2,6 +2,7 @@ import { useState, useRef } from 'react'
 import { Plus, X, ChevronDown, ChevronUp, Columns2, SlidersHorizontal, RotateCcw } from 'lucide-react'
 import { usarDatos } from '../datos.jsx'
 import { puedeEditarRol } from '../roles.js'
+import { nombreTipo } from '../tipos.js'
 import { moneda, porcentaje } from '../formato.js'
 import { resumenGlobal, resumenEspacio, montoLinea, mapaConfig, configNum, normalizarId, resumenConEscenario, sugerirFactores } from '../calc.js'
 
@@ -217,7 +218,7 @@ function BloqueEspacio({ espacio, editable, ajuste }) {
         aria-expanded={abierto}
       >
         <div className="flex-1 min-w-0">
-          <div className="text-xs uppercase tracking-wide text-terciario">{espacio.tipo}</div>
+          <div className="text-xs uppercase tracking-wide text-terciario">{nombreTipo(espacio.tipo)}</div>
           <div className="font-titulo text-lg truncate">{espacio.nombre}</div>
         </div>
         <div className="text-right shrink-0">

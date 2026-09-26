@@ -5,6 +5,7 @@ import { moneda, metros2, fechaHora } from '../formato.js'
 import { resumenGlobal, mapaConfig, normalizarId, m2Construidos, lineasVigentes } from '../calc.js'
 import { leerPuntos } from './Rutas.jsx'
 import { puedeCongelarRol } from '../roles.js'
+import { nombreTipo } from '../tipos.js'
 import ImagenDrive from './ImagenDrive.jsx'
 import LineaAmalaya from './LineaAmalaya.jsx'
 
@@ -265,7 +266,7 @@ export default function Reporte() {
                 <div key={e.id} className="tarjeta p-4">
                   <div className="flex items-baseline gap-3 flex-wrap">
                     <div className="flex-1 min-w-[10rem]">
-                      <span className="text-xs uppercase tracking-wide text-terciario mr-2">{e.tipo}</span>
+                      <span className="text-xs uppercase tracking-wide text-terciario mr-2">{nombreTipo(e.tipo)}</span>
                       <span className="font-titulo text-lg">{e.nombre}</span>
                       {e.descripcion && <p className="text-arena text-sm mt-1 leading-relaxed">{e.descripcion}</p>}
                     </div>

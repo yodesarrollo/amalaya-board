@@ -24,7 +24,7 @@ import Mapa3D from './Mapa3D.jsx'
 //   pointercancel revierte.
 // ============================================================
 
-const TIPOS = ['venue', 'comercial', 'mixto', 'museo', 'escuela', 'estudio', 'estacionamiento', 'departamento', 'restaurante', 'otro']
+import { TIPOS } from '../tipos.js'
 const UMBRAL_ARRASTRE = 8
 
 const fmtMiles = (n) => Number(n).toLocaleString('es-MX')
@@ -609,7 +609,7 @@ function FormaNuevoEspacio({ onCrear, onCerrar }) {
         <label className="block mt-3">
           <span className="text-sm text-arena">Tipo</span>
           <select className="campo mt-1.5" value={tipo} onChange={(e) => setTipo(e.target.value)} disabled={ocupado}>
-            {TIPOS.map((t) => <option key={t} value={t}>{t}</option>)}
+            {TIPOS.map((t) => <option key={t.clave} value={t.clave}>{t.nombre}</option>)}
           </select>
         </label>
         {error && <p className="text-ladrillo text-sm mt-3" role="alert">{error}</p>}

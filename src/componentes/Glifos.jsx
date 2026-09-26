@@ -94,8 +94,4 @@ export const GLIFO_TIPO = {
 }
 
 // Letrero corto de cada tipo (la 2ª línea del pin).
-export const NOMBRE_TIPO = {
-  venue: 'Foro', comercial: 'Comercial', mixto: 'Uso mixto', museo: 'Museo',
-  escuela: 'Escuela', estudio: 'Estudio', estacionamiento: 'Estacionamiento',
-  departamento: 'Departamento', restaurante: 'Restaurante', otro: '',
-}
+export { NOMBRE_TIPO } from '../tipos.js'

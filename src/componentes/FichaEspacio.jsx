@@ -2,6 +2,7 @@ import { useState, useRef } from 'react'
 import { X, Upload, FileText, Download, Plus, Check, Share2, ChevronLeft, ChevronRight, History, ArrowRight } from 'lucide-react'
 import { usarDatos } from '../datos.jsx'
 import { puedeEditarRol } from '../roles.js'
+import { nombreTipo } from '../tipos.js'
 import Factores from './Factores.jsx'
 import ImagenDrive from './ImagenDrive.jsx'
 import { GLIFO_TIPO } from './Glifos.jsx'
@@ -97,7 +98,7 @@ export default function FichaEspacio({ espacio, onCerrar, onAnterior, onSiguient
           </button>
         )}
         <div className="flex-1 min-w-0">
-          <div className="text-xs uppercase tracking-wide text-terciario">{espacio.tipo}</div>
+          <div className="text-xs uppercase tracking-wide text-terciario">{nombreTipo(espacio.tipo)}</div>
           <h3 className="font-titulo text-2xl mt-0.5 truncate">{espacio.nombre}</h3>
           {posicion && <div className="text-[11px] text-terciario">{posicion}</div>}
         </div>
@@ -108,7 +109,7 @@ export default function FichaEspacio({ espacio, onCerrar, onAnterior, onSiguient
         )}
         <button
           className="text-arena hover:text-marfil p-2 -m-1 transition-colors duration-micro ease-casa"
-          onClick={() => compartirCard({ titulo: espacio.nombre, subtitulo: espacio.tipo, detalle: espacio.descripcion || '' })}
+          onClick={() => compartirCard({ titulo: espacio.nombre, subtitulo: nombreTipo(espacio.tipo), detalle: espacio.descripcion || '' })}
           aria-label="Compartir"
           title="Genera la card para tu historia"
         >
