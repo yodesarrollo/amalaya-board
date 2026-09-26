@@ -506,3 +506,9 @@ html {
 .conf-cartografia { color: #8FB8D9; border-color: rgba(143,184,217,.5); }
 .conf-estimado { color: #C9A45C; border-color: rgba(201,164,92,.5); }
 .conf-por_validar { color: #E8923A; border-color: rgba(232,146,58,.55); border-style: dashed; }
+
+/* UX-05 · mover sin arrastrar */
+.mover-sin-arrastre { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; }
+.ctrl-flecha { display: inline-flex; align-items: center; justify-content: center; width: 30px; height: 30px; border-radius: 8px; border: 1px solid rgba(201,164,92,.45); color: #F2EAD9; background: rgba(34,27,21,.9); }
+.ctrl-flecha:disabled { opacity: .35; }
+.ctrl-flecha:focus-visible { outline: 2px solid #FFB84D; outline-offset: 2px; }

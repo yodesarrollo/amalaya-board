@@ -197,6 +197,22 @@ export async function guion({ pagina, foto, clic, base }) {
     console.log(`${escriturasPos === 1 && posDe() !== antesPos ? '✓' : '✗'} UX-02 aplicar: ${escriturasPos} escritura, ${antesPos} → ${posDe()}`)
     await foto('03q-ux02-aplicado', 200)
   }
+  // UX-05: con teclado y clics, sin arrastrar: elegir, mover y cancelar
+  {
+    const pos = () => `${db.Espacios[1].pos_x},${db.Espacios[1].pos_y}`
+    const antes5 = pos(); escriturasPos = 0
+    await clic('button:has-text("Mover espacios")'); await pagina.waitForTimeout(500)
+    await pagina.selectOption('select[aria-label="Espacio a mover"]', db.Espacios[1].id)
+    await pagina.locator('button[aria-label="Mover a la derecha"]').focus()
+    await pagina.keyboard.press('Enter'); await pagina.keyboard.press('ArrowDown'); await pagina.keyboard.press('ArrowDown')
+    const x5 = await pagina.locator('input[aria-label="Posición X %"]').inputValue()
+    const y5 = await pagina.locator('input[aria-label="Posición Y %"]').inputValue()
+    const txtAplicar = (await pagina.locator('button:has-text("Aplicar")').textContent()) || ''
+    await foto('03r-ux05-sin-arrastre', 300)
+    await pagina.keyboard.press('Escape'); await pagina.waitForTimeout(1500)
+    const fuera = (await pagina.locator('select[aria-label="Espacio a mover"]').count()) === 0
+    console.log(`${/\(1\)/.test(txtAplicar) && escriturasPos === 0 && pos() === antes5 && fuera ? '✓' : '✗'} UX-05 teclado: elegir → Enter (derecha) + ↓↓ → X ${x5} Y ${y5}, «${txtAplicar.trim()}», Esc cancela con ${escriturasPos} escrituras`)
+  }
   // Chinche #15: panel de Capas compacto, sin scroll, y se cierra tocando el mapa
   await clic('button.ctrl-mapa:has-text("Capas")'); await pagina.waitForTimeout(300)
   const sinScroll = await pagina.$eval('.panel-lista', (e) => e.scrollHeight <= e.clientHeight + 1)
