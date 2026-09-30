@@ -65,3 +65,9 @@ bucle, parallax, rebotes elásticos, tipografías western o script, sombras neó
 emojis en la interfaz. La única alusión musical es la **línea Amalaya** (el
 hairline dorado que ondula al cargar) — notas musicales, vinilos y
 ecualizadores están prohibidos.
+
+## Recorrido integrado · revisión local
+
+La primera sección ahora conecta territorio 3D, caminar y puntos 360. La [propuesta y plan de mejoras](docs/recorrido-integrado.md) describe el alcance, la verificación y lo pendiente. `preview-recorrido.html` permite revisar esa experiencia sin consultar datos de negocio.
+
+El levantamiento Hidalgo3D se prepara con `npm run preparar:3d`, después de compilar el proyecto hermano según la guía. **Es privado**: `public/levantamiento/` y `dist/` no se versionan ni se publican en Pages. El build de GitHub Actions rechaza la presencia de ese directorio. La integración en línea requiere un alojamiento privado autorizado para esos recursos.

@@ -28,6 +28,12 @@ button.on{background:linear-gradient(180deg,#E8C466,#C9A45C 50%,#8F6E2E);color:#
 .form .fila{display:flex;gap:8px}.form .fila select{flex:1}
 body.embed .top{left:10px;top:10px}body.embed .btns{right:10px;top:10px}body.embed .ocultar-embed{display:none}body.embed .mini{display:none}body.embed .slider{width:min(420px,calc(100vw - 40px))}body.embed .brujula{width:38px;height:38px}
 @media (max-width:760px){.mini{display:none}.btns{flex-wrap:wrap;justify-content:flex-end;max-width:62vw}button,a.b,select.b{padding:7px 9px;font-size:11px;min-height:34px}.slider{width:calc(100vw - 32px)}}
+body.portal .top,body.portal .btns{display:none}
+body.portal .slider{box-sizing:border-box;width:min(440px,calc(100vw - 24px));bottom:10px;gap:7px;flex-wrap:wrap}
+body.portal .slider input{min-width:0;width:80px}
+body.portal .slider .est{white-space:normal}
+body.portal .brujula{bottom:90px;right:12px}
+@media(max-width:500px){body.portal .slider .est{width:100%;text-align:center}body.portal .slider{padding:8px 10px}}
 </style></head><body>
 <canvas id="c"></canvas>
 <div class="top"><div class="t" id="titulo">Recorrido 360<small id="sub">cargando…</small></div></div>
@@ -36,7 +42,7 @@ body.embed .top{left:10px;top:10px}body.embed .btns{right:10px;top:10px}body.emb
 <div class="slider"><b>Antes</b><input id="mezcla" type="range" min="0" max="100" value="0"><b>Después</b><span class="est" id="estado">…</span></div>
 <div class="mini"><svg id="minisvg" width="150" height="48"></svg></div>
 <div class="brujula"><i id="aguja"></i></div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.160.0/three.min.js"></script>
+<script src="./vendor/three-0.160.0.min.js"></script>
 <script>
 // ============================================================
 // Recorrido 360 · v2 (14-sep-2026)
@@ -48,7 +54,7 @@ body.embed .top{left:10px;top:10px}body.embed .btns{right:10px;top:10px}body.emb
 //   mueven con la imagen y no «flotan».
 // - ?embed=1: modo pop-up dentro del tablero (avisa al padre el punto).
 // ============================================================
-const params=new URLSearchParams(location.search); const EMBED=params.get('embed')==='1'; if(EMBED) document.body.classList.add('embed');
+const params=new URLSearchParams(location.search); const EMBED=params.get('embed')==='1'; if(EMBED) document.body.classList.add('embed'); if(params.get('portal')==='1')document.body.classList.add('portal');
 let RUTAS=null, DATA=null, idx=0, yaw=0, auto=false, modoAccion=false, ACCIONES=[], pendiente=null;
 let PITCH=-0.16; // se ajusta por punto: la calle y la fachada mandan, no el cielo
 function encuadrar(id){ const r=ROLL[id]||{}; const alto=r.alto||0;
@@ -98,7 +104,7 @@ async function irA(i,orientar=true){
   idx=Math.max(0,Math.min(DATA.puntos.length-1,i)); const p=DATA.puntos[idx];
   document.getElementById('titulo').firstChild.textContent=p.nombre; document.getElementById('sub').textContent=`${DATA.nombre} · punto ${p.orden} de ${DATA.puntos.length}${modoAccion?' · modo acción: toca lo que quieras mejorar':''}`;
   history.replaceState(null,'','?'+(EMBED?'embed=1&':'')+'r='+encodeURIComponent(DATA.id)+'&p='+encodeURIComponent(p.id));
-  if(EMBED&&window.parent!==window) window.parent.postMessage({tipo:'recorrido360',ruta:DATA.id,punto:p.id,lat:p.lat,lng:p.lng,orden:p.orden},'*');
+  if(EMBED&&window.parent!==window) window.parent.postMessage({tipo:'recorrido360',ruta:DATA.id,punto:p.id,lat:p.lat,lng:p.lng,orden:p.orden},location.origin);
   const sig=DATA.puntos[idx+1]||DATA.puntos[idx-1]; if(orientar&&sig) yaw=rumbo(p,sig);
   let [a,b]=await Promise.all([cargarTex(p.id+'.jpg'),cargarTex('despues/'+p.id+'.jpg')]);
   if(a){ matA.map=a; matA.color.set('#fff'); matA.needsUpdate=true }
@@ -113,9 +119,9 @@ async function irA(i,orientar=true){
 document.getElementById('mezcla').oninput=(e)=>{ matB.opacity=e.target.value/100 };
 const RENDERS={};
 function pintarDespues(b){ const m=document.getElementById('mezcla'), est=document.getElementById('estado'); document.querySelector('.slider').classList.toggle('apagado',!b);
-  if(b){ matB.map=b; matB.needsUpdate=true; m.disabled=false; est.innerHTML='<b style="color:#8FA382;font-weight:700">listo</b> · render del después' } else { matB.map=null; m.disabled=true; m.value=0; matB.opacity=0; est.innerHTML='<b style="color:#FFB84D;font-weight:700">Render en camino</b>' } }
+  if(b){ matB.map=b; matB.needsUpdate=true; m.disabled=false; if(window.amalayaVersion){m.value=window.amalayaVersion==='amalaya'?100:0;matB.opacity=Number(m.value)/100;} est.innerHTML='<b style="color:#8FA382;font-weight:700">listo</b> · render del después' } else { matB.map=null; m.disabled=true; m.value=0; matB.opacity=0; est.innerHTML='<b style="color:#FFB84D;font-weight:700">Render en camino</b>' } }
 // El board (padre) contesta con el render de Drive del punto: {tipo:'render360', punto, dataUrl}
-addEventListener('message', async (ev)=>{ const d=ev.data||{}; if(d.tipo!=='render360'||ev.source!==window.parent) return;
+addEventListener('message', async (ev)=>{ const d=ev.data||{}; if(d.tipo!=='render360'||ev.source!==window.parent||ev.origin!==location.origin) return;
   if(!d.dataUrl) return; const t=await cargarTex(d.dataUrl); if(!t) return; RENDERS[d.punto]=t;
   if(DATA.puntos[idx]&&DATA.puntos[idx].id===d.punto) pintarDespues(t) });
 function pintarMini(){ const s=document.getElementById('minisvg'); const P=DATA.puntos; const xs=P.map(p=>p.lng), ys=P.map(p=>p.lat);
@@ -140,8 +146,9 @@ canvas.addEventListener('pointerup',e=>{ const mov=arr&&arr.mov; arr=null; if(mo
 canvas.addEventListener('wheel',e=>{ cam.fov=Math.max(55,Math.min(110,cam.fov+e.deltaY*0.03)); cam.updateProjectionMatrix() },{passive:true});
 document.getElementById('bAuto').onclick=function(){ auto=!auto; this.classList.toggle('on',auto) };
 addEventListener('keydown',e=>{ if(e.key==='ArrowRight'&&e.shiftKey) irA(idx+1); if(e.key==='ArrowLeft'&&e.shiftKey) irA(idx-1) });
+addEventListener('message',e=>{if(e.origin!==location.origin||e.source!==parent||e.data?.tipo!=='version360')return;if(Number.isFinite(e.data.heading))yaw=e.data.heading*Math.PI/180;});
 const sel=document.getElementById('selRuta'); sel.onchange=()=>{ DATA=RUTAS.rutas.find(r=>r.id===sel.value); irA(0) };
-addEventListener('message',(e)=>{ const d=e.data||{}; if(d.tipo==='ir360'&&RUTAS){ const R=RUTAS.rutas.find(r=>r.id===d.ruta)||RUTAS.rutas.find(r=>r.puntos.some(p=>p.id===d.punto)); if(!R) return; DATA=R; sel.value=R.id; irA(Math.max(0,R.puntos.findIndex(p=>p.id===d.punto))) } });
+addEventListener('message',(e)=>{ const d=e.data||{}; if(e.origin===location.origin&&e.source===window.parent&&d.tipo==='ir360'&&RUTAS){ const R=RUTAS.rutas.find(r=>r.id===d.ruta)||RUTAS.rutas.find(r=>r.puntos.some(p=>p.id===d.punto)); if(!R) return; DATA=R; sel.value=R.id; irA(Math.max(0,R.puntos.findIndex(p=>p.id===d.punto))) } });
 function ajustar(){ ren.setSize(innerWidth,innerHeight,false); cam.aspect=innerWidth/innerHeight; cam.updateProjectionMatrix() } addEventListener('resize',ajustar); ajustar();
 function frame(){ if(auto) yaw+=0.002; cam.rotation.set(0,0,0,'YXZ'); cam.rotation.y=-yaw; cam.rotation.x=PITCH; ren.render(esc,cam); document.getElementById('aguja').style.transform=`rotate(${-yaw*180/Math.PI}deg)`; requestAnimationFrame(frame) }
 fetch('rutas.json').then(r=>r.json()).then(async d=>{ RUTAS=d; ROLL=await fetch('roll.json').then(r=>r.ok?r.json():{}).catch(()=>({})); await cargarAcciones(); sel.innerHTML=d.rutas.map(r=>`<option value="${r.id}">${r.nombre} · ${r.puntos.length} pts</option>`).join('');
@@ -176,3 +183,5 @@ fetch('rutas.json').then(r=>r.json()).then(async d=>{ RUTAS=d; ROLL=await fetch(
 })();
 </script>
 </body></html>
+
+<script>addEventListener('message',e=>{if(e.origin!==location.origin||e.source!==parent||e.data?.tipo!=='version360')return;const v=e.data.version;if(v!=='actual'&&v!=='amalaya')return;window.amalayaVersion=v;const m=document.getElementById('mezcla');if(m&&!m.disabled){m.value=v==='amalaya'?100:0;m.dispatchEvent(new Event('input'));}});</script>

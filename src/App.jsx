@@ -15,6 +15,7 @@ import { BASE, APPS_SCRIPT_URL } from './config.js'
 import { apiCall } from './api.js'
 
 import { BIBLIOTECA_3D } from './modelos3d.js'
+const RecorridoPortal = lazy(() => import('./componentes/RecorridoPortal.jsx'))
 const Biblioteca3D = lazy(() => import('./componentes/Biblioteca3D.jsx'))
 
 // La Chinche de Amalaya (pila propia, public/chinche.js): se carga solo con
@@ -56,7 +57,7 @@ function usarChinche(sesion, modo, seccion) {
 function Principal() {
   const { sesion, datos, modo } = usarDatos()
   const esInversionista = sesion?.rol === 'inversionista'
-  const [seccion, setSeccion] = useState('mapa')
+  const [seccion, setSeccion] = useState('recorrido')
   usarChinche(sesion, modo, seccion)
   const hayFinanzas = Array.isArray(datos?.Finanzas_Lineas)
 
@@ -69,6 +70,7 @@ function Principal() {
   }
 
   const secciones = [
+    ['recorrido', 'Recorrido', Box],
     ['mapa', 'Mapa', MapIcon],
     ...(BIBLIOTECA_3D ? [['modelos', 'Modelos 3D', Box]] : []),
     ...(hayFinanzas ? [['finanzas', 'Finanzas', BarChart3]] : []),
@@ -97,6 +99,7 @@ function Principal() {
       {/* En teléfono el «?» flota arriba a la derecha de la sección */}
       <div className="no-imprimir sm:hidden flex justify-end px-3 pt-2 -mb-2"><AyudaPantalla seccion={seccion} /></div>
 
+      {seccion === 'recorrido' && <Suspense fallback={<p className="p-4">Preparando el territorio…</p>}><RecorridoPortal /></Suspense>}
       {seccion === 'mapa' && <Mapa />}
       {seccion === 'modelos' && BIBLIOTECA_3D && <Suspense fallback={<p className="p-4">Cargando biblioteca…</p>}><Biblioteca3D /></Suspense>}
       {seccion === 'finanzas' && <Financiero />}
