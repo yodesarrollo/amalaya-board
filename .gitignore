@@ -3,6 +3,5 @@ dist/
 .DS_Store
 *.local
 
-# Private local survey; never publish these generated artifacts to Pages.
-public/levantamiento/
+# Paquete visual autorizado para publicación el 2026-09-30.
 review-shots/

@@ -73,6 +73,7 @@ export default function Acceso() {
           </p>
         </div>
 
+        <a href={`${import.meta.env.BASE_URL}explorar.html`} className="block text-center border border-oro/50 rounded-lg px-4 py-3 text-oro mb-6">Explorar Amalaya · 3D y 360° ↗</a>
         <LineaAmalaya cargando={cargando} className="mb-8" />
 
         {!BACKEND_LISTO ? (

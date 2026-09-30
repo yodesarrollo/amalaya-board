@@ -1,4 +1,6 @@
-# Amalaya · recorrido integrado para revisión
+# Amalaya · recorrido integrado
+
+**Estado vigente:** publicación visual autorizada. Véase «Actualización pública autorizada» al final; las secciones de entrega local documentan la revisión anterior.
 
 Propuesta del 30 de septiembre de 2026: **Caminar Amalaya antes de construirlo.**
 
@@ -60,3 +62,22 @@ El motor Three.js del 360 se sirve localmente con su licencia MIT; no depende de
 Verificación de código: 65/65 pruebas del levantamiento con `pnpm test --maxWorkers=1`, TypeScript, build y smoke correctos. Una corrida concurrente anterior agotó el límite de 5 s de una prueba; la repetición secuencial pasó. Las suites del board (finanzas, careta, avance, MOAC, recorrido y modelos), más las pruebas nuevas de IDs/rumbos/mensajes del portal, pasan. El build mantiene avisos de tamaño de chunks, registrados como deuda de carga.
 
 Referencia de implementación: [capa Three.js sobre MapLibre](https://maplibre.org/maplibre-gl-js/docs/examples/add-a-3d-model-using-threejs/). Se conserva la API de MapLibre 4.7 instalada en este board.
+
+## Actualización pública autorizada · 30 de septiembre de 2026
+
+La instrucción posterior del usuario autoriza publicar el modelo y el recorrido para acceso desde cualquier dispositivo. Sustituye la restricción de entrega exclusivamente local descrita arriba. Se publica **el paquete visual compilado**, no el repositorio ni el historial de Hidalgo3D. El remoto del levantamiento no cambia. Los datos de operación, finanzas y acceso siguen en su backend con sus controles existentes.
+
+Entrada pública: `https://yodesarrollo.github.io/amalaya-board/explorar.html`. El acceso principal al board incorpora un enlace visible al recorrido. La URL pública abre sin cuenta y no importa el proveedor de datos del negocio. `preview-recorrido.html` permanece como alias compatible.
+
+Incluye portada editorial, ruta activa y punto seleccionado destacados, progreso del recorrido, regreso al punto, enlaces compartibles con ruta/punto/vista/versión, controles táctiles para caminar y estados de carga. El panel «Propuesta y próximos pasos» presenta el plan por etapas. La intención de identidad es sonorense, cultural y musical; no se afirma respaldo personal de ningún artista.
+
+### Resultados y criterios de evolución
+
+1. **Acceso:** abrir desde HTTPS sin servidor local. Verificar HTML, rutas, módulo 3D y panorama desde la URL publicada.
+2. **Comprensión:** distinguir levantamiento provisional, concepto de sombra y futuro diseño aprobado. No sugerir que el proyecto completo está modelado.
+3. **Recorrido:** mantener selección al alternar modos; compartir una estación concreta. El enlace restaura la estación y el rumbo de ruta, no una cámara libre arbitraria.
+4. **Móvil:** controles de 44 px o más, giro táctil, botones de movimiento con cancelación y liberación al perder foco. Pendiente evaluación de FPS/memoria en teléfonos físicos.
+5. **Siguiente cuadra:** Chihuahua entre Abasolo y Garmendia. Medición independiente por lado y evidencia antes de afinar fachadas.
+6. **Transformación:** recibir diseño aprobado, modelar por cuadra, producir pares 360 en el mismo punto y comparar con geometría actual.
+
+Antes de desplegar, `npm run verificar:publicacion` comprueba el paquete visual y detecta credenciales de formatos conocidos; complementa la revisión de contenido, no sustituye una auditoría de seguridad. Pages sirve esos activos públicamente por autorización expresa.

@@ -1,0 +1,1643 @@
+{
+  "schemaVersion": 1,
+  "provenance": {
+    "pointsCsv": "https://raw.githubusercontent.com/yodesarrollomx/yodesarrollomx.github.io/refs/heads/claude/trusting-euler-nglv8a/propuestas/amalaya-recorrido/datos/puntos.csv",
+    "zonesGeoJson": "https://raw.githubusercontent.com/yodesarrollomx/yodesarrollomx.github.io/refs/heads/claude/trusting-euler-nglv8a/propuestas/amalaya-recorrido/datos/puntos.geojson",
+    "retrievedDate": "2026-09-29",
+    "pointCount": 128,
+    "zoneCount": 10,
+    "zoneOrder": [
+      "Z01",
+      "Z10",
+      "Z09",
+      "Z08",
+      "Z02",
+      "Z03",
+      "Z05",
+      "Z06",
+      "Z07",
+      "Z04"
+    ],
+    "note": "Los puntos y rumbos son anclas WGS84 del board. Los polígonos son hipótesis de zonificación, no levantamientos catastrales. Los enlaces abren Google Maps; no se descargan ni se incorporan panoramas."
+  },
+  "zones": [
+    {
+      "id": "Z01",
+      "name": "Foro musical Amalaya",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -110.95404,
+              29.076975
+            ],
+            [
+              -110.95347,
+              29.077027
+            ],
+            [
+              -110.953426,
+              29.076473
+            ],
+            [
+              -110.954034,
+              29.076364
+            ],
+            [
+              -110.95404,
+              29.076975
+            ]
+          ]
+        ]
+      },
+      "isHypothesis": true
+    },
+    {
+      "id": "Z02",
+      "name": "Plaza Hidalgo",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -110.954561,
+              29.07615
+            ],
+            [
+              -110.954071,
+              29.076187
+            ],
+            [
+              -110.954055,
+              29.076023
+            ],
+            [
+              -110.955481,
+              29.075915
+            ],
+            [
+              -110.955498,
+              29.07608
+            ],
+            [
+              -110.954561,
+              29.07615
+            ]
+          ]
+        ]
+      },
+      "isHypothesis": true
+    },
+    {
+      "id": "Z03",
+      "name": "Locales y oficinas",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -110.955537,
+              29.075887
+            ],
+            [
+              -110.954949,
+              29.075924
+            ],
+            [
+              -110.954933,
+              29.075601
+            ],
+            [
+              -110.955609,
+              29.075406
+            ],
+            [
+              -110.955537,
+              29.075887
+            ]
+          ]
+        ]
+      },
+      "isHypothesis": true
+    },
+    {
+      "id": "Z04",
+      "name": "Vivienda y estudios de ensayo",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -110.95609,
+              29.075205
+            ],
+            [
+              -110.95535,
+              29.07542
+            ],
+            [
+              -110.955259,
+              29.075169
+            ],
+            [
+              -110.955383,
+              29.074951
+            ],
+            [
+              -110.955755,
+              29.074896
+            ],
+            [
+              -110.955937,
+              29.075034
+            ],
+            [
+              -110.956124,
+              29.07508
+            ],
+            [
+              -110.95609,
+              29.075205
+            ]
+          ]
+        ]
+      },
+      "isHypothesis": true
+    },
+    {
+      "id": "Z05",
+      "name": "Volumen azul / referencia al museo",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -110.955164,
+              29.075463
+            ],
+            [
+              -110.954739,
+              29.075569
+            ],
+            [
+              -110.954751,
+              29.075298
+            ],
+            [
+              -110.955209,
+              29.075177
+            ],
+            [
+              -110.955164,
+              29.075463
+            ]
+          ]
+        ]
+      },
+      "isHypothesis": true
+    },
+    {
+      "id": "Z06",
+      "name": "Tiendas y talleres creativos",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -110.955197,
+              29.075196
+            ],
+            [
+              -110.954784,
+              29.075303
+            ],
+            [
+              -110.954761,
+              29.074963
+            ],
+            [
+              -110.955244,
+              29.074817
+            ],
+            [
+              -110.955197,
+              29.075196
+            ]
+          ]
+        ]
+      },
+      "isHypothesis": true
+    },
+    {
+      "id": "Z07",
+      "name": "Estacionamiento frontal HEALY",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -110.954574,
+              29.075423
+            ],
+            [
+              -110.954062,
+              29.075534
+            ],
+            [
+              -110.954177,
+              29.075035
+            ],
+            [
+              -110.954707,
+              29.074842
+            ],
+            [
+              -110.954574,
+              29.075423
+            ]
+          ]
+        ]
+      },
+      "isHypothesis": true
+    },
+    {
+      "id": "Z08",
+      "name": "Estacionamiento posterior aparente",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -110.953508,
+              29.076556
+            ],
+            [
+              -110.953055,
+              29.07664
+            ],
+            [
+              -110.95315,
+              29.076084
+            ],
+            [
+              -110.953622,
+              29.076014
+            ],
+            [
+              -110.953508,
+              29.076556
+            ]
+          ]
+        ]
+      },
+      "isHypothesis": true
+    },
+    {
+      "id": "Z09",
+      "name": "Conjunto amarillo recortado",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -110.952948,
+              29.076946
+            ],
+            [
+              -110.952498,
+              29.076936
+            ],
+            [
+              -110.952752,
+              29.076421
+            ],
+            [
+              -110.953057,
+              29.076379
+            ],
+            [
+              -110.952948,
+              29.076946
+            ]
+          ]
+        ]
+      },
+      "isHypothesis": true
+    },
+    {
+      "id": "Z10",
+      "name": "Volúmenes posteriores / transición",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -110.953353,
+              29.077021
+            ],
+            [
+              -110.95316,
+              29.077098
+            ],
+            [
+              -110.953137,
+              29.076835
+            ],
+            [
+              -110.953373,
+              29.076699
+            ],
+            [
+              -110.953353,
+              29.077021
+            ]
+          ]
+        ]
+      },
+      "isHypothesis": true
+    }
+  ],
+  "points": [
+    {
+      "id": "P001",
+      "zoneId": "Z01",
+      "name": "Foro musical Amalaya",
+      "kind": "centro",
+      "lat": 29.0767098,
+      "lng": -110.9537425,
+      "headingDegrees": 0,
+      "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.0767098,-110.9537425&heading=0&pitch=0&fov=80"
+    },
+    {
+      "id": "P002",
+      "zoneId": "Z01",
+      "name": "Foro musical Amalaya",
+      "kind": "centro",
+      "lat": 29.0767098,
+      "lng": -110.9537425,
+      "headingDegrees": 90,
+      "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.0767098,-110.9537425&heading=90&pitch=0&fov=80"
+    },
+    {
+      "id": "P003",
+      "zoneId": "Z01",
+      "name": "Foro musical Amalaya",
+      "kind": "centro",
+      "lat": 29.0767098,
+      "lng": -110.9537425,
+      "headingDegrees": 180,
+      "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.0767098,-110.9537425&heading=180&pitch=0&fov=80"
+    },
+    {
+      "id": "P004",
+      "zoneId": "Z01",
+      "name": "Foro musical Amalaya",
+      "kind": "centro",
+      "lat": 29.0767098,
+      "lng": -110.9537425,
+      "headingDegrees": 270,
+      "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.0767098,-110.9537425&heading=270&pitch=0&fov=80"
+    },
+    {
+      "id": "P005",
+      "zoneId": "Z01",
+      "name": "Foro musical Amalaya",
+      "kind": "esquina",
+      "lat": 29.076975,
+      "lng": -110.95404,
+      "headingDegrees": 136,
+      "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.076975,-110.95404&heading=136&pitch=0&fov=80"
+    },
+    {
+      "id": "P006",
+      "zoneId": "Z01",
+      "name": "Foro musical Amalaya",
+      "kind": "esquina",
+      "lat": 29.077027,
+      "lng": -110.95347,
+      "headingDegrees": 217,
+      "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.077027,-110.95347&heading=217&pitch=0&fov=80"
+    },
+    {
+      "id": "P007",
+      "zoneId": "Z01",
+      "name": "Foro musical Amalaya",
+      "kind": "esquina",
+      "lat": 29.076473,
+      "lng": -110.953426,
+      "headingDegrees": 311,
+      "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.076473,-110.953426&heading=311&pitch=0&fov=80"
+    },
+    {
+      "id": "P008",
+      "zoneId": "Z01",
+      "name": "Foro musical Amalaya",
+      "kind": "esquina",
+      "lat": 29.076364,
+      "lng": -110.954034,
+      "headingDegrees": 36,
+      "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.076364,-110.954034&heading=36&pitch=0&fov=80"
+    },
+    {
+      "id": "P009",
+      "zoneId": "Z01",
+      "name": "Foro musical Amalaya",
+      "kind": "lado",
+      "lat": 29.077001,
+      "lng": -110.953755,
+      "headingDegrees": 178,
+      "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.077001,-110.953755&heading=178&pitch=0&fov=80"
+    },
+    {
+      "id": "P010",
+      "zoneId": "Z01",
+      "name": "Foro musical Amalaya",
+      "kind": "lado",
+      "lat": 29.07675,
+      "lng": -110.953448,
+      "headingDegrees": 261,
+      "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.07675,-110.953448&heading=261&pitch=0&fov=80"
+    },
+    {
+      "id": "P011",
+      "zoneId": "Z01",
+      "name": "Foro musical Amalaya",
+      "kind": "lado",
+      "lat": 29.0764185,
+      "lng": -110.95373,
+      "headingDegrees": 358,
+      "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.0764185,-110.95373&heading=358&pitch=0&fov=80"
+    },
+    {
+      "id": "P012",
+      "zoneId": "Z01",
+      "name": "Foro musical Amalaya",
+      "kind": "lado",
+      "lat": 29.0766695,
+      "lng": -110.954037,
+      "headingDegrees": 81,
+      "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.0766695,-110.954037&heading=81&pitch=0&fov=80"
+    },
+    {
+      "id": "P013",
+      "zoneId": "Z10",
+      "name": "Volúmenes posteriores / transición",
+      "kind": "centro",
+      "lat": 29.0769133,
+      "lng": -110.9532557,
+      "headingDegrees": 0,
+      "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.0769133,-110.9532557&heading=0&pitch=0&fov=80"
+    },
+    {
+      "id": "P014",
+      "zoneId": "Z10",
+      "name": "Volúmenes posteriores / transición",
+      "kind": "centro",
+      "lat": 29.0769133,
+      "lng": -110.9532557,
+      "headingDegrees": 90,
+      "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.0769133,-110.9532557&heading=90&pitch=0&fov=80"
+    },
+    {
+      "id": "P015",
+      "zoneId": "Z10",
+      "name": "Volúmenes posteriores / transición",
+      "kind": "centro",
+      "lat": 29.0769133,
+      "lng": -110.9532557,
+      "headingDegrees": 180,
+      "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.0769133,-110.9532557&heading=180&pitch=0&fov=80"
+    },
+    {
+      "id": "P016",
+      "zoneId": "Z10",
+      "name": "Volúmenes posteriores / transición",
+      "kind": "centro",
+      "lat": 29.0769133,
+      "lng": -110.9532557,
+      "headingDegrees": 270,
+      "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.0769133,-110.9532557&heading=270&pitch=0&fov=80"
+    },
+    {
+      "id": "P017",
+      "zoneId": "Z10",
+      "name": "Volúmenes posteriores / transición",
+      "kind": "esquina",
+      "lat": 29.077021,
+      "lng": -110.953353,
+      "headingDegrees": 142,
+      "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.077021,-110.953353&heading=142&pitch=0&fov=80"
+    },
+    {
+      "id": "P018",
+      "zoneId": "Z10",
+      "name": "Volúmenes posteriores / transición",
+      "kind": "esquina",
+      "lat": 29.077098,
+      "lng": -110.95316,
+      "headingDegrees": 204,
+      "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.077098,-110.95316&heading=204&pitch=0&fov=80"
+    },
+    {
+      "id": "P019",
+      "zoneId": "Z10",
+      "name": "Volúmenes posteriores / transición",
+      "kind": "esquina",
+      "lat": 29.076835,
+      "lng": -110.953137,
+      "headingDegrees": 307,
+      "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.076835,-110.953137&heading=307&pitch=0&fov=80"
+    },
+    {
+      "id": "P020",
+      "zoneId": "Z10",
+      "name": "Volúmenes posteriores / transición",
+      "kind": "esquina",
+      "lat": 29.076699,
+      "lng": -110.953373,
+      "headingDegrees": 26,
+      "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.076699,-110.953373&heading=26&pitch=0&fov=80"
+    },
+    {
+      "id": "P021",
+      "zoneId": "Z10",
+      "name": "Volúmenes posteriores / transición",
+      "kind": "lado",
+      "lat": 29.0770595,
+      "lng": -110.9532565,
+      "headingDegrees": 180,
+      "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.0770595,-110.9532565&heading=180&pitch=0&fov=80"
+    },
+    {
+      "id": "P022",
+      "zoneId": "Z10",
+      "name": "Volúmenes posteriores / transición",
+      "kind": "lado",
+      "lat": 29.0769665,
+      "lng": -110.9531485,
+      "headingDegrees": 240,
+      "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.0769665,-110.9531485&heading=240&pitch=0&fov=80"
+    },
+    {
+      "id": "P023",
+      "zoneId": "Z10",
+      "name": "Volúmenes posteriores / transición",
+      "kind": "lado",
+      "lat": 29.076767,
+      "lng": -110.953255,
+      "headingDegrees": 360,
+      "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.076767,-110.953255&heading=360&pitch=0&fov=80"
+    },
+    {
+      "id": "P024",
+      "zoneId": "Z10",
+      "name": "Volúmenes posteriores / transición",
+      "kind": "lado",
+      "lat": 29.07686,
+      "lng": -110.953363,
+      "headingDegrees": 60,
+      "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.07686,-110.953363&heading=60&pitch=0&fov=80"
+    },
+    {
+      "id": "P025",
+      "zoneId": "Z09",
+      "name": "Conjunto amarillo recortado",
+      "kind": "centro",
+      "lat": 29.0766705,
+      "lng": -110.9528138,
+      "headingDegrees": 0,
+      "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.0766705,-110.9528138&heading=0&pitch=0&fov=80"
+    },
+    {
+      "id": "P026",
+      "zoneId": "Z09",
+      "name": "Conjunto amarillo recortado",
+      "kind": "centro",
+      "lat": 29.0766705,
+      "lng": -110.9528138,
+      "headingDegrees": 90,
+      "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.0766705,-110.9528138&heading=90&pitch=0&fov=80"
+    },
+    {
+      "id": "P027",
+      "zoneId": "Z09",
+      "name": "Conjunto amarillo recortado",
+      "kind": "centro",
+      "lat": 29.0766705,
+      "lng": -110.9528138,
+      "headingDegrees": 180,
+      "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.0766705,-110.9528138&heading=180&pitch=0&fov=80"
+    },
+    {
+      "id": "P028",
+      "zoneId": "Z09",
+      "name": "Conjunto amarillo recortado",
+      "kind": "centro",
+      "lat": 29.0766705,
+      "lng": -110.9528138,
+      "headingDegrees": 270,
+      "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.0766705,-110.9528138&heading=270&pitch=0&fov=80"
+    },
+    {
+      "id": "P029",
+      "zoneId": "Z09",
+      "name": "Conjunto amarillo recortado",
+      "kind": "esquina",
+      "lat": 29.076946,
+      "lng": -110.952948,
+      "headingDegrees": 157,
+      "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.076946,-110.952948&heading=157&pitch=0&fov=80"
+    },
+    {
+      "id": "P030",
+      "zoneId": "Z09",
+      "name": "Conjunto amarillo recortado",
+      "kind": "esquina",
+      "lat": 29.076936,
+      "lng": -110.952498,
+      "headingDegrees": 226,
+      "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.076936,-110.952498&heading=226&pitch=0&fov=80"
+    },
+    {
+      "id": "P031",
+      "zoneId": "Z09",
+      "name": "Conjunto amarillo recortado",
+      "kind": "esquina",
+      "lat": 29.076421,
+      "lng": -110.952752,
+      "headingDegrees": 348,
+      "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.076421,-110.952752&heading=348&pitch=0&fov=80"
+    },
+    {
+      "id": "P032",
+      "zoneId": "Z09",
+      "name": "Conjunto amarillo recortado",
+      "kind": "esquina",
+      "lat": 29.076379,
+      "lng": -110.953057,
+      "headingDegrees": 36,
+      "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.076379,-110.953057&heading=36&pitch=0&fov=80"
+    },
+    {
+      "id": "P033",
+      "zoneId": "Z09",
+      "name": "Conjunto amarillo recortado",
+      "kind": "lado",
+      "lat": 29.076941,
+      "lng": -110.952723,
+      "headingDegrees": 196,
+      "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.076941,-110.952723&heading=196&pitch=0&fov=80"
+    },
+    {
+      "id": "P034",
+      "zoneId": "Z09",
+      "name": "Conjunto amarillo recortado",
+      "kind": "lado",
+      "lat": 29.0766785,
+      "lng": -110.952625,
+      "headingDegrees": 267,
+      "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.0766785,-110.952625&heading=267&pitch=0&fov=80"
+    },
+    {
+      "id": "P035",
+      "zoneId": "Z09",
+      "name": "Conjunto amarillo recortado",
+      "kind": "lado",
+      "lat": 29.0764,
+      "lng": -110.9529045,
+      "headingDegrees": 16,
+      "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.0764,-110.9529045&heading=16&pitch=0&fov=80"
+    },
+    {
+      "id": "P036",
+      "zoneId": "Z09",
+      "name": "Conjunto amarillo recortado",
+      "kind": "lado",
+      "lat": 29.0766625,
+      "lng": -110.9530025,
+      "headingDegrees": 87,
+      "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.0766625,-110.9530025&heading=87&pitch=0&fov=80"
+    },
+    {
+      "id": "P037",
+      "zoneId": "Z08",
+      "name": "Estacionamiento posterior aparente",
+      "kind": "centro",
+      "lat": 29.0763235,
+      "lng": -110.9533337,
+      "headingDegrees": 0,
+      "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.0763235,-110.9533337&heading=0&pitch=0&fov=80"
+    },
+    {
+      "id": "P038",
+      "zoneId": "Z08",
+      "name": "Estacionamiento posterior aparente",
+      "kind": "centro",
+      "lat": 29.0763235,
+      "lng": -110.9533337,
+      "headingDegrees": 90,
+      "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.0763235,-110.9533337&heading=90&pitch=0&fov=80"
+    },
+    {
+      "id": "P039",
+      "zoneId": "Z08",
+      "name": "Estacionamiento posterior aparente",
+      "kind": "centro",
+      "lat": 29.0763235,
+      "lng": -110.9533337,
+      "headingDegrees": 180,
+      "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.0763235,-110.9533337&heading=180&pitch=0&fov=80"
+    },
+    {
+      "id": "P040",
+      "zoneId": "Z08",
+      "name": "Estacionamiento posterior aparente",
+      "kind": "centro",
+      "lat": 29.0763235,
+      "lng": -110.9533337,
+      "headingDegrees": 270,
+      "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.0763235,-110.9533337&heading=270&pitch=0&fov=80"
+    },
+    {
+      "id": "P041",
+      "zoneId": "Z08",
+      "name": "Estacionamiento posterior aparente",
+      "kind": "esquina",
+      "lat": 29.076556,
+      "lng": -110.953508,
+      "headingDegrees": 147,
+      "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.076556,-110.953508&heading=147&pitch=0&fov=80"
+    },
+    {
+      "id": "P042",
+      "zoneId": "Z08",
+      "name": "Estacionamiento posterior aparente",
+      "kind": "esquina",
+      "lat": 29.07664,
+      "lng": -110.953055,
+      "headingDegrees": 218,
+      "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.07664,-110.953055&heading=218&pitch=0&fov=80"
+    },
+    {
+      "id": "P043",
+      "zoneId": "Z08",
+      "name": "Estacionamiento posterior aparente",
+      "kind": "esquina",
+      "lat": 29.076084,
+      "lng": -110.95315,
+      "headingDegrees": 326,
+      "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.076084,-110.95315&heading=326&pitch=0&fov=80"
+    },
+    {
+      "id": "P044",
+      "zoneId": "Z08",
+      "name": "Estacionamiento posterior aparente",
+      "kind": "esquina",
+      "lat": 29.076014,
+      "lng": -110.953622,
+      "headingDegrees": 39,
+      "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.076014,-110.953622&heading=39&pitch=0&fov=80"
+    },
+    {
+      "id": "P045",
+      "zoneId": "Z08",
+      "name": "Estacionamiento posterior aparente",
+      "kind": "lado",
+      "lat": 29.076598,
+      "lng": -110.9532815,
+      "headingDegrees": 189,
+      "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.076598,-110.9532815&heading=189&pitch=0&fov=80"
+    },
+    {
+      "id": "P046",
+      "zoneId": "Z08",
+      "name": "Estacionamiento posterior aparente",
+      "kind": "lado",
+      "lat": 29.076362,
+      "lng": -110.9531025,
+      "headingDegrees": 259,
+      "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.076362,-110.9531025&heading=259&pitch=0&fov=80"
+    },
+    {
+      "id": "P047",
+      "zoneId": "Z08",
+      "name": "Estacionamiento posterior aparente",
+      "kind": "lado",
+      "lat": 29.076049,
+      "lng": -110.953386,
+      "headingDegrees": 9,
+      "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.076049,-110.953386&heading=9&pitch=0&fov=80"
+    },
+    {
+      "id": "P048",
+      "zoneId": "Z08",
+      "name": "Estacionamiento posterior aparente",
+      "kind": "lado",
+      "lat": 29.076285,
+      "lng": -110.953565,
+      "headingDegrees": 79,
+      "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.076285,-110.953565&heading=79&pitch=0&fov=80"
+    },
+    {
+      "id": "P049",
+      "zoneId": "Z02",
+      "name": "Plaza Hidalgo",
+      "kind": "centro",
+      "lat": 29.076071,
+      "lng": -110.9547332,
+      "headingDegrees": 0,
+      "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.076071,-110.9547332&heading=0&pitch=0&fov=80"
+    },
+    {
+      "id": "P050",
+      "zoneId": "Z02",
+      "name": "Plaza Hidalgo",
+      "kind": "centro",
+      "lat": 29.076071,
+      "lng": -110.9547332,
+      "headingDegrees": 90,
+      "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.076071,-110.9547332&heading=90&pitch=0&fov=80"
+    },
+    {
+      "id": "P051",
+      "zoneId": "Z02",
+      "name": "Plaza Hidalgo",
+      "kind": "centro",
+      "lat": 29.076071,
+      "lng": -110.9547332,
+      "headingDegrees": 180,
+      "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.076071,-110.9547332&heading=180&pitch=0&fov=80"
+    },
+    {
+      "id": "P052",
+      "zoneId": "Z02",
+      "name": "Plaza Hidalgo",
+      "kind": "centro",
+      "lat": 29.076071,
+      "lng": -110.9547332,
+      "headingDegrees": 270,
+      "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.076071,-110.9547332&heading=270&pitch=0&fov=80"
+    },
+    {
+      "id": "P053",
+      "zoneId": "Z02",
+      "name": "Plaza Hidalgo",
+      "kind": "esquina",
+      "lat": 29.07615,
+      "lng": -110.954561,
+      "headingDegrees": 242,
+      "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.07615,-110.954561&heading=242&pitch=0&fov=80"
+    },
+    {
+      "id": "P054",
+      "zoneId": "Z02",
+      "name": "Plaza Hidalgo",
+      "kind": "esquina",
+      "lat": 29.076187,
+      "lng": -110.954071,
+      "headingDegrees": 259,
+      "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.076187,-110.954071&heading=259&pitch=0&fov=80"
+    },
+    {
+      "id": "P055",
+      "zoneId": "Z02",
+      "name": "Plaza Hidalgo",
+      "kind": "esquina",
+      "lat": 29.076023,
+      "lng": -110.954055,
+      "headingDegrees": 275,
+      "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.076023,-110.954055&heading=275&pitch=0&fov=80"
+    },
+    {
+      "id": "P056",
+      "zoneId": "Z02",
+      "name": "Plaza Hidalgo",
+      "kind": "esquina",
+      "lat": 29.075915,
+      "lng": -110.955481,
+      "headingDegrees": 77,
+      "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.075915,-110.955481&heading=77&pitch=0&fov=80"
+    },
+    {
+      "id": "P057",
+      "zoneId": "Z02",
+      "name": "Plaza Hidalgo",
+      "kind": "esquina",
+      "lat": 29.07608,
+      "lng": -110.955498,
+      "headingDegrees": 91,
+      "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.07608,-110.955498&heading=91&pitch=0&fov=80"
+    },
+    {
+      "id": "P058",
+      "zoneId": "Z02",
+      "name": "Plaza Hidalgo",
+      "kind": "lado",
+      "lat": 29.0761685,
+      "lng": -110.954316,
+      "headingDegrees": 255,
+      "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.0761685,-110.954316&heading=255&pitch=0&fov=80"
+    },
+    {
+      "id": "P059",
+      "zoneId": "Z02",
+      "name": "Plaza Hidalgo",
+      "kind": "lado",
+      "lat": 29.076105,
+      "lng": -110.954063,
+      "headingDegrees": 267,
+      "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.076105,-110.954063&heading=267&pitch=0&fov=80"
+    },
+    {
+      "id": "P060",
+      "zoneId": "Z02",
+      "name": "Plaza Hidalgo",
+      "kind": "lado",
+      "lat": 29.075969,
+      "lng": -110.954768,
+      "headingDegrees": 17,
+      "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.075969,-110.954768&heading=17&pitch=0&fov=80"
+    },
+    {
+      "id": "P061",
+      "zoneId": "Z02",
+      "name": "Plaza Hidalgo",
+      "kind": "lado",
+      "lat": 29.0759975,
+      "lng": -110.9554895,
+      "headingDegrees": 84,
+      "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.0759975,-110.9554895&heading=84&pitch=0&fov=80"
+    },
+    {
+      "id": "P062",
+      "zoneId": "Z02",
+      "name": "Plaza Hidalgo",
+      "kind": "lado",
+      "lat": 29.076115,
+      "lng": -110.9550295,
+      "headingDegrees": 100,
+      "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.076115,-110.9550295&heading=100&pitch=0&fov=80"
+    },
+    {
+      "id": "P063",
+      "zoneId": "Z03",
+      "name": "Locales y oficinas",
+      "kind": "centro",
+      "lat": 29.0757045,
+      "lng": -110.955257,
+      "headingDegrees": 0,
+      "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.0757045,-110.955257&heading=0&pitch=0&fov=80"
+    },
+    {
+      "id": "P064",
+      "zoneId": "Z03",
+      "name": "Locales y oficinas",
+      "kind": "centro",
+      "lat": 29.0757045,
+      "lng": -110.955257,
+      "headingDegrees": 90,
+      "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.0757045,-110.955257&heading=90&pitch=0&fov=80"
+    },
+    {
+      "id": "P065",
+      "zoneId": "Z03",
+      "name": "Locales y oficinas",
+      "kind": "centro",
+      "lat": 29.0757045,
+      "lng": -110.955257,
+      "headingDegrees": 180,
+      "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.0757045,-110.955257&heading=180&pitch=0&fov=80"
+    },
+    {
+      "id": "P066",
+      "zoneId": "Z03",
+      "name": "Locales y oficinas",
+      "kind": "centro",
+      "lat": 29.0757045,
+      "lng": -110.955257,
+      "headingDegrees": 270,
+      "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.0757045,-110.955257&heading=270&pitch=0&fov=80"
+    },
+    {
+      "id": "P067",
+      "zoneId": "Z03",
+      "name": "Locales y oficinas",
+      "kind": "esquina",
+      "lat": 29.075887,
+      "lng": -110.955537,
+      "headingDegrees": 127,
+      "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.075887,-110.955537&heading=127&pitch=0&fov=80"
+    },
+    {
+      "id": "P068",
+      "zoneId": "Z03",
+      "name": "Locales y oficinas",
+      "kind": "esquina",
+      "lat": 29.075924,
+      "lng": -110.954949,
+      "headingDegrees": 231,
+      "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.075924,-110.954949&heading=231&pitch=0&fov=80"
+    },
+    {
+      "id": "P069",
+      "zoneId": "Z03",
+      "name": "Locales y oficinas",
+      "kind": "esquina",
+      "lat": 29.075601,
+      "lng": -110.954933,
+      "headingDegrees": 290,
+      "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.075601,-110.954933&heading=290&pitch=0&fov=80"
+    },
+    {
+      "id": "P070",
+      "zoneId": "Z03",
+      "name": "Locales y oficinas",
+      "kind": "esquina",
+      "lat": 29.075406,
+      "lng": -110.955609,
+      "headingDegrees": 46,
+      "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.075406,-110.955609&heading=46&pitch=0&fov=80"
+    },
+    {
+      "id": "P071",
+      "zoneId": "Z03",
+      "name": "Locales y oficinas",
+      "kind": "lado",
+      "lat": 29.0759055,
+      "lng": -110.955243,
+      "headingDegrees": 183,
+      "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.0759055,-110.955243&heading=183&pitch=0&fov=80"
+    },
+    {
+      "id": "P072",
+      "zoneId": "Z03",
+      "name": "Locales y oficinas",
+      "kind": "lado",
+      "lat": 29.0757625,
+      "lng": -110.954941,
+      "headingDegrees": 258,
+      "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.0757625,-110.954941&heading=258&pitch=0&fov=80"
+    },
+    {
+      "id": "P073",
+      "zoneId": "Z03",
+      "name": "Locales y oficinas",
+      "kind": "lado",
+      "lat": 29.0755035,
+      "lng": -110.955271,
+      "headingDegrees": 3,
+      "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.0755035,-110.955271&heading=3&pitch=0&fov=80"
+    },
+    {
+      "id": "P074",
+      "zoneId": "Z03",
+      "name": "Locales y oficinas",
+      "kind": "lado",
+      "lat": 29.0756465,
+      "lng": -110.955573,
+      "headingDegrees": 78,
+      "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.0756465,-110.955573&heading=78&pitch=0&fov=80"
+    },
+    {
+      "id": "P075",
+      "zoneId": "Z05",
+      "name": "Volumen azul / referencia al museo",
+      "kind": "centro",
+      "lat": 29.0753768,
+      "lng": -110.9549657,
+      "headingDegrees": 0,
+      "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.0753768,-110.9549657&heading=0&pitch=0&fov=80"
+    },
+    {
+      "id": "P076",
+      "zoneId": "Z05",
+      "name": "Volumen azul / referencia al museo",
+      "kind": "centro",
+      "lat": 29.0753768,
+      "lng": -110.9549657,
+      "headingDegrees": 90,
+      "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.0753768,-110.9549657&heading=90&pitch=0&fov=80"
+    },
+    {
+      "id": "P077",
+      "zoneId": "Z05",
+      "name": "Volumen azul / referencia al museo",
+      "kind": "centro",
+      "lat": 29.0753768,
+      "lng": -110.9549657,
+      "headingDegrees": 180,
+      "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.0753768,-110.9549657&heading=180&pitch=0&fov=80"
+    },
+    {
+      "id": "P078",
+      "zoneId": "Z05",
+      "name": "Volumen azul / referencia al museo",
+      "kind": "centro",
+      "lat": 29.0753768,
+      "lng": -110.9549657,
+      "headingDegrees": 270,
+      "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.0753768,-110.9549657&heading=270&pitch=0&fov=80"
+    },
+    {
+      "id": "P079",
+      "zoneId": "Z05",
+      "name": "Volumen azul / referencia al museo",
+      "kind": "esquina",
+      "lat": 29.075463,
+      "lng": -110.955164,
+      "headingDegrees": 116,
+      "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.075463,-110.955164&heading=116&pitch=0&fov=80"
+    },
+    {
+      "id": "P080",
+      "zoneId": "Z05",
+      "name": "Volumen azul / referencia al museo",
+      "kind": "esquina",
+      "lat": 29.075569,
+      "lng": -110.954739,
+      "headingDegrees": 226,
+      "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.075569,-110.954739&heading=226&pitch=0&fov=80"
+    },
+    {
+      "id": "P081",
+      "zoneId": "Z05",
+      "name": "Volumen azul / referencia al museo",
+      "kind": "esquina",
+      "lat": 29.075298,
+      "lng": -110.954751,
+      "headingDegrees": 293,
+      "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.075298,-110.954751&heading=293&pitch=0&fov=80"
+    },
+    {
+      "id": "P082",
+      "zoneId": "Z05",
+      "name": "Volumen azul / referencia al museo",
+      "kind": "esquina",
+      "lat": 29.075177,
+      "lng": -110.955209,
+      "headingDegrees": 47,
+      "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.075177,-110.955209&heading=47&pitch=0&fov=80"
+    },
+    {
+      "id": "P083",
+      "zoneId": "Z05",
+      "name": "Volumen azul / referencia al museo",
+      "kind": "lado",
+      "lat": 29.075516,
+      "lng": -110.9549515,
+      "headingDegrees": 185,
+      "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.075516,-110.9549515&heading=185&pitch=0&fov=80"
+    },
+    {
+      "id": "P084",
+      "zoneId": "Z05",
+      "name": "Volumen azul / referencia al museo",
+      "kind": "lado",
+      "lat": 29.0754335,
+      "lng": -110.954745,
+      "headingDegrees": 254,
+      "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.0754335,-110.954745&heading=254&pitch=0&fov=80"
+    },
+    {
+      "id": "P085",
+      "zoneId": "Z05",
+      "name": "Volumen azul / referencia al museo",
+      "kind": "lado",
+      "lat": 29.0752375,
+      "lng": -110.95498,
+      "headingDegrees": 5,
+      "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.0752375,-110.95498&heading=5&pitch=0&fov=80"
+    },
+    {
+      "id": "P086",
+      "zoneId": "Z05",
+      "name": "Volumen azul / referencia al museo",
+      "kind": "lado",
+      "lat": 29.07532,
+      "lng": -110.9551865,
+      "headingDegrees": 74,
+      "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.07532,-110.9551865&heading=74&pitch=0&fov=80"
+    },
+    {
+      "id": "P087",
+      "zoneId": "Z06",
+      "name": "Tiendas y talleres creativos",
+      "kind": "centro",
+      "lat": 29.0750697,
+      "lng": -110.9549965,
+      "headingDegrees": 0,
+      "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.0750697,-110.9549965&heading=0&pitch=0&fov=80"
+    },
+    {
+      "id": "P088",
+      "zoneId": "Z06",
+      "name": "Tiendas y talleres creativos",
+      "kind": "centro",
+      "lat": 29.0750697,
+      "lng": -110.9549965,
+      "headingDegrees": 90,
+      "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.0750697,-110.9549965&heading=90&pitch=0&fov=80"
+    },
+    {
+      "id": "P089",
+      "zoneId": "Z06",
+      "name": "Tiendas y talleres creativos",
+      "kind": "centro",
+      "lat": 29.0750697,
+      "lng": -110.9549965,
+      "headingDegrees": 180,
+      "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.0750697,-110.9549965&heading=180&pitch=0&fov=80"
+    },
+    {
+      "id": "P090",
+      "zoneId": "Z06",
+      "name": "Tiendas y talleres creativos",
+      "kind": "centro",
+      "lat": 29.0750697,
+      "lng": -110.9549965,
+      "headingDegrees": 270,
+      "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.0750697,-110.9549965&heading=270&pitch=0&fov=80"
+    },
+    {
+      "id": "P091",
+      "zoneId": "Z06",
+      "name": "Tiendas y talleres creativos",
+      "kind": "esquina",
+      "lat": 29.075196,
+      "lng": -110.955197,
+      "headingDegrees": 126,
+      "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.075196,-110.955197&heading=126&pitch=0&fov=80"
+    },
+    {
+      "id": "P092",
+      "zoneId": "Z06",
+      "name": "Tiendas y talleres creativos",
+      "kind": "esquina",
+      "lat": 29.075303,
+      "lng": -110.954784,
+      "headingDegrees": 219,
+      "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.075303,-110.954784&heading=219&pitch=0&fov=80"
+    },
+    {
+      "id": "P093",
+      "zoneId": "Z06",
+      "name": "Tiendas y talleres creativos",
+      "kind": "esquina",
+      "lat": 29.074963,
+      "lng": -110.954761,
+      "headingDegrees": 297,
+      "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.074963,-110.954761&heading=297&pitch=0&fov=80"
+    },
+    {
+      "id": "P094",
+      "zoneId": "Z06",
+      "name": "Tiendas y talleres creativos",
+      "kind": "esquina",
+      "lat": 29.074817,
+      "lng": -110.955244,
+      "headingDegrees": 41,
+      "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.074817,-110.955244&heading=41&pitch=0&fov=80"
+    },
+    {
+      "id": "P095",
+      "zoneId": "Z06",
+      "name": "Tiendas y talleres creativos",
+      "kind": "lado",
+      "lat": 29.0752495,
+      "lng": -110.9549905,
+      "headingDegrees": 182,
+      "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.0752495,-110.9549905&heading=182&pitch=0&fov=80"
+    },
+    {
+      "id": "P096",
+      "zoneId": "Z06",
+      "name": "Tiendas y talleres creativos",
+      "kind": "lado",
+      "lat": 29.075133,
+      "lng": -110.9547725,
+      "headingDegrees": 252,
+      "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.075133,-110.9547725&heading=252&pitch=0&fov=80"
+    },
+    {
+      "id": "P097",
+      "zoneId": "Z06",
+      "name": "Tiendas y talleres creativos",
+      "kind": "lado",
+      "lat": 29.07489,
+      "lng": -110.9550025,
+      "headingDegrees": 2,
+      "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.07489,-110.9550025&heading=2&pitch=0&fov=80"
+    },
+    {
+      "id": "P098",
+      "zoneId": "Z06",
+      "name": "Tiendas y talleres creativos",
+      "kind": "lado",
+      "lat": 29.0750065,
+      "lng": -110.9552205,
+      "headingDegrees": 72,
+      "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.0750065,-110.9552205&heading=72&pitch=0&fov=80"
+    },
+    {
+      "id": "P099",
+      "zoneId": "Z07",
+      "name": "Estacionamiento frontal HEALY",
+      "kind": "centro",
+      "lat": 29.0752085,
+      "lng": -110.95438,
+      "headingDegrees": 0,
+      "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.0752085,-110.95438&heading=0&pitch=0&fov=80"
+    },
+    {
+      "id": "P100",
+      "zoneId": "Z07",
+      "name": "Estacionamiento frontal HEALY",
+      "kind": "centro",
+      "lat": 29.0752085,
+      "lng": -110.95438,
+      "headingDegrees": 90,
+      "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.0752085,-110.95438&heading=90&pitch=0&fov=80"
+    },
+    {
+      "id": "P101",
+      "zoneId": "Z07",
+      "name": "Estacionamiento frontal HEALY",
+      "kind": "centro",
+      "lat": 29.0752085,
+      "lng": -110.95438,
+      "headingDegrees": 180,
+      "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.0752085,-110.95438&heading=180&pitch=0&fov=80"
+    },
+    {
+      "id": "P102",
+      "zoneId": "Z07",
+      "name": "Estacionamiento frontal HEALY",
+      "kind": "centro",
+      "lat": 29.0752085,
+      "lng": -110.95438,
+      "headingDegrees": 270,
+      "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.0752085,-110.95438&heading=270&pitch=0&fov=80"
+    },
+    {
+      "id": "P103",
+      "zoneId": "Z07",
+      "name": "Estacionamiento frontal HEALY",
+      "kind": "esquina",
+      "lat": 29.075423,
+      "lng": -110.954574,
+      "headingDegrees": 142,
+      "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.075423,-110.954574&heading=142&pitch=0&fov=80"
+    },
+    {
+      "id": "P104",
+      "zoneId": "Z07",
+      "name": "Estacionamiento frontal HEALY",
+      "kind": "esquina",
+      "lat": 29.075534,
+      "lng": -110.954062,
+      "headingDegrees": 220,
+      "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.075534,-110.954062&heading=220&pitch=0&fov=80"
+    },
+    {
+      "id": "P105",
+      "zoneId": "Z07",
+      "name": "Estacionamiento frontal HEALY",
+      "kind": "esquina",
+      "lat": 29.075035,
+      "lng": -110.954177,
+      "headingDegrees": 314,
+      "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.075035,-110.954177&heading=314&pitch=0&fov=80"
+    },
+    {
+      "id": "P106",
+      "zoneId": "Z07",
+      "name": "Estacionamiento frontal HEALY",
+      "kind": "esquina",
+      "lat": 29.074842,
+      "lng": -110.954707,
+      "headingDegrees": 38,
+      "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.074842,-110.954707&heading=38&pitch=0&fov=80"
+    },
+    {
+      "id": "P107",
+      "zoneId": "Z07",
+      "name": "Estacionamiento frontal HEALY",
+      "kind": "lado",
+      "lat": 29.0754785,
+      "lng": -110.954318,
+      "headingDegrees": 191,
+      "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.0754785,-110.954318&heading=191&pitch=0&fov=80"
+    },
+    {
+      "id": "P108",
+      "zoneId": "Z07",
+      "name": "Estacionamiento frontal HEALY",
+      "kind": "lado",
+      "lat": 29.0752845,
+      "lng": -110.9541195,
+      "headingDegrees": 252,
+      "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.0752845,-110.9541195&heading=252&pitch=0&fov=80"
+    },
+    {
+      "id": "P109",
+      "zoneId": "Z07",
+      "name": "Estacionamiento frontal HEALY",
+      "kind": "lado",
+      "lat": 29.0749385,
+      "lng": -110.954442,
+      "headingDegrees": 11,
+      "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.0749385,-110.954442&heading=11&pitch=0&fov=80"
+    },
+    {
+      "id": "P110",
+      "zoneId": "Z07",
+      "name": "Estacionamiento frontal HEALY",
+      "kind": "lado",
+      "lat": 29.0751325,
+      "lng": -110.9546405,
+      "headingDegrees": 72,
+      "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.0751325,-110.9546405&heading=72&pitch=0&fov=80"
+    },
+    {
+      "id": "P111",
+      "zoneId": "Z04",
+      "name": "Vivienda y estudios de ensayo",
+      "kind": "centro",
+      "lat": 29.0751079,
+      "lng": -110.9556997,
+      "headingDegrees": 0,
+      "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.0751079,-110.9556997&heading=0&pitch=0&fov=80"
+    },
+    {
+      "id": "P112",
+      "zoneId": "Z04",
+      "name": "Vivienda y estudios de ensayo",
+      "kind": "centro",
+      "lat": 29.0751079,
+      "lng": -110.9556997,
+      "headingDegrees": 90,
+      "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.0751079,-110.9556997&heading=90&pitch=0&fov=80"
+    },
+    {
+      "id": "P113",
+      "zoneId": "Z04",
+      "name": "Vivienda y estudios de ensayo",
+      "kind": "centro",
+      "lat": 29.0751079,
+      "lng": -110.9556997,
+      "headingDegrees": 180,
+      "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.0751079,-110.9556997&heading=180&pitch=0&fov=80"
+    },
+    {
+      "id": "P114",
+      "zoneId": "Z04",
+      "name": "Vivienda y estudios de ensayo",
+      "kind": "centro",
+      "lat": 29.0751079,
+      "lng": -110.9556997,
+      "headingDegrees": 270,
+      "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.0751079,-110.9556997&heading=270&pitch=0&fov=80"
+    },
+    {
+      "id": "P115",
+      "zoneId": "Z04",
+      "name": "Vivienda y estudios de ensayo",
+      "kind": "esquina",
+      "lat": 29.075205,
+      "lng": -110.95609,
+      "headingDegrees": 106,
+      "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.075205,-110.95609&heading=106&pitch=0&fov=80"
+    },
+    {
+      "id": "P116",
+      "zoneId": "Z04",
+      "name": "Vivienda y estudios de ensayo",
+      "kind": "esquina",
+      "lat": 29.07542,
+      "lng": -110.95535,
+      "headingDegrees": 224,
+      "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.07542,-110.95535&heading=224&pitch=0&fov=80"
+    },
+    {
+      "id": "P117",
+      "zoneId": "Z04",
+      "name": "Vivienda y estudios de ensayo",
+      "kind": "esquina",
+      "lat": 29.075169,
+      "lng": -110.955259,
+      "headingDegrees": 261,
+      "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.075169,-110.955259&heading=261&pitch=0&fov=80"
+    },
+    {
+      "id": "P118",
+      "zoneId": "Z04",
+      "name": "Vivienda y estudios de ensayo",
+      "kind": "esquina",
+      "lat": 29.074951,
+      "lng": -110.955383,
+      "headingDegrees": 300,
+      "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.074951,-110.955383&heading=300&pitch=0&fov=80"
+    },
+    {
+      "id": "P119",
+      "zoneId": "Z04",
+      "name": "Vivienda y estudios de ensayo",
+      "kind": "esquina",
+      "lat": 29.074896,
+      "lng": -110.955755,
+      "headingDegrees": 13,
+      "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.074896,-110.955755&heading=13&pitch=0&fov=80"
+    },
+    {
+      "id": "P120",
+      "zoneId": "Z04",
+      "name": "Vivienda y estudios de ensayo",
+      "kind": "esquina",
+      "lat": 29.075034,
+      "lng": -110.955937,
+      "headingDegrees": 70,
+      "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.075034,-110.955937&heading=70&pitch=0&fov=80"
+    },
+    {
+      "id": "P121",
+      "zoneId": "Z04",
+      "name": "Vivienda y estudios de ensayo",
+      "kind": "esquina",
+      "lat": 29.07508,
+      "lng": -110.956124,
+      "headingDegrees": 86,
+      "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.07508,-110.956124&heading=86&pitch=0&fov=80"
+    },
+    {
+      "id": "P122",
+      "zoneId": "Z04",
+      "name": "Vivienda y estudios de ensayo",
+      "kind": "lado",
+      "lat": 29.0753125,
+      "lng": -110.95572,
+      "headingDegrees": 175,
+      "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.0753125,-110.95572&heading=175&pitch=0&fov=80"
+    },
+    {
+      "id": "P123",
+      "zoneId": "Z04",
+      "name": "Vivienda y estudios de ensayo",
+      "kind": "lado",
+      "lat": 29.0752945,
+      "lng": -110.9553045,
+      "headingDegrees": 242,
+      "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.0752945,-110.9553045&heading=242&pitch=0&fov=80"
+    },
+    {
+      "id": "P124",
+      "zoneId": "Z04",
+      "name": "Vivienda y estudios de ensayo",
+      "kind": "lado",
+      "lat": 29.07506,
+      "lng": -110.955321,
+      "headingDegrees": 278,
+      "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.07506,-110.955321&heading=278&pitch=0&fov=80"
+    },
+    {
+      "id": "P125",
+      "zoneId": "Z04",
+      "name": "Vivienda y estudios de ensayo",
+      "kind": "lado",
+      "lat": 29.0749235,
+      "lng": -110.955569,
+      "headingDegrees": 328,
+      "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.0749235,-110.955569&heading=328&pitch=0&fov=80"
+    },
+    {
+      "id": "P126",
+      "zoneId": "Z04",
+      "name": "Vivienda y estudios de ensayo",
+      "kind": "lado",
+      "lat": 29.074965,
+      "lng": -110.955846,
+      "headingDegrees": 42,
+      "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.074965,-110.955846&heading=42&pitch=0&fov=80"
+    },
+    {
+      "id": "P127",
+      "zoneId": "Z04",
+      "name": "Vivienda y estudios de ensayo",
+      "kind": "lado",
+      "lat": 29.075057,
+      "lng": -110.9560305,
+      "headingDegrees": 80,
+      "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.075057,-110.9560305&heading=80&pitch=0&fov=80"
+    },
+    {
+      "id": "P128",
+      "zoneId": "Z04",
+      "name": "Vivienda y estudios de ensayo",
+      "kind": "lado",
+      "lat": 29.0751425,
+      "lng": -110.956107,
+      "headingDegrees": 96,
+      "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.0751425,-110.956107&heading=96&pitch=0&fov=80"
+    }
+  ]
+}

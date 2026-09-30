@@ -1,0 +1,301 @@
+{
+  "schemaVersion": 1,
+  "provenance": "Amalaya board · rutas.json · ruta WGS84 derivada de puntos y orden, sin IDs de imagen ni bytes de fotografía",
+  "routes": [
+    {
+      "id": "R-001",
+      "name": "Guerrero peatonal (1ª fase)",
+      "color": "#2E7D32",
+      "spacingMeters": 20,
+      "isTest": false,
+      "points": [
+        {
+          "id": "R-001-P01",
+          "lat": 29.0758771,
+          "lng": -110.955597,
+          "order": 1,
+          "name": "Guerrero peatonal · punto 1"
+        },
+        {
+          "id": "R-001-P02",
+          "lat": 29.0758917,
+          "lng": -110.9553893,
+          "order": 2,
+          "name": "Guerrero peatonal · punto 2"
+        },
+        {
+          "id": "R-001-P03",
+          "lat": 29.0759089,
+          "lng": -110.9551769,
+          "order": 3,
+          "name": "Guerrero peatonal · punto 3"
+        },
+        {
+          "id": "R-001-P04",
+          "lat": 29.0759275,
+          "lng": -110.9549709,
+          "order": 4,
+          "name": "Guerrero peatonal · punto 4"
+        },
+        {
+          "id": "R-001-P05",
+          "lat": 29.0759512,
+          "lng": -110.9546564,
+          "order": 5,
+          "name": "Guerrero peatonal · punto 5"
+        },
+        {
+          "id": "R-001-P06",
+          "lat": 29.0759672,
+          "lng": -110.9544534,
+          "order": 6,
+          "name": "Guerrero peatonal · punto 6"
+        },
+        {
+          "id": "R-001-P07",
+          "lat": 29.0759816,
+          "lng": -110.9542519,
+          "order": 7,
+          "name": "Guerrero peatonal · punto 7"
+        },
+        {
+          "id": "R-001-P08",
+          "lat": 29.0759921,
+          "lng": -110.9540252,
+          "order": 8,
+          "name": "Guerrero peatonal · punto 8"
+        },
+        {
+          "id": "R-001-P09",
+          "lat": 29.075998,
+          "lng": -110.9538125,
+          "order": 9,
+          "name": "Guerrero peatonal · punto 9"
+        },
+        {
+          "id": "R-001-P10",
+          "lat": 29.0760107,
+          "lng": -110.9536147,
+          "order": 10,
+          "name": "Guerrero peatonal · punto 10"
+        },
+        {
+          "id": "R-001-P11",
+          "lat": 29.0760224,
+          "lng": -110.953404,
+          "order": 11,
+          "name": "Guerrero peatonal · punto 11"
+        },
+        {
+          "id": "R-001-P12",
+          "lat": 29.0760353,
+          "lng": -110.9531972,
+          "order": 12,
+          "name": "Guerrero peatonal · punto 12"
+        },
+        {
+          "id": "R-001-P13",
+          "lat": 29.076045,
+          "lng": -110.9529906,
+          "order": 13,
+          "name": "Guerrero peatonal · punto 13"
+        },
+        {
+          "id": "R-001-P14",
+          "lat": 29.0760528,
+          "lng": -110.9528858,
+          "order": 14,
+          "name": "Guerrero peatonal · punto 14"
+        }
+      ]
+    },
+    {
+      "id": "R-002",
+      "name": "Tumbado",
+      "color": "#1565C0",
+      "spacingMeters": 20,
+      "isTest": false,
+      "points": [
+        {
+          "id": "R-002-P01",
+          "lat": 29.0765385,
+          "lng": -110.952871,
+          "order": 1,
+          "name": "Tumbado · punto 1"
+        },
+        {
+          "id": "R-002-P02",
+          "lat": 29.0765266,
+          "lng": -110.9530857,
+          "order": 2,
+          "name": "Tumbado · punto 2"
+        },
+        {
+          "id": "R-002-P03",
+          "lat": 29.0765259,
+          "lng": -110.9532976,
+          "order": 3,
+          "name": "Tumbado · punto 3"
+        },
+        {
+          "id": "R-002-P04",
+          "lat": 29.0765137,
+          "lng": -110.9535049,
+          "order": 4,
+          "name": "Tumbado · punto 4"
+        },
+        {
+          "id": "R-002-P05",
+          "lat": 29.0764976,
+          "lng": -110.9537044,
+          "order": 5,
+          "name": "Tumbado · punto 5"
+        },
+        {
+          "id": "R-002-P06",
+          "lat": 29.0764875,
+          "lng": -110.9539113,
+          "order": 6,
+          "name": "Tumbado · punto 6"
+        },
+        {
+          "id": "R-002-P07",
+          "lat": 29.0764803,
+          "lng": -110.9540915,
+          "order": 7,
+          "name": "Tumbado · punto 7"
+        },
+        {
+          "id": "R-002-P08",
+          "lat": 29.076271,
+          "lng": -110.9540616,
+          "order": 8,
+          "name": "Tumbado · punto 8"
+        },
+        {
+          "id": "R-002-P09",
+          "lat": 29.0760868,
+          "lng": -110.9540377,
+          "order": 9,
+          "name": "Tumbado · punto 9"
+        },
+        {
+          "id": "R-002-P10",
+          "lat": 29.0759921,
+          "lng": -110.9540252,
+          "order": 10,
+          "name": "Tumbado · punto 10"
+        }
+      ]
+    },
+    {
+      "id": "R-003",
+      "name": "Tirado",
+      "color": "#6A1B9A",
+      "spacingMeters": 20,
+      "isTest": false,
+      "points": [
+        {
+          "id": "R-003-P01",
+          "lat": 29.0774946,
+          "lng": -110.9543039,
+          "order": 1,
+          "name": "Tirado · punto 1"
+        },
+        {
+          "id": "R-003-P02",
+          "lat": 29.0773123,
+          "lng": -110.9542672,
+          "order": 2,
+          "name": "Tirado · punto 2"
+        },
+        {
+          "id": "R-003-P03",
+          "lat": 29.0771196,
+          "lng": -110.9542297,
+          "order": 3,
+          "name": "Tirado · punto 3"
+        },
+        {
+          "id": "R-003-P04",
+          "lat": 29.076931,
+          "lng": -110.9542097,
+          "order": 4,
+          "name": "Tirado · punto 4"
+        },
+        {
+          "id": "R-003-P05",
+          "lat": 29.0767537,
+          "lng": -110.9541673,
+          "order": 5,
+          "name": "Tirado · punto 5"
+        },
+        {
+          "id": "R-003-P06",
+          "lat": 29.0765671,
+          "lng": -110.9541232,
+          "order": 6,
+          "name": "Tirado · punto 6"
+        },
+        {
+          "id": "R-003-P07",
+          "lat": 29.0764803,
+          "lng": -110.9540915,
+          "order": 7,
+          "name": "Tirado · punto 7"
+        }
+      ]
+    },
+    {
+      "id": "R-000",
+      "name": "Serdán · Garmendia → Guerrero (prueba)",
+      "color": "#FFB84D",
+      "spacingMeters": 20,
+      "isTest": true,
+      "points": [
+        {
+          "id": "R-000-P01",
+          "lat": 29.0771196,
+          "lng": -110.95423,
+          "order": 1,
+          "name": "Serdán · punto 1"
+        },
+        {
+          "id": "R-000-P02",
+          "lat": 29.0771902,
+          "lng": -110.954043,
+          "order": 2,
+          "name": "Serdán · punto 2"
+        },
+        {
+          "id": "R-000-P03",
+          "lat": 29.0772101,
+          "lng": -110.9538415,
+          "order": 3,
+          "name": "Serdán · punto 3"
+        },
+        {
+          "id": "R-000-P04",
+          "lat": 29.0772426,
+          "lng": -110.9536287,
+          "order": 4,
+          "name": "Serdán · punto 4"
+        },
+        {
+          "id": "R-000-P05",
+          "lat": 29.0772915,
+          "lng": -110.953381,
+          "order": 5,
+          "name": "Serdán · punto 5"
+        },
+        {
+          "id": "R-000-P06",
+          "lat": 29.0773322,
+          "lng": -110.9531713,
+          "order": 6,
+          "name": "Serdán · punto 6"
+        }
+      ]
+    }
+  ]
+}

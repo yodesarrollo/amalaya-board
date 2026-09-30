@@ -3,6 +3,10 @@
 Board de control de **Amalaya**, polígono de actuación concertada en el centro de
 Hermosillo, Sonora. Interfaz en `https://yodesarrollo.github.io/amalaya-board/`.
 
+## Recorrido público 3D y 360
+
+[Explorar Amalaya](https://yodesarrollo.github.io/amalaya-board/explorar.html) · acceso sin cuenta al paquete visual autorizado el 30 de septiembre de 2026. El tablero de operación conserva sus permisos. La opción Amalaya es un ensayo conceptual; no equivale al diseño definitivo. Detalles y plan en [recorrido integrado](docs/recorrido-integrado.md).
+
 ## La fórmula de control
 
 - **Un Google Sheet maestro es la única fuente de verdad** ("AMALAYA - Control",
