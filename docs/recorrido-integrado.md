@@ -81,3 +81,18 @@ Incluye portada editorial, ruta activa y punto seleccionado destacados, progreso
 6. **Transformación:** recibir diseño aprobado, modelar por cuadra, producir pares 360 en el mismo punto y comparar con geometría actual.
 
 Antes de desplegar, `npm run verificar:publicacion` comprueba el paquete visual y detecta credenciales de formatos conocidos; complementa la revisión de contenido, no sustituye una auditoría de seguridad. Pages sirve esos activos públicamente por autorización expresa.
+
+## Integración con el tablero de trabajo
+
+La entrada de personal vuelve a ser el board principal, en `https://yodesarrollo.github.io/amalaya-board/`, después de iniciar sesión. La sección **Territorio** abre `Mapa`, cuyo lienzo principal es ahora el levantamiento inmersivo. Se elimina la pestaña separada que dejaba las fichas en otro mapa.
+
+- Pines y buscador reciben exclusivamente `Espacios` entregados por la sesión. Abren el mismo `FichaEspacio`, con fotos, documentos, factores, conocimientos, tareas e historial según los datos y permisos existentes. No se crea una segunda ficha ni otro mecanismo de guardado.
+- Los pines conservan la vinculación por ID/zona de `territorio.js`; los espacios libres usan la misma calibración `mapa_geo` del plano anterior. Las ubicaciones de la lámina siguen siendo hipótesis, no medidas nuevas.
+- Las capas «Espacios» y «Puntos de recorrido» se alternan para evitar mezclar gestión y presentación. El buscador sigue disponible en Caminar 3D y Puntos 360.
+- «Plano y herramientas» conserva la vista anterior, sus módulos, calibración y edición de rutas/paradas. Mover espacios mantiene Aplicar/Cancelar. Reporte, Finanzas, escenarios financieros y Plan conservan sus módulos.
+- La experiencia pública `explorar.html` no recibe filas de espacios ni permisos. Compartir recorrido desde el board genera ese enlace público con ruta, punto, vista y versión, sin nombres ni datos de las fichas.
+- No se cambia el contrato de roles: el inversionista conserva su Reporte; los promotores pueden presentar el recorrido público. No se incorporan tres propuestas arquitectónicas sin definirlas: se conservan los tres modos de navegación y los escenarios existentes.
+
+Esta actualización es de UX e integración. No corrige la volumetría ni valida las fachadas del levantamiento.
+
+Prueba de navegador reproducible con el Apps Script interceptado y datos de demostración: `npm --prefix herramientas/simulador ci`, servir el build y ejecutar `REVIEW_URL=http://localhost:5180/amalaya-board/ node herramientas/simulador/prueba-territorio.cjs`. Comprueba el pin y la ficha, el parche al ID original, documentos, navegación 360/3D, el visor sin edición y el acceso acotado del inversionista. No realiza escrituras al backend real.

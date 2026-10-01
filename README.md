@@ -3,6 +3,10 @@
 Board de control de **Amalaya**, polígono de actuación concertada en el centro de
 Hermosillo, Sonora. Interfaz en `https://yodesarrollo.github.io/amalaya-board/`.
 
+## Territorio: entrada al tablero
+
+Al iniciar sesión, el personal entra a **Territorio**: levantamiento 3D, pines y buscador de los espacios entregados por su sesión, con acceso a las fichas originales. Caminar 3D y Puntos 360 viven en esa misma pantalla. «Plano y herramientas» conserva el mapa y los editores anteriores. Los permisos y las funciones de Reporte, Finanzas y Plan no cambian.
+
 ## Recorrido público 3D y 360
 
 [Explorar Amalaya](https://yodesarrollo.github.io/amalaya-board/explorar.html) · acceso sin cuenta al paquete visual autorizado el 30 de septiembre de 2026. El tablero de operación conserva sus permisos. La opción Amalaya es un ensayo conceptual; no equivale al diseño definitivo. Detalles y plan en [recorrido integrado](docs/recorrido-integrado.md).
