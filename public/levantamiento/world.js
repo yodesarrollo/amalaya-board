@@ -12784,8 +12784,15 @@ function Il(e = {}) {
 	return t === "primary" ? 11 : t === "secondary" || t === "tertiary" ? 8 : t === "residential" ? 6.2 : t === "service" ? 4.5 : t === "footway" || t === "pedestrian" ? 3.2 : t === "path" ? 2 : 4;
 }
 //#endregion
+//#region src/pilot-surface-detail.ts
+function Ll(e) {
+	e.userData.pilotWeathering || (e.userData.pilotWeathering = "procedural-plaster-variation-v1 · illustrative, not surveyed damage", e.onBeforeCompile = (e) => {
+		e.vertexShader = e.vertexShader.replace("#include <common>", "#include <common>\nvarying vec3 vPilotPosition;").replace("#include <project_vertex>", "\n        vec4 pilotPosition = vec4(transformed, 1.0);\n        #ifdef USE_INSTANCING\n          pilotPosition = instanceMatrix * pilotPosition;\n        #endif\n        vPilotPosition = (modelMatrix * pilotPosition).xyz;\n        #include <project_vertex>\n      "), e.fragmentShader = e.fragmentShader.replace("#include <common>", "#include <common>\nvarying vec3 vPilotPosition;").replace("#include <color_fragment>", "\n        #include <color_fragment>\n        // Low contrast multiscale plaster mottling plus a narrow, subtle base band.\n        float pilotMottle = sin(vPilotPosition.x * 2.7 + sin(vPilotPosition.z * 3.1))\n          * sin(vPilotPosition.y * 3.8 + vPilotPosition.z * 2.1);\n        float pilotBase = mix(0.80, 1.0, smoothstep(0.08, 0.85, vPilotPosition.y));\n        diffuseColor.rgb *= (0.95 + 0.05 * pilotMottle) * pilotBase;\n      ");
+	}, e.customProgramCacheKey = () => "amalaya-plaster-v1");
+}
+//#endregion
 //#region src/procedural-materials.ts
-var Ll = 128, Rl = {
+var Rl = 128, zl = {
 	stone: {
 		seed: 31,
 		repeat: 4,
@@ -12821,31 +12828,31 @@ var Ll = 128, Rl = {
 		colorVariation: 13,
 		roughnessBase: 238
 	}
-}, zl = /* @__PURE__ */ new Map();
-function Bl(e) {
+}, Bl = /* @__PURE__ */ new Map();
+function Vl(e) {
 	return Math.max(0, Math.min(255, Math.round(e)));
 }
-function Vl(e, t, n, r) {
+function Hl(e, t, n, r) {
 	let i = (e % r + r) % r, a = (t % r + r) % r, o = Math.imul(i, 374761393) + Math.imul(a, 668265263) + Math.imul(n, 1442695041) | 0;
 	return o = Math.imul(o ^ o >>> 13, 1274126177), o ^= o >>> 16, (o >>> 0) / 4294967295;
 }
-function Hl(e, t, n, r) {
-	let i = Ll / n, a = e / n, o = t / n, s = Math.floor(a), c = Math.floor(o), l = a - s, u = o - c, d = l * l * (3 - 2 * l), f = u * u * (3 - 2 * u), p = Fe.lerp(Vl(s, c, r, i), Vl(s + 1, c, r, i), d), m = Fe.lerp(Vl(s, c + 1, r, i), Vl(s + 1, c + 1, r, i), d);
+function Ul(e, t, n, r) {
+	let i = Rl / n, a = e / n, o = t / n, s = Math.floor(a), c = Math.floor(o), l = a - s, u = o - c, d = l * l * (3 - 2 * l), f = u * u * (3 - 2 * u), p = Fe.lerp(Hl(s, c, r, i), Hl(s + 1, c, r, i), d), m = Fe.lerp(Hl(s, c + 1, r, i), Hl(s + 1, c + 1, r, i), d);
 	return Fe.lerp(p, m, f);
 }
-function Ul(e) {
-	for (let t = 0; t < Ll; t += 1) {
-		let n = t * Ll * 4, r = (t * Ll + Ll - 1) * 4;
+function Wl(e) {
+	for (let t = 0; t < Rl; t += 1) {
+		let n = t * Rl * 4, r = (t * Rl + Rl - 1) * 4;
 		for (let t = 0; t < 4; t += 1) e[r + t] = e[n + t];
 	}
-	for (let t = 0; t < Ll; t += 1) {
+	for (let t = 0; t < Rl; t += 1) {
 		let n = t * 4, r = (16256 + t) * 4;
 		for (let t = 0; t < 4; t += 1) e[r + t] = e[n + t];
 	}
 }
-function Wl(t, n, r, s) {
-	let c = new ir(t, Ll, Ll, m, o);
-	return c.name = `procedural-${r}-${n}-v2`, c.wrapS = e, c.wrapT = e, c.repeat.set(Rl[n].repeat, Rl[n].repeat), c.magFilter = i, c.minFilter = a, c.generateMipmaps = !0, c.anisotropy = 4, c.colorSpace = r === "albedo" ? k : "", c.userData = {
+function Gl(t, n, r, s) {
+	let c = new ir(t, Rl, Rl, m, o);
+	return c.name = `procedural-${r}-${n}-v2`, c.wrapS = e, c.wrapT = e, c.repeat.set(zl[n].repeat, zl[n].repeat), c.magFilter = i, c.minFilter = a, c.generateMipmaps = !0, c.anisotropy = 4, c.colorSpace = r === "albedo" ? k : "", c.userData = {
 		source: "procedural",
 		surface: n,
 		role: r,
@@ -12853,48 +12860,48 @@ function Wl(t, n, r, s) {
 		photographic: !1
 	}, c.needsUpdate = !0, c;
 }
-function Gl(e, t) {
-	let n = Rl[e], r = /* @__PURE__ */ new Uint8Array(65536);
-	for (let i = 0; i < Ll; i += 1) for (let a = 0; a < Ll; a += 1) {
-		let o = (i * Ll + a) * 4, s = Hl(a, i, 32, n.seed), c = Hl(a, i, 8, n.seed + 17), l = e === "heritage-plaster" ? Hl(a, i, 16, n.seed + 43) : .5, u = Vl(a, i, n.seed + 29, Ll);
+function Kl(e, t) {
+	let n = zl[e], r = /* @__PURE__ */ new Uint8Array(65536);
+	for (let i = 0; i < Rl; i += 1) for (let a = 0; a < Rl; a += 1) {
+		let o = (i * Rl + a) * 4, s = Ul(a, i, 32, n.seed), c = Ul(a, i, 8, n.seed + 17), l = e === "heritage-plaster" ? Ul(a, i, 16, n.seed + 43) : .5, u = Hl(a, i, n.seed + 29, Rl);
 		if (t === "albedo") {
 			let t = e === "asphalt" ? -2 : e === "stucco" || e === "heritage-plaster" ? 2 : 0, i = e === "heritage-plaster" && u < .035 ? -7 : 0, a = (s - .5) * n.colorVariation + (c - .5) * 3 + (u - .5) * 2 + (l - .5) * (e === "heritage-plaster" ? 7 : 0) + i;
-			r[o] = Bl(246 + t + a), r[o + 1] = Bl(245 + t + a * .92), r[o + 2] = Bl(242 + t + a * .8);
+			r[o] = Vl(246 + t + a), r[o + 1] = Vl(245 + t + a * .92), r[o + 2] = Vl(242 + t + a * .8);
 		} else if (t === "roughness") {
-			let e = (s - .5) * 18 + (c - .5) * 28 + (u - .5) * 12, t = Bl(n.roughnessBase + e);
+			let e = (s - .5) * 18 + (c - .5) * 28 + (u - .5) * 12, t = Vl(n.roughnessBase + e);
 			r[o] = t, r[o + 1] = t, r[o + 2] = t;
 		} else {
-			let t = Bl(e === "heritage-plaster" ? 128 + (s - .5) * 30 + (c - .5) * 24 + (u - .5) * 12 : 128 + (s - .5) * 66 + (c - .5) * 56 + (u - .5) * 30);
+			let t = Vl(e === "heritage-plaster" ? 128 + (s - .5) * 30 + (c - .5) * 24 + (u - .5) * 12 : 128 + (s - .5) * 66 + (c - .5) * 56 + (u - .5) * 30);
 			r[o] = t, r[o + 1] = t, r[o + 2] = t;
 		}
 		r[o + 3] = 255;
 	}
-	return Ul(r), Wl(r, e, t, "seeded-tileable-multiscale-noise-v1");
+	return Wl(r), Gl(r, e, t, "seeded-tileable-multiscale-noise-v1");
 }
-function Kl(e, t) {
-	let n = e.image, r = /* @__PURE__ */ new Uint8Array(65536), i = Rl[t].normalStrength, a = (e, t) => {
-		let r = (e + Ll) % Ll, i = (t + Ll) % Ll;
-		return n.data[(i * Ll + r) * 4] / 255;
+function ql(e, t) {
+	let n = e.image, r = /* @__PURE__ */ new Uint8Array(65536), i = zl[t].normalStrength, a = (e, t) => {
+		let r = (e + Rl) % Rl, i = (t + Rl) % Rl;
+		return n.data[(i * Rl + r) * 4] / 255;
 	};
-	for (let e = 0; e < Ll; e += 1) for (let t = 0; t < Ll; t += 1) {
-		let n = (a(t + 1, e) - a(t - 1, e)) * i, o = (a(t, e + 1) - a(t, e - 1)) * i, s = -n, c = -o, l = 1 / Math.hypot(s, c, 1), u = (e * Ll + t) * 4;
-		r[u] = Bl((s * l * .5 + .5) * 255), r[u + 1] = Bl((c * l * .5 + .5) * 255), r[u + 2] = Bl((l * .5 + .5) * 255), r[u + 3] = 255;
+	for (let e = 0; e < Rl; e += 1) for (let t = 0; t < Rl; t += 1) {
+		let n = (a(t + 1, e) - a(t - 1, e)) * i, o = (a(t, e + 1) - a(t, e - 1)) * i, s = -n, c = -o, l = 1 / Math.hypot(s, c, 1), u = (e * Rl + t) * 4;
+		r[u] = Vl((s * l * .5 + .5) * 255), r[u + 1] = Vl((c * l * .5 + .5) * 255), r[u + 2] = Vl((l * .5 + .5) * 255), r[u + 3] = 255;
 	}
-	return Ul(r), Wl(r, t, "normal", "finite-difference-normal-from-height-v1");
+	return Wl(r), Gl(r, t, "normal", "finite-difference-normal-from-height-v1");
 }
-function ql(e) {
-	let t = zl.get(e);
+function Jl(e) {
+	let t = Bl.get(e);
 	if (t) return t;
-	let n = Gl(e, "albedo"), r = Gl(e, "roughness"), i = Gl(e, "height"), a = {
+	let n = Kl(e, "albedo"), r = Kl(e, "roughness"), i = Kl(e, "height"), a = {
 		albedo: n,
 		roughness: r,
 		height: i,
-		normal: Kl(i, e)
+		normal: ql(i, e)
 	};
-	return zl.set(e, a), a;
+	return Bl.set(e, a), a;
 }
 function Q(e, t, n = {}) {
-	let { textureRepeat: r, ...i } = n, a = ql(t), o = (e) => {
+	let { textureRepeat: r, ...i } = n, a = Jl(t), o = (e) => {
 		let t = e.clone();
 		return r && (t.repeat.set(Math.max(.01, r[0]), Math.max(.01, r[1])), t.userData = {
 			...e.userData,
@@ -12918,15 +12925,15 @@ function Q(e, t, n = {}) {
 		surface: t,
 		provenance: "generated deterministically in code; no external image source",
 		relief: "tileable normal map derived from procedural height data"
-	}, c;
+	}, t === "stucco" && Ll(c), c;
 }
 //#endregion
 //#region src/plaza-hidalgo-detail.ts
-var Jl = Q("#d4d0c6", "stone", { roughness: .97 }), Yl = Q("#d7c7a7", "heritage-plaster", { roughness: .95 }), Xl = Q("#a14f3e", "heritage-plaster", { roughness: .93 }), Zl = Q("#eee6d7", "heritage-plaster", { roughness: .92 }), Ql = new Y({
+var Yl = Q("#d4d0c6", "stone", { roughness: .97 }), Xl = Q("#d7c7a7", "heritage-plaster", { roughness: .95 }), Zl = Q("#a14f3e", "heritage-plaster", { roughness: .93 }), Ql = Q("#eee6d7", "heritage-plaster", { roughness: .92 }), $l = new Y({
 	color: "#282621",
 	roughness: .98,
 	side: 2
-}), $l = new oa({
+}), eu = new oa({
 	color: "#526168",
 	roughness: .24,
 	metalness: .12,
@@ -12936,20 +12943,20 @@ var Jl = Q("#d4d0c6", "stone", { roughness: .97 }), Yl = Q("#d7c7a7", "heritage-
 	side: 2,
 	clearcoat: .55,
 	clearcoatRoughness: .2
-}), eu = new Y({
+}), tu = new Y({
 	color: "#282a28",
 	roughness: .43,
 	metalness: .62
-}), tu = new Y({
+}), nu = new Y({
 	color: "#4b4032",
 	roughness: .68,
 	metalness: .58
-}), nu = new Y({
+}), ru = new Y({
 	color: "#202624",
 	roughness: .65,
 	metalness: .28
 });
-function ru() {
+function iu() {
 	let e = /* @__PURE__ */ new Uint8Array(16384);
 	for (let t = 0; t < 64; t += 1) for (let n = 0; n < 64; n += 1) {
 		let r = (n / 63 - .5) * 2, i = (t / 63 - .5) * 2, a = Math.hypot(r, i), o = Fe.clamp(1 - a, 0, 1), s = Math.round(o * o * (3 - 2 * o) * 255), c = (t * 64 + n) * 4;
@@ -12973,18 +12980,18 @@ function ru() {
 	});
 	return n.name = "Oclusión de contacto suave · máscara procedural", n;
 }
-var iu = ru();
-function au(e, t, n, r, i, a) {
-	let o = new q(new Ui(n, r), iu);
+var au = iu();
+function ou(e, t, n, r, i, a) {
+	let o = new q(new Ui(n, r), au);
 	o.rotation.x = -Math.PI / 2, o.position.set(i, .172, a), o.name = t, o.renderOrder = 1, e.add(o);
 }
-function ou(e) {
+function su(e) {
 	let t = new ti();
 	t.moveTo(e[0].x, -e[0].z);
 	for (let n of e.slice(1)) t.lineTo(n.x, -n.z);
 	return t.closePath(), t;
 }
-function su(e) {
+function cu(e) {
 	let t = .73, n = [], r = 0;
 	for (let e = -12; e < 12; e += .49, r += 1) for (let i = -45 + (r % 2 ? t / 2 : 0); i < 55; i += t) {
 		let t = n.length;
@@ -13016,11 +13023,11 @@ function su(e) {
 		u.setRGB(.83 * n, .82 * n, .79 * n), c.setColorAt(t, u);
 	}), c.instanceMatrix.needsUpdate = !0, c.instanceColor && (c.instanceColor.needsUpdate = !0), c.receiveShadow = !0, c.name = "Pavimento peatonal · losa modular geométrica, sin imagen", e.add(c), n.length;
 }
-function cu(e) {
+function lu(e) {
 	let t = new Sr(.13, .17, .82, 10);
 	for (let n of [-13.2, 13.2]) for (let r = -40; r <= 50; r += 9) {
 		if (r > 5 && r < 27) continue;
-		let i = new q(t, nu);
+		let i = new q(t, ru);
 		i.position.set(r, .48, n), i.castShadow = !0, i.receiveShadow = !0, i.name = "Bolardo de protección peatonal · provisional", e.add(i);
 	}
 	let n = [
@@ -13030,32 +13037,32 @@ function cu(e) {
 		3.85
 	], r = 0;
 	n.forEach((t, n) => {
-		let i = n === 0 ? .34 : .42, a = new q(new J(t, i, t), Jl);
+		let i = n === 0 ? .34 : .42, a = new q(new J(t, i, t), Yl);
 		a.position.set(18, r + i / 2, 0), a.castShadow = !0, a.receiveShadow = !0, a.name = `Escalón ${n + 1} del pedestal · proporción interpretada`, e.add(a), r += i;
 	});
-	let i = new q(new J(2.65, 2.35, 2.65), Zl);
+	let i = new q(new J(2.65, 2.35, 2.65), Ql);
 	i.position.set(18, r + 1.18, 0), i.castShadow = !0, i.receiveShadow = !0, i.name = "Basamento de estatua · volumen provisional", e.add(i), r += 2.36;
 	let a = new q(new Ji(1.02, .2, 8, 32), new Y({
 		color: "#d7d0b2",
 		roughness: .95
 	}));
 	a.position.set(18, r - .42, 1.38), a.rotation.x = Math.PI / 2, a.name = "Aro floral interpretativo de la referencia visual", e.add(a);
-	let o = new At(), s = new q(new Cr(.72, 1.68, 8), tu);
+	let o = new At(), s = new q(new Cr(.72, 1.68, 8), nu);
 	s.position.y = .98;
-	let c = new q(new qi(.25, 12, 10), tu);
+	let c = new q(new qi(.25, 12, 10), nu);
 	c.position.y = 2.02;
-	let l = new q(new Sr(.15, .18, .72, 8), tu);
+	let l = new q(new Sr(.15, .18, .72, 8), nu);
 	l.position.set(-.2, .22, 0);
-	let u = new q(new Sr(.15, .18, .72, 8), tu);
+	let u = new q(new Sr(.15, .18, .72, 8), nu);
 	u.position.set(.2, .22, 0);
-	let d = new q(new Sr(.12, .15, .88, 8), tu);
+	let d = new q(new Sr(.12, .15, .88, 8), nu);
 	d.position.set(-.7, 1.18, 0), d.rotation.z = -.55;
-	let f = new q(new Sr(.12, .15, .88, 8), tu);
+	let f = new q(new Sr(.12, .15, .88, 8), nu);
 	f.position.set(.7, 1.18, 0), f.rotation.z = .55, o.add(s, c, l, u, d, f), o.position.set(18, r + .02, 0), o.rotation.y = Math.PI / 2, o.traverse((e) => {
 		e instanceof q && (e.castShadow = !0, e.receiveShadow = !0);
-	}), o.name = "Silueta propia de estatua de pie · morfología, no reproducción de imagen", e.add(o), au(e, "Oclusión de contacto del pedestal · máscara radial procedural", 8.2, 8.2, 18, 0);
+	}), o.name = "Silueta propia de estatua de pie · morfología, no reproducción de imagen", e.add(o), ou(e, "Oclusión de contacto del pedestal · máscara radial procedural", 8.2, 8.2, 18, 0);
 }
-function lu(e) {
+function uu(e) {
 	let t = [...e.slice(1).map((t, n) => ({
 		a: e[n],
 		b: t
@@ -13076,31 +13083,31 @@ function lu(e) {
 		yaw: Math.atan2(-(a.z - i.z), a.x - i.x)
 	};
 }
-function uu(e, t, n, r, i) {
+function du(e, t, n, r, i) {
 	let a = r / 2, o = i - a;
 	e.moveTo(t - a, n), e.lineTo(t - a, n + o), e.quadraticCurveTo(t - a, n + i, t, n + i), e.quadraticCurveTo(t + a, n + i, t + a, n + o), e.lineTo(t + a, n), e.closePath();
 }
-function du(e, t, n, r, i, a) {
+function fu(e, t, n, r, i, a) {
 	let o = r / 2, s = i - o, c = new ti();
-	uu(c, 0, 0, r, i);
-	let l = new q(new Gi(c, 12), Ql);
+	du(c, 0, 0, r, i);
+	let l = new q(new Gi(c, 12), $l);
 	l.position.set(t, n, a - .24), l.name = "Fondo oscuro de vano · plano retranqueado 24 cm", e.add(l);
-	let u = new q(new Gi(c, 16), $l);
+	let u = new q(new Gi(c, 16), eu);
 	u.position.set(t, n, a - .19), u.name = "Vidrio ahumado discreto · material físico translúcido", e.add(u);
 	for (let r of [-1, 1]) {
-		let i = new q(new J(.16, s + .05, .36), Zl);
+		let i = new q(new J(.16, s + .05, .36), Ql);
 		i.position.set(t + r * (o + .02), n + s / 2, a - .18), i.name = "Jamba/reveal de estuco · espesor geométrico de fachada", e.add(i);
 	}
-	let d = new q(new Ji(o + .06, .105, 7, 28, Math.PI), Zl);
+	let d = new q(new Ji(o + .06, .105, 7, 28, Math.PI), Ql);
 	d.position.set(t, n + s, a + .04), d.name = "Arco de medio punto · moldura saliente", e.add(d);
-	let f = new q(new Ji(o - .14, .035, 5, 26, Math.PI), Yl);
+	let f = new q(new Ji(o - .14, .035, 5, 26, Math.PI), Xl);
 	f.position.set(t, n + s, a + .07), f.name = "Arista interior del arco · moldura secundaria", e.add(f);
-	let p = new q(new J(r + .36, .18, .25), Zl);
+	let p = new q(new J(r + .36, .18, .25), Ql);
 	p.position.set(t, n + s, a + .04), p.name = "Imposta corrida del arco", e.add(p);
-	let m = new q(new J(.28, .38, .18), Zl);
+	let m = new q(new J(.28, .38, .18), Ql);
 	m.position.set(t, n + i + .04, a + .08), m.name = "Clave del arco · relieve geométrico", e.add(m);
 	for (let r = 0; r < 7; r += 1) {
-		let i = Math.PI * (r + .5) / 7, c = new q(new J(.34, .15, .13), Zl);
+		let i = Math.PI * (r + .5) / 7, c = new q(new J(.34, .15, .13), Ql);
 		c.position.set(t + (o + .12) * Math.cos(i), n + s + (o + .12) * Math.sin(i), a + .08), c.rotation.z = i + Math.PI / 2, c.name = "Dovela individual del arco", e.add(c);
 	}
 	let h = Math.max(.4, s - .32);
@@ -13109,16 +13116,16 @@ function du(e, t, n, r, i, a) {
 		0,
 		.28
 	]) {
-		let o = new q(new J(.035, h, .045), eu);
+		let o = new q(new J(.035, h, .045), tu);
 		o.position.set(t + r * i, n + .16 + h / 2, a - .12), o.name = "Barra vertical de herrería", e.add(o);
 	}
 	for (let i of [.32, .67]) {
-		let o = new q(new J(r * .72, .035, .05), eu);
+		let o = new q(new J(r * .72, .035, .05), tu);
 		o.position.set(t, n + s * i, a - .12), o.name = "Travesaño de herrería", e.add(o);
 	}
 }
-function fu(e, t) {
-	let n = lu(t);
+function pu(e, t) {
+	let n = uu(t);
 	if (!n) return;
 	let r = n.length, i = new At();
 	i.position.set((n.a.x + n.b.x) / 2, 0, (n.a.z + n.b.z) / 2), i.rotation.y = n.yaw, i.name = "PH-01 · Instituto Sonorense de Cultura · fachada patrimonial interpretada", e.add(i);
@@ -13136,74 +13143,74 @@ function fu(e, t) {
 	l.moveTo(-r / 2, .1), l.lineTo(r / 2, .1), l.lineTo(r / 2, 7.449999999999999), l.lineTo(-r / 2, 7.449999999999999), l.closePath();
 	for (let e of o) {
 		let t = new ei();
-		uu(t, e.x, .55, e.width, 4.32), l.holes.push(t);
+		du(t, e.x, .55, e.width, 4.32), l.holes.push(t);
 	}
 	let u = new q(new Gi(l, 18), s);
 	u.position.set(0, 0, .36), u.castShadow = !0, u.receiveShadow = !0, u.name = "Masa continua de estuco crema · proporción provisional", u.userData = {
 		archOpenings: a,
 		recessDepthMeters: .24,
 		photographic: !1
-	}, i.add(u), au(i, "Sombra de contacto de fachada · máscara radial procedural", r + .6, 1.5, 0, 1.04);
-	let d = new q(new J(r + .36, .5, .6), Zl);
+	}, i.add(u), ou(i, "Sombra de contacto de fachada · máscara radial procedural", r + .6, 1.5, 0, 1.04);
+	let d = new q(new J(r + .36, .5, .6), Ql);
 	d.position.set(0, .34, .38), i.add(d);
-	let f = new q(new J(r + .24, .18, .44), Yl);
+	let f = new q(new J(r + .24, .18, .44), Xl);
 	f.position.set(0, 4.88, .39), i.add(f);
 	let p = new q(new J(r + .52, .38, .72), c);
 	p.position.set(0, 5.76, .4), i.add(p);
-	let m = new q(new J(r + .38, .09, .48), Ql);
+	let m = new q(new J(r + .38, .09, .48), $l);
 	m.position.set(0, 5.5, .4), m.name = "Junta de sombra bajo cornisa", i.add(m);
 	for (let e = -r / 2 + .55; e < r / 2; e += 1.15) {
-		let t = new q(new J(.24, .18, .24), Zl);
+		let t = new q(new J(.24, .18, .24), Ql);
 		t.position.set(e, 5.45, .55), t.name = "Dentículo de cornisa · relieve geométrico", i.add(t);
 	}
 	let h = new q(new J(r + .44, .28, .72), c);
 	h.position.set(0, 6.22, .33), i.add(h);
-	let g = new q(new J(r + .12, .76, .35), Yl);
+	let g = new q(new J(r + .12, .76, .35), Xl);
 	g.position.set(0, 6.72, -.01), i.add(g);
-	let _ = new q(new J(r + .18, .14, .18), Zl);
+	let _ = new q(new J(r + .18, .14, .18), Ql);
 	_.position.set(0, 7.15, .12), i.add(_);
-	let v = new q(new J(r + .12, .12, .19), Zl);
+	let v = new q(new J(r + .12, .12, .19), Ql);
 	v.position.set(0, 6.57, .12), v.name = "Zócalo corrido de balaustrada", i.add(v);
 	for (let e = 0; e < a; e += 1) {
 		let { x: t, width: n } = o[e];
-		du(i, t, .55, n, 4.32, .36);
-		let s = -r / 2 + r * e / a, c = new q(new J(.42, 5.42, .48), Zl);
+		fu(i, t, .55, n, 4.32, .36);
+		let s = -r / 2 + r * e / a, c = new q(new J(.42, 5.42, .48), Ql);
 		c.position.set(s, 3.23, .42), c.name = "Pilastra saliente de orden simplificado", i.add(c);
-		let l = new q(new J(.66, .3, .65), Zl);
+		let l = new q(new J(.66, .3, .65), Ql);
 		l.position.set(s, .64, .48), l.name = "Basamento de pilastra", i.add(l);
 		for (let e of [
 			-.11,
 			0,
 			.11
 		]) {
-			let t = new q(new J(.025, 4.18, .035), Yl);
+			let t = new q(new J(.025, 4.18, .035), Xl);
 			t.position.set(s + e, 3.25, .685), t.name = "Filete vertical de pilastra", i.add(t);
 		}
-		let u = new q(new J(.68, .22, .66), Zl);
+		let u = new q(new J(.68, .22, .66), Ql);
 		u.position.set(s, 5.88, .46), u.name = "Capitel de dos cuerpos", i.add(u);
-		let d = new q(new J(.78, .1, .72), Zl);
+		let d = new q(new J(.78, .1, .72), Ql);
 		d.position.set(s, 6.04, .47), i.add(d);
-		let f = new q(new J(n + .34, .16, .62), Zl);
+		let f = new q(new J(n + .34, .16, .62), Ql);
 		if (f.position.set(t, .48, .55), i.add(f), e % 3 != 1) {
-			let e = new q(new J(n * .62, 3.05, .1), Ql);
+			let e = new q(new J(n * .62, 3.05, .1), $l);
 			e.position.set(t, 2.02, .18), i.add(e);
-			let r = new q(new J(n * .55, .08, .07), Zl);
+			let r = new q(new J(n * .55, .08, .07), Ql);
 			r.position.set(t, 1.22, .39), i.add(r);
-			let a = new q(new qi(.055, 10, 8), tu);
+			let a = new q(new qi(.055, 10, 8), nu);
 			a.position.set(t + n * .2, 1.32, .42), i.add(a);
 		}
 	}
 	let y = new ti();
 	y.moveTo(-4.2, 0), y.lineTo(4.2, 0), y.lineTo(0, 1.65), y.closePath();
-	let b = new q(new Gi(y), Zl);
+	let b = new q(new Gi(y), Ql);
 	b.position.set(0, 6.1, .55), i.add(b);
-	let x = new q(new Sr(.38, .38, .15, 20), Xl);
+	let x = new q(new Sr(.38, .38, .15, 20), Zl);
 	x.rotation.x = Math.PI / 2, x.position.set(0, 6.75, .65), i.add(x);
 	for (let e = -r / 2 + .55; e < r / 2; e += 1.05) {
-		let t = new q(new J(.1, .46, .1), Zl);
+		let t = new q(new J(.1, .46, .1), Ql);
 		t.position.set(e, 6.84, .12), i.add(t);
 	}
-	let S = new q(new J(r + .2, .09, .18), Zl);
+	let S = new q(new J(r + .2, .09, .18), Ql);
 	S.position.set(0, 7.28, .12), i.add(S);
 	let C = Math.min(21, r * .25), w = Math.min(r * .33, r / 2 - C / 2), T = Q("#a14f3e", "heritage-plaster", {
 		roughness: .94,
@@ -13213,7 +13220,7 @@ function fu(e, t) {
 	let D = Math.min(3.8, C * .22);
 	for (let e of [-C * .27, C * .27]) {
 		let t = new ei();
-		uu(t, e, .55, D, 4.2), E.holes.push(t);
+		du(t, e, .55, D, 4.2), E.holes.push(t);
 	}
 	let O = new q(new Gi(E, 18), T);
 	O.position.set(w, 0, .75), O.name = "Paño terracota contiguo con acceso arqueado · volumen interpretado", O.userData = {
@@ -13221,9 +13228,9 @@ function fu(e, t) {
 		recessDepthMeters: .24,
 		photographic: !1
 	}, i.add(O);
-	for (let e of [-C * .27, C * .27]) du(i, w + e, .55, D, 4.2, .75);
+	for (let e of [-C * .27, C * .27]) fu(i, w + e, .55, D, 4.2, .75);
 	for (let e of [-C / 2, C / 2]) {
-		let t = new q(new J(.24, 5.95, .4), Zl);
+		let t = new q(new J(.24, 5.95, .4), Ql);
 		t.position.set(w + e, 3.13, .78), i.add(t);
 	}
 	i.traverse((e) => {
@@ -13235,21 +13242,21 @@ function fu(e, t) {
 		arcadeBays: a
 	};
 }
-function pu(e) {
+function mu(e) {
 	let t = new At();
 	t.name = "Plaza Hidalgo · PH-01 · detalle geométrico de alta densidad · materiales procedurales";
 	let n = [], r = /* @__PURE__ */ new Set(), i = {
-		pavingTiles: su(t),
+		pavingTiles: cu(t),
 		facade: !1,
 		statue: !0,
 		arcadeBays: 0
 	};
-	cu(t);
+	lu(t);
 	let a = e.elements.find((e) => e.type === "way" && e.tags?.building && (e.tags.name ?? "").toLowerCase().includes("instituto sonorense de cultura"));
 	if (a) {
 		let e = Fl(a);
 		if (e.length >= 4) {
-			let o = new q(new zi(ou(e), {
+			let o = new q(new zi(su(e), {
 				depth: 7.45,
 				bevelEnabled: !1
 			}), Q("#c7b99f", "heritage-plaster", {
@@ -13257,7 +13264,7 @@ function pu(e) {
 				textureRepeat: [42, 4]
 			}));
 			o.geometry.rotateX(-Math.PI / 2), o.position.y = .08, o.name = "Huella del Instituto Sonorense de Cultura · OpenStreetMap", o.castShadow = !0, o.receiveShadow = !0, t.add(o);
-			let s = fu(t, e);
+			let s = pu(t, e);
 			s && n.push(s.collider), r.add(`${a.type}/${a.id}`), i.facade = !!s, i.arcadeBays = s?.arcadeBays ?? 0;
 		}
 	}
@@ -13270,7 +13277,7 @@ function pu(e) {
 }
 //#endregion
 //#region src/spatial-calibration.ts
-var mu = {
+var hu = {
 	imagery: {
 		layer: "Esri World Imagery",
 		captureDate: "2024-01-16",
@@ -13316,7 +13323,7 @@ var mu = {
 		transitionBandMeters: 1.118,
 		clearWalkMeters: .931
 	}
-}, hu = {
+}, gu = {
 	imagery: {
 		layer: "Esri World Imagery",
 		captureDate: "2024-01-16",
@@ -13358,42 +13365,42 @@ var mu = {
 		northParkingBayMeters: 2.4
 	}
 };
-function gu(e) {
-	let { westIntersectionX: t, eastIntersectionX: n, blendMeters: r } = mu.block;
+function _u(e) {
+	let { westIntersectionX: t, eastIntersectionX: n, blendMeters: r } = hu.block;
 	return e < t - r || e > n + r ? 0 : e < t ? (e - (t - r)) / r : e <= n ? 1 : (n + r - e) / r;
 }
-function _u(e, t, n) {
+function vu(e, t, n) {
 	if (e <= t) return 0;
 	if (e >= n) return 1;
 	let r = (e - t) / (n - t);
 	return r * r * (3 - 2 * r);
 }
-function vu(e, t, n) {
+function yu(e, t, n) {
 	return e + (t - e) * n;
 }
-function yu(e) {
-	return Math.max(0, Math.min(1, gu(e)));
-}
 function bu(e) {
-	let t = mu, n = hu, r = e.x, i = t.block.defaultRoadWidthMeters + (t.section.asphaltWidthMeters - t.block.defaultRoadWidthMeters) * yu(r), a = n.block.westIntersectionX, o = a + n.block.junctionBlendMeters, s = n.block.eastIntersectionX, c = s - n.block.junctionBlendMeters, l = hu.section.asphaltWidthMeters, u = n.block.defaultRoadWidthMeters;
-	return r < a ? i : r < o ? vu(t.section.asphaltWidthMeters, l, _u(r, a, o)) : r <= c ? l : r < s ? vu(l, u, _u(r, c, s)) : u;
+	return Math.max(0, Math.min(1, _u(e)));
 }
-function xu(e, t) {
-	let n = hu.block, r = hu.section, i = n.westIntersectionX, a = i + n.junctionBlendMeters, o = n.eastIntersectionX, s = o - n.junctionBlendMeters, c = 2.35, l = t === -1 ? n.northPedestrianApronMeters : r.southClearWalkMeters, u = t === -1 ? 3.04 : 0;
-	return e.x < i ? u : e.x < a ? vu(u, l, _u(e.x, i, a)) : e.x <= s ? l : e.x < o ? vu(l, c, _u(e.x, s, o)) : c;
+function xu(e) {
+	let t = hu, n = gu, r = e.x, i = t.block.defaultRoadWidthMeters + (t.section.asphaltWidthMeters - t.block.defaultRoadWidthMeters) * bu(r), a = n.block.westIntersectionX, o = a + n.block.junctionBlendMeters, s = n.block.eastIntersectionX, c = s - n.block.junctionBlendMeters, l = gu.section.asphaltWidthMeters, u = n.block.defaultRoadWidthMeters;
+	return r < a ? i : r < o ? yu(t.section.asphaltWidthMeters, l, vu(r, a, o)) : r <= c ? l : r < s ? yu(l, u, vu(r, c, s)) : u;
 }
-function Su(e) {
-	let t = hu.block, n = t.westIntersectionX + t.junctionBlendMeters, r = t.eastIntersectionX - t.junctionBlendMeters, i = t.northParkingBayMeters;
-	return e.x < t.westIntersectionX || e.x >= t.eastIntersectionX ? 0 : e.x < n ? i * _u(e.x, t.westIntersectionX, n) : e.x <= r ? i : i * (1 - _u(e.x, r, t.eastIntersectionX));
+function Su(e, t) {
+	let n = gu.block, r = gu.section, i = n.westIntersectionX, a = i + n.junctionBlendMeters, o = n.eastIntersectionX, s = o - n.junctionBlendMeters, c = 2.35, l = t === -1 ? n.northPedestrianApronMeters : r.southClearWalkMeters, u = t === -1 ? 3.04 : 0;
+	return e.x < i ? u : e.x < a ? yu(u, l, vu(e.x, i, a)) : e.x <= s ? l : e.x < o ? yu(l, c, vu(e.x, s, o)) : c;
 }
-function Cu(e, t) {
+function Cu(e) {
+	let t = gu.block, n = t.westIntersectionX + t.junctionBlendMeters, r = t.eastIntersectionX - t.junctionBlendMeters, i = t.northParkingBayMeters;
+	return e.x < t.westIntersectionX || e.x >= t.eastIntersectionX ? 0 : e.x < n ? i * vu(e.x, t.westIntersectionX, n) : e.x <= r ? i : i * (1 - vu(e.x, r, t.eastIntersectionX));
+}
+function wu(e, t) {
 	if (t !== 1) return 3.04;
-	let { frontageStartX: n, frontageEndX: r } = mu.block;
+	let { frontageStartX: n, frontageEndX: r } = hu.block;
 	return e.x >= n && e.x <= r ? 0 : 3.04;
 }
-function wu(e) {
+function Tu(e) {
 	if (e.length < 2) return [...e];
-	let t = mu.block, n = hu.block, r = /* @__PURE__ */ new Set([
+	let t = hu.block, n = gu.block, r = /* @__PURE__ */ new Set([
 		t.westIntersectionX - t.blendMeters,
 		t.westIntersectionX,
 		t.eastIntersectionX,
@@ -13436,14 +13443,14 @@ function wu(e) {
 	}
 	return a;
 }
-function Tu(e) {
-	let t = wu(e);
+function Eu(e) {
+	let t = Tu(e);
 	return t.map((e, n) => {
 		let r = t[Math.max(0, n - 1)], i = t[Math.min(t.length - 1, n + 1)], a = i.x - r.x, o = i.z - r.z, s = Math.hypot(a, o);
 		if (s < 1e-8) return { ...e };
 		let c = -o / s, l = a / s;
 		l < 0 && (c *= -1, l *= -1);
-		let u = mu.section.roadCenterlineCorrectionMeters * yu(e.x);
+		let u = hu.section.roadCenterlineCorrectionMeters * bu(e.x);
 		return {
 			x: e.x + c * u,
 			z: e.z + l * u
@@ -13452,13 +13459,13 @@ function Tu(e) {
 }
 //#endregion
 //#region src/street-scene.ts
-var Eu = Q("#45494b", "asphalt", { roughness: .97 }), Du = Q("#666766", "concrete", { roughness: .98 }), Ou = Q("#d0c9bb", "concrete", { roughness: .93 }), ku = Q("#c9c2b5", "stone", { roughness: .97 }), Au = Q("#bcb3a3", "stone", { roughness: .96 }), ju = new Y({
+var Du = Q("#45494b", "asphalt", { roughness: .97 }), Ou = Q("#666766", "concrete", { roughness: .98 }), ku = Q("#d0c9bb", "concrete", { roughness: .93 }), Au = Q("#c9c2b5", "stone", { roughness: .97 }), ju = Q("#bcb3a3", "stone", { roughness: .96 }), Mu = new Y({
 	color: "#493d31",
 	roughness: 1
-}), Mu = new Y({
+}), Nu = new Y({
 	color: "#6d5440",
 	roughness: 1
-}), Nu = [
+}), Pu = [
 	new Y({
 		color: "#64774d",
 		roughness: 1
@@ -13471,63 +13478,63 @@ var Eu = Q("#45494b", "asphalt", { roughness: .97 }), Du = Q("#666766", "concret
 		color: "#879364",
 		roughness: 1
 	})
-], Pu = new Y({
+], Fu = new Y({
 	color: "#876849",
 	roughness: .89
-}), Fu = new Y({
+}), Iu = new Y({
 	color: "#303638",
 	roughness: .62,
 	metalness: .38
-}), Iu = new Y({
+}), Lu = new Y({
 	color: "#232728",
 	roughness: .94
-}), Lu = new Y({
+}), Ru = new Y({
 	color: "#35474c",
 	roughness: .3,
 	metalness: .08
-}), Ru = new Y({
+}), zu = new Y({
 	color: "#aeb8b7",
 	roughness: .29,
 	metalness: .68
-}), zu = new Y({
+}), Bu = new Y({
 	color: "#eee4be",
 	emissive: "#5e4b25",
 	emissiveIntensity: .22,
 	roughness: .5
-}), Bu = new Y({
+}), Vu = new Y({
 	color: "#a64035",
 	emissive: "#49120f",
 	emissiveIntensity: .22
-}), Vu = (e) => new Y({
+}), Hu = (e) => new Y({
 	color: e,
 	roughness: .36,
 	metalness: .1
-}), Hu = [
+}), Uu = [
 	"#b8b4ab",
 	"#c2beb5",
 	"#bcb7ad",
 	"#c8c3b9",
 	"#b6b2aa"
-], Uu = Q("#d2c8b5", "stone", { roughness: .95 });
-function Wu(e) {
+], Wu = Q("#d2c8b5", "stone", { roughness: .95 });
+function Gu(e) {
 	return e.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
 }
-function Gu(e, t) {
-	let n = Wu(t);
-	return e.elements.find((e) => e.type === "way" && Wu(e.tags?.name ?? "") === n);
-}
 function Ku(e, t) {
-	return e.filter((e) => e.x >= t.minX && e.x <= t.maxX && e.z >= t.minZ && e.z <= t.maxZ);
+	let n = Gu(t);
+	return e.elements.find((e) => e.type === "way" && Gu(e.tags?.name ?? "") === n);
 }
 function qu(e, t) {
+	return e.filter((e) => e.x >= t.minX && e.x <= t.maxX && e.z >= t.minZ && e.z <= t.maxZ);
+}
+function Ju(e, t) {
 	return typeof e == "number" ? e : e(t);
 }
-function Ju(e, t, n, r, i) {
+function Yu(e, t, n, r, i) {
 	let a = [], o = [];
 	for (let e = 0; e < t.length - 1; e += 1) {
 		let r = t[e], i = t[e + 1], s = i.x - r.x, c = i.z - r.z, l = Math.hypot(s, c);
 		if (l < .2) continue;
-		let u = -c / l, d = s / l, f = a.length / 3, p = qu(n, r) / 2, m = qu(n, i) / 2;
+		let u = -c / l, d = s / l, f = a.length / 3, p = Ju(n, r) / 2, m = Ju(n, i) / 2;
 		a.push(r.x + u * p, .032, r.z + d * p, r.x - u * p, .032, r.z - d * p, i.x + u * m, .032, i.z + d * m, i.x - u * m, .032, i.z - d * m), o.push(f, f + 2, f + 1, f + 2, f + 3, f + 1);
 	}
 	if (!a.length) return;
@@ -13536,37 +13543,37 @@ function Ju(e, t, n, r, i) {
 	let c = new q(s, i);
 	c.name = r, c.receiveShadow = !0, e.add(c);
 }
-function Yu(e, t, n) {
+function Xu(e, t, n) {
 	let r = [], i = [];
 	for (let e = 0; e < t.length - 1; e += 1) {
 		let a = t[e], o = t[e + 1], s = o.x - a.x, c = o.z - a.z, l = Math.hypot(s, c);
 		if (l < .2) continue;
 		let u = -c / l, d = s / l;
 		for (let e of [-1, 1]) {
-			let t = qu(n, a) / 2 - .46, s = qu(n, a) / 2 - .17, c = qu(n, o) / 2 - .46, l = qu(n, o) / 2 - .17, f = r.length / 3;
+			let t = Ju(n, a) / 2 - .46, s = Ju(n, a) / 2 - .17, c = Ju(n, o) / 2 - .46, l = Ju(n, o) / 2 - .17, f = r.length / 3;
 			r.push(a.x + u * t * e, .041, a.z + d * t * e, a.x + u * s * e, .041, a.z + d * s * e, o.x + u * c * e, .041, o.z + d * c * e, o.x + u * l * e, .041, o.z + d * l * e), e > 0 ? i.push(f, f + 1, f + 2, f + 2, f + 1, f + 3) : i.push(f, f + 2, f + 1, f + 2, f + 3, f + 1);
 		}
 	}
 	if (!r.length) return;
 	let a = new Mn();
 	a.setAttribute("position", new K(r, 3)), a.setIndex(i), a.computeVertexNormals();
-	let o = new q(a, Du);
+	let o = new q(a, Ou);
 	o.name = "Canal de escurrimiento · filete de concreto junto a la calzada", o.receiveShadow = !0, e.add(o);
 }
-function Xu(e, t) {
+function Zu(e, t) {
 	return Math.atan2(-(t.z - e.z), t.x - e.x);
 }
-function Zu(e, t, n, r = () => 3.04) {
+function Qu(e, t, n, r = () => 3.04) {
 	let i = [], a = .76;
 	for (let e = 0; e < t.length - 1; e += 1) {
 		let o = t[e], s = t[e + 1], c = s.x - o.x, l = s.z - o.z, u = Math.hypot(c, l);
 		if (u < .3) continue;
-		let d = -l / u, f = c / u, p = Xu(o, s), m = Math.max(1, Math.floor(u / 1.02));
+		let d = -l / u, f = c / u, p = Zu(o, s), m = Math.max(1, Math.floor(u / 1.02));
 		for (let e = 0; e < m; e += 1) {
 			let t = (e + .5) / m, s = o.x + c * t, u = o.z + l * t, h = {
 				x: s,
 				z: u
-			}, g = qu(n, h);
+			}, g = Ju(n, h);
 			for (let t of [-1, 1]) {
 				let n = Math.floor(r(h, t) / a + 1e-6);
 				for (let r = 0; r < n; r += 1) {
@@ -13575,7 +13582,7 @@ function Zu(e, t, n, r = () => 3.04) {
 						x: s + d * n * t,
 						z: u + f * n * t,
 						yaw: p,
-						color: Hu[(i.length * 7 + e + r) % Hu.length]
+						color: Uu[(i.length * 7 + e + r) % Uu.length]
 					});
 				}
 			}
@@ -13587,7 +13594,7 @@ function Zu(e, t, n, r = () => 3.04) {
 		s.position.set(e.x, .075, e.z), s.rotation.set(0, e.yaw, 0), s.updateMatrix(), o.setMatrixAt(t, s.matrix), o.setColorAt(t, new G(e.color));
 	}), o.instanceMatrix.needsUpdate = !0, o.instanceColor && (o.instanceColor.needsUpdate = !0), o.name = "Banqueta · losas de concreto modulares, variación tonal propia", o.receiveShadow = !0, e.add(o), i.length;
 }
-function Qu(e, t, n, r = [{
+function $u(e, t, n, r = [{
 	x: -15.5,
 	z: 21.5,
 	radius: 4.5
@@ -13596,12 +13603,12 @@ function Qu(e, t, n, r = [{
 	for (let e = 0; e < t.length - 1; e += 1) {
 		let a = t[e], o = t[e + 1], s = o.x - a.x, c = o.z - a.z, l = Math.hypot(s, c);
 		if (l < .2) continue;
-		let u = -c / l, d = s / l, f = Xu(a, o), p = Math.max(1, Math.floor(l / 1.18));
+		let u = -c / l, d = s / l, f = Zu(a, o), p = Math.max(1, Math.floor(l / 1.18));
 		for (let e = 0; e < p; e += 1) {
 			let t = (e + .5) / p, o = a.x + s * t, l = a.z + c * t;
 			for (let e of [-1, 1]) {
 				if (r.some((e) => Math.hypot(o - e.x, l - e.z) < e.radius)) continue;
-				let t = qu(n, {
+				let t = Ju(n, {
 					x: o,
 					z: l
 				}) / 2 + .12;
@@ -13615,16 +13622,16 @@ function Qu(e, t, n, r = [{
 		}
 	}
 	if (!i.length) return;
-	let a = new pr(new J(1.06, .24, .28), Ou, i.length), o = new kt();
+	let a = new pr(new J(1.06, .24, .28), ku, i.length), o = new kt();
 	i.forEach((e, t) => {
 		o.position.set(e.x, .145, e.z), o.rotation.set(0, e.yaw, 0), o.updateMatrix(), a.setMatrixAt(t, o.matrix);
 	}), a.instanceMatrix.needsUpdate = !0, a.name = "Guarnición · bloques cortos con esquinas accesibles", a.castShadow = !0, a.receiveShadow = !0, e.add(a);
 }
-function $u(e, t) {
+function ed(e, t) {
 	for (let n = 0; n < e.length - 1; n += 1) {
 		let r = e[n], i = e[n + 1], a = i.x - r.x, o = i.z - r.z;
 		if (t < Math.min(r.x, i.x) || t > Math.max(r.x, i.x)) continue;
-		let s = (t - r.x) / (i.x - r.x), c = Xu(r, i);
+		let s = (t - r.x) / (i.x - r.x), c = Zu(r, i);
 		return {
 			point: {
 				x: t,
@@ -13635,10 +13642,10 @@ function $u(e, t) {
 		};
 	}
 }
-function ed(e, t, n, r, i = .58) {
+function td(e, t, n, r, i = .58) {
 	let a = new At();
 	a.position.set(t, i, n);
-	let o = 4.15 * r, s = new q(new Sr(.28 * r, .43 * r, o, 14), Mu);
+	let o = 4.15 * r, s = new q(new Sr(.28 * r, .43 * r, o, 14), Nu);
 	s.position.y = o / 2, s.castShadow = !0, s.receiveShadow = !0, a.add(s);
 	let c = new V(0, o * .72, 0), l = [
 		new V(-1.55, o * .93, .12),
@@ -13647,7 +13654,7 @@ function ed(e, t, n, r, i = .58) {
 		new V(-.12, o * .88, -1.35)
 	];
 	for (let e of l) {
-		let t = c.clone().add(new V(0, -.12, 0)), n = e.clone().sub(t), i = new q(new Sr(.1 * r, .2 * r, n.length(), 10), Mu);
+		let t = c.clone().add(new V(0, -.12, 0)), n = e.clone().sub(t), i = new q(new Sr(.1 * r, .2 * r, n.length(), 10), Nu);
 		i.position.copy(t).add(e).multiplyScalar(.5), i.quaternion.setFromUnitVectors(new V(0, 1, 0), n.normalize()), i.castShadow = !0, a.add(i);
 	}
 	let u = [
@@ -13725,47 +13732,47 @@ function ed(e, t, n, r, i = .58) {
 		]
 	], d = new qi(1, 18, 14);
 	u.forEach((e, t) => {
-		let n = new q(d, Nu[t % Nu.length]);
+		let n = new q(d, Pu[t % Pu.length]);
 		n.position.set(e[0] * r, o * .95 + e[1] * r, e[2] * r), n.scale.set(e[3] * r, e[4] * r, e[5] * r), n.castShadow = !0, n.receiveShadow = !0, a.add(n);
 	}), a.name = "Árbol de copa extendida · volumen vegetal provisional", e.add(a);
 }
-function td(e, t, n, r, i, a, o = 0) {
-	let s = new q(new J(i, .6, a), Au);
+function nd(e, t, n, r, i, a, o = 0) {
+	let s = new q(new J(i, .6, a), ju);
 	s.position.set(n, .31, r), s.castShadow = !0, s.receiveShadow = !0, s.name = "Jardinera elevada de piedra · posición provisional", e.add(s);
-	let c = new q(new J(i - .32, .11, a - .32), ju);
+	let c = new q(new J(i - .32, .11, a - .32), Mu);
 	c.position.set(n, .64, r), c.receiveShadow = !0, e.add(c);
 	let l = new qi(.42, 12, 9);
 	for (let t = 0; t < 8; t += 1) {
-		let o = t * Math.PI * 2 / 8, s = new q(l, Nu[t % Nu.length]);
+		let o = t * Math.PI * 2 / 8, s = new q(l, Pu[t % Pu.length]);
 		s.position.set(n + i * .28 * Math.cos(o), .92, r + a * .28 * Math.sin(o)), s.scale.set(1.28, .72, 1.04), s.castShadow = !0, e.add(s);
 	}
-	t.push(new $t(new V(n - i / 2, 0, r - a / 2), new V(n + i / 2, 2.7, r + a / 2))), o > 0 && ed(e, n, r, o, .64);
+	t.push(new $t(new V(n - i / 2, 0, r - a / 2), new V(n + i / 2, 2.7, r + a / 2))), o > 0 && td(e, n, r, o, .64);
 }
-function nd(e, t, n, r, i = 0) {
+function rd(e, t, n, r, i = 0) {
 	let a = new At(), o = new J(2.35, .105, .14);
 	for (let e = 0; e < 5; e += 1) {
-		let t = new q(o, Pu);
+		let t = new q(o, Fu);
 		t.position.set(0, .68, -.3 + e * .14), t.castShadow = !0, t.receiveShadow = !0, a.add(t);
 	}
 	let s = new J(2.35, .11, .13);
 	for (let e = 0; e < 4; e += 1) {
-		let t = new q(s, Pu);
+		let t = new q(s, Fu);
 		t.position.set(0, .91 + e * .17, .42), t.castShadow = !0, a.add(t);
 	}
 	for (let e of [-.86, .86]) {
-		let t = new q(new J(.12, .7, .82), Fu);
+		let t = new q(new J(.12, .7, .82), Iu);
 		t.position.set(e, .35, .03), t.castShadow = !0, a.add(t);
-		let n = new q(new J(.48, .09, .72), Fu);
+		let n = new q(new J(.48, .09, .72), Iu);
 		n.position.set(e, .07, .03), a.add(n);
 	}
 	a.position.set(n, 0, r), a.rotation.y = i, a.name = "Banca pública de listones y bastidor metálico · provisional", e.add(a), t.push(new $t(new V(n - 1.35, 0, r - .7), new V(n + 1.35, 2, r + .7)));
 }
-function rd(e, t, n, r = 0) {
-	let i = new At(), a = new q(new Sr(.075, .12, 5.7, 14), Fu);
+function id(e, t, n, r = 0) {
+	let i = new At(), a = new q(new Sr(.075, .12, 5.7, 14), Iu);
 	a.position.y = 2.85;
-	let o = new q(new Sr(.055, .07, 1, 10), Fu);
+	let o = new q(new Sr(.055, .07, 1, 10), Iu);
 	o.position.set(.38, 5.35, 0), o.rotation.z = -.55;
-	let s = new q(new Sr(.28, .37, .2, 18), Fu);
+	let s = new q(new Sr(.28, .37, .2, 18), Iu);
 	s.position.set(.72, 5.72, 0);
 	let c = new q(new qi(.2, 14, 10), new Y({
 		color: "#f0dfa9",
@@ -13776,7 +13783,7 @@ function rd(e, t, n, r = 0) {
 		e instanceof q && (e.castShadow = !0, e.receiveShadow = !0);
 	}), e.add(i);
 }
-function id(e, t, n, r, i = "#34393a") {
+function ad(e, t, n, r, i = "#34393a") {
 	let a = new Y({
 		color: i,
 		roughness: .63,
@@ -13786,8 +13793,8 @@ function id(e, t, n, r, i = "#34393a") {
 	let s = new q(new qi(.14, 14, 8), a);
 	s.position.set(t, r + .03, n), s.scale.y = .35, e.add(s);
 }
-function ad(e, t, n, r, i, a, o) {
-	let s = new At(), c = n === "pickup" ? 2.02 : 1.88, l = n === "pickup" ? 5.3 : 4.72, u = n === "pickup" ? .77 : .66, d = Vu(o), f = new q(new J(c, u, l), d);
+function od(e, t, n, r, i, a, o) {
+	let s = new At(), c = n === "pickup" ? 2.02 : 1.88, l = n === "pickup" ? 5.3 : 4.72, u = n === "pickup" ? .77 : .66, d = Hu(o), f = new q(new J(c, u, l), d);
 	f.position.y = .77, f.castShadow = !0, f.receiveShadow = !0, s.add(f);
 	let p = new q(new J(c * .93, .32, l * .27), d);
 	p.position.set(0, 1.13, l * .34), p.castShadow = !0, s.add(p);
@@ -13795,18 +13802,18 @@ function ad(e, t, n, r, i, a, o) {
 	h.position.set(0, 1.47, n === "pickup" ? .18 : -.05), h.castShadow = !0, h.receiveShadow = !0, s.add(h);
 	let g = new q(new J(c * .74, .12, m * .83), d);
 	g.position.set(0, 1.92, n === "pickup" ? .17 : -.05), s.add(g);
-	let _ = new q(new J(c * .73, .59, .055), Lu);
+	let _ = new q(new J(c * .73, .59, .055), Ru);
 	_.position.set(0, 1.52, n === "pickup" ? 1.1 : .99), _.rotation.x = -.2, s.add(_);
-	let v = new q(new J(c * .7, .48, .05), Lu);
+	let v = new q(new J(c * .7, .48, .05), Ru);
 	v.position.set(0, 1.5, n === "pickup" ? -.87 : -1.04), v.rotation.x = .18, s.add(v);
 	for (let e of [-1, 1]) {
-		let t = new q(new J(.045, .53, m * .63), Lu);
+		let t = new q(new J(.045, .53, m * .63), Ru);
 		t.position.set(e * c * .405, 1.5, n === "pickup" ? .15 : -.05), s.add(t);
 		let r = new q(new J(.2, .14, .24), d);
 		r.position.set(e * c * .56, 1.27, .78), s.add(r);
 	}
 	if (n === "pickup") {
-		let e = new q(new J(c * .82, .07, 1.43), Fu);
+		let e = new q(new J(c * .82, .07, 1.43), Iu);
 		e.position.set(0, 1.18, -1.76), s.add(e);
 		for (let e of [-1, 1]) {
 			let t = new q(new J(.11, .39, 1.62), d);
@@ -13815,19 +13822,19 @@ function ad(e, t, n, r, i, a, o) {
 		let t = new q(new J(c * .82, .35, .1), d);
 		t.position.set(0, 1.31, -2.54), s.add(t);
 	}
-	let y = new q(new J(c * .94, .16, .13), Ru);
+	let y = new q(new J(c * .94, .16, .13), zu);
 	y.position.set(0, .47, l * .51), s.add(y);
-	let b = new q(new J(c * .94, .15, .13), Ru);
+	let b = new q(new J(c * .94, .15, .13), zu);
 	b.position.set(0, .47, -l * .51), s.add(b);
 	for (let e of [-1, 1]) {
-		let t = new q(new J(.3, .19, .06), zu);
+		let t = new q(new J(.3, .19, .06), Bu);
 		t.position.set(e * c * .33, .92, l * .51), s.add(t);
-		let n = new q(new J(.27, .24, .06), Bu);
+		let n = new q(new J(.27, .24, .06), Vu);
 		n.position.set(e * c * .36, .91, -l * .51), s.add(n);
 		for (let t of [-l * .34, l * .34]) {
-			let n = new q(new Sr(.39, .39, .22, 24), Iu);
+			let n = new q(new Sr(.39, .39, .22, 24), Lu);
 			n.rotation.z = Math.PI / 2, n.position.set(e * (c / 2 + .01), .48, t), n.castShadow = !0, s.add(n);
-			let r = new q(new Sr(.2, .2, .235, 18), Ru);
+			let r = new q(new Sr(.2, .2, .235, 18), zu);
 			r.rotation.z = Math.PI / 2, r.position.copy(n.position), s.add(r);
 		}
 	}
@@ -13837,7 +13844,7 @@ function ad(e, t, n, r, i, a, o) {
 	let x = new $t(new V(r - l / 2 - .5, 0, i - c / 2 - .5), new V(r + l / 2 + .5, 2.6, i + c / 2 + .5));
 	t.push(x);
 }
-function od(e) {
+function sd(e) {
 	let t = new Mn();
 	t.setAttribute("position", new K([
 		-48,
@@ -13855,24 +13862,24 @@ function od(e) {
 		1
 	]), t.computeVertexNormals();
 	let n = new q(t, new Y({
-		color: ku.color,
+		color: Au.color,
 		roughness: .97,
 		side: 2
 	}));
 	n.name = "Transición de plaza a banqueta · paño provisional, sin cruce inventado", n.receiveShadow = !0, e.add(n);
-	let r = new q(new J(63, .045, .26), Uu);
+	let r = new q(new J(63, .045, .26), Wu);
 	r.position.set(-17, .17, 12.48), r.name = "Banda perimetral de plaza · diferencia de nivel pequeña", r.receiveShadow = !0, e.add(r);
 }
-function sd(e, t, n) {
+function cd(e, t, n) {
 	let r = n.x - t.x, i = n.z - t.z, a = r * r + i * i, o = Fe.clamp(((e.x - t.x) * r + (e.z - t.z) * i) / (a || 1), 0, 1);
 	return Math.hypot(e.x - t.x - o * r, e.z - t.z - o * i);
 }
-function cd(e, t) {
+function ld(e, t) {
 	let n = Infinity;
-	for (let r = 0; r < t.length - 1; r += 1) n = Math.min(n, sd(e, t[r], t[r + 1]));
+	for (let r = 0; r < t.length - 1; r += 1) n = Math.min(n, cd(e, t[r], t[r + 1]));
 	return n;
 }
-function ld(e) {
+function ud(e) {
 	let t = [];
 	for (let n = 0; n < e.length; n += 1) {
 		t.push(e[n]);
@@ -13884,16 +13891,16 @@ function ld(e) {
 	}
 	return t;
 }
-function ud(e, t) {
+function dd(e, t) {
 	let n = t.points.map((e) => Nl({
 		lat: e.lat,
 		lon: e.lng
-	})), r = ld(n), i = [];
+	})), r = ud(n), i = [];
 	for (let a of e.elements) {
 		if (a.type !== "way" || !a.tags?.highway) continue;
 		let e = Fl(a);
 		if (e.length < 2) continue;
-		let o = r.map((t) => cd(t, e)), s = o.filter((e) => e <= 8), c = s.length / o.length;
+		let o = r.map((t) => ld(t, e)), s = o.filter((e) => e <= 8), c = s.length / o.length;
 		if (c < .25) continue;
 		let l = s.reduce((e, t) => e + t, 0) / s.length;
 		l > 8 || i.push({
@@ -13907,17 +13914,17 @@ function ud(e, t) {
 	}
 	return i.sort((e, t) => t.coverage - e.coverage || e.meanNearDistance - t.meanNearDistance);
 }
-function dd(e, t) {
-	let n = Wu(e.tags?.name ?? "");
-	return n.includes("obregon") ? t.x >= -105 && t.x <= hu.block.eastIntersectionX && t.z >= 0 && t.z <= 45 : n.includes("juan alvarez") ? t.x >= -28 && t.x <= 5 && t.z >= 18 && t.z <= 76 : n.includes("boulevard miguel hidalgo") ? t.x >= -340 && t.x <= -180 && t.z >= 0 && t.z <= 100 : !1;
-}
 function fd(e, t) {
-	let n = Wu(e.tags?.name ?? "");
+	let n = Gu(e.tags?.name ?? "");
+	return e.id === 28704525 ? t.x >= 58.39776 && t.x <= 181.20996 && t.z >= -55 && t.z <= -35 : e.id === 83988835 ? t.x >= 55 && t.x <= 72 && t.z >= -39.88652 && t.z <= 14.06846 : e.id === 28704528 ? t.x >= 177 && t.x <= 191 && t.z >= -47.96368 && t.z <= 5.5475 : n.includes("obregon") ? t.x >= -105 && t.x <= gu.block.eastIntersectionX && t.z >= 0 && t.z <= 45 : n.includes("juan alvarez") ? t.x >= -28 && t.x <= 5 && t.z >= 18 && t.z <= 76 : n.includes("boulevard miguel hidalgo") ? t.x >= -340 && t.x <= -180 && t.z >= 0 && t.z <= 100 : !1;
+}
+function pd(e, t) {
+	let n = Gu(e.tags?.name ?? "");
 	if ([362694543, 1181096192].includes(e.id) || n.includes("boulevard miguel hidalgo") || n.includes("obregon") || n.includes("juan alvarez")) return !1;
 	let r = t.some((e) => Math.hypot(e.x, e.z) <= 850), i = t.every((e) => Math.hypot(e.x, e.z) >= 94);
 	return r && i;
 }
-function pd(e, t, n) {
+function md(e, t, n) {
 	let r = e.slice(1).map((t, n) => {
 		let r = e[n];
 		return {
@@ -13935,14 +13942,14 @@ function pd(e, t, n) {
 				x: n.from.x + (n.to.x - n.from.x) * i,
 				z: n.from.z + (n.to.z - n.from.z) * i
 			},
-			yaw: Xu(n.from, n.to),
+			yaw: Zu(n.from, n.to),
 			side: o % 2 == 0 ? 1 : -1,
 			index: o
 		}), o += 1;
 	}
 	return a;
 }
-function md(e, t) {
+function hd(e, t) {
 	let n = new At();
 	n.name = "Recorridos Amalaya · calzadas y banquetas de vías OSM; mobiliario hipotético";
 	let r = [], i = {
@@ -13954,7 +13961,7 @@ function md(e, t) {
 		trees: 0,
 		benches: 0,
 		lamps: 0
-	}, a = t.routes.map((t) => ud(e, t)), o = a.flat();
+	}, a = t.routes.map((t) => dd(e, t)), o = a.flat();
 	i.routeWayMatches = o.length;
 	let s = o.map((e) => ({
 		routeId: e.route.id,
@@ -13973,20 +13980,20 @@ function md(e, t) {
 	}
 	let l = Q("#45494b", "asphalt", { roughness: .97 });
 	for (let { way: e, points: t, matches: r } of c.values()) {
-		let a = [], o = !fd(e, t), s = () => {
+		let a = [], o = !pd(e, t), s = () => {
 			if (a.length < 2) {
 				a = [];
 				return;
 			}
 			let t = Il(e.tags);
-			o && (Ju(n, a, t, `${e.tags?.name ?? "Vía OSM"} · calzada de continuidad Amalaya`, l), Yu(n, a, t), i.roadRuns += 1), i.sidewalkTiles += Zu(n, a, t), Qu(n, a, t), i.sidewalkRuns += 2, a = [];
+			o && (Yu(n, a, t, `${e.tags?.name ?? "Vía OSM"} · calzada de continuidad Amalaya`, l), Xu(n, a, t), i.roadRuns += 1), i.sidewalkTiles += Qu(n, a, t), $u(n, a, t), i.sidewalkRuns += 2, a = [];
 		};
 		for (let n = 0; n < t.length - 1; n += 1) {
 			let i = t[n], o = t[n + 1], c = {
 				x: (i.x + o.x) / 2,
 				z: (i.z + o.z) / 2
 			};
-			if (!r.some((e) => cd(c, e.routePoints) <= 14) || dd(e, c)) {
+			if (!r.some((e) => ld(c, e.routePoints) <= 14) || fd(e, c)) {
 				s();
 				continue;
 			}
@@ -14006,29 +14013,29 @@ function md(e, t) {
 			lat: e.lat,
 			lon: e.lng
 		})), c = Math.max(...o.map((e) => Il(e.way.tags)));
-		for (let e of pd(s, 46, 22)) {
+		for (let e of md(s, 46, 22)) {
 			if (Math.hypot(e.point.x, e.point.z) < 94) continue;
 			let t = new V(-Math.sin(e.yaw), 0, Math.cos(e.yaw)), r = {
 				x: e.point.x + t.x * (c / 2 + 3) * e.side,
 				z: e.point.z + t.z * (c / 2 + 3) * e.side
 			};
-			d("lamp", r) && (rd(n, r.x, r.z, e.yaw), i.lamps += 1);
+			d("lamp", r) && (id(n, r.x, r.z, e.yaw), i.lamps += 1);
 		}
-		for (let e of pd(s, 82, 42)) {
+		for (let e of md(s, 82, 42)) {
 			if (Math.hypot(e.point.x, e.point.z) < 94) continue;
 			let t = new V(-Math.sin(e.yaw), 0, Math.cos(e.yaw)), a = {
 				x: e.point.x + t.x * (c / 2 + 2.55) * -e.side,
 				z: e.point.z + t.z * (c / 2 + 2.55) * -e.side
 			};
-			d("planter", a) && (td(n, r, a.x, a.z, 1.45, 1.35, e.index % 2 == 0 ? .62 : 0), i.planters += 1, e.index % 2 == 0 && (i.trees += 1));
+			d("planter", a) && (nd(n, r, a.x, a.z, 1.45, 1.35, e.index % 2 == 0 ? .62 : 0), i.planters += 1, e.index % 2 == 0 && (i.trees += 1));
 		}
-		for (let e of pd(s, 128, 64)) {
+		for (let e of md(s, 128, 64)) {
 			if (Math.hypot(e.point.x, e.point.z) < 94) continue;
 			let t = new V(-Math.sin(e.yaw), 0, Math.cos(e.yaw)), a = {
 				x: e.point.x + t.x * (c / 2 + 2.55) * e.side,
 				z: e.point.z + t.z * (c / 2 + 2.55) * e.side
 			};
-			d("bench", a) && (nd(n, r, a.x, a.z, e.yaw), i.benches += 1);
+			d("bench", a) && (rd(n, r, a.x, a.z, e.yaw), i.benches += 1);
 		}
 	}
 	return {
@@ -14038,9 +14045,9 @@ function md(e, t) {
 		matchedRoads: s
 	};
 }
-function hd(e) {
+function gd(e) {
 	let t = new At();
-	t.name = "PH-01 ↔ PH-02 · calles, banquetas, arbolado, mobiliario y vehículos de alta densidad", t.userData.spatialCalibration = mu;
+	t.name = "PH-01 ↔ PH-02 · calles, banquetas, arbolado, mobiliario y vehículos de alta densidad", t.userData.spatialCalibration = hu;
 	let n = [], r = {
 		roads: 0,
 		sidewalkRuns: 0,
@@ -14050,20 +14057,20 @@ function hd(e) {
 		benches: 0,
 		cars: 0,
 		bollards: 0
-	}, i = Gu(e, "Calle Obregón"), a = i ? Ku(Tu(Fl(i)), {
+	}, i = Ku(e, "Calle Obregón"), a = i ? qu(Eu(Fl(i)), {
 		minX: -105,
-		maxX: mu.block.eastIntersectionX,
+		maxX: hu.block.eastIntersectionX,
 		minZ: 0,
 		maxZ: 45
 	}) : [];
 	if (i && a.length >= 2) {
-		let e = bu;
-		Ju(t, a, e, "Calle Obregón · perfil aéreo PH-01 6.71 m · eje corregido vs OSM 28788558", Eu), Yu(t, a, e), r.roads += 1, r.sidewalkTiles += Zu(t, a, e, Cu), r.sidewalkRuns += 1, Qu(t, a, e, [{
-			x: mu.block.westIntersectionX,
+		let e = xu;
+		Yu(t, a, e, "Calle Obregón · perfil aéreo PH-01 6.71 m · eje corregido vs OSM 28788558", Du), Xu(t, a, e), r.roads += 1, r.sidewalkTiles += Qu(t, a, e, wu), r.sidewalkRuns += 1, $u(t, a, e, [{
+			x: hu.block.westIntersectionX,
 			z: 21.5,
 			radius: 4.5
 		}, {
-			x: mu.block.eastIntersectionX,
+			x: hu.block.eastIntersectionX,
 			z: 14.07,
 			radius: 4.5
 		}]);
@@ -14087,10 +14094,10 @@ function hd(e) {
 				side: -.62
 			}
 		]) {
-			let i = $u(a, e.x);
+			let i = ed(a, e.x);
 			if (!i) continue;
 			let o = new V(Math.sin(i.yaw), 0, Math.cos(i.yaw)), s = new V(i.point.x, 0, i.point.z).addScaledVector(o, e.side);
-			ad(t, n, e.type, s.x, s.z, i.heading, e.color), r.cars += 1;
+			od(t, n, e.type, s.x, s.z, i.heading, e.color), r.cars += 1;
 		}
 		for (let n of [
 			-47,
@@ -14099,13 +14106,13 @@ function hd(e) {
 			39,
 			62
 		]) {
-			let i = $u(a, n);
+			let i = ed(a, n);
 			if (!i) continue;
 			let o = new V(Math.sin(i.yaw), 0, Math.cos(i.yaw)), s = new V(i.point.x, 0, i.point.z).addScaledVector(o, -(e(i.point) / 2 + .68));
-			id(t, s.x, s.z, .58, "#9a4137"), r.bollards += 1;
+			ad(t, s.x, s.z, .58, "#9a4137"), r.bollards += 1;
 		}
 	}
-	let o = Gu(e, "Juan Álvarez"), s = o ? Ku(Fl(o), {
+	let o = Ku(e, "Juan Álvarez"), s = o ? qu(Fl(o), {
 		minX: -28,
 		maxX: 5,
 		minZ: 18,
@@ -14113,9 +14120,9 @@ function hd(e) {
 	}) : [];
 	if (o && s.length >= 2) {
 		let e = Il(o.tags);
-		Ju(t, s, e, "Juan Álvarez · ramal del cruce PH-02 derivado de OSM", Q("#4b4f50", "asphalt", { roughness: .97 })), Yu(t, s, e), r.roads += 1, r.sidewalkTiles += Zu(t, s, e), r.sidewalkRuns += 2, Qu(t, s, e);
+		Yu(t, s, e, "Juan Álvarez · ramal del cruce PH-02 derivado de OSM", Q("#4b4f50", "asphalt", { roughness: .97 })), Xu(t, s, e), r.roads += 1, r.sidewalkTiles += Qu(t, s, e), r.sidewalkRuns += 2, $u(t, s, e);
 	}
-	return od(t), td(t, n, -37, -4.5, 5.2, 4.3, 1.18), td(t, n, 45, 6.8, 5, 4.1, 1.08), r.planters += 2, r.trees += 2, td(t, n, -63, 31.5, 4.8, 4.8, 1.32), td(t, n, -25, 16, 4.8, 4.2, 1.08), r.planters += 2, r.trees += 2, nd(t, n, -23, 7.8, 0), nd(t, n, 32, 7.8, Math.PI), r.benches = 2, rd(t, -49, -10.2, 0), rd(t, 2, -10.2, 0), rd(t, 51, -10.2, 0), r.sidewalkRuns = Math.max(r.sidewalkRuns, 2), {
+	return sd(t), nd(t, n, -37, -4.5, 5.2, 4.3, 1.18), nd(t, n, 45, 6.8, 5, 4.1, 1.08), r.planters += 2, r.trees += 2, nd(t, n, -63, 31.5, 4.8, 4.8, 1.32), nd(t, n, -25, 16, 4.8, 4.2, 1.08), r.planters += 2, r.trees += 2, rd(t, n, -23, 7.8, 0), rd(t, n, 32, 7.8, Math.PI), r.benches = 2, id(t, -49, -10.2, 0), id(t, 2, -10.2, 0), id(t, 51, -10.2, 0), r.sidewalkRuns = Math.max(r.sidewalkRuns, 2), {
 		group: t,
 		colliders: n,
 		stats: r
@@ -14123,24 +14130,24 @@ function hd(e) {
 }
 //#endregion
 //#region src/parallel-frontage.ts
-var gd = [
+var _d = [
 	"#b9aa92",
 	"#c8b69a",
 	"#b78268",
 	"#d2c2a8"
-].map((e) => Q(e, "stucco", { roughness: .96 })), _d = Q("#e6dac4", "stucco", { roughness: .92 }), vd = new Y({
+].map((e) => Q(e, "stucco", { roughness: .96 })), vd = Q("#e6dac4", "stucco", { roughness: .92 }), yd = new Y({
 	color: "#343a39",
 	roughness: .94,
 	side: 2
-}), yd = new Y({
+}), bd = new Y({
 	color: "#464541",
 	roughness: .68,
 	metalness: .34
-}), bd = Q("#a9a397", "concrete", { roughness: .97 });
-function xd(e, t, n, r, i, a) {
+}), xd = Q("#a9a397", "concrete", { roughness: .97 });
+function Sd(e, t, n, r, i, a) {
 	let o = n / 2, s = r - o, c = new ti();
 	c.moveTo(-o, 0), c.lineTo(-o, s), c.quadraticCurveTo(-o, r, 0, r), c.quadraticCurveTo(o, r, o, s), c.lineTo(o, 0), c.closePath();
-	let l = new q(new Gi(c, 10), vd);
+	let l = new q(new Gi(c, 10), yd);
 	l.position.set(t, i, a), e.add(l);
 	let u = new Pr([
 		new V(-o, 0, a),
@@ -14149,20 +14156,20 @@ function xd(e, t, n, r, i, a) {
 		new V(o, s, a),
 		new V(o, 0, a)
 	].map((e) => e.add(new V(t, i, 0))));
-	e.add(new q(new Yi(u, 20, .09, 6, !1), _d));
+	e.add(new q(new Yi(u, 20, .09, 6, !1), vd));
 }
-function Sd(e, t, n, r, i) {
-	let a = new q(new J(i + .55, .16, .92), _d);
+function Cd(e, t, n, r, i) {
+	let a = new q(new J(i + .55, .16, .92), vd);
 	a.position.set(t, n, r + .28), e.add(a);
-	let o = new q(new J(i, .11, .09), yd);
+	let o = new q(new J(i, .11, .09), bd);
 	o.position.set(t, n + .58, r + .72), e.add(o);
 	for (let a = 0; a <= Math.floor(i / .37); a += 1) {
-		let o = new q(new J(.075, .52, .075), yd);
+		let o = new q(new J(.075, .52, .075), bd);
 		o.position.set(t - i / 2 + i * a / Math.floor(i / .37), n + .31, r + .72), e.add(o);
 	}
 }
-function Cd(e, t, n, r, i, a) {
-	let o = [], s = n - t, c = (t + n) / 2, l = r - a, u = new q(new J(s, .045, i), bd);
+function wd(e, t, n, r, i, a) {
+	let o = [], s = n - t, c = (t + n) / 2, l = r - a, u = new q(new J(s, .045, i), xd);
 	u.position.set(c, .055, l - i / 2), u.name = `Banda de transición aérea · ${i.toFixed(2)} m entre calzada y paso`, u.receiveShadow = !0, e.add(u);
 	for (let e = t + .55; e < n - .35; e += 1.14) o.push({
 		x: e,
@@ -14176,8 +14183,8 @@ function Cd(e, t, n, r, i, a) {
 		d.setColorAt(t, new G(.73 * n, .71 * n, .66 * n));
 	}), d.instanceMatrix.needsUpdate = !0, d.instanceColor && (d.instanceColor.needsUpdate = !0), d.name = `Banqueta PH-01 · una hilada dentro de ${a.toFixed(2)} m de paso medido`, d.receiveShadow = !0, e.add(d), o.length;
 }
-function wd() {
-	let e = new At(), t = mu.block, n = t.frontageStartX, r = t.frontageEndX, i = (n + r) / 2, a = r - n, o = t.frontageZ, s = t.buildingDepthMeters;
+function Td() {
+	let e = new At(), t = hu.block, n = t.frontageStartX, r = t.frontageEndX, i = (n + r) / 2, a = r - n, o = t.frontageZ, s = t.buildingDepthMeters;
 	e.name = "Cuadra sur de Obregón · entre Juan Álvarez y Garmendia · masa provisional alineada a ortofoto/OSM";
 	let c = [
 		24,
@@ -14191,39 +14198,39 @@ function wd() {
 		9.2
 	], u = n;
 	c.forEach((t, n) => {
-		let r = l[n], i = new q(new J(t, r, s), gd[n]);
+		let r = l[n], i = new q(new J(t, r, s), _d[n]);
 		i.position.set(u + t / 2, r / 2, o + s / 2), i.castShadow = !0, i.receiveShadow = !0, i.name = `Módulo ${n + 1} del frente opuesto · cota provisional`, e.add(i);
-		let a = new q(new J(t + .34, .26, s + .38), _d);
+		let a = new q(new J(t + .34, .26, s + .38), vd);
 		a.position.set(u + t / 2, r + .12, o + s / 2), e.add(a), u += t;
 	});
 	let d = a / 12;
 	for (let t = 0; t < 12; t += 1) {
 		let r = n + d * (t + .5);
-		xd(e, r, Math.min(4.45, d * .58), 3.85, .55, o - .18);
-		let i = new q(new J(1.18, 2.55, .14), vd);
+		Sd(e, r, Math.min(4.45, d * .58), 3.85, .55, o - .18);
+		let i = new q(new J(1.18, 2.55, .14), yd);
 		i.position.set(r + (t % 2 ? 1.15 : -1.15), 1.83, o - .24), e.add(i);
-		let a = new q(new J(2.7, 1.82, .13), vd);
+		let a = new q(new J(2.7, 1.82, .13), yd);
 		a.position.set(r, 5.66, o - .2), e.add(a);
-		let s = new q(new J(3, .18, .34), _d);
+		let s = new q(new J(3, .18, .34), vd);
 		s.position.set(r, 4.68, o - .32), e.add(s);
-		let c = new q(new J(3.05, .16, .34), _d);
-		c.position.set(r, 6.63, o - .32), e.add(c), t % 2 == 0 && Sd(e, r, 4.65, o - .27, 3.2);
-		let l = new q(new J(.34, 7.6, .44), _d);
+		let c = new q(new J(3.05, .16, .34), vd);
+		c.position.set(r, 6.63, o - .32), e.add(c), t % 2 == 0 && Cd(e, r, 4.65, o - .27, 3.2);
+		let l = new q(new J(.34, 7.6, .44), vd);
 		l.position.set(n + d * t, 3.85, o - .28), e.add(l);
-		let u = new q(new J(.62, .2, .56), _d);
+		let u = new q(new J(.62, .2, .56), vd);
 		u.position.set(n + d * t, 7.65, o - .25), e.add(u);
 	}
 	for (let t of [8, 8.42]) {
-		let n = new q(new J(a + .7, .22, .66), _d);
+		let n = new q(new J(a + .7, .22, .66), vd);
 		n.position.set(i, t, o - .2), e.add(n);
 	}
 	for (let t = n + .65; t < r; t += 1.4) {
-		let n = new q(new J(.09, .38, .09), _d);
+		let n = new q(new J(.09, .38, .09), vd);
 		n.position.set(t, 8.73, o - .12), e.add(n);
 	}
-	let f = new q(new J(a + .6, .16, .32), _d);
+	let f = new q(new J(a + .6, .16, .32), vd);
 	f.position.set(i, 8.94, o - .08), e.add(f);
-	let p = Cd(e, n, r, o, t.transitionBandMeters, t.clearWalkMeters);
+	let p = wd(e, n, r, o, t.transitionBandMeters, t.clearWalkMeters);
 	return e.traverse((e) => {
 		e instanceof q && e.name.includes("Módulo") && (e.castShadow = !0);
 	}), {
@@ -14237,28 +14244,89 @@ function wd() {
 	};
 }
 //#endregion
+//#region src/chihuahua-calibration.ts
+var Ed = {
+	status: "imagery-estimate",
+	street: "Chihuahua · Garmendia–Abasolo",
+	osmWayId: 28704525,
+	imagery: {
+		consulted: "2026-10-01",
+		date: "2024-01-16",
+		resolutionMeters: .31,
+		accuracyMeters: 5,
+		provider: "Vantor / WV03",
+		retainedRaster: !1
+	},
+	west: {
+		x: 58.39776,
+		z: -39.88652
+	},
+	east: {
+		x: 181.20996,
+		z: -47.96368
+	},
+	section: {
+		asphaltWidthMeters: 5.1,
+		northPedestrianMeters: 2.7,
+		southPedestrianMeters: 1.1,
+		roadUncertaintyMeters: .9,
+		pedestrianUncertaintyMeters: .7,
+		centerlineCorrectionMeters: 0
+	},
+	blendMeters: 8,
+	fallback: {
+		asphaltWidthMeters: 6.2,
+		sidewalkMeters: 2.35
+	}
+}, Dd = (e) => Math.max(0, Math.min(1, e)), Od = (e) => {
+	let t = Dd(e);
+	return t * t * (3 - 2 * t);
+}, kd = (e, t, n) => e + (t - e) * n;
+function Ad(e) {
+	let { west: t, east: n, blendMeters: r } = Ed, i = n.x - t.x, a = n.z - t.z, o = Math.hypot(i, a), s = ((e.x - t.x) * i + (e.z - t.z) * a) / o;
+	return Od(s / r) * Od((o - s) / r);
+}
+function jd(e) {
+	let { section: t, fallback: n } = Ed;
+	return kd(n.asphaltWidthMeters, t.asphaltWidthMeters, Ad(e));
+}
+function Md(e, t) {
+	let { section: n, fallback: r } = Ed;
+	return kd(r.sidewalkMeters, t === -1 ? n.northPedestrianMeters : n.southPedestrianMeters, Ad(e));
+}
+function Nd(e) {
+	let t = [];
+	return e.slice(1).forEach((n, r) => {
+		let i = e[r], a = Math.max(1, Math.ceil(Math.hypot(n.x - i.x, n.z - i.z) / 1));
+		for (let e = 0; e < a; e++) t.push({
+			x: kd(i.x, n.x, e / a),
+			z: kd(i.z, n.z, e / a)
+		});
+	}), e.length && t.push({ ...e[e.length - 1] }), t;
+}
+//#endregion
 //#region src/east-block.ts
-var Td = {
+var Pd = {
 	chihuahua: 28704525,
 	abasolo: 28704528,
 	obregon: 28788558,
 	garmendia: 83988835
-}, Ed = {
+}, Fd = {
 	barra: 6124344190,
 	club: 6219440832
-}, Dd = Q("#484b49", "asphalt", { roughness: .98 }), Od = Q("#918c7e", "concrete", { roughness: 1 }), kd = Q("#bcb7aa", "stone", { roughness: 1 }), Ad = Q("#9b988b", "concrete", { roughness: .98 }), jd = Q("#dedbd0", "concrete", { roughness: .92 }), Md = Q("#ead9b7", "stucco", { roughness: .95 }), Nd = new Y({
+}, Id = Q("#484b49", "asphalt", { roughness: .98 }), Ld = Q("#918c7e", "concrete", { roughness: 1 }), Rd = Q("#bcb7aa", "stone", { roughness: 1 }), zd = Q("#9b988b", "concrete", { roughness: .98 }), Bd = Q("#dedbd0", "concrete", { roughness: .92 }), Vd = Q("#ead9b7", "stucco", { roughness: .95 }), Hd = new Y({
 	color: "#292b29",
 	roughness: .9,
 	side: 2
-}), Pd = new Y({
+}), Ud = new Y({
 	color: "#373b39",
 	metalness: .32,
 	roughness: .68
-}), Fd = Q("#657b56", "stucco", { roughness: .96 }), Id = Q("#d1bd98", "stucco", { roughness: .98 }), Ld = Q("#b98e62", "stucco", { roughness: .97 }), Rd = Q("#b88978", "stucco", { roughness: .98 }), zd = Q("#d8cfbd", "stucco", { roughness: .98 }), Bd = Q("#e2ded1", "stucco", { roughness: .98 }), Vd = Q("#e7e2d4", "stucco", { roughness: .96 }), Hd = Q("#6989a7", "stucco", { roughness: .96 }), Ud = Q("#827c70", "stone", { roughness: .97 }), Wd = new Y({
+}), Wd = Q("#657b56", "stucco", { roughness: .96 }), Gd = Q("#d1bd98", "stucco", { roughness: .98 }), Kd = Q("#b98e62", "stucco", { roughness: .97 }), qd = Q("#b88978", "stucco", { roughness: .98 }), Jd = Q("#d8cfbd", "stucco", { roughness: .98 }), Yd = Q("#e2ded1", "stucco", { roughness: .98 }), Xd = Q("#e7e2d4", "stucco", { roughness: .96 }), Zd = Q("#6989a7", "stucco", { roughness: .96 }), Qd = Q("#827c70", "stone", { roughness: .97 }), $d = new Y({
 	color: "#577a98",
 	metalness: .24,
 	roughness: .76
-}), Gd = [
+}), ef = [
 	new Y({
 		color: "#567b4d",
 		roughness: 1
@@ -14271,76 +14339,76 @@ var Td = {
 		color: "#789363",
 		roughness: 1
 	})
-], Kd = new Y({
+], tf = new Y({
 	color: "#272a2a",
 	roughness: .97
-}), qd = new Y({
+}), nf = new Y({
 	color: "#34474b",
 	roughness: .3,
 	metalness: .08
-}), Jd = {
+}), rf = {
 	green: {
-		paint: Fd,
-		trim: Md,
-		accent: Pd,
+		paint: Wd,
+		trim: Vd,
+		accent: Ud,
 		stories: 1,
 		arched: !0,
 		balcony: !1
 	},
 	club: {
-		paint: Ld,
-		trim: Vd,
-		accent: Pd,
+		paint: Kd,
+		trim: Xd,
+		accent: Ud,
 		stories: 1,
 		arched: !0,
 		balcony: !1,
 		archedOpeningHeight: 2.45
 	},
 	northwest: {
-		paint: zd,
-		trim: Md,
-		accent: Pd,
+		paint: Jd,
+		trim: Vd,
+		accent: Ud,
 		stories: 2,
 		arched: !1,
 		balcony: !0
 	},
 	northeast: {
-		paint: Ld,
-		trim: Md,
-		accent: Pd,
+		paint: Kd,
+		trim: Vd,
+		accent: Ud,
 		stories: 1,
 		arched: !0,
 		balcony: !1
 	},
 	southeast: {
-		paint: Rd,
-		trim: Md,
-		accent: Pd,
+		paint: qd,
+		trim: Vd,
+		accent: Ud,
 		stories: 2,
 		arched: !1,
 		balcony: !0
 	},
 	streetfront21: {
-		paint: Bd,
-		trim: Hd,
-		accent: Wd,
-		base: Ud,
+		paint: Yd,
+		trim: Zd,
+		accent: $d,
+		base: Qd,
 		stories: 1,
 		arched: !1,
 		balcony: !1
 	}
 };
-function Yd(e, t) {
+function af(e, t) {
 	let n = t.x - e.x, r = t.z - e.z, i = Math.hypot(n, r) || 1;
 	return {
 		x: n / i,
 		z: r / i
 	};
 }
-function Xd(e, t) {
+function of(e, t) {
 	return typeof e == "number" ? e : e(t);
 }
-function Zd(e, t, n) {
+function sf(e, t, n) {
 	return {
 		x: e.x + t.x * n,
 		z: e.z + t.z * n
@@ -14352,12 +14420,12 @@ function $(e, t, n, r, i) {
 		z: e.z + t.z * r + n.z * i
 	};
 }
-function Qd(e, t) {
+function cf(e, t) {
 	let n = e.elements.find((e) => e.type === "way" && e.id === t);
 	if (!n) throw Error(`Falta la vía OSM ${t} necesaria para el bloque oriental.`);
 	return n;
 }
-function $d(e, t) {
+function lf(e, t) {
 	let n = Fl(e), r = Fl(t), i = {
 		distance: Infinity,
 		first: n[0],
@@ -14377,7 +14445,7 @@ function $d(e, t) {
 		z: (i.first.z + i.second.z) / 2
 	};
 }
-function ef(e, t) {
+function uf(e, t) {
 	let n = {
 		index: 0,
 		distance: Infinity
@@ -14390,13 +14458,13 @@ function ef(e, t) {
 		});
 	}), n;
 }
-function tf(e, t, n) {
-	let r = Fl(e), i = ef(r, t), a = ef(r, n);
+function df(e, t, n) {
+	let r = Fl(e), i = uf(r, t), a = uf(r, n);
 	if (i.distance > 1.25 || a.distance > 1.25) return [t, n];
 	let o = Math.min(i.index, a.index), s = Math.max(i.index, a.index), c = r.slice(o, s + 1);
 	return i.index <= a.index ? c : c.reverse();
 }
-function nf(e, t, n, r, i) {
+function ff(e, t, n, r, i) {
 	return [
 		$(e, t, n, 0, 0),
 		$(e, t, n, r, 0),
@@ -14404,28 +14472,28 @@ function nf(e, t, n, r, i) {
 		$(e, t, n, 0, i)
 	];
 }
-function rf(e) {
+function pf(e) {
 	let t = new ti();
 	t.moveTo(e[0].x, -e[0].z);
 	for (let n of e.slice(1)) t.lineTo(n.x, -n.z);
 	return t.closePath(), t;
 }
-function af(e, t) {
+function mf(e, t) {
 	let n = e.map((e) => e.x), r = e.map((e) => e.z);
 	return new $t(new V(Math.min(...n), 0, Math.min(...r)), new V(Math.max(...n), t, Math.max(...r))).expandByScalar(.35);
 }
-function of(e, t, n, r, i, a, o = !0) {
-	let s = new zi(rf(n), {
+function hf(e, t, n, r, i, a, o = !0) {
+	let s = new zi(pf(n), {
 		depth: r,
 		bevelEnabled: !1,
 		steps: 1
 	});
 	s.rotateX(-Math.PI / 2);
 	let c = new q(s, i);
-	return c.position.y = .06, c.name = a, c.castShadow = !0, c.receiveShadow = !0, e.add(c), o && t.push(af(n, r + .8)), c;
+	return c.position.y = .06, c.name = a, c.castShadow = !0, c.receiveShadow = !0, e.add(c), o && t.push(mf(n, r + .8)), c;
 }
-function sf(e, t, n) {
-	let r = Yd(e, t), i = {
+function gf(e, t, n) {
+	let r = af(e, t), i = {
 		x: -r.z,
 		z: r.x
 	}, a = {
@@ -14440,10 +14508,10 @@ function sf(e, t, n) {
 		z: -i.z
 	}), i;
 }
-function cf(e, t, n, r, i, a, o) {
+function _f(e, t, n, r, i, a, o) {
 	let s = n / 2, c = r - s, l = new ti();
 	l.moveTo(-s, 0), l.lineTo(-s, c), l.quadraticCurveTo(-s, r, 0, r), l.quadraticCurveTo(s, r, s, c), l.lineTo(s, 0), l.closePath();
-	let u = new q(new Gi(l, 12), Nd);
+	let u = new q(new Gi(l, 12), Hd);
 	u.position.set(t, i, a), e.add(u);
 	let d = new Pr([
 		new V(-s, 0, a),
@@ -14458,8 +14526,8 @@ function cf(e, t, n, r, i, a, o) {
 		r.position.set(t + n * (s + .07), i + c / 2, a), e.add(r);
 	}
 }
-function lf(e, t, n, r, i, a, o, s) {
-	let c = Yd(t, n), l = {
+function vf(e, t, n, r, i, a, o, s) {
+	let c = af(t, n), l = {
 		x: -c.z,
 		z: c.x
 	};
@@ -14481,9 +14549,9 @@ function lf(e, t, n, r, i, a, o, s) {
 		let t = -u / 2 + h * (e + .5), n = new q(new J(.19, i - .48, .27), a.trim);
 		n.position.set(-u / 2 + h * e, i / 2, .12), d.add(n);
 		let r = e === (s ?? Math.floor(m / 2)), o = Math.min(r ? 1.55 : 1.38, h * .58), c = r ? .43 : 1.24, l = a.archedOpeningHeight === void 0 ? 1.62 : Math.min(a.archedOpeningHeight, i - 1.55), f = r ? Math.min(2.75, i - .95) : l;
-		if (a.arched && !r) cf(d, t, o, f, c, .28, a.trim);
+		if (a.arched && !r) _f(d, t, o, f, c, .28, a.trim);
 		else {
-			let e = new q(new J(o, f, .08), Nd);
+			let e = new q(new J(o, f, .08), Hd);
 			e.position.set(t, c + f / 2, .21), d.add(e);
 			for (let e of [-1, 1]) {
 				let n = new q(new J(.12, f + .15, .18), a.trim);
@@ -14525,7 +14593,7 @@ function lf(e, t, n, r, i, a, o, s) {
 		e.position.set(0, 3.5, .15), d.add(e);
 		let t = Math.max(2, m - 1), n = u / t;
 		for (let e = 0; e < t; e += 1) {
-			let t = -u / 2 + n * (e + .5), r = new q(new J(Math.min(1.25, n * .55), 1.38, .08), Nd);
+			let t = -u / 2 + n * (e + .5), r = new q(new J(Math.min(1.25, n * .55), 1.38, .08), Hd);
 			r.position.set(t, 5.35, .2), d.add(r);
 			let i = new q(new J(Math.min(1.55, n * .68), .13, .18), a.trim);
 			i.position.set(t, 6.1, .23), d.add(i);
@@ -14539,25 +14607,25 @@ function lf(e, t, n, r, i, a, o, s) {
 		e instanceof q && (e.castShadow = e.geometry.type !== "ShapeGeometry", e.receiveShadow = !0);
 	}), d;
 }
-function uf(e, t, n, r) {
+function yf(e, t, n, r) {
 	let i = new q(new Sr(.78, .92, 1.35, 12), new Y({
 		color: "#b7b9b4",
 		roughness: .82,
 		metalness: .16
 	}));
 	i.position.set(t.x + (r % 2 ? 2.7 : -2.7), n + .75, t.z - 1.5), i.name = "Tinaco cilíndrico de azotea · pieza geométrica interpretativa", e.add(i);
-	let a = new q(new J(1.15, .72, .86), Pd);
+	let a = new q(new J(1.15, .72, .86), Ud);
 	a.position.set(t.x - 1.8, n + .36, t.z + 1.9), a.name = "Ventila compacta de azotea · pieza interpretativa", e.add(a);
-	let o = new q(new J(4.6, .55, .18), Md);
+	let o = new q(new J(4.6, .55, .18), Vd);
 	o.position.set(t.x, n + .22, t.z + 4), e.add(o);
 }
-function df(e, t, n, r, i, a, o, s, c, l) {
-	let u = 4.5, d = Zd(Zd(n, r, u), i, u), f = nf(d, r, i, c.length, c.depth), p = new At();
-	p.name = `${o} · interpretación volumétrica provisional; huella no confirmada en OSM`, e.add(p), of(p, t, f, c.height, s.paint, p.name);
+function bf(e, t, n, r, i, a, o, s, c, l) {
+	let u = 4.5, d = sf(sf(n, r, u), i, u), f = ff(d, r, i, c.length, c.depth), p = new At();
+	p.name = `${o} · interpretación volumétrica provisional; huella no confirmada en OSM`, e.add(p), hf(p, t, f, c.height, s.paint, p.name);
 	let m = $(d, r, i, c.length, 0), h = $(d, r, i, 0, c.depth);
-	lf(p, d, m, sf(d, m, a), c.height, s), lf(p, d, h, sf(d, h, a), c.height, s);
+	vf(p, d, m, gf(d, m, a), c.height, s), vf(p, d, h, gf(d, h, a), c.height, s);
 	let g = $(d, r, i, c.length / 2, c.depth / 2);
-	uf(p, g, c.height, l);
+	yf(p, g, c.height, l);
 	let _ = Pl(g);
 	return {
 		id: `corner-${l}`,
@@ -14571,11 +14639,11 @@ function df(e, t, n, r, i, a, o, s, c, l) {
 		lon: _.lon
 	};
 }
-function ff(e, t, n, r, i, a) {
-	let o = Zd(Zd(n, r, -7), i, 2.4), s = nf(o, r, i, 14.5, 10.5), c = 5.7, l = new At();
-	l.name = "La Barra Hidalgo · masa verde y arcos originales a partir de referencia visual; geometría provisional sin textura", e.add(l), of(l, t, s, c, Fd, l.name);
+function xf(e, t, n, r, i, a) {
+	let o = sf(sf(n, r, -7), i, 2.4), s = ff(o, r, i, 14.5, 10.5), c = 5.7, l = new At();
+	l.name = "La Barra Hidalgo · masa verde y arcos originales a partir de referencia visual; geometría provisional sin textura", e.add(l), hf(l, t, s, c, Wd, l.name);
 	let u = $(o, r, i, 14.5, 0), d = $(o, r, i, 0, 10.5);
-	lf(l, o, u, sf(o, u, a), c, Jd.green, 5), lf(l, o, d, sf(o, d, a), c, Jd.green, 4);
+	vf(l, o, u, gf(o, u, a), c, rf.green, 5), vf(l, o, d, gf(o, d, a), c, rf.green, 4);
 	let f = Pl(n);
 	return {
 		id: "barra-hidalgo",
@@ -14589,7 +14657,7 @@ function ff(e, t, n, r, i, a) {
 		lon: f.lon
 	};
 }
-function pf(e, t, n) {
+function Sf(e, t, n) {
 	let r = Nl({
 		lat: 29.0760107,
 		lon: -110.9536147
@@ -14599,7 +14667,7 @@ function pf(e, t, n) {
 	}, a = {
 		x: -i.x,
 		z: -i.z
-	}, o = Zd(r, i, bu(r) / 2 + .26 + xu(r, 1) + .18), s = 4.4, c = Zd(o, n, -13 / 2), l = nf(c, n, i, 13, 7), u = new At();
+	}, o = sf(r, i, xu(r) / 2 + .26 + Su(r, 1) + .18), s = 4.4, c = sf(o, n, -13 / 2), l = ff(c, n, i, 13, 7), u = new At();
 	u.name = "21 Av. Obregón · fachada de un nivel, estuco claro, remate azul y basamento pétreo · huella provisional", u.userData = {
 		confidence: "provisional",
 		source: "Observación visual de Google Street View; no se conserva ni incorpora la imagen.",
@@ -14617,12 +14685,12 @@ function pf(e, t, n) {
 			depth: 7,
 			height: s
 		}
-	}, e.add(u), of(u, t, l, s, Bd, u.name);
-	let d = lf(u, c, $(c, n, i, 13, 0), a, s, Jd.streetfront21, 3, 2), f = new q(new J(.48, .28, .08), Wd);
+	}, e.add(u), hf(u, t, l, s, Yd, u.name);
+	let d = vf(u, c, $(c, n, i, 13, 0), a, s, rf.streetfront21, 3, 2), f = new q(new J(.48, .28, .08), $d);
 	f.position.set(4.68, 3.74, .31), f.name = "Placa de número 21 · sin logotipo ni tipografía fotográfica", d.add(f);
 }
-function mf(e, t, n, r, i, a) {
-	let o = Zd(n, i, 2), s = 6.3, c = new At();
+function Cf(e, t, n, r, i, a) {
+	let o = sf(n, i, 2), s = 6.3, c = new At();
 	c.name = "Club Obregón · tres alas en U con patio/dance floor abierto · interpretación volumétrica basada en descripción escrita", e.add(c);
 	let l = [
 		$(o, r, i, 0, 0),
@@ -14644,16 +14712,16 @@ function mf(e, t, n, r, i, a) {
 		l,
 		u,
 		d
-	].entries()) of(c, t, n, s, Id, `Club Obregón · ala ${e + 1} · volumen procedural`);
+	].entries()) hf(c, t, n, s, Gd, `Club Obregón · ala ${e + 1} · volumen procedural`);
 	let f = $(o, r, i, 4, 0), p = $(o, r, i, 23, 0), m = $(o, r, i, 0, 18), h = $(o, r, i, 27, 18), g = $(o, r, i, 4, 1.2), _ = $(o, r, i, 4, 13.8), v = $(o, r, i, 23, 1.2), y = $(o, r, i, 23, 13.8);
-	lf(c, o, f, sf(o, f, a), s, Jd.club, 2), lf(c, p, $(o, r, i, 27, 0), sf(p, $(o, r, i, 27, 0), a), s, Jd.club, 2), lf(c, o, m, sf(o, m, a), s, Jd.club, 3), lf(c, p, h, sf(p, h, a), s, Jd.club, 3), lf(c, g, _, r, s, Jd.club, 3), lf(c, v, y, {
+	vf(c, o, f, gf(o, f, a), s, rf.club, 2), vf(c, p, $(o, r, i, 27, 0), gf(p, $(o, r, i, 27, 0), a), s, rf.club, 2), vf(c, o, m, gf(o, m, a), s, rf.club, 3), vf(c, p, h, gf(p, h, a), s, rf.club, 3), vf(c, g, _, r, s, rf.club, 3), vf(c, v, y, {
 		x: -r.x,
 		z: -r.z
-	}, s, Jd.club, 3), lf(c, $(o, r, i, 4, 13.8), $(o, r, i, 23, 13.8), {
+	}, s, rf.club, 3), vf(c, $(o, r, i, 4, 13.8), $(o, r, i, 23, 13.8), {
 		x: -i.x,
 		z: -i.z
-	}, s, Jd.club, 5);
-	let b = new q(new Gi(rf([
+	}, s, rf.club, 5);
+	let b = new q(new Gi(pf([
 		$(o, r, i, 4, .8),
 		$(o, r, i, 23, .8),
 		$(o, r, i, 23, 13.8),
@@ -14665,10 +14733,10 @@ function mf(e, t, n, r, i, a) {
 	b.rotation.x = -Math.PI / 2, b.position.y = .11, b.name = "Pista de baile a cielo abierto · patio interior practicable", b.receiveShadow = !0, c.add(b);
 	let x = $(o, r, i, 27 / 2, 13.8 + .8), S = new At();
 	S.position.set(x.x, 0, x.z), S.rotation.y = Math.atan2(-r.z, r.x), c.add(S);
-	let C = new q(new J(8.2, .38, 2), Ld);
+	let C = new q(new J(8.2, .38, 2), Kd);
 	C.position.set(0, .33, 0), C.name = "Tarima de música · volumen geométrico interpretativo", S.add(C);
 	for (let e of [-4.5, 4.5]) {
-		let t = new q(new J(.78, 1.45, .64), Pd);
+		let t = new q(new J(.78, 1.45, .64), Ud);
 		t.position.set(e, 1.18, -.25), S.add(t);
 	}
 	for (let [e, t] of [
@@ -14685,7 +14753,7 @@ function mf(e, t, n, r, i, a) {
 			roughness: .72
 		}));
 		s.position.y = .88, a.add(s);
-		let l = new q(new Sr(.11, .16, .82, 10), Pd);
+		let l = new q(new Sr(.11, .16, .82, 10), Ud);
 		l.position.y = .43, a.add(l);
 		for (let e = 0; e < 3; e += 1) {
 			let t = e * Math.PI * 2 / 3, n = new At();
@@ -14713,10 +14781,10 @@ function mf(e, t, n, r, i, a) {
 		lon: w.lon
 	};
 }
-function hf(e, t, n, r, i, a) {
+function wf(e, t, n, r, i, a) {
 	let o = [], s = [];
 	for (let e = 0; e < t.length - 1; e += 1) {
-		let i = t[e], a = t[e + 1], c = Yd(i, a), l = Xd(n, i) / 2, u = Xd(n, a) / 2, d = -c.z, f = c.x, p = o.length / 3;
+		let i = t[e], a = t[e + 1], c = af(i, a), l = of(n, i) / 2, u = of(n, a) / 2, d = -c.z, f = c.x, p = o.length / 3;
 		o.push(i.x + d * l, r, i.z + f * l, i.x - d * l, r, i.z - f * l, a.x + d * u, r, a.z + f * u, a.x - d * u, r, a.z - f * u), s.push(p, p + 2, p + 1, p + 2, p + 3, p + 1);
 	}
 	if (!o.length) return;
@@ -14725,7 +14793,7 @@ function hf(e, t, n, r, i, a) {
 	let l = new q(c, i);
 	l.name = a, l.receiveShadow = !0, e.add(l);
 }
-function gf(e, t, n, r, i) {
+function Tf(e, t, n, r, i) {
 	let a = new J(.88, .075, .86), o = [];
 	for (let e = 0; e < t.length - 1; e += 1) {
 		let a = t[e], s = t[e + 1], c = s.x - a.x, l = s.z - a.z, u = Math.hypot(c, l);
@@ -14735,7 +14803,7 @@ function gf(e, t, n, r, i) {
 			let s = {
 				x: a.x + d * t,
 				z: a.z + f * t
-			}, c = Xd(n, s) / 2, l = Math.floor(i(s, r) / .94 + 1e-6);
+			}, c = of(n, s) / 2, l = Math.floor(i(s, r) / .94 + 1e-6);
 			for (let n = 0; n < l; n += 1) {
 				let r = c + .64 + n * .94, i = a.x + d * t + p * r, s = a.z + f * t + m * r, l = new G((Math.floor(t / .94) + n + e) % 4 == 0 ? "#a9a496" : (n + e) % 2 == 0 ? "#c7c2b5" : "#b8b3a7");
 				o.push({
@@ -14747,24 +14815,24 @@ function gf(e, t, n, r, i) {
 		}
 	}
 	if (o.length) {
-		let t = new pr(a, kd, o.length), n = new kt();
+		let t = new pr(a, Rd, o.length), n = new kt();
 		o.forEach((e, r) => {
 			n.position.copy(e.position), n.rotation.set(0, e.yaw, 0), n.updateMatrix(), t.setMatrixAt(r, n.matrix), t.setColorAt(r, e.color);
 		}), t.instanceMatrix.needsUpdate = !0, t.instanceColor && (t.instanceColor.needsUpdate = !0), t.name = `Baldosas de banqueta instanciadas · ${o.length} piezas geométricas`, t.receiveShadow = !0, e.add(t);
 	}
 	for (let i = 0; i < t.length - 1; i += 1) {
-		let a = t[i], o = t[i + 1], s = Yd(a, o), c = -s.z * r, l = s.x * r, u = (Xd(n, a) + Xd(n, o)) / 4 + .18, d = {
+		let a = t[i], o = t[i + 1], s = af(a, o), c = -s.z * r, l = s.x * r, u = (of(n, a) + of(n, o)) / 4 + .18, d = {
 			x: (a.x + o.x) / 2 + c * u,
 			z: (a.z + o.z) / 2 + l * u
-		}, f = new q(new J(Math.hypot(o.x - a.x, o.z - a.z) + .04, .18, .24), Od);
+		}, f = new q(new J(Math.hypot(o.x - a.x, o.z - a.z) + .04, .18, .24), Ld);
 		f.position.set(d.x, .11, d.z), f.rotation.y = Math.atan2(-s.z, s.x), f.name = "Guarnición de concreto · geometría modular", e.add(f);
 	}
 	return o.length;
 }
-function _f(e, t, n, r, i) {
+function Ef(e, t, n, r, i) {
 	let a = [], o = [];
 	for (let e = 0; e < t.length - 1; e += 1) {
-		let s = t[e], c = t[e + 1], l = Yd(s, c), u = -l.z * r, d = l.x * r, f = Xd(n, s) / 2, p = Xd(n, c) / 2, m = f + i(s, r), h = p + i(c, r), g = m + Su(s), _ = h + Su(c);
+		let s = t[e], c = t[e + 1], l = af(s, c), u = -l.z * r, d = l.x * r, f = of(n, s) / 2, p = of(n, c) / 2, m = f + i(s, r), h = p + i(c, r), g = m + Cu(s), _ = h + Cu(c);
 		if (g - m < .01 && _ - h < .01) continue;
 		let v = a.length / 3;
 		a.push(s.x + u * m, .061, s.z + d * m, s.x + u * g, .061, s.z + d * g, c.x + u * h, .061, c.z + d * h, c.x + u * _, .061, c.z + d * _), r > 0 ? o.push(v, v + 1, v + 2, v + 2, v + 1, v + 3) : o.push(v, v + 2, v + 1, v + 2, v + 3, v + 1);
@@ -14772,14 +14840,14 @@ function _f(e, t, n, r, i) {
 	if (!a.length) return;
 	let s = new Mn();
 	s.setAttribute("position", new K(a, 3)), s.setIndex(o), s.computeVertexNormals();
-	let c = new q(s, Ad);
+	let c = new q(s, zd);
 	c.name = "Obregón · apron norte de estacionamiento provisional, separado del paso peatonal", c.receiveShadow = !0, e.add(c);
 }
-function vf(e, t, n, r, i) {
+function Df(e, t, n, r, i) {
 	let a = {
 		x: -n.z,
 		z: n.x
-	}, o = new Gi(rf([
+	}, o = new Gi(pf([
 		{
 			x: t.x - n.x * r / 2 - a.x * i / 2,
 			z: t.z - n.z * r / 2 - a.z * i / 2
@@ -14798,33 +14866,33 @@ function vf(e, t, n, r, i) {
 		}
 	]));
 	o.rotateX(-Math.PI / 2);
-	let s = new q(o, jd);
+	let s = new q(o, Bd);
 	s.position.y = .057, s.name = "Franja peatonal geométrica · marca interpretativa", e.add(s);
 }
-function yf(e, t, n, r) {
-	let i = Yd({
+function Of(e, t, n, r) {
+	let i = af({
 		x: 0,
 		z: 0
 	}, n);
-	for (let n = 0; n < 6; n += 1) vf(e, Zd(t, i, 1.85 + n * .48), i, .29, Math.max(2.5, r - 1.4));
+	for (let n = 0; n < 6; n += 1) Df(e, sf(t, i, 1.85 + n * .48), i, .29, Math.max(2.5, r - 1.4));
 }
-function bf(e, t, n, r) {
+function kf(e, t, n, r) {
 	let i = new q(new Sr(.23 * n, .34 * n, 3.1 * n, 9), new Y({
 		color: "#685342",
 		roughness: 1
 	}));
 	i.position.set(t.x, 1.55 * n, t.z), i.castShadow = !0, e.add(i);
 	for (let i = 0; i < 8; i += 1) {
-		let a = i * 2.399963 + r, o = new q(new Hi(1.45 * n, 1), Gd[i % Gd.length]);
+		let a = i * 2.399963 + r, o = new q(new Hi(1.45 * n, 1), ef[i % ef.length]);
 		o.position.set(t.x + Math.cos(a) * .82 * n, (3 + i % 3 * .45) * n, t.z + Math.sin(a) * .68 * n), o.scale.set(1.2, .94, 1.05), o.castShadow = !0, e.add(o);
 	}
 }
-function xf(e, t, n) {
-	let r = new At(), i = new q(new Sr(.075, .12, 5.1, 12), Pd);
+function Af(e, t, n) {
+	let r = new At(), i = new q(new Sr(.075, .12, 5.1, 12), Ud);
 	i.position.y = 2.55;
-	let a = new q(new J(.9, .085, .09), Pd);
+	let a = new q(new J(.9, .085, .09), Ud);
 	a.position.set(.34, 4.9, 0);
-	let o = new q(new J(.72, .18, .35), Pd);
+	let o = new q(new J(.72, .18, .35), Ud);
 	o.position.set(.72, 4.79, 0);
 	let s = new q(new J(.52, .035, .22), new Y({
 		color: "#f3dda1",
@@ -14833,13 +14901,13 @@ function xf(e, t, n) {
 	}));
 	s.position.set(.72, 4.68, 0), r.add(i, a, o, s), r.position.set(t.x, 0, t.z), r.rotation.y = n, r.name = "Farola de calle · modelo geométrico provisional", e.add(r);
 }
-function Sf(e, t) {
-	let n = new q(new Sr(.12, .17, .82, 14), Pd);
+function jf(e, t) {
+	let n = new q(new Sr(.12, .17, .82, 14), Ud);
 	n.position.set(t.x, .45, t.z), n.name = "Bolardo de esquina · objeto urbano geométrico", e.add(n);
-	let r = new q(new qi(.13, 10, 7), Pd);
+	let r = new q(new qi(.13, 10, 7), Ud);
 	r.position.set(t.x, .86, t.z), r.scale.y = .35, e.add(r);
 }
-function Cf(e, t, n, r, i, a) {
+function Mf(e, t, n, r, i, a) {
 	let o = new At(), s = new Y({
 		color: i,
 		roughness: .45,
@@ -14850,10 +14918,10 @@ function Cf(e, t, n, r, i, a) {
 	l.position.set(0, 1.12, 1.47);
 	let u = new q(new J(1.43, .78, 2.08), s);
 	u.position.set(0, 1.42, -.05);
-	let d = new q(new J(1.2, .54, .06), qd);
+	let d = new q(new J(1.2, .54, .06), nf);
 	d.position.set(0, 1.51, 1.03), d.rotation.x = -.22, o.add(c, l, u, d);
 	for (let e of [-1, 1]) for (let t of [-1.42, 1.42]) {
-		let n = new q(new Sr(.36, .36, .2, 18), Kd);
+		let n = new q(new Sr(.36, .36, .2, 18), tf);
 		n.rotation.z = Math.PI / 2, n.position.set(e * .96, .44, t), o.add(n);
 		let r = new q(new Sr(.16, .16, .21, 12), new Y({
 			color: "#a9aaa4",
@@ -14874,20 +14942,20 @@ function Cf(e, t, n, r, i, a) {
 	}, m = Math.abs(f.x) * 2.275 + Math.abs(p.x) * 1.06, h = Math.abs(f.z) * 2.275 + Math.abs(p.z) * 1.06;
 	t.push(new $t(new V(n.x - m, 0, n.z - h), new V(n.x + m, 2.35, n.z + h)));
 }
-function wf(e, t, n) {
-	return tf(e, t, n);
+function Nf(e, t, n) {
+	return df(e, t, n);
 }
-function Tf(e, t) {
-	let n = Qd(e, Td.chihuahua), r = Qd(e, Td.abasolo), i = Qd(e, Td.obregon), a = Qd(e, Td.garmendia), o = {
-		sw: $d(a, i),
-		nw: $d(a, n),
-		ne: $d(r, n),
-		se: $d(r, i)
+function Pf(e, t) {
+	let n = cf(e, Pd.chihuahua), r = cf(e, Pd.abasolo), i = cf(e, Pd.obregon), a = cf(e, Pd.garmendia), o = {
+		sw: lf(a, i),
+		nw: lf(a, n),
+		ne: lf(r, n),
+		se: lf(r, i)
 	}, s = {
 		x: (o.sw.x + o.nw.x + o.ne.x + o.se.x) / 4,
 		z: (o.sw.z + o.nw.z + o.ne.z + o.se.z) / 4
 	}, c = new At();
-	c.name = "Bloque oriental · cuatro esquinas georreferenciadas OSM · volúmenes y mobiliario procedurales", c.userData.spatialCalibration = hu;
+	c.name = "Bloque oriental · cuatro esquinas georreferenciadas OSM · volúmenes y mobiliario procedurales", c.userData.spatialCalibration = gu, c.userData.chihuahuaCalibration = Ed;
 	let l = [], u = [], d = [
 		{
 			way: n,
@@ -14914,25 +14982,25 @@ function Tf(e, t) {
 			insideAt: s
 		}
 	].map(({ way: e, start: t, end: n, insideAt: r }) => {
-		let i = wf(e, t, n);
+		let i = Nf(e, t, n);
 		return {
 			way: e,
-			points: e.id === Td.obregon ? Tu(i) : i,
+			points: e.id === Pd.obregon ? Eu(i) : e.id === Pd.chihuahua ? Nd(i) : i,
 			insideAt: r
 		};
 	}), f = 0;
 	for (let { way: e, points: t } of d) {
-		let n = e.id === Td.obregon ? bu : Il(e.tags), r = e.id === Td.obregon ? xu : () => 2.35, i = e.id === Td.obregon ? " · perfil R-001 P10, asfalto ≈5.61 m y sección asimétrica" : "";
-		hf(c, t, n, .036, Dd, `${e.tags?.name ?? "Calle"}${i} · calzada en tramo OSM del bloque oriental`);
+		let n = e.id === Pd.obregon ? xu : e.id === Pd.chihuahua ? jd : Il(e.tags), r = e.id === Pd.obregon ? Su : e.id === Pd.chihuahua ? Md : () => 2.35, i = e.id === Pd.obregon ? " · perfil R-001 P10, asfalto ≈5.61 m y sección asimétrica" : e.id === Pd.chihuahua ? " · perfil R-002, estimación aérea ≈5.1 m, lados independientes" : "";
+		wf(c, t, n, .036, Id, `${e.tags?.name ?? "Calle"}${i} · calzada en tramo OSM del bloque oriental`);
 		let a = {
 			x: s.x - t[Math.floor(t.length / 2)].x,
 			z: s.z - t[Math.floor(t.length / 2)].z
 		};
 		for (let i of [-1, 1]) {
-			f += gf(c, t, n, i, r);
+			f += Tf(c, t, n, i, r);
 			let o = [], s = [];
 			for (let e = 0; e < t.length - 1; e += 1) {
-				let a = t[e], c = t[e + 1], l = Yd(a, c), u = -l.z * i, d = l.x * i, f = Xd(n, a) / 2 + .26, p = Xd(n, c) / 2 + .26, m = f + r(a, i), h = p + r(c, i);
+				let a = t[e], c = t[e + 1], l = af(a, c), u = -l.z * i, d = l.x * i, f = of(n, a) / 2 + .26, p = of(n, c) / 2 + .26, m = f + r(a, i), h = p + r(c, i);
 				if (m - f < .01 && h - p < .01) continue;
 				let g = o.length / 3;
 				o.push(a.x + u * f, .061, a.z + d * f, a.x + u * m, .061, a.z + d * m, c.x + u * p, .061, c.z + d * p, c.x + u * h, .061, c.z + d * h), i > 0 ? s.push(g, g + 1, g + 2, g + 2, g + 1, g + 3) : s.push(g, g + 2, g + 1, g + 2, g + 3, g + 1);
@@ -14940,17 +15008,17 @@ function Tf(e, t) {
 			if (o.length) {
 				let t = new Mn();
 				t.setAttribute("position", new K(o, 3)), t.setIndex(s), t.computeVertexNormals();
-				let n = new q(t, kd);
+				let n = new q(t, Rd);
 				n.name = `${e.tags?.name ?? "Calle"} · banqueta de ambas esquinas, franja ${i}`, n.receiveShadow = !0, c.add(n);
 			}
-			e.id === Td.obregon && i === -1 && _f(c, t, n, i, r);
-			let l = t[Math.floor(t.length / 2)], u = Yd(t[0], t[t.length - 1]), p = {
+			e.id === Pd.obregon && i === -1 && Ef(c, t, n, i, r);
+			let l = t[Math.floor(t.length / 2)], u = af(t[0], t[t.length - 1]), p = {
 				x: -u.z * i,
 				z: u.x * i
 			};
 			if (i === 1 && p.x * a.x + p.z * a.z > 0) {
-				let t = Xd(n, l) / 2 + r(l, i) + 1.35;
-				bf(c, {
+				let t = of(n, l) / 2 + r(l, i) + 1.35;
+				kf(c, {
 					x: l.x + p.x * t,
 					z: l.z + p.z * t
 				}, .86, d.indexOf(d.find((t) => t.way.id === e.id)));
@@ -14958,11 +15026,11 @@ function Tf(e, t) {
 		}
 	}
 	for (let { way: e, points: t } of d) {
-		let n = e.id === Td.obregon ? bu : Il(e.tags), r = Yd(t[0], t[t.length - 1]);
-		yf(c, t[0], {
+		let n = e.id === Pd.obregon ? xu : e.id === Pd.chihuahua ? jd : Il(e.tags), r = af(t[0], t[t.length - 1]);
+		Of(c, t[0], {
 			x: -r.x,
 			z: -r.z
-		}, Xd(n, t[0])), yf(c, t[t.length - 1], r, Xd(n, t[t.length - 1]));
+		}, of(n, t[0])), Of(c, t[t.length - 1], r, of(n, t[t.length - 1]));
 	}
 	[
 		o.sw,
@@ -14970,7 +15038,7 @@ function Tf(e, t) {
 		o.ne,
 		o.nw
 	].forEach((e, t) => {
-		xf(c, {
+		Af(c, {
 			x: e.x + 4.4,
 			z: e.z + 4.1
 		}, t * Math.PI / 2);
@@ -14979,10 +15047,10 @@ function Tf(e, t) {
 				x: e.x + (3.4 + t * .3) * n,
 				z: e.z + 3.7
 			};
-			Sf(c, r);
+			jf(c, r);
 		}
 	});
-	let p = t.elements.find((e) => e.type === "node" && e.id === Ed.barra), m = t.elements.find((e) => e.type === "node" && e.id === Ed.club), h = p?.lat !== void 0 && p.lon !== void 0 ? Nl({
+	let p = t.elements.find((e) => e.type === "node" && e.id === Fd.barra), m = t.elements.find((e) => e.type === "node" && e.id === Fd.club), h = p?.lat !== void 0 && p.lon !== void 0 ? Nl({
 		lat: p.lat,
 		lon: p.lon
 	}) : {
@@ -14994,7 +15062,7 @@ function Tf(e, t) {
 	}) : {
 		x: 94.2,
 		z: 2.6
-	}, _ = Yd(o.sw, o.se), v = Yd(o.sw, o.nw), y = Zd(o.sw, _, -24), b = Pl(y), x = new At();
+	}, _ = af(o.sw, o.se), v = af(o.sw, o.nw), y = sf(o.sw, _, -24), b = Pl(y), x = new At();
 	x.name = "EB-01 · punto georreferenciado de inspección · no es captura fotográfica";
 	let S = new q(new Wi(1.3, 1.56, 32), new Y({
 		color: "#31c2be",
@@ -15002,35 +15070,35 @@ function Tf(e, t) {
 		emissiveIntensity: .22,
 		side: 2
 	}));
-	S.rotation.x = -Math.PI / 2, S.position.y = .1, x.add(S), x.position.set(y.x, 0, y.z), c.add(x), u.push(ff(c, l, h, _, v, s)), u.push(mf(c, l, g, _, v, s)), pf(c, l, _);
-	let C = Yd(o.nw, o.ne), w = Yd(o.nw, o.sw);
-	u.push(df(c, l, o.nw, C, w, s, "ESQUINA NOROESTE · GARMENDIA / CHIHUAHUA", Jd.northwest, {
+	S.rotation.x = -Math.PI / 2, S.position.y = .1, x.add(S), x.position.set(y.x, 0, y.z), c.add(x), u.push(xf(c, l, h, _, v, s)), u.push(Cf(c, l, g, _, v, s)), Sf(c, l, _);
+	let C = af(o.nw, o.ne), w = af(o.nw, o.sw);
+	u.push(bf(c, l, o.nw, C, w, s, "ESQUINA NOROESTE · GARMENDIA / CHIHUAHUA", rf.northwest, {
 		length: 23,
 		depth: 15,
 		height: 8.2
 	}, 1));
-	let T = Yd(o.ne, o.nw), E = Yd(o.ne, o.se);
-	u.push(df(c, l, o.ne, T, E, s, "ESQUINA NORESTE · ABASOLO / CHIHUAHUA", Jd.northeast, {
+	let T = af(o.ne, o.nw), E = af(o.ne, o.se);
+	u.push(bf(c, l, o.ne, T, E, s, "ESQUINA NORESTE · ABASOLO / CHIHUAHUA", rf.northeast, {
 		length: 22,
 		depth: 16,
 		height: 6.4
 	}, 2));
-	let D = Yd(o.se, o.sw), O = Yd(o.se, o.ne);
-	u.push(df(c, l, o.se, D, O, s, "ESQUINA SURESTE · ABASOLO / OBREGÓN", Jd.southeast, {
+	let D = af(o.se, o.sw), O = af(o.se, o.ne);
+	u.push(bf(c, l, o.se, D, O, s, "ESQUINA SURESTE · ABASOLO / OBREGÓN", rf.southeast, {
 		length: 24,
 		depth: 15,
 		height: 8.8
 	}, 3));
-	let k = d.find((e) => e.way.id === Td.obregon).points, A = k[Math.floor(k.length / 2)], ee = Math.atan2(_.x, _.z), j = {
+	let k = d.find((e) => e.way.id === Pd.obregon).points, A = k[Math.floor(k.length / 2)], ee = Math.atan2(_.x, _.z), j = {
 		x: _.z,
 		z: -_.x
-	}, M = bu(A) / 2 + xu(A, -1) + Su(A) / 2;
-	Cf(c, l, {
+	}, M = xu(A) / 2 + Su(A, -1) + Cu(A) / 2;
+	Mf(c, l, {
 		x: A.x + _.x * 5.5 + j.x * M,
 		z: A.z + _.z * 5.5 + j.z * M
 	}, ee, "#8a9da1", "Sedán · aparcamiento norte");
-	let N = d.find((e) => e.way.id === Td.chihuahua).points[Math.floor(d.find((e) => e.way.id === Td.chihuahua).points.length / 2)], te = Yd(o.nw, o.ne), ne = Math.atan2(te.x, te.z);
-	Cf(c, l, {
+	let N = d.find((e) => e.way.id === Pd.chihuahua).points[Math.floor(d.find((e) => e.way.id === Pd.chihuahua).points.length / 2)], te = af(o.nw, o.ne), ne = Math.atan2(te.x, te.z);
+	Mf(c, l, {
 		x: N.x,
 		z: N.z + 1
 	}, ne, "#d8d1c1", "Sedán clásico");
@@ -15066,17 +15134,17 @@ function Tf(e, t) {
 }
 //#endregion
 //#region src/amalaya-routes.ts
-function Ef(e) {
+function Ff(e) {
 	return typeof e == "object" && !!e && !Array.isArray(e);
 }
-function Df(e) {
-	if (!Ef(e) || e.schemaVersion !== 1 || !Array.isArray(e.routes) || e.routes.length < 1) throw Error("El manifiesto de rutas Amalaya no tiene un esquema válido.");
+function If(e) {
+	if (!Ff(e) || e.schemaVersion !== 1 || !Array.isArray(e.routes) || e.routes.length < 1) throw Error("El manifiesto de rutas Amalaya no tiene un esquema válido.");
 	let t = typeof e.provenance == "string" ? e.provenance : "", n = /* @__PURE__ */ new Set(), r = /* @__PURE__ */ new Set();
 	return {
 		schemaVersion: 1,
 		provenance: t,
 		routes: e.routes.map((e, t) => {
-			if (!Ef(e)) throw Error(`Ruta ${t + 1} inválida.`);
+			if (!Ff(e)) throw Error(`Ruta ${t + 1} inválida.`);
 			let i = e.id, a = e.name, o = e.color, s = e.spacingMeters, c = e.points;
 			if (typeof i != "string" || !/^R-\d{3}$/.test(i) || n.has(i)) throw Error(`ID de ruta inválido o duplicado: ${String(i)}`);
 			if (typeof a != "string" || !a.trim()) throw Error(`La ruta ${i} no tiene nombre.`);
@@ -15085,7 +15153,7 @@ function Df(e) {
 			if (typeof e.isTest != "boolean" || !Array.isArray(c) || c.length < 2) throw Error(`La ruta ${i} necesita al menos dos puntos y una marca de tipo.`);
 			n.add(i);
 			let l = c.map((e, t) => {
-				if (!Ef(e)) throw Error(`Punto ${t + 1} de ${i} inválido.`);
+				if (!Ff(e)) throw Error(`Punto ${t + 1} de ${i} inválido.`);
 				let n = e.id, a = e.lat, o = e.lng, s = e.order, c = e.name;
 				if (typeof n != "string" || !/^[A-Za-z0-9-]{3,40}$/.test(n) || r.has(n)) throw Error(`ID de punto inválido o duplicado: ${String(n)}`);
 				if (typeof a != "number" || !Number.isFinite(a) || a < -90 || a > 90) throw Error(`Latitud inválida en ${n}.`);
@@ -15112,32 +15180,45 @@ function Df(e) {
 }
 //#endregion
 //#region src/amalaya-world.ts
-async function Of(e, t) {
-	let n = async (n) => {
+async function Lf(e, t, n = "pilot") {
+	let r = async (n) => {
 		let r = await fetch(`${e}data/${n}.json`, { signal: t });
 		if (!r.ok) throw Error(`No se pudo cargar ${n} (${r.status})`);
 		return r.json();
-	}, [r, i, a] = await Promise.all([
-		n("osm-plaza-hidalgo"),
-		n("osm-context"),
-		n("amalaya-routes")
+	}, [i, a, o] = await Promise.all([
+		r("osm-plaza-hidalgo"),
+		r("osm-context"),
+		r("amalaya-routes")
 	]);
 	t?.throwIfAborted();
-	let o = new At();
-	o.name = "Amalaya · levantamiento actual provisional", o.add(pu(r).group, hd(r).group, wd().group, Tf(i, r).group, md(i, Df(a)).group);
-	let s = /* @__PURE__ */ new Map();
-	return o.traverse((e) => {
-		let t = e;
-		if (!t.isMesh) return;
-		if (t.isInstancedMesh && t.geometry.type === "ExtrudeGeometry") {
-			t.geometry.computeBoundingBox();
-			let e = t.geometry.boundingBox, n = e.getSize(new V()), r = e.getCenter(new V());
-			t.geometry = new J(n.x, n.y, n.z).translate(r.x, r.y, r.z);
+	let s = new At();
+	return s.name = "Amalaya · levantamiento actual provisional", s.add(mu(i).group, gd(i).group, Td().group, Pf(a, i).group, hd(a, If(o)).group), Rf(s, n), Gf(s), s;
+}
+function Rf(e, t) {
+	let n = /* @__PURE__ */ new Map();
+	e.traverse((e) => {
+		let r = e;
+		if (!r.isMesh) return;
+		if (r.isInstancedMesh && r.geometry.type === "ExtrudeGeometry") {
+			r.geometry.computeBoundingBox();
+			let e = r.geometry.boundingBox, t = e.getSize(new V()), n = e.getCenter(new V());
+			r.geometry = new J(t.x, t.y, t.z).translate(n.x, n.y, n.z);
 		}
-		let n = (e) => {
-			if (!s.has(e.uuid)) {
+		if (t === "pilot") {
+			if (!r.geometry.getAttribute("uv")) {
+				let e = r.geometry.getAttribute("position"), t = [];
+				for (let n = 0; n < e.count; n++) t.push(e.getX(n), e.getZ(n));
+				r.geometry.setAttribute("uv", new K(t, 2));
+			}
+			(Array.isArray(r.material) ? r.material : [r.material]).forEach((e) => {
+				e instanceof Y && e.userData.surface === "stucco" && Ll(e);
+			}), r.receiveShadow = !0;
+			return;
+		}
+		let i = (e) => {
+			if (!n.has(e.uuid)) {
 				let t = e;
-				s.set(e.uuid, new sa({
+				n.set(e.uuid, new sa({
 					color: t.color ?? "#b7a890",
 					side: e.side,
 					transparent: e.transparent,
@@ -15145,12 +15226,32 @@ async function Of(e, t) {
 					vertexColors: e.vertexColors
 				}));
 			}
-			return s.get(e.uuid);
+			return n.get(e.uuid);
 		};
-		t.material = Array.isArray(t.material) ? t.material.map(n) : n(t.material);
-	}), Nf(o), o;
+		r.material = Array.isArray(r.material) ? r.material.map(i) : i(r.material);
+	}), e.userData.visualQuality = t;
 }
-function kf(e) {
+function zf(e, t) {
+	e.add(new Aa(t === "pilot" ? 14478583 : 16774887, t === "pilot" ? 7888971 : 6976358, t === "pilot" ? 1.25 : 2.2));
+	let n = new Ga(16772817, t === "pilot" ? 3 : 2.8);
+	if (t === "baseline") n.position.set(-70, 130, 60);
+	else {
+		let t = new V(85, 0, -20);
+		n.target.position.copy(t), n.position.copy(t).add(new V(-130, 190, 100)), n.castShadow = !0, n.shadow.mapSize.set(2048, 2048), Object.assign(n.shadow.camera, {
+			left: -185,
+			right: 185,
+			top: 140,
+			bottom: -140,
+			near: .5,
+			far: 600
+		}), n.shadow.bias = -15e-5, n.shadow.normalBias = .035, e.add(n.target);
+	}
+	e.add(n);
+}
+function Bf(e, t) {
+	e.outputColorSpace = k, e.toneMapping = t === "pilot" ? 4 : 0, e.toneMappingExposure = 1.05, e.shadowMap.enabled = t === "pilot", e.shadowMap.type = 2, e.shadowMap.autoUpdate = !1, e.shadowMap.needsUpdate = t === "pilot";
+}
+function Vf(e) {
 	let t = /* @__PURE__ */ new Set(), n = /* @__PURE__ */ new Set(), r = /* @__PURE__ */ new Set();
 	e.traverse((e) => {
 		let i = e;
@@ -15161,19 +15262,17 @@ function kf(e) {
 		});
 	}), t.forEach((e) => e.dispose()), n.forEach((e) => e.dispose()), r.forEach((e) => e.dispose());
 }
-function Af(e) {
+function Hf(e) {
 	let { lat: t, lon: n } = Al, r = e.fromLngLat([n, t], 0), i = e.fromLngLat([n + 1 / 97200, t], 0), a = e.fromLngLat([n, t - 1 / 110950], 0);
 	return new nt().set(i.x - r.x, 0, 0, r.x, 0, 0, a.y - r.y, r.y, 0, r.meterInMercatorCoordinateUnits(), 0, r.z, 0, 0, 0, 1);
 }
-function jf({ mercator: e, world: t }) {
-	let n = new Rt(), r = Mf();
-	r.visible = !1, t.add(r), n.add(t, new Aa(16774887, 6976358, 2.2));
-	let i = new Ga(16772817, 2.8);
-	i.position.set(-70, 130, 60), n.add(i);
-	let a = new Ra(), o = Af(e), s;
+function Uf({ mercator: e, world: t, quality: n = "pilot" }) {
+	let r = new Rt(), i = Wf();
+	i.visible = !1, t.add(i), r.add(t), zf(r, n);
+	let a = new Ra(), o = Hf(e), s;
 	return {
 		setScenario(e) {
-			r.visible = e === "amalaya";
+			i.visible = e === "amalaya";
 		},
 		id: "amalaya-levantamiento",
 		type: "custom",
@@ -15183,17 +15282,17 @@ function jf({ mercator: e, world: t }) {
 				canvas: e.getCanvas(),
 				context: t,
 				antialias: !0
-			}), s.autoClear = !1;
+			}), s.autoClear = !1, Bf(s, n);
 		},
 		render(e, t) {
-			a.projectionMatrix.fromArray(t).multiply(o), a.projectionMatrixInverse.copy(a.projectionMatrix).invert(), s.resetState(), s.render(n, a);
+			a.projectionMatrix.fromArray(t).multiply(o), a.projectionMatrixInverse.copy(a.projectionMatrix).invert(), s.resetState(), s.render(r, a);
 		},
 		onRemove() {
-			s?.dispose(), kf(t);
+			s?.dispose(), Vf(t);
 		}
 	};
 }
-function Mf() {
+function Wf() {
 	let e = new At();
 	e.name = "Amalaya · ensayo conceptual de sombra y estancia · no aprobado";
 	let t = new Y({
@@ -15217,13 +15316,13 @@ function Mf() {
 	}
 	return e;
 }
-function Nf(e) {
+function Gf(e) {
 	e.updateMatrixWorld(!0);
 	let t = /* @__PURE__ */ new Map();
 	e.traverse((e) => {
 		let n = e;
 		if (!n.isMesh || n.isInstancedMesh || Array.isArray(n.material)) return;
-		let r = n.material.uuid + Object.keys(n.geometry.attributes).sort().join(",") + !!n.geometry.index, i = t.get(r) ?? [];
+		let r = n.material.uuid + n.castShadow + n.receiveShadow + Object.keys(n.geometry.attributes).sort().join(",") + !!n.geometry.index, i = t.get(r) ?? [];
 		i.push(n), t.set(r, i);
 	});
 	for (let n of t.values()) {
@@ -15232,8 +15331,8 @@ function Nf(e) {
 		if (t.forEach((e) => e.dispose()), !r) continue;
 		n.forEach((e) => e.removeFromParent());
 		let i = new q(r, n[0].material);
-		i.name = "Superficies agrupadas para vista territorial", e.add(i);
+		i.castShadow = n[0].castShadow, i.receiveShadow = n[0].receiveShadow, i.name = "Superficies agrupadas para vista territorial", e.add(i);
 	}
 }
 //#endregion
-export { Mf as createConcept, jf as createMapLayer, Of as createWorld, kf as disposeWorld, Af as mapTransform };
+export { zf as addWorldLighting, Bf as configureWorldRenderer, Wf as createConcept, Uf as createMapLayer, Lf as createWorld, Vf as disposeWorld, Hf as mapTransform, Rf as prepareWorldSurfaces };
