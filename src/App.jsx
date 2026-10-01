@@ -69,7 +69,7 @@ function Principal() {
   }
 
   const secciones = [
-    ['mapa', 'Territorio', MapIcon],
+    ['mapa', 'Mapa', MapIcon],
     ...(BIBLIOTECA_3D ? [['modelos', 'Modelos 3D', Box]] : []),
     ...(hayFinanzas ? [['finanzas', 'Finanzas', BarChart3]] : []),
     ['reporte', 'Reporte', FileText],
@@ -97,7 +97,7 @@ function Principal() {
       {/* En teléfono el «?» flota arriba a la derecha de la sección */}
       <div className="no-imprimir sm:hidden flex justify-end px-3 pt-2 -mb-2"><AyudaPantalla seccion={seccion} /></div>
 
-      {seccion === 'mapa' && <Mapa onSeccion={setSeccion} />}
+      {seccion === 'mapa' && <Mapa />}
       {seccion === 'modelos' && BIBLIOTECA_3D && <Suspense fallback={<p className="p-4">Cargando biblioteca…</p>}><Biblioteca3D /></Suspense>}
       {seccion === 'finanzas' && <Financiero />}
       {seccion === 'reporte' && <Reporte />}

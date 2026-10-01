@@ -3,9 +3,9 @@
 Board de control de **Amalaya**, polígono de actuación concertada en el centro de
 Hermosillo, Sonora. Interfaz en `https://yodesarrollo.github.io/amalaya-board/`.
 
-## Territorio: entrada al tablero
+## Mapa principal
 
-Al iniciar sesión, el personal entra a **Territorio**: levantamiento 3D, pines y buscador de los espacios entregados por su sesión, con acceso a las fichas originales. Caminar 3D y Puntos 360 viven en esa misma pantalla. «Plano y herramientas» conserva el mapa y los editores anteriores. Los permisos y las funciones de Reporte, Finanzas y Plan no cambian.
+Se restaura la interfaz anterior: mapa, fichas, lista, capas, herramientas y recorrido original. Únicamente se sustituye la representación de cubos por el levantamiento 3D georreferenciado, sobre el mismo mapa y con la misma cámara. Si el modelo no carga, se conserva la maqueta básica como respaldo. Los permisos y módulos del tablero no cambian.
 
 ## Recorrido público 3D y 360
 

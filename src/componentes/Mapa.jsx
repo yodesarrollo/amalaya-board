@@ -1,4 +1,4 @@
-import { useState, useRef, useCallback, useMemo, lazy, Suspense } from 'react'
+import { useState, useRef, useCallback, useMemo } from 'react'
 import { Plus, Pencil, Check, ArrowUp, ArrowDown, ArrowLeft, ArrowRight, ClipboardList, X } from 'lucide-react'
 import { usarDatos } from '../datos.jsx'
 import { puedeEditarRol } from '../roles.js'
@@ -9,9 +9,7 @@ import ManijaSheet from './ManijaSheet.jsx'
 import Peticiones from './Peticiones.jsx'
 import { RutasCapa, PuntosEdicion, BarraRutas, Recorrido, leerPuntos, guardarRuta } from './Rutas.jsx'
 import { GLIFO_TIPO, NOMBRE_TIPO } from './Glifos.jsx'
-const Mapa3D = lazy(() => import('./Mapa3D.jsx'))
-const RecorridoPortal = lazy(() => import('./RecorridoPortal.jsx'))
-import { pinesDeEspacios } from '../espacios-mapa.js'
+import Mapa3D from './Mapa3D.jsx'
 import { usarDialogo } from '../usarDialogo.js'
 
 // ============================================================
@@ -63,7 +61,7 @@ function zonaDeFila(e) {
 
 const acot = (v, min, max) => Math.min(Math.max(v, min), max)
 
-export default function Mapa({ onSeccion }) {
+export default function Mapa() {
   const { sesion, datos, modo, editarFila, crearFila } = usarDatos()
   const espaciosSheet = datos?.Espacios || []
   // UX-02: mover es una PREVISUALIZACIÓN. Nada llega al Sheet hasta «Aplicar»;
@@ -76,7 +74,7 @@ export default function Mapa({ onSeccion }) {
   const puedeEditar = modo !== 'demo' && puedeEditarRol(sesion?.rol)
 
   // Capa activa
-  const [vista, setVista] = useState('inmersivo') // '3d' | 'espacios' | 'rutas'
+  const [vista, setVista] = useState('3d') // '3d' | 'espacios' | 'rutas'
 
   // Espacios
   const [modoEdicion, setModoEdicion] = useState(false)
@@ -215,7 +213,7 @@ export default function Mapa({ onSeccion }) {
 
   // --- la cámara (una sola, para espacios y recorridos) ------
   const espacioAbierto = espacios.find((e) => e.id === abierto)
-  const refFicha = usarDialogo(!!espacioAbierto, () => setAbierto(null), '.tour-space-search input, button[title="Lista y buscador de espacios"]')
+  const refFicha = usarDialogo(!!espacioAbierto, () => setAbierto(null), 'button[title="Lista y buscador de espacios"]')
   const rutaRecorrida = recorrido ? rutas.find((r) => r.id === recorrido.rutaId) : null
   const paradasDeRuta = rutaRecorrida
     ? paradas
@@ -233,27 +231,23 @@ export default function Mapa({ onSeccion }) {
   }
 
   const enRutas = vista === 'rutas'
-  const pines = useMemo(() => pinesDeEspacios(espacios, datos?.Config), [espacios, datos?.Config])
-  const inmersivo = vista === 'inmersivo' && !modoEdicion
   const en3d = vista === '3d'
 
   return (
-    <div className="relative" data-territorio-board>
+    <div className="relative">
       {/* Barra del mapa */}
       <div className="max-w-6xl mx-auto px-4 pt-4 pb-2 flex items-center gap-2 flex-wrap">
-        <h2 className="font-cartel font-normal uppercase tracking-wide text-2xl">Amalaya · territorio y gestión</h2>
+        <h2 className="font-cartel font-normal uppercase tracking-wide text-2xl">El polígono</h2>
 
-        <span className="text-xs text-terciario ml-2 hidden sm:inline">elige un espacio para abrir su ficha o entra a recorrer sus calles</span>
+        <span className="text-xs text-terciario ml-2 hidden sm:inline">una sola maqueta · gira por caras · toca un punto para el 360</span>
 
         <div className="flex-1" />
 
-        <button className="boton-secundario !px-3 !py-2 text-sm" disabled={modoEdicion} onClick={() => { setVista(inmersivo ? '3d' : 'inmersivo'); setEditandoPuntos(false) }}>{inmersivo ? 'Plano y herramientas' : 'Volver al territorio 3D'}</button>
-        {onSeccion && <button className="boton-secundario !px-3 !py-2 text-sm" onClick={() => onSeccion('reporte')}>Ver reporte</button>}
         {/* Rutas: la barra de rutas se abre sobre el mismo mapa */}
         {puedeEditar && (
           <button
             className={enRutas ? 'boton-primario !px-3 !py-2 text-sm' : 'boton-secundario !px-3 !py-2 text-sm'}
-            onClick={() => { setVista(enRutas ? 'inmersivo' : 'rutas'); setModoEdicion(false); setSeleccion(null); setEditandoPuntos(false) }}
+            onClick={() => { setVista(enRutas ? '3d' : 'rutas'); setModoEdicion(false); setSeleccion(null); setEditandoPuntos(false) }}
           >
             {enRutas ? 'Cerrar rutas' : 'Rutas'}
           </button>
@@ -317,7 +311,7 @@ export default function Mapa({ onSeccion }) {
 
       {/* El mapa */}
       <div className="px-2 pb-6">
-        {inmersivo ? <Suspense fallback={<p className="p-4" role="status">Abriendo el territorio…</p>}><RecorridoPortal board espacios={pines} onAbrirEspacio={setAbierto} espacioAbierto={abierto}/></Suspense> : <Suspense fallback={<p className="p-4" role="status">Abriendo las herramientas del plano…</p>}>
+        {(
           <div className="relative mx-auto rounded-2xl overflow-hidden border border-linea" style={{ height: 'calc(100dvh - 190px)', minHeight: '420px' }}>
             <Mapa3D
               espacios={espacios} rutas={rutas} paradas={paradas} onAbrir={setAbierto} enfocado={abierto}
@@ -348,7 +342,7 @@ export default function Mapa({ onSeccion }) {
               }}
             />
           </div>
-        </Suspense>}
+        )}
         <div
           ref={contRef}
           className="relative mx-auto rounded-2xl overflow-hidden border border-linea"

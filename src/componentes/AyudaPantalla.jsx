@@ -13,14 +13,13 @@ import { BASE } from '../config.js'
 
 export const AYUDA_PANTALLA = {
   mapa: {
-    titulo: 'Territorio y gestión',
+    titulo: 'El mapa',
     lineas: [
-      'Al entrar ves el levantamiento 3D. Toca un pin de espacio o búscalo por nombre para abrir su ficha de trabajo.',
-      'La ficha conserva fotos, documentos, factores y tareas según tus permisos. Puedes abrirla también mientras recorres las calles.',
-      'Territorio, Caminar 3D y Puntos 360 son tres formas de recorrer. Actual y Amalaya alternan el levantamiento y el ensayo conceptual.',
-      'Activa «Puntos de recorrido» para ver sus anclas. «Compartir recorrido público» comparte la vista sin incluir información de los espacios.',
-      '«Plano y herramientas» conserva el mapa anterior. «Mover espacios» prepara cambios: Aplicar guarda y Cancelar los descarta.',
-      '«Rutas» mantiene el editor de trazos y paradas. Los escenarios financieros siguen en Finanzas.',
+      'Entra en 2D y se levanta en 3D; toca en cualquier parte para saltar la entrada.',
+      'Las 5 rayitas de cada espacio son su avance: idea, negociación, proyecto, obra, operando.',
+      '«Espacios» abre la lista con buscador; toca uno para volar hacia él y abrir su ficha.',
+      '«Mover espacios» (editor en adelante): arrastra un rótulo a su lugar y se guarda al soltar.',
+      '«Rutas» → elige una → «Trazar (toca el mapa)» y ve tocando el mapa punto por punto.',
     ],
     gifs: [['mover-espacio.gif', 'Mover un espacio'], ['trazar-ruta.gif', 'Trazar una ruta']],
   },

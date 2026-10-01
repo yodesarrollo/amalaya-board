@@ -10,6 +10,7 @@ import { NOMBRE_TIPO } from './Glifos.jsx'
 import { rayitasHtml, nivelAvance, ETAPAS_DESARROLLO } from '../avance.js'
 import { COLOR_TIPO, TIPOS, claveTipo } from '../tipos.js'
 import { m2Construidos } from '../calc.js'
+import { montarLevantamiento } from '../levantamiento-mapa.js'
 import { ZONAS, MODULOS, zonasDeEspacio, centroDeZonas, filasModelos } from '../territorio.js'
 
 // ============================================================
@@ -36,8 +37,14 @@ const SATELITE = 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Ima
 // Esquinas por defecto del plano (TL, TR, BR, BL) — centro histórico de
 // Hermosillo, alrededor de Serdán / Garmendia / Chihuahua. Se afinan con
 // "Calibrar plano" y quedan guardadas en el Sheet.
-import { leerGeo, pctAGeo, geoAPct } from '../mapa-geo.js'
-export { leerGeo, pctAGeo, geoAPct } from '../mapa-geo.js'
+const GEO_DEF = [
+  // Calibrado 12-sep-2026 por correlación de la red vial (OSM) contra la
+  // foto: 421 × 346 m, norte arriba, coincidencia 0.67. Se afina en el board.
+  [-110.957125, 29.07749],
+  [-110.952798, 29.07749],
+  [-110.952798, 29.074361],
+  [-110.957125, 29.074361],
+]
 
 // Colores y nombres: catálogo único en src/tipos.js (chinche #17).
 // Altura por tipo cuando el Sheet no trae pisos. Mínimo 9 m (3 niveles):
@@ -59,6 +66,35 @@ const GUIA = [
 ]
 const leerGuiaVista = () => { try { return localStorage.getItem(GUIA_LLAVE) === 'si' } catch { return false } }
 const marcarGuiaVista = () => { try { localStorage.setItem(GUIA_LLAVE, 'si') } catch { /* modo privado */ } }
+
+export function leerGeo(config) {
+  const fila = (config || []).find((c) => String(c.clave) === 'mapa_geo')
+  try {
+    const j = JSON.parse(fila?.valor || '')
+    if (Array.isArray(j) && j.length === 4 && j.every((p) => Array.isArray(p) && p.length === 2)) return j
+  } catch { /* sin calibrar */ }
+  return GEO_DEF
+}
+
+// Porcentaje del plano → [lng, lat] con las 4 esquinas (afín: soporta giro).
+export function pctAGeo(geo, x, y) {
+  const [tl, tr, , bl] = geo
+  const u = x / 100, v = y / 100
+  return [
+    tl[0] + u * (tr[0] - tl[0]) + v * (bl[0] - tl[0]),
+    tl[1] + u * (tr[1] - tl[1]) + v * (bl[1] - tl[1]),
+  ]
+}
+
+// [lng, lat] → porcentaje del plano (inversa de pctAGeo).
+export function geoAPct(geo, lng, lat) {
+  const [tl, tr, , bl] = geo
+  const a = tr[0] - tl[0], b = bl[0] - tl[0], c = tr[1] - tl[1], d = bl[1] - tl[1]
+  const det = a * d - b * c || 1e-12
+  const dx = lng - tl[0], dy = lat - tl[1]
+  const u = (dx * d - b * dy) / det, v = (a * dy - c * dx) / det
+  return [Number((u * 100).toFixed(2)), Number((v * 100).toFixed(2))]
+}
 
 // Caja que envuelve las 4 esquinas del plano, para encuadrar siempre el polígono.
 const BBOX_LAMINA = (() => { const p = Object.values(ZONAS).flatMap((z) => z.anillo); const xs = p.map((q) => q[0]), ys = p.map((q) => q[1]); return [[Math.min(...xs), Math.min(...ys)], [Math.max(...xs), Math.max(...ys)]] })()
@@ -328,6 +364,7 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
     const centro = centroGeo(geoSheet)
     if (!hayWebGL()) { setFalla3d('Este equipo no muestra 3D (WebGL apagado).'); return }
     let m
+    let desmontarLevantamiento = () => {}
     try { m = new maplibregl.Map({
       container: cont.current,
       style: ESTILO_CIUDAD,
@@ -359,6 +396,8 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
       if (!m.isStyleLoaded()) { clearTimeout(reloj); reloj = setTimeout(arrancar, 400); return }
       clearTimeout(reloj)
       arrancado = true
+      // El estilo ya está listo: cargar el nuevo modelo no es un fallo de cartografía.
+      cargo = true; clearTimeout(relojFalla)
       console.info('mapa3d load', m.getStyle().layers.length, Object.keys(m.getStyle().sources))
       vestir(m, TEMAS[temaRef.current])
       // Satélite (apagado por defecto)
@@ -449,6 +488,15 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
         const id = ev.features?.[0]?.properties?.id
         if (id) onAbrir?.(id)
       })
+      m.addLayer({ id: 'espacios-toque', type: 'fill', source: 'espacios', layout: { visibility: 'none' }, paint: { 'fill-color': '#000000', 'fill-opacity': 0 } }, 'rutas-halo')
+      m.on('click', 'espacios-toque', ev => {
+        if (monitoActivo.current || edRef.current.modoEdicion || edRef.current.editandoPuntos) return
+        if (m.queryRenderedFeatures(ev.point, { layers: ['recorrido-toque', 'paradas'] }).length) return
+        const id = ev.features?.[0]?.properties?.id
+        if (id) onAbrir?.(id)
+      })
+      m.on('mouseenter', 'espacios-toque', () => { if (!monitoActivo.current) m.getCanvas().style.cursor = 'pointer' })
+      m.on('mouseleave', 'espacios-toque', () => { m.getCanvas().style.cursor = '' })
       m.on('mouseenter', 'espacios-3d', () => { m.getCanvas().style.cursor = 'pointer' })
       m.on('mouseleave', 'espacios-3d', () => { m.getCanvas().style.cursor = '' })
 
@@ -462,18 +510,12 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
       m.setPaintProperty('espacios-3d', 'fill-extrusion-opacity-transition', { duration: 900, delay: 0 })
       m.setPaintProperty('recorrido-puntos', 'circle-opacity-transition', { duration: 600, delay: 0 })
       m.setPaintProperty('recorrido-puntos', 'circle-stroke-opacity-transition', { duration: 600, delay: 0 })
-      // Los 8 volúmenes de la lámina, en su sitio (three.js se carga aparte).
-      window.__amalayaModelos = 0
-      import('../CapaModelos3D.js').then(({ crearCapaModelos3D }) => {
-        if (mapa.current !== m) return
-        try {
-          m.addLayer(crearCapaModelos3D({
-            mercator: maplibregl.MercatorCoordinate, filas: filasModelos(BASE),
-            onEstado: (e) => { if (e.estado === 'error') console.warn('modelo 3D', e.espacio_id, e.error); else window.__amalayaModelos = (window.__amalayaModelos || 0) + 1 },
-          }))
-          setModelosListos(true)
-        } catch (err) { console.warn('modelos 3D', err) }
-      }).catch((err) => console.warn('modelos 3D', err))
+      // Misma maqueta y controles: sustituir únicamente la representación 3D.
+      desmontarLevantamiento = montarLevantamiento({
+        map: m, mercator: maplibregl.MercatorCoordinate, base: `${BASE}levantamiento/`,
+        onReady: () => setModelosListos(true),
+        onError: err => console.warn('Levantamiento 3D: se conserva la maqueta de respaldo.', err),
+      })
       setListo(true)
       // Nace en 2D: vista cenital del polígono sobre satélite.
       m.fitBounds(bboxDe(geoSheet), { padding: ENCUADRE, pitch: 0, bearing: 0, duration: 0 })
@@ -488,7 +530,7 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
     m.on('styledata', arrancar)
     reloj = setTimeout(arrancar, 600)
     mapa.current = m
-    return () => { clearTimeout(reloj); relojesEntrada.current.forEach(clearTimeout); cancelAnimationFrame(trazo.current); m.remove(); mapa.current = null }
+    return () => { clearTimeout(reloj); relojesEntrada.current.forEach(clearTimeout); cancelAnimationFrame(trazo.current); desmontarLevantamiento(); m.remove(); mapa.current = null }
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   // --- entrada por capas ------------------------------------------
@@ -701,9 +743,9 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
     const vis = (id, on) => m.getLayer(id) && m.setLayoutProperty(id, 'visibility', on ? 'visible' : 'none')
     // La entrada por capas va encendiendo lo que el usuario tiene prendido.
     vis('satelite', capas.satelite)
-    vis('amalaya-modelos-glb', capas.modelos)
+    vis('amalaya-levantamiento', capas.modelos && etapa >= 1)
     vis('ciudad-3d', capas.ciudad && etapa >= 1); vis('ciudad-borde', capas.ciudad && etapa >= 1)
-    vis('espacios-3d', capas.espacios); vis('espacios-borde', capas.espacios && etapa >= 1)
+    vis('espacios-3d', capas.espacios && !modelosListos); vis('espacios-toque', capas.espacios && modelosListos && etapa >= 1); vis('espacios-borde', capas.espacios && etapa >= 1)
     if (m.getLayer('espacios-3d')) m.setPaintProperty('espacios-3d', 'fill-extrusion-opacity', etapa >= 1 ? TEMAS[tema].espacioOp : 0)
     vis('rutas', capas.rutas && etapa >= 2); vis('rutas-halo', capas.rutas && etapa >= 2); vis('paradas', capas.rutas && etapa >= 3)
     vis('recorrido-puntos', capas.recorrido); vis('recorrido-linea', capas.recorrido && etapa >= 3); vis('recorrido-toque', capas.recorrido && etapa >= 3)
@@ -715,6 +757,7 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
     const filtro = tiposOcultos.length ? ['!', ['in', ['get', 'tipo'], ['literal', tiposOcultos]]] : null
     if (m.getLayer('espacios-3d')) m.setFilter('espacios-3d', filtro)
     if (m.getLayer('espacios-borde')) m.setFilter('espacios-borde', filtro)
+    if (m.getLayer('espacios-toque')) m.setFilter('espacios-toque', filtro)
     marcadores.current.forEach((mk, i) => {
       const oculto = tiposOcultos.includes(claveTipo(espacios[i]?.tipo))
       mk.getElement().style.display = capas.espacios && etapa >= 4 && !oculto ? '' : 'none'

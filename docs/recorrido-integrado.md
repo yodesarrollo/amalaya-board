@@ -1,6 +1,6 @@
 # Amalaya · recorrido integrado
 
-**Estado vigente:** publicación visual autorizada. Véase «Actualización pública autorizada» al final; las secciones de entrega local documentan la revisión anterior.
+**Estado vigente:** interfaz original del board restaurada; únicamente se sustituye su capa de volúmenes por el levantamiento. Publicación visual autorizada. Véase «Actualización pública autorizada» al final; las secciones de entrega local documentan la revisión anterior.
 
 Propuesta del 30 de septiembre de 2026: **Caminar Amalaya antes de construirlo.**
 
@@ -96,3 +96,11 @@ La entrada de personal vuelve a ser el board principal, en `https://yodesarrollo
 Esta actualización es de UX e integración. No corrige la volumetría ni valida las fachadas del levantamiento.
 
 Prueba de navegador reproducible con el Apps Script interceptado y datos de demostración: `npm --prefix herramientas/simulador ci`, servir el build y ejecutar `REVIEW_URL=http://localhost:5180/amalaya-board/ node herramientas/simulador/prueba-territorio.cjs`. Comprueba el pin y la ficha, el parche al ID original, documentos, navegación 360/3D, el visor sin edición y el acceso acotado del inversionista. No realiza escrituras al backend real.
+
+## Corrección de alcance: conservar la experiencia anterior
+
+Por instrucción del usuario, se restauran App, Mapa, Acceso y la ayuda de pantalla del commit `6a64d6b`. El mapa vuelve a ser Mapa3D, con su cámara, capas, leyenda, fichas, edición y recorrido originales. El portal no se monta en el board.
+
+El adaptador `levantamiento-mapa.js` coloca el nuevo levantamiento en la misma escena cartográfica. Al cargar, deja de dibujar los cubos; la capa anterior conserva las huellas de interacción y los pines. La opción existente de volúmenes controla el nuevo modelo. No se cargan simultáneamente los ocho volúmenes simplificados anteriores. Si falla la carga, las fichas y los cubos de respaldo siguen disponibles. Cancelar la carga o salir del mapa libera sus recursos. La geometría sigue provisional.
+
+La prueba de integración Territorio documentada arriba corresponde a la versión sustituida. La verificación vigente combina la igualdad de las pantallas restauradas con la versión original, las suites del board y `pruebas-levantamiento-mapa.mjs`.
