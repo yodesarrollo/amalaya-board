@@ -83,6 +83,14 @@ jobs:
             curl -sL --max-time 60 -H 'Content-Type: text/plain;charset=utf-8' --data @tomada.json "$EXEC" | head -c 200; echo
           done
 
+  conciliar:
+    needs: puente
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      issues: read
+    steps:
+      - uses: actions/checkout@v4
       - name: Conciliar cierres acreditados por GitHub
         env:
           GH_TOKEN: ${{ github.token }}

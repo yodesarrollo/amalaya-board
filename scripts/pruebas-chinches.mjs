@@ -8,8 +8,9 @@ function fixture({github=closed,current='tomada',issue=url,historyFail=false,dup
   const state={current,issue,fetches:0,writes:0,log:[]}
   const history={getLastRow:()=>1,getRange:()=>({setValues:rows=>{if(historyFail)throw Error('fake failure');state.log=structuredClone(rows)},getValues:()=>state.log})}
   const sheet={getRange:()=>({getValues:()=>[[state.current,state.issue]],setValues:rows=>{state.writes++;[state.current,state.issue]=rows[0]}})}
-  const c=vm.createContext({console,UrlFetchApp:{fetch:endpoint=>{
+  const c=vm.createContext({console,UrlFetchApp:{fetch:(endpoint,options)=>{
     assert.equal(endpoint,'https://api.github.com/repos/yodesarrollo/amalaya-board/issues/123');state.fetches++
+    state.headers=structuredClone(options.headers)
     return {getResponseCode:()=>http,getContentText:()=>JSON.stringify(github)}
   }}})
   vm.runInContext(source,c)
@@ -23,7 +24,7 @@ const normal=fixture();assert.equal(normal.call().ok,true);assert.equal(normal.s
 assert.equal(normal.call().repetida,true);assert.equal(normal.state.writes,1);assert.equal(normal.state.fetches,2)
 const badCases=[
   [{},{k:'wrong'}], [{},{estado:'tomada'}], [{},{motivo:'arbitrary'}],
-  [{},{issue:'https://github.com/other/repo/issues/123'}],
+  [{},{issue:'https://github.com/other/repo/issues/123'}], [{},{github_token:'bad'}],
   [{current:'nueva'},{}], [{issue:'https://github.com/yodesarrollo/amalaya-board/issues/124'},{}],
   [{duplicate:true},{}], [{http:429},{}],
   [{github:{...closed,state:'open'}},{}],
@@ -36,4 +37,8 @@ const discarded=fixture({github:{...closed,state_reason:'not_planned'}})
 assert.equal(discarded.call({estado:'descartada',motivo:'not_planned'}).ok,true)
 const failed=fixture({historyFail:true});assert.equal(failed.call().ok,false);assert.equal(failed.state.current,'tomada')
 const reopened=fixture({current:'terminada',github:{...closed,state:'open',state_reason:null}});assert.equal(reopened.call().ok,false);assert.equal(reopened.state.writes,0)
+const authenticated=fixture();assert.equal(authenticated.call({github_token:'fixture-read-only-token-for-GitHub'}).ok,true)
+assert.equal(authenticated.state.headers.Authorization,'Bearer fixture-read-only-token-for-GitHub')
+assert.equal(JSON.stringify(authenticated.state.log).includes('fixture-read-only-token-for-GitHub'),false)
+const rate=fixture({http:403});assert.equal(rate.call().codigo,'GITHUB_HTTP_403')
 console.log('Chinches: token, CAS ID/estado/issue, GitHub autoritativo, motivo, cross-repo, idempotencia, reapertura y fallo de historial verificados sin red ni Sheets reales.')

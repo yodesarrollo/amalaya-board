@@ -1284,14 +1284,21 @@ function accChincheTomada(body) {
 // Cierre del puente: GitHub es la evidencia; el cliente no puede inventar
 // un motivo ni cerrar un issue de otro repositorio. El ID se comprueba
 // además contra el encabezado del issue, antes de modificar la fila.
-function verificarCierreGitHub(id, issue, estado, motivo) {
+function verificarCierreGitHub(id, issue, estado, motivo, githubToken) {
   const match = /^https:\/\/github\.com\/yodesarrollo\/amalaya-board\/issues\/([1-9]\d*)$/.exec(issue);
   const permitidos = { terminada: 'completed', descartada: 'not_planned' };
   if (!match || permitidos[estado] !== motivo) throw new Error('Cierre no válido.');
+  // Token efímero con lectura de issues; únicamente viaja a este host/ruta
+  // canónicos. Nunca se persiste, registra ni incluye en la evidencia.
+  const headers = { Accept: 'application/vnd.github+json' };
+  if (githubToken) {
+    if (githubToken.length < 20 || githubToken.length > 2048 || /\s/.test(githubToken)) throw new Error('Token efímero no válido.');
+    headers.Authorization = 'Bearer ' + githubToken;
+  }
   const respuesta = UrlFetchApp.fetch('https://api.github.com/repos/yodesarrollo/amalaya-board/issues/' + match[1], {
-    headers: { Accept: 'application/vnd.github+json' }, muteHttpExceptions: true,
+    headers: headers, muteHttpExceptions: true,
   });
-  if (respuesta.getResponseCode() !== 200) throw new Error('GitHub no confirmó el cierre; vuelve a intentar.');
+  if (respuesta.getResponseCode() !== 200) throw new Error('GITHUB_HTTP_' + respuesta.getResponseCode());
   const data = JSON.parse(respuesta.getContentText());
   const cabecera = String(data.body || '').split('\n')[0].trim();
   if (data.pull_request || data.number !== Number(match[1]) || data.html_url !== issue ||
@@ -1325,8 +1332,11 @@ function accChincheEstado(body) {
       return { ok: false, conflicto: true, error: 'La chinche cambió; no se sobrescribió.' };
     }
     let evidencia;
-    try { evidencia = verificarCierreGitHub(id, issue, estado, motivo); }
-    catch (e) { return { ok: false, error: 'No se pudo acreditar el cierre con GitHub.' }; }
+    try { evidencia = verificarCierreGitHub(id, issue, estado, motivo, String(body.github_token || '')); }
+    catch (e) {
+      const codigo = /^GITHUB_HTTP_\d{3}$/.test(String(e.message)) ? e.message : 'GITHUB_CIERRE_NO_ACREDITADO';
+      return { ok: false, codigo: codigo, error: 'No se pudo acreditar el cierre con GitHub.' };
+    }
     if (String(actual[0]) === estado) return { ok: true, repetida: true, id: id, estado: estado, evidencia: evidencia };
     // La pestaña de historial ya existe; no crear ni extender contratos de
     // negocio. Si la auditoría falla, se revierte el estado y no se da ok.
@@ -1343,7 +1353,7 @@ function accChincheEstado(body) {
       if (JSON.stringify(log.getValues()) !== JSON.stringify(registros)) throw new Error('Historial no confirmado.');
     } catch (e) {
       campo.setValues([actual]);
-      return { ok: false, error: 'No se confirmó el historial; vuelve a consultar antes de reintentar.' };
+      return { ok: false, codigo: 'HISTORIAL_NO_CONFIRMADO', error: 'No se confirmó el historial; vuelve a consultar antes de reintentar.' };
     }
     const final = campo.getValues()[0];
     if (String(final[0]) !== estado || String(final[1]) !== issue) return { ok: false, conflicto: true, error: 'Cierre no confirmado.' };
