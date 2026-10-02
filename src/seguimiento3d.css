@@ -46,3 +46,6 @@
 .tracker-dialog-actions button { padding:12px; background:#C9A45C; border:0; border-radius:6px; color:#141010; font-size:12px; cursor:pointer; }
 .tracker-dialog button:disabled { opacity:.5; cursor:default; }
 @media(max-width:650px) { .tracker-page { padding:0 10px; } .tracker-toolbar { gap:10px; } .tracker-toolbar h1 { font-size:15px; } .tracker-toolbar h1 span { display:block; font-size:12px; } .tracker-statusbar { align-items:flex-start; flex-direction:column; gap:9px; } .tracker-legend { gap:10px; } .tracker-table-scroll { max-height:calc(100dvh - 215px); } .tracker-matrix .tracker-sticky-col { min-width:170px; width:170px; } .tracker-matrix tbody th { font-size:11px; } }
+
+.tracker-evidence { display:block; margin:14px 0; color:#C9A45C; font-size:12px; text-decoration:none; }
+.tracker-evidence img { display:block; width:100%; margin-bottom:6px; border:1px solid #3A2F26; }

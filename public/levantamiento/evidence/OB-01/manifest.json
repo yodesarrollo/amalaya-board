@@ -1,0 +1,30 @@
+{
+  "route": "R-001",
+  "point": "R-001-P02",
+  "lat": 29.0758917,
+  "lon": -110.9553893,
+  "render": "Three.js original OB-01 geometry through SVGRenderer (GPU-free audit render)",
+  "limits": "OSM and imagery cross-section estimates; not cadastral survey or site photography",
+  "captures": [
+    {
+      "file": "01-planta.png",
+      "title": "Planta y huella OB-01",
+      "view": "plan"
+    },
+    {
+      "file": "02-calzada.png",
+      "title": "Calzada Obregón y encuentro con Yáñez",
+      "view": "block"
+    },
+    {
+      "file": "03-banqueta-sur.png",
+      "title": "Banqueta sur · lado A",
+      "view": "south"
+    },
+    {
+      "file": "04-banqueta-norte.png",
+      "title": "Banqueta norte · lado B",
+      "view": "north"
+    }
+  ]
+}

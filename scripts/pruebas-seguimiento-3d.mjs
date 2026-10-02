@@ -71,3 +71,7 @@ for (const block of data.blocks) for (const owner of [block, ...block.buildings]
     if (state === 'blocked') assert.ok(owner.issues?.[task]?.detail, 'cada rojo debe documentar el problema')
 }
 console.log('Matriz XY: estados, problemas, contexto de indicaciones y envío verificados.')
+
+const scoped = targets.find(c => c.building.id === 'OB-01')
+assert.equal(cellInfo(scoped, 'plan').shared, false, 'la revisión de un frente no cierra toda la cuadra')
+assert.equal(cellInfo(ob, 'plan').shared, true, 'el siguiente edificio conserva su estado previo')

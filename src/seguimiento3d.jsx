@@ -46,6 +46,8 @@ function CellDialog({ selected, onClose }) {
     {cell.shared && <p className="tracker-muted">Compartido por la cuadra {column.block.id}.</p>}
     {cell.state === 'blocked' ? <div className="tracker-problem"><strong>{cell.issue?.title || 'Problema pendiente de documentar'}</strong><p>{cell.issue?.detail || 'Todavía no hay detalle registrado para esta celda.'}</p></div>
       : <p className="tracker-muted">{cell.state === 'partial' ? 'Existe una base provisional; falta verificarla para marcar terminado.' : state.label}</p>}
+    {cell.detail && <p className="tracker-muted">{cell.detail}</p>}
+    {cell.evidence.map(item => <a className="tracker-evidence" key={item.url} href={`${BASE}${item.url}`} target="_blank" rel="noreferrer"><img src={`${BASE}${item.url}`} alt={item.title} /><span>{item.title}</span></a>)}
     <form onSubmit={submit}>
       <label htmlFor="instruction">Tu indicación</label>
       <textarea id="instruction" value={draft.text} onChange={event => change(event.target.value)} maxLength={1800} required disabled={sent || sending} placeholder="Escribe qué hacemos en este punto…" />
