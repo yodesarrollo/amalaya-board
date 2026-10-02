@@ -326,7 +326,7 @@ function doGet(e) {
   // Sin parámetros: solo confirma que el servicio vive. Ni un dato más.
   // ?accion=chinches&k=<CHINCHES_TOKEN>: el puente de GitHub pide las chinches nuevas.
   const p = (e && e.parameter) || {};
-  if (p.accion === 'chinches') return accChinchesPendientes(p.k);
+  if (p.accion === 'chinches') return accChinchesPendientes(p.k, p.incluirTomadas);
   return jsonOut({ ok: true, servicio: 'amalaya-board', ts: Date.now() });
 }
 
@@ -363,6 +363,9 @@ function doPost(e) {
     // - chincheTomada: el puente avisa qué issue abrió (con el token del puente).
     if (action === 'chincheTomada') {
       return accChincheTomada(body);
+    }
+    if (action === 'chincheEstado') {
+      return accChincheEstado(body);
     }
     if (action === 'peticiones') {
       if (!dentroDeLimite('pet_publicas', 60, 300)) {
@@ -1248,23 +1251,103 @@ function tokenPuenteValido(k) {
   return t.length >= 16 && comparacionConstante(t, String(k || ''));
 }
 
-function accChinchesPendientes(k) {
+function accChinchesPendientes(k, incluirTomadas) {
   if (!tokenPuenteValido(k)) return jsonOut({ ok: false, error: 'No autorizado.' });
-  const nuevas = leerHoja('Chinches').filter(function (c) { return String(c.estado) === 'nueva'; });
+  const nuevas = leerHoja('Chinches').filter(function (c) {
+    return String(c.estado) === 'nueva' || (incluirTomadas === 'si' && String(c.estado) === 'tomada');
+  });
   return jsonOut({ ok: true, chinches: nuevas });
 }
 
 function accChincheTomada(body) {
   if (!tokenPuenteValido(body.k)) return jsonOut({ ok: false, error: 'No autorizado.' });
   const id = String(body.id || '');
+  const issue = String(body.issue || '');
+  if (!/^https:\/\/github\.com\/yodesarrollo\/amalaya-board\/issues\/[1-9]\d*$/.test(issue)) {
+    return jsonOut({ ok: false, error: 'Issue no válido para Amalaya.' });
+  }
   return conCandado(function () {
     const conf = TABS.Chinches;
     const hoja = obtenerHoja('Chinches');
     const fila = buscarFila(hoja, conf, id);
     if (fila < 0) return { ok: false, error: 'No existe esa chinche.' };
-    hoja.getRange(fila, conf.headers.indexOf('estado') + 1).setValue('tomada');
-    hoja.getRange(fila, conf.headers.indexOf('issue') + 1).setValue(String(body.issue || ''));
+    const actual = hoja.getRange(fila, conf.headers.indexOf('estado') + 1, 1, 2).getValues()[0];
+    if (String(actual[0]) === 'tomada' && String(actual[1]) === issue) return { ok: true, repetida: true };
+    if (String(actual[0]) !== 'nueva' || String(actual[1] || '') !== '') {
+      return { ok: false, conflicto: true, error: 'La chinche ya fue vinculada; no se sobrescribió.' };
+    }
+    hoja.getRange(fila, conf.headers.indexOf('estado') + 1, 1, 2).setValues([['tomada', issue]]);
     return { ok: true };
+  });
+}
+
+// Cierre del puente: GitHub es la evidencia; el cliente no puede inventar
+// un motivo ni cerrar un issue de otro repositorio. El ID se comprueba
+// además contra el encabezado del issue, antes de modificar la fila.
+function verificarCierreGitHub(id, issue, estado, motivo) {
+  const match = /^https:\/\/github\.com\/yodesarrollo\/amalaya-board\/issues\/([1-9]\d*)$/.exec(issue);
+  const permitidos = { terminada: 'completed', descartada: 'not_planned' };
+  if (!match || permitidos[estado] !== motivo) throw new Error('Cierre no válido.');
+  const respuesta = UrlFetchApp.fetch('https://api.github.com/repos/yodesarrollo/amalaya-board/issues/' + match[1], {
+    headers: { Accept: 'application/vnd.github+json' }, muteHttpExceptions: true,
+  });
+  if (respuesta.getResponseCode() !== 200) throw new Error('GitHub no confirmó el cierre; vuelve a intentar.');
+  const data = JSON.parse(respuesta.getContentText());
+  const cabecera = String(data.body || '').split('\n')[0].trim();
+  if (data.pull_request || data.number !== Number(match[1]) || data.html_url !== issue ||
+      cabecera !== '# Chinche ' + id || data.state !== 'closed' || data.state_reason !== motivo ||
+      !/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$/.test(String(data.closed_at || ''))) {
+    throw new Error('GitHub no acredita ese cierre para esa chinche.');
+  }
+  return { motivo: data.state_reason, fecha: data.closed_at, issue: data.html_url };
+}
+
+function accChincheEstado(body) {
+  if (!tokenPuenteValido(body.k)) return jsonOut({ ok: false, error: 'No autorizado.' });
+  const id = String(body.id || '');
+  const issue = String(body.issue || '');
+  const estado = String(body.estado || '');
+  const previo = String(body.estado_previo || '');
+  const motivo = String(body.motivo || '');
+  if (!/^CHN-[A-Za-z0-9-]{1,56}$/.test(id) || previo !== 'tomada' ||
+      !Object.prototype.hasOwnProperty.call({ terminada: 1, descartada: 1 }, estado)) {
+    return jsonOut({ ok: false, error: 'Transición no válida.' });
+  }
+  return conCandado(function () {
+    const conf = TABS.Chinches;
+    const hoja = obtenerHoja('Chinches');
+    const coincidencias = leerHoja('Chinches').filter(function (c) { return String(c.id) === id; });
+    if (coincidencias.length !== 1) return { ok: false, conflicto: true, error: 'ID ausente o ambiguo.' };
+    const fila = buscarFila(hoja, conf, id);
+    const campo = hoja.getRange(fila, conf.headers.indexOf('estado') + 1, 1, 2);
+    const actual = campo.getValues()[0];
+    if (String(actual[1]) !== issue || (String(actual[0]) !== previo && String(actual[0]) !== estado)) {
+      return { ok: false, conflicto: true, error: 'La chinche cambió; no se sobrescribió.' };
+    }
+    let evidencia;
+    try { evidencia = verificarCierreGitHub(id, issue, estado, motivo); }
+    catch (e) { return { ok: false, error: 'No se pudo acreditar el cierre con GitHub.' }; }
+    if (String(actual[0]) === estado) return { ok: true, repetida: true, id: id, estado: estado, evidencia: evidencia };
+    // La pestaña de historial ya existe; no crear ni extender contratos de
+    // negocio. Si la auditoría falla, se revierte el estado y no se da ok.
+    const historial = obtenerHoja('Historial');
+    const fecha = new Date().toISOString();
+    const registros = [
+      [fecha, 'Puente GitHub', 'Chinches', id, 'estado', previo, estado],
+      [fecha, 'Puente GitHub', 'Chinches', id, 'cierre_GitHub', '', issue + ' · ' + evidencia.fecha + ' · ' + evidencia.motivo],
+    ];
+    campo.setValues([[estado, issue]]);
+    try {
+      const log = historial.getRange(historial.getLastRow() + 1, 1, registros.length, 7);
+      log.setValues(registros);
+      if (JSON.stringify(log.getValues()) !== JSON.stringify(registros)) throw new Error('Historial no confirmado.');
+    } catch (e) {
+      campo.setValues([actual]);
+      return { ok: false, error: 'No se confirmó el historial; vuelve a consultar antes de reintentar.' };
+    }
+    const final = campo.getValues()[0];
+    if (String(final[0]) !== estado || String(final[1]) !== issue) return { ok: false, conflicto: true, error: 'Cierre no confirmado.' };
+    return { ok: true, id: id, estado: estado, evidencia: evidencia };
   });
 }
 

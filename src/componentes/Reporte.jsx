@@ -10,6 +10,8 @@ import ImagenDrive from './ImagenDrive.jsx'
 import { confianzaEspacio, nombreNivel } from '../confianza.js'
 import AvisoIncompleto, { ListaErrores } from './AvisoIncompleto.jsx'
 import LineaAmalaya from './LineaAmalaya.jsx'
+import { nombreEstado } from '../avance.js'
+import AvisoSupuestos from './AvisoSupuestos.jsx'
 
 // ============================================================
 // El Reporte — el plan de negocios limpio para banco e
@@ -158,6 +160,7 @@ export default function Reporte() {
 
       {/* El dato estrella */}
       <section id="r-valor" className="mt-10 imp-seccion">
+        <AvisoSupuestos datos={datos} />
         <div className="tarjeta bg-elevada border-t-2 border-t-ambar p-6 text-center">
           <div className="text-xs uppercase tracking-[0.25em] text-arena">Valor por acción</div>
           <div className="cifra font-cartel font-normal print:font-titulo text-5xl mt-2 imp-oro text-marfil glow-ambar">
@@ -281,7 +284,7 @@ export default function Reporte() {
                       {construidoDistinto && (
                         <div className="text-xs text-terciario">≈ {metros2(Math.round(m2c))} construidos</div>
                       )}
-                      <div className="text-xs text-terciario capitalize">{e.estado_desarrollo || 'idea'}</div>
+                      <div className="text-xs text-terciario capitalize">{nombreEstado(e.estado_desarrollo)}</div>
                     </div>
                     <div className="text-right w-36">
                       {r && (r.ingreso !== 0 || r.costo !== 0) && (

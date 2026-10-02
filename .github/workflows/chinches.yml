@@ -82,3 +82,9 @@ jobs:
             python3 -c "import json,sys;print(json.dumps({'action':'chincheTomada','k':sys.argv[1],'id':open('id.txt').read(),'issue':sys.argv[2]}))" "$K" "$url" > tomada.json
             curl -sL --max-time 60 -H 'Content-Type: text/plain;charset=utf-8' --data @tomada.json "$EXEC" | head -c 200; echo
           done
+
+      - name: Conciliar cierres acreditados por GitHub
+        env:
+          GH_TOKEN: ${{ github.token }}
+          K: ${{ secrets.AMALAYA_CHINCHES_TOKEN }}
+        run: python3 scripts/conciliar-chinches.py

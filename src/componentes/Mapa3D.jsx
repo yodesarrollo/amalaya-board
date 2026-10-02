@@ -7,7 +7,7 @@ import { puedeEditarRol } from '../roles.js'
 import { BASE } from '../config.js'
 import { leerRuta } from './Rutas.jsx'
 import { NOMBRE_TIPO } from './Glifos.jsx'
-import { rayitasHtml, nivelAvance, ETAPAS_DESARROLLO } from '../avance.js'
+import { rayitasHtml, nivelAvance, ETAPAS_DESARROLLO, nombreEstado } from '../avance.js'
 import { COLOR_TIPO, TIPOS, claveTipo } from '../tipos.js'
 import { m2Construidos } from '../calc.js'
 import { montarLevantamiento } from '../levantamiento-mapa.js'
@@ -338,9 +338,10 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
     const [tl, tr, , bl] = geo
     const ancho = distanciaM(tl, tr), fondo = distanciaM(tl, bl)
     const conteo = Object.fromEntries(ETAPAS_DESARROLLO.map((k) => [k, 0]))
+    conteo.por_confirmar = 0
     let m2c = 0
     for (const e of espacios || []) {
-      conteo[ETAPAS_DESARROLLO[nivelAvance(e.estado_desarrollo) - 1]]++
+      conteo[ETAPAS_DESARROLLO[nivelAvance(e.estado_desarrollo) - 1] || 'por_confirmar']++
       try { m2c += m2Construidos(e, datos?.Factores || []).m2c || 0 } catch { /* espacio sin datos suficientes */ }
     }
     return { ancho, fondo, ha: (ancho * fondo) / 10000, n: (espacios || []).length, m2c, conteo }
@@ -1023,6 +1024,7 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
               {ETAPAS_DESARROLLO.map((k, i) => (
                 <span key={k} className={cartela.conteo[k] ? '' : 'cero'}>{i + 1} {NOMBRE_ETAPA[k]} <b>{cartela.conteo[k]}</b></span>
               ))}
+              {cartela.conteo.por_confirmar > 0 && <span>Por confirmar <b>{cartela.conteo.por_confirmar}</b></span>}
             </span>
           </div>
           </>}
@@ -1223,7 +1225,7 @@ function ListaEspacios({ espacios, busca, setBusca, onElegir, onCerrar, onNuevo 
                     <span className="flex-1 min-w-0 text-left">
                       <span className="block truncate text-sm">{e.nombre}</span>
                       <span className="block text-[11px] opacity-70">
-                        {num(e.m2, 0) > 0 ? `${Math.round(num(e.m2, 0)).toLocaleString('es-MX')} m² · ` : ''}{e.estado_desarrollo || 'idea'}
+                        {num(e.m2, 0) > 0 ? `${Math.round(num(e.m2, 0)).toLocaleString('es-MX')} m² · ` : ''}{nombreEstado(e.estado_desarrollo)}
                       </span>
                     </span>
                     <span dangerouslySetInnerHTML={{ __html: rayitasHtml(e.estado_desarrollo) }} />

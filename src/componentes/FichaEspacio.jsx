@@ -8,7 +8,7 @@ import Factores, { EstadoGuardado } from './Factores.jsx'
 import ImagenDrive from './ImagenDrive.jsx'
 import { GLIFO_TIPO } from './Glifos.jsx'
 import { m2Construidos, resumenEspacio } from '../calc.js'
-import { nivelAvance } from '../avance.js'
+import { nivelAvance, nombreEstado } from '../avance.js'
 import { moneda, monedaCorta, fechaHora } from '../formato.js'
 import { compartirCard } from '../compartir.js'
 
@@ -155,10 +155,11 @@ export default function FichaEspacio({ espacio, onCerrar, onAnterior, onSiguient
           <span className="text-xs text-arena">Estado</span>
           <select
             className="campo !py-2 mt-1"
-            value={espacio.estado_desarrollo || 'idea'}
+            value={nivelAvance(espacio.estado_desarrollo) ? nombreEstado(espacio.estado_desarrollo) : ''}
             onChange={(e) => editarFila('Espacios', espacio.id, { estado_desarrollo: e.target.value })}
             disabled={!editable}
           >
+            <option value="" disabled>Por confirmar</option>
             {['idea', 'negociación', 'proyecto', 'obra', 'operando'].map((s) => (
               <option key={s} value={s}>{s}</option>
             ))}
@@ -789,8 +790,8 @@ function ResumenArriba({ espacio }) {
       </div>
       <div className="tarjeta p-2.5">
         <div className="text-[10px] uppercase tracking-wide text-terciario">Estado</div>
-        <div className="text-marfil text-sm capitalize mt-0.5">{espacio.estado_desarrollo || 'idea'}</div>
-        <div className="flex gap-0.5 mt-1" title={`Avance: ${n} de 5`}>
+        <div className="text-marfil text-sm capitalize mt-0.5">{nombreEstado(espacio.estado_desarrollo)}</div>
+        <div className="flex gap-0.5 mt-1" title={n ? `Avance: ${n} de 5` : 'Estado por confirmar'}>
           {[1, 2, 3, 4, 5].map((k) => <i key={k} className={`h-[3px] flex-1 rounded ${k <= n ? 'bg-oro' : 'bg-linea'}`} />)}
         </div>
       </div>
