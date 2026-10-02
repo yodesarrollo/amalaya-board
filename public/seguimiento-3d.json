@@ -1,0 +1,278 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-10-02T10:18:10-07:00",
+  "refreshSeconds": 30,
+  "live": {
+    "status": "waiting",
+    "phase": "Planeación y selección de cuadra",
+    "title": "Pendiente: elegir el primer bloque de intervención",
+    "detail": "El inventario inicial y la matriz están preparados. No hay un edificio nuevo en modelado mientras se define la primera cuadra.",
+    "activeBlockId": null,
+    "activeBuildingId": null
+  },
+  "schedule": {
+    "basis": "Horas de trabajo concentrado que faltan para revisar y cerrar las referencias conocidas, con la geometría actual como punto de partida.",
+    "hoursPerFocusDay": 6,
+    "unnamedFrontHours": { "min": 5, "max": 10 },
+    "unnamedFrontUnit": "por frente, después de contarlo e identificarlo",
+    "excludes": "Frentes todavía sin nombre o cantidad confirmada, esperas entre revisiones y levantamientos presenciales.",
+    "estimationCaution": "Rangos preliminares; se ajustan al ver el frente completo y la referencia 360 del edificio."
+  },
+  "phases": [
+    {
+      "id": "inventory",
+      "name": "Inventario y referencias",
+      "status": "partial",
+      "time": "2–4 h por cuadra",
+      "detail": "Cruces y nombres ancla reunidos; falta enumerar por separado los frentes sin nombre."
+    },
+    {
+      "id": "street",
+      "name": "Planta, calle, banquetas y esquinas",
+      "status": "partial",
+      "time": "3–6 h por cuadra",
+      "detail": "Hay perfiles base en varios tramos; cada cuadra requiere cierre visual de ambos lados y sus esquinas."
+    },
+    {
+      "id": "buildings",
+      "name": "Volumen y fachada, edificio por edificio",
+      "status": "waiting",
+      "time": "4–14 h por edificio",
+      "detail": "Depende de complejidad, información disponible y cuánto haya que corregir del volumen actual."
+    },
+    {
+      "id": "equipment",
+      "name": "Equipamiento urbano y entorno",
+      "status": "pending",
+      "time": "1–3 h por cuadra",
+      "detail": "Ubicar solo elementos reconocibles en referencias, sin añadir mobiliario genérico a ciegas."
+    },
+    {
+      "id": "qa",
+      "name": "Comparación, pruebas y cierre",
+      "status": "pending",
+      "time": "1–2 h por edificio y cruce",
+      "detail": "Planta, bloque, recorrido a pie y referencia con punto y rumbo coincidentes."
+    }
+  ],
+  "taskDefinitions": {
+    "plan": "Alinear planta y huellas con cartografía visual",
+    "street": "Ajustar calzada y encuentros de calles",
+    "sidewalkA": "Ajustar banqueta del lado A",
+    "sidewalkB": "Ajustar banqueta del lado B",
+    "corners": "Corregir esquinas, guarniciones y rampas",
+    "identity": "Empatar edificio, nombre y punto/foto 360",
+    "volume": "Completar huella, volumen, altura y cubierta",
+    "facade": "Ajustar forma de fachada a la referencia visual",
+    "finish": "Afinar materiales, vanos y detalles visibles",
+    "equipment": "Colocar equipamiento urbano documentado",
+    "qa": "Comparar planta, bloque y peatón con rumbo coincidente"
+  },
+  "blocks": [
+    {
+      "id": "OB-YG",
+      "name": "Obregón · Yáñez–Garmendia",
+      "route": "R-001 · P01–P08",
+      "mapUrl": "https://www.openstreetmap.org/#map=19/29.0760/-110.9548",
+      "status": "partial",
+      "estimateHours": { "min": 18, "max": 33 },
+      "estimateBasis": "3 frentes/estructuras conocidas más revisión compartida de la cuadra; frentes anónimos se agregan cuando se cuenten.",
+      "next": "Inventariar frentes de ambos lados y cotejar OB-02 con su panorámica antes de nombrarlo.",
+      "sharedTasks": {
+        "plan": "partial",
+        "street": "partial",
+        "sidewalkA": "partial",
+        "sidewalkB": "partial",
+        "corners": "partial"
+      },
+      "buildings": [
+        {
+          "id": "OB-01",
+          "name": "Cubierta de estacionamiento",
+          "confidence": "Estructura modelada; dimensiones y relación con el frente siguen provisionales.",
+          "estimateHours": { "min": 3, "max": 6 },
+          "tasks": { "identity": "partial", "volume": "partial", "facade": "partial", "finish": "partial", "equipment": "pending", "qa": "pending" }
+        },
+        {
+          "id": "OB-02",
+          "name": "Fachada de arcos y rejas · posible Colegio de Notarios #65",
+          "confidence": "Frente modelado y documentado; falta confirmar identidad y ajustar proporciones con el panorama.",
+          "estimateHours": { "min": 4, "max": 8 },
+          "tasks": { "identity": "partial", "volume": "partial", "facade": "partial", "finish": "partial", "equipment": "pending", "qa": "pending" }
+        },
+        {
+          "id": "ISC-58",
+          "name": "Instituto Sonorense de Cultura · Obregón #58",
+          "confidence": "Nombre y dirección confirmados; empatar la huella y el panorama con el frente exacto.",
+          "estimateHours": { "min": 8, "max": 14 },
+          "tasks": { "identity": "partial", "volume": "pending", "facade": "pending", "finish": "pending", "equipment": "pending", "qa": "pending" }
+        }
+      ],
+      "unnamedFronts": "Por contar; todavía no se crean columnas individuales."
+    },
+    {
+      "id": "EB-GA",
+      "name": "Garmendia–Abasolo · Obregón–Chihuahua",
+      "route": "R-001 · P08–P14; R-002 · P01–P10",
+      "mapUrl": "https://www.openstreetmap.org/#map=19/29.0763/-110.9535",
+      "status": "partial",
+      "estimateHours": { "min": 21, "max": 42 },
+      "estimateBasis": "Una esquina compleja y tres masas provisionales, más revisión compartida. Un solo dueño de geometría vial para evitar duplicados.",
+      "next": "Separar en planta el conjunto Barra Hidalgo/Club Obregón y revisar las otras tres esquinas contra los panoramas.",
+      "sharedTasks": {
+        "plan": "partial",
+        "street": "partial",
+        "sidewalkA": "partial",
+        "sidewalkB": "partial",
+        "corners": "partial"
+      },
+      "buildings": [
+        {
+          "id": "EB-SW",
+          "name": "Conjunto de esquina · Barra Hidalgo / Club Obregón",
+          "confidence": "Puntos de interés conocidos; número de volúmenes y límite entre frentes por confirmar.",
+          "estimateHours": { "min": 6, "max": 12 },
+          "tasks": { "identity": "partial", "volume": "partial", "facade": "partial", "finish": "partial", "equipment": "pending", "qa": "pending" }
+        },
+        {
+          "id": "EB-NW",
+          "name": "Volumen provisional · Garmendia × Chihuahua",
+          "confidence": "Masa genérica existente; edificio y frente sin nombre confirmado.",
+          "estimateHours": { "min": 4, "max": 8 },
+          "tasks": { "identity": "pending", "volume": "partial", "facade": "pending", "finish": "pending", "equipment": "pending", "qa": "pending" }
+        },
+        {
+          "id": "EB-NE",
+          "name": "Volumen provisional · Abasolo × Chihuahua",
+          "confidence": "Masa genérica existente; edificio y frente sin nombre confirmado.",
+          "estimateHours": { "min": 4, "max": 8 },
+          "tasks": { "identity": "pending", "volume": "partial", "facade": "pending", "finish": "pending", "equipment": "pending", "qa": "pending" }
+        },
+        {
+          "id": "EB-SE",
+          "name": "Volumen provisional · Abasolo × Obregón",
+          "confidence": "Masa genérica existente; edificio y frente sin nombre confirmado.",
+          "estimateHours": { "min": 4, "max": 8 },
+          "tasks": { "identity": "pending", "volume": "partial", "facade": "pending", "finish": "pending", "equipment": "pending", "qa": "pending" }
+        }
+      ],
+      "unnamedFronts": "Contar y separar frentes adicionales en ambos lados antes de modelarlos."
+    },
+    {
+      "id": "PL-GA",
+      "name": "Borde de Plaza Hidalgo · Garmendia, Obregón–Chihuahua",
+      "route": "R-002 · P08–P10",
+      "mapUrl": "https://www.openstreetmap.org/#map=19/29.0762/-110.9540",
+      "kind": "public-space",
+      "status": "partial",
+      "estimateHours": { "min": 2, "max": 4 },
+      "estimateBasis": "Trabajo de borde, banqueta y cruces; mantener el espacio de la plaza abierto.",
+      "next": "Verificar accesos, continuidad peatonal, guarniciones y mobiliario junto al borde.",
+      "sharedTasks": {
+        "plan": "partial",
+        "street": "partial",
+        "sidewalkA": "partial",
+        "sidewalkB": "partial",
+        "corners": "partial"
+      },
+      "buildings": [],
+      "unnamedFronts": "No aplica: es un espacio abierto, no una columna de edificio."
+    },
+    {
+      "id": "CH-GA",
+      "name": "Garmendia–Abasolo · Chihuahua–Serdán",
+      "route": "R-002 · P01–P07; borde de R-003",
+      "mapUrl": "https://www.openstreetmap.org/#map=19/29.0768/-110.9535",
+      "status": "partial",
+      "estimateHours": { "min": 8, "max": 15 },
+      "estimateBasis": "Un ancla cartográfica con frente aún por empatar, más revisión compartida; fachadas adicionales por contar.",
+      "next": "Recorrer P01–P07 y P03–P07 desde planta para separar las fachadas de cada lado.",
+      "sharedTasks": {
+        "plan": "partial",
+        "street": "partial",
+        "sidewalkA": "partial",
+        "sidewalkB": "partial",
+        "corners": "partial"
+      },
+      "buildings": [
+        {
+          "id": "CH-GA-OXXO",
+          "name": "OXXO · frente exacto por confirmar",
+          "confidence": "Etiqueta cartográfica cercana; no es verificación de parcela, fachada ni ocupación actual.",
+          "estimateHours": { "min": 5, "max": 9 },
+          "tasks": { "identity": "partial", "volume": "pending", "facade": "pending", "finish": "pending", "equipment": "pending", "qa": "pending" }
+        }
+      ],
+      "unnamedFronts": "Por contar y agregar como columnas individuales; excluidos del rango."
+    },
+    {
+      "id": "CH-YG",
+      "name": "Yáñez–Garmendia · Chihuahua–Serdán",
+      "route": "Borde de R-003",
+      "mapUrl": "https://www.openstreetmap.org/#map=19/29.0768/-110.9550",
+      "status": "partial",
+      "estimateHours": { "min": 16, "max": 29 },
+      "estimateBasis": "Biblioteca y BBVA como anclas con huellas/frentes por empatar, más revisión compartida.",
+      "next": "Vincular cada ancla con la fachada correcta en las capturas del recorrido.",
+      "sharedTasks": {
+        "plan": "partial",
+        "street": "partial",
+        "sidewalkA": "partial",
+        "sidewalkB": "partial",
+        "corners": "partial"
+      },
+      "buildings": [
+        {
+          "id": "CH-YG-BIB",
+          "name": "Biblioteca Gerardo Cornejo Murrieta",
+          "confidence": "Nombre institucional confirmado; dirección y frente exactos deben cotejarse con el recorrido.",
+          "estimateHours": { "min": 8, "max": 14 },
+          "tasks": { "identity": "partial", "volume": "pending", "facade": "pending", "finish": "pending", "equipment": "pending", "qa": "pending" }
+        },
+        {
+          "id": "CH-YG-BBVA",
+          "name": "BBVA Bancomer · referencia cartográfica",
+          "confidence": "Etiqueta de mapa; fachada, entrada y ocupación actual por confirmar.",
+          "estimateHours": { "min": 5, "max": 9 },
+          "tasks": { "identity": "partial", "volume": "pending", "facade": "pending", "finish": "pending", "equipment": "pending", "qa": "pending" }
+        }
+      ],
+      "unnamedFronts": "Por contar y agregar como columnas individuales; excluidos del rango."
+    },
+    {
+      "id": "SER-GG",
+      "name": "Serdán y Garmendia · esquina y tramo de prueba hacia Guerrero",
+      "route": "Cruce de R-003; R-000 (prueba, cobertura no confirmada)",
+      "mapUrl": "https://www.openstreetmap.org/#map=19/29.0774/-110.9535",
+      "status": "partial",
+      "testRoute": true,
+      "estimateHours": { "min": 16, "max": 29 },
+      "estimateBasis": "Dos anclas cercanas y revisión de calle; el rango no supone que R-000 quede incorporada como ruta productiva.",
+      "next": "Confirmar el alcance de R-000 y empatar Bley/HSBC con sus frentes antes de detallar.",
+      "sharedTasks": {
+        "plan": "partial",
+        "street": "partial",
+        "sidewalkA": "partial",
+        "sidewalkB": "partial",
+        "corners": "partial"
+      },
+      "buildings": [
+        {
+          "id": "SER-BLEY",
+          "name": "Edificio Bley · “Mueblería México”",
+          "confidence": "Nombre patrimonial consultado; ubicación de frente y volumen se debe comprobar en panorámica.",
+          "estimateHours": { "min": 8, "max": 14 },
+          "tasks": { "identity": "partial", "volume": "pending", "facade": "pending", "finish": "pending", "equipment": "pending", "qa": "pending" }
+        },
+        {
+          "id": "SER-HSBC",
+          "name": "HSBC · etiqueta cartográfica cercana",
+          "confidence": "Referencia de mapa; fachada, acceso y ocupación actual por confirmar.",
+          "estimateHours": { "min": 5, "max": 9 },
+          "tasks": { "identity": "partial", "volume": "pending", "facade": "pending", "finish": "pending", "equipment": "pending", "qa": "pending" }
+        }
+      ],
+      "unnamedFronts": "Por contar después de confirmar si el tramo de prueba entra al alcance; excluidos del rango."
+    }
+  ]
+}

@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { KeyRound, ClipboardList, Mail } from 'lucide-react'
+import { KeyRound, ClipboardList, Mail, ArrowUpRight } from 'lucide-react'
 import { usarDatos } from '../datos.jsx'
 import BotonGoogle from './BotonGoogle.jsx'
 import LineaAmalaya from './LineaAmalaya.jsx'
@@ -160,6 +160,9 @@ export default function Acceso() {
           Los números de Amalaya viven protegidos en Google y solo se entregan
           a quien tiene acceso. Tu liga y tu código son personales: no los compartas.
         </p>
+        <a href="./seguimiento-3d.html" className="mt-5 mx-auto w-fit flex items-center gap-1.5 text-xs text-oro hover:text-marfil transition-colors duration-micro ease-casa">
+          Seguimiento público del levantamiento 3D <ArrowUpRight size={13} />
+        </a>
       </div>
 
       {peticiones && <Peticiones publicas={peticiones} onCerrar={() => setPeticiones(null)} />}

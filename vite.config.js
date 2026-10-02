@@ -6,6 +6,6 @@ import react from '@vitejs/plugin-react'
 // (Pages de proyecto), por eso la base lleva el nombre del repo.
 export default defineConfig({
   plugins: [react()],
-  build: { rollupOptions: { input: { main: 'index.html', recorrido: 'preview-recorrido.html', explorar: 'explorar.html' } } },
+  build: { rollupOptions: { input: { main: 'index.html', recorrido: 'preview-recorrido.html', explorar: 'explorar.html', seguimiento: 'seguimiento-3d.html' } } },
   base: '/amalaya-board/',
 })
