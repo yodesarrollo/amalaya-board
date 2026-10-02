@@ -31,8 +31,11 @@ export const nombreNivel = (n) => NIVELES[n]?.nombre || '—'
 export function haySupuestosFinancieros(datos = {}) {
   const tipos = new Set((datos.Espacios || []).map((e) => normalizarId(e.tipo)))
   const globales = new Set(['acciones_emitidas', 'gastos_generales', 'multiplo_operativo', 'multiplo_regalias'])
+  const vistas = new Set()
   const config = (datos.Config || []).some((f) => {
     const clave = normalizarId(f.clave)
+    if (vistas.has(clave)) return false
+    vistas.add(clave) // Misma primera fila canónica que mapaConfig y GAS.
     const tipo = clave.match(/^(?:costo|valor)_m2_(.+)$/)?.[1]
     return (globales.has(clave) || tipos.has(tipo)) && Number(f.valor) > 0 &&
       /estimad|supuesto|por validar|proyecci[oó]n/i.test(String(f.notas || ''))

@@ -221,13 +221,15 @@ export default function FichaEspacio({ espacio, onCerrar, onAnterior, onSiguient
 function M2Construidos({ espacio }) {
   const { datos } = usarDatos()
   const { m2c, cos, pisos } = m2Construidos(espacio, datos?.Factores || [])
-  if (cos === null && pisos === null) return null
+  if (cos === null && pisos === null) return (
+    <p className="text-arena text-xs mt-2">Área construida por confirmar. El cálculo usa la superficie base.</p>
+  )
   const partes = []
   if (cos !== null) partes.push(`COS ${cos}%`)
   if (pisos !== null) partes.push(`${pisos} pisos`)
   return (
     <p className="text-arena text-xs mt-2">
-      ≈ <span className="cifra text-marfil">{Math.round(m2c).toLocaleString('es-MX')} m² construidos</span>
+      ≈ <span className="cifra text-marfil">{Math.round(m2c).toLocaleString('es-MX')} m² construidos estimados</span>
       {' '}({partes.join(' × ')}) — con esto se calculan valor y costo.
     </p>
   )
@@ -774,14 +776,15 @@ function Tareas({ espacio, editable }) {
 // ------------------------------------------------------------
 function ResumenArriba({ espacio }) {
   const { datos } = usarDatos()
-  const { m2c } = m2Construidos(espacio, datos?.Factores || [])
+  const { m2c, cos, pisos } = m2Construidos(espacio, datos?.Factores || [])
+  const areaEstimada = cos !== null || pisos !== null
   const r = resumenEspacio(espacio, datos?.Finanzas_Lineas || [], datos?.Factores || [], datos?.Escenarios || [])
   const hayFinanzas = Array.isArray(datos?.Finanzas_Lineas)
   const n = nivelAvance(espacio.estado_desarrollo)
   return (
     <div className="grid grid-cols-3 gap-2 mt-4" aria-label="Resumen del espacio">
       <div className="tarjeta p-2.5">
-        <div className="text-[10px] uppercase tracking-wide text-terciario">m² construidos</div>
+        <div className="text-[10px] uppercase tracking-wide text-terciario">{areaEstimada ? 'm² estimados' : 'superficie base (m²)'}</div>
         <div className="cifra text-marfil text-lg">{m2c > 0 ? Math.round(m2c).toLocaleString('es-MX') : '—'}</div>
       </div>
       <div className="tarjeta p-2.5">

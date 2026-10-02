@@ -84,6 +84,15 @@ Un estado de desarrollo sin confirmar se muestra así, con cero etapas
 completas. El Reporte y Finanzas avisan junto a las cifras cuando el modelo
 usa supuestos; que una cifra sea calculable no la acredita como definitiva.
 
+Sin factores COS o pisos, la ficha y el Reporte muestran la superficie base
+que usa el modelo y avisan que el área construida está por confirmar. Con
+esos factores, el área calculada se muestra como estimada.
+
+Si Config contiene claves repetidas, el cálculo y sus avisos usan la primera
+fila, igual que el editor y `buscarFila()` del servidor. Una copia posterior
+no puede ocultar una edición ni sustituir un cero explícito. La limpieza de
+copias del Sheet sigue siendo una acción de administración de datos.
+
 ## Diseño — lo que NO se hace
 
 La identidad es desierto de noche: fondos cálidos oscuros, oro viejo, terracota,

@@ -258,7 +258,7 @@ export default function Reporte() {
             {espacios.map((e) => {
               const r = g.porEspacio.find((x) => x.espacio.id === e.id)
               const { m2c, cos, pisos } = m2Construidos(e, datos?.Factores || [])
-              const construidoDistinto = (cos !== null || pisos !== null) && Math.round(m2c) !== Math.round(Number(e.m2) || 0)
+              const areaEstimada = cos !== null || pisos !== null
               // Los supuestos de las líneas vigentes: la letra chica que
               // responde el «¿de dónde sale?» del inversionista.
               const vigentes = lineasVigentes(
@@ -277,13 +277,13 @@ export default function Reporte() {
                       {e.descripcion && <p className="text-arena text-sm mt-1 leading-relaxed">{e.descripcion}</p>}
                     </div>
                     <div className="text-right">
-                      <div className="cifra text-sm text-marfil">{e.m2 ? metros2(e.m2) : '—'}</div>
+                      <div className="cifra text-sm text-marfil">{e.m2 ? metros2(e.m2) : '—'} · superficie base</div>
                       {(() => { const c = confianzaEspacio(e); return (
                         <div className="text-[11px] text-terciario r-confianza">m² {nombreNivel(c.m2)} · posición {nombreNivel(c.posicion)}{c.fuente ? ` · ${c.fuente}` : ''}</div>
                       ) })()}
-                      {construidoDistinto && (
-                        <div className="text-xs text-terciario">≈ {metros2(Math.round(m2c))} construidos</div>
-                      )}
+                      {areaEstimada ? (
+                        <div className="text-xs text-terciario">≈ {metros2(Math.round(m2c))} construidos estimados</div>
+                      ) : <div className="text-xs text-terciario">Área construida por confirmar</div>}
                       <div className="text-xs text-terciario capitalize">{nombreEstado(e.estado_desarrollo)}</div>
                     </div>
                     <div className="text-right w-36">

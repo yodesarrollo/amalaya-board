@@ -244,10 +244,10 @@ export function mapaConfig(filasConfig = []) {
   const m = {}
   for (const f of filasConfig) {
     const k = normalizarId(f.clave)
-    // Una clave repetida con vacío o 0 no pisa un valor real anterior
-    // (el Sheet llegó a tener dos filas valor_m2_mixto: 5741.99 y 0).
-    const vacio = String(f.valor ?? '').trim() === '' || Number(f.valor) === 0
-    if (k in m && vacio) continue
+    // buscarFila() en GAS y el editor de parámetros usan la primera fila.
+    // Una copia posterior no puede ocultar su parche, ni reemplazar un cero
+    // explícito. Si la primera está vacía, se muestra el faltante real.
+    if (k in m) continue
     m[k] = f.valor
   }
   return m
