@@ -69,6 +69,13 @@ El vínculo se valida contra el encabezado del issue. Un cambio ajeno se
 rechaza; un reintento ya aplicado se confirma sin volver a escribir.
 La evidencia se registra en Historial. No borra filas ni toca datos de negocio.
 
+La conciliación corre en un job separado con permiso de lectura de issues.
+Puede aportar su token efímero a la consulta autoritativa del GAS: solo se
+usa en memoria para la URL canónica de GitHub, sin historial, logs ni
+persistencia. No se configura un token personal adicional. Un rechazo HTTP
+se informa mediante código controlado y detiene la conciliación; no se
+declara cerrado algo cuya respuesta no quedó confirmada.
+
 Cambiar `Code.gs` en Git requiere actualizar la versión del **mismo**
 despliegue de Apps Script antes de ejecutar el puente nuevo. El registro de
 arquitectura queda fijado en `architecture-impact.json`.

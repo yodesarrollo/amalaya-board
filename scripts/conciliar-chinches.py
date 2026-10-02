@@ -38,8 +38,11 @@ def main():
     dry='--dry-run' in sys.argv
     for plan in plans:
         if dry:continue
-        result=request_json(Request(endpoint,data=json.dumps({**plan,'k':key}).encode(),headers={'Content-Type':'text/plain;charset=utf-8'}))
+        result=request_json(Request(endpoint,data=json.dumps({**plan,'k':key,'github_token':token}).encode(),headers={'Content-Type':'text/plain;charset=utf-8'}))
         if result.get('ok') is not True or result.get('id')!=plan['id'] or result.get('estado')!=plan['estado'] or result.get('evidencia',{}).get('issue')!=plan['issue'] or result.get('evidencia',{}).get('motivo')!=plan['motivo']:
+            code=str(result.get('codigo',''))
+            if re.fullmatch(r'GITHUB_HTTP_\d{3}|GITHUB_CIERRE_NO_ACREDITADO|HISTORIAL_NO_CONFIRMADO',code):
+                print('Issue #'+str(CANONICAL.fullmatch(plan['issue'])[1])+': '+code+'; no se confirmó cierre.',file=sys.stderr)
             raise ValueError('CAS closure not confirmed; reread before retry')
         print('Issue #'+str(CANONICAL.fullmatch(plan['issue'])[1])+': '+plan['estado']+' confirmada por GitHub y CAS.')
     print(str(len(plans))+(' cierre(s) propuesto(s); cero escrituras.' if dry else ' cierre(s) confirmado(s).'))
