@@ -1,0 +1,159 @@
+{
+  "schemaVersion": 1,
+  "units": "local metres, x east/z south, origin 29.076115,-110.9547151",
+  "stage": "continuous route base; exact building survey pending",
+  "imagery": {
+    "consulted": "2026-10-01",
+    "date": "2024-01-16",
+    "resolutionMeters": 0.31,
+    "accuracyMeters": 5,
+    "provider": "Vantor / WV03",
+    "retainedRaster": false,
+    "axisCorrectionMeters": 0
+  },
+  "sections": [
+    {
+      "id": "OB-W",
+      "wayId": 28788558,
+      "name": "Obregón · Yañez–Juan Álvarez",
+      "a": {
+        "x": -90.66816,
+        "z": 29.56818
+      },
+      "b": {
+        "x": -15.62976,
+        "z": 21.47992
+      },
+      "width": 5.6,
+      "firstSide": 2,
+      "secondSide": 1.2,
+      "sideAxis": "north-south",
+      "widthUncertainty": 1.1,
+      "sideUncertainty": 0.8,
+      "status": "imagery-estimate"
+    },
+    {
+      "id": "GA-S",
+      "wayId": 83988835,
+      "name": "Garmendia · Obregón–Chihuahua",
+      "a": {
+        "x": 68.87592,
+        "z": 14.06846
+      },
+      "b": {
+        "x": 58.39776,
+        "z": -39.88652
+      },
+      "width": 5,
+      "firstSide": 1.1,
+      "secondSide": 1.6,
+      "sideAxis": "west-east",
+      "widthUncertainty": 0.9,
+      "sideUncertainty": 0.7,
+      "status": "imagery-estimate"
+    },
+    {
+      "id": "GA-M",
+      "wayId": 83988835,
+      "name": "Garmendia · Chihuahua–Serdán",
+      "a": {
+        "x": 58.39776,
+        "z": -39.88652
+      },
+      "b": {
+        "x": 46.15056,
+        "z": -115.27705
+      },
+      "width": 6.2,
+      "firstSide": 1.5,
+      "secondSide": 1.8,
+      "sideAxis": "west-east",
+      "widthUncertainty": 0.9,
+      "sideUncertainty": 0.7,
+      "status": "imagery-estimate"
+    },
+    {
+      "id": "GA-N",
+      "wayId": 83988835,
+      "name": "Garmendia · Serdán–extremo real R-003",
+      "a": {
+        "x": 46.15056,
+        "z": -115.27705
+      },
+      "b": {
+        "x": 39.96864,
+        "z": -153.06662
+      },
+      "width": 6,
+      "firstSide": 1.5,
+      "secondSide": 1.6,
+      "sideAxis": "west-east",
+      "widthUncertainty": 0.9,
+      "sideUncertainty": 0.7,
+      "status": "imagery-estimate"
+    },
+    {
+      "id": "SE-T",
+      "wayId": 25757083,
+      "name": "Serdán · Garmendia–Guerrero (ruta de prueba termina antes del cruce)",
+      "a": {
+        "x": 46.15056,
+        "z": -115.27705
+      },
+      "b": {
+        "x": 159.02892,
+        "z": -138.60983
+      },
+      "width": 12,
+      "firstSide": 2,
+      "secondSide": 1.4,
+      "sideAxis": "north-south",
+      "widthUncertainty": 1.5,
+      "sideUncertainty": 0.8,
+      "status": "imagery-estimate"
+    }
+  ],
+  "osmCheck": [
+    {
+      "wayId": 28788558,
+      "version": 18,
+      "timestamp": "2025-03-04T20:14:05Z"
+    },
+    {
+      "wayId": 83988835,
+      "version": 9,
+      "timestamp": "2024-06-22T18:33:39Z"
+    },
+    {
+      "wayId": 25757083,
+      "version": 20,
+      "timestamp": "2024-07-24T07:01:29Z"
+    }
+  ],
+  "mappedBuildings": [
+    {
+      "wayId": 664499024,
+      "footprintStatus": "OSM",
+      "heightStatus": "provisional",
+      "heightMeters": null
+    },
+    {
+      "wayId": 499759728,
+      "footprintStatus": "OSM",
+      "heightStatus": "provisional",
+      "heightMeters": null
+    },
+    {
+      "wayId": 499760720,
+      "footprintStatus": "OSM",
+      "heightStatus": "provisional",
+      "heightMeters": null
+    },
+    {
+      "wayId": 1533334038,
+      "footprintStatus": "OSM",
+      "heightStatus": "provisional",
+      "heightMeters": null
+    }
+  ]
+}

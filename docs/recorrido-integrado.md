@@ -104,3 +104,17 @@ Por instrucción del usuario, se restauran App, Mapa, Acceso y la ayuda de panta
 El adaptador `levantamiento-mapa.js` coloca el nuevo levantamiento en la misma escena cartográfica. Al cargar, deja de dibujar los cubos; la capa anterior conserva las huellas de interacción y los pines. La opción existente de volúmenes controla el nuevo modelo. No se cargan simultáneamente los ocho volúmenes simplificados anteriores. Si falla la carga, las fichas y los cubos de respaldo siguen disponibles. Cancelar la carga o salir del mapa libera sus recursos. La geometría sigue provisional.
 
 La prueba de integración Territorio documentada arriba corresponde a la versión sustituida. La verificación vigente combina la igualdad de las pantallas restauradas con la versión original, las suites del board y `pruebas-levantamiento-mapa.mjs`.
+
+## Base continua de rutas · 1 octubre 2026
+
+La revisión pública `/sector-amalaya/` complementa el tablero sin reemplazar su UX. Publica cuatro capturas propias, el selector de los 37 puntos, enlaces al visor 3D y referencia 360 por coordenada/rumbo, perfiles nuevos con incertidumbre y el nivel de detalle propuesto para la etapa 02. El piloto 01 conserva sus seis imágenes históricas y enlaza al avance vigente.
+
+La maqueta que carga el mapa principal recibe ocho perfiles en total, incluyendo cinco nuevos: Obregón Yañez–Juan Álvarez, tres secciones de Garmendia y Serdán de prueba. Continuidad de 658.35 m verificada bajo todos los puntos y cada metro, sin afirmar exactitud de campo. Se añaden tres huellas OSM que faltaban en el mundo; alturas y fachadas siguen provisionales. Cuatro edificios tienen huella OSM contando el Instituto. El resto necesita verificación, no volúmenes genéricos presentados como realidad.
+
+El visor limpio ofrece ruta/punto, anterior/siguiente limitados y consulta 360; el embed del board oculta esa barra y conserva la navegación existente. Controles táctiles disponibles en caminata limpia. Los puntos de ruta no contienen rumbo; se deriva desde coordenadas consecutivas. El enlace Google solicita una panorámica próxima, no acredita una fecha ni una fotografía concreta.
+
+La lista permitida añade únicamente `sector-survey.json`: información geográfica, perfiles, fuentes e incertidumbres; no datos de negocio, fotografías ni credenciales. Fuente/historial Hidalgo3D permanecen fuera del repo público.
+
+Etapa siguiente: medir huellas, alturas, retiros, aperturas y cubiertas por inmueble; exterior detallado a 0–30 m, simplificado a 30–100 m, siluetas a mayor distancia; materiales propios/licenciados 1K/2K y presupuesto de carga. LOD y metas de 30 fps móvil / 60 escritorio son plan futuro, no características verificadas de esta entrega.
+
+Verificación de la entrega: 77 pruebas del modelo, typecheck, build, smoke y bundle de mundo; nueve suites del board y revisión de publicación. Navegador: 37 enlaces y posiciones de cámara, avance/retroceso y controles táctiles, cuatro imágenes y cinco perfiles, diseño a 390 px sin desbordarse; capa real MapLibre sin errores JS/WebGL.
