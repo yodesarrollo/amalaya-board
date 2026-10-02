@@ -2,7 +2,7 @@ import assert from 'node:assert/strict'
 import { readFile } from 'node:fs/promises'
 
 const data = JSON.parse(await readFile(new URL('../public/seguimiento-3d.json', import.meta.url), 'utf8'))
-const validStates = new Set(['done', 'partial', 'active', 'waiting', 'pending'])
+const validStates = new Set(['done', 'partial', 'active', 'waiting', 'pending', 'blocked'])
 const ids = new Set()
 let totalMin = 0
 let totalMax = 0
@@ -48,3 +48,26 @@ assert.ok(markdown.includes('OB-YG · Obregón'))
 assert.ok(markdown.includes('CH-YG · Yáñez'))
 assert.ok(markdown.includes('SER-GG · Serdán'))
 console.log(`Seguimiento 3D: ${data.blocks.length} tramos, ${buildingCount} anclas; estimación ${totalMin}–${totalMax} h; Markdown sincronizado.`)
+
+const { columns, cellInfo, report, STATES } = await import('../src/seguimiento3d-model.js')
+const targets = columns(data)
+assert.equal(targets.length, 13, '12 edificios y un espacio público, sin frentes inventados')
+const ob = targets.find(c => c.building.id === 'OB-02')
+assert.equal(cellInfo(ob, 'plan').key, 'OB-YG:plan', 'infraestructura comparte tarea de cuadra')
+assert.equal(cellInfo(ob, 'identity').key, 'OB-02:identity')
+assert.notEqual(STATES.partial.label, STATES.active.label, 'provisional no significa en proceso')
+const fixture = { ...ob, building: { ...ob.building, tasks: { identity: 'blocked' }, issues: { identity: { title: 'Identificación', detail: 'Falta evidencia' } } } }
+const cell = cellInfo(fixture, 'identity')
+assert.equal(cell.state, 'blocked')
+assert.equal(cell.issue.detail, 'Falta evidencia')
+const payload = report(cell, ' Revisar foto ', 'test-report-id', 'https://example.com')
+assert.equal(payload.id, 'test-report-id', 'reintentos usan el mismo ID')
+assert.equal(payload.elemento.valores.building, 'OB-02')
+assert.ok(payload.texto.includes('Falta evidencia') && payload.texto.includes('Revisar foto'))
+assert.ok(app.includes("apiCall('chinche'") && !app.includes("apiCall('getAll'"), 'envía instrucciones sin leer datos privados')
+assert.equal((app.match(/<table /g) || []).length, 1, 'una sola matriz')
+for (const block of data.blocks) for (const owner of [block, ...block.buildings]) {
+  for (const [task, state] of Object.entries(owner.tasks || owner.sharedTasks || {}))
+    if (state === 'blocked') assert.ok(owner.issues?.[task]?.detail, 'cada rojo debe documentar el problema')
+}
+console.log('Matriz XY: estados, problemas, contexto de indicaciones y envío verificados.')
