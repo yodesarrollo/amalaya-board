@@ -1,5 +1,6 @@
 // Adapter only: the original map owns camera, routes, pins, records and editing.
-export function montarLevantamiento({ map, mercator, base, onReady, onError, load = () => import(/* @vite-ignore */ `${base}world.js`) }) {
+import { VERSION_LEVANTAMIENTO } from './levantamiento-version.js'
+export function montarLevantamiento({ map, mercator, base, onReady, onError, load = () => import(/* @vite-ignore */ `${base}world.js?v=${VERSION_LEVANTAMIENTO}`) }) {
   const abort = new AbortController()
   let active = true, api, world, attached = false
   ;(async () => {

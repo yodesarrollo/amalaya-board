@@ -118,3 +118,5 @@ La lista permitida añade únicamente `sector-survey.json`: información geográ
 Etapa siguiente: medir huellas, alturas, retiros, aperturas y cubiertas por inmueble; exterior detallado a 0–30 m, simplificado a 30–100 m, siluetas a mayor distancia; materiales propios/licenciados 1K/2K y presupuesto de carga. LOD y metas de 30 fps móvil / 60 escritorio son plan futuro, no características verificadas de esta entrega.
 
 Verificación de la entrega: 77 pruebas del modelo, typecheck, build, smoke y bundle de mundo; nueve suites del board y revisión de publicación. Navegador: 37 enlaces y posiciones de cámara, avance/retroceso y controles táctiles, cuatro imágenes y cinco perfiles, diseño a 390 px sin desbordarse; capa real MapLibre sin errores JS/WebGL.
+
+El adaptador solicita `world.js` con una versión derivada de su SHA-256. `preparar:3d` actualiza automáticamente ese identificador; evita reutilizar el módulo anterior desde la caché al cambiar la maqueta, sin tocar la UX. Fuente visual local: checkpoint `ee6b55d`.
