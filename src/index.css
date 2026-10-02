@@ -545,3 +545,44 @@ html { scroll-padding-top: 84px; }
 /* Deslizadores con el color de la casa (no el azul del navegador) */
 input[type="range"] { accent-color: #C9A45C; }
 .pin-estudio-3d{position:relative;display:grid;place-items:center;gap:1px;width:50px;height:50px;padding:3px;border:2px solid #f0cd78;border-radius:50%;background:#211e18;color:#f8e4ac;box-shadow:0 3px 16px #000b,0 0 0 4px #211e1888;font:800 11px/1.05 ui-sans-serif,system-ui,sans-serif;cursor:pointer;pointer-events:auto;transform:translateY(-8px);transition:transform .18s ease,background .18s ease}.pin-estudio-3d b{font-size:13px}.pin-estudio-3d span{font-size:8px;letter-spacing:.08em}.pin-estudio-3d::after{position:absolute;bottom:-8px;left:50%;width:12px;height:12px;border-right:2px solid #f0cd78;border-bottom:2px solid #f0cd78;background:#211e18;content:"";transform:translateX(-50%) rotate(45deg);z-index:-1}.pin-estudio-3d:hover,.pin-estudio-3d:focus-visible{background:#544326;transform:translateY(-10px) scale(1.08);outline:2px solid white;outline-offset:3px}
+
+/* Recorrido Amalaya: cuatro vistas dentro del mismo escenario del mapa. */
+.recorrido-unico { position: absolute; inset: 0; z-index: 35; pointer-events: none; }
+.recorrido-unico__visor { position: absolute; inset: 0; z-index: 10; display: block; width: 100%; height: 100%; border: 0; background: #141010; pointer-events: auto; }
+.recorrido-unico__modos, .recorrido-unico__punto, .recorrido-unico__ayuda {
+  position: absolute; z-index: 40; pointer-events: auto; color: #F2EAD9;
+  background: rgba(20,16,16,.94); border: 1px solid rgba(201,164,92,.55);
+  box-shadow: 0 12px 30px -14px #000; -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
+}
+.recorrido-unico__modos { top: 10px; left: 50%; transform: translateX(-50%); display: flex; gap: 3px; padding: 4px; border-radius: 12px; white-space: nowrap; }
+.recorrido-unico__modos button, .recorrido-unico__version button {
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px; min-height: 38px;
+  padding: 0 12px; border: 0; border-radius: 8px; background: transparent; color: #D5C8B4;
+  font: 700 11px/1 'Montserrat', sans-serif; cursor: pointer; transition: background .16s ease, color .16s ease;
+}
+.recorrido-unico__modos button:hover, .recorrido-unico__version button:hover { color: white; background: rgba(201,164,92,.16); }
+.recorrido-unico__modos button.activo, .recorrido-unico__version button.activo { color: #141010; background: linear-gradient(180deg,#E8C466,#C9A45C); }
+.recorrido-unico__modos button:disabled { opacity: .45; cursor: wait; }
+.recorrido-unico__punto { top: 58px; left: 50%; transform: translateX(-50%); display: flex; align-items: end; gap: 7px; width: max-content; max-width: calc(100% - 20px); padding: 7px; border-radius: 12px; }
+.recorrido-unico__punto > button { display: grid; place-items: center; flex: none; width: 36px; height: 36px; border: 1px solid rgba(201,164,92,.32); border-radius: 8px; background: #211b15; color: #F2EAD9; cursor: pointer; }
+.recorrido-unico__punto > button:disabled { opacity: .4; cursor: default; }
+.recorrido-unico__ruta, .recorrido-unico__seleccion { display: grid; gap: 4px; min-width: 0; }
+.recorrido-unico__ruta > span, .recorrido-unico__seleccion > span { color: #C9A45C; font: 700 8px/1 'Montserrat', sans-serif; letter-spacing: .12em; text-transform: uppercase; }
+.recorrido-unico__punto select { height: 36px; min-width: 125px; max-width: 235px; padding: 0 8px; border: 1px solid rgba(201,164,92,.32); border-radius: 8px; color: #F2EAD9; background: #211b15; font: 500 11px/1.2 'Montserrat', sans-serif; }
+.recorrido-unico__ruta select { max-width: 205px; }
+.recorrido-unico__seleccion select { max-width: 260px; }
+.recorrido-unico__version { display: flex; gap: 2px; padding: 2px; border: 1px solid rgba(201,164,92,.25); border-radius: 9px; }
+.recorrido-unico__version button { min-height: 32px; padding: 0 9px; font-size: 9px; }
+.recorrido-unico__ayuda { bottom: 12px; left: 50%; transform: translateX(-50%); max-width: calc(100% - 20px); padding: 8px 12px; border-radius: 999px; text-align: center; font: 600 10px/1.3 'Montserrat', sans-serif; color: #E7D9C3; }
+@media (max-width: 760px) {
+  .recorrido-unico__modos { top: 58px; width: calc(100% - 16px); justify-content: stretch; gap: 2px; }
+  .recorrido-unico__modos button { flex: 1; gap: 4px; min-width: 0; min-height: 38px; padding: 0 5px; font-size: 9px; }
+  .recorrido-unico__modos button svg { width: 13px; height: 13px; }
+  .recorrido-unico__punto { top: 105px; display: grid; grid-template-columns: 32px minmax(80px,.8fr) minmax(112px,1.3fr) 32px; gap: 5px; width: calc(100% - 16px); max-width: 560px; padding: 6px; }
+  .recorrido-unico__punto > button { width: 32px; height: 34px; }
+  .recorrido-unico__punto select, .recorrido-unico__ruta select, .recorrido-unico__seleccion select { width: 100%; min-width: 0; max-width: none; height: 34px; padding: 0 5px; font-size: 9px; }
+  .recorrido-unico__ruta > span, .recorrido-unico__seleccion > span { font-size: 7px; }
+  .recorrido-unico__version { grid-column: 1 / -1; justify-content: end; }
+  .recorrido-unico__version button { min-height: 30px; }
+  .recorrido-unico__ayuda { bottom: 10px; width: max-content; max-width: calc(100% - 20px); font-size: 9px; }
+}

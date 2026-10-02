@@ -238,9 +238,9 @@ export default function Mapa() {
     <div className="relative">
       {/* Barra del mapa */}
       <div className="max-w-6xl mx-auto px-4 pt-4 pb-2 flex items-center gap-2 flex-wrap">
-        <h2 className="font-cartel font-normal uppercase tracking-wide text-2xl">El polígono</h2>
+        <h2 className="font-cartel font-normal uppercase tracking-wide text-2xl">Mapa Amalaya</h2>
 
-        <span className="text-xs text-terciario ml-2 hidden sm:inline">una sola maqueta · gira por caras · toca un punto para el 360</span>
+        <span className="text-xs text-terciario ml-2 hidden sm:inline">planta · 3D · caminar · Street View, en una sola vista</span>
 
         <div className="flex-1" />
 
@@ -311,9 +311,8 @@ export default function Mapa() {
       )}
 
       {/* El mapa */}
-      <div className="px-2 pb-6">
-        {(
-          <div className="relative mx-auto rounded-2xl overflow-hidden border border-linea" style={{ height: 'calc(100dvh - 190px)', minHeight: '420px' }}>
+      <div className="px-2 pb-3">
+          <div className="relative mx-auto rounded-2xl overflow-hidden border border-linea" style={{ height: 'calc(100dvh - 150px)', minHeight: '420px' }}>
             <Mapa3D
               espacios={espacios} rutas={rutas} paradas={paradas} onAbrir={setAbierto} enfocado={abierto}
               onNuevo={puedeEditar ? () => setCreando(true) : undefined}
@@ -342,8 +341,8 @@ export default function Mapa() {
                 setRecorrido({ rutaId: p.ruta_id, idx: Math.max(0, lista.findIndex((x) => String(x.id) === String(paradaId))) })
               }}
             />
+            <RecorridoModelo />
           </div>
-        )}
         <div
           ref={contRef}
           className="relative mx-auto rounded-2xl overflow-hidden border border-linea"
@@ -543,7 +542,6 @@ export default function Mapa() {
             </div>
           )}
         </div>
-        <RecorridoModelo />
       </div>
 
       {/* FAB de alta en teléfono: al alcance del pulgar, arriba de la nav */}

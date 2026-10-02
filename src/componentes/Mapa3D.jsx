@@ -378,11 +378,37 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
     let m
     let desmontarLevantamiento = () => {}
     let pinesModelo = []
+    const alCambiarVistaMapa = (event) => {
+      const view = event.detail?.view
+      if (!m || (view !== 'planta' && view !== 'modelo')) return
+      const inclinada = view === 'modelo'
+      const rumboElegido = inclinada && Number.isFinite(event.detail?.heading) ? event.detail.heading : 0
+      setInclinado(inclinada)
+      if (inclinada && Number.isFinite(event.detail?.heading)) setCara(Math.round(rumboElegido / 90) % 4)
+      const center = Number.isFinite(event.detail?.lng) && Number.isFinite(event.detail?.lat)
+        ? [event.detail.lng, event.detail.lat]
+        : undefined
+      m.easeTo({ ...(center ? { center, zoom: 18.55 } : {}), pitch: inclinada ? 58 : 0, bearing: rumboElegido, duration: 700 })
+    }
+    const alEnfocarCoordenada = (event) => {
+      const { lat, lng, heading, view } = event.detail || {}
+      if (!m || !Number.isFinite(lat) || !Number.isFinite(lng)) return
+      const inclinada = view === 'planta' ? false : view === 'modelo' ? true : m.getPitch() > 25
+      const rumboElegido = inclinada && Number.isFinite(heading) ? heading : (inclinada ? m.getBearing() : 0)
+      setInclinado(inclinada)
+      if (inclinada && Number.isFinite(heading)) setCara(Math.round(rumboElegido / 90) % 4)
+      m.easeTo({ center: [lng, lat], zoom: 18.55, pitch: inclinada ? 58 : 0, bearing: rumboElegido, duration: 750 })
+    }
+    const alCambiarModoRecorrido = () => { setPop360(null); setPunto(null); setMonito(false) }
     const alEnfocarModelo = (event) => {
       const estudio = ESTUDIOS_MODELO.find((item) => item.id === event.detail?.id)
       if (!estudio || !m) return
+      setInclinado(true)
       m.easeTo({ center: [estudio.lng, estudio.lat], zoom: 19.45, pitch: 56, bearing: 185, duration: 1050 })
     }
+    window.addEventListener('amalaya:map-view', alCambiarVistaMapa)
+    window.addEventListener('amalaya:focus-coordinate', alEnfocarCoordenada)
+    window.addEventListener('amalaya:recorrido-mode', alCambiarModoRecorrido)
     window.addEventListener('amalaya:focus-study', alEnfocarModelo)
     try { m = new maplibregl.Map({
       container: cont.current,
@@ -394,7 +420,14 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
       antialias: true,
       attributionControl: false,
       clickTolerance: 5,          // un micro-arrastre ya no se come el clic
-    }) } catch (err) { window.removeEventListener('amalaya:focus-study', alEnfocarModelo); setFalla3d('El mapa 3D no arrancó en este equipo.'); return }
+    }) } catch (err) {
+      window.removeEventListener('amalaya:map-view', alCambiarVistaMapa)
+      window.removeEventListener('amalaya:focus-coordinate', alEnfocarCoordenada)
+      window.removeEventListener('amalaya:recorrido-mode', alCambiarModoRecorrido)
+      window.removeEventListener('amalaya:focus-study', alEnfocarModelo)
+      setFalla3d('El mapa 3D no arrancó en este equipo.')
+      return
+    }
     let cargo = false
     m.once('load', () => { cargo = true })
     // Sin cartografía el mapa se queda en blanco: a los 15 s se ofrece el plan B.
@@ -538,6 +571,8 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
         pin.addEventListener('click', (event) => {
           event.preventDefault(); event.stopPropagation()
           m.easeTo({ center: [estudio.lng, estudio.lat], zoom: 19.45, pitch: 56, bearing: 185, duration: 1050 })
+          setInclinado(true)
+          window.dispatchEvent(new CustomEvent('amalaya:map-view-changed', { detail: { view: 'modelo' } }))
           window.dispatchEvent(new CustomEvent('amalaya:study-focused', { detail: { id: estudio.id } }))
         })
         pin.addEventListener('pointerdown', event => event.stopPropagation())
@@ -564,7 +599,14 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
     m.on('styledata', arrancar)
     reloj = setTimeout(arrancar, 600)
     mapa.current = m
-    return () => { window.removeEventListener('amalaya:focus-study', alEnfocarModelo); pinesModelo.forEach(pin => pin.remove()); pinesModelo = []; clearTimeout(reloj); relojesEntrada.current.forEach(clearTimeout); cancelAnimationFrame(trazo.current); desmontarLevantamiento(); m.remove(); mapa.current = null }
+    return () => {
+      window.removeEventListener('amalaya:map-view', alCambiarVistaMapa)
+      window.removeEventListener('amalaya:focus-coordinate', alEnfocarCoordenada)
+      window.removeEventListener('amalaya:recorrido-mode', alCambiarModoRecorrido)
+      window.removeEventListener('amalaya:focus-study', alEnfocarModelo)
+      pinesModelo.forEach(pin => pin.remove()); pinesModelo = []; clearTimeout(reloj)
+      relojesEntrada.current.forEach(clearTimeout); cancelAnimationFrame(trazo.current); desmontarLevantamiento(); m.remove(); mapa.current = null
+    }
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   // --- entrada por capas ------------------------------------------
@@ -808,6 +850,7 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
     if (!m) return
     const c = (cara + delta + 4) % 4
     setCara(c); setInclinado(true)
+    window.dispatchEvent(new CustomEvent('amalaya:map-view-changed', { detail: { view: 'modelo' } }))
     m.easeTo({ bearing: c * 90, pitch: 58, duration: 700, easing: (t) => 1 - Math.pow(1 - t, 3) })
   }
   function alternarInclinacion() {
@@ -815,6 +858,7 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
     if (!m) return
     const a = !inclinado
     setInclinado(a)
+    window.dispatchEvent(new CustomEvent('amalaya:map-view-changed', { detail: { view: a ? 'modelo' : 'planta' } }))
     m.easeTo({ pitch: a ? 58 : 0, bearing: a ? cara * 90 : 0, duration: 800 })
   }
   // Chinche #18: encuadra el polígono COMPLETO con margen, siempre igual (al abrir, al tocar ⌖

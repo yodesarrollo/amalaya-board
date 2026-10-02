@@ -4,6 +4,16 @@ export function rumboRuta(points, index) {
   if (!a || !b) return 0
   return (Math.atan2((b.lng-a.lng)*97200, (b.lat-a.lat)*110950)*180/Math.PI+360)%360
 }
+const RUMBOS_REFERENCIA = new Map([
+  ['XLuGJnj_XmtAuKd4eXeTDw', 185], // OB-01 · P02, fachada hacia el sur
+  ['Apyr0uKeZr_XWmfLfLeBjQ', 185], // OB-02 · P03, fachada hacia el sur
+])
+export function rumboConsulta(route, index) {
+  const point = route?.puntos?.[index]
+  if (!point) return 0
+  if (Number.isFinite(point.headingDegrees)) return (point.headingDegrees + 360) % 360
+  return RUMBOS_REFERENCIA.get(point.id) ?? rumboRuta(route.puntos, index)
+}
 export function mensajeRecorrido(data, routes) {
   if (data?.tipo !== 'recorrido360') return null
   const ruta = routes.find(r => r.id === data.ruta)
