@@ -33,6 +33,10 @@ import { ZONAS, MODULOS, zonasDeEspacio, centroDeZonas, filasModelos } from '../
 
 const ESTILO_CIUDAD = 'https://tiles.openfreemap.org/styles/fiord'
 const SATELITE = 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'
+const ESTUDIOS_MODELO = [
+  { id: 'OB-01', nombre: 'Cubierta de estacionamiento', lat: 29.075844, lng: -110.9554315 },
+  { id: 'OB-02', nombre: 'Fachada de arcos y rejas', lat: 29.0758655, lng: -110.955184 },
+]
 
 // Esquinas por defecto del plano (TL, TR, BR, BL) — centro histórico de
 // Hermosillo, alrededor de Serdán / Garmendia / Chihuahua. Se afinan con
@@ -323,6 +327,7 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
     return c
   }, [espacios])
   const [tema, setTema] = useState('lamina')
+  const [escenario, setEscenario] = useState('actual')
   const temaRef = useRef('lamina')
   useEffect(() => { temaRef.current = tema; if (mapa.current && listo) vestir(mapa.current, TEMAS[tema]) }, [tema, listo])
   const [opacidadCalco, setOpacidadCalco] = useState(0.55)
@@ -347,6 +352,12 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
     return { ancho, fondo, ha: (ancho * fondo) / 10000, n: (espacios || []).length, m2c, conteo }
   }, [geo, espacios, datos?.Factores])
   useEffect(() => { geoRef.current = geo }, [geo])
+  useEffect(() => { window.dispatchEvent(new CustomEvent('amalaya:scenario', { detail: { version: escenario } })) }, [escenario])
+  useEffect(() => {
+    const sync = event => { if (event.detail?.version === 'actual' || event.detail?.version === 'amalaya') setEscenario(event.detail.version) }
+    window.addEventListener('amalaya:scenario', sync)
+    return () => window.removeEventListener('amalaya:scenario', sync)
+  }, [])
   // El monito: soltarlo en una calle abre el Street View de ese punto.
   const [pop360, setPop360] = useState(null)             // {ruta, punto} → pop-up del recorrido 360
   const [monito, setMonito] = useState(false)          // esperando el clic
@@ -366,6 +377,13 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
     if (!hayWebGL()) { setFalla3d('Este equipo no muestra 3D (WebGL apagado).'); return }
     let m
     let desmontarLevantamiento = () => {}
+    let pinesModelo = []
+    const alEnfocarModelo = (event) => {
+      const estudio = ESTUDIOS_MODELO.find((item) => item.id === event.detail?.id)
+      if (!estudio || !m) return
+      m.easeTo({ center: [estudio.lng, estudio.lat], zoom: 19.45, pitch: 56, bearing: 185, duration: 1050 })
+    }
+    window.addEventListener('amalaya:focus-study', alEnfocarModelo)
     try { m = new maplibregl.Map({
       container: cont.current,
       style: ESTILO_CIUDAD,
@@ -376,7 +394,7 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
       antialias: true,
       attributionControl: false,
       clickTolerance: 5,          // un micro-arrastre ya no se come el clic
-    }) } catch (err) { setFalla3d('El mapa 3D no arrancó en este equipo.'); return }
+    }) } catch (err) { window.removeEventListener('amalaya:focus-study', alEnfocarModelo); setFalla3d('El mapa 3D no arrancó en este equipo.'); return }
     let cargo = false
     m.once('load', () => { cargo = true })
     // Sin cartografía el mapa se queda en blanco: a los 15 s se ofrece el plan B.
@@ -511,6 +529,21 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
       m.setPaintProperty('espacios-3d', 'fill-extrusion-opacity-transition', { duration: 900, delay: 0 })
       m.setPaintProperty('recorrido-puntos', 'circle-opacity-transition', { duration: 600, delay: 0 })
       m.setPaintProperty('recorrido-puntos', 'circle-stroke-opacity-transition', { duration: 600, delay: 0 })
+      pinesModelo = ESTUDIOS_MODELO.map((estudio) => {
+        const pin = document.createElement('button')
+        pin.type = 'button'
+        pin.className = 'pin-estudio-3d'
+        pin.setAttribute('aria-label', `${estudio.id}: ${estudio.nombre}. Enfocar en el mapa`)
+        pin.innerHTML = `<b>${estudio.id.replace('OB-', '')}</b><span>${estudio.id}</span>`
+        pin.addEventListener('click', (event) => {
+          event.preventDefault(); event.stopPropagation()
+          m.easeTo({ center: [estudio.lng, estudio.lat], zoom: 19.45, pitch: 56, bearing: 185, duration: 1050 })
+          window.dispatchEvent(new CustomEvent('amalaya:study-focused', { detail: { id: estudio.id } }))
+        })
+        pin.addEventListener('pointerdown', event => event.stopPropagation())
+        return new maplibregl.Marker({ element: pin, anchor: 'bottom', offset: [0, -4] })
+          .setLngLat([estudio.lng, estudio.lat]).addTo(m)
+      })
       // Misma maqueta y controles: sustituir únicamente la representación 3D.
       desmontarLevantamiento = montarLevantamiento({
         map: m, mercator: maplibregl.MercatorCoordinate, base: `${BASE}levantamiento/`,
@@ -531,7 +564,7 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
     m.on('styledata', arrancar)
     reloj = setTimeout(arrancar, 600)
     mapa.current = m
-    return () => { clearTimeout(reloj); relojesEntrada.current.forEach(clearTimeout); cancelAnimationFrame(trazo.current); desmontarLevantamiento(); m.remove(); mapa.current = null }
+    return () => { window.removeEventListener('amalaya:focus-study', alEnfocarModelo); pinesModelo.forEach(pin => pin.remove()); pinesModelo = []; clearTimeout(reloj); relojesEntrada.current.forEach(clearTimeout); cancelAnimationFrame(trazo.current); desmontarLevantamiento(); m.remove(); mapa.current = null }
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   // --- entrada por capas ------------------------------------------
@@ -909,6 +942,13 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
                 <button key={k} className={tema === k ? 'on' : ''} onClick={() => setTema(k)}>{n}</button>
               ))}
             </div>
+            <p className="panel-titulo mt-3">Escenario del levantamiento</p>
+            <div className="seg">
+              {[['actual', 'Actual'], ['amalaya', 'Visión Amalaya']].map(([id, title]) => (
+                <button key={id} type="button" aria-pressed={escenario === id} className={escenario === id ? 'on' : ''} onClick={() => setEscenario(id)}>{title}</button>
+              ))}
+            </div>
+            {escenario === 'amalaya' && <p className="panel-nota">Estudio de sombra y estancia; conceptual, pendiente de aprobación.</p>}
             <div className="panel-lista">
               {[
                 ['modelos', 'Volúmenes de la lámina (3D)'],

@@ -10,6 +10,7 @@ import Peticiones from './Peticiones.jsx'
 import { RutasCapa, PuntosEdicion, BarraRutas, Recorrido, leerPuntos, guardarRuta } from './Rutas.jsx'
 import { GLIFO_TIPO, NOMBRE_TIPO } from './Glifos.jsx'
 import Mapa3D from './Mapa3D.jsx'
+import RecorridoModelo from './RecorridoModelo.jsx'
 import { usarDialogo } from '../usarDialogo.js'
 
 // ============================================================
@@ -542,6 +543,7 @@ export default function Mapa() {
             </div>
           )}
         </div>
+        <RecorridoModelo />
       </div>
 
       {/* FAB de alta en teléfono: al alcance del pulgar, arriba de la nav */}
