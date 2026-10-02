@@ -59,6 +59,24 @@ Script). En concreto:
 | Re-desplegar el Apps Script | Editor de Apps Script → Implementar → Administrar implementaciones → ✎ → Nueva versión (así la URL `/exec` NO cambia) |
 | Ver la salud | `public/estado.json` (vía raw.githubusercontent.com para verlo en vivo) |
 
+## Cierre de chinches
+
+El puente conserva la consulta de chinches nuevas y concilia las tomadas con
+su issue canónico. Solo un cierre `completed` verificado por el servidor con
+GitHub pasa a `terminada`; `not_planned` pasa a `descartada`. La acción
+`chincheEstado` exige el token existente y compara ID, estado previo y URL.
+El vínculo se valida contra el encabezado del issue. Un cambio ajeno se
+rechaza; un reintento ya aplicado se confirma sin volver a escribir.
+La evidencia se registra en Historial. No borra filas ni toca datos de negocio.
+
+Cambiar `Code.gs` en Git requiere actualizar la versión del **mismo**
+despliegue de Apps Script antes de ejecutar el puente nuevo. El registro de
+arquitectura queda fijado en `architecture-impact.json`.
+
+Un estado de desarrollo sin confirmar se muestra así, con cero etapas
+completas. El Reporte y Finanzas avisan junto a las cifras cuando el modelo
+usa supuestos; que una cifra sea calculable no la acredita como definitiva.
+
 ## Diseño — lo que NO se hace
 
 La identidad es desierto de noche: fondos cálidos oscuros, oro viejo, terracota,

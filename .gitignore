@@ -5,3 +5,4 @@ dist/
 
 # Paquete visual autorizado para publicación el 2026-09-30.
 review-shots/
+__pycache__/

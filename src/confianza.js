@@ -1,3 +1,5 @@
+import { lineasVigentes, normalizarId } from './calc.js'
+
 // UX-04 · De dónde sale cada dato y cuánto confiar en él. Es un atributo aparte
 // de la etapa del proyecto (idea → operando): uno dice qué tan cierto es el
 // dato, el otro en qué va el espacio.
@@ -23,3 +25,19 @@ export function confianzaEspacio(e = {}) {
 }
 
 export const nombreNivel = (n) => NIVELES[n]?.nombre || '—'
+
+// Las notas de los insumos viajan con la sesión. Un número calculable no
+// vuelve definitiva una estimación. No se modifica ningún insumo ni fórmula.
+export function haySupuestosFinancieros(datos = {}) {
+  const tipos = new Set((datos.Espacios || []).map((e) => normalizarId(e.tipo)))
+  const globales = new Set(['acciones_emitidas', 'gastos_generales', 'multiplo_operativo', 'multiplo_regalias'])
+  const config = (datos.Config || []).some((f) => {
+    const clave = normalizarId(f.clave)
+    const tipo = clave.match(/^(?:costo|valor)_m2_(.+)$/)?.[1]
+    return (globales.has(clave) || tipos.has(tipo)) && Number(f.valor) > 0 &&
+      /estimad|supuesto|por validar|proyecci[oó]n/i.test(String(f.notas || ''))
+  })
+  const espacios = new Set((datos.Espacios || []).map((e) => String(e.id)))
+  return config || lineasVigentes(datos.Finanzas_Lineas || [], datos.Escenarios || [])
+    .some((l) => espacios.has(String(l.espacio_id)) && String(l.supuesto || '').trim() !== '')
+}

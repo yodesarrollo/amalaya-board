@@ -5,6 +5,8 @@ import { puedeEditarRol } from '../roles.js'
 import { nombreTipo } from '../tipos.js'
 import { moneda, porcentaje } from '../formato.js'
 import AvisoIncompleto, { ListaErrores } from './AvisoIncompleto.jsx'
+import AvisoSupuestos from './AvisoSupuestos.jsx'
+import { haySupuestosFinancieros } from '../confianza.js'
 import { resumenGlobal, resumenEspacio, montoLinea, mapaConfig, configNum, normalizarId, resumenConEscenario, sugerirFactores } from '../calc.js'
 
 // ============================================================
@@ -508,6 +510,7 @@ function DesgloseCristiano({ g, config, onCerrar }) {
 
 // --- El panel del VALOR POR ACCIÓN ---------------------------
 function PanelValor({ g, onExplicar, ajuste, setAjuste }) {
+  const { datos } = usarDatos()
   const v = g.valorPorAccion
   const total = Math.max(v.total, 1)
   const partes = [
@@ -532,6 +535,7 @@ function PanelValor({ g, onExplicar, ajuste, setAjuste }) {
         ¿qué significa?
       </button>
       <AvisoIncompleto g={g} />
+      <AvisoSupuestos datos={datos} />
       <ListaErrores g={g} />
 
       {/* Desglose apilado de los 3 componentes */}
@@ -618,6 +622,7 @@ export default function Financiero() {
     <div className="max-w-6xl mx-auto px-4 py-5 lg:grid lg:grid-cols-[1fr_20rem] lg:gap-6 lg:items-start">
       <div className="space-y-4 pb-40 sm:pb-28 lg:pb-8">
         <h2 className="font-cartel font-normal uppercase tracking-wide text-2xl">El modelo de negocio</h2>
+        <AvisoSupuestos datos={datos} />
         {espacios.length === 0 && (
           <div className="tarjeta p-8 text-center">
             <p className="text-marfil font-medium">Aún no hay espacios.</p>
@@ -677,6 +682,7 @@ export default function Financiero() {
           <span className="cifra font-cartel font-normal text-xl text-marfil flex-1 text-right glow-ambar">
             {g.valorPorAccion.porAccion === null ? '—' : moneda(g.valorPorAccion.porAccion)}
             {!g.completo && <span className="block text-[10px] text-ambar tracking-wide normal-case">datos incompletos</span>}
+            {haySupuestosFinancieros(datos) && <span className="block text-[10px] text-arena tracking-wide normal-case">proyección con supuestos</span>}
           </span>
           {panelAbierto ? <ChevronDown size={16} className="text-terciario" /> : <ChevronUp size={16} className="text-terciario" />}
         </button>
