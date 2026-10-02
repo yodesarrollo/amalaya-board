@@ -235,6 +235,35 @@ prueba('una clave repetida con 0 no pisa el valor real', () => {
   casi(configNum(c, 'valor_m2_mixto', 0), 5741.99)
 })
 
+prueba('una copia de Config no oculta el cambio de la primera fila que edita el servidor', () => {
+  const filas = [
+    ...Object.entries(datos.config).map(([clave, valor]) => ({ clave, valor })),
+    { clave: 'valor_m2_escuela', valor: '15000' },
+  ]
+  const primera = filas.find((f) => f.clave === 'valor_m2_escuela')
+  const antes = resumenGlobal({ ...datos, config: mapaConfig(filas) })
+  primera.valor = '16000' // Parche aislado de la fila canónica; no escribe en Sheets.
+  const despues = resumenGlobal({ ...datos, config: mapaConfig(filas) })
+  casi(despues.valorPorAccion.inmobiliario - antes.valorPorAccion.inmobiliario, 400 * 1000)
+  casi(despues.valorPorAccion.porAccion - antes.valorPorAccion.porAccion, 400 * 1000 / 10000)
+})
+
+prueba('el cero explícito de la primera fila no se reemplaza por una copia antigua', () => {
+  const c = mapaConfig([{ clave: 'split_distrito', valor: '0' }, { clave: 'split_distrito', valor: '30' }])
+  casi(configNum(c, 'split_distrito', 99), 0)
+})
+
+prueba('vaciar las acciones canónicas deja el valor por acción incompleto aunque exista una copia vieja', () => {
+  const filas = [
+    ...Object.entries(datos.config).map(([clave, valor]) => ({ clave, valor })),
+    { clave: 'acciones_emitidas', valor: '10000' },
+  ]
+  filas.find((f) => f.clave === 'acciones_emitidas').valor = ''
+  const g = resumenGlobal({ ...datos, config: mapaConfig(filas) })
+  igual(g.valorPorAccion.porAccion, null)
+  igual(g.faltantes.some((f) => f.clave === 'acciones_emitidas'), true)
+})
+
 console.log('configNum')
 prueba('lee números con formato y respeta el valor por defecto', () => {
   const c = mapaConfig([{ clave: 'Gastos Generales', valor: '$2,500,000' }])

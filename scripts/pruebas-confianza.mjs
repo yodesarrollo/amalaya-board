@@ -11,4 +11,8 @@ assert.equal(haySupuestosFinancieros({ Espacios: [espacio], Finanzas_Lineas: [li
 assert.equal(haySupuestosFinancieros({ Espacios: [espacio], Finanzas_Lineas: [linea], Escenarios: [{ id: 'DEMO-ESC', activo: 'si' }] }), true)
 assert.equal(haySupuestosFinancieros({ Finanzas_Lineas: [{ ...linea, escenario_id: '' }] }), false)
 assert.equal(haySupuestosFinancieros({}), false)
+assert.equal(haySupuestosFinancieros({ Espacios: [espacio], Config: [
+  { ...config, notas: 'Confirmado por el propietario · fixture' },
+  config,
+] }), false, 'Una nota estimada de una copia antigua no sustituye la nota canónica')
 console.log('Confianza financiera: estimaciones vigentes visibles; filas sin uso y escenarios inactivos excluidos.')
