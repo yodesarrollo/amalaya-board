@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-03T10:17:01.105Z",
+  "updatedAt": "2026-10-03T10:24:08Z",
   "refreshSeconds": 30,
   "live": {
-    "status": "blocked",
-    "phase": "ISC-58 · punto 01 revisado",
-    "title": "Planta bloqueada · frente #58 aún no asociado",
-    "detail": "Inicio/avance desde ISC-58-fixed-v1. El candidato OSM 664499024 y P03/P04 quedan documentados; faltan heading, observación completa y escala del frente.",
+    "status": "active",
+    "phase": "ISC-58 · punto 02 en curso",
+    "title": "Calzada · auditar perfil existente",
+    "detail": "Revisando owner de Calle Obregón, dos bordes, estaciones y transición a perfiles vecinos. Sin asumir rumbo de P03/P04 ni duplicar la calzada.",
     "activeBlockId": "OB-YG",
     "activeBuildingId": "ISC-58",
-    "activeTask": "plan"
+    "activeTask": "street"
   },
   "schedule": {
     "basis": "Horas de trabajo concentrado que faltan para revisar y cerrar las referencias conocidas, con la geometría actual como punto de partida.",
@@ -571,10 +571,12 @@
             "facade": "pending",
             "finish": "pending",
             "equipment": "pending",
-            "qa": "pending"
+            "qa": "pending",
+            "street": "active"
           },
           "taskDetails": {
-            "plan": "BLOQUEADO · 01 Planta · captura WebGL fija con P03/P04 y way OSM 664499024. El builder PH-01 ya modela ese candidato; no se añadió una segunda huella. Falta identificar el frente completo de Obregón #58 en un panorama con orientación y escala/método."
+            "plan": "BLOQUEADO · 01 Planta · captura WebGL fija con P03/P04 y way OSM 664499024. El builder PH-01 ya modela ese candidato; no se añadió una segunda huella. Falta identificar el frente completo de Obregón #58 en un panorama con orientación y escala/método.",
+            "street": "EN CURSO · 02 Calzada · auditoría del owner existente y su perfil por tramo; revisar bordes independientemente, estaciones y transición sin añadir calzada paralela. No usar rumbo de marcha como heading ni tomar OSM como escala."
           },
           "issues": {
             "plan": {

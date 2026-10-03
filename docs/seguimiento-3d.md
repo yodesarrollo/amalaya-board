@@ -1,13 +1,13 @@
 # Amalaya · Matriz de levantamiento 3D
 
-Actualizado: 2026-10-03T10:17:01.105Z. La web consulta estados cada 30 segundos; los cambios aparecen al publicar avances.
+Actualizado: 2026-10-03T10:24:08Z. La web consulta estados cada 30 segundos; los cambios aparecen al publicar avances.
 
 Naranja: en proceso · Verde: terminado · Rojo: problema · Gris: pendiente o provisional.
 
 | Acciones / Edificios | OB-01 | <a href="https://yodesarrollo.github.io/amalaya-board/levantamiento/evidence/OB-02/31-avance-punto11.png"><img src="https://yodesarrollo.github.io/amalaya-board/levantamiento/evidence/OB-02/31-avance-punto11.png" alt="OB-02 · avance del modelo" width="160"></a><br/>OB-02<br/>[Inicio](https://yodesarrollo.github.io/amalaya-board/levantamiento/evidence/OB-02/07-inicio-seguimiento.png) · Avance · 11 | <a href="https://yodesarrollo.github.io/amalaya-board/levantamiento/evidence/ISC-58/00-inicio-seguimiento.png"><img src="https://yodesarrollo.github.io/amalaya-board/levantamiento/evidence/ISC-58/00-inicio-seguimiento.png" alt="ISC-58 · avance del modelo" width="160"></a><br/>ISC-58<br/>[Inicio](https://yodesarrollo.github.io/amalaya-board/levantamiento/evidence/ISC-58/00-inicio-webgl-raw.png) · Avance · 01 | EB-SW | EB-NW | EB-NE | EB-SE | PL-GA | CH-GA-OXXO | CH-YG-BIB | CH-YG-BBVA | SER-BLEY | SER-HSBC |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|
 | Alinear planta y huellas con cartografía visual | ✓ Terminado | ✓ Terminado | ! Problema | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional |
-| Ajustar calzada y encuentros de calles | ✓ Terminado | ✓ Terminado | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional |
+| Ajustar calzada y encuentros de calles | ✓ Terminado | ✓ Terminado | • En proceso | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional |
 | Ajustar banqueta del lado A | ✓ Terminado | ✓ Terminado | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional |
 | Ajustar banqueta del lado B | ✓ Terminado | ✓ Terminado | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional |
 | Corregir esquinas, guarniciones y rampas | ! Problema | ! Problema | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional |
