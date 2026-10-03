@@ -1,6 +1,6 @@
 # Amalaya · Matriz de levantamiento 3D
 
-Actualizado: 2026-10-02T22:50:46.895Z. La web consulta estados cada 30 segundos; los cambios aparecen al publicar avances.
+Actualizado: 2026-10-03T00:03:23.483277+00:00. La web consulta estados cada 30 segundos; los cambios aparecen al publicar avances.
 
 Naranja: en proceso · Verde: terminado · Rojo: problema · Gris: pendiente o provisional.
 
@@ -10,8 +10,8 @@ Naranja: en proceso · Verde: terminado · Rojo: problema · Gris: pendiente o p
 | Ajustar calzada y encuentros de calles | ✓ Terminado | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional |
 | Ajustar banqueta del lado A | ✓ Terminado | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional |
 | Ajustar banqueta del lado B | ✓ Terminado | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional |
-| Corregir esquinas, guarniciones y rampas | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional |
-| Empatar edificio, nombre y punto/foto 360 | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | · Pendiente | · Pendiente | · Pendiente | · Pendiente | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional |
+| Corregir esquinas, guarniciones y rampas | ! Problema | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional |
+| Empatar edificio, nombre y punto/foto 360 | ✓ Terminado | ◐ Provisional | ◐ Provisional | ◐ Provisional | · Pendiente | · Pendiente | · Pendiente | · Pendiente | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional |
 | Completar huella, volumen, altura y cubierta | ◐ Provisional | ◐ Provisional | · Pendiente | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente |
 | Ajustar forma de fachada a la referencia visual | ◐ Provisional | ◐ Provisional | · Pendiente | ◐ Provisional | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente |
 | Afinar materiales, vanos y detalles visibles | ◐ Provisional | ◐ Provisional | · Pendiente | ◐ Provisional | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente |
@@ -36,6 +36,6 @@ Naranja: en proceso · Verde: terminado · Rojo: problema · Gris: pendiente o p
 
 ## Problemas registrados
 
-Sin problemas bloqueantes registrados. Las referencias provisionales siguen pendientes de verificación.
+- **OB-01 · Corregir esquinas, guarniciones y rampas**: Falta confirmar rampas y radios reales. Se corrigieron los retornos y la altura de guarnición. P01 permite interpretar la forma redondeada, pero no medir los radios ni confirmar las rampas. Hace falta una foto cercana del encuentro Obregón–Yáñez o una medida del sitio; puedes dejar aquí tu indicación. No se añadió una rampa supuesta.
 
 Las indicaciones se envían desde la celda del tablero web, con sesión de Amalaya. El Markdown es una copia de consulta.

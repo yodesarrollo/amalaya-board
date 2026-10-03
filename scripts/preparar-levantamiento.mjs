@@ -5,7 +5,8 @@ import { resolve, join } from 'node:path'
 const source=resolve(process.env.HIDALGO_SOURCE || '../Hidalgo3D')
 const target=resolve('public/levantamiento')
 await Promise.all(['dist/index.html','dist-world/world.js'].map(p=>access(join(source,p))))
-await rm(target,{recursive:true,force:true})
+// Refresh only generated assets. Evidence belongs to a reviewed checkpoint and must survive.
+for(const name of ['world.js','data','visor'])await rm(join(target,name),{recursive:true,force:true})
 await mkdir(target,{recursive:true})
 await cp(join(source,'dist-world/world.js'),join(target,'world.js'))
 const version=createHash('sha256').update(await readFile(join(target,'world.js'))).digest('hex').slice(0,12)

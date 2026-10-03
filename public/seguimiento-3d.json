@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-02T22:50:46.895Z",
+  "updatedAt": "2026-10-03T00:03:23.483277+00:00",
   "refreshSeconds": 30,
   "live": {
     "status": "waiting",
-    "phase": "OB-01 · checkpoint 1–4",
-    "title": "OB-01 · puntos 1–4 listos para revisar",
-    "detail": "Planta, calzada y las dos banquetas quedaron ajustadas en el modelo y enlazadas a cuatro capturas. La sección proviene de OSM e imagery y conserva incertidumbres; todavía no es un levantamiento catastral. Antes de pasar a otro edificio queda la revisión visual final en el tablero con WebGL.",
+    "phase": "OB-01 · revisión 1–4 y avance 5–8",
+    "title": "OB-01 · esquinas, identidad, volumen y fachada revisados",
+    "detail": "Modelo actualizado en el tablero y ocho capturas WebGL. Identificación cerrada; rampas en rojo por falta de referencia, volumen y fachada provisionales por medidas pendientes. Pulsa cada celda para ver evidencia o dejar una indicación.",
     "activeBlockId": "OB-YG",
     "activeBuildingId": "OB-01"
   },
@@ -83,7 +83,7 @@
         "max": 33
       },
       "estimateBasis": "3 frentes/estructuras conocidas más revisión compartida de la cuadra; frentes anónimos se agregan cuando se cuenten.",
-      "next": "Revisar el checkpoint visual OB-01 (puntos 1–4); después continuar solo con el siguiente frente autorizado.",
+      "next": "Revisar OB-01, puntos 5–8. Confirmar rampas, fondo y alturas antes de cerrar; no se inició otro edificio.",
       "sharedTasks": {
         "plan": "partial",
         "street": "partial",
@@ -95,13 +95,13 @@
         {
           "id": "OB-01",
           "name": "Cubierta de estacionamiento",
-          "confidence": "Estructura modelada; dimensiones y relación con el frente siguen provisionales.",
+          "confidence": "OB-01 identificado en P01/P02. Geometría revisada con render WebGL; dimensiones, fondo y rampas sin medición de campo.",
           "estimateHours": {
             "min": 3,
             "max": 6
           },
           "tasks": {
-            "identity": "partial",
+            "identity": "done",
             "volume": "partial",
             "facade": "partial",
             "finish": "partial",
@@ -110,14 +110,19 @@
             "plan": "done",
             "street": "done",
             "sidewalkA": "done",
-            "sidewalkB": "done"
+            "sidewalkB": "done",
+            "corners": "blocked"
           },
           "taskDetails": {
-            "plan": "LISTO · 30–60 min de referencia. Alineación OB-01/P01–P02 y separación calle-frente corregidas dentro de la incertidumbre previa ±5 m; no hay huella catastral medida. Evidencia 01 planta.",
-            "street": "LISTO · 45–75 min de referencia. Calzada Obregón con ancho OSM/imagery suavizado y encuentro de Yáñez libre, sin duplicar geometría. Evidencias 01 planta y 02 bloque.",
-            "sidewalkA": "LISTO · 30–45 min de referencia. Lado A sur: 1.2 m estimados ±0.8 m, continuidad y acceso oeste libres. Evidencias 01 planta y 03 vista de recorrido.",
-            "sidewalkB": "LISTO · 30–45 min de referencia. Lado B norte: 2.0 m estimados ±0.8 m, medido como sección independiente. Evidencias 01 planta y 04 inspección desde el borde norte.",
-            "qa": "PENDIENTE · 45–90 min de referencia para la pasada final en navegador WebGL normal y revisar integración con el tablero."
+            "plan": "REVISADO · alineación del frente y huella provisional; posición ±5 m. Captura 01 reemplazada por render WebGL del modelo. No hay polígono catastral.",
+            "street": "REVISADO · calzada existente conservada, sin duplicarla; se interrumpe el filete en la bocacalle. La captura 02 muestra P02 hacia el frente; consulta 01 y 05 para planta y cruce.",
+            "sidewalkA": "REVISADO · sur 1.2 m ±0.8 m. Guarnición enrasada con la banqueta y base bajo las juntas para evitar huecos. Captura 03 mira a lo largo del lado sur.",
+            "sidewalkB": "REVISADO · norte 2.0 m ±0.8 m, independiente del sur. Captura 04 mira a lo largo de esta banqueta. Cotas y sección siguen estimadas.",
+            "qa": "AVANCE · ocho capturas WebGL de los mismos edificios y calles usados en el tablero; estas vistas aíslan OB-01 y no representan todos los vecinos. Pendiente cierre de correspondencia métrica con fotos actuales. P02 de comparación: cámara 1.68 m, rumbo 185°.",
+            "corners": "AVANCE · retornos de esquina independientes (sur 0.45 m, norte 0.80 m, ambos provisionales); guarnición al nivel de la banqueta y bocacalle libre. Cierre pendiente por falta de detalle de rampas.",
+            "identity": "LISTO · OB-01 corresponde a la cubierta abierta de estacionamiento del frente sur de Obregón, vista en R-001 P01/P02. Nombre descriptivo; no hay razón comercial confirmada. Los anuncios del muro no identifican al propietario. Fecha de las panorámicas no verificada.",
+            "volume": "BASE REVISADA · 31.74 m de frente ±3 m; 8.8 m de fondo ±2 m; aleros 3.25/3.48 m ±0.5 m; cumbrera 4.05 m interpretada, no medida. Dos faldones y estructura abierta según P01. Falta confirmar fondo y alturas para cerrar.",
+            "facade": "BASE REVISADA · cerramiento blanco, franja abierta superior, cerchas a dos aguas y acceso oeste libre. Captura del modelo con materiales propios. La separación de apoyos y la proporción completa requieren referencia más cercana; no se copiaron anuncios ni fotos como texturas."
           },
           "evidence": {
             "plan": [
@@ -155,7 +160,49 @@
                 "title": "Planta de ambas banquetas",
                 "url": "levantamiento/evidence/OB-01/01-planta.png"
               }
+            ],
+            "corners": [
+              {
+                "title": "Punto 05 · esquinas · modelo 3D",
+                "url": "levantamiento/evidence/OB-01/05-esquinas.png"
+              }
+            ],
+            "identity": [
+              {
+                "title": "Punto 06 · identidad · modelo 3D",
+                "url": "levantamiento/evidence/OB-01/06-identidad.png"
+              },
+              {
+                "title": "Referencia existente P01 · fecha de captura sin verificar",
+                "url": "recorrido/G5UapkZfu_gIeRoydqjPBw.jpg"
+              },
+              {
+                "title": "Referencia existente P02 · fecha de captura sin verificar",
+                "url": "recorrido/XLuGJnj_XmtAuKd4eXeTDw.jpg"
+              }
+            ],
+            "volume": [
+              {
+                "title": "Punto 07 · volumen · modelo 3D",
+                "url": "levantamiento/evidence/OB-01/07-volumen.png"
+              }
+            ],
+            "facade": [
+              {
+                "title": "Punto 08 · fachada · modelo 3D",
+                "url": "levantamiento/evidence/OB-01/08-fachada.png"
+              },
+              {
+                "title": "Referencia P01 para estructura y acceso · consulta, no textura",
+                "url": "recorrido/G5UapkZfu_gIeRoydqjPBw.jpg"
+              }
             ]
+          },
+          "issues": {
+            "corners": {
+              "title": "Falta confirmar rampas y radios reales",
+              "detail": "Se corrigieron los retornos y la altura de guarnición. P01 permite interpretar la forma redondeada, pero no medir los radios ni confirmar las rampas. Hace falta una foto cercana del encuentro Obregón–Yáñez o una medida del sitio; puedes dejar aquí tu indicación. No se añadió una rampa supuesta."
+            }
           }
         },
         {

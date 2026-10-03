@@ -4,6 +4,7 @@ import 'maplibre-gl/dist/maplibre-gl.css'
 import { ArrowUpRight, ChevronLeft, ChevronRight, Maximize2, Share2, LocateFixed, Map, PersonStanding, Scan, X, Compass } from 'lucide-react'
 import { rumboRuta, mensajeRecorrido, urlPanorama, PLAN } from '../recorrido-state'
 import '../recorrido.css'
+import { VERSION_LEVANTAMIENTO } from '../levantamiento-version'
 const BASE = import.meta.env.BASE_URL
 const HOME = [-110.9542, 29.07615]
 const INITIAL = new URLSearchParams(location.search)
@@ -50,7 +51,7 @@ export default function RecorridoPortal({ board = false, espacios = EMPTY_SPACES
     const base = `${BASE}levantamiento/`
     ;(async()=>{
       try {
-        api = await import(/* @vite-ignore */ `${base}world.js`)
+        api = await import(/* @vite-ignore */ `${base}world.js?v=${VERSION_LEVANTAMIENTO}`)
         world = await api.createWorld(base, abort.signal)
         if (!alive) { api.disposeWorld(world); return }
         // Bundled OSM vector context keeps the map usable without a remote tile service.
@@ -168,7 +169,7 @@ export default function RecorridoPortal({ board = false, espacios = EMPTY_SPACES
     </div>
     <div className="tour-stage">
       <div ref={container} className="tour-map" style={{visibility:mode==='map'?'visible':'hidden'}}/>
-      {mode==='walk' && <iframe ref={frame} title="Caminar por Amalaya en 3D" className="tour-frame" src={`${BASE}levantamiento/visor/?embed=1&route=R-001&waypoint=05&clean=1`} allow="fullscreen" onLoad={()=>{setFrameReady(true);send()}}/>}
+      {mode==='walk' && <iframe ref={frame} title="Caminar por Amalaya en 3D" className="tour-frame" src={`${BASE}levantamiento/visor/?embed=1&route=R-001&waypoint=05&clean=1&v=${VERSION_LEVANTAMIENTO}`} allow="fullscreen" onLoad={()=>{setFrameReady(true);send()}}/>}
       {mode==='360' && point && !obs && <iframe ref={frame} title="Puntos 360 del recorrido Amalaya" className="tour-frame" src={urlPanorama(BASE,route,point)} allow="fullscreen" onLoad={()=>{setFrameReady(true);send()}}/>}
       {mode==='360' && obs && <div className="tour-empty"><Scan size={36}/><h2>{obs.id} · {obs.name}</h2><p>Esta observación conserva su ubicación y rumbo. Su referencia se consulta en Google Maps.</p><a href={streetUrl} target="_blank" rel="noreferrer">Abrir referencia 360 <ArrowUpRight size={16}/></a></div>}
       <div className="tour-stage-top"><span className="tour-chip"><span className="tour-live"/>{mode==='map'?'Vista de conjunto':mode==='walk'?'A la altura de tus ojos':'La calle en 360°'}</span><div className="tour-tools">{mode==='map' && <button className="tour-square" aria-label="Volver al punto seleccionado" onClick={()=>map.current?.easeTo({center:point?[point.lng,point.lat]:HOME,zoom:18,pitch:58,bearing:heading,duration:600})}><LocateFixed size={17}/></button>}<button className="tour-square" aria-label="Pantalla completa" onClick={()=>document.fullscreenElement?document.exitFullscreen():(board?root.current.closest('[data-territorio-board]'):root.current).requestFullscreen?.().catch(()=>{})}><Maximize2 size={17}/></button></div></div>
