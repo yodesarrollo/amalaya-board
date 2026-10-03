@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-03T09:09:00.364969+00:00",
+  "updatedAt": "2026-10-03T09:19:26.565922+00:00",
   "refreshSeconds": 30,
   "live": {
-    "status": "active",
-    "phase": "OB-02 · punto 11 en proceso",
-    "title": "Comparación desde P03",
-    "detail": "Ajuste visual del 10 entregado; ubicaciones de mobiliario pendientes. Ahora vistas comparables y captura limpia del 11.",
+    "status": "blocked",
+    "phase": "OB-02 · revisión 8–11 entregada",
+    "title": "Capturas al día · faltan referencias de exactitud",
+    "detail": "Fachada visual, acabados, inventario/bolardo y comparación técnica entregados. Los rojos detallan medidas, anclas y orientación del panorama que faltan para cerrar el edificio.",
     "activeBlockId": "OB-YG",
     "activeBuildingId": "OB-02"
   },
@@ -83,7 +83,7 @@
         "max": 33
       },
       "estimateBasis": "3 frentes/estructuras conocidas más revisión compartida de la cuadra; frentes anónimos se agregan cuando se cuenten.",
-      "next": "OB-02 · acabados 9 activos; fachada visual corregida y medidas pendientes, después 10 y 11.",
+      "next": "OB-02 · cerrar medidas y ubicaciones con levantamiento identificado, verificar norte del panorama P03; no iniciar otro edificio sin selección del usuario.",
       "sharedTasks": {
         "plan": "partial",
         "street": "partial",
@@ -263,7 +263,7 @@
             "facade": "blocked",
             "finish": "done",
             "equipment": "blocked",
-            "qa": "active",
+            "qa": "blocked",
             "plan": "done",
             "street": "done",
             "sidewalkA": "done",
@@ -276,7 +276,7 @@
             "facade": "REVISADO · corregidos cinco a siete vanos al inspeccionar la unión del panorama P03 y contrastar P04; ocho pilastras, alternancia estrecho/ancho y portal central mayor. Añadidos zócalo continuo de balaustrada y volutas de capiteles. Anchuras/ejes aún estimados dentro del frente 16.61 ±2 m; falta escala para cierre dimensional. Capturas 22–24; 105 pruebas correctas.",
             "finish": "HECHO · 90 juntas verticales escalonadas sobre paños sólidos, piedra gris fría, remates claros y hierro pintado oscuro. Anillos dentro de vanos estrechos y ocho piezas de marco en el portal; patrones interpretados, no restitución exacta. PBR procedural original albedo/normal/ORM, UV de 1 m; luz y huella sin cambios. Capturas 25–27 inspeccionadas; 106 pruebas correctas. Las medidas se verifican por separado en fachada/volumen.",
             "equipment": "REVISADO · inventario de bolardos, bancas, papeleras, farolas, árboles y elementos temporales en P03/P04. Corregido un bolardo rojo por pieza delgada gris oscura con pie/collar/capuchón; ancla previa conservada, medidas interpretadas. Apoyo sobre losa y colisión del objeto visibles comprobados; paso central libre. No se añadieron posiciones, vehículos, cables ni árboles. Capturas 28–30, 107 pruebas correctas. Falta ubicar y medir con respaldo el resto del mobiliario.",
-            "qa": "EN PROCESO · nuevas vistas de planta, bloque y peatón desde P03 y el mismo azimut; sustituir la revisión pendiente de la etiqueta con una captura limpia, conservando el historial. Comprobar el rumbo de consulta del panorama por separado del rumbo de marcha.",
+            "qa": "REVISADO · planta32, bloque33 y peatón34 desde P03 con el mismo X/Z y rumbo184.7587° hacia el frente alineado actual. Alturas/proyecciones declaradas; bloque12 m y peatón1.68 m, VFOV85°. Captura limpia35 desde la cámara de bloque resuelve la etiqueta; la imagen03 histórica permanece. Consulta original P03 con el mismo yaw/FOV/pitch revela que su portal aparece al lado mientras el modelo lo centra: falta registro del norte del panorama. 108 pruebas y verificaciones correctas; comparación técnica entregada, registro fotográfico absoluto BLOQUEADO.",
             "plan": "HECHO · corregido el extremo oriental 1.46 m para alinear el frente con OB-01 y el eje OB-W, conservando estación, colindancia y P03/P04. Extremos/centro y collider comprobados. Revisión del modelo bajo posición ±5 m; fondo y límites catastrales siguen provisionales.",
             "street": "HECHO · revisado de nuevo después del punto 5: ancho estimado 5.60 ±1.10 m, bordes y juntas continuos y una sola calzada frente a OB-02. Las dos pruebas focalizadas pasaron sobre el modelo vigente. No se encontró una corrección pendiente ni se cambió la geometría. La captura 06 conserva su checkpoint histórico; planta 15 y detalle 16 muestran el estado vigente. Rampas mantienen su bloqueo independiente.",
             "sidewalkA": "HECHO · completada la franja sur de losas de 1.20 ±0.80 m, juntas con base continua y encuentro provisional hasta la fachada. Se retiraron losas sur duplicadas y el bordillo acompaña la cota de las losas. El cuerpo del vaquero tiene paso libre tras ajustar la caja de colisión girada del edificio. Revisión del modelo, no certificación métrica ni cierre de rampas.",
@@ -408,20 +408,40 @@
             ],
             "qa": [
               {
-                "title": "P03 · conjunto integrado, ortográfica; el vehículo compartido oculta vanos",
-                "url": "levantamiento/evidence/OB-02/02-conjunto-p03.png"
+                "title": "Avance 11 · misma toma de Inicio",
+                "url": "levantamiento/evidence/OB-02/31-avance-punto11.png"
               },
               {
-                "title": "P03 · fachada aislada, misma ancla y cámara ortográfica",
+                "title": "Planta · P03, parte superior orientada por rumbo184.7587°",
+                "url": "levantamiento/evidence/OB-02/32-comparacion-planta.png"
+              },
+              {
+                "title": "Bloque · misma ancla/rumbo, altura12 m",
+                "url": "levantamiento/evidence/OB-02/33-comparacion-bloque.png"
+              },
+              {
+                "title": "Peatón · misma ancla/rumbo, altura1.68 m",
+                "url": "levantamiento/evidence/OB-02/34-comparacion-peaton.png"
+              },
+              {
+                "title": "Edificio aislado limpio · misma cámara de bloque",
+                "url": "levantamiento/evidence/OB-02/35-edificio-limpio-p03.png"
+              },
+              {
+                "title": "Resultados y discrepancias de comparación",
+                "url": "levantamiento/evidence/OB-02/qa-record.json"
+              },
+              {
+                "title": "Cámaras y consulta original reproducible",
+                "url": "levantamiento/evidence/OB-02/qa-manifest.json"
+              },
+              {
+                "title": "Histórico03 · se conserva, etiqueta ya resuelta en35",
                 "url": "levantamiento/evidence/OB-02/03-edificio-aislado-p03.png"
               },
               {
-                "title": "P03 · detalle peatonal 58°; no coincide aún con heading verificado del 360",
-                "url": "levantamiento/evidence/OB-02/01-fachada-p03.png"
-              },
-              {
-                "title": "P04 · vista oblicua del retorno provisional",
-                "url": "levantamiento/evidence/OB-02/04-retorno-oblicuo-p04.png"
+                "title": "P03 original · consulta, norte sin verificar",
+                "url": "recorrido/Apyr0uKeZr_XWmfLfLeBjQ.jpg"
               }
             ],
             "plan": [
@@ -505,8 +525,8 @@
               "detail": "La forma visible ya fue corregida: siete vanos y ocho pilastras con portal mayor, zócalo y capiteles. Sus anchuras y separaciones siguen interpretadas; P03/P04 no proporcionan escala métrica. Para verificar proporciones: vista frontal identificada con escala o medidas de cada vano, ejes de pilastras y alturas referidas al mismo suelo, indicando unidades, método, fecha y error. No es necesario volver a contar los vanos; la incertidumbre está en sus medidas."
             },
             "qa": {
-              "title": "QA requiere rumbo del 360 y recaptura de una etiqueta",
-              "detail": "El JSON no incluye headingDegrees: P03→P04 es ≈84° de marcha y las cámaras actuales miran al frente estimado (P03 ≈186.2°, P04 ≈249.6°), así que no verifican la orientación de Street View. Además, la tarjeta de 03-edificio-aislado-p03.png tapa parte alta de cornisa/balaustrada y del primer vano. La recaptura falló al esperar document.body.dataset.ready=true durante 20 s; otro intento terminó a los 10 s con net::ERR_ABORTED en page.goto(waitUntil=commit). Se conserva la imagen anterior. Para comparar visualmente hace falta documentar el heading del panorama y volver a capturar con la etiqueta en el área libre inferior."
+              "title": "Falta verificar el norte del panorama P03",
+              "detail": "Ya resuelto: tres vistas desde la misma ancla/azimut y captura nueva35 sin etiquetas sobre geometría. Consultamos el JPG original de P03 con base/roll del visor existente, yaw184.7587°, VFOV85° y pitch0. El portal aparece hacia el borde izquierdo, frente al portal centrado del modelo. El heading de marcha ≈84° no es la orientación del panorama. Para cerrar: dirección de consulta identificada de P03 con panorama/heading, o calibración de norte documentada mediante hitos ubicados y margen de error. El rumbo del modelo deriva de un frente todavía estimado (posición±5 m); no se deforma para compensar la cámara. Ornamentos y fondo mantienen sus límites independientes. Puedes indicar aquí la referencia disponible."
             },
             "corners": {
               "title": "Falta confirmar los rebajes frente a OB-02",
@@ -527,10 +547,10 @@
               "worldSha256": "4bdf262926cfd58d9d7dabf110a757e748e982797af2c4879e49265fad6d1fb3"
             },
             "current": {
-              "url": "levantamiento/evidence/OB-02/28-avance-punto10.png",
-              "title": "Avance 10 · bolardo y equipamiento inventariado",
-              "label": "Avance · 10",
-              "capturedAt": "2026-10-03T09:06:58.126Z",
+              "url": "levantamiento/evidence/OB-02/31-avance-punto11.png",
+              "title": "Avance 11 · comparación técnica y captura limpia",
+              "label": "Avance · 11",
+              "capturedAt": "2026-10-03T09:16:43.986Z",
               "worldSha256": "fb652de887d19482a4379645cb0db07091ba50b073e04eecd4b94855a6fdbd69"
             }
           }

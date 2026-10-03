@@ -1,0 +1,318 @@
+{
+  "building": "OB-02",
+  "task": "qa",
+  "capturedAt": "2026-10-03T09:16:43.986Z",
+  "worldSha256": "fb652de887d19482a4379645cb0db07091ba50b073e04eecd4b94855a6fdbd69",
+  "render": "Three.js production builders through WebGLRenderer (SwiftShader)",
+  "limits": "Not site photography or cadastral survey. Initial visual tracking begins before point 3; earlier captures retain their historical revision. Same P03 horizontal anchor and azimuth across plan/block/pedestrian; height, pitch and projection differ. Original panorama consulted with existing viewer transform and matching perspective FOV/pitch; absolute panorama north unverified. No building deformation to disguise camera discrepancy.",
+  "captures": [
+    {
+      "file": "31-avance-punto11.png",
+      "building": "OB-02",
+      "view": "progress",
+      "cameraId": "OB-02-fixed-v1",
+      "cameraPosition": [
+        -49.2,
+        17,
+        2.2
+      ],
+      "cameraTarget": [
+        -45.95,
+        2.3,
+        31
+      ],
+      "cameraUp": [
+        0,
+        1,
+        0
+      ],
+      "projection": {
+        "kind": "orthographic",
+        "left": -15,
+        "right": 15,
+        "top": 9.375,
+        "bottom": -9.375
+      },
+      "viewport": [
+        1280,
+        800
+      ],
+      "textureSize": 512,
+      "source": "production builders: OB-01 + OB-02 + streetContinuation + routeStreetscape; local audit subset",
+      "cameraFootwayHeight": null,
+      "sidewalkSide": "south",
+      "sidewalkWidthMeters": 1.2,
+      "sidewalkUncertaintyMeters": 0.8,
+      "calls": 511,
+      "triangles": 46194,
+      "renderer": "WebGL 2.0 (OpenGL ES 3.0 Chromium)"
+    },
+    {
+      "file": "32-comparacion-planta.png",
+      "building": "OB-02",
+      "view": "qa-plan",
+      "cameraId": "OB-02-qa-plan-v1",
+      "cameraPosition": [
+        -44.88695999966126,
+        70,
+        22.866794999973905
+      ],
+      "cameraTarget": [
+        -44.88695999966126,
+        0,
+        22.866794999973905
+      ],
+      "cameraUp": [
+        -0.08295951806697724,
+        0,
+        0.9965529179938689
+      ],
+      "projection": {
+        "kind": "orthographic",
+        "left": -18,
+        "right": 18,
+        "top": 11.25,
+        "bottom": -11.25
+      },
+      "viewport": [
+        1280,
+        800
+      ],
+      "textureSize": 512,
+      "source": "production builders: OB-01 + OB-02 + streetContinuation + routeStreetscape; local audit subset",
+      "cameraFootwayHeight": null,
+      "sidewalkSide": "south",
+      "sidewalkWidthMeters": 1.2,
+      "sidewalkUncertaintyMeters": 0.8,
+      "calls": 503,
+      "triangles": 46098,
+      "renderer": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+      "comparison": {
+        "point": "R-001-P03",
+        "lat": 29.0759089,
+        "lon": -110.9551769,
+        "azimuth": 184.75869938893592,
+        "headingBasis": "toward midpoint of aligned estimated frontage; not verified panorama north",
+        "heightMeters": 70,
+        "pitchDegrees": 0,
+        "planUpIsAzimuth": true
+      },
+      "isolated": false,
+      "overlayGeometryOcclusion": false
+    },
+    {
+      "file": "33-comparacion-bloque.png",
+      "building": "OB-02",
+      "view": "qa-block",
+      "cameraId": "OB-02-qa-block-v1",
+      "cameraPosition": [
+        -44.88695999966126,
+        12,
+        22.866794999973905
+      ],
+      "cameraTarget": [
+        -45.64174414155966,
+        4.175528774063432,
+        31.93365503714385
+      ],
+      "cameraUp": [
+        0,
+        1,
+        0
+      ],
+      "projection": {
+        "kind": "perspective",
+        "fov": 85
+      },
+      "viewport": [
+        1280,
+        800
+      ],
+      "textureSize": 512,
+      "source": "production builders: OB-01 + OB-02 + streetContinuation + routeStreetscape; local audit subset",
+      "cameraFootwayHeight": null,
+      "sidewalkSide": "south",
+      "sidewalkWidthMeters": 1.2,
+      "sidewalkUncertaintyMeters": 0.8,
+      "calls": 541,
+      "triangles": 46290,
+      "renderer": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+      "comparison": {
+        "point": "R-001-P03",
+        "lat": 29.0759089,
+        "lon": -110.9551769,
+        "azimuth": 184.75869938893592,
+        "headingBasis": "toward midpoint of aligned estimated frontage; not verified panorama north",
+        "heightMeters": 12,
+        "pitchDegrees": -40.69553103949201,
+        "planUpIsAzimuth": false
+      },
+      "isolated": false,
+      "overlayGeometryOcclusion": false
+    },
+    {
+      "file": "34-comparacion-peaton.png",
+      "building": "OB-02",
+      "view": "qa-pedestrian",
+      "cameraId": "OB-02-qa-pedestrian-v1",
+      "cameraPosition": [
+        -44.88695999966126,
+        1.68,
+        22.866794999973905
+      ],
+      "cameraTarget": [
+        -45.882474216464985,
+        1.68,
+        34.82543001590034
+      ],
+      "cameraUp": [
+        0,
+        1,
+        0
+      ],
+      "projection": {
+        "kind": "perspective",
+        "fov": 85
+      },
+      "viewport": [
+        1280,
+        800
+      ],
+      "textureSize": 512,
+      "source": "production builders: OB-01 + OB-02 + streetContinuation + routeStreetscape; local audit subset",
+      "cameraFootwayHeight": null,
+      "sidewalkSide": "south",
+      "sidewalkWidthMeters": 1.2,
+      "sidewalkUncertaintyMeters": 0.8,
+      "calls": 501,
+      "triangles": 45170,
+      "renderer": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+      "comparison": {
+        "point": "R-001-P03",
+        "lat": 29.0759089,
+        "lon": -110.9551769,
+        "azimuth": 184.75869938893592,
+        "headingBasis": "toward midpoint of aligned estimated frontage; not verified panorama north",
+        "heightMeters": 1.68,
+        "pitchDegrees": 0,
+        "planUpIsAzimuth": false
+      },
+      "isolated": false,
+      "overlayGeometryOcclusion": false
+    },
+    {
+      "file": "35-edificio-limpio-p03.png",
+      "building": "OB-02",
+      "view": "qa-isolated",
+      "cameraId": "OB-02-qa-isolated-v1",
+      "cameraPosition": [
+        -44.88695999966126,
+        12,
+        22.866794999973905
+      ],
+      "cameraTarget": [
+        -45.64174414155966,
+        4.175528774063432,
+        31.93365503714385
+      ],
+      "cameraUp": [
+        0,
+        1,
+        0
+      ],
+      "projection": {
+        "kind": "perspective",
+        "fov": 85
+      },
+      "viewport": [
+        1280,
+        800
+      ],
+      "textureSize": 512,
+      "source": "production builder: OB-02 isolated on neutral ground; identical camera to qa-block",
+      "cameraFootwayHeight": null,
+      "sidewalkSide": "south",
+      "sidewalkWidthMeters": 1.2,
+      "sidewalkUncertaintyMeters": 0.8,
+      "calls": 444,
+      "triangles": 25037,
+      "renderer": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+      "comparison": {
+        "point": "R-001-P03",
+        "lat": 29.0759089,
+        "lon": -110.9551769,
+        "azimuth": 184.75869938893592,
+        "headingBasis": "toward midpoint of aligned estimated frontage; not verified panorama north",
+        "heightMeters": 12,
+        "pitchDegrees": -40.69553103949201,
+        "planUpIsAzimuth": false
+      },
+      "isolated": true,
+      "overlayGeometryOcclusion": false
+    }
+  ],
+  "referenceConsultation": {
+    "building": "OB-02",
+    "view": "qa-reference",
+    "cameraId": "OB-02-qa-reference-v1",
+    "cameraPosition": [
+      -44.88695999966126,
+      1.68,
+      22.866794999973905
+    ],
+    "cameraTarget": [
+      -45.882474216464985,
+      1.68,
+      34.82543001590034
+    ],
+    "cameraUp": [
+      0,
+      1,
+      0
+    ],
+    "projection": {
+      "kind": "perspective",
+      "fov": 85
+    },
+    "viewport": [
+      1280,
+      800
+    ],
+    "textureSize": 512,
+    "source": "original panorama consultation sphere; existing 360 viewer base/roll transform; no photo applied to building geometry",
+    "cameraFootwayHeight": null,
+    "sidewalkSide": "south",
+    "sidewalkWidthMeters": 1.2,
+    "sidewalkUncertaintyMeters": 0.8,
+    "calls": 1,
+    "triangles": 6016,
+    "renderer": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+    "comparison": {
+      "point": "R-001-P03",
+      "lat": 29.0759089,
+      "lon": -110.9551769,
+      "azimuth": 184.75869938893592,
+      "headingBasis": "toward midpoint of aligned estimated frontage; not verified panorama north",
+      "heightMeters": 1.68,
+      "pitchDegrees": 0,
+      "planUpIsAzimuth": false
+    },
+    "isolated": false,
+    "overlayGeometryOcclusion": false,
+    "reference": {
+      "imagePath": "recorrido/Apyr0uKeZr_XWmfLfLeBjQ.jpg",
+      "imageSha256": "647926706b3597bedb0f32b615fd22c1225116cfc4b93a8aa14343fde0d50802",
+      "roll": {
+        "roll": 0.1596,
+        "eje": 2.1296,
+        "alto": 0.0528
+      },
+      "baseRotationYDegrees": -90,
+      "captureHeadingDegrees": null,
+      "captureDate": null,
+      "northRegistration": "unverified; existing viewer convention retained",
+      "verticalFov": 85,
+      "pitchDegrees": 0
+    }
+  }
+}

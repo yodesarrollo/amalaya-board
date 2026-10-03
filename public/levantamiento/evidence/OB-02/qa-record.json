@@ -1,0 +1,70 @@
+{
+  "building": "OB-02",
+  "task": "qa",
+  "reviewedAt": "2026-10-03T09:18:33.333414+00:00",
+  "worldSha256": "fb652de887d19482a4379645cb0db07091ba50b073e04eecd4b94855a6fdbd69",
+  "anchor": {
+    "point": "R-001-P03",
+    "lat": 29.0759089,
+    "lon": -110.9551769,
+    "azimuth": 184.75869938893592,
+    "headingBasis": "toward midpoint of aligned estimated frontage; not verified panorama north",
+    "heightMeters": 1.68,
+    "pitchDegrees": 0,
+    "planUpIsAzimuth": false
+  },
+  "referenceConsultation": {
+    "imagePath": "recorrido/Apyr0uKeZr_XWmfLfLeBjQ.jpg",
+    "imageSha256": "647926706b3597bedb0f32b615fd22c1225116cfc4b93a8aa14343fde0d50802",
+    "roll": {
+      "roll": 0.1596,
+      "eje": 2.1296,
+      "alto": 0.0528
+    },
+    "baseRotationYDegrees": -90,
+    "captureHeadingDegrees": null,
+    "captureDate": null,
+    "northRegistration": "unverified; existing viewer convention retained",
+    "verticalFov": 85,
+    "pitchDegrees": 0
+  },
+  "resolved": [
+    "overlay obstruction",
+    "same horizontal anchor and azimuth in plan/block/pedestrian",
+    "camera uses aligned frontage, not historical uncorrected midpoint",
+    "clean isolated view uses identical block camera",
+    "original panorama consulted with matching vertical FOV and pitch"
+  ],
+  "open": [
+    "absolute panorama north registration"
+  ],
+  "discrepancies": [
+    {
+      "id": "Q01",
+      "status": "unresolved",
+      "finding": "At P03/184.7587 degrees, VFOV85/pitch0, the model centres the portal while the original panorama under the existing viewer transform places the portal toward the left edge and shows the western end near the middle. Equal numerical yaw does not verify geographic image alignment.",
+      "action": "obtain the identified panorama consultation heading/north registration or documented landmark calibration; do not distort the building to absorb the camera error"
+    },
+    {
+      "id": "Q02",
+      "status": "registered",
+      "finding": "The original ironwork has denser scrolls and rectangular motifs than the interpreted grilles. Stone courses, balusters and capital profiles are visual approximations.",
+      "action": "refine the observed detail after geometry/camera scale is verified; current finishes do not claim exact ornamental restitution"
+    },
+    {
+      "id": "Q03",
+      "status": "registered",
+      "finding": "The model roof and rear depth are interpreted, whereas the photographs mainly show the front and partially occluded plaza.",
+      "action": "keep the independent volume and equipment issues visible; require identified roof/back and fixture anchors"
+    },
+    {
+      "id": "Q04",
+      "status": "declared",
+      "finding": "A shared provisional context vehicle occludes the lower right of pedestrian frame34. Block33 and isolated35 give complementary views; isolated35 omits streets and neighbours by design.",
+      "action": "keep context in production and declare occlusion rather than mislabel isolated geometry as the entire city"
+    }
+  ],
+  "scope": "Technical comparison and clean frames delivered. Absolute photographic registration remains unverified; not site survey or approval of likeness. Heights12/1.68 m are camera presets, not panorama capture metadata. Plan screen-up follows184.7587 degrees, not north.",
+  "historicalEvidence": "03-edificio-aislado-p03.png remains immutable; new clean frame35 resolves the label issue without rewriting prior screenshots.",
+  "publication": "Only model renders and reference metadata published. Original panorama consultation frame remains private; links use existing original JPEG."
+}

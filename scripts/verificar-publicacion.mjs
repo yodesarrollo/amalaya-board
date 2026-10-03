@@ -8,6 +8,7 @@ const ob02EvidenceFiles=new Set(['01-fachada-p03.png','02-conjunto-p03.png','03-
 for(const file of ['18-avance-punto07.png','19-envolvente-antes.png','20-envolvente-despues.png','21-cubierta-planta.png','volume-before-manifest.json','volume-manifest.json'])ob02EvidenceFiles.add(file)
 for(const file of ['22-avance-punto08.png','23-fachada-siete-vanos.png','24-coronamiento.png','facade-manifest.json','facade-record.json'])ob02EvidenceFiles.add(file)
 for(const file of ['25-avance-punto09.png','26-materiales-detalle.png','27-fachada-acabados.png','finish-manifest.json'])ob02EvidenceFiles.add(file)
+for(const file of ['31-avance-punto11.png','32-comparacion-planta.png','33-comparacion-bloque.png','34-comparacion-peaton.png','35-edificio-limpio-p03.png','qa-manifest.json','qa-record.json'])ob02EvidenceFiles.add(file)
 for(const file of ['28-avance-punto10.png','29-equipamiento-planta.png','30-bolardo-detalle.png','equipment-manifest.json','equipment-record.json'])ob02EvidenceFiles.add(file)
 async function check(dir){
   for(const item of await readdir(dir,{withFileTypes:true})){
@@ -248,5 +249,38 @@ for(const state of equipment.captures){
 assert(equipmentRecord.inventory.length===6&&equipmentRecord.openRequirements.length===3,'Falta inventario o pendientes de localización.')
 for(const ref of equipmentRecord.references)assert(record.references.some(r=>r.panoramaId===ref.panoramaId&&r.imageSha256===ref.imageSha256),'Inventario sin referencias originales.')
 assert(ob02Tracking.tasks.equipment==='blocked'&&ob02Tracking.issues.equipment?.detail,'No se cierra ubicación exacta sin anclas verificadas.')
-assert(ob02Tracking.visualProgress.current.url===`levantamiento/evidence/OB-02/${progressE.file}`&&ob02Tracking.visualProgress.current.worldSha256===currentWorldHash,'La cabecera debe mostrar Avance 10 vigente.')
+
 console.log('OB-02: inventario documentado, bolardo apoyado y Avance 10 desde cámara fija; posiciones pendientes visibles.')
+
+const qa=JSON.parse(await readFile(`${root}/evidence/OB-02/qa-manifest.json`,'utf8'))
+const qaRecord=JSON.parse(await readFile(`${root}/evidence/OB-02/qa-record.json`,'utf8'))
+assert(qa.building==='OB-02'&&qa.task==='qa'&&qa.worldSha256===currentWorldHash,'QA debe auditar el modelo publicado.')
+assert(qa.captures?.length===5&&['progress','qa-plan','qa-block','qa-pedestrian','qa-isolated'].every(v=>qa.captures.some(s=>s.view===v)),'Faltan las cinco capturas de QA.')
+const progressQ=qa.captures.find(s=>s.view==='progress')
+for(const field of ['cameraId','cameraPosition','cameraTarget','cameraUp','projection','viewport','textureSize'])assert.deepEqual(progressQ[field],initialView[field],`La toma de inicio/avance 11 cambió: ${field}`)
+const qaViews=qa.captures.filter(s=>s.comparison),qaPed=qaViews.find(s=>s.view==='qa-pedestrian'),qaBlock=qaViews.find(s=>s.view==='qa-block'),qaIsolated=qaViews.find(s=>s.view==='qa-isolated')
+const aligned=JSON.parse(await readFile(`${root}/evidence/OB-02/plan-manifest.json`,'utf8'))
+const p03=normalized.points.find(p=>p.order===3)
+const qaHeading=(Math.atan2(((aligned.frontStart.lon+aligned.frontEnd.lon)/2-p03.lng)*97200,((aligned.frontStart.lat+aligned.frontEnd.lat)/2-p03.lat)*110950)*180/Math.PI+360)%360
+for(const s of qaViews){
+ assert(s.comparison.point==='R-001-P03'&&s.comparison.lat===p03.lat&&s.comparison.lon===p03.lng,'Ancla de comparación incorrecta.')
+ assert(Math.abs(s.comparison.azimuth-qaHeading)<1e-6&&s.cameraPosition[0]===qaPed.cameraPosition[0]&&s.cameraPosition[2]===qaPed.cameraPosition[2],'Las vistas deben compartir ancla X/Z y rumbo del frente alineado.')
+ assert(s.overlayGeometryOcclusion===false,'La nueva comparación no lleva etiquetas sobre geometría.')
+}
+assert(qaPed.cameraPosition[1]===1.68&&qaBlock.cameraPosition[1]===12&&qaPed.projection.fov===85&&qaBlock.projection.fov===85,'Alturas/FOV de comparación incorrectos.')
+assert(qaViews.find(s=>s.view==='qa-plan').comparison.planUpIsAzimuth===true,'La planta orienta la parte superior por el azimut, no afirma norte arriba.')
+for(const field of ['cameraPosition','cameraTarget','projection','cameraUp'])assert.deepEqual(qaIsolated[field],qaBlock[field],'Vista limpia debe usar la cámara de bloque.')
+const consultation=qa.referenceConsultation
+assert(consultation.triangles>0&&consultation.calls>0&&consultation.renderer.includes('WebGL 2.0'),'La referencia debe consultarse en render real.')
+assert.deepEqual(consultation.cameraPosition,qaPed.cameraPosition);assert.deepEqual(consultation.projection,qaPed.projection)
+assert(consultation.reference.captureHeadingDegrees===null&&consultation.reference.captureDate===null&&consultation.reference.northRegistration.includes('unverified'),'No se inventa el norte o fecha del panorama.')
+assert(consultation.reference.imageSha256===record.references.find(r=>r.order===3).imageSha256,'La consulta usa el JPG original de P03.')
+for(const s of qa.captures){
+ assert(s.triangles>0&&s.calls>0&&s.renderer?.includes('WebGL 2.0'),'QA requiere renders reales.')
+ const bytes=await readFile(`${root}/evidence/OB-02/${s.file}`)
+ assert(ob02EvidenceFiles.has(s.file)&&bytes.subarray(0,8).equals(Buffer.from([137,80,78,71,13,10,26,10]))&&bytes.readUInt32BE(16)===1280&&bytes.readUInt32BE(20)===800,`PNG de QA inválido: ${s.file}`)
+}
+assert(qaRecord.resolved.includes('overlay obstruction')&&qaRecord.open.includes('absolute panorama north registration')&&qaRecord.discrepancies.length>=3,'Faltan resultados reales y discrepancias del QA.')
+assert(ob02Tracking.tasks.qa==='blocked'&&ob02Tracking.issues.qa?.detail,'La orientación no verificada sigue siendo un problema explícito.')
+assert(ob02Tracking.visualProgress.current.url===`levantamiento/evidence/OB-02/${progressQ.file}`&&ob02Tracking.visualProgress.current.worldSha256===currentWorldHash,'La cabecera debe mostrar Avance 11 vigente.')
+console.log('OB-02: planta/bloque/peatón desde P03, captura limpia y consulta original reproducible; norte de panorama pendiente.')
