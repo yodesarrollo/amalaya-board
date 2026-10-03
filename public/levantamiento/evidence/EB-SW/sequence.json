@@ -8,8 +8,239 @@
       "task": "plan",
       "state": "active",
       "at": "2026-10-03T16:28:54.168878+00:00"
+    },
+    {
+      "order": 1,
+      "task": "plan",
+      "state": "blocked",
+      "at": "2026-10-03T16:37:29.992701+00:00"
+    },
+    {
+      "order": 2,
+      "task": "street",
+      "state": "active",
+      "at": "2026-10-03T16:37:30.021955+00:00"
+    },
+    {
+      "order": 2,
+      "task": "street",
+      "state": "done",
+      "at": "2026-10-03T16:40:55.626709+00:00"
+    },
+    {
+      "order": 3,
+      "task": "sidewalkA",
+      "state": "active",
+      "at": "2026-10-03T16:40:55.655749+00:00"
+    },
+    {
+      "order": 3,
+      "task": "sidewalkA",
+      "state": "blocked",
+      "at": "2026-10-03T16:43:15.967538+00:00"
+    },
+    {
+      "order": 4,
+      "task": "sidewalkB",
+      "state": "active",
+      "at": "2026-10-03T16:43:15.994238+00:00"
+    },
+    {
+      "order": 4,
+      "task": "sidewalkB",
+      "state": "blocked",
+      "at": "2026-10-03T16:44:09.903927+00:00"
+    },
+    {
+      "order": 5,
+      "task": "corners",
+      "state": "active",
+      "at": "2026-10-03T16:44:09.930696+00:00"
+    },
+    {
+      "order": 5,
+      "task": "corners",
+      "state": "blocked",
+      "at": "2026-10-03T16:44:57.943690+00:00"
+    },
+    {
+      "order": 6,
+      "task": "identity",
+      "state": "active",
+      "at": "2026-10-03T16:44:57.970602+00:00"
+    },
+    {
+      "order": 6,
+      "task": "identity",
+      "state": "done",
+      "at": "2026-10-03T16:44:58.021271+00:00"
+    },
+    {
+      "order": 7,
+      "task": "volume",
+      "state": "active",
+      "at": "2026-10-03T16:44:58.047513+00:00"
+    },
+    {
+      "order": 7,
+      "task": "volume",
+      "state": "blocked",
+      "at": "2026-10-03T16:45:59.621035+00:00"
+    },
+    {
+      "order": 8,
+      "task": "facade",
+      "state": "active",
+      "at": "2026-10-03T16:45:59.649088+00:00"
+    },
+    {
+      "order": 8,
+      "task": "facade",
+      "state": "blocked",
+      "at": "2026-10-03T16:48:03.059155+00:00"
+    },
+    {
+      "order": 9,
+      "task": "finish",
+      "state": "active",
+      "at": "2026-10-03T16:48:03.089114+00:00"
+    },
+    {
+      "order": 9,
+      "task": "finish",
+      "state": "done",
+      "at": "2026-10-03T16:49:27.104455+00:00"
+    },
+    {
+      "order": 10,
+      "task": "equipment",
+      "state": "active",
+      "at": "2026-10-03T16:49:27.131382+00:00"
+    },
+    {
+      "order": 10,
+      "task": "equipment",
+      "state": "blocked",
+      "at": "2026-10-03T16:49:27.181798+00:00"
+    },
+    {
+      "order": 11,
+      "task": "qa",
+      "state": "active",
+      "at": "2026-10-03T16:49:27.207957+00:00"
+    },
+    {
+      "order": 11,
+      "task": "qa",
+      "state": "blocked",
+      "at": "2026-10-03T16:54:31.811374+00:00"
     }
   ],
-  "steps": [],
-  "state": "active"
+  "steps": [
+    {
+      "order": 1,
+      "task": "plan",
+      "state": "blocked",
+      "result": "Límites prediales y escala sin verificar. P08/P09 identifican los frentes azul y rojo; P10 muestra El Colegio amarillo contiguo. Los POI no delimitan parcelas. Falta ubicar extremos y fondos con escala para sustituir las huellas heredadas.",
+      "at": "2026-10-03T16:37:29.992701+00:00"
+    },
+    {
+      "order": 2,
+      "task": "street",
+      "state": "done",
+      "result": "Perfil técnico revisado: EastBlock es el único constructor vial; asfalto 5.61 m y transiciones continuas comprobadas. Fuente aérea heredada, incertidumbre de bordes ±0.56 m; no es una medición nueva de campo.",
+      "at": "2026-10-03T16:40:55.626709+00:00"
+    },
+    {
+      "order": 3,
+      "task": "sidewalkA",
+      "state": "blocked",
+      "result": "Base bajo juntas del lado sur reparada y comprobada sin invadir asfalto. El paso de 1.10 m sigue siendo provisional: faltan sección medida, obstáculos y continuidad en los extremos; después debe ajustarse el perfil y verificarse el recorrido.",
+      "at": "2026-10-03T16:43:15.967538+00:00"
+    },
+    {
+      "order": 4,
+      "task": "sidewalkB",
+      "state": "blocked",
+      "result": "Base bajo juntas del norte reparada, preservando la reparación sur y el asfalto. Los 2.35 m peatonales y 2.40 m de estacionamiento son hipótesis heredadas. Faltan límites, niveles y continuidad medida hasta los accesos; se requiere sección ubicada antes de corregirlos.",
+      "at": "2026-10-03T16:44:09.903927+00:00"
+    },
+    {
+      "order": 5,
+      "task": "corners",
+      "state": "blocked",
+      "result": "Encuentro Garmendia–Obregón identificado en P08. No hay escala ni vista completa de rebajes y cotas; radios y rampas siguen sin validar. Se necesita detalle ubicado del retorno para ajustarlo; no se añaden rampas supuestas.",
+      "at": "2026-10-03T16:44:57.943690+00:00"
+    },
+    {
+      "order": 6,
+      "task": "identity",
+      "state": "done",
+      "result": "Conjunto vinculado: Barra Hidalgo, POI6124344190 y esquina azul P08/P09; Club Obregón, POI6219440832 y frente rojo P09. El Colegio amarillo P10 se distingue como vecino. Coordenadas de ruta, fotos y hashes registrados; fecha y norte fotográfico desconocidos. Este cierre es de identidad visual, no de parcela.",
+      "at": "2026-10-03T16:44:58.021271+00:00"
+    },
+    {
+      "order": 7,
+      "task": "volume",
+      "state": "blocked",
+      "result": "Cuatro cajas de colisión sobredimensionadas sustituidas por envolventes ceñidas a los cuerpos visibles; patio conservado. Las alturas 5.70/6.30 m, fondos y separación entre frentes siguen siendo hipótesis heredadas. Faltan huellas y cotas verificables para reconstruir el volumen definitivo.",
+      "at": "2026-10-03T16:45:59.621035+00:00"
+    },
+    {
+      "order": 8,
+      "task": "facade",
+      "state": "blocked",
+      "result": "Frente del Club cerrado sobre el hueco heredado, con portal y ventana arqueados reales, jambas y cierres retranqueados; patio abierto al cielo conservado. Falta reconstruir la esquina de Barra, el conteo completo de vanos y la unión azul/rojo/amarillo con escala. El ancho nuevo hereda una hipótesis del modelo, no una medida del frente real.",
+      "at": "2026-10-03T16:48:03.059155+00:00"
+    },
+    {
+      "order": 9,
+      "task": "finish",
+      "state": "done",
+      "result": "Materiales propios ajustados a P08/P09: Barra azul, frente del Club rojo y molduras claras; UV métricas de 2.2 m, sin fotografías como texturas. Colores interpretados, no medidos en sitio. Este cierre de acabados no cierra la fachada ni sus proporciones.",
+      "at": "2026-10-03T16:49:27.104455+00:00"
+    },
+    {
+      "order": 10,
+      "task": "equipment",
+      "state": "blocked",
+      "result": "Inventario P08–P10 registrado: luminaria, protección tubular, bolardos, arbolado y cables. Faltan anclas, alturas y permanencia verificadas; no se añadieron objetos por aproximación visual. Se requieren posiciones y bases visibles para ajustar el equipamiento y su paso libre.",
+      "at": "2026-10-03T16:49:27.181798+00:00"
+    },
+    {
+      "order": 11,
+      "task": "qa",
+      "state": "blocked",
+      "result": "Planta, bloque y peatón comparados desde R-001 P09 con rumbo de consulta 355.84°, y visor real cargado sin errores. El modelo sigue separado y retranqueado respecto del frente continuo de las fotos; faltan límites y escala para corregirlo. Norte fotográfico, cotas y seguimiento vertical del avatar siguen sin verificar; QA no está cerrado.",
+      "at": "2026-10-03T16:54:31.811374+00:00"
+    }
+  ],
+  "state": "incomplete",
+  "completedAt": "2026-10-03T16:54:31.841886+00:00",
+  "done": [
+    "street",
+    "identity",
+    "finish"
+  ],
+  "blocked": [
+    "plan",
+    "sidewalkA",
+    "sidewalkB",
+    "corners",
+    "volume",
+    "facade",
+    "equipment",
+    "qa"
+  ],
+  "closure": "Review of 11 actions completed; building survey remains incomplete.",
+  "firstPending": "plan",
+  "currentWorldSha256": "58e389f3cb45279def82c2e0ea79a607e9394f22ab5a7d3eba37dc75642ec924",
+  "checks": [
+    "paving joint rays before/after",
+    "substrates excluded from actual asphalt triangles",
+    "four inflated colliders replaced",
+    "real facade holes with recessed closures",
+    "metric UVs",
+    "production viewer runtime loaded locally without errors"
+  ]
 }

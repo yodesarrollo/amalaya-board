@@ -88,5 +88,69 @@
   "sides": {
     "A": "geographic south of Obregon",
     "B": "geographic north of Obregon, EB-SW side"
-  }
+  },
+  "identity": {
+    "state": "done",
+    "scope": "named corner ensemble and observed street fronts; not ownership or parcel boundaries",
+    "Barra Hidalgo": {
+      "osm": "https://www.openstreetmap.org/node/6124344190",
+      "references": [
+        "R-001-P08",
+        "R-001-P09"
+      ],
+      "observed": "Barra Hidalgo sign on blue corner; pale arched mouldings",
+      "addressSource": "https://www.waze.com/fil/live-map/directions/mx/son./hermosillo/barra-hidalgo-bar?to=place.ChIJdXuKnk2EzoYRh0syk7vk02w"
+    },
+    "Club Obregon": {
+      "osm": "https://www.openstreetmap.org/node/6219440832",
+      "references": [
+        "R-001-P09"
+      ],
+      "observed": "adjoining red front with Obregon lettering and arched closed portal",
+      "writtenContext": "https://kjzz.org/content/1841425/cheap-and-welcoming-hermosillos-club-obregon-where-city-hangs-out-itself"
+    },
+    "neighbour": {
+      "name": "El Colegio",
+      "reference": "R-001-P10",
+      "observed": "yellow frontage with independent sign",
+      "attributedToClub": false
+    },
+    "captureDates": null,
+    "photoHeading": null,
+    "completedAt": "2026-10-03T16:44:57.996256+00:00"
+  },
+  "equipment": [
+    {
+      "type": "luminaria/poste de esquina",
+      "reference": "P08",
+      "base": "partly obscured",
+      "position": "unknown",
+      "action": "retain existing provisional model; do not add another"
+    },
+    {
+      "type": "protección tubular amarilla frente al acceso",
+      "reference": "P09/P10",
+      "base": "partly obscured by vehicles",
+      "position": "unknown",
+      "action": "not modelled without anchor"
+    },
+    {
+      "type": "cables aéreos",
+      "reference": "P08/P09",
+      "anchors": "unknown",
+      "action": "not added"
+    },
+    {
+      "type": "bolardos oscuros y arbolado del entorno",
+      "reference": "P08/P10",
+      "position": "not measured",
+      "action": "existing context remains provisional"
+    },
+    {
+      "type": "vehículos y anuncios comerciales",
+      "reference": "P08/P09/P10",
+      "permanence": "temporary",
+      "action": "not treated as fixed survey evidence"
+    }
+  ]
 }

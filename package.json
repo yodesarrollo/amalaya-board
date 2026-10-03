@@ -10,13 +10,14 @@
     "build": "vite build",
     "preview": "vite preview",
     "prepruebas": "node scripts/generar-seguimiento-3d.mjs",
-    "pruebas": "node scripts/pruebas-calc.mjs && node scripts/pruebas-careta.mjs && node scripts/pruebas-avance.mjs && node scripts/pruebas-confianza.mjs && node scripts/pruebas-chinches.mjs && node scripts/pruebas-moac.mjs && node scripts/pruebas-recorrido.mjs && node scripts/pruebas-modelos3d.mjs && node scripts/pruebas-portal.mjs && node scripts/pruebas-espacios-mapa.mjs && node scripts/pruebas-levantamiento-mapa.mjs && node scripts/pruebas-seguimiento-3d.mjs && node scripts/pruebas-isc58.mjs && node scripts/pruebas-visor-isc58.mjs",
+    "pruebas": "node scripts/pruebas-calc.mjs && node scripts/pruebas-careta.mjs && node scripts/pruebas-avance.mjs && node scripts/pruebas-confianza.mjs && node scripts/pruebas-chinches.mjs && node scripts/pruebas-moac.mjs && node scripts/pruebas-recorrido.mjs && node scripts/pruebas-modelos3d.mjs && node scripts/pruebas-portal.mjs && node scripts/pruebas-espacios-mapa.mjs && node scripts/pruebas-levantamiento-mapa.mjs && node scripts/pruebas-seguimiento-3d.mjs && node scripts/pruebas-isc58.mjs && node scripts/pruebas-visor-isc58.mjs && node scripts/pruebas-ebsw.mjs",
     "simular": "npm run build && npm --prefix herramientas/simulador ci --no-audit --no-fund && node herramientas/simulador/simular.mjs amalaya dist",
     "gifs": "npm run build && npm --prefix herramientas/simulador ci --no-audit --no-fund && GIFS=public/ayuda node herramientas/simulador/simular.mjs amalaya dist",
     "preparar:3d": "node scripts/preparar-levantamiento.mjs",
     "verificar:publicacion": "node scripts/verificar-publicacion.mjs",
     "pruebas:fotos3d": "node scripts/pruebas-fotos3d-ui.mjs",
-    "preparar:isc58": "node scripts/preparar-isc58.mjs"
+    "preparar:isc58": "node scripts/preparar-isc58.mjs",
+    "preparar:ebsw": "node scripts/preparar-ebsw.mjs"
   },
   "dependencies": {
     "lucide-react": "^0.383.0",

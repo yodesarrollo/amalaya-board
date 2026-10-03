@@ -16389,7 +16389,7 @@ async function Fp(e, t, n = "pilot", r = {}) {
 		c.add(e.group), f.push(...e.colliders);
 	}
 	let p = Pp(d);
-	return c.add(p.group), f.push(...p.colliders), c.userData.navigationColliders = f, applyIsc58Refinement(c, a, u[0], f, { Group: Ot, Mesh: Y, Shape: $r, Path: Qr, ShapeGeometry: Wi, BoxGeometry: X, BufferGeometry: An, Float32BufferAttribute: J, Box3: Zt, Vector3: U, createProceduralMaterial: $, addArchedWindow: pu }), Ip(c, n), Up(c), c;
+	return c.add(p.group), f.push(...p.colliders), c.userData.navigationColliders = f, applyIsc58Refinement(c, a, u[0], f, { Group: Ot, Mesh: Y, Shape: $r, Path: Qr, ShapeGeometry: Wi, BoxGeometry: X, BufferGeometry: An, Float32BufferAttribute: J, Box3: Zt, Vector3: U, createProceduralMaterial: $, addArchedWindow: pu }), applyEbSwRefinement(c,f,{Group:Ot,Mesh:Y,Shape:$r,Path:Qr,ShapeGeometry:Wi,BoxGeometry:X,BufferGeometry:An,Float32BufferAttribute:J,Box3:Zt,Vector3:U,createProceduralMaterial:$},9), Ip(c, n), Up(c), c;
 }
 function Ip(e, t) {
 	let n = /* @__PURE__ */ new Map();
@@ -16533,3 +16533,5 @@ function Up(e) {
 }
 //#endregion
 export { Lp as addWorldLighting, Rp as configureWorldRenderer, Hp as createConcept, Vp as createMapLayer, Fp as createWorld, zp as disposeWorld, Bp as mapTransform, Ip as prepareWorldSurfaces };
+
+import { applyEbSw as applyEbSwRefinement } from "./ebsw-refinement.js?v=765e5fd4f869";

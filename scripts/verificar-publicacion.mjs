@@ -1,3 +1,4 @@
+import {removeEbSwHook,refineEbSw,EB_BASE_WORLD,EB_BASE_VISOR} from './preparar-ebsw.mjs'
 import { readdir, readFile, stat } from 'node:fs/promises'
 import assert from 'node:assert/strict'
 import { createHash } from 'node:crypto'
@@ -75,11 +76,11 @@ assert(ob02States.some(s=>s.view==='perspective-detail'&&s.point==='R-001-P03')&
 console.log('OB-02: cuatro capturas WebGL revisadas, referencias identificadas, cámaras registradas y límites conservados.')
 
 // Point 1/2 evidence retains its historical checkpoint; point 3 has separate captures.
-const currentWorldHash=createHash('sha256').update(await readFile(`${root}/world.js`)).digest('hex')
+const currentWorldHash=sha256(removeEbSwHook(await readFile(`${root}/world.js`,'utf8')))
 // OB-02 retains its immutable published checkpoint when a later building is refined.
 const ob02CheckpointHash=BASE_WORLD_SHA256
 const provenance=JSON.parse(await readFile(`${root}/isc58-provenance.json`,'utf8'))
-const worldSource=await readFile(`${root}/world.js`,'utf8')
+const worldSource=removeEbSwHook(await readFile(`${root}/world.js`,'utf8'))
 assert.equal(sha256(removeIsc58Hook(worldSource)),ob02CheckpointHash,'El mundo base debe conservar todos los avances previos byte por byte.')
 assert.equal(provenance.baseWorldSha256,ob02CheckpointHash)
 assert.equal(provenance.worldSha256,currentWorldHash)
@@ -87,7 +88,7 @@ assert.deepEqual(provenance.preservedRegions,regionHashes(worldSource))
 const runtimeSource=await readFile(`${root}/isc58-refinement.js`,'utf8')
 assert(!runtimeSource.includes('sourceMappingURL'),'El activo público no debe enlazar código fuente privado.')
 assert.equal(provenance.runtimeModuleSha256,sha256(runtimeSource))
-const visorSource=await readFile(`${root}/visor/assets/index-RoPA5goG.js`,'utf8')
+const visorSource=removeEbSwHook(await readFile(`${root}/visor/assets/index-RoPA5goG.js`,'utf8'),'visor')
 assert.equal(sha256(removeIsc58VisorHook(visorSource)),BASE_VISOR_SHA256,'El visor base debe conservarse byte por byte.')
 assert.equal(provenance.visorSha256,sha256(visorSource))
 assert.equal(provenance.baseVisorSha256,BASE_VISOR_SHA256)
@@ -428,3 +429,44 @@ const iscProgress=iscLatest.captures.find(c=>c.view==='progress')
 assert.equal(iscProgress.cameraId,iscRaw.cameraId)
 for(const field of ['cameraPosition','cameraTarget','cameraUp','projection','viewport'])assert.deepEqual(iscProgress[field],iscRaw[field],`La cabecera ISC conserva cámara fija: ${field}`)
 assert.equal(iscTracking.visualProgress.current.url,`levantamiento/evidence/ISC-58/${iscProgress.file}`)
+
+// EB-SW extends the preserved ISC checkpoint; old screenshots retain their original hashes.
+const ebRoot=`${root}/evidence/EB-SW`
+const eb=JSON.parse(await readFile(`${root}/ebsw-provenance.json`,'utf8'))
+const ebModule=await readFile(`${root}/ebsw-refinement.js`,'utf8')
+assert.equal(eb.baseWorldSha256,EB_BASE_WORLD);assert.equal(eb.baseVisorSha256,EB_BASE_VISOR)
+assert.equal(eb.worldSha256,sha256(await readFile(`${root}/world.js`)))
+assert.equal(eb.visorSha256,sha256(await readFile(`${root}/visor/assets/index-RoPA5goG.js`)))
+assert.equal(eb.runtimeModuleSha256,sha256(ebModule));assert(!ebModule.includes('sourceMappingURL'))
+const ebManifest=JSON.parse(await readFile(`${ebRoot}/manifest.json`,'utf8'))
+const ebSequence=JSON.parse(await readFile(`${ebRoot}/sequence.json`,'utf8'))
+const ebSurvey=JSON.parse(await readFile(`${ebRoot}/survey.json`,'utf8'))
+const ebTracking=tracking.blocks.flatMap(b=>b.buildings).find(b=>b.id==='EB-SW')
+const expectedTasks=Object.keys(tracking.taskDefinitions)
+assert.deepEqual(ebSequence.steps.map(s=>s.task),expectedTasks)
+assert.equal(ebSequence.events.length,22)
+for(let i=0;i<11;i++){
+ const [start,end]=ebSequence.events.slice(i*2,i*2+2),step=ebSequence.steps[i],task=expectedTasks[i]
+ assert.equal(start.task,task);assert.equal(end.task,task);assert.equal(start.state,'active');assert.equal(end.state,step.state);assert.equal(ebTracking.tasks[task],step.state)
+ assert(Date.parse(end.at)>=Date.parse(start.at));if(i)assert(Date.parse(start.at)>=Date.parse(ebSequence.events[i*2-1].at))
+ if(step.state==='blocked')assert(ebTracking.issues[task]?.detail)
+}
+assert.equal(ebSequence.state,'incomplete');assert(!Object.values(ebTracking.tasks).includes('active'))
+assert.equal(ebSequence.currentWorldSha256,eb.worldSha256)
+const beforeEb=removeEbSwHook(await readFile(`${root}/world.js`,'utf8'))
+for(const c of ebManifest.captures){
+ assert(c.renderer.includes('WebGL 2.0')&&c.calls>0&&c.triangles>0&&c.errors.length===0)
+ const bytes=await readFile(`${ebRoot}/${c.file}`);assert.equal(sha256(bytes),c.sha256);assert.equal(bytes.readUInt32BE(16),1280);assert.equal(bytes.readUInt32BE(20),800)
+ const stage=c.refinement?.stage
+ assert.equal(c.worldSha256,stage?sha256(refineEbSw(beforeEb,'world',eb.runtimeModuleSha256,stage)):EB_BASE_WORLD,'Capture checkpoint must be reproducible from its actual stage')
+}
+const ebStart=ebManifest.captures.find(c=>c.file==='00-general.png'),ebCurrent=ebManifest.captures.find(c=>c.file==='09-general.png')
+for(const key of ['cameraPosition','cameraTarget','cameraUp','projection'])assert.deepEqual(ebStart[key],ebCurrent[key])
+assert.equal(ebTracking.visualProgress.current.url,`${ebRoot.replace('public/','')}/${ebCurrent.file}`)
+assert.equal(ebTracking.visualProgress.current.worldSha256,ebCurrent.worldSha256)
+const comparisons=ebManifest.captures.filter(c=>c.file.startsWith('11-'))
+assert.equal(comparisons.length,3)
+for(const c of comparisons){assert.deepEqual(c.anchor,comparisons[0].anchor);assert.equal(c.cameraPosition[0],comparisons[0].cameraPosition[0]);assert.equal(c.cameraPosition[2],comparisons[0].cameraPosition[2]);assert.equal(c.worldSha256,eb.worldSha256)}
+for(const ref of ebSurvey.sources){assert.equal(sha256(await readFile(`public/${ref.file}`)),ref.sha256);assert.equal(ref.captureDate,null);assert.equal(ref.panoramaHeading,null)}
+assert.equal(ebSurvey.identity.neighbour.attributedToClub,false)
+console.log('EB-SW: once acciones ordenadas, capturas por etapa reproducibles, fuentes y cierre incompleto verificados.')

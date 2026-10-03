@@ -84,6 +84,786 @@
       "worldSha256": "7f76cb47d6189e2f29681ec2a0f37dd9993d4d1db9788cd10c4fd986e2953e91",
       "capturedAt": "2026-10-03T16:31:57.086Z",
       "errors": []
+    },
+    {
+      "view": "block",
+      "cameraPosition": [
+        87.73272000033217,
+        18,
+        12.981150000336328
+      ],
+      "cameraTarget": [
+        85.556462325804,
+        0,
+        -16.939810922302126
+      ],
+      "cameraUp": [
+        0,
+        1,
+        0
+      ],
+      "projection": {
+        "kind": "perspective",
+        "fov": 72,
+        "aspect": 1.6
+      },
+      "anchor": {
+        "point": "R-001-P09",
+        "x": 87.73272000033217,
+        "z": 12.981150000336328,
+        "azimuth": 355.84
+      },
+      "calls": 210,
+      "triangles": 320569,
+      "renderer": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+      "refinement": null,
+      "file": "02-block.png",
+      "sha256": "c78f0cac8c8cca951605701bcf4649bcb6cc47b4667927fb188b1b8698ec7125",
+      "worldSha256": "7f76cb47d6189e2f29681ec2a0f37dd9993d4d1db9788cd10c4fd986e2953e91",
+      "capturedAt": "2026-10-03T16:37:33.904Z",
+      "errors": []
+    },
+    {
+      "view": "south",
+      "cameraPosition": [
+        95,
+        1.7475,
+        15.8
+      ],
+      "cameraTarget": [
+        121,
+        1.5,
+        13.9
+      ],
+      "cameraUp": [
+        0,
+        1,
+        0
+      ],
+      "projection": {
+        "kind": "perspective",
+        "fov": 82,
+        "aspect": 1.6
+      },
+      "anchor": {
+        "point": "R-001-P09",
+        "x": 87.73272000033217,
+        "z": 12.981150000336328,
+        "azimuth": 355.84
+      },
+      "calls": 176,
+      "triangles": 206848,
+      "renderer": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+      "refinement": {
+        "version": "ebsw-technical-1",
+        "stage": 3,
+        "confidence": "provisional",
+        "measured": false,
+        "parcelBoundaries": "unverified",
+        "south": {
+          "side": "south",
+          "tiles": 52,
+          "baseTop": 0.1455,
+          "tileTop": 0.1475,
+          "physicalContinuity": "unverified"
+        }
+      },
+      "file": "03-south.png",
+      "sha256": "d6d992d5ed7bd64ba11fa007a73746b1ccb0c4b40700f7a163cb65a2e46362f3",
+      "worldSha256": "323b7a78e380c562d5ab6abbcc65ff60ebab88d561955e970ad678c03ed618c0",
+      "capturedAt": "2026-10-03T16:40:59.568Z",
+      "errors": []
+    },
+    {
+      "view": "north",
+      "cameraPosition": [
+        95,
+        1.7475,
+        7.7
+      ],
+      "cameraTarget": [
+        121,
+        1.5,
+        5.800000000000001
+      ],
+      "cameraUp": [
+        0,
+        1,
+        0
+      ],
+      "projection": {
+        "kind": "perspective",
+        "fov": 82,
+        "aspect": 1.6
+      },
+      "anchor": {
+        "point": "R-001-P09",
+        "x": 87.73272000033217,
+        "z": 12.981150000336328,
+        "azimuth": 355.84
+      },
+      "calls": 184,
+      "triangles": 207308,
+      "renderer": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+      "refinement": {
+        "version": "ebsw-technical-1",
+        "stage": 4,
+        "confidence": "provisional",
+        "measured": false,
+        "parcelBoundaries": "unverified",
+        "south": {
+          "side": "south",
+          "tiles": 52,
+          "baseTop": 0.1455,
+          "tileTop": 0.1475,
+          "physicalContinuity": "unverified"
+        },
+        "north": {
+          "side": "north",
+          "tiles": 112,
+          "baseTop": 0.1455,
+          "tileTop": 0.1475,
+          "physicalContinuity": "unverified"
+        }
+      },
+      "file": "04-north.png",
+      "sha256": "5d0e2397555a3c3023b569554f37c8e8f1e8a714a9d2e4682f95fbab0bbc2df6",
+      "worldSha256": "05dcc929d64527e9cf5282571d51aa2a841e22298a3860ffbc7e942eab84afad",
+      "capturedAt": "2026-10-03T16:43:20.236Z",
+      "errors": []
+    },
+    {
+      "view": "plan",
+      "cameraPosition": [
+        87.73272000033217,
+        75,
+        12.981150000336328
+      ],
+      "cameraTarget": [
+        87.73272000033217,
+        0,
+        12.981150000336328
+      ],
+      "cameraUp": [
+        -0.0725419224842719,
+        0,
+        -0.9973653640879484
+      ],
+      "projection": {
+        "kind": "orthographic",
+        "left": -42,
+        "right": 42,
+        "top": 26.25,
+        "bottom": -26.25
+      },
+      "anchor": {
+        "point": "R-001-P09",
+        "x": 87.73272000033217,
+        "z": 12.981150000336328,
+        "azimuth": 355.84
+      },
+      "calls": 218,
+      "triangles": 305430,
+      "renderer": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+      "refinement": {
+        "version": "ebsw-technical-1",
+        "stage": 4,
+        "confidence": "provisional",
+        "measured": false,
+        "parcelBoundaries": "unverified",
+        "south": {
+          "side": "south",
+          "tiles": 52,
+          "baseTop": 0.1455,
+          "tileTop": 0.1475,
+          "physicalContinuity": "unverified"
+        },
+        "north": {
+          "side": "north",
+          "tiles": 112,
+          "baseTop": 0.1455,
+          "tileTop": 0.1475,
+          "physicalContinuity": "unverified"
+        }
+      },
+      "file": "05-plan.png",
+      "sha256": "a850b33c889595e984e2bd5e3e9b30c557e3b8575845d8a6072084feb7288dda",
+      "worldSha256": "05dcc929d64527e9cf5282571d51aa2a841e22298a3860ffbc7e942eab84afad",
+      "capturedAt": "2026-10-03T16:44:13.782Z",
+      "errors": []
+    },
+    {
+      "view": "general",
+      "cameraPosition": [
+        122,
+        42,
+        53
+      ],
+      "cameraTarget": [
+        95,
+        0,
+        -3
+      ],
+      "cameraUp": [
+        0,
+        1,
+        0
+      ],
+      "projection": {
+        "kind": "orthographic",
+        "left": -43,
+        "right": 43,
+        "top": 26.875,
+        "bottom": -26.875
+      },
+      "anchor": null,
+      "calls": 218,
+      "triangles": 315040,
+      "renderer": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+      "refinement": {
+        "version": "ebsw-technical-1",
+        "stage": 7,
+        "confidence": "provisional",
+        "measured": false,
+        "parcelBoundaries": "unverified",
+        "south": {
+          "side": "south",
+          "tiles": 52,
+          "baseTop": 0.1455,
+          "tileTop": 0.1475,
+          "physicalContinuity": "unverified"
+        },
+        "north": {
+          "side": "north",
+          "tiles": 112,
+          "baseTop": 0.1455,
+          "tileTop": 0.1475,
+          "physicalContinuity": "unverified"
+        },
+        "colliders": {
+          "removed": 4,
+          "added": 213
+        }
+      },
+      "file": "07-general.png",
+      "sha256": "f8658122817b4b44f56e3eb189747450a7463abd86cb50c49d117700a12e4e11",
+      "worldSha256": "37e29d976d3ed2a713d9633bde0e385a61557edfeac1eaf11ba2ee2fe313a7b0",
+      "capturedAt": "2026-10-03T16:45:35.772Z",
+      "errors": []
+    },
+    {
+      "view": "pedestrian",
+      "cameraPosition": [
+        87.73272000033217,
+        1.7,
+        12.981150000336328
+      ],
+      "cameraTarget": [
+        85.556462325804,
+        1.7,
+        -16.939810922302126
+      ],
+      "cameraUp": [
+        0,
+        1,
+        0
+      ],
+      "projection": {
+        "kind": "perspective",
+        "fov": 78,
+        "aspect": 1.6
+      },
+      "anchor": {
+        "point": "R-001-P09",
+        "x": 87.73272000033217,
+        "z": 12.981150000336328,
+        "azimuth": 355.84
+      },
+      "calls": 212,
+      "triangles": 318823,
+      "renderer": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+      "refinement": {
+        "version": "ebsw-technical-1",
+        "stage": 8,
+        "confidence": "provisional",
+        "measured": false,
+        "parcelBoundaries": "unverified",
+        "south": {
+          "side": "south",
+          "tiles": 52,
+          "baseTop": 0.1455,
+          "tileTop": 0.1475,
+          "physicalContinuity": "unverified"
+        },
+        "north": {
+          "side": "north",
+          "tiles": 112,
+          "baseTop": 0.1455,
+          "tileTop": 0.1475,
+          "physicalContinuity": "unverified"
+        },
+        "colliders": {
+          "removed": 4,
+          "added": 213
+        },
+        "facade": {
+          "gapClosedMeters": 19.000000000000007,
+          "openings": 2,
+          "measured": false,
+          "courtyard": "retained open to sky",
+          "alignment": "inherited; not verified"
+        }
+      },
+      "file": "08-pedestrian.png",
+      "sha256": "4637390f31c9ac76724c703a236edf16ef3f8b36dff9ce426a6d18e68cdf26bb",
+      "worldSha256": "f320f0e86bb0ce2fbdb5fdeab2fcc3eb4ba742a16aa52502f01ce14a70d59f86",
+      "capturedAt": "2026-10-03T16:46:35.045Z",
+      "errors": []
+    },
+    {
+      "view": "general",
+      "cameraPosition": [
+        122,
+        42,
+        53
+      ],
+      "cameraTarget": [
+        95,
+        0,
+        -3
+      ],
+      "cameraUp": [
+        0,
+        1,
+        0
+      ],
+      "projection": {
+        "kind": "orthographic",
+        "left": -43,
+        "right": 43,
+        "top": 26.875,
+        "bottom": -26.875
+      },
+      "anchor": null,
+      "calls": 118,
+      "triangles": 198881,
+      "renderer": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+      "refinement": {
+        "version": "ebsw-technical-1",
+        "stage": 8,
+        "confidence": "provisional",
+        "measured": false,
+        "parcelBoundaries": "unverified",
+        "south": {
+          "side": "south",
+          "tiles": 52,
+          "baseTop": 0.1455,
+          "tileTop": 0.1475,
+          "physicalContinuity": "unverified"
+        },
+        "north": {
+          "side": "north",
+          "tiles": 112,
+          "baseTop": 0.1455,
+          "tileTop": 0.1475,
+          "physicalContinuity": "unverified"
+        },
+        "colliders": {
+          "removed": 4,
+          "added": 213
+        },
+        "facade": {
+          "gapClosedMeters": 19.000000000000007,
+          "openings": 2,
+          "measured": false,
+          "courtyard": "retained open to sky",
+          "alignment": "inherited; not verified"
+        }
+      },
+      "file": "08-general.png",
+      "sha256": "ea5ba4450f420aa2712bec77e1bf3639d9a841e6a2aa32e2911d87057b9a086f",
+      "worldSha256": "f320f0e86bb0ce2fbdb5fdeab2fcc3eb4ba742a16aa52502f01ce14a70d59f86",
+      "capturedAt": "2026-10-03T16:46:35.635Z",
+      "errors": []
+    },
+    {
+      "view": "general",
+      "cameraPosition": [
+        122,
+        42,
+        53
+      ],
+      "cameraTarget": [
+        95,
+        0,
+        -3
+      ],
+      "cameraUp": [
+        0,
+        1,
+        0
+      ],
+      "projection": {
+        "kind": "orthographic",
+        "left": -43,
+        "right": 43,
+        "top": 26.875,
+        "bottom": -26.875
+      },
+      "anchor": null,
+      "calls": 239,
+      "triangles": 315724,
+      "renderer": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+      "refinement": {
+        "version": "ebsw-technical-1",
+        "stage": 9,
+        "confidence": "provisional",
+        "measured": false,
+        "parcelBoundaries": "unverified",
+        "south": {
+          "side": "south",
+          "tiles": 52,
+          "baseTop": 0.1455,
+          "tileTop": 0.1475,
+          "physicalContinuity": "unverified"
+        },
+        "north": {
+          "side": "north",
+          "tiles": 112,
+          "baseTop": 0.1455,
+          "tileTop": 0.1475,
+          "physicalContinuity": "unverified"
+        },
+        "colliders": {
+          "removed": 4,
+          "added": 213
+        },
+        "facade": {
+          "gapClosedMeters": 19.000000000000007,
+          "openings": 2,
+          "measured": false,
+          "courtyard": "retained open to sky",
+          "alignment": "inherited; not verified"
+        },
+        "finish": {
+          "meshes": 343,
+          "materials": 33,
+          "uvPeriodMeters": 2.2,
+          "source": "P08/P09: blue Barra, red street front, pale mouldings",
+          "colors": "interpreted from panorama; not field colorimetry"
+        }
+      },
+      "file": "09-general.png",
+      "sha256": "c43f8e3d3c7f2d96b2c6aadfaa6bfa91ef3a740a2c5dd376d585d0c2cec4e38c",
+      "worldSha256": "58e389f3cb45279def82c2e0ea79a607e9394f22ab5a7d3eba37dc75642ec924",
+      "capturedAt": "2026-10-03T16:48:07.667Z",
+      "errors": []
+    },
+    {
+      "view": "pedestrian",
+      "cameraPosition": [
+        87.73272000033217,
+        1.7,
+        12.981150000336328
+      ],
+      "cameraTarget": [
+        85.556462325804,
+        1.7,
+        -16.939810922302126
+      ],
+      "cameraUp": [
+        0,
+        1,
+        0
+      ],
+      "projection": {
+        "kind": "perspective",
+        "fov": 78,
+        "aspect": 1.6
+      },
+      "anchor": {
+        "point": "R-001-P09",
+        "x": 87.73272000033217,
+        "z": 12.981150000336328,
+        "azimuth": 355.84
+      },
+      "calls": 110,
+      "triangles": 201480,
+      "renderer": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+      "refinement": {
+        "version": "ebsw-technical-1",
+        "stage": 9,
+        "confidence": "provisional",
+        "measured": false,
+        "parcelBoundaries": "unverified",
+        "south": {
+          "side": "south",
+          "tiles": 52,
+          "baseTop": 0.1455,
+          "tileTop": 0.1475,
+          "physicalContinuity": "unverified"
+        },
+        "north": {
+          "side": "north",
+          "tiles": 112,
+          "baseTop": 0.1455,
+          "tileTop": 0.1475,
+          "physicalContinuity": "unverified"
+        },
+        "colliders": {
+          "removed": 4,
+          "added": 213
+        },
+        "facade": {
+          "gapClosedMeters": 19.000000000000007,
+          "openings": 2,
+          "measured": false,
+          "courtyard": "retained open to sky",
+          "alignment": "inherited; not verified"
+        },
+        "finish": {
+          "meshes": 343,
+          "materials": 33,
+          "uvPeriodMeters": 2.2,
+          "source": "P08/P09: blue Barra, red street front, pale mouldings",
+          "colors": "interpreted from panorama; not field colorimetry"
+        }
+      },
+      "file": "09-pedestrian.png",
+      "sha256": "284391a216b7a5ab8fceb1bfc8b1c525ce259063bfbda3046aa80c911a86fa51",
+      "worldSha256": "58e389f3cb45279def82c2e0ea79a607e9394f22ab5a7d3eba37dc75642ec924",
+      "capturedAt": "2026-10-03T16:48:08.417Z",
+      "errors": []
+    },
+    {
+      "view": "plan",
+      "cameraPosition": [
+        87.73272000033217,
+        75,
+        12.981150000336328
+      ],
+      "cameraTarget": [
+        87.73272000033217,
+        0,
+        12.981150000336328
+      ],
+      "cameraUp": [
+        -0.0725419224842719,
+        0,
+        -0.9973653640879484
+      ],
+      "projection": {
+        "kind": "orthographic",
+        "left": -42,
+        "right": 42,
+        "top": 26.25,
+        "bottom": -26.25
+      },
+      "anchor": {
+        "point": "R-001-P09",
+        "x": 87.73272000033217,
+        "z": 12.981150000336328,
+        "azimuth": 355.84
+      },
+      "calls": 239,
+      "triangles": 306114,
+      "renderer": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+      "refinement": {
+        "version": "ebsw-technical-1",
+        "stage": 9,
+        "confidence": "provisional",
+        "measured": false,
+        "parcelBoundaries": "unverified",
+        "south": {
+          "side": "south",
+          "tiles": 52,
+          "baseTop": 0.1455,
+          "tileTop": 0.1475,
+          "physicalContinuity": "unverified"
+        },
+        "north": {
+          "side": "north",
+          "tiles": 112,
+          "baseTop": 0.1455,
+          "tileTop": 0.1475,
+          "physicalContinuity": "unverified"
+        },
+        "colliders": {
+          "removed": 4,
+          "added": 213
+        },
+        "facade": {
+          "gapClosedMeters": 19.000000000000007,
+          "openings": 2,
+          "measured": false,
+          "courtyard": "retained open to sky",
+          "alignment": "inherited; not verified"
+        },
+        "finish": {
+          "meshes": 343,
+          "materials": 33,
+          "uvPeriodMeters": 2.2,
+          "source": "P08/P09: blue Barra, red street front, pale mouldings",
+          "colors": "interpreted from panorama; not field colorimetry"
+        }
+      },
+      "file": "11-plan.png",
+      "sha256": "b22c3aef53bcfbec9ab2ac435f1e971d3ef4c69ce44e5cbe3147b3307c986389",
+      "worldSha256": "58e389f3cb45279def82c2e0ea79a607e9394f22ab5a7d3eba37dc75642ec924",
+      "capturedAt": "2026-10-03T16:49:30.955Z",
+      "errors": []
+    },
+    {
+      "view": "block",
+      "cameraPosition": [
+        87.73272000033217,
+        18,
+        12.981150000336328
+      ],
+      "cameraTarget": [
+        85.556462325804,
+        0,
+        -16.939810922302126
+      ],
+      "cameraUp": [
+        0,
+        1,
+        0
+      ],
+      "projection": {
+        "kind": "perspective",
+        "fov": 72,
+        "aspect": 1.6
+      },
+      "anchor": {
+        "point": "R-001-P09",
+        "x": 87.73272000033217,
+        "z": 12.981150000336328,
+        "azimuth": 355.84
+      },
+      "calls": 118,
+      "triangles": 204404,
+      "renderer": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+      "refinement": {
+        "version": "ebsw-technical-1",
+        "stage": 9,
+        "confidence": "provisional",
+        "measured": false,
+        "parcelBoundaries": "unverified",
+        "south": {
+          "side": "south",
+          "tiles": 52,
+          "baseTop": 0.1455,
+          "tileTop": 0.1475,
+          "physicalContinuity": "unverified"
+        },
+        "north": {
+          "side": "north",
+          "tiles": 112,
+          "baseTop": 0.1455,
+          "tileTop": 0.1475,
+          "physicalContinuity": "unverified"
+        },
+        "colliders": {
+          "removed": 4,
+          "added": 213
+        },
+        "facade": {
+          "gapClosedMeters": 19.000000000000007,
+          "openings": 2,
+          "measured": false,
+          "courtyard": "retained open to sky",
+          "alignment": "inherited; not verified"
+        },
+        "finish": {
+          "meshes": 343,
+          "materials": 33,
+          "uvPeriodMeters": 2.2,
+          "source": "P08/P09: blue Barra, red street front, pale mouldings",
+          "colors": "interpreted from panorama; not field colorimetry"
+        }
+      },
+      "file": "11-block.png",
+      "sha256": "cb70dd158d766e4a96ee13208dfa338cae048ce8cf607e837461eeea2461944a",
+      "worldSha256": "58e389f3cb45279def82c2e0ea79a607e9394f22ab5a7d3eba37dc75642ec924",
+      "capturedAt": "2026-10-03T16:49:31.601Z",
+      "errors": []
+    },
+    {
+      "view": "pedestrian",
+      "cameraPosition": [
+        87.73272000033217,
+        1.7,
+        12.981150000336328
+      ],
+      "cameraTarget": [
+        85.556462325804,
+        1.7,
+        -16.939810922302126
+      ],
+      "cameraUp": [
+        0,
+        1,
+        0
+      ],
+      "projection": {
+        "kind": "perspective",
+        "fov": 78,
+        "aspect": 1.6
+      },
+      "anchor": {
+        "point": "R-001-P09",
+        "x": 87.73272000033217,
+        "z": 12.981150000336328,
+        "azimuth": 355.84
+      },
+      "calls": 110,
+      "triangles": 201480,
+      "renderer": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+      "refinement": {
+        "version": "ebsw-technical-1",
+        "stage": 9,
+        "confidence": "provisional",
+        "measured": false,
+        "parcelBoundaries": "unverified",
+        "south": {
+          "side": "south",
+          "tiles": 52,
+          "baseTop": 0.1455,
+          "tileTop": 0.1475,
+          "physicalContinuity": "unverified"
+        },
+        "north": {
+          "side": "north",
+          "tiles": 112,
+          "baseTop": 0.1455,
+          "tileTop": 0.1475,
+          "physicalContinuity": "unverified"
+        },
+        "colliders": {
+          "removed": 4,
+          "added": 213
+        },
+        "facade": {
+          "gapClosedMeters": 19.000000000000007,
+          "openings": 2,
+          "measured": false,
+          "courtyard": "retained open to sky",
+          "alignment": "inherited; not verified"
+        },
+        "finish": {
+          "meshes": 343,
+          "materials": 33,
+          "uvPeriodMeters": 2.2,
+          "source": "P08/P09: blue Barra, red street front, pale mouldings",
+          "colors": "interpreted from panorama; not field colorimetry"
+        }
+      },
+      "file": "11-pedestrian.png",
+      "sha256": "284391a216b7a5ab8fceb1bfc8b1c525ce259063bfbda3046aa80c911a86fa51",
+      "worldSha256": "58e389f3cb45279def82c2e0ea79a607e9394f22ab5a7d3eba37dc75642ec924",
+      "capturedAt": "2026-10-03T16:49:32.265Z",
+      "errors": []
     }
   ]
 }

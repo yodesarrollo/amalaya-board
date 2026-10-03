@@ -1,0 +1,12 @@
+{
+  "building": "EB-SW",
+  "stage": 9,
+  "baseWorldSha256": "7f76cb47d6189e2f29681ec2a0f37dd9993d4d1db9788cd10c4fd986e2953e91",
+  "baseVisorSha256": "ef131babd586f5b273827c05eb02fac7eaa29905c3f44888bca1d5b115b5b678",
+  "worldSha256": "58e389f3cb45279def82c2e0ea79a607e9394f22ab5a7d3eba37dc75642ec924",
+  "visorSha256": "7b2db314cd7b1f361be2a741bd664786bf0f1ad569fc4e5eff7bd20b0e8139a4",
+  "runtimeModuleSha256": "765e5fd4f8693ffdd610a16632e5848f73ce70525ea1e17503cc74799e2de057",
+  "editableSourceSha256": "f08fe2242f7dabd4a937f3407e4bb8d5bda12e831d5a940590752246092ba90a",
+  "generatedFrom": "Private editable extension; compiled ESM without source maps",
+  "sourceStatus": "Prior compiled world preserved; full Hidalgo3D source not recovered"
+}

@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-03T16:28:54.168878+00:00",
+  "updatedAt": "2026-10-03T16:54:31.841886+00:00",
   "refreshSeconds": 30,
   "live": {
-    "status": "active",
-    "phase": "EB-SW · 01 de 11",
-    "title": "Planta e identificación espacial",
-    "detail": "Selección expresa del usuario. Secuencia 01–11; ISC-58 conserva sus pendientes.",
+    "status": "blocked",
+    "phase": "EB-SW · proceso incompleto",
+    "title": "Banquetas, colisiones, frente y acabados mejorados",
+    "detail": "Secuencia 01–11 registrada: 02, 06 y 09 cumplidos; ocho criterios bloqueados con su causa. Primer pendiente: 01, implantación y límites.",
     "activeBlockId": "EB-GA",
     "activeBuildingId": "EB-SW"
   },
@@ -800,7 +800,7 @@
         "max": 42
       },
       "estimateBasis": "Una esquina compleja y tres masas provisionales, más revisión compartida. Un solo dueño de geometría vial para evitar duplicados.",
-      "next": "Separar en planta el conjunto Barra Hidalgo/Club Obregón y revisar las otras tres esquinas contra los panoramas.",
+      "next": "EB-SW: retomar 01 con extremos, escala e implantación verificados. La secuencia 01–11 está revisada; el edificio permanece incompleto.",
       "sharedTasks": {
         "plan": "partial",
         "street": "partial",
@@ -812,26 +812,36 @@
         {
           "id": "EB-SW",
           "name": "Conjunto de esquina · Barra Hidalgo / Club Obregón",
-          "confidence": "Puntos de interés conocidos; número de volúmenes y límite entre frentes por confirmar.",
+          "confidence": "Identidad del conjunto vinculada a P08/P09 y POI OSM. Reparaciones técnicas aplicadas; límites, implantación, dimensiones y fachada completa mantienen ocho bloqueos. EB-SW incompleto.",
           "estimateHours": {
             "min": 6,
             "max": 12
           },
           "tasks": {
-            "plan": "active",
-            "street": "pending",
-            "sidewalkA": "pending",
-            "sidewalkB": "pending",
-            "corners": "pending",
-            "identity": "pending",
-            "volume": "pending",
-            "facade": "pending",
-            "finish": "pending",
-            "equipment": "pending",
-            "qa": "pending"
+            "plan": "blocked",
+            "street": "done",
+            "sidewalkA": "blocked",
+            "sidewalkB": "blocked",
+            "corners": "blocked",
+            "identity": "done",
+            "volume": "blocked",
+            "facade": "blocked",
+            "finish": "done",
+            "equipment": "blocked",
+            "qa": "blocked"
           },
           "taskDetails": {
-            "plan": "EN EJECUCIÓN · contrastar el conjunto existente con R-001 P08/P09/P10 y separar coordenadas POI de límites prediales."
+            "plan": "Límites prediales y escala sin verificar. P08/P09 identifican los frentes azul y rojo; P10 muestra El Colegio amarillo contiguo. Los POI no delimitan parcelas. Falta ubicar extremos y fondos con escala para sustituir las huellas heredadas.",
+            "street": "Perfil técnico revisado: EastBlock es el único constructor vial; asfalto 5.61 m y transiciones continuas comprobadas. Fuente aérea heredada, incertidumbre de bordes ±0.56 m; no es una medición nueva de campo.",
+            "sidewalkA": "Base bajo juntas del lado sur reparada y comprobada sin invadir asfalto. El paso de 1.10 m sigue siendo provisional: faltan sección medida, obstáculos y continuidad en los extremos; después debe ajustarse el perfil y verificarse el recorrido.",
+            "sidewalkB": "Base bajo juntas del norte reparada, preservando la reparación sur y el asfalto. Los 2.35 m peatonales y 2.40 m de estacionamiento son hipótesis heredadas. Faltan límites, niveles y continuidad medida hasta los accesos; se requiere sección ubicada antes de corregirlos.",
+            "corners": "Encuentro Garmendia–Obregón identificado en P08. No hay escala ni vista completa de rebajes y cotas; radios y rampas siguen sin validar. Se necesita detalle ubicado del retorno para ajustarlo; no se añaden rampas supuestas.",
+            "identity": "Conjunto vinculado: Barra Hidalgo, POI6124344190 y esquina azul P08/P09; Club Obregón, POI6219440832 y frente rojo P09. El Colegio amarillo P10 se distingue como vecino. Coordenadas de ruta, fotos y hashes registrados; fecha y norte fotográfico desconocidos. Este cierre es de identidad visual, no de parcela.",
+            "volume": "Cuatro cajas de colisión sobredimensionadas sustituidas por envolventes ceñidas a los cuerpos visibles; patio conservado. Las alturas 5.70/6.30 m, fondos y separación entre frentes siguen siendo hipótesis heredadas. Faltan huellas y cotas verificables para reconstruir el volumen definitivo.",
+            "facade": "Frente del Club cerrado sobre el hueco heredado, con portal y ventana arqueados reales, jambas y cierres retranqueados; patio abierto al cielo conservado. Falta reconstruir la esquina de Barra, el conteo completo de vanos y la unión azul/rojo/amarillo con escala. El ancho nuevo hereda una hipótesis del modelo, no una medida del frente real.",
+            "finish": "Materiales propios ajustados a P08/P09: Barra azul, frente del Club rojo y molduras claras; UV métricas de 2.2 m, sin fotografías como texturas. Colores interpretados, no medidos en sitio. Este cierre de acabados no cierra la fachada ni sus proporciones.",
+            "equipment": "Inventario P08–P10 registrado: luminaria, protección tubular, bolardos, arbolado y cables. Faltan anclas, alturas y permanencia verificadas; no se añadieron objetos por aproximación visual. Se requieren posiciones y bases visibles para ajustar el equipamiento y su paso libre.",
+            "qa": "Planta, bloque y peatón comparados desde R-001 P09 con rumbo de consulta 355.84°, y visor real cargado sin errores. El modelo sigue separado y retranqueado respecto del frente continuo de las fotos; faltan límites y escala para corregirlo. Norte fotográfico, cotas y seguimiento vertical del avatar siguen sin verificar; QA no está cerrado."
           },
           "visualProgress": {
             "cameraId": "EB-SW-fixed-v1",
@@ -843,21 +853,139 @@
               "worldSha256": "7f76cb47d6189e2f29681ec2a0f37dd9993d4d1db9788cd10c4fd986e2953e91"
             },
             "current": {
-              "url": "levantamiento/evidence/EB-SW/00-general.png",
-              "title": "EB-SW · inicio del modelo heredado",
-              "label": "Inicio · 01",
-              "capturedAt": "2026-10-03T16:31:56.494Z",
-              "worldSha256": "7f76cb47d6189e2f29681ec2a0f37dd9993d4d1db9788cd10c4fd986e2953e91"
+              "url": "levantamiento/evidence/EB-SW/09-general.png",
+              "title": "EB-SW · modelo mejorado; implantación y fachada pendientes",
+              "label": "Modelo actualizado · EB-SW incompleto",
+              "capturedAt": "2026-10-03T16:48:07.667Z",
+              "worldSha256": "58e389f3cb45279def82c2e0ea79a607e9394f22ab5a7d3eba37dc75642ec924"
             },
             "manifest": "levantamiento/evidence/EB-SW/manifest.json"
           },
           "evidence": {
             "plan": [
               {
-                "title": "01 · planta del modelo heredado",
+                "title": "Alinear planta y huellas con cartografía visual · 00-plan.png",
                 "url": "levantamiento/evidence/EB-SW/00-plan.png"
               }
+            ],
+            "street": [
+              {
+                "title": "Ajustar calzada y encuentros de calles · 02-block.png",
+                "url": "levantamiento/evidence/EB-SW/02-block.png"
+              }
+            ],
+            "sidewalkA": [
+              {
+                "title": "Ajustar banqueta del lado A · 03-south.png",
+                "url": "levantamiento/evidence/EB-SW/03-south.png"
+              }
+            ],
+            "sidewalkB": [
+              {
+                "title": "Ajustar banqueta del lado B · 04-north.png",
+                "url": "levantamiento/evidence/EB-SW/04-north.png"
+              }
+            ],
+            "corners": [
+              {
+                "title": "Corregir esquinas, guarniciones y rampas · 05-plan.png",
+                "url": "levantamiento/evidence/EB-SW/05-plan.png"
+              }
+            ],
+            "volume": [
+              {
+                "title": "Completar huella, volumen, altura y cubierta · 07-general.png",
+                "url": "levantamiento/evidence/EB-SW/07-general.png"
+              }
+            ],
+            "facade": [
+              {
+                "title": "Ajustar forma de fachada a la referencia visual · 08-general.png",
+                "url": "levantamiento/evidence/EB-SW/08-general.png"
+              },
+              {
+                "title": "Ajustar forma de fachada a la referencia visual · 08-pedestrian.png",
+                "url": "levantamiento/evidence/EB-SW/08-pedestrian.png"
+              }
+            ],
+            "finish": [
+              {
+                "title": "Afinar materiales, vanos y detalles visibles · 09-general.png",
+                "url": "levantamiento/evidence/EB-SW/09-general.png"
+              },
+              {
+                "title": "Afinar materiales, vanos y detalles visibles · 09-pedestrian.png",
+                "url": "levantamiento/evidence/EB-SW/09-pedestrian.png"
+              }
+            ],
+            "equipment": [
+              {
+                "title": "Colocar equipamiento urbano documentado · 09-general.png",
+                "url": "levantamiento/evidence/EB-SW/09-general.png"
+              }
+            ],
+            "qa": [
+              {
+                "title": "Comparar planta, bloque y peatón con rumbo coincidente · 11-plan.png",
+                "url": "levantamiento/evidence/EB-SW/11-plan.png"
+              },
+              {
+                "title": "Comparar planta, bloque y peatón con rumbo coincidente · 11-block.png",
+                "url": "levantamiento/evidence/EB-SW/11-block.png"
+              },
+              {
+                "title": "Comparar planta, bloque y peatón con rumbo coincidente · 11-pedestrian.png",
+                "url": "levantamiento/evidence/EB-SW/11-pedestrian.png"
+              }
+            ],
+            "identity": [
+              {
+                "title": "P08 · esquina azul Barra Hidalgo",
+                "url": "recorrido/mxEvNEtgLgOSxKsRFwCiHg.jpg"
+              },
+              {
+                "title": "P09 · frentes azul y rojo contiguos",
+                "url": "recorrido/lKsrvsfkAzaSnxEQUwrxfA.jpg"
+              },
+              {
+                "title": "P10 · vecino amarillo El Colegio",
+                "url": "recorrido/lYkbkN5HLT-6YQS4vIsd2g.jpg"
+              }
             ]
+          },
+          "issues": {
+            "plan": {
+              "title": "Límites prediales y escala sin verificar",
+              "detail": "Límites prediales y escala sin verificar. P08/P09 identifican los frentes azul y rojo; P10 muestra El Colegio amarillo contiguo. Los POI no delimitan parcelas. Falta ubicar extremos y fondos con escala para sustituir las huellas heredadas."
+            },
+            "sidewalkA": {
+              "title": "Base bajo juntas del lado sur reparada y comprobada sin invadir asfalto",
+              "detail": "Base bajo juntas del lado sur reparada y comprobada sin invadir asfalto. El paso de 1.10 m sigue siendo provisional: faltan sección medida, obstáculos y continuidad en los extremos; después debe ajustarse el perfil y verificarse el recorrido."
+            },
+            "sidewalkB": {
+              "title": "Base bajo juntas del norte reparada, preservando la reparación sur y el asfalto",
+              "detail": "Base bajo juntas del norte reparada, preservando la reparación sur y el asfalto. Los 2.35 m peatonales y 2.40 m de estacionamiento son hipótesis heredadas. Faltan límites, niveles y continuidad medida hasta los accesos; se requiere sección ubicada antes de corregirlos."
+            },
+            "corners": {
+              "title": "Encuentro Garmendia–Obregón identificado en P08",
+              "detail": "Encuentro Garmendia–Obregón identificado en P08. No hay escala ni vista completa de rebajes y cotas; radios y rampas siguen sin validar. Se necesita detalle ubicado del retorno para ajustarlo; no se añaden rampas supuestas."
+            },
+            "volume": {
+              "title": "Cuatro cajas de colisión sobredimensionadas sustituidas por envolventes ceñidas a los cuerpos visibles; patio conservado",
+              "detail": "Cuatro cajas de colisión sobredimensionadas sustituidas por envolventes ceñidas a los cuerpos visibles; patio conservado. Las alturas 5.70/6.30 m, fondos y separación entre frentes siguen siendo hipótesis heredadas. Faltan huellas y cotas verificables para reconstruir el volumen definitivo."
+            },
+            "facade": {
+              "title": "Frente del Club cerrado sobre el hueco heredado, con portal y ventana arqueados reales, jambas y cierres retranqueados; patio abierto al cielo conservado",
+              "detail": "Frente del Club cerrado sobre el hueco heredado, con portal y ventana arqueados reales, jambas y cierres retranqueados; patio abierto al cielo conservado. Falta reconstruir la esquina de Barra, el conteo completo de vanos y la unión azul/rojo/amarillo con escala. El ancho nuevo hereda una hipótesis del modelo, no una medida del frente real."
+            },
+            "equipment": {
+              "title": "Inventario P08–P10 registrado: luminaria, protección tubular, bolardos, arbolado y cables",
+              "detail": "Inventario P08–P10 registrado: luminaria, protección tubular, bolardos, arbolado y cables. Faltan anclas, alturas y permanencia verificadas; no se añadieron objetos por aproximación visual. Se requieren posiciones y bases visibles para ajustar el equipamiento y su paso libre."
+            },
+            "qa": {
+              "title": "Planta, bloque y peatón comparados desde R-001 P09 con rumbo de consulta 355.84°, y visor real cargado sin errores",
+              "detail": "Planta, bloque y peatón comparados desde R-001 P09 con rumbo de consulta 355.84°, y visor real cargado sin errores. El modelo sigue separado y retranqueado respecto del frente continuo de las fotos; faltan límites y escala para corregirlo. Norte fotográfico, cotas y seguimiento vertical del avatar siguen sin verificar; QA no está cerrado."
+            }
           }
         },
         {

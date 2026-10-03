@@ -1,9 +1,10 @@
+import {removeEbSwHook} from './preparar-ebsw.mjs'
 import assert from 'node:assert/strict'
 import { readFile } from 'node:fs/promises'
 import vm from 'node:vm'
 import { BASE_VISOR_SHA256, removeIsc58VisorHook, refineVisorBundle, sha256 } from './preparar-isc58.mjs'
 
-const source = await readFile('public/levantamiento/visor/assets/index-RoPA5goG.js', 'utf8')
+const source = removeEbSwHook(await readFile('public/levantamiento/visor/assets/index-RoPA5goG.js', 'utf8'), 'visor')
 const runtimeSource = await readFile('public/levantamiento/isc58-refinement.js', 'utf8')
 const runtimeHash = sha256(runtimeSource)
 const base = removeIsc58VisorHook(source)

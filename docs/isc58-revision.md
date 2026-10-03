@@ -1,5 +1,9 @@
 # ISC-58 · continuación de la revisión 1–11
 
+Relevo histórico de ISC-58. Después de este cierre parcial, el usuario seleccionó
+expresamente EB-SW; su avance está en [ebsw-revision.md](ebsw-revision.md).
+Los pendientes de ISC-58 se conservan en la matriz.
+
 Guía operativa principal: [Guía maestra de Amalaya 3D](https://drive.google.com/file/d/1n563KsI5gP3n6s-rLtqgQJEhRfTno1D7/view).
 Este relevo describe el trabajo posterior al corte publicado de planta. La matriz
 canónica sigue siendo `public/seguimiento-3d.json`; el Markdown se genera desde ella.
