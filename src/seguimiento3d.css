@@ -62,3 +62,9 @@
 .tracker-photo-grid figcaption { font-size:11px; margin:6px 0; color:#B7A890; }
 .tracker-photo-grid button { width:100%; font-size:11px; }
 @media(max-width:380px) { .tracker-dialog { padding:20px; } .tracker-photo-actions { flex-direction:column; } }
+
+.tracker-round { margin:0 0 16px; padding:13px 16px; border:1px solid #69553B; border-radius:6px; background:#221B15; }
+.tracker-round strong { color:#C9A45C; font-size:14px; }
+.tracker-round p { margin:6px 0 0; color:#B7A890; font-size:12px; line-height:1.5; }
+.tracker-page:has(.tracker-round) .tracker-table-scroll { max-height:calc(100dvh - 295px); }
+@media(max-width:650px) { .tracker-page:has(.tracker-round) .tracker-table-scroll { max-height:calc(100dvh - 365px); } }

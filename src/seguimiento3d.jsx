@@ -174,6 +174,11 @@ function Seguimiento() {
       <div className="tracker-legend">{['active', 'done', 'blocked', 'pending', 'partial'].map(value => <span key={value}><i className={`state-${value}`}>{STATES[value].symbol}</i>{STATES[value].label}</span>)}</div>
       <small>{data ? `Actualizado ${new Intl.DateTimeFormat('es-MX', { dateStyle: 'short', timeStyle: 'short', timeZone: 'America/Hermosillo' }).format(new Date(data.updatedAt))}` : 'Cargando…'}</small>
     </div>
+    {data?.workflow?.mode === 'phase-rounds' && <section className="tracker-round" aria-label="Trabajo por etapas">
+      <strong>Paso {data.workflow.round} en todos los edificios</strong>
+      <p>{data.workflow.closedBuildings.length} de {data.workflow.buildingOrder.length} plantas revisadas · Medir → editar → verificar un edificio antes del siguiente.</p>
+      {data.workflow.unresolvedBuildings.length > 0 && <p>Contornos por resolver: {data.workflow.unresolvedBuildings.join(', ')}. La siguiente etapa comienza al cerrar esta ronda.</p>}
+    </section>}
     {error && <p className="tracker-error" role="status">{error}</p>}
     {data && <div className="tracker-table-scroll" tabIndex="0" role="region" aria-label="Matriz de acciones por edificio">
       <table className="tracker-matrix">
