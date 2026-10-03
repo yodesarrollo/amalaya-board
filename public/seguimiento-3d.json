@@ -1,14 +1,14 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-03T16:54:31.841886+00:00",
+  "updatedAt": "2026-10-03T19:14:43.694Z",
   "refreshSeconds": 30,
   "live": {
     "status": "blocked",
-    "phase": "EB-SW · proceso incompleto",
-    "title": "Banquetas, colisiones, frente y acabados mejorados",
-    "detail": "Secuencia 01–11 registrada: 02, 06 y 09 cumplidos; ocho criterios bloqueados con su causa. Primer pendiente: 01, implantación y límites.",
+    "phase": "EB-NW · secuencia 01–11 revisada",
+    "title": "Volumen provisional · Garmendia × Chihuahua",
+    "detail": "Las 11 acciones se recorrieron en orden: 06 identidad descriptiva cumplida; 01–04 provisionales; 05 y 07–11 bloqueadas con causa. No quedan acciones pendientes. Para reanudar modelado y QA hace falta la fuente 3D vigente, cotas de huella/altura y un visor con WebGL2.",
     "activeBlockId": "EB-GA",
-    "activeBuildingId": "EB-SW"
+    "activeBuildingId": "EB-NW"
   },
   "schedule": {
     "basis": "Horas de trabajo concentrado que faltan para revisar y cerrar las referencias conocidas, con la geometría actual como punto de partida.",
@@ -991,18 +991,62 @@
         {
           "id": "EB-NW",
           "name": "Volumen provisional · Garmendia × Chihuahua",
-          "confidence": "Masa genérica existente; edificio y frente sin nombre confirmado.",
+          "confidence": "R-002 P06/P07 (Street View, dic. 2023) empatan el frente con una fachada verde aparente de una planta. Nombre comercial sin confirmar; huella, cubierta y alturas sin medir.",
           "estimateHours": {
             "min": 4,
             "max": 8
           },
           "tasks": {
-            "identity": "pending",
-            "volume": "partial",
-            "facade": "pending",
-            "finish": "pending",
-            "equipment": "pending",
-            "qa": "pending"
+            "plan": "partial",
+            "street": "partial",
+            "sidewalkA": "partial",
+            "sidewalkB": "partial",
+            "corners": "blocked",
+            "identity": "done",
+            "volume": "blocked",
+            "facade": "blocked",
+            "finish": "blocked",
+            "equipment": "blocked",
+            "qa": "blocked"
+          },
+          "taskDetails": {
+            "plan": "PROVISIONAL · El cruce OSM Garmendia × Chihuahua sitúa la esquina NW y la masa heredada. El recorte no contiene huella edificatoria; P06/P07 ayudan a ubicar el frente, pero no revelan linderos ni fondo. Mantener la planta como aproximada hasta contar con una huella medida.",
+            "street": "PROVISIONAL · La base vial sigue los ejes OSM y el cruce es reconocible en R-002 P06/P07. No hay sección métrica propia para la calzada y sus encuentros en Garmendia × Chihuahua; el perfil de Obregón P10 pertenece a otro tramo y no se extrapola.",
+            "sidewalkA": "PROVISIONAL · P06/P07 muestran el paso junto a la fachada, pero no acreditan ancho libre, obstáculos ni continuidad completa del lado A. Mantener la banda existente como aproximada hasta medir sección y extremos.",
+            "sidewalkB": "PROVISIONAL · La acera del lado B tampoco tiene ancho o continuidad medidos en esta esquina. La vista parcial no basta para validar guarnición, accesos y paso libre; se conserva como base provisional.",
+            "corners": "REVISADO Y BLOQUEADO · P07 muestra el encuentro desde una sola perspectiva, sin cotas de guarnición, radios o rebajes. No se dibuja una rampa supuesta; se requiere detalle completo de la esquina y medidas de niveles, ancho y pendiente.",
+            "identity": "HECHO · R-002 P06 (103 Av. Chihuahua, rumbo 270°) y P07 (186 C. Garmendia, rumbo 180°), ambos con Street View de diciembre de 2023, empatan visualmente la esquina con una fachada verde aparente de una planta. Se conserva el nombre descriptivo EB-NW; no se atribuye comercio ni propietario.",
+            "volume": "REVISADO Y BLOQUEADO · P06/P07 sugieren una planta, pero no muestran la cubierta completa, el fondo ni una escala vertical verificable. No existe huella edificatoria OSM para esta esquina. Para corregir la masa sin reemplazar trabajo más reciente hace falta la fuente 3D vigente y medidas de huella, fondo y altura.",
+            "facade": "REVISADO Y BLOQUEADO · Las referencias sugieren estuco verde, banda y marcos claros, y vanos rectangulares con herrería oscura. Las tomas son parciales: no fijan el largo total, el conteo de vanos ni el remate completo. Falta la fuente 3D vigente para aplicar la corrección sin inventar la fachada.",
+            "finish": "REVISADO Y BLOQUEADO · La lectura visual de P06/P07 permite describir tonos generales, pero no calibrar color, relieve o escala constructiva. Mantener materiales procedurales; se necesita alzado completo y revisión desde la fuente vigente. No se usan panoramas como texturas.",
+            "equipment": "REVISADO Y BLOQUEADO · Se ven rejas y portones en la fachada, además de vallas, cables y vegetación en el entorno. Las tomas no fijan propiedad, coordenadas ni alturas de los elementos exteriores; no se añade equipamiento sin ubicación documentada.",
+            "qa": "REVISADO Y BLOQUEADO · En esta sesión el visor público informó que requiere WebGL2 y no pudo cargar el modelo; los recorridos 360 sí siguieron disponibles. No se pudo comparar planta, modelo y peatón desde el mismo punto y rumbo. Se requiere una sesión con WebGL2 y capturas coincidentes de R-002 P06/P07."
+          },
+          "issues": {
+            "corners": {
+              "title": "Faltan cotas de guarnición y rebajes",
+              "detail": "R-002 P07 ofrece una vista parcial del encuentro, no una sección completa. Se requiere medir altura de guarnición, radio, ancho y pendiente del rebaje, además de fotografiar el retorno desde ambos lados; hasta entonces, no se marcan rampas ni esquinas como terminadas."
+            },
+            "volume": {
+              "title": "Faltan huella y altura verificables",
+              "detail": "OSM no contiene una huella edificatoria para EB-NW. P06/P07 sugieren una planta, pero no muestran fondo o cubierta con escala. Recuperar la fuente 3D vigente y obtener huella, fondo y altura medidos antes de cambiar la masa."
+            },
+            "facade": {
+              "title": "La referencia cubre solo parte de la fachada",
+              "detail": "P06/P07 permiten describir una fachada verde aparente de una planta con marcos claros y vanos enrejados, pero no contar ni dimensionar todos los vanos o remates. Hace falta un frente completo con escala y la fuente 3D vigente."
+            },
+            "finish": {
+              "title": "El acabado visible no tiene calibración",
+              "detail": "La paleta general se reconoce, pero no hay referencia autorizada que calibre tono, rugosidad o escala del acabado. Se necesita validar el alzado y ajustar el material procedural en la fuente 3D vigente; no se incorporan fotografías como texturas."
+            },
+            "equipment": {
+              "title": "El equipamiento exterior no está ubicado",
+              "detail": "P06/P07 muestran elementos de calle y fachada sin coordenadas ni alturas verificables. Hace falta un inventario de elementos fijos con posición y cota antes de añadirlos; no se ubican cables, vallas o mobiliario a ojo."
+            },
+            "qa": {
+              "title": "No fue posible cargar el 3D en esta sesión",
+              "detail": "El visor público mostró que WebGL2 es requerido y no cargó el modelo en este navegador. Esto solo describe la limitación de esta sesión. Para cerrar QA, recuperar la fuente 3D vigente y producir vistas de planta, bloque y peatón desde el mismo punto y rumbo R-002."
+            }
           }
         },
         {
