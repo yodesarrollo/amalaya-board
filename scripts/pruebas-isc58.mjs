@@ -1,12 +1,13 @@
+import {removePlanRoundHook} from './preparar-plantas.mjs'
 import {removeEbSwHook} from './preparar-ebsw.mjs'
 import assert from 'node:assert/strict'
 import { readFile } from 'node:fs/promises'
 import { applyIsc58, footprintColliderCells, repairSouthWalk, repairNorthWalk } from '../public/levantamiento/isc58-refinement.js'
 import { BASE_WORLD_SHA256, BASE_VISOR_SHA256, refineBundle, refineVisorBundle, removeIsc58Hook, removeIsc58VisorHook, regionHashes, sha256 } from './preparar-isc58.mjs'
 
-const published = removeEbSwHook(await readFile('public/levantamiento/world.js', 'utf8'))
+const published = removeEbSwHook(removePlanRoundHook(await readFile('public/levantamiento/world.js', 'utf8')))
 const base = removeIsc58Hook(published)
-const visor = removeEbSwHook(await readFile('public/levantamiento/visor/assets/index-RoPA5goG.js', 'utf8'), 'visor')
+const visor = removeEbSwHook(removePlanRoundHook(await readFile('public/levantamiento/visor/assets/index-RoPA5goG.js', 'utf8'),'visor'), 'visor')
 const moduleSource = await readFile('public/levantamiento/isc58-refinement.js', 'utf8')
 const moduleHash = sha256(moduleSource)
 assert.equal(sha256(base), BASE_WORLD_SHA256)

@@ -1,14 +1,14 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-03T20:31:27.312Z",
+  "updatedAt": "2026-10-03T22:03:18.690Z",
   "refreshSeconds": 30,
   "live": {
     "status": "blocked",
-    "phase": "EB-NW · medidas manuales 01–04 registradas",
-    "title": "Volumen provisional · Garmendia × Chihuahua",
-    "detail": "Google Maps: huella visual 15,64 × 15,77 m; Av. Chihuahua 5,21 m; banqueta A 1,04 m; franja visible B 1,37 m. Los pasos 01–04 siguen parciales hasta aplicar y validar las medidas en la fuente 3D vigente. 05 y 07–11 mantienen sus bloqueos; 06 identidad descriptiva está cumplida.",
-    "activeBlockId": "EB-GA",
-    "activeBuildingId": "EB-NW"
+    "phase": "Ronda 01 · planta de todos los edificios",
+    "title": "9 plantas revisadas · 3 contornos por resolver",
+    "detail": "EB-NW, EB-NE y EB-SE ajustados; huella BBVA incorporada. OB-01/OB-02 y OXXO/biblioteca/HSBC conservan sus plantas revisadas. ISC-58, EB-SW y Bley mantienen impedimentos concretos de contorno. Paso 2 aún no iniciado.",
+    "activeBlockId": "OB-YG",
+    "activeBuildingId": "ISC-58"
   },
   "schedule": {
     "basis": "Horas de trabajo concentrado que faltan para revisar y cerrar las referencias conocidas, con la geometría actual como punto de partida.",
@@ -83,7 +83,7 @@
         "max": 33
       },
       "estimateBasis": "3 frentes/estructuras conocidas más revisión compartida de la cuadra; frentes anónimos se agregan cuando se cuenten.",
-      "next": "ISC-58 · primer pendiente01: extremos del frente, escala y correspondencia métrica con OSM. 03/04 tienen reparaciones verificadas, pero faltan continuidad y secciones físicas;05/07/08/10/11 conservan sus impedimentos. No presentar el edificio ni las once acciones como terminados.",
+      "next": "Ronda 01 · resolver las plantas de los edificios de este tramo antes de pasar al paso 2; ciclo por edificio: medir → editar → verificar.",
       "sharedTasks": {
         "plan": "partial",
         "street": "partial",
@@ -577,7 +577,7 @@
             "qa": "blocked"
           },
           "taskDetails": {
-            "plan": "REVISIÓN AMPLIADA · huella OSM 664499024 comprobada contra API vigente, con siete vértices. Borde sur ≈91.84 m y alcance máximo perpendicular ≈55.41 m, derivados de cartografía. Se conserva el bloqueo publicado en 01: el nombre OSM no certifica los extremos del frente físico de Obregón #58 ni su escala de campo. Consulta adicional: Commons muestra el letrero ISC y numeral 58 en una arquería beige de cinco arcos, reconocible en P04/P05 por puerta central y relación con el monumento. Esta identificación visual del acceso no fija los extremos de la parcela, su X/Z ni su escala.",
+            "plan": "RONDA 01 REVISADA · La huella OSM del conjunto está modelada, pero falta separar el contorno físico que corresponde al frente beige #58 de las masas contiguas. Las medidas aproximadas son válidas; el impedimento es asignar el contorno correcto, no disponer de un plano catastral.",
             "street": "REVISADO · el entorno ISC/P05 utiliza la calibración PH-01 ya publicada: calzada 6.705 m y corrección del eje −1.53 m, derivadas de imagen aérea, no medidas de campo. Se conserva un único constructor vial. No se traslada aquí la sección OB-W de OB-01/OB-02 ni se certifica el ancho físico actual. El corte f12c7c2 registró un timeout de montaje antes de WebGL; las nuevas vistas y la capa MapLibre se renderizaron aquí sin errores. El fallo anterior se conserva en Git y en el relevo.",
             "sidewalkA": "REPARACIÓN TÉCNICA 03 · base continua bajo juntas y bordes a cota heredada; cuatro losetas recortadas por el mesh real de calzada y doce colliders de pilastras visibles. Planta/perfil/calzada conservados, sin ensanchar el paso. Rayos y recortes comprobados. BLOQUEADO el cierre: el extremo oeste sigue estrecho/impasable para el avatar; la transición queda desconectada y las cotas físicas siguen sin medir.",
             "sidewalkB": "REPARACIÓN TÉCNICA 04 · base bajo juntas del pavimento PH-01, 41 losetas de plaza y 165 genéricas retiradas o recortadas según calzada y propietario. Biseles, colores, UV y cotas heredadas conservados. Rayos en juntas y en el antiguo solape sobre asfalto comprobados; reparación03, transición y OB-01/OB-02 conservados. BLOQUEADO el cierre físico: límites del tramo, cotas y continuidad peatonal siguen sin medir/verificar; no se atribuye el paseo entero a una banqueta uniforme ISC.",
@@ -755,8 +755,8 @@
               "detail": "Las tres vistas del modelo comparten P05 y rumbo 355.065831° derivado del borde OSM. Esto no calibra el norte del panorama: falta metadato o registro visual verificable, fecha de captura y medidas físicas. Limitación técnica adicional del visor heredado: el avatar fija el suelo al entrar y no se ha corregido su seguimiento vertical al caminar. Las comprobaciones realizadas acreditan renderizado y colisiones, no navegación accesible completa."
             },
             "plan": {
-              "title": "Falta asociar el frente Obregón #58 con la huella y un panorama",
-              "detail": "El nombre y la dirección del ISC están confirmados, pero R-001 P03/P04 no traen heading de panorama y las imágenes equirectangulares muestran una vista amplia con árboles y vehículos que interrumpen la observación. El way OSM 664499024 ya se dibuja en PH-01 y no demuestra por sí solo qué borde es el frente del #58. Hace falta identificar el segmento completo del frente en una vista/croquis ubicado sobre la planta y vincularlo a P03 o P04 con orientación de consulta; para cerrar escala, añadir medidas con unidades, método, fecha y margen de error. Sin eso no se verifica inicio/fin ni separación respecto de la calzada y colindantes. La consulta adicional identifica visualmente el acceso #58 en la arquería beige mediante numeral y letrero; permanecen pendientes los extremos, vínculo métrico con OSM y orientación fotográfica. No se asigna al paño rojo la identidad del #58."
+              "title": "Contorno por asignar",
+              "detail": "La huella OSM del conjunto está modelada, pero falta separar el contorno físico que corresponde al frente beige #58 de las masas contiguas. Las medidas aproximadas son válidas; el impedimento es asignar el contorno correcto, no disponer de un plano catastral."
             },
             "sidewalkA": {
               "title": "Falta verificar cotas y continuidad de la banqueta sur",
@@ -800,7 +800,7 @@
         "max": 42
       },
       "estimateBasis": "Una esquina compleja y tres masas provisionales, más revisión compartida. Un solo dueño de geometría vial para evitar duplicados.",
-      "next": "EB-NW: retomar desde el paso 01 y aplicar, en orden, las medidas manuales de huella, calzada y banquetas a la fuente 3D vigente; después continuar 05–11 sin saltos. La fuente actual aún debe recuperarse.",
+      "next": "Ronda 01 · resolver las plantas de los edificios de este tramo antes de pasar al paso 2; ciclo por edificio: medir → editar → verificar.",
       "sharedTasks": {
         "plan": "partial",
         "street": "partial",
@@ -831,7 +831,7 @@
             "qa": "blocked"
           },
           "taskDetails": {
-            "plan": "Límites prediales y escala sin verificar. P08/P09 identifican los frentes azul y rojo; P10 muestra El Colegio amarillo contiguo. Los POI no delimitan parcelas. Falta ubicar extremos y fondos con escala para sustituir las huellas heredadas.",
+            "plan": "RONDA 01 REVISADA · Los frentes azul y rojo están identificados. Sus cuerpos posteriores y cubiertas contiguas aún no se pueden asignar de forma única a Barra Hidalgo y Club Obregón; hace falta resolver esa división para modificar sus plantas.",
             "street": "Perfil técnico revisado: EastBlock es el único constructor vial; asfalto 5.61 m y transiciones continuas comprobadas. Fuente aérea heredada, incertidumbre de bordes ±0.56 m; no es una medición nueva de campo.",
             "sidewalkA": "Base bajo juntas del lado sur reparada y comprobada sin invadir asfalto. El paso de 1.10 m sigue siendo provisional: faltan sección medida, obstáculos y continuidad en los extremos; después debe ajustarse el perfil y verificarse el recorrido.",
             "sidewalkB": "Base bajo juntas del norte reparada, preservando la reparación sur y el asfalto. Los 2.35 m peatonales y 2.40 m de estacionamiento son hipótesis heredadas. Faltan límites, niveles y continuidad medida hasta los accesos; se requiere sección ubicada antes de corregirlos.",
@@ -955,8 +955,8 @@
           },
           "issues": {
             "plan": {
-              "title": "Límites prediales y escala sin verificar",
-              "detail": "Límites prediales y escala sin verificar. P08/P09 identifican los frentes azul y rojo; P10 muestra El Colegio amarillo contiguo. Los POI no delimitan parcelas. Falta ubicar extremos y fondos con escala para sustituir las huellas heredadas."
+              "title": "Contorno por asignar",
+              "detail": "Los frentes azul y rojo están identificados. Sus cuerpos posteriores y cubiertas contiguas aún no se pueden asignar de forma única a Barra Hidalgo y Club Obregón; hace falta resolver esa división para modificar sus plantas."
             },
             "sidewalkA": {
               "title": "Base bajo juntas del lado sur reparada y comprobada sin invadir asfalto",
@@ -991,13 +991,13 @@
         {
           "id": "EB-NW",
           "name": "Volumen provisional · Garmendia × Chihuahua",
-          "confidence": "R-002 P06/P07 (Street View, dic. 2023) empatan el frente con una fachada verde aparente de una planta. Google Maps (03/10/2026) da una huella visual aproximada de 15.64 × 15.77 m; no son linderos ni cotas de campo. Nombre comercial, cubierta exacta y alturas sin confirmar.",
+          "confidence": "Planta aproximada del cuerpo visible aplicada: 15,20 × 15,06 m (±1 m), mediante extensión sobre el modelo vigente. R-002 P06/P07 vinculan el frente descriptivo; nombre comercial, anexos y altura por confirmar.",
           "estimateHours": {
             "min": 4,
             "max": 8
           },
           "tasks": {
-            "plan": "partial",
+            "plan": "done",
             "street": "partial",
             "sidewalkA": "partial",
             "sidewalkB": "partial",
@@ -1010,7 +1010,7 @@
             "qa": "blocked"
           },
           "taskDetails": {
-            "plan": "MEDICIÓN MANUAL EN GOOGLE MAPS · Huella visible: frente 15,64 m × fondo 15,77 m (±1 m cada lado), tomados sobre los bordes aparentes de cubierta. No fija lindero catastral ni huella en suelo. Medida registrada; falta aplicarla y validarla en la fuente 3D vigente.",
+            "plan": "PLANTA APLICADA · 15.20 × 15.06 m, margen ±1 m. Ubicación y orientación incorporadas al modelo vigente; colisiones adaptadas y vecinos comprobados. Envolvente aproximada del cuerpo visible; anexos, patios y contorno en suelo siguen por precisar en el levantamiento completo.",
             "street": "MEDICIÓN MANUAL EN GOOGLE MAPS · Calzada de Av. Chihuahua frente a EB-NW: 5,21 m (±0,5 m) entre bordes visibles. No incluye radios/encuentros de esquina ni el ancho de Garmendia. Medida registrada; falta aplicarla y validar la calzada en la fuente 3D vigente.",
             "sidewalkA": "MEDICIÓN MANUAL EN GOOGLE MAPS · Lado A: 1,04 m (±0,3 m) entre el borde visible de calzada y la línea aparente de fachada/cubierta. No confirma ancho libre continuo ni obstáculos. Medida registrada; falta aplicarla y verificar extremos en la fuente 3D vigente.",
             "sidewalkB": "MEDICIÓN MANUAL EN GOOGLE MAPS · Lado B: franja dura visible de 1,37 m (±0,4 m) entre borde de calzada y límite aparente. La vegetación y el acceso la hacen irregular; no confirma una banqueta pública ni ancho libre continuo. Medida registrada; falta aplicarla y verificar en la fuente 3D vigente.",
@@ -1076,12 +1076,20 @@
               "tolerance": 0.4,
               "limits": "franja dura visible al lado norte; irregular con vegetación/acceso"
             }
+          },
+          "evidence": {
+            "plan": [
+              {
+                "url": "levantamiento/evidence/EB-NW/01-planta-geometria.png",
+                "title": "Paso 1 · planta y cuerpo del modelo; proyección por software"
+              }
+            ]
           }
         },
         {
           "id": "EB-NE",
           "name": "Volumen provisional · Abasolo × Chihuahua",
-          "confidence": "Masa genérica existente; edificio y frente sin nombre confirmado.",
+          "confidence": "Envolvente de esquina ajustada con tres anclas visibles de cubierta (±1,5 m). Las alturas y fachadas mantienen sus hipótesis heredadas y requieren sus etapas de revisión.",
           "estimateHours": {
             "min": 4,
             "max": 8
@@ -1092,13 +1100,26 @@
             "facade": "pending",
             "finish": "pending",
             "equipment": "pending",
-            "qa": "pending"
+            "qa": "pending",
+            "plan": "done"
+          },
+          "taskDetails": {
+            "plan": "PLANTA APLICADA · 24.07 × 16.83 m, margen ±1.5 m. Ubicación y orientación incorporadas al modelo vigente; colisiones adaptadas y vecinos comprobados. Envolvente aproximada del cuerpo visible; anexos, patios y contorno en suelo siguen por precisar en el levantamiento completo. Fondo ajustado 0,60 m dentro del margen visual para separar EB-NE y EB-SE."
+          },
+          "issues": {},
+          "evidence": {
+            "plan": [
+              {
+                "url": "levantamiento/evidence/EB-NE/01-planta-geometria.png",
+                "title": "Paso 1 · planta y cuerpo del modelo; proyección por software"
+              }
+            ]
           }
         },
         {
           "id": "EB-SE",
           "name": "Volumen provisional · Abasolo × Obregón",
-          "confidence": "Masa genérica existente; edificio y frente sin nombre confirmado.",
+          "confidence": "Envolvente de esquina ajustada con tres anclas visibles de cubierta (±1,5 m). Las alturas y fachadas mantienen sus hipótesis heredadas y requieren sus etapas de revisión.",
           "estimateHours": {
             "min": 4,
             "max": 8
@@ -1109,7 +1130,20 @@
             "facade": "pending",
             "finish": "pending",
             "equipment": "pending",
-            "qa": "pending"
+            "qa": "pending",
+            "plan": "done"
+          },
+          "taskDetails": {
+            "plan": "PLANTA APLICADA · 27.33 × 25.71 m, margen ±1.5 m. Ubicación y orientación incorporadas al modelo vigente; colisiones adaptadas y vecinos comprobados. Envolvente aproximada del cuerpo visible; anexos, patios y contorno en suelo siguen por precisar en el levantamiento completo."
+          },
+          "issues": {},
+          "evidence": {
+            "plan": [
+              {
+                "url": "levantamiento/evidence/EB-SE/01-planta-geometria.png",
+                "title": "Paso 1 · planta y cuerpo del modelo; proyección por software"
+              }
+            ]
           }
         }
       ],
@@ -1127,7 +1161,7 @@
         "max": 4
       },
       "estimateBasis": "Trabajo de borde, banqueta y cruces; mantener el espacio de la plaza abierto.",
-      "next": "Verificar accesos, continuidad peatonal, guarniciones y mobiliario junto al borde.",
+      "next": "Ronda 01 · resolver las plantas de los edificios de este tramo antes de pasar al paso 2; ciclo por edificio: medir → editar → verificar.",
       "sharedTasks": {
         "plan": "partial",
         "street": "partial",
@@ -1149,7 +1183,7 @@
         "max": 15
       },
       "estimateBasis": "Un ancla cartográfica con frente aún por empatar, más revisión compartida; fachadas adicionales por contar.",
-      "next": "Recorrer P01–P07 y P03–P07 desde planta para separar las fachadas de cada lado.",
+      "next": "Ronda 01 · resolver las plantas de los edificios de este tramo antes de pasar al paso 2; ciclo por edificio: medir → editar → verificar.",
       "sharedTasks": {
         "plan": "partial",
         "street": "partial",
@@ -1172,7 +1206,11 @@
             "facade": "pending",
             "finish": "pending",
             "equipment": "pending",
-            "qa": "pending"
+            "qa": "pending",
+            "plan": "done"
+          },
+          "taskDetails": {
+            "plan": "PLANTA CARTOGRÁFICA REVISADA · huella OSM 499760720 ya presente en el modelo, cotejada con el contexto aéreo. Se conserva como aproximación visual (±3 m); la correspondencia comercial, fachadas, alturas y entradas mantienen sus estados propios."
           }
         }
       ],
@@ -1189,7 +1227,7 @@
         "max": 29
       },
       "estimateBasis": "Biblioteca y BBVA como anclas con huellas/frentes por empatar, más revisión compartida.",
-      "next": "Vincular cada ancla con la fachada correcta en las capturas del recorrido.",
+      "next": "Ronda 01 · resolver las plantas de los edificios de este tramo antes de pasar al paso 2; ciclo por edificio: medir → editar → verificar.",
       "sharedTasks": {
         "plan": "partial",
         "street": "partial",
@@ -1212,7 +1250,11 @@
             "facade": "pending",
             "finish": "pending",
             "equipment": "pending",
-            "qa": "pending"
+            "qa": "pending",
+            "plan": "done"
+          },
+          "taskDetails": {
+            "plan": "PLANTA CARTOGRÁFICA REVISADA · huella OSM 1533334038 ya presente en el modelo, cotejada con el contexto aéreo. Se conserva como aproximación visual (±3 m); la correspondencia comercial, fachadas, alturas y entradas mantienen sus estados propios."
           }
         },
         {
@@ -1229,7 +1271,20 @@
             "facade": "pending",
             "finish": "pending",
             "equipment": "pending",
-            "qa": "pending"
+            "qa": "pending",
+            "plan": "done"
+          },
+          "taskDetails": {
+            "plan": "PLANTA APLICADA · 42.13 × 39.58 m, margen ±3 m. Ubicación y orientación incorporadas al modelo vigente; colisiones adaptadas y vecinos comprobados. Huella OSM conservada; ocupación comercial y altura sin confirmar."
+          },
+          "issues": {},
+          "evidence": {
+            "plan": [
+              {
+                "url": "levantamiento/evidence/CH-YG-BBVA/01-planta-geometria.png",
+                "title": "Paso 1 · planta y cuerpo del modelo; proyección por software"
+              }
+            ]
           }
         }
       ],
@@ -1247,7 +1302,7 @@
         "max": 29
       },
       "estimateBasis": "Dos anclas cercanas y revisión de calle; el rango no supone que R-000 quede incorporada como ruta productiva.",
-      "next": "Confirmar el alcance de R-000 y empatar Bley/HSBC con sus frentes antes de detallar.",
+      "next": "Ronda 01 · resolver las plantas de los edificios de este tramo antes de pasar al paso 2; ciclo por edificio: medir → editar → verificar.",
       "sharedTasks": {
         "plan": "partial",
         "street": "partial",
@@ -1270,7 +1325,17 @@
             "facade": "pending",
             "finish": "pending",
             "equipment": "pending",
-            "qa": "pending"
+            "qa": "pending",
+            "plan": "blocked"
+          },
+          "taskDetails": {
+            "plan": "RONDA 01 REVISADA · La referencia patrimonial ubica el edificio en Serdán/Garmendia, pero falta vincular el contorno visible a un cuerpo concreto del modelo actual. No hay una huella individual de Bley identificada en los datos aprobados."
+          },
+          "issues": {
+            "plan": {
+              "title": "Contorno por asignar",
+              "detail": "La referencia patrimonial ubica el edificio en Serdán/Garmendia, pero falta vincular el contorno visible a un cuerpo concreto del modelo actual. No hay una huella individual de Bley identificada en los datos aprobados."
+            }
           }
         },
         {
@@ -1287,11 +1352,66 @@
             "facade": "pending",
             "finish": "pending",
             "equipment": "pending",
-            "qa": "pending"
+            "qa": "pending",
+            "plan": "done"
+          },
+          "taskDetails": {
+            "plan": "PLANTA CARTOGRÁFICA REVISADA · huella OSM 499759728 ya presente en el modelo, cotejada con el contexto aéreo. Se conserva como aproximación visual (±3 m); la correspondencia comercial, fachadas, alturas y entradas mantienen sus estados propios."
           }
         }
       ],
       "unnamedFronts": "Por contar después de confirmar si el tramo de prueba entra al alcance; excluidos del rango."
     }
-  ]
+  ],
+  "workflow": {
+    "mode": "phase-rounds",
+    "round": 1,
+    "task": "plan",
+    "buildingOrder": [
+      "OB-01",
+      "OB-02",
+      "ISC-58",
+      "EB-SW",
+      "EB-NW",
+      "EB-NE",
+      "EB-SE",
+      "CH-GA-OXXO",
+      "CH-YG-BIB",
+      "CH-YG-BBVA",
+      "SER-BLEY",
+      "SER-HSBC"
+    ],
+    "closedBuildings": [
+      "OB-01",
+      "OB-02",
+      "EB-NW",
+      "EB-NE",
+      "EB-SE",
+      "CH-GA-OXXO",
+      "CH-YG-BIB",
+      "CH-YG-BBVA",
+      "SER-HSBC"
+    ],
+    "unresolvedBuildings": [
+      "ISC-58",
+      "EB-SW",
+      "SER-BLEY"
+    ],
+    "readyForNextRound": false,
+    "criterion": "Ubicación, orientación y contorno/envolvente aproximados, con fuente, unidades, margen y comprobación en el modelo. Medir, editar y verificar un edificio antes de medir el siguiente.",
+    "instructions": "Terminar la misma acción en todos los edificios. Compartir criterios y revisar encuentros entre vecinos. No avanzar a la siguiente ronda mientras queden contornos sin resolver.",
+    "taskOrder": [
+      "plan",
+      "street",
+      "sidewalkA",
+      "sidewalkB",
+      "corners",
+      "identity",
+      "volume",
+      "facade",
+      "finish",
+      "equipment",
+      "qa"
+    ]
+  }
 }

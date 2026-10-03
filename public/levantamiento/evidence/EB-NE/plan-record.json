@@ -1,0 +1,71 @@
+{
+  "id": "EB-NE",
+  "task": "plan",
+  "confidence": "visual-approximation",
+  "before": [
+    {
+      "x": 177.1274925879131,
+      "z": -43.18688413072762
+    },
+    {
+      "x": 155.17491907101558,
+      "z": -41.7430988332513
+    },
+    {
+      "x": 156.6249873930312,
+      "z": -25.8089436356424
+    },
+    {
+      "x": 178.57756090992874,
+      "z": -27.252728933118718
+    }
+  ],
+  "after": [
+    {
+      "x": 176.42772000016862,
+      "z": -41.71719999991854
+    },
+    {
+      "x": 152.41932000000702,
+      "z": -40.05294999978446
+    },
+    {
+      "x": 155.14106910965552,
+      "z": -23.447798914488423
+    },
+    {
+      "x": 179.14946910981715,
+      "z": -25.112048914622502
+    }
+  ],
+  "widthMeters": 24.06601335141959,
+  "depthMeters": 16.82673351489768,
+  "uncertaintyMeters": 1.5,
+  "depthInsetMeters": 0.6,
+  "insetReason": "Interpreted separation from adjacent EB-SE within the satellite-reading uncertainty",
+  "inheritedHeightMeters": 6.4,
+  "addedColliderCells": 72,
+  "scope": "interpreted envelope of the visible Chihuahua corner roof and rear body; adjoining western roof excluded",
+  "source": "Google Maps satellite: three manually selected roof corners, local coordinate conversion",
+  "consultedAt": "2026-10-03",
+  "round": 1,
+  "state": "done",
+  "criterion": "Approximate visual/cartographic plan accepted for this stage; no requirement for cadastral accuracy",
+  "checkedAt": "2026-10-03T22:03:18.690Z",
+  "worldSha256": "2b84f6601ee387c40122cc2f5b10be71b03e3444de679b23eb341c5fed1b2a70",
+  "renderMethod": "Software projection of the current compiled model vertices; not WebGL capture",
+  "capture": "01-planta-geometria.png",
+  "captureSha256": "f7c62f22cd18b2c66935c37a1c10dc9264f1a6af93f16d2aeceb89341ce44ec3",
+  "checks": [
+    "Shape applied with the exact compiled runtime constructors",
+    "Navigation cells inside the changed footprint",
+    "Inherited vertical coordinates preserved",
+    "Adjacent owners, roads, materials and earlier refinements preserved",
+    "New hook reversible in both world and viewer"
+  ],
+  "limits": "Envolvente aproximada del cuerpo visible; anexos, patios y contorno en suelo siguen por precisar en el levantamiento completo.",
+  "capturePixels": [
+    1280,
+    760
+  ]
+}

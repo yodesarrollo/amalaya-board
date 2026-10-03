@@ -1,0 +1,52 @@
+{
+  "id": "CH-YG-BBVA",
+  "task": "plan",
+  "confidence": "OSM-approximation",
+  "before": [],
+  "after": [
+    {
+      "x": -75.49524000028782,
+      "z": -82.42475499986348
+    },
+    {
+      "x": -34.04915999939817,
+      "z": -90.00263999973032
+    },
+    {
+      "x": -26.895240000055765,
+      "z": -51.07028499963935
+    },
+    {
+      "x": -68.34131999956412,
+      "z": -43.4923999997725
+    }
+  ],
+  "widthMeters": 42.13314477357882,
+  "depthMeters": 39.58417407512881,
+  "inheritedHeightMeters": 6.2,
+  "heightStatus": "unmeasured modelling default",
+  "uncertaintyMeters": 3,
+  "addedColliderCells": 186,
+  "source": "Approved OSM way 499759374; footprint only, current commercial occupation remains unresolved",
+  "consultedAt": "2026-10-03",
+  "round": 1,
+  "state": "done",
+  "criterion": "Approximate visual/cartographic plan accepted for this stage; no requirement for cadastral accuracy",
+  "checkedAt": "2026-10-03T22:03:18.690Z",
+  "worldSha256": "2b84f6601ee387c40122cc2f5b10be71b03e3444de679b23eb341c5fed1b2a70",
+  "renderMethod": "Software projection of the current compiled model vertices; not WebGL capture",
+  "capture": "01-planta-geometria.png",
+  "captureSha256": "1024f690b07a0f1263ab043e8bd76e58a0dc1f886588cac30cf4919daaba2402",
+  "checks": [
+    "Shape applied with the exact compiled runtime constructors",
+    "Navigation cells inside the changed footprint",
+    "Inherited vertical coordinates preserved",
+    "Adjacent owners, roads, materials and earlier refinements preserved",
+    "New hook reversible in both world and viewer"
+  ],
+  "limits": "Huella OSM conservada; ocupación comercial y altura sin confirmar.",
+  "capturePixels": [
+    1280,
+    760
+  ]
+}

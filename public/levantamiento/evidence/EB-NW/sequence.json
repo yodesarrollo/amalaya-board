@@ -181,16 +181,30 @@
       "task": "sidewalkB",
       "state": "partial",
       "at": "2026-10-03T20:31:27.313Z"
+    },
+    {
+      "order": 1,
+      "task": "plan",
+      "state": "active",
+      "at": "2026-10-03T22:03:18.690Z",
+      "mode": "phase-rounds"
+    },
+    {
+      "order": 1,
+      "task": "plan",
+      "state": "done",
+      "at": "2026-10-03T22:03:18.690Z",
+      "mode": "phase-rounds"
     }
   ],
   "steps": [
     {
       "order": 1,
       "task": "plan",
-      "state": "partial",
-      "result": "MEDIDO A MANO · Regla de Google Maps sobre bordes visibles de cubierta: frente 15,64 m × fondo 15,77 m (±1 m). No son linderos catastrales. La planta sigue parcial hasta aplicar y validar la huella en la fuente 3D vigente.",
-      "at": "2026-10-03T20:31:27.307Z",
-      "matrixState": "partial"
+      "state": "done",
+      "result": "PLANTA APLICADA · 15.20 × 15.06 m, margen ±1 m. Ubicación y orientación incorporadas al modelo vigente; colisiones adaptadas y vecinos comprobados. Envolvente aproximada del cuerpo visible; anexos, patios y contorno en suelo siguen por precisar en el levantamiento completo.",
+      "at": "2026-10-03T22:03:18.690Z",
+      "matrixState": "done"
     },
     {
       "order": 2,
@@ -276,6 +290,7 @@
   "state": "incomplete",
   "completedAt": "2026-10-03T19:14:43.694Z",
   "done": [
+    "plan",
     "identity"
   ],
   "blocked": [
@@ -286,8 +301,8 @@
     "equipment",
     "qa"
   ],
-  "closure": "Medidas manuales registradas en orden para 01–04; siguen parciales hasta aplicarse a la geometría 3D vigente. 05 y 07–11 conservan sus bloqueos con causa y 06 identidad descriptiva permanece cumplida. EB-NW sigue incompleto; la siguiente ejecución debe retomar en 01, sin saltos.",
-  "firstPending": "plan",
+  "closure": "Paso 1 aplicado y comprobado como planta aproximada. Por indicación del usuario, continuar el paso 1 en los otros edificios antes del paso 2. EB-NW no está cerrado en sus once acciones.",
+  "firstPending": "street",
   "checks": [
     "R-002 P06 resuelve a 103 Av. Chihuahua; Street View fecha dic. 2023; rumbo 270°.",
     "R-002 P07 resuelve a 186 C. Garmendia; Street View fecha dic. 2023; rumbo 180°.",
@@ -298,11 +313,13 @@
     "Cotas manuales orientativas tomadas sobre imagen satelital; no equivalen a topografía, deslinde catastral ni ancho libre certificado. La fecha de captura de la imagen no se muestra."
   ],
   "provisional": [
-    "plan",
     "street",
     "sidewalkA",
     "sidewalkB"
   ],
   "baseCommit": "a4abe92537cf0cfa7d1db5fdf0ff41c73ca913dd",
-  "updatedAt": "2026-10-03T20:31:27.314Z"
+  "updatedAt": "2026-10-03T22:03:18.690Z",
+  "mode": "phase-rounds",
+  "round": 1,
+  "currentWorldSha256": "2b84f6601ee387c40122cc2f5b10be71b03e3444de679b23eb341c5fed1b2a70"
 }
