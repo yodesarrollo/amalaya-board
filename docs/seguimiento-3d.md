@@ -1,6 +1,6 @@
 # Amalaya · Matriz de levantamiento 3D
 
-Actualizado: 2026-10-03T01:18:35.384393+00:00. La web consulta estados cada 30 segundos; los cambios aparecen al publicar avances.
+Actualizado: 2026-10-03T02:04:59.449946+00:00. La web consulta estados cada 30 segundos; los cambios aparecen al publicar avances.
 
 Naranja: en proceso · Verde: terminado · Rojo: problema · Gris: pendiente o provisional.
 
@@ -13,10 +13,10 @@ Naranja: en proceso · Verde: terminado · Rojo: problema · Gris: pendiente o p
 | Corregir esquinas, guarniciones y rampas | ! Problema | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional |
 | Empatar edificio, nombre y punto/foto 360 | ✓ Terminado | ◐ Provisional | ◐ Provisional | ◐ Provisional | · Pendiente | · Pendiente | · Pendiente | · Pendiente | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional |
 | Completar huella, volumen, altura y cubierta | ! Problema | ◐ Provisional | · Pendiente | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente |
-| Ajustar forma de fachada a la referencia visual | ! Problema | ◐ Provisional | · Pendiente | ◐ Provisional | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente |
+| Ajustar forma de fachada a la referencia visual | ! Problema | • En proceso | · Pendiente | ◐ Provisional | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente |
 | Afinar materiales, vanos y detalles visibles | ✓ Terminado | ◐ Provisional | · Pendiente | ◐ Provisional | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente |
 | Colocar equipamiento urbano documentado | ! Problema | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente |
-| Comparar planta, bloque y peatón con rumbo coincidente | ✓ Terminado | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente |
+| Comparar planta, bloque y peatón con rumbo coincidente | ✓ Terminado | • En proceso | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente |
 
 ## Nomenclatura
 

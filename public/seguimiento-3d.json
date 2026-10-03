@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-03T01:18:35.384393+00:00",
+  "updatedAt": "2026-10-03T02:04:59.449946+00:00",
   "refreshSeconds": 30,
   "live": {
-    "status": "waiting",
-    "phase": "OB-01 · cierre de primera etapa",
-    "title": "OB-01 · modelo y evidencias listos para revisión",
-    "detail": "Terminada la pasada visual y técnica con las referencias disponibles. Las celdas pendientes indican datos que faltan para verificar medidas, rampas y equipamiento; no son trabajos confirmados. No se inició otro edificio.",
+    "status": "active",
+    "phase": "OB-02 · fachada y comparación P04",
+    "title": "OB-02 · ajuste de hiladas y vista P04 en curso",
+    "detail": "Luna contrastó P03/P04 y confirmó cinco arcos, pilastras y balaustrada. Añadió hiladas interpretadas; la comparación final desde P04 está en captura. Medidas y nombre comercial se mantienen provisionales.",
     "activeBlockId": "OB-YG",
     "activeBuildingId": "OB-01"
   },
@@ -252,7 +252,7 @@
         {
           "id": "OB-02",
           "name": "Fachada de arcos y rejas · posible Colegio de Notarios #65",
-          "confidence": "Frente modelado y documentado; falta confirmar identidad y ajustar proporciones con el panorama.",
+          "confidence": "OB-02 vinculado provisionalmente al frente claro de arcos en R-001 P03/P04; posible identidad comercial no confirmada. Fachada y volumen siguen con medidas estimadas.",
           "estimateHours": {
             "min": 4,
             "max": 8
@@ -260,10 +260,14 @@
           "tasks": {
             "identity": "partial",
             "volume": "partial",
-            "facade": "partial",
+            "facade": "active",
             "finish": "partial",
             "equipment": "pending",
-            "qa": "pending"
+            "qa": "active"
+          },
+          "taskDetails": {
+            "facade": "EN PROCESO · contraste de P03/P04; cinco vanos abiertos conservados; hiladas añadidas como interpretación visible. Conteo de vanos observado, altura y despiece sin medición.",
+            "qa": "EN CAPTURA · comparación desde P04 hacia el frente; rumbo calculado a partir de la huella estimada, pendiente inspección final de cámara y render."
           }
         },
         {
