@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-03T03:53:12.783747+00:00",
+  "updatedAt": "2026-10-03T03:55:31.527927+00:00",
   "refreshSeconds": 30,
   "live": {
-    "status": "active",
-    "phase": "OB-02 · punto 2 · calzada",
-    "title": "Punto 1 cerrado · punto 2 en verificación",
-    "detail": "Planta corregida y capturada. Se verifican y publican las tres secciones de la calzada existente, sin duplicarla ni cambiar controles. Banquetas y rampas siguen pendientes.",
+    "status": "waiting",
+    "phase": "OB-02 · puntos 1 y 2 cerrados",
+    "title": "Planta y calzada revisadas · evidencia disponible",
+    "detail": "Corrección oriental de 1.46 m y tres secciones de la calzada existente verificadas. Puntos 3–5 pendientes; fachada, volumen y cierre completo conservan sus límites anteriores.",
     "activeBlockId": "OB-YG",
     "activeBuildingId": "OB-02"
   },
@@ -83,7 +83,7 @@
         "max": 33
       },
       "estimateBasis": "3 frentes/estructuras conocidas más revisión compartida de la cuadra; frentes anónimos se agregan cuando se cuenten.",
-      "next": "OB-02: cerrar publicación del punto 2; después punto 3, banqueta lado A, en orden de matriz.",
+      "next": "OB-02 · punto 3 pendiente: revisar la banqueta del lado A; puntos 1 y 2 cerrados bajo las incertidumbres declaradas.",
       "sharedTasks": {
         "plan": "partial",
         "street": "partial",
@@ -265,7 +265,7 @@
             "equipment": "pending",
             "qa": "blocked",
             "plan": "done",
-            "street": "active",
+            "street": "done",
             "sidewalkA": "pending",
             "sidewalkB": "pending",
             "corners": "pending"
@@ -278,7 +278,7 @@
             "equipment": "PENDIENTE · no se añadieron elementos urbanos porque las tomas disponibles no permiten anclar con confianza qué elementos son permanentes ni sus posiciones.",
             "qa": "BLOQUEADO · el checkpoint está publicado y las pruebas/build pasaron. La comparación con Street View necesita el rumbo exacto del panorama P03/P04, que no está en el JSON. La captura aislada 03 conserva una etiqueta que tapa parte de la cornisa/balaustrada; la recaptura no pudo completar en este entorno. Abre el problema rojo para indicar el rumbo de referencia o cómo continuar con la captura pendiente.",
             "plan": "HECHO · corregido el extremo oriental 1.46 m para alinear el frente con OB-01 y el eje OB-W, conservando estación, colindancia y P03/P04. Extremos/centro y collider comprobados. Revisión del modelo bajo posición ±5 m; fondo y límites catastrales siguen provisionales.",
-            "street": "EN PROCESO · calzada existente inspeccionada en tres secciones del frente; ancho estimado 5.60 ±1.10 m, juntas cerradas y un solo builder. Se verifica el paquete y su publicación antes de cerrar. No comprende banquetas ni rampas.",
+            "street": "HECHO · inspeccionadas tres secciones de la malla real frente a OB-02: ancho estimado 5.60 ±1.10 m, una sola calzada y juntas continuas. Se conserva el eje OSM y su variación local; no se añadió otra calle. No cierra banquetas, guarniciones ni rampas.",
             "sidewalkA": "PENDIENTE · revisión específica del frente OB-02 en orden de matriz; el estado compartido de la cuadra y OB-01 se conserva.",
             "sidewalkB": "PENDIENTE · revisión específica del frente OB-02 en orden de matriz; el estado compartido de la cuadra y OB-01 se conserva.",
             "corners": "PENDIENTE · revisión específica del frente OB-02 en orden de matriz; el estado compartido de la cuadra y OB-01 se conserva."
