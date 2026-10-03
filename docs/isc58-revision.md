@@ -4,6 +4,18 @@ Guía operativa principal: [Guía maestra de Amalaya 3D](https://drive.google.co
 Este relevo describe el trabajo posterior al corte publicado de planta. La matriz
 canónica sigue siendo `public/seguimiento-3d.json`; el Markdown se genera desde ella.
 
+**ISC-58 está incompleto.** Solo los puntos 02 y 09 tienen cierre técnico del
+modelo. Los puntos 01, 03, 04, 05, 06, 07, 08, 10 y 11 conservan impedimentos.
+La revisión de las once acciones y las capturas posteriores no equivalen a
+terminarlas. El siguiente trabajo es retomar el punto 01 y registrar cada
+resultado en orden, en verde si cumple su criterio o en rojo con la causa y
+el próximo acto necesario para resolverla.
+
+El 3 de octubre se corrigió la comunicación anterior de cierre y la cabecera
+«Avance 11», que podía interpretarse como terminación. Los puntos 03/04 ahora
+tienen estado rojo y su impedimento explícito. El registro de revisión conserva
+la corrección y los estados anteriores; no se modificaron modelo ni capturas.
+
 ## Punto de partida conservado
 
 Base del board: `f12c7c2`, posterior a `6e97240`, `b97f47c` y `82c7db0`. El punto 01 ya estaba
@@ -43,14 +55,25 @@ completa ni una ejecución de sus 108 pruebas históricas.
 El registro numérico y hashes están en
 [`identity-plan-record.json`](../public/levantamiento/evidence/ISC-58/identity-plan-record.json).
 
+Al retomar el punto 01, una [foto de Commons](https://commons.wikimedia.org/wiki/File:Edificio_del_Instituto_Sonorense_de_Cultura.jpg)
+permitió identificar el letrero ISC y numeral 58 en la arquería beige de cinco
+arcos. P04/P05 y las fotos [frontal](https://www.flickr.com/photos/iscsonora/48309339622/)
+y [de contexto](https://www.flickr.com/photos/iscsonora/48309284121/) corroboran
+el acceso y su relación con el monumento. Es una identificación visual; no fija
+extremos de parcela, posición métrica, escala ni norte del panorama. El punto 01
+sigue bloqueado y el paño rojo conserva atribución administrativa desconocida.
+Las imágenes se consultaron sin copiarlas al paquete público ni usarlas como
+texturas. La fecha declarada y EXIF de Commons discrepan; Flickr no aporta GPS
+ni rumbo útil y su cuenta no se trató como fuente oficial certificada.
+
 ## Revisión de las once acciones
 
 | Orden | Acción | Trabajo y límite |
 | --- | --- | --- |
 | 01 | Planta | Ampliada la consulta de la huella; se conserva el bloqueo publicado de correspondencia/escala del frente. No se creó ni movió otra parcela. |
 | 02 | Calle | Auditado el propietario vial y el perfil PH-01 existente: calzada 6.705 m y corrección del eje −1.53 m. Son parámetros de una consulta aérea anterior, no medición nueva. |
-| 03 | Banqueta A | A = sur geográfico. Perfil PH-01 existente: paso 0.931 m y transición 1.118 m; se documenta su incertidumbre previa. No se copió el ancho sur 1.2 m de OB-W. |
-| 04 | Banqueta B | B = norte geográfico. Paseo de plaza 19.181 m y transición 1.118 m en P05, sin atribuir una banqueta uniforme al frente ISC. No se copió el ancho norte 2.0 m de OB-W. |
+| 03 | Banqueta A | **Bloqueado.** A = sur geográfico. Perfil PH-01 existente: paso 0.931 m y transición 1.118 m; falta verificar cotas, ancho útil, accesos y continuidad. No se copió el ancho sur 1.2 m de OB-W. |
+| 04 | Banqueta B | **Bloqueado.** B = norte geográfico. Paseo de plaza 19.181 m y transición 1.118 m en P05; falta delimitar el tramo, sus cotas, obstáculos y continuidad. No se copió el ancho norte 2.0 m de OB-W. |
 | 05 | Esquinas | No se inventaron rampas o radios. Faltan detalles identificados de los extremos Yáñez/Obregón y Garmendia/Obregón. |
 | 06 | Identidad | Nombre/domicilio institucionales documentados; la correspondencia exacta de paños con #58 permanece bloqueada. |
 | 07 | Volumen | Se conserva huella/techo/altura; se retira la pared opaca detrás de los vanos y se conserva un cierre superior hasta la cubierta heredada y se recortan colisiones a la huella irregular. Cotas, cubierta y acceso físico siguen sin levantar. |
@@ -114,10 +137,11 @@ fuente histórica o desconocida se rechaza. Para una siguiente fuente completa,
 revisar primero el cambio de base y las evidencias; no desactivar la comprobación
 para copiar un mundo anterior.
 
-La siguiente columna es EB-SW y permanece esperando selección/revisión del
-usuario conforme a la guía. Esta sesión no inició otro edificio. Al recibir una
-referencia del #58, resolver primero la correspondencia espacial y después
-sustituir los parámetros interpretados; conservar evidencia y hashes históricos.
+Retomar ISC-58 desde el punto 01, el primer pendiente. Consultar primero las
+referencias ya disponibles para resolver la correspondencia espacial y después
+sustituir los parámetros interpretados, conservando evidencia y hashes históricos.
+EB-SW permanece en cola; ISC-58 no está terminado. Esta sesión no inició otro
+edificio.
 
 Avisos de casos recuperados: [revisión de YOD Portal y Amalaya](avisos-casos-2026-10-03.md).
 
@@ -127,7 +151,8 @@ Pasaron las pruebas del board, las dos pruebas del puente y las regresiones de
 geometría/visor ISC. El verificador comprueba hashes de activos, PNG, cámaras y
 conservación íntegra de los checkpoints anteriores. El visor directo, el embed
 con personaje y la capa MapLibre real se renderizaron sin errores. Las banquetas
-se mantienen provisionales: la vista sur muestra paso estrecho y salientes.
+se mantienen bloqueadas para su cierre: la vista sur muestra paso estrecho y
+salientes, y el tramo norte carece de límites/cotas verificados.
 El cierre superior del cuerpo se comprobó por rayos y por inspección visual.
 
 El corte `f12c7c2` guardó el fallo `page.goto: Timeout 30000ms exceeded`

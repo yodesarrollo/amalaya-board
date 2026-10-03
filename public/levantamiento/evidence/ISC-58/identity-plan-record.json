@@ -281,5 +281,20 @@
     "P05/P06 tienen tangentes de marcha de~85°; para mirar al borde sur desde esos puntos la orientación geométrica es~355.07°. No usar tangente de marcha como heading fotográfico.",
     "isc.sonora.gob.mx y cultura.sonora.gob.mx respondieron403 en esta sesión; la ficha federalSIC sí se leyó completa, por lo que el domicilio no depende de un snippet."
   ],
-  "referenceUse": "Panoramas already present in the visual repository; consultation only, not applied as textures. Capture date and absolute north unverified."
+  "referenceUse": "Panoramas already present in the visual repository; consultation only, not applied as textures. Capture date and absolute north unverified.",
+  "supplementalVisualReferences": {
+    "observed": "ISC sign and numeral 58 on beige five-arch frontage, visually matched in P04/P05.",
+    "sources": [
+      "https://commons.wikimedia.org/wiki/File:Edificio_del_Instituto_Sonorense_de_Cultura.jpg",
+      "https://www.flickr.com/photos/iscsonora/48309339622/",
+      "https://www.flickr.com/photos/iscsonora/48309284121/"
+    ],
+    "queryDate": "2026-10-03T15:01:07.165239+00:00",
+    "photoDateCaution": "Commons declared2016/EXIF2008 conflict; Flickr EXIF2019, no GPS/heading. No verified backlink for Flickr account.",
+    "verifiedMetricPlacement": false,
+    "verifiedParcelEndpoints": false,
+    "verifiedPhotoNorth": false,
+    "usedAsTextures": false,
+    "publicCopiesAdded": false
+  }
 }
