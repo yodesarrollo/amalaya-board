@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-03T04:09:33.800832+00:00",
+  "updatedAt": "2026-10-03T04:16:56.135945+00:00",
   "refreshSeconds": 30,
   "live": {
-    "status": "active",
-    "phase": "OB-02 · punto 3 · banqueta lado A",
-    "title": "Banqueta sur en revisión",
-    "detail": "Se comprueba la superficie frente a OB-02 y su encuentro con OB-01. Puntos 1 y 2 terminados; norte y esquinas conservan su estado pendiente.",
+    "status": "waiting",
+    "phase": "OB-02 · puntos 1–3 cerrados",
+    "title": "Banqueta sur revisada · avance visual en cabecera",
+    "detail": "Cabecera con Inicio y Avance 03 desde idéntica cámara. Banqueta sur continua y paso libre comprobado para el vaquero. El norte y las esquinas siguen pendientes.",
     "activeBlockId": "OB-YG",
     "activeBuildingId": "OB-02"
   },
@@ -83,7 +83,7 @@
         "max": 33
       },
       "estimateBasis": "3 frentes/estructuras conocidas más revisión compartida de la cuadra; frentes anónimos se agregan cuando se cuenten.",
-      "next": "OB-02 · punto 3 activo: banqueta del lado A (sur).",
+      "next": "OB-02 · punto 4 pendiente: banqueta lado B (norte). Puntos 1–3 cerrados bajo incertidumbres declaradas.",
       "sharedTasks": {
         "plan": "partial",
         "street": "partial",
@@ -266,7 +266,7 @@
             "qa": "blocked",
             "plan": "done",
             "street": "done",
-            "sidewalkA": "active",
+            "sidewalkA": "done",
             "sidewalkB": "pending",
             "corners": "pending"
           },
@@ -279,7 +279,7 @@
             "qa": "BLOQUEADO · el checkpoint está publicado y las pruebas/build pasaron. La comparación con Street View necesita el rumbo exacto del panorama P03/P04, que no está en el JSON. La captura aislada 03 conserva una etiqueta que tapa parte de la cornisa/balaustrada; la recaptura no pudo completar en este entorno. Abre el problema rojo para indicar el rumbo de referencia o cómo continuar con la captura pendiente.",
             "plan": "HECHO · corregido el extremo oriental 1.46 m para alinear el frente con OB-01 y el eje OB-W, conservando estación, colindancia y P03/P04. Extremos/centro y collider comprobados. Revisión del modelo bajo posición ±5 m; fondo y límites catastrales siguen provisionales.",
             "street": "HECHO · inspeccionadas tres secciones de la malla real frente a OB-02: ancho estimado 5.60 ±1.10 m, una sola calzada y juntas continuas. Se conserva el eje OSM y su variación local; no se añadió otra calle. No cierra banquetas, guarniciones ni rampas.",
-            "sidewalkA": "EN PROCESO · revisión de continuidad de la banqueta sur frente a OB-02, ancho útil, juntas y encuentro con OB-01. Se conserva el ancho estimado 1.20 ±0.80 m del perfil OB-W; no comprende la banqueta norte ni rampas.",
+            "sidewalkA": "HECHO · completada la franja sur de losas de 1.20 ±0.80 m, juntas con base continua y encuentro provisional hasta la fachada. Se retiraron losas sur duplicadas y el bordillo acompaña la cota de las losas. El cuerpo del vaquero tiene paso libre tras ajustar la caja de colisión girada del edificio. Revisión del modelo, no certificación métrica ni cierre de rampas.",
             "sidewalkB": "PENDIENTE · revisión específica del frente OB-02 en orden de matriz; el estado compartido de la cuadra y OB-01 se conserva.",
             "corners": "PENDIENTE · revisión específica del frente OB-02 en orden de matriz; el estado compartido de la cuadra y OB-01 se conserva."
           },
@@ -371,6 +371,20 @@
                 "title": "Punto 2 · tres secciones sobre la calzada existente",
                 "url": "levantamiento/evidence/OB-02/06-calzada-ob02.png"
               }
+            ],
+            "sidewalkA": [
+              {
+                "title": "Punto 3 · avance desde la misma cámara de Inicio",
+                "url": "levantamiento/evidence/OB-02/08-avance-punto03.png"
+              },
+              {
+                "title": "Punto 3 · planta, norte arriba · banqueta sur",
+                "url": "levantamiento/evidence/OB-02/09-banqueta-sur-planta.png"
+              },
+              {
+                "title": "Punto 3 · vista longitudinal peatonal del lado sur",
+                "url": "levantamiento/evidence/OB-02/10-banqueta-sur-peaton.png"
+              }
             ]
           },
           "issues": {
@@ -395,6 +409,13 @@
               "label": "Inicio · 03",
               "capturedAt": "2026-10-03T04:04:02.318Z",
               "worldSha256": "4bdf262926cfd58d9d7dabf110a757e748e982797af2c4879e49265fad6d1fb3"
+            },
+            "current": {
+              "url": "levantamiento/evidence/OB-02/08-avance-punto03.png",
+              "title": "Avance después del punto 3 · banqueta sur",
+              "label": "Avance · 03",
+              "capturedAt": "2026-10-03T04:14:52.527Z",
+              "worldSha256": "7e5055049e02d22683548df7252674eec8248da16e9288c0f4257e816154d0b9"
             }
           }
         },
