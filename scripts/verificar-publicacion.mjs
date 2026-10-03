@@ -8,6 +8,7 @@ const ob02EvidenceFiles=new Set(['01-fachada-p03.png','02-conjunto-p03.png','03-
 for(const file of ['18-avance-punto07.png','19-envolvente-antes.png','20-envolvente-despues.png','21-cubierta-planta.png','volume-before-manifest.json','volume-manifest.json'])ob02EvidenceFiles.add(file)
 for(const file of ['22-avance-punto08.png','23-fachada-siete-vanos.png','24-coronamiento.png','facade-manifest.json','facade-record.json'])ob02EvidenceFiles.add(file)
 for(const file of ['25-avance-punto09.png','26-materiales-detalle.png','27-fachada-acabados.png','finish-manifest.json'])ob02EvidenceFiles.add(file)
+for(const file of ['28-avance-punto10.png','29-equipamiento-planta.png','30-bolardo-detalle.png','equipment-manifest.json','equipment-record.json'])ob02EvidenceFiles.add(file)
 async function check(dir){
   for(const item of await readdir(dir,{withFileTypes:true})){
     const path=`${dir}/${item.name}`
@@ -217,7 +218,7 @@ assert(ob02Tracking.tasks.facade==='blocked'&&ob02Tracking.issues.facade?.detail
 console.log('OB-02: siete vanos documentados, ocho pilastras, zócalo continuo y Avance 08 desde cámara fija.')
 
 const finish=JSON.parse(await readFile(`${root}/evidence/OB-02/finish-manifest.json`,'utf8'))
-assert(finish.building==='OB-02'&&finish.task==='finish'&&finish.worldSha256===currentWorldHash,'Los acabados deben corresponder al modelo vigente.')
+assert(finish.building==='OB-02'&&finish.task==='finish'&&finish.worldSha256==='70a5df5768f25a99ea408b5885cabcf50b4e79927287745136aa7e4647821428','Los acabados conservan su checkpoint histórico del punto 9.')
 assert(finish.captures?.length===3&&['progress','finish-detail','facade'].every(view=>finish.captures.some(s=>s.view===view)),'Faltan Avance 09, detalle y fachada de acabados.')
 const progressM=finish.captures.find(s=>s.view==='progress')
 for(const field of ['cameraId','cameraPosition','cameraTarget','cameraUp','projection','viewport','textureSize'])assert.deepEqual(progressM[field],initialView[field],`La toma de inicio/avance 09 cambió: ${field}`)
@@ -229,5 +230,23 @@ for(const state of finish.captures){
  assert(ob02EvidenceFiles.has(state.file)&&bytes.subarray(0,8).equals(Buffer.from([137,80,78,71,13,10,26,10]))&&bytes.readUInt32BE(16)===1280&&bytes.readUInt32BE(20)===800,`PNG de acabados inválido: ${state.file}`)
 }
 assert(ob02Tracking.tasks.finish==='done','Acabados debe registrar su entrega visual verificada.')
-assert(ob02Tracking.visualProgress.current.url===`levantamiento/evidence/OB-02/${progressM.file}`&&ob02Tracking.visualProgress.current.worldSha256===currentWorldHash,'La cabecera debe mostrar Avance 09 vigente.')
 console.log('OB-02: acabados originales, juntas en paños sólidos y Avance 09 desde cámara fija.')
+
+const equipment=JSON.parse(await readFile(`${root}/evidence/OB-02/equipment-manifest.json`,'utf8'))
+const equipmentRecord=JSON.parse(await readFile(`${root}/evidence/OB-02/equipment-record.json`,'utf8'))
+assert(equipment.building==='OB-02'&&equipment.task==='equipment'&&equipment.worldSha256===currentWorldHash,'Equipamiento debe corresponder al modelo vigente.')
+assert(equipment.captures?.length===3&&['progress','equipment-plan','equipment-detail'].every(view=>equipment.captures.some(s=>s.view===view)),'Faltan avance, planta o detalle de bolardo.')
+const progressE=equipment.captures.find(s=>s.view==='progress')
+for(const field of ['cameraId','cameraPosition','cameraTarget','cameraUp','projection','viewport','textureSize'])assert.deepEqual(progressE[field],initialView[field],`La toma de inicio/avance 10 cambió: ${field}`)
+for(const state of equipment.captures){
+ assert(state.triangles>0&&state.calls>0&&state.renderer?.includes('WebGL 2.0'),'Equipamiento sin render WebGL.')
+ assert(state.equipment.updatedBollards===1&&state.equipment.newAnchors===0&&state.equipment.addedCables===0&&state.equipment.addedVehicles===0,'No se inventan anclas, cables o vehículos.')
+ assert(state.equipment.survey.position.includes('not surveyed')&&Math.abs(state.equipment.bounds.min[1]-.1175)<1e-7,'El bolardo debe declarar ancla aproximada y apoyo real en el pavimento del modelo.')
+ const bytes=await readFile(`${root}/evidence/OB-02/${state.file}`)
+ assert(ob02EvidenceFiles.has(state.file)&&bytes.subarray(0,8).equals(Buffer.from([137,80,78,71,13,10,26,10]))&&bytes.readUInt32BE(16)===1280&&bytes.readUInt32BE(20)===800,`PNG de equipamiento inválido: ${state.file}`)
+}
+assert(equipmentRecord.inventory.length===6&&equipmentRecord.openRequirements.length===3,'Falta inventario o pendientes de localización.')
+for(const ref of equipmentRecord.references)assert(record.references.some(r=>r.panoramaId===ref.panoramaId&&r.imageSha256===ref.imageSha256),'Inventario sin referencias originales.')
+assert(ob02Tracking.tasks.equipment==='blocked'&&ob02Tracking.issues.equipment?.detail,'No se cierra ubicación exacta sin anclas verificadas.')
+assert(ob02Tracking.visualProgress.current.url===`levantamiento/evidence/OB-02/${progressE.file}`&&ob02Tracking.visualProgress.current.worldSha256===currentWorldHash,'La cabecera debe mostrar Avance 10 vigente.')
+console.log('OB-02: inventario documentado, bolardo apoyado y Avance 10 desde cámara fija; posiciones pendientes visibles.')

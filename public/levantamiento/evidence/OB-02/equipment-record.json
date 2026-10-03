@@ -1,0 +1,134 @@
+{
+  "building": "OB-02",
+  "task": "equipment",
+  "reviewedAt": "2026-10-03T09:03:05.866426+00:00",
+  "references": [
+    {
+      "routePointId": "R-001-P03",
+      "order": 3,
+      "panoramaId": "Apyr0uKeZr_XWmfLfLeBjQ",
+      "imagePath": "recorrido/Apyr0uKeZr_XWmfLfLeBjQ.jpg",
+      "imageSha256": "647926706b3597bedb0f32b615fd22c1225116cfc4b93a8aa14343fde0d50802",
+      "lat": 29.0759089,
+      "lng": -110.9551769,
+      "imageCaptureDate": null,
+      "imageHeadingDegrees": null,
+      "travelBearingDegrees": 84.12,
+      "frontProjection": {
+        "alongMeters": 9.51,
+        "northOffsetMeters": 6.24
+      },
+      "role": "primary-anchor",
+      "observation": "Mismo frente gris de arcos, pilastras, rejas y balaustrada, partido por la costura horizontal del panorama; cubierta OB-01 contigua al oeste."
+    },
+    {
+      "routePointId": "R-001-P04",
+      "order": 4,
+      "panoramaId": "h45BeWMtTog-TgjPTSYn6g",
+      "imagePath": "recorrido/h45BeWMtTog-TgjPTSYn6g.jpg",
+      "imageSha256": "7cc232bdf2ad46a9b6379e0e5aa530c02d5a5da4f55fc27e92d612b346d15546",
+      "lat": 29.0759275,
+      "lng": -110.9549709,
+      "imageCaptureDate": null,
+      "imageHeadingDegrees": null,
+      "travelBearingDegrees": 85.08,
+      "frontProjection": {
+        "alongMeters": 29.63,
+        "northOffsetMeters": 6.14
+      },
+      "role": "secondary-oblique-view",
+      "observation": "Mismo frente gris al oeste desde una posición más oriental; colindante claro de vanos rectangulares permite distinguir el límite del frente."
+    }
+  ],
+  "inventory": [
+    {
+      "id": "E01",
+      "name": "Bolardos oscuros de borde norte",
+      "references": [
+        "R-001-P04"
+      ],
+      "appearance": "slender cylindrical shaft, cap and collars; dark grey",
+      "permanence": "likely permanent, date unverified",
+      "base": "partially visible",
+      "position": "unmeasured; one existing scene anchor retained",
+      "height": "interpreted 0.79 m above model pavement; not measured",
+      "collision": "one visible bollard collider added, exact geometry bounds",
+      "action": "correct appearance of one existing OB-02 anchor; no new stations or inferred total count"
+    },
+    {
+      "id": "E02",
+      "name": "Bancas oscuras con respaldo",
+      "references": [
+        "R-001-P03",
+        "R-001-P04"
+      ],
+      "permanence": "likely permanent, date unverified",
+      "base": "partially hidden by vehicles and tree trunks",
+      "position": "unlocated",
+      "height": "unmeasured",
+      "collision": "pending anchor",
+      "action": "inventoried; no invented additional bench"
+    },
+    {
+      "id": "E03",
+      "name": "Papeleras junto al borde de plaza",
+      "references": [
+        "R-001-P04"
+      ],
+      "permanence": "likely permanent, date unverified",
+      "base": "partially visible",
+      "position": "unlocated",
+      "height": "unmeasured",
+      "collision": "pending anchor",
+      "action": "inventoried; no mesh placed without position"
+    },
+    {
+      "id": "E04",
+      "name": "Farolas verdes de plaza",
+      "references": [
+        "R-001-P03",
+        "R-001-P04"
+      ],
+      "permanence": "likely permanent, date unverified",
+      "base": "partially occluded",
+      "position": "unlocated",
+      "height": "unmeasured",
+      "collision": "pending anchor",
+      "action": "inventoried; no duplicate of provisional shared lamps"
+    },
+    {
+      "id": "E05",
+      "name": "Árboles de copa extendida",
+      "references": [
+        "R-001-P03",
+        "R-001-P04"
+      ],
+      "permanence": "persistent vegetation, current condition unverified",
+      "base": "partially hidden",
+      "position": "individual correspondence between views unverified",
+      "height": "unmeasured",
+      "collision": "pending identified trunk anchor",
+      "action": "do not equate different central trees or add symmetric planting"
+    },
+    {
+      "id": "E06",
+      "name": "Vehículos, anuncios y personas",
+      "references": [
+        "R-001-P03",
+        "R-001-P04"
+      ],
+      "permanence": "temporary",
+      "base": "variable",
+      "position": "excluded from permanent survey",
+      "height": "not relevant",
+      "collision": "shared context vehicles remain provisional",
+      "action": "no reference vehicle or advertisement replicated"
+    }
+  ],
+  "openRequirements": [
+    "site anchors for benches, bins, lamps and identified trees",
+    "ground-referenced measurements and capture date",
+    "exact bollard stations and count across the OB-02 frontage"
+  ],
+  "limits": "Visual equipment pass; not cadastral survey. OSM has no fixture nodes for these items. No new equipment positions, vehicles or cables invented."
+}

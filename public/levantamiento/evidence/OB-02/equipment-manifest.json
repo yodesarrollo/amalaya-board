@@ -1,0 +1,247 @@
+{
+  "building": "OB-02",
+  "task": "equipment",
+  "capturedAt": "2026-10-03T09:06:58.126Z",
+  "worldSha256": "fb652de887d19482a4379645cb0db07091ba50b073e04eecd4b94855a6fdbd69",
+  "render": "Three.js production builders through WebGLRenderer (SwiftShader)",
+  "limits": "Not site photography or cadastral survey. Initial visual tracking begins before point 3; earlier captures retain their historical revision. Observed dark slender bollard shape at retained approximate north anchor. Dimensions and equipment locations unmeasured; other visible fixtures inventoried but not invented.",
+  "captures": [
+    {
+      "file": "28-avance-punto10.png",
+      "building": "OB-02",
+      "view": "progress",
+      "cameraId": "OB-02-fixed-v1",
+      "cameraPosition": [
+        -49.2,
+        17,
+        2.2
+      ],
+      "cameraTarget": [
+        -45.95,
+        2.3,
+        31
+      ],
+      "cameraUp": [
+        0,
+        1,
+        0
+      ],
+      "projection": {
+        "kind": "orthographic",
+        "left": -15,
+        "right": 15,
+        "top": 9.375,
+        "bottom": -9.375
+      },
+      "viewport": [
+        1280,
+        800
+      ],
+      "textureSize": 512,
+      "source": "production builders: OB-01 + OB-02 + streetContinuation + routeStreetscape; local audit subset",
+      "cameraFootwayHeight": null,
+      "sidewalkSide": "south",
+      "sidewalkWidthMeters": 1.2,
+      "sidewalkUncertaintyMeters": 0.8,
+      "calls": 511,
+      "triangles": 46194,
+      "renderer": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+      "equipment": {
+        "updatedBollards": 1,
+        "position": [
+          -47.28831908398361,
+          0.1175,
+          20.61988468289943
+        ],
+        "bounds": {
+          "min": [
+            -47.370319086248585,
+            0.11749999962747096,
+            20.537884680634452
+          ],
+          "max": [
+            -47.20631908171863,
+            0.9099000020325184,
+            20.701884685164405
+          ]
+        },
+        "survey": {
+          "building": "OB-02",
+          "reference": "R-001-P04",
+          "permanence": "likely permanent; capture date unverified",
+          "base": "partially visible",
+          "position": "retained approximate scene anchor; not surveyed",
+          "dimensions": "interpreted; no metric scale",
+          "footing": "north sidewalk model tile top"
+        },
+        "newAnchors": 0,
+        "unlocatedItems": [
+          "benches",
+          "trash cans",
+          "green lamps",
+          "trees"
+        ],
+        "addedCables": 0,
+        "addedVehicles": 0
+      }
+    },
+    {
+      "file": "29-equipamiento-planta.png",
+      "building": "OB-02",
+      "view": "equipment-plan",
+      "cameraId": "OB-02-equipment-plan-v1",
+      "cameraPosition": [
+        -46,
+        70,
+        24
+      ],
+      "cameraTarget": [
+        -46,
+        0,
+        24
+      ],
+      "cameraUp": [
+        0,
+        0,
+        -1
+      ],
+      "projection": {
+        "kind": "orthographic",
+        "left": -18,
+        "right": 18,
+        "top": 11.25,
+        "bottom": -11.25
+      },
+      "viewport": [
+        1280,
+        800
+      ],
+      "textureSize": 512,
+      "source": "production builders: OB-01 + OB-02 + streetContinuation + routeStreetscape; local audit subset",
+      "cameraFootwayHeight": null,
+      "sidewalkSide": "south",
+      "sidewalkWidthMeters": 1.2,
+      "sidewalkUncertaintyMeters": 0.8,
+      "calls": 506,
+      "triangles": 46134,
+      "renderer": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+      "equipment": {
+        "updatedBollards": 1,
+        "position": [
+          -47.28831908398361,
+          0.1175,
+          20.61988468289943
+        ],
+        "bounds": {
+          "min": [
+            -47.370319086248585,
+            0.11749999962747096,
+            20.537884680634452
+          ],
+          "max": [
+            -47.20631908171863,
+            0.9099000020325184,
+            20.701884685164405
+          ]
+        },
+        "survey": {
+          "building": "OB-02",
+          "reference": "R-001-P04",
+          "permanence": "likely permanent; capture date unverified",
+          "base": "partially visible",
+          "position": "retained approximate scene anchor; not surveyed",
+          "dimensions": "interpreted; no metric scale",
+          "footing": "north sidewalk model tile top"
+        },
+        "newAnchors": 0,
+        "unlocatedItems": [
+          "benches",
+          "trash cans",
+          "green lamps",
+          "trees"
+        ],
+        "addedCables": 0,
+        "addedVehicles": 0
+      }
+    },
+    {
+      "file": "30-bolardo-detalle.png",
+      "building": "OB-02",
+      "view": "equipment-detail",
+      "cameraId": "OB-02-equipment-detail-v1",
+      "cameraPosition": [
+        -48.78831908398361,
+        1.8,
+        18.61988468289943
+      ],
+      "cameraTarget": [
+        -47.28831908398361,
+        0.55,
+        20.61988468289943
+      ],
+      "cameraUp": [
+        0,
+        1,
+        0
+      ],
+      "projection": {
+        "kind": "orthographic",
+        "left": -1.6,
+        "right": 1.6,
+        "top": 1,
+        "bottom": -1
+      },
+      "viewport": [
+        1280,
+        800
+      ],
+      "textureSize": 512,
+      "source": "production builders: OB-01 + OB-02 + streetContinuation + routeStreetscape; local audit subset",
+      "cameraFootwayHeight": null,
+      "sidewalkSide": "south",
+      "sidewalkWidthMeters": 1.2,
+      "sidewalkUncertaintyMeters": 0.8,
+      "calls": 33,
+      "triangles": 20007,
+      "renderer": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+      "equipment": {
+        "updatedBollards": 1,
+        "position": [
+          -47.28831908398361,
+          0.1175,
+          20.61988468289943
+        ],
+        "bounds": {
+          "min": [
+            -47.370319086248585,
+            0.11749999962747096,
+            20.537884680634452
+          ],
+          "max": [
+            -47.20631908171863,
+            0.9099000020325184,
+            20.701884685164405
+          ]
+        },
+        "survey": {
+          "building": "OB-02",
+          "reference": "R-001-P04",
+          "permanence": "likely permanent; capture date unverified",
+          "base": "partially visible",
+          "position": "retained approximate scene anchor; not surveyed",
+          "dimensions": "interpreted; no metric scale",
+          "footing": "north sidewalk model tile top"
+        },
+        "newAnchors": 0,
+        "unlocatedItems": [
+          "benches",
+          "trash cans",
+          "green lamps",
+          "trees"
+        ],
+        "addedCables": 0,
+        "addedVehicles": 0
+      }
+    }
+  ]
+}

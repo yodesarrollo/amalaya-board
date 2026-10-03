@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-03T08:58:53.117644+00:00",
+  "updatedAt": "2026-10-03T09:09:00.364969+00:00",
   "refreshSeconds": 30,
   "live": {
     "status": "active",
-    "phase": "OB-02 · punto 10 en proceso",
-    "title": "Equipamiento frente a OB-02",
-    "detail": "Acabados 9 entregados. Ahora inventario y ajuste sustentado de equipamiento; después comparación 11. Medidas de fachada/volumen siguen pendientes.",
+    "phase": "OB-02 · punto 11 en proceso",
+    "title": "Comparación desde P03",
+    "detail": "Ajuste visual del 10 entregado; ubicaciones de mobiliario pendientes. Ahora vistas comparables y captura limpia del 11.",
     "activeBlockId": "OB-YG",
     "activeBuildingId": "OB-02"
   },
@@ -262,8 +262,8 @@
             "volume": "blocked",
             "facade": "blocked",
             "finish": "done",
-            "equipment": "active",
-            "qa": "blocked",
+            "equipment": "blocked",
+            "qa": "active",
             "plan": "done",
             "street": "done",
             "sidewalkA": "done",
@@ -275,8 +275,8 @@
             "volume": "REVISADO · cuerpo posterior unido a cubierta (eliminado hueco de 0.16 m del modelo); cerrados ambos encuentros laterales de 0.31 m entre fachada y cuerpo, conservando los cinco vanos del modelo de ese checkpoint; corregidos a siete en el punto 8. Frente 16.61 ±2 m, fondo 9 ±3 m, cornisa 4.65 ±0.6 m y pasamanos 5.35 ±0.6 m, todos provisionales. Cubierta plana interpretada, fondo e interior no restituidos. Capturas 19/20 desde la misma cámara, 21 planta norte arriba y Avance 07 en cabecera. 104 pruebas correctas; no certifican medidas del sitio.",
             "facade": "REVISADO · corregidos cinco a siete vanos al inspeccionar la unión del panorama P03 y contrastar P04; ocho pilastras, alternancia estrecho/ancho y portal central mayor. Añadidos zócalo continuo de balaustrada y volutas de capiteles. Anchuras/ejes aún estimados dentro del frente 16.61 ±2 m; falta escala para cierre dimensional. Capturas 22–24; 105 pruebas correctas.",
             "finish": "HECHO · 90 juntas verticales escalonadas sobre paños sólidos, piedra gris fría, remates claros y hierro pintado oscuro. Anillos dentro de vanos estrechos y ocho piezas de marco en el portal; patrones interpretados, no restitución exacta. PBR procedural original albedo/normal/ORM, UV de 1 m; luz y huella sin cambios. Capturas 25–27 inspeccionadas; 106 pruebas correctas. Las medidas se verifican por separado en fachada/volumen.",
-            "equipment": "EN PROCESO · inventario de bolardos, bancas, luminarias, árboles y papeleras en P03/P04. Corregir solo elementos sustentados; registrar bases ocultas y posiciones aún aproximadas.",
-            "qa": "BLOQUEADO · el checkpoint está publicado y las pruebas/build pasaron. La comparación con Street View necesita el rumbo exacto del panorama P03/P04, que no está en el JSON. La captura aislada 03 conserva una etiqueta que tapa parte de la cornisa/balaustrada; la recaptura no pudo completar en este entorno. Abre el problema rojo para indicar el rumbo de referencia o cómo continuar con la captura pendiente.",
+            "equipment": "REVISADO · inventario de bolardos, bancas, papeleras, farolas, árboles y elementos temporales en P03/P04. Corregido un bolardo rojo por pieza delgada gris oscura con pie/collar/capuchón; ancla previa conservada, medidas interpretadas. Apoyo sobre losa y colisión del objeto visibles comprobados; paso central libre. No se añadieron posiciones, vehículos, cables ni árboles. Capturas 28–30, 107 pruebas correctas. Falta ubicar y medir con respaldo el resto del mobiliario.",
+            "qa": "EN PROCESO · nuevas vistas de planta, bloque y peatón desde P03 y el mismo azimut; sustituir la revisión pendiente de la etiqueta con una captura limpia, conservando el historial. Comprobar el rumbo de consulta del panorama por separado del rumbo de marcha.",
             "plan": "HECHO · corregido el extremo oriental 1.46 m para alinear el frente con OB-01 y el eje OB-W, conservando estación, colindancia y P03/P04. Extremos/centro y collider comprobados. Revisión del modelo bajo posición ±5 m; fondo y límites catastrales siguen provisionales.",
             "street": "HECHO · revisado de nuevo después del punto 5: ancho estimado 5.60 ±1.10 m, bordes y juntas continuos y una sola calzada frente a OB-02. Las dos pruebas focalizadas pasaron sobre el modelo vigente. No se encontró una corrección pendiente ni se cambió la geometría. La captura 06 conserva su checkpoint histórico; planta 15 y detalle 16 muestran el estado vigente. Rampas mantienen su bloqueo independiente.",
             "sidewalkA": "HECHO · completada la franja sur de losas de 1.20 ±0.80 m, juntas con base continua y encuentro provisional hasta la fachada. Se retiraron losas sur duplicadas y el bordillo acompaña la cota de las losas. El cuerpo del vaquero tiene paso libre tras ajustar la caja de colisión girada del edificio. Revisión del modelo, no certificación métrica ni cierre de rampas.",
@@ -386,12 +386,24 @@
             ],
             "equipment": [
               {
-                "title": "R-001 P03 · panorama de consulta",
-                "url": "recorrido/Apyr0uKeZr_XWmfLfLeBjQ.jpg"
+                "title": "Avance 10 · misma cámara de Inicio",
+                "url": "levantamiento/evidence/OB-02/28-avance-punto10.png"
               },
               {
-                "title": "R-001 P04 · panorama de consulta",
-                "url": "recorrido/h45BeWMtTog-TgjPTSYn6g.jpg"
+                "title": "Planta · un ancla previa, sin nuevas ubicaciones",
+                "url": "levantamiento/evidence/OB-02/29-equipamiento-planta.png"
+              },
+              {
+                "title": "Bolardo · apoyo y material original",
+                "url": "levantamiento/evidence/OB-02/30-bolardo-detalle.png"
+              },
+              {
+                "title": "Inventario de seis clases · fuentes y pendientes",
+                "url": "levantamiento/evidence/OB-02/equipment-record.json"
+              },
+              {
+                "title": "Registro de render y geometría de equipamiento",
+                "url": "levantamiento/evidence/OB-02/equipment-manifest.json"
               }
             ],
             "qa": [
@@ -499,6 +511,10 @@
             "corners": {
               "title": "Falta confirmar los rebajes frente a OB-02",
               "detail": "Ya corregido: continuidad de guarnición en ambos lados, sin alterar las calles ni los retornos de OB-01. OB-02 está a media cuadra; sus colindancias no son esquinas. P03/P04 tienen vehículos y mobiliario que ocultan parte del borde. Para cerrar: fotos cercanas de los bordes norte y sur frente a OB-02, ubicadas en planta y rotuladas por lado; mostrar inicio/fin y transición completa de cualquier rebaje, o confirmar que no existe. Para exactitud métrica, añadir escala/medidas y fecha. Aquí puedes indicar cómo resolver esta evidencia; no se modeló una rampa supuesta."
+            },
+            "equipment": {
+              "title": "Faltan anclas y medidas del mobiliario",
+              "detail": "El tipo visible de un bolardo ya está representado sobre su ubicación previa aproximada. P03/P04 muestran bancas, papeleras, farolas verdes y árboles, pero no aportan estaciones/cotas identificadas para ubicarlos con exactitud; OSM no incluye nodos de esos elementos. Para cerrar: croquis o levantamiento que vincule cada pieza/tronco a la planta, estaciones de bolardos, dimensiones, método, fecha y error. El inventario señala qué bases están parcialmente ocultas. Indica aquí la fuente disponible; no se colocaron piezas por simetría."
             }
           },
           "visualProgress": {
@@ -511,11 +527,11 @@
               "worldSha256": "4bdf262926cfd58d9d7dabf110a757e748e982797af2c4879e49265fad6d1fb3"
             },
             "current": {
-              "url": "levantamiento/evidence/OB-02/25-avance-punto09.png",
-              "title": "Avance 09 · piedra y herrería",
-              "label": "Avance · 09",
-              "capturedAt": "2026-10-03T08:57:25.926Z",
-              "worldSha256": "70a5df5768f25a99ea408b5885cabcf50b4e79927287745136aa7e4647821428"
+              "url": "levantamiento/evidence/OB-02/28-avance-punto10.png",
+              "title": "Avance 10 · bolardo y equipamiento inventariado",
+              "label": "Avance · 10",
+              "capturedAt": "2026-10-03T09:06:58.126Z",
+              "worldSha256": "fb652de887d19482a4379645cb0db07091ba50b073e04eecd4b94855a6fdbd69"
             }
           }
         },
