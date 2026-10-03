@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-03T04:37:17.378123+00:00",
+  "updatedAt": "2026-10-03T04:49:55.417967+00:00",
   "refreshSeconds": 30,
   "live": {
-    "status": "waiting",
-    "phase": "OB-02 · puntos 1–4 cerrados",
-    "title": "Banqueta norte revisada · Avance 04 en cabecera",
-    "detail": "Norte de 2.00 ±0.80 m con juntas apoyadas, cota coherente y paso central comprobado. Foto Avance 04 desde la cámara fija de Inicio; el sur y las evidencias anteriores se conservan. Esquinas y rampas pendientes.",
+    "status": "active",
+    "phase": "OB-02 · punto 5 en proceso",
+    "title": "Revisión de esquinas, guarniciones y rampas",
+    "detail": "Comprobando límites del frente, continuidad de guarnición y qué cruces pertenecen a esta revisión. Sin añadir rampas sin evidencia.",
     "activeBlockId": "OB-YG",
     "activeBuildingId": "OB-02"
   },
@@ -83,7 +83,7 @@
         "max": 33
       },
       "estimateBasis": "3 frentes/estructuras conocidas más revisión compartida de la cuadra; frentes anónimos se agregan cuando se cuenten.",
-      "next": "OB-02 · punto 5 pendiente: esquinas, guarniciones y rampas. Puntos 1–4 cerrados bajo incertidumbres declaradas.",
+      "next": "OB-02 · punto 5 activo: revisar guarniciones, encuentros y rampas; puntos 1–4 conservados.",
       "sharedTasks": {
         "plan": "partial",
         "street": "partial",
@@ -268,7 +268,7 @@
             "street": "done",
             "sidewalkA": "done",
             "sidewalkB": "done",
-            "corners": "pending"
+            "corners": "active"
           },
           "taskDetails": {
             "identity": "PARCIAL · P03 (29.0759089, -110.9551769) y P04 (29.0759275, -110.9549709) muestran el mismo frente claro de arcos, pilastras, rejas y balaustrada. “Colegio de Notarios #65” sigue sin confirmación; fechas de las imágenes sin verificar.",
@@ -281,7 +281,7 @@
             "street": "HECHO · inspeccionadas tres secciones de la malla real frente a OB-02: ancho estimado 5.60 ±1.10 m, una sola calzada y juntas continuas. Se conserva el eje OSM y su variación local; no se añadió otra calle. No cierra banquetas, guarniciones ni rampas.",
             "sidewalkA": "HECHO · completada la franja sur de losas de 1.20 ±0.80 m, juntas con base continua y encuentro provisional hasta la fachada. Se retiraron losas sur duplicadas y el bordillo acompaña la cota de las losas. El cuerpo del vaquero tiene paso libre tras ajustar la caja de colisión girada del edificio. Revisión del modelo, no certificación métrica ni cierre de rampas.",
             "sidewalkB": "HECHO · completado el perfil norte independiente de 2.00 ±0.80 m, con última fila recortada, base continua y bordillo a cota de las losas. Se retiró pavimento norte duplicado y se comprobó el paso central del vaquero. Banqueta sur, sus colores y guarnición conservados. Revisión técnica del modelo bajo incertidumbre; rampas y esquinas siguen pendientes.",
-            "corners": "PENDIENTE · revisión específica del frente OB-02 en orden de matriz; el estado compartido de la cuadra y OB-01 se conserva."
+            "corners": "EN PROCESO · localizar cruces reales y revisar guarnición y encuentros del frente; no inventar rampas ni trasladar las esquinas de OB-01."
           },
           "evidence": {
             "identity": [
