@@ -1,14 +1,14 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-03T16:01:45.536137+00:00",
+  "updatedAt": "2026-10-03T16:28:54.168878+00:00",
   "refreshSeconds": 30,
   "live": {
-    "status": "blocked",
-    "phase": "ISC-58 · proceso incompleto · pendientes de cierre",
-    "title": "03/04 reparados técnicamente; identidad06 identificada",
-    "detail": "03 y04 conservan rojo por continuidad y datos físicos pendientes, con capturas/checkpoints separados. 06 cierra la identidad visual del acceso beige58. Permanecen ocho bloqueos; las pruebas del modelo no terminan el levantamiento1–11. No hay otra acción ni edificio en ejecución.",
-    "activeBlockId": "OB-YG",
-    "activeBuildingId": "ISC-58"
+    "status": "active",
+    "phase": "EB-SW · 01 de 11",
+    "title": "Planta e identificación espacial",
+    "detail": "Selección expresa del usuario. Secuencia 01–11; ISC-58 conserva sus pendientes.",
+    "activeBlockId": "EB-GA",
+    "activeBuildingId": "EB-SW"
   },
   "schedule": {
     "basis": "Horas de trabajo concentrado que faltan para revisar y cerrar las referencias conocidas, con la geometría actual como punto de partida.",
@@ -818,12 +818,46 @@
             "max": 12
           },
           "tasks": {
-            "identity": "partial",
-            "volume": "partial",
-            "facade": "partial",
-            "finish": "partial",
+            "plan": "active",
+            "street": "pending",
+            "sidewalkA": "pending",
+            "sidewalkB": "pending",
+            "corners": "pending",
+            "identity": "pending",
+            "volume": "pending",
+            "facade": "pending",
+            "finish": "pending",
             "equipment": "pending",
             "qa": "pending"
+          },
+          "taskDetails": {
+            "plan": "EN EJECUCIÓN · contrastar el conjunto existente con R-001 P08/P09/P10 y separar coordenadas POI de límites prediales."
+          },
+          "visualProgress": {
+            "cameraId": "EB-SW-fixed-v1",
+            "baseline": {
+              "url": "levantamiento/evidence/EB-SW/00-general.png",
+              "title": "EB-SW · inicio del modelo heredado",
+              "label": "Inicio · 01",
+              "capturedAt": "2026-10-03T16:31:56.494Z",
+              "worldSha256": "7f76cb47d6189e2f29681ec2a0f37dd9993d4d1db9788cd10c4fd986e2953e91"
+            },
+            "current": {
+              "url": "levantamiento/evidence/EB-SW/00-general.png",
+              "title": "EB-SW · inicio del modelo heredado",
+              "label": "Inicio · 01",
+              "capturedAt": "2026-10-03T16:31:56.494Z",
+              "worldSha256": "7f76cb47d6189e2f29681ec2a0f37dd9993d4d1db9788cd10c4fd986e2953e91"
+            },
+            "manifest": "levantamiento/evidence/EB-SW/manifest.json"
+          },
+          "evidence": {
+            "plan": [
+              {
+                "title": "01 · planta del modelo heredado",
+                "url": "levantamiento/evidence/EB-SW/00-plan.png"
+              }
+            ]
           }
         },
         {

@@ -1,0 +1,15 @@
+{
+  "building": "EB-SW",
+  "baseCommit": "f1f76e6d9f91542b1146525b0d2a0dc3a862f01c",
+  "startedAt": "2026-10-03T16:28:54.168878+00:00",
+  "events": [
+    {
+      "order": 1,
+      "task": "plan",
+      "state": "active",
+      "at": "2026-10-03T16:28:54.168878+00:00"
+    }
+  ],
+  "steps": [],
+  "state": "active"
+}

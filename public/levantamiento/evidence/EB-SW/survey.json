@@ -1,0 +1,92 @@
+{
+  "building": "EB-SW",
+  "observedAt": "2026-10-03T16:34:50.459956+00:00",
+  "sources": [
+    {
+      "point": "R-001-P08",
+      "file": "recorrido/mxEvNEtgLgOSxKsRFwCiHg.jpg",
+      "sha256": "b60eb6d29725e39f826acf1a6d48267207865b82a039a4c264931c293917ecd7",
+      "lat": 29.0759921,
+      "lng": -110.9540252,
+      "coordinatesRole": "route anchor, not measured optical centre",
+      "captureDate": null,
+      "panoramaHeading": null
+    },
+    {
+      "point": "R-001-P09",
+      "file": "recorrido/lKsrvsfkAzaSnxEQUwrxfA.jpg",
+      "sha256": "0af11e82fda2fc2bb2530d3b793a17e2a6cc66653d738c0c86ac9b52d2c9b63f",
+      "lat": 29.075998,
+      "lng": -110.9538125,
+      "coordinatesRole": "route anchor, not measured optical centre",
+      "captureDate": null,
+      "panoramaHeading": null
+    },
+    {
+      "point": "R-001-P10",
+      "file": "recorrido/lYkbkN5HLT-6YQS4vIsd2g.jpg",
+      "sha256": "fd5c259b6ad5771a699f4eb3f5dfaef288d499024519e5654bcb5580d2416d67",
+      "lat": 29.0760107,
+      "lng": -110.9536147,
+      "coordinatesRole": "route anchor, not measured optical centre",
+      "captureDate": null,
+      "panoramaHeading": null
+    }
+  ],
+  "pois": [
+    {
+      "type": "node",
+      "id": 6124344190,
+      "lat": 29.07612,
+      "lon": -110.953924,
+      "tags": {
+        "amenity": "bar",
+        "name": "Barra Hidalgo"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6219440832,
+      "lat": 29.0760918,
+      "lon": -110.9537456,
+      "tags": {
+        "amenity": "bar",
+        "name": "Club Obregon"
+      }
+    }
+  ],
+  "observations": [
+    "P08: blue corner with pale mouldings and Barra Hidalgo sign; older green reference conflicts with the supplied panorama.",
+    "P09: blue facade adjoins a red facade with Obregon lettering and a large closed portal.",
+    "P10: yellow El Colegio frontage is a separate identified facade; do not assign it to Club Obregon.",
+    "Photographs show a continuous street elevation, not a street-wide open courtyard."
+  ],
+  "unknown": [
+    "parcel boundaries",
+    "absolute panorama heading",
+    "capture dates",
+    "heights and depth",
+    "metric boundary between blue, red and yellow fronts"
+  ],
+  "owner": "existing EastBlock builder",
+  "localFrame": {
+    "originLat": 29.076115,
+    "originLon": -110.9547151,
+    "x": "east",
+    "z": "south"
+  },
+  "dimensionsQuality": "inherited model hypotheses; no new surveyed dimensions",
+  "streetProfile": {
+    "asphaltWidthMeters": 5.61,
+    "edgeUncertaintyMeters": 0.56,
+    "northWalkMeters": 2.35,
+    "northParkingApronMeters": 2.4,
+    "southWalkMeters": 1.1,
+    "source": "inherited spatialCalibration in published EastBlock; Esri image date 2024-01-16, source accuracy 5m",
+    "walkWidths": "provisional"
+  },
+  "sides": {
+    "A": "geographic south of Obregon",
+    "B": "geographic north of Obregon, EB-SW side"
+  }
+}

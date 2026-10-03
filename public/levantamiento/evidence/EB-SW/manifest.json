@@ -1,0 +1,89 @@
+{
+  "building": "EB-SW",
+  "dimensions": [
+    1280,
+    800
+  ],
+  "render": "Actual production Three.js world / WebGLRenderer",
+  "limits": [
+    "Model views; not site photography or a measured survey.",
+    "Photographic heading and parcel boundaries are unverified."
+  ],
+  "captures": [
+    {
+      "view": "general",
+      "cameraPosition": [
+        122,
+        42,
+        53
+      ],
+      "cameraTarget": [
+        95,
+        0,
+        -3
+      ],
+      "cameraUp": [
+        0,
+        1,
+        0
+      ],
+      "projection": {
+        "kind": "orthographic",
+        "left": -43,
+        "right": 43,
+        "top": 26.875,
+        "bottom": -26.875
+      },
+      "anchor": null,
+      "calls": 216,
+      "triangles": 314712,
+      "renderer": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+      "refinement": null,
+      "file": "00-general.png",
+      "sha256": "57931ab378d9a0f7235709aa0e52c4a2cd5822332d4b6484cecef49206fafbf5",
+      "worldSha256": "7f76cb47d6189e2f29681ec2a0f37dd9993d4d1db9788cd10c4fd986e2953e91",
+      "capturedAt": "2026-10-03T16:31:56.494Z",
+      "errors": []
+    },
+    {
+      "view": "plan",
+      "cameraPosition": [
+        87.73272000033217,
+        75,
+        12.981150000336328
+      ],
+      "cameraTarget": [
+        87.73272000033217,
+        0,
+        12.981150000336328
+      ],
+      "cameraUp": [
+        -0.0725419224842719,
+        0,
+        -0.9973653640879484
+      ],
+      "projection": {
+        "kind": "orthographic",
+        "left": -42,
+        "right": 42,
+        "top": 26.25,
+        "bottom": -26.25
+      },
+      "anchor": {
+        "point": "R-001-P09",
+        "x": 87.73272000033217,
+        "z": 12.981150000336328,
+        "azimuth": 355.84
+      },
+      "calls": 110,
+      "triangles": 188223,
+      "renderer": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+      "refinement": null,
+      "file": "00-plan.png",
+      "sha256": "087cffc984d46c9ed698e54fd2cea7bd55e05aabe3470d4f0133286df497d2c3",
+      "worldSha256": "7f76cb47d6189e2f29681ec2a0f37dd9993d4d1db9788cd10c4fd986e2953e91",
+      "capturedAt": "2026-10-03T16:31:57.086Z",
+      "errors": []
+    }
+  ]
+}
