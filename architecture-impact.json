@@ -1,10 +1,25 @@
 {
   "modelRevision": "2026-10-01.28-chinches-complementos",
   "atlasCommit": "4bcff83904b282aaa5287d599f4fe57773ed980f",
-  "proposalIds": ["CHG-AMALAYA-CHINCHES-001"],
-  "components": ["SYS-AMALAYA", "GAS-AMALAYA", "SHEET-AMALAYA"],
-  "contracts": ["CTR-AMALAYA-CHINCHES-ESTADO"],
-  "summary": "Mantener conciliación de chinches y registro vigente del complemento GH efímero; distinguir superficie base de área construida estimada y leer la primera fila canónica de Config, igual que el servidor. Sin campos o contratos nuevos ni cambios a datos de negocio.",
-  "tests": ["npm run pruebas", "python3 scripts/pruebas-puente.py", "npm run verificar:publicacion", "npm run build", "UI aislada con fixtures y cero escrituras reales", "readback del despliegue existente y de estados conciliados"],
+  "proposalIds": [
+    "CHG-AMALAYA-CHINCHES-001"
+  ],
+  "components": [
+    "SYS-AMALAYA",
+    "GAS-AMALAYA",
+    "SHEET-AMALAYA"
+  ],
+  "contracts": [
+    "CTR-AMALAYA-CHINCHES-ESTADO"
+  ],
+  "summary": "Cámara/galería y borrador local del seguimiento 3D. Reutiliza subirArchivo privado y chinche autenticados, sin modificar backend, roles ni permisos. Referencias a fotos exclusivamente en detalle privado; el puente público sólo recibe cantidad y contexto.",
+  "tests": [
+    "npm run pruebas",
+    "python3 scripts/pruebas-puente.py",
+    "npm run verificar:publicacion",
+    "npm run build",
+    "Recorrido Chromium móvil/escritorio con backend sintético: fotos, borrador, rechazo, ACK perdido y reintento",
+    "Fuente activa GAS cotejada para subirArchivo/chinche; artefacto Pages publicado cotejado"
+  ],
   "rollback": "Revertir PR frontend; devolver el mismo deployment GAS a su versión anterior conservando URL/config/editor. Estados de chinches solo mediante contrato protegido y evidencia, nunca escrituras directas al Sheet."
 }
