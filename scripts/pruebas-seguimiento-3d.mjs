@@ -75,3 +75,16 @@ console.log('Matriz XY: estados, problemas, contexto de indicaciones y envío ve
 const scoped = targets.find(c => c.building.id === 'OB-01')
 assert.equal(cellInfo(scoped, 'plan').shared, false, 'la revisión de un frente no cierra toda la cuadra')
 assert.equal(cellInfo(ob, 'plan').shared, true, 'el siguiente edificio conserva su estado previo')
+
+const { validarFoto, uploadPayload, adjuntarFotos } = await import('../src/seguimiento3d-fotos.js')
+assert.throws(() => validarFoto({ type: 'text/html', size: 10 }))
+assert.throws(() => validarFoto({ type: 'image/jpeg', size: 21 * 1024 * 1024 }))
+validarFoto({ type: 'image/jpeg', size: 100 })
+const photo = { id: 'synthetic-photo', data: 'data:image/jpeg;base64,YQ==', file_id: 'private-fixture', nombre: 'private-name.jpg' }
+assert.equal(uploadPayload(cell, photo, 'synthetic').privado, true)
+assert.equal(uploadPayload(cell, photo, 'synthetic').espacio_id, `levantamiento-${cell.key}`)
+const withPhotos = adjuntarFotos(report(cell, 'Revisar', 'synthetic', 'https://example.com'), [photo])
+assert.equal(withPhotos.elemento.valores.fotos[0].file_id, 'private-fixture')
+assert.ok(!withPhotos.texto.includes('private-fixture') && !withPhotos.texto.includes('private-name'))
+assert.throws(() => adjuntarFotos(report(cell, 'Revisar', 'synthetic', ''), [{ id: 'not-uploaded' }]))
+console.log('Fotos 3D: formato, límite, asociación privada y ausencia de IDs/nombres en texto público verificados.')

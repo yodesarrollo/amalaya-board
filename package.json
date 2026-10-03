@@ -14,7 +14,8 @@
     "simular": "npm run build && npm --prefix herramientas/simulador ci --no-audit --no-fund && node herramientas/simulador/simular.mjs amalaya dist",
     "gifs": "npm run build && npm --prefix herramientas/simulador ci --no-audit --no-fund && GIFS=public/ayuda node herramientas/simulador/simular.mjs amalaya dist",
     "preparar:3d": "node scripts/preparar-levantamiento.mjs",
-    "verificar:publicacion": "node scripts/verificar-publicacion.mjs"
+    "verificar:publicacion": "node scripts/verificar-publicacion.mjs",
+    "pruebas:fotos3d": "node scripts/pruebas-fotos3d-ui.mjs"
   },
   "dependencies": {
     "lucide-react": "^0.383.0",
