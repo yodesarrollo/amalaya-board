@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-03T02:50:01Z",
+  "updatedAt": "2026-10-03T02:58:26Z",
   "refreshSeconds": 30,
   "live": {
-    "status": "active",
-    "phase": "OB-02 · commit y despliegue del checkpoint visual",
-    "title": "Capturas verificadas; cerrando publicación de OB-02",
-    "detail": "El board verifier aprobó el paquete. Suite del board, puente y build pasaron; también 94/94 pruebas del modelo, typecheck, build, world build y smoke. Ahora cierro commit, CI Pages y HTTP. QA visual sigue incompleto: falta heading comprobable del 360 y recapturar la etiqueta obstruida en la toma aislada.",
+    "status": "waiting",
+    "phase": "OB-02 · esperando rumbo de panorama y siguiente instrucción",
+    "title": "Checkpoint publicado · QA visual en rojo",
+    "detail": "El primer pase de OB-02 ya está publicado en el board y validado por Pages/HTTP. QA queda bloqueado con dos pendientes concretos: registrar el heading real de P03/P04 para comparar el Street View con el mismo rumbo y completar la recaptura donde la etiqueta tapa la cornisa. Abre el problema rojo de la matriz para dejar una instrucción.",
     "activeBlockId": "OB-YG",
     "activeBuildingId": "OB-02"
   },
@@ -263,7 +263,7 @@
             "facade": "partial",
             "finish": "partial",
             "equipment": "pending",
-            "qa": "active"
+            "qa": "blocked"
           },
           "taskDetails": {
             "identity": "PARCIAL · P03 (29.0759089, -110.9551769) y P04 (29.0759275, -110.9549709) muestran el mismo frente claro de arcos, pilastras, rejas y balaustrada. “Colegio de Notarios #65” sigue sin confirmación; fechas de las imágenes sin verificar.",
@@ -271,7 +271,7 @@
             "facade": "PARCIAL · se conservan cinco vanos abiertos y se añadieron 54 segmentos instanciados de juntas de piedra, interpretados a partir de P03/P04. Alturas, anchuras, separación de pilastras y patrón de herrería no tienen escala métrica.",
             "finish": "PARCIAL · tonos de piedra/remates moderados y juntas de hilada añadidas como detalle visual; alturas y espesor interpretados. Sin fotografías usadas como texturas.",
             "equipment": "PENDIENTE · no se añadieron elementos urbanos porque las tomas disponibles no permiten anclar con confianza qué elementos son permanentes ni sus posiciones.",
-            "qa": "EN PROCESO · paquete visual OB-02 copiado al board; suite 94/94, typecheck, build, world build, smoke y verifier aprobados. Estoy cerrando commit, CI Pages y comprobación HTTP. La comparación visual con 360 y la recaptura de la etiqueta siguen pendientes."
+            "qa": "BLOQUEADO · el checkpoint está publicado y las pruebas/build pasaron. La comparación con Street View necesita el rumbo exacto del panorama P03/P04, que no está en el JSON. La captura aislada 03 conserva una etiqueta que tapa parte de la cornisa/balaustrada; la recaptura no pudo completar en este entorno. Abre el problema rojo para indicar el rumbo de referencia o cómo continuar con la captura pendiente."
           },
           "evidence": {
             "identity": [

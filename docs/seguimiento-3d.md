@@ -1,6 +1,6 @@
 # Amalaya · Matriz de levantamiento 3D
 
-Actualizado: 2026-10-03T02:50:01Z. La web consulta estados cada 30 segundos; los cambios aparecen al publicar avances.
+Actualizado: 2026-10-03T02:58:26Z. La web consulta estados cada 30 segundos; los cambios aparecen al publicar avances.
 
 Naranja: en proceso · Verde: terminado · Rojo: problema · Gris: pendiente o provisional.
 
@@ -16,7 +16,7 @@ Naranja: en proceso · Verde: terminado · Rojo: problema · Gris: pendiente o p
 | Ajustar forma de fachada a la referencia visual | ! Problema | ◐ Provisional | · Pendiente | ◐ Provisional | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente |
 | Afinar materiales, vanos y detalles visibles | ✓ Terminado | ◐ Provisional | · Pendiente | ◐ Provisional | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente |
 | Colocar equipamiento urbano documentado | ! Problema | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente |
-| Comparar planta, bloque y peatón con rumbo coincidente | ✓ Terminado | • En proceso | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente |
+| Comparar planta, bloque y peatón con rumbo coincidente | ✓ Terminado | ! Problema | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente |
 
 ## Nomenclatura
 
