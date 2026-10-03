@@ -1,0 +1,42 @@
+{
+  "building": "OB-02",
+  "capturedAt": "2026-10-03T03:52:11.875Z",
+  "worldSha256": "4bdf262926cfd58d9d7dabf110a757e748e982797af2c4879e49265fad6d1fb3",
+  "file": "05-planta-ob02.png",
+  "render": "Three.js production builders through WebGLRenderer (SwiftShader)",
+  "limits": "Internal alignment review under declared uncertainties; not site photography or cadastral survey. Historical facade captures keep their earlier world hash.",
+  "view": "plan",
+  "cameraPosition": [
+    -57,
+    85,
+    29
+  ],
+  "projection": "orthographic; north up",
+  "northUp": true,
+  "correctionMeters": 1.4649078852741808,
+  "frontStart": {
+    "lat": 29.075843831698624,
+    "lon": -110.95526725678737
+  },
+  "frontEnd": {
+    "lat": 29.075859872722415,
+    "lon": -110.95509738487088
+  },
+  "priorFrontEnd": {
+    "lat": 29.075873,
+    "lon": -110.955099
+  },
+  "uncertainty": {
+    "positionMeters": 5,
+    "lengthMeters": 2,
+    "depthMeters": 3,
+    "heightMeters": 0.6
+  },
+  "roadWidthMeters": 5.6,
+  "roadWidthUncertaintyMeters": 1.1,
+  "sections": [],
+  "source": "production builders: OB-01 + OB-02 + streetContinuation + routeStreetscape; local audit subset",
+  "calls": 487,
+  "triangles": 37786,
+  "renderer": "WebGL 2.0 (OpenGL ES 3.0 Chromium)"
+}

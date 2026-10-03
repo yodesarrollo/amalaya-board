@@ -1,13 +1,13 @@
 # Amalaya · Matriz de levantamiento 3D
 
-Actualizado: 2026-10-03T03:31:43.309664+00:00. La web consulta estados cada 30 segundos; los cambios aparecen al publicar avances.
+Actualizado: 2026-10-03T03:53:12.783747+00:00. La web consulta estados cada 30 segundos; los cambios aparecen al publicar avances.
 
 Naranja: en proceso · Verde: terminado · Rojo: problema · Gris: pendiente o provisional.
 
 | Acciones / Edificios | OB-01 | OB-02 | ISC-58 | EB-SW | EB-NW | EB-NE | EB-SE | PL-GA | CH-GA-OXXO | CH-YG-BIB | CH-YG-BBVA | SER-BLEY | SER-HSBC |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| Alinear planta y huellas con cartografía visual | ✓ Terminado | • En proceso | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional |
-| Ajustar calzada y encuentros de calles | ✓ Terminado | · Pendiente | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional |
+| Alinear planta y huellas con cartografía visual | ✓ Terminado | ✓ Terminado | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional |
+| Ajustar calzada y encuentros de calles | ✓ Terminado | • En proceso | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional |
 | Ajustar banqueta del lado A | ✓ Terminado | · Pendiente | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional |
 | Ajustar banqueta del lado B | ✓ Terminado | · Pendiente | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional |
 | Corregir esquinas, guarniciones y rampas | ! Problema | · Pendiente | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional |

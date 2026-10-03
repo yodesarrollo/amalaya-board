@@ -1,0 +1,88 @@
+{
+  "building": "OB-02",
+  "capturedAt": "2026-10-03T03:52:20.638Z",
+  "worldSha256": "4bdf262926cfd58d9d7dabf110a757e748e982797af2c4879e49265fad6d1fb3",
+  "file": "06-calzada-ob02.png",
+  "render": "Three.js production builders through WebGLRenderer (SwiftShader)",
+  "limits": "Internal alignment review under declared uncertainties; not site photography or cadastral survey. Historical facade captures keep their earlier world hash.",
+  "view": "street",
+  "cameraPosition": [
+    -57,
+    85,
+    29
+  ],
+  "projection": "orthographic; north up",
+  "northUp": true,
+  "correctionMeters": 1.4649078852741808,
+  "frontStart": {
+    "lat": 29.075843831698624,
+    "lon": -110.95526725678737
+  },
+  "frontEnd": {
+    "lat": 29.075859872722415,
+    "lon": -110.95509738487088
+  },
+  "priorFrontEnd": {
+    "lat": 29.075873,
+    "lon": -110.955099
+  },
+  "uncertainty": {
+    "positionMeters": 5,
+    "lengthMeters": 2,
+    "depthMeters": 3,
+    "heightMeters": 0.6
+  },
+  "roadWidthMeters": 5.6,
+  "roadWidthUncertaintyMeters": 1.1,
+  "sections": [
+    {
+      "station": 37.22993829324772,
+      "widthMeters": 5.599999930400725,
+      "left": [
+        -53.520787584930304,
+        0.03200000151991844,
+        27.439693498010374
+      ],
+      "right": [
+        -53.98474682289075,
+        0.03200000151991844,
+        21.858946142503292
+      ],
+      "centerOffsetMeters": -0.9344011121592436
+    },
+    {
+      "station": 45.033534027060526,
+      "widthMeters": 5.5999986505132116,
+      "left": [
+        -45.74169816358099,
+        0.03200000151991844,
+        26.79296888233824
+      ],
+      "right": [
+        -46.205660482409144,
+        0.03200000151991844,
+        21.212223067265008
+      ],
+      "centerOffsetMeters": -0.7437348736564352
+    },
+    {
+      "station": 52.83712976087333,
+      "widthMeters": 5.600000438385545,
+      "left": [
+        -37.962610160436746,
+        0.03200000151991844,
+        26.146246082312285
+      ],
+      "right": [
+        -38.42657268984195,
+        0.03200000151991844,
+        20.565498490705384
+      ],
+      "centerOffsetMeters": -0.5530684770808568
+    }
+  ],
+  "source": "production builders: OB-01 + OB-02 + streetContinuation + routeStreetscape; local audit subset",
+  "calls": 490,
+  "triangles": 37786,
+  "renderer": "WebGL 2.0 (OpenGL ES 3.0 Chromium)"
+}
