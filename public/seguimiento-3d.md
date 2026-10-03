@@ -1,6 +1,6 @@
 # Amalaya · Matriz de levantamiento 3D
 
-Actualizado: 2026-10-03T03:55:31.527927+00:00. La web consulta estados cada 30 segundos; los cambios aparecen al publicar avances.
+Actualizado: 2026-10-03T03:59:16.685470+00:00. La web consulta estados cada 30 segundos; los cambios aparecen al publicar avances.
 
 Naranja: en proceso · Verde: terminado · Rojo: problema · Gris: pendiente o provisional.
 
@@ -8,7 +8,7 @@ Naranja: en proceso · Verde: terminado · Rojo: problema · Gris: pendiente o p
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|
 | Alinear planta y huellas con cartografía visual | ✓ Terminado | ✓ Terminado | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional |
 | Ajustar calzada y encuentros de calles | ✓ Terminado | ✓ Terminado | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional |
-| Ajustar banqueta del lado A | ✓ Terminado | · Pendiente | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional |
+| Ajustar banqueta del lado A | ✓ Terminado | • En proceso | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional |
 | Ajustar banqueta del lado B | ✓ Terminado | · Pendiente | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional |
 | Corregir esquinas, guarniciones y rampas | ! Problema | · Pendiente | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional |
 | Empatar edificio, nombre y punto/foto 360 | ✓ Terminado | ◐ Provisional | ◐ Provisional | ◐ Provisional | · Pendiente | · Pendiente | · Pendiente | · Pendiente | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional |
