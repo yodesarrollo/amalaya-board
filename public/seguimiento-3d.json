@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-03T02:58:26Z",
+  "updatedAt": "2026-10-03T03:31:43.309664+00:00",
   "refreshSeconds": 30,
   "live": {
-    "status": "waiting",
-    "phase": "OB-02 · esperando rumbo de panorama y siguiente instrucción",
-    "title": "Checkpoint publicado · QA visual en rojo",
-    "detail": "El primer pase de OB-02 ya está publicado en el board y validado por Pages/HTTP. QA queda bloqueado con dos pendientes concretos: registrar el heading real de P03/P04 para comparar el Street View con el mismo rumbo y completar la recaptura donde la etiqueta tapa la cornisa. Abre el problema rojo de la matriz para dejar una instrucción.",
+    "status": "active",
+    "phase": "OB-02 · punto 1 · planta y huella",
+    "title": "Punto 1 en proceso · ubicación, orientación y colindancia",
+    "detail": "Se revisan los extremos y centro del frente de OB-02 contra el eje de Obregón, el encuentro con OB-01 y los puntos originales P03/P04. Al cerrar planta con evidencia se continúa al punto 2: calzada.",
     "activeBlockId": "OB-YG",
     "activeBuildingId": "OB-02"
   },
@@ -83,7 +83,7 @@
         "max": 33
       },
       "estimateBasis": "3 frentes/estructuras conocidas más revisión compartida de la cuadra; frentes anónimos se agregan cuando se cuenten.",
-      "next": "Completar OB-02: verificar proporciones de fachada y medidas con escala; orientar el 360 a un rumbo documentado y revisar el retorno/fondo. Mantener pendientes de equipo sin ancla.",
+      "next": "OB-02: cerrar punto 1 (planta y huella), luego punto 2 (calzada).",
       "sharedTasks": {
         "plan": "partial",
         "street": "partial",
@@ -263,7 +263,12 @@
             "facade": "partial",
             "finish": "partial",
             "equipment": "pending",
-            "qa": "blocked"
+            "qa": "blocked",
+            "plan": "active",
+            "street": "pending",
+            "sidewalkA": "pending",
+            "sidewalkB": "pending",
+            "corners": "pending"
           },
           "taskDetails": {
             "identity": "PARCIAL · P03 (29.0759089, -110.9551769) y P04 (29.0759275, -110.9549709) muestran el mismo frente claro de arcos, pilastras, rejas y balaustrada. “Colegio de Notarios #65” sigue sin confirmación; fechas de las imágenes sin verificar.",
@@ -271,7 +276,12 @@
             "facade": "PARCIAL · se conservan cinco vanos abiertos y se añadieron 54 segmentos instanciados de juntas de piedra, interpretados a partir de P03/P04. Alturas, anchuras, separación de pilastras y patrón de herrería no tienen escala métrica.",
             "finish": "PARCIAL · tonos de piedra/remates moderados y juntas de hilada añadidas como detalle visual; alturas y espesor interpretados. Sin fotografías usadas como texturas.",
             "equipment": "PENDIENTE · no se añadieron elementos urbanos porque las tomas disponibles no permiten anclar con confianza qué elementos son permanentes ni sus posiciones.",
-            "qa": "BLOQUEADO · el checkpoint está publicado y las pruebas/build pasaron. La comparación con Street View necesita el rumbo exacto del panorama P03/P04, que no está en el JSON. La captura aislada 03 conserva una etiqueta que tapa parte de la cornisa/balaustrada; la recaptura no pudo completar en este entorno. Abre el problema rojo para indicar el rumbo de referencia o cómo continuar con la captura pendiente."
+            "qa": "BLOQUEADO · el checkpoint está publicado y las pruebas/build pasaron. La comparación con Street View necesita el rumbo exacto del panorama P03/P04, que no está en el JSON. La captura aislada 03 conserva una etiqueta que tapa parte de la cornisa/balaustrada; la recaptura no pudo completar en este entorno. Abre el problema rojo para indicar el rumbo de referencia o cómo continuar con la captura pendiente.",
+            "plan": "EN PROCESO · revisión en inicio, centro y fin del frente; huella, colindancia con OB-01 y separación de calzada/banqueta. La profundidad conserva incertidumbre hasta disponer de evidencia métrica.",
+            "street": "PENDIENTE · revisión específica del frente OB-02 en orden de matriz; el estado compartido de la cuadra y OB-01 se conserva.",
+            "sidewalkA": "PENDIENTE · revisión específica del frente OB-02 en orden de matriz; el estado compartido de la cuadra y OB-01 se conserva.",
+            "sidewalkB": "PENDIENTE · revisión específica del frente OB-02 en orden de matriz; el estado compartido de la cuadra y OB-01 se conserva.",
+            "corners": "PENDIENTE · revisión específica del frente OB-02 en orden de matriz; el estado compartido de la cuadra y OB-01 se conserva."
           },
           "evidence": {
             "identity": [

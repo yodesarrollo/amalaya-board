@@ -53,7 +53,9 @@ const { columns, cellInfo, report, STATES } = await import('../src/seguimiento3d
 const targets = columns(data)
 assert.equal(targets.length, 13, '12 edificios y un espacio público, sin frentes inventados')
 const ob = targets.find(c => c.building.id === 'OB-02')
-assert.equal(cellInfo(ob, 'plan').key, 'OB-YG:plan', 'infraestructura comparte tarea de cuadra')
+const sharedOb = { ...ob, building: { ...ob.building, tasks: { identity: 'partial' } } }
+assert.equal(cellInfo(sharedOb, 'plan').key, 'OB-YG:plan', 'sin revisión propia se conserva la tarea compartida de cuadra')
+assert.equal(cellInfo(ob, 'plan').key, 'OB-02:plan', 'la revisión seleccionada de OB-02 tiene seguimiento independiente')
 assert.equal(cellInfo(ob, 'identity').key, 'OB-02:identity')
 assert.notEqual(STATES.partial.label, STATES.active.label, 'provisional no significa en proceso')
 const fixture = { ...ob, building: { ...ob.building, tasks: { identity: 'blocked' }, issues: { identity: { title: 'Identificación', detail: 'Falta evidencia' } } } }
@@ -74,7 +76,8 @@ console.log('Matriz XY: estados, problemas, contexto de indicaciones y envío ve
 
 const scoped = targets.find(c => c.building.id === 'OB-01')
 assert.equal(cellInfo(scoped, 'plan').shared, false, 'la revisión de un frente no cierra toda la cuadra')
-assert.equal(cellInfo(ob, 'plan').shared, true, 'el siguiente edificio conserva su estado previo')
+assert.equal(cellInfo(sharedOb, 'plan').shared, true, 'un edificio sin revisión conserva el estado compartido')
+assert.equal(cellInfo(ob, 'plan').shared, false, 'OB-02 seleccionado no altera el avance compartido ni OB-01')
 
 const { validarFoto, uploadPayload, adjuntarFotos } = await import('../src/seguimiento3d-fotos.js')
 assert.throws(() => validarFoto({ type: 'text/html', size: 10 }))
