@@ -1,0 +1,136 @@
+{
+  "building": "OB-02",
+  "route": "R-001",
+  "references": [
+    {
+      "point": "R-001-P03",
+      "id": "Apyr0uKeZr_XWmfLfLeBjQ",
+      "lat": 29.0759089,
+      "lon": -110.9551769,
+      "boardAsset": "recorrido/Apyr0uKeZr_XWmfLfLeBjQ.jpg",
+      "imageDate": "not verified"
+    },
+    {
+      "point": "R-001-P04",
+      "id": "h45BeWMtTog-TgjPTSYn6g",
+      "lat": 29.0759275,
+      "lon": -110.9549709,
+      "boardAsset": "recorrido/h45BeWMtTog-TgjPTSYn6g.jpg",
+      "imageDate": "not verified"
+    }
+  ],
+  "identity": "Light stone arched facade; possible Colegio de Notarios #65 name is unconfirmed.",
+  "estimatedDimensions": {
+    "frontageMeters": {
+      "value": 16.67,
+      "uncertainty": 2
+    },
+    "depthMeters": {
+      "value": 9,
+      "uncertainty": 3
+    },
+    "corniceMeters": {
+      "value": 4.65,
+      "uncertainty": 0.6
+    },
+    "balustradeMeters": {
+      "value": 5.35,
+      "uncertainty": 0.6
+    },
+    "footprint": "estimated; no OSM polygon"
+  },
+  "render": "Three.js production OB-02 builder through WebGLRenderer (Chromium SwiftShader); context views also use the production street and route builders.",
+  "limits": [
+    "Not a site photograph, cadastral survey, or verified dimensional model.",
+    "Panoramas remain consultation references and were not copied into this evidence folder or used as textures.",
+    "Inspection azimuth is the vector from the selected route waypoint to the midpoint of the estimated model frontage. It is not verified panorama capture metadata.",
+    "The rear/east return is blank and provisional; no reference establishes its actual depth or form.",
+    "The integrated context frame includes a vehicle from the shared street builder that occludes part of the arches. The isolated frame uses the same P03 position, azimuth, and orthographic framing."
+  ],
+  "captures": [
+    {
+      "file": "01-fachada-p03.png",
+      "title": "P03 · detalle peatonal de fachada · 58°",
+      "view": "perspective-detail",
+      "point": "R-001-P03",
+      "lat": 29.0759089,
+      "lon": -110.9551769,
+      "cameraPosition": [
+        -44.88695999966126,
+        1.68,
+        22.866794999973905
+      ],
+      "azimuth": 186.1687893329648,
+      "azimuthSource": "toward midpoint of estimated OB-02 frontage",
+      "renderer": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+      "calls": 237,
+      "triangles": 26887
+    },
+    {
+      "file": "02-conjunto-p03.png",
+      "title": "P03 · conjunto integrado con calle y ruta · ortográfica",
+      "view": "integrated-orthographic",
+      "point": "R-001-P03",
+      "lat": 29.0759089,
+      "lon": -110.9551769,
+      "cameraPosition": [
+        -44.88695999966126,
+        1.68,
+        22.866794999973905
+      ],
+      "azimuth": 186.1687893329648,
+      "projection": "orthographic, 20 × 12 m framing; does not emulate a street-view lens",
+      "occlusion": "A vehicle from the shared street builder covers parts of the middle arches.",
+      "renderer": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+      "calls": 359,
+      "triangles": 29838
+    },
+    {
+      "file": "03-edificio-aislado-p03.png",
+      "title": "P03 · OB-02 aislado para inspeccionar los cinco vanos · misma cámara ortográfica",
+      "view": "isolated-orthographic",
+      "point": "R-001-P03",
+      "lat": 29.0759089,
+      "lon": -110.9551769,
+      "cameraPosition": [
+        -44.88695999966126,
+        1.68,
+        22.866794999973905
+      ],
+      "azimuth": 186.1687893329648,
+      "projection": "orthographic, 20 × 12 m framing; does not emulate a street-view lens",
+      "renderer": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+      "calls": 347,
+      "triangles": 15467
+    },
+    {
+      "file": "04-retorno-oblicuo-p04.png",
+      "title": "P04 · vista oblicua · retorno y fondo provisionales",
+      "view": "perspective-oblique",
+      "point": "R-001-P04",
+      "lat": 29.0759275,
+      "lon": -110.9549709,
+      "cameraPosition": [
+        -24.863760000488355,
+        1.68,
+        20.80312500029642
+      ],
+      "azimuth": 249.61664518245797,
+      "azimuthSource": "toward midpoint of estimated OB-02 frontage",
+      "renderer": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+      "calls": 369,
+      "triangles": 30424
+    }
+  ],
+  "review": {
+    "date": "2026-10-02",
+    "worldBundleSha256": "0ad3647693fa61ce3461ea8b2f20c9d50a6e1a6fa9a449727e4e06bc3f0ab663",
+    "tests": "29 files, 94/94 passed",
+    "typecheck": "passed",
+    "build": "passed",
+    "worldBuild": "passed",
+    "smoke": "passed",
+    "diffCheck": "passed after the final checkpoint and manifest update"
+  },
+  "captureReviewNote": "La etiqueta superior de 03-edificio-aislado-p03.png tapa parte alta de la cornisa/balaustrada y del primer vano. La recaptura con la etiqueta recolocada no se completó: Chromium/Playwright recibió HTTP 200 y agotó 20 s esperando document.body.dataset.ready=true; otro intento agotó 10 s en page.goto(waitUntil=commit) con net::ERR_ABORTED. Se conserva la captura previa; se requiere recapturar en un navegador WebGL que termine de cargar el auditor."
+}

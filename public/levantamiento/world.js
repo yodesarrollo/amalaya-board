@@ -16042,7 +16042,7 @@ function Tp(e = 1024) {
 	t.name = "OB-02 · fachada gris con arcos y rejas · exterior interpretado", t.userData.study = Cp;
 	let n = Nl(Cp.frontStart), r = Nl(Cp.frontEnd), i = Math.hypot(r.x - n.x, r.z - n.z), a = Cp.depthMeters;
 	t.position.set(n.x, 0, n.z), t.rotation.y = -Math.atan2(r.z - n.z, r.x - n.x);
-	let o = _p("stone", "#b5b3ac", e), s = _p("stone", "#c9c5ba", e), c = _p("painted-render", "#b7b4ac", e === 1024 ? 512 : e), l = _p("painted-steel", "#26323a", e === 1024 ? 512 : e), u = new Z({
+	let o = _p("stone", "#aaa9a4", e), s = _p("stone", "#c2c0b8", e), c = _p("painted-render", "#b7b4ac", e === 1024 ? 512 : e), l = _p("painted-steel", "#26323a", e === 1024 ? 512 : e), u = new Z({
 		color: "#1c2427",
 		roughness: 1
 	}), d = (e, n, r, i = 0, a = 0, o = 0) => {
@@ -16053,8 +16053,42 @@ function Tp(e = 1024) {
 		depth: .34,
 		bevelEnabled: !1,
 		curveSegments: 20
-	}), o), f("Volumen posterior estimado · sin interior restituido", i, 4.15, a - .65, i / 2, 2.225, (a + .65) / 2, c), f("Azotea estimada tras el pretil", i, .12, a, i / 2, 4.52, a / 2, c);
-	let y = 0;
+	}), o);
+	let y = [
+		.75,
+		1.18,
+		1.61,
+		2.04,
+		2.47,
+		2.9,
+		3.33,
+		3.76,
+		4.08
+	], b = [];
+	for (let e of y) {
+		let t = 0;
+		for (let n = 0; n < 5; n++) {
+			let r = m[n] / 2, i = e <= g ? r : Math.sqrt(Math.max(0, r * r - (e - g) ** 2)), a = p[n] - i, o = p[n] + i;
+			a - t > .16 && b.push({
+				x: (t + a) / 2,
+				y: e,
+				width: a - t
+			}), t = Math.max(t, o);
+		}
+		i - t > .16 && b.push({
+			x: (t + i) / 2,
+			y: e,
+			width: i - t
+		});
+	}
+	let x = new Z({
+		color: "#a6a49e",
+		roughness: .98
+	}), S = new dr(new X(1, .009, .012), x, b.length), C = new Dt();
+	b.forEach((e, t) => {
+		C.position.set(e.x, e.y, -.022), C.scale.set(e.width, 1, 1), C.updateMatrix(), S.setMatrixAt(t, C.matrix);
+	}), S.name = "Juntas de hilada · detalle interpretado · segmentos fuera de los arcos", S.castShadow = !1, S.receiveShadow = !1, t.add(S), f("Volumen posterior estimado · sin interior restituido", i, 4.15, a - .65, i / 2, 2.225, (a + .65) / 2, c), f("Azotea estimada tras el pretil", i, .12, a, i / 2, 4.52, a / 2, c);
+	let w = 0;
 	for (let e = 0; e < 5; e++) {
 		let t = p[e], n = m[e] / 2;
 		d("Receso oscuro tras reja · profundidad 28 cm", new Wi(new $r(wp(0, m[e] - .08, h, g).getPoints(32)), 24), u, t, 0, .29);
@@ -16071,7 +16105,7 @@ function Tp(e = 1024) {
 		let r = Math.floor(m[e] / .17);
 		for (let i = 1; i < r; i++) {
 			let a = -n + m[e] * i / r, o = g + Math.sqrt(Math.max(0, n * n - a * a)) - .045;
-			f("Barra vertical de reja · patrón interpretado", .023, o - h - .08, .027, t + a, (o + h + .08) / 2, .13, l), y++;
+			f("Barra vertical de reja · patrón interpretado", .023, o - h - .08, .027, t + a, (o + h + .08) / 2, .13, l), w++;
 		}
 		for (let n of [
 			.65,
@@ -16110,7 +16144,7 @@ function Tp(e = 1024) {
 	]) f("Perfil escalonado de cornisa", i + .4, t, n, i / 2, e, -.07);
 	for (let e = .18; e < i; e += .27) f("Dentículo bajo cornisa", .1, .12, .14, e, 4.53, -.26);
 	f("Pasamanos de balaustrada", i + .12, .11, .29, i / 2, 5.35, .12);
-	let b = new Vi([
+	let T = new Vi([
 		new V(.055, 0),
 		new V(.08, .06),
 		new V(.1, .13),
@@ -16118,23 +16152,24 @@ function Tp(e = 1024) {
 		new V(.035, .3),
 		new V(.065, .38),
 		new V(.06, .44)
-	], 10), x = Math.floor(i / .52), S = new dr(b, s, x), C = new Dt();
-	for (let e = 0; e < x; e++) C.position.set(i * (e + .5) / x, 4.87, .12), C.updateMatrix(), S.setMatrixAt(e, C.matrix);
-	S.name = "Balaustrada superior · silueta observada, despiece estimado", S.castShadow = S.receiveShadow = !0, t.add(S);
+	], 10), E = Math.floor(i / .52), D = new dr(T, s, E), O = new Dt();
+	for (let e = 0; e < E; e++) O.position.set(i * (e + .5) / E, 4.87, .12), O.updateMatrix(), D.setMatrixAt(e, O.matrix);
+	D.name = "Balaustrada superior · silueta observada, despiece estimado", D.castShadow = D.receiveShadow = !0, t.add(D);
 	for (let e of [0, i]) f("Remate de esquina", .44, .65, .44, e, 5.11, .12), f("Tapa del remate de esquina", .55, .1, .55, e, 5.46, .12);
 	t.updateMatrixWorld(!0);
-	let w = new Zt(new U(-.22, .15, -.28), new U(i + .22, 5.52, a)).applyMatrix4(t.matrixWorld), T = {
+	let k = new Zt(new U(-.22, .15, -.28), new U(i + .22, 5.52, a)).applyMatrix4(t.matrixWorld), A = {
 		lengthMeters: i,
 		depthMeters: a,
 		bays: 5,
-		bars: y,
-		balusters: x,
+		bars: w,
+		balusters: E,
+		masonryCourseSegments: b.length,
 		textureSize: e
 	};
-	return t.userData.stats = T, {
+	return t.userData.stats = A, {
 		group: t,
-		colliders: [w],
-		stats: T
+		colliders: [k],
+		stats: A
 	};
 }
 //#endregion

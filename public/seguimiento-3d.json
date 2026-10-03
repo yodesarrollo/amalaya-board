@@ -1,14 +1,14 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-03T02:04:59.449946+00:00",
+  "updatedAt": "2026-10-03T02:50:01Z",
   "refreshSeconds": 30,
   "live": {
     "status": "active",
-    "phase": "OB-02 · fachada y comparación P04",
-    "title": "OB-02 · ajuste de hiladas y vista P04 en curso",
-    "detail": "Luna contrastó P03/P04 y confirmó cinco arcos, pilastras y balaustrada. Añadió hiladas interpretadas; la comparación final desde P04 está en captura. Medidas y nombre comercial se mantienen provisionales.",
+    "phase": "OB-02 · commit y despliegue del checkpoint visual",
+    "title": "Capturas verificadas; cerrando publicación de OB-02",
+    "detail": "El board verifier aprobó el paquete. Suite del board, puente y build pasaron; también 94/94 pruebas del modelo, typecheck, build, world build y smoke. Ahora cierro commit, CI Pages y HTTP. QA visual sigue incompleto: falta heading comprobable del 360 y recapturar la etiqueta obstruida en la toma aislada.",
     "activeBlockId": "OB-YG",
-    "activeBuildingId": "OB-01"
+    "activeBuildingId": "OB-02"
   },
   "schedule": {
     "basis": "Horas de trabajo concentrado que faltan para revisar y cerrar las referencias conocidas, con la geometría actual como punto de partida.",
@@ -83,7 +83,7 @@
         "max": 33
       },
       "estimateBasis": "3 frentes/estructuras conocidas más revisión compartida de la cuadra; frentes anónimos se agregan cuando se cuenten.",
-      "next": "Revisar OB-01 y aportar las referencias faltantes indicadas en sus celdas antes del cierre dimensional.",
+      "next": "Completar OB-02: verificar proporciones de fachada y medidas con escala; orientar el 360 a un rumbo documentado y revisar el retorno/fondo. Mantener pendientes de equipo sin ancla.",
       "sharedTasks": {
         "plan": "partial",
         "street": "partial",
@@ -251,8 +251,8 @@
         },
         {
           "id": "OB-02",
-          "name": "Fachada de arcos y rejas · posible Colegio de Notarios #65",
-          "confidence": "OB-02 vinculado provisionalmente al frente claro de arcos en R-001 P03/P04; posible identidad comercial no confirmada. Fachada y volumen siguen con medidas estimadas.",
+          "name": "Fachada clara de arcos y rejas · posible Colegio de Notarios #65, por confirmar",
+          "confidence": "Fachada de cinco arcos vinculada provisionalmente a R-001 P03/P04. El posible nombre comercial no está confirmado; proporciones y fondo son estimados.",
           "estimateHours": {
             "min": 4,
             "max": 8
@@ -260,14 +260,110 @@
           "tasks": {
             "identity": "partial",
             "volume": "partial",
-            "facade": "active",
+            "facade": "partial",
             "finish": "partial",
             "equipment": "pending",
             "qa": "active"
           },
           "taskDetails": {
-            "facade": "EN PROCESO · contraste de P03/P04; cinco vanos abiertos conservados; hiladas añadidas como interpretación visible. Conteo de vanos observado, altura y despiece sin medición.",
-            "qa": "EN CAPTURA · comparación desde P04 hacia el frente; rumbo calculado a partir de la huella estimada, pendiente inspección final de cámara y render."
+            "identity": "PARCIAL · P03 (29.0759089, -110.9551769) y P04 (29.0759275, -110.9549709) muestran el mismo frente claro de arcos, pilastras, rejas y balaustrada. “Colegio de Notarios #65” sigue sin confirmación; fechas de las imágenes sin verificar.",
+            "volume": "PROVISIONAL · frente 16.67 ±2 m; fondo 9 ±3 m; cornisa 4.65 ±0.6 m; balaustrada 5.35 ±0.6 m. Sin polígono OSM ni medidas directas; retorno y fondo no verificados.",
+            "facade": "PARCIAL · se conservan cinco vanos abiertos y se añadieron 54 segmentos instanciados de juntas de piedra, interpretados a partir de P03/P04. Alturas, anchuras, separación de pilastras y patrón de herrería no tienen escala métrica.",
+            "finish": "PARCIAL · tonos de piedra/remates moderados y juntas de hilada añadidas como detalle visual; alturas y espesor interpretados. Sin fotografías usadas como texturas.",
+            "equipment": "PENDIENTE · no se añadieron elementos urbanos porque las tomas disponibles no permiten anclar con confianza qué elementos son permanentes ni sus posiciones.",
+            "qa": "EN PROCESO · paquete visual OB-02 copiado al board; suite 94/94, typecheck, build, world build, smoke y verifier aprobados. Estoy cerrando commit, CI Pages y comprobación HTTP. La comparación visual con 360 y la recaptura de la etiqueta siguen pendientes."
+          },
+          "evidence": {
+            "identity": [
+              {
+                "title": "R-001 P03 · panorama de consulta · fecha sin verificar",
+                "url": "recorrido/Apyr0uKeZr_XWmfLfLeBjQ.jpg"
+              },
+              {
+                "title": "R-001 P04 · panorama de consulta · fecha sin verificar",
+                "url": "recorrido/h45BeWMtTog-TgjPTSYn6g.jpg"
+              }
+            ],
+            "volume": [
+              {
+                "title": "P03 · conjunto integrado · geometría y ubicación provisionales",
+                "url": "levantamiento/evidence/OB-02/02-conjunto-p03.png"
+              },
+              {
+                "title": "P04 · retorno y fondo provisionales",
+                "url": "levantamiento/evidence/OB-02/04-retorno-oblicuo-p04.png"
+              }
+            ],
+            "facade": [
+              {
+                "title": "P03 · detalle de fachada a nivel peatonal · recorta extremos",
+                "url": "levantamiento/evidence/OB-02/01-fachada-p03.png"
+              },
+              {
+                "title": "P03 · cinco vanos completos · modelo aislado para lectura",
+                "url": "levantamiento/evidence/OB-02/03-edificio-aislado-p03.png"
+              },
+              {
+                "title": "P03 · panorama original de consulta; no se copió al modelo",
+                "url": "recorrido/Apyr0uKeZr_XWmfLfLeBjQ.jpg"
+              },
+              {
+                "title": "P04 · panorama original de consulta; fecha sin verificar",
+                "url": "recorrido/h45BeWMtTog-TgjPTSYn6g.jpg"
+              }
+            ],
+            "finish": [
+              {
+                "title": "P03 · detalle de piedra, hiladas interpretadas y rejas",
+                "url": "levantamiento/evidence/OB-02/01-fachada-p03.png"
+              },
+              {
+                "title": "P03 · conjunto aislado con cinco vanos visibles",
+                "url": "levantamiento/evidence/OB-02/03-edificio-aislado-p03.png"
+              }
+            ],
+            "equipment": [
+              {
+                "title": "R-001 P03 · panorama de consulta",
+                "url": "recorrido/Apyr0uKeZr_XWmfLfLeBjQ.jpg"
+              },
+              {
+                "title": "R-001 P04 · panorama de consulta",
+                "url": "recorrido/h45BeWMtTog-TgjPTSYn6g.jpg"
+              }
+            ],
+            "qa": [
+              {
+                "title": "P03 · conjunto integrado, ortográfica; el vehículo compartido oculta vanos",
+                "url": "levantamiento/evidence/OB-02/02-conjunto-p03.png"
+              },
+              {
+                "title": "P03 · fachada aislada, misma ancla y cámara ortográfica",
+                "url": "levantamiento/evidence/OB-02/03-edificio-aislado-p03.png"
+              },
+              {
+                "title": "P03 · detalle peatonal 58°; no coincide aún con heading verificado del 360",
+                "url": "levantamiento/evidence/OB-02/01-fachada-p03.png"
+              },
+              {
+                "title": "P04 · vista oblicua del retorno provisional",
+                "url": "levantamiento/evidence/OB-02/04-retorno-oblicuo-p04.png"
+              }
+            ]
+          },
+          "issues": {
+            "volume": {
+              "title": "Faltan medidas para verificar volumen",
+              "detail": "El frente (~16.67 ±2 m), fondo (~9 ±3 m), cornisa (~4.65 ±0.6 m) y balaustrada (~5.35 ±0.6 m) siguen estimados. Para cerrar exactitud hacen falta frente y fondo medidos y alturas referidas al mismo nivel, con unidades, método, fecha y margen de error; no hay huella de edificio en OSM."
+            },
+            "facade": {
+              "title": "Falta escala para proporciones de fachada",
+              "detail": "P03/P04 permiten reconocer cinco arcos, pilastras, rejas y balaustrada, pero no fijar separaciones y alturas. Hace falta vista frontal con una referencia de escala o medidas de anchuras de vanos, ejes de pilastras y alturas."
+            },
+            "qa": {
+              "title": "QA requiere rumbo del 360 y recaptura de una etiqueta",
+              "detail": "El JSON no incluye headingDegrees: P03→P04 es ≈84° de marcha y las cámaras actuales miran al frente estimado (P03 ≈186.2°, P04 ≈249.6°), así que no verifican la orientación de Street View. Además, la tarjeta de 03-edificio-aislado-p03.png tapa parte alta de cornisa/balaustrada y del primer vano. La recaptura falló al esperar document.body.dataset.ready=true durante 20 s; otro intento terminó a los 10 s con net::ERR_ABORTED en page.goto(waitUntil=commit). Se conserva la imagen anterior. Para comparar visualmente hace falta documentar el heading del panorama y volver a capturar con la etiqueta en el área libre inferior."
+            }
           }
         },
         {
