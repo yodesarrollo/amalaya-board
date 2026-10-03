@@ -133,39 +133,87 @@
       "task": "qa",
       "state": "blocked",
       "at": "2026-10-03T19:14:43.694Z"
+    },
+    {
+      "order": 1,
+      "task": "plan",
+      "state": "active",
+      "at": "2026-10-03T20:31:27.306Z"
+    },
+    {
+      "order": 1,
+      "task": "plan",
+      "state": "partial",
+      "at": "2026-10-03T20:31:27.307Z"
+    },
+    {
+      "order": 2,
+      "task": "street",
+      "state": "active",
+      "at": "2026-10-03T20:31:27.308Z"
+    },
+    {
+      "order": 2,
+      "task": "street",
+      "state": "partial",
+      "at": "2026-10-03T20:31:27.309Z"
+    },
+    {
+      "order": 3,
+      "task": "sidewalkA",
+      "state": "active",
+      "at": "2026-10-03T20:31:27.310Z"
+    },
+    {
+      "order": 3,
+      "task": "sidewalkA",
+      "state": "partial",
+      "at": "2026-10-03T20:31:27.311Z"
+    },
+    {
+      "order": 4,
+      "task": "sidewalkB",
+      "state": "active",
+      "at": "2026-10-03T20:31:27.312Z"
+    },
+    {
+      "order": 4,
+      "task": "sidewalkB",
+      "state": "partial",
+      "at": "2026-10-03T20:31:27.313Z"
     }
   ],
   "steps": [
     {
       "order": 1,
       "task": "plan",
-      "state": "blocked",
-      "result": "La esquina se ubica por el cruce OSM Garmendia × Chihuahua, pero no hay huella edificatoria ni linderos medidos. P06/P07 solo anclan el frente.",
-      "at": "2026-10-03T19:14:43.694Z",
+      "state": "partial",
+      "result": "MEDIDO A MANO · Regla de Google Maps sobre bordes visibles de cubierta: frente 15,64 m × fondo 15,77 m (±1 m). No son linderos catastrales. La planta sigue parcial hasta aplicar y validar la huella en la fuente 3D vigente.",
+      "at": "2026-10-03T20:31:27.307Z",
       "matrixState": "partial"
     },
     {
       "order": 2,
       "task": "street",
-      "state": "blocked",
-      "result": "Ejes OSM y encuentro revisados; falta sección métrica de la calzada Garmendia × Chihuahua. No se extrapola el perfil Obregón P10.",
-      "at": "2026-10-03T19:14:43.694Z",
+      "state": "partial",
+      "result": "MEDIDO A MANO · Av. Chihuahua frente a EB-NW: 5,21 m (±0,5 m) entre bordes visibles de calzada. No incluye radios/encuentros ni el ancho de Garmendia. La geometría sigue parcial hasta aplicar y validar.",
+      "at": "2026-10-03T20:31:27.309Z",
       "matrixState": "partial"
     },
     {
       "order": 3,
       "task": "sidewalkA",
-      "state": "blocked",
-      "result": "El paso junto al lado A se ve en P06/P07, pero ancho, obstáculos y continuidad no están medidos.",
-      "at": "2026-10-03T19:14:43.694Z",
+      "state": "partial",
+      "result": "MEDIDO A MANO · Banqueta A: 1,04 m (±0,3 m) desde borde de calzada hasta línea aparente de fachada/cubierta. No certifica ancho libre ni continuidad; falta aplicar y validar.",
+      "at": "2026-10-03T20:31:27.311Z",
       "matrixState": "partial"
     },
     {
       "order": 4,
       "task": "sidewalkB",
-      "state": "blocked",
-      "result": "El lado B permanece provisional; falta ancho libre, niveles y continuidad en sus extremos.",
-      "at": "2026-10-03T19:14:43.694Z",
+      "state": "partial",
+      "result": "MEDIDO A MANO · Franja visible B: 1,37 m (±0,4 m). Vegetación y acceso hacen irregular el límite; no se confirma banqueta pública ni paso libre continuo. Falta aplicar y validar.",
+      "at": "2026-10-03T20:31:27.313Z",
       "matrixState": "partial"
     },
     {
@@ -238,14 +286,16 @@
     "equipment",
     "qa"
   ],
-  "closure": "Revisión de 11 acciones completada en orden: 1 identidad descriptiva cumplida, 4 provisionales y 6 bloqueadas con evidencia requerida. No quedan acciones pendientes; el edificio sigue incompleto.",
-  "firstPending": null,
+  "closure": "Medidas manuales registradas en orden para 01–04; siguen parciales hasta aplicarse a la geometría 3D vigente. 05 y 07–11 conservan sus bloqueos con causa y 06 identidad descriptiva permanece cumplida. EB-NW sigue incompleto; la siguiente ejecución debe retomar en 01, sin saltos.",
+  "firstPending": "plan",
   "checks": [
     "R-002 P06 resuelve a 103 Av. Chihuahua; Street View fecha dic. 2023; rumbo 270°.",
     "R-002 P07 resuelve a 186 C. Garmendia; Street View fecha dic. 2023; rumbo 180°.",
     "El nombre comercial y el propietario de la fachada EB-NW no se confirman.",
     "La página pública de recorrido indicó que este navegador requiere WebGL2; el modelo no cargó en esta sesión.",
-    "No se guardaron ni publicaron imágenes panorámicas como evidencia o textura."
+    "No se guardaron ni publicaron imágenes panorámicas como evidencia o textura.",
+    "Google Maps, consulta 03/10/2026: huella visual 15,64 × 15,77 m; calzada Av. Chihuahua 5,21 m; banqueta A 1,04 m; franja visible B 1,37 m.",
+    "Cotas manuales orientativas tomadas sobre imagen satelital; no equivalen a topografía, deslinde catastral ni ancho libre certificado. La fecha de captura de la imagen no se muestra."
   ],
   "provisional": [
     "plan",
@@ -253,5 +303,6 @@
     "sidewalkA",
     "sidewalkB"
   ],
-  "baseCommit": "a4abe92537cf0cfa7d1db5fdf0ff41c73ca913dd"
+  "baseCommit": "a4abe92537cf0cfa7d1db5fdf0ff41c73ca913dd",
+  "updatedAt": "2026-10-03T20:31:27.314Z"
 }
