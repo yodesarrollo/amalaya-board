@@ -3,8 +3,8 @@
   "reviewedAt": "2026-10-03T11:02:01.322983+00:00",
   "recordKind": "ordered evidence review with appended status correction; incomplete process, not a per-step completion history",
   "baseBoardCommit": "f12c7c2",
-  "worldSha256": "3b904653e02c3a6ade75d267cc55177f9bc314f3b3780ed354bf3a0cd9c72134",
-  "runtimeModuleSha256": "ce9cf8dd71818e8fe4d26d7c68b4b93d5691851874f8fed1a62bef238fd4a8af",
+  "worldSha256": "7f76cb47d6189e2f29681ec2a0f37dd9993d4d1db9788cd10c4fd986e2953e91",
+  "runtimeModuleSha256": "76eca0365d35400e94b996fa16080888772c137398b7140df9d0308dc50e3a9b",
   "privateSourceStatus": "Full Hidalgo3D a029964 unavailable; editable continuation extension preserved privately. September source not used to rebuild this release.",
   "guidanceUrl": "https://drive.google.com/file/d/1n563KsI5gP3n6s-rLtqgQJEhRfTno1D7/view",
   "actions": [
@@ -84,8 +84,8 @@
       "order": 4,
       "task": "sidewalkB",
       "criterion": "Ajustar banqueta del lado B",
-      "status": "active",
-      "result": "EN EJECUCIÓN 04 · corregir base bajo juntas y pavimento que cubre calzada, conservando el perfil y cotas heredados del paseo de plaza. No se copiará A ni se declarará el paseo una banqueta ISC uniforme medida. Límites, continuidad física y cotas siguen pendientes.",
+      "status": "blocked",
+      "result": "REPARACIÓN TÉCNICA 04 · base bajo juntas del pavimento PH-01, 41 losetas de plaza y 165 genéricas retiradas o recortadas según calzada y propietario. Biseles, colores, UV y cotas heredadas conservados. Rayos en juntas y en el antiguo solape sobre asfalto comprobados; reparación03, transición y OB-01/OB-02 conservados. BLOQUEADO el cierre físico: límites del tramo, cotas y continuidad peatonal siguen sin medir/verificar; no se atribuye el paseo entero a una banqueta uniforme ISC.",
       "evidence": [
         {
           "title": "ISC-58 · planta del modelo provisional · P05 · 355.065831°",
@@ -98,11 +98,15 @@
         {
           "title": "04 · paseo norte · cámara sobre la plaza del modelo",
           "url": "levantamiento/evidence/ISC-58/08-paseo-norte.png"
+        },
+        {
+          "title": "04 · reparación de juntas y recorte contra asfalto · cierre físico pendiente",
+          "url": "levantamiento/evidence/ISC-58/11-paseo-norte-reparado.png"
         }
       ],
       "issue": {
         "title": "Falta delimitar y verificar el paseo del lado norte",
-        "detail": "Problema: falta base continua bajo juntas y parte del pavimento norte invade el mesh de calzada; el paseo de plaza tampoco tiene límites/cotas físicas verificados del frente ISC. Impacto: 04 sigue incompleto. Se ejecuta primero la reparación geométrica dentro del pavimento heredado, recortado por el asfalto actual, sin trasladar el perfil sur. Para su cierre físico: sección o croquis ubicado del lado norte, con límites, cotas y obstáculos, fuente, fecha y margen de error; después verificar recorrido y encuentros."
+        "detail": "Problema: se corrigieron la base y el solape de pavimento sobre asfalto del modelo, pero faltan límites del tramo, cotas físicas, obstáculos y continuidad al vecino. Impacto: 04 continúa incompleto y no certifica una banqueta ISC uniforme de19.181m. Para resolver: sección o croquis ubicado del lado norte, con límites, cotas, obstáculos, fuente, fecha y margen de error; después ajustar el perfil propio y verificar recorrido y encuentros sin copiar el sur. La reparación tiene una captura y checkpoint distintos de03."
       }
     },
     {
@@ -130,26 +134,19 @@
       "order": 6,
       "task": "identity",
       "criterion": "Empatar edificio, nombre y punto/foto 360",
-      "status": "blocked",
-      "result": "ACCESO IDENTIFICADO VISUALMENTE · SIC confirma el domicilio #58. La foto Commons Edificio_del_Instituto_Sonorense_de_Cultura muestra numeral 58 y letrero ISC en el paño beige de cinco arcos; P04/P05 y las fotos de contexto corroboran puerta central y relación con monumento. Continúa bloqueada la posición métrica, límites completos del frente y orientación del panorama; el paño rojo no tiene atribución administrativa verificada.",
+      "status": "done",
+      "result": "HECHO · identidad visual del acceso #58: SIC confirma Instituto Sonorense de Cultura y domicilio Obregón 58. Commons y Flickr muestran numeral 58 y letrero ISC en la arquería beige de cinco arcos, reconocible en P04/P05 por columnas, portal, remate, rampa azul y contexto del monumento. IDs, coordenadas de ruta y SHA256 de los JPG comprobados contra sus originales. Lat/lng son anclas de ruta, no centro óptico medido; fecha y norte de los panoramas desconocidos declarados. El paño rojo contiguo conserva atribución administrativa sin verificar. Cierre de identidad visual; planta, cotas, límites y QA mantienen sus propios bloqueos.",
       "evidence": [
         {
-          "title": "ISC-58 · bloque del modelo provisional · P05 · 355.065831°",
-          "url": "levantamiento/evidence/ISC-58/02-bloque.png"
+          "title": "06 · P04 · arquería beige reconocible del acceso58 · norte/fecha del panorama desconocidos",
+          "url": "recorrido/h45BeWMtTog-TgjPTSYn6g.jpg"
         },
         {
-          "title": "Referencia P05 existente · fecha y norte sin verificar",
+          "title": "06 · P05 · contexto del acceso beige y monumento; paño rojo sin atribución administrativa",
           "url": "recorrido/133OIriRrcYkbV0Y2VCPng.jpg"
-        },
-        {
-          "title": "Referencia P06 existente · oclusiones del frente",
-          "url": "recorrido/rgjklAAPPcOxEB4RX95K1w.jpg"
         }
       ],
-      "issue": {
-        "title": "Acceso identificado; posición métrica y límites pendientes",
-        "detail": "El numeral 58 y letrero ISC identifican visualmente el acceso en la arquería beige, corroborada en P04/P05. Falta ubicar ese acceso y los extremos del frente sobre la planta con escala y orientación verificables. El hallazgo no certifica la pertenencia administrativa del paño rojo ni la huella completa del conjunto."
-      }
+      "issue": null
     },
     {
       "order": 7,
@@ -177,7 +174,7 @@
       "task": "facade",
       "criterion": "Ajustar forma de fachada a la referencia visual",
       "status": "blocked",
-      "result": "CORREGIDO · el paño rojo/blanco sustituye su tramo de crema, con tres vanos plenamente legibles interpretados de P05: ventana arqueada, portal central más ancho y ventana arqueada. Retirados adornos y vanos superpuestos. Su ancho de 21 m y posición son hipótesis editables; los tramos crema exteriores siguen siendo una base genérica. No se certifica restitución métrica. P05 también muestra un vano adicional parcialmente oculto junto al árbol; el modelo de tres vanos no afirma representar todo el frente rojo.",
+      "result": "CORREGIDO · el paño rojo/blanco sustituye su tramo de crema, con tres vanos plenamente legibles interpretados de P05: ventana arqueada, portal central más ancho y ventana arqueada. Retirados adornos y vanos superpuestos. Su ancho de 21 m y posición son hipótesis editables; los tramos crema exteriores siguen siendo una base genérica. No se certifica restitución métrica. P05 también muestra un vano adicional parcialmente oculto junto al árbol; el modelo de tres vanos no afirma representar todo el frente rojo. Consulta adicional: el acceso#58 identificado pertenece a la arquería beige de cinco arcos; su restitución geométrica queda pendiente, no se asigna esa identidad al paño rojo.",
       "evidence": [
         {
           "title": "ISC-58 · detalle del paño rojo interpretado",
@@ -194,7 +191,7 @@
       ],
       "issue": {
         "title": "Paño rojo y tramos exteriores sin restitución métrica",
-        "detail": "Tres vanos interpretados de P05 y superposición corregida. El tramo de 21 m, su posición y las proporciones siguen siendo hipótesis; árboles ocultan parte del frente. Falta foto frontal cercana o alzado con escala para sustituir la base genérica restante. Hay un vano adicional parcialmente oculto a la derecha; no se afirma que los tres modelados sean el recuento completo de la fachada."
+        "detail": "Tres vanos interpretados de P05 y superposición corregida. El tramo de 21 m, su posición y las proporciones siguen siendo hipótesis; árboles ocultan parte del frente. Falta foto frontal cercana o alzado con escala para sustituir la base genérica restante. Hay un vano adicional parcialmente oculto a la derecha; no se afirma que los tres modelados sean el recuento completo de la fachada. Las nuevas fuentes identifican el acceso58 en la arquería beige de cinco arcos; esa identificación no proporciona su longitud ni posición métrica para sustituir la base genérica. El paño rojo conserva atribución administrativa desconocida."
       }
     },
     {
@@ -262,7 +259,7 @@
       ],
       "issue": {
         "title": "Norte fotográfico y cotas pendientes",
-        "detail": "Las tres vistas del modelo comparten P05 y rumbo 355.065831° derivado del borde OSM. Esto no calibra el norte del panorama: falta metadato o registro visual verificable, fecha de captura y medidas físicas."
+        "detail": "Las tres vistas del modelo comparten P05 y rumbo 355.065831° derivado del borde OSM. Esto no calibra el norte del panorama: falta metadato o registro visual verificable, fecha de captura y medidas físicas. Limitación técnica adicional del visor heredado: el avatar fija el suelo al entrar y no se ha corregido su seguimiento vertical al caminar. Las comprobaciones realizadas acreditan renderizado y colisiones, no navegación accesible completa."
       }
     }
   ],
@@ -345,7 +342,7 @@
     "browser": "standalone and character embed passed with no errors",
     "mapLayer": "actual MapLibre custom layer and shared WebGL context rendered 2 frames; no runtime errors"
   },
-  "next": "ISC-58 incomplete; resume point 01, then process 02–11 in order with evidence and explicit impediments. No other building started.",
+  "next": "ISC-58 remains incomplete: first unresolved plan endpoints/scale, and explicit physical/technical blockers in03/04/05/07/08/10/11. No active cell or new building.",
   "resumeDiagnostics": {
     "priorCommit": "f12c7c2",
     "priorFailure": "page.goto: Timeout 30000ms exceeded waiting for commit before WebGL; no frame obtained",
@@ -357,21 +354,21 @@
     "status": "incomplete",
     "completedTasks": [
       "street",
+      "identity",
       "finish"
     ],
     "blockedTasks": [
       "plan",
       "sidewalkA",
+      "sidewalkB",
       "corners",
-      "identity",
       "volume",
       "facade",
       "equipment",
       "qa"
     ],
     "firstUnfinishedTask": "plan",
-    "notice": "Reviewing eleven actions did not complete them. A model capture after review is not completion of point 11.",
-    "activeTask": "sidewalkB"
+    "notice": "Reviewing eleven actions did not complete them. A model capture after review is not completion of point 11."
   },
   "corrections": [
     {
@@ -435,6 +432,30 @@
       "task": "sidewalkB",
       "state": "active",
       "scope": "Repair inherited northern plaza paving: substrate and asphalt ownership; preserve physical survey blockers.",
+      "modelChanged": false
+    },
+    {
+      "at": "2026-10-03T16:01:45.536137+00:00",
+      "task": "sidewalkB",
+      "state": "blocked",
+      "scope": "Technical substrate and paving ownership repaired; physical limits, levels and continuity remain blocked.",
+      "worldSha256": "7f76cb47d6189e2f29681ec2a0f37dd9993d4d1db9788cd10c4fd986e2953e91",
+      "manifest": "sidewalkB-repair-manifest.json",
+      "modelChanged": true
+    },
+    {
+      "at": "2026-10-03T16:01:45.536137+00:00",
+      "task": "corners",
+      "state": "blocked",
+      "scope": "Rechecked new reference: the blue access ramp is mid-front, not evidence for Yañez/Garmendia corner returns. No corner geometry invented.",
+      "modelChanged": false
+    },
+    {
+      "at": "2026-10-03T16:01:45.536137+00:00",
+      "task": "identity",
+      "state": "done",
+      "scope": "Identificación documental y visual trazable del acceso Obregón #58 en la arquería beige; fecha y orientación fotográfica conocidas o expresamente desconocidas.",
+      "record": "identity-record.json",
       "modelChanged": false
     }
   ]

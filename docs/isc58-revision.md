@@ -4,8 +4,9 @@ Guía operativa principal: [Guía maestra de Amalaya 3D](https://drive.google.co
 Este relevo describe el trabajo posterior al corte publicado de planta. La matriz
 canónica sigue siendo `public/seguimiento-3d.json`; el Markdown se genera desde ella.
 
-**ISC-58 está incompleto.** Solo los puntos 02 y 09 tienen cierre técnico del
-modelo. Los puntos 01, 03, 04, 05, 06, 07, 08, 10 y 11 conservan impedimentos.
+**ISC-58 está incompleto.** Los puntos 02 y 09 tienen cierre técnico del
+modelo y 06 tiene identificación documental/visual trazable del acceso.
+Los puntos 01, 03, 04, 05, 07, 08, 10 y 11 conservan impedimentos.
 La revisión de las once acciones y las capturas posteriores no equivalen a
 terminarlas. El siguiente trabajo es retomar el punto 01 y registrar cada
 resultado en orden, en verde si cumple su criterio o en rojo con la causa y
@@ -78,6 +79,23 @@ aislado del inicio y no incluye la banqueta sur; su evidencia directa es 09.
 03 sigue rojo por estrechamiento occidental, transición desconectada y falta de
 cotas físicas. Se activa 04 únicamente después de registrar este resultado.
 
+En 04 se añadió la base bajo juntas del pavimento de plaza y se retiraron o
+recortaron 41 losetas de plaza y 165 losetas genéricas por su intersección con
+la calzada o por solaparse con el pavimento del propietario PH-01. Se conservaron
+biseles, tonos, UV, cotas, transición, OB-01/OB-02 y la reparación03 completa.
+Las pruebas de rayos verifican tres juntas con base y el antiguo solape ahora
+ocupado solo por asfalto. [Captura11](../public/levantamiento/evidence/ISC-58/11-paseo-norte-reparado.png)
+y [manifiesto04](../public/levantamiento/evidence/ISC-58/sidewalkB-repair-manifest.json)
+registran una captura posterior distinta de03. El cierre físico de04 sigue rojo.
+
+La [ficha06](../public/levantamiento/evidence/ISC-58/identity-record.json) cierra
+el criterio de identidad visual: código, domicilio oficial, frente observado,
+P04/P05, coordenadas de ruta y SHA de los JPG cotejados con sus originales.
+No equipara las coordenadas de ruta con el centro óptico o posición medida del
+acceso. Las fechas y el norte desconocidos están declarados; la atribución del
+paño rojo permanece desconocida. Los criterios de planta, volumen y fachada
+mantienen sus impedimentos independientes.
+
 ## Revisión de las once acciones
 
 | Orden | Acción | Trabajo y límite |
@@ -87,7 +105,7 @@ cotas físicas. Se activa 04 únicamente después de registrar este resultado.
 | 03 | Banqueta A | **Bloqueado.** A = sur geográfico. Perfil PH-01 existente: paso 0.931 m y transición 1.118 m; falta verificar cotas, ancho útil, accesos y continuidad. No se copió el ancho sur 1.2 m de OB-W. |
 | 04 | Banqueta B | **Bloqueado.** B = norte geográfico. Paseo de plaza 19.181 m y transición 1.118 m en P05; falta delimitar el tramo, sus cotas, obstáculos y continuidad. No se copió el ancho norte 2.0 m de OB-W. |
 | 05 | Esquinas | No se inventaron rampas o radios. Faltan detalles identificados de los extremos Yáñez/Obregón y Garmendia/Obregón. |
-| 06 | Identidad | Nombre/domicilio institucionales documentados; la correspondencia exacta de paños con #58 permanece bloqueada. |
+| 06 | Identidad | **Hecho dentro de su criterio documental/visual.** Acceso beige#58 reconocido en P04/P05; ficha con origen, coordenadas de ruta, hashes y fuentes. No certifica centro óptico, extremos ni atribución del paño rojo. |
 | 07 | Volumen | Se conserva huella/techo/altura; se retira la pared opaca detrás de los vanos y se conserva un cierre superior hasta la cubierta heredada y se recortan colisiones a la huella irregular. Cotas, cubierta y acceso físico siguen sin levantar. |
 | 08 | Fachada | El tramo rojo sustituye al tramo crema en vez de superponerse; tres vanos interpretados: ventana, portal central más ancho, ventana. Retirados ornamentos incompatibles en el límite. Proporciones y atribución continúan bloqueadas. |
 | 09 | Acabados | Corregida doble escala UV: estuco métrico a 2.2 m por repetición, materiales procedurales originales. No certifica medidas ni color de campo. |
@@ -166,6 +184,9 @@ con personaje y la capa MapLibre real se renderizaron sin errores. Las banquetas
 se mantienen bloqueadas para su cierre: la vista sur muestra paso estrecho y
 salientes, y el tramo norte carece de límites/cotas verificados.
 El cierre superior del cuerpo se comprobó por rayos y por inspección visual.
+El visor y el avatar renderizan las reparaciones sin errores. Eso no acredita
+navegación accesible completa: el avatar heredado no actualiza el apoyo vertical
+al caminar; esta limitación técnica queda señalada en QA, que sigue rojo.
 
 El corte `f12c7c2` guardó el fallo `page.goto: Timeout 30000ms exceeded`
 antes de WebGL, sin frame. Se conserva en el historial. Las capturas nuevas usan

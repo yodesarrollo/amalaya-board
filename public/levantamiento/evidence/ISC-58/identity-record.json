@@ -1,0 +1,178 @@
+{
+  "schemaVersion": 1,
+  "recordType": "cierre de identidad documental y visual del acceso",
+  "reviewedAtUtc": "2026-10-03T15:53:23.889211+00:00",
+  "buildingId": "ISC-58",
+  "blockId": "OB-YG",
+  "taskId": "identity",
+  "taskOrder": 6,
+  "acceptanceScope": "Identificación documental y visual trazable del acceso Obregón #58 en la arquería beige; fecha y orientación fotográfica conocidas o expresamente desconocidas.",
+  "guideCriterion": "Consolida código↔fuente original↔lat/lng↔frente observado. Anota panorama, waypoint, dirección comercial si verificada, fecha conocida/desconocida y criterio espacial. No confundir waypoint con ubicación exacta de la cámara si eso no consta.",
+  "criterionAssessment": {
+    "buildingCodeToNamedInstitution": "Cumple: ISC-58 se identifica como Instituto Sonorense de Cultura; SIC confirma el domicilio Obregón 58.",
+    "originalImageTraceability": "Cumple: P04/P05 tienen ID de panorama, archivo, SHA256 y coincidencia binaria verificada con el original privado autorizado.",
+    "coordinateTraceability": "Cumple: lat/lng están atribuidas al registro de ruta canónico; centro óptico y coordenada del acceso quedan desconocidos.",
+    "observedFrontIdentification": "Cumple: letrero ISC y numeral 58 visibles en Commons/Flickr permiten reconocer el mismo acceso beige de cinco arcos en P04/P05 por morfología y contexto.",
+    "dateAndSpatialCriteria": "Cumple: fechas de corroboración documentadas, fecha/norte del panorama desconocidos declarados; criterio espacial descrito sin atribuir metros ni propiedad del paño rojo.",
+    "reasonToCloseWithinScope": "Las incógnitas de cotas, extremos OSM y norte absoluto corresponden a planta/volumen/fachada/QA; no impiden identificar visualmente el acceso y registrar fielmente la fuente de 06."
+  },
+  "identity": {
+    "canonicalName": "Instituto Sonorense de Cultura",
+    "officialAddress": "Av. Obregón 58 entre Yáñez y Garmendia, Centro, CP 83000, Hermosillo, Sonora",
+    "observedAccessDescription": "Fachada beige de cinco arcos sobre columnas oscuras, portal central y letrero Instituto Sonorense de Cultura en el remate; numeral 58 junto a la puerta.",
+    "observedNumber": "58",
+    "redAdjacentFacadeAdministrativeAttribution": null,
+    "accessMeasuredWgs84": null,
+    "osmContextCandidateWayId": 664499024,
+    "osmContextRole": "Contexto cartográfico candidato del conjunto. Esta ficha no adjudica cada paño o límite físico al polígono completo."
+  },
+  "panoramaReferences": [
+    {
+      "waypointCode": "R-001-P04",
+      "routeId": "R-001",
+      "waypointOrder": 4,
+      "panoramaId": "h45BeWMtTog-TgjPTSYn6g",
+      "sourceFile": "public/recorrido/h45BeWMtTog-TgjPTSYn6g.jpg",
+      "publicReferenceUrl": "https://yodesarrollo.github.io/amalaya-board/recorrido/h45BeWMtTog-TgjPTSYn6g.jpg",
+      "immutableRepositoryReferenceUrl": "https://github.com/yodesarrollo/amalaya-board/blob/1a47acdfda03f6e8511479201fba32e41d35969c/public/recorrido/h45BeWMtTog-TgjPTSYn6g.jpg",
+      "sourceOrigin": "Original del recorrido entregado en la carpeta privada autorizada; el JPG existente publicado coincide byte por byte con el original leído mediante el conector autenticado. No se incluyen identificadores privados de Drive en esta ficha.",
+      "originalByteMatchVerified": true,
+      "sha256": "7cc232bdf2ad46a9b6379e0e5aa530c02d5a5da4f55fc27e92d612b346d15546",
+      "byteLength": 269977,
+      "imageDimensionsPixels": [
+        2048,
+        1024
+      ],
+      "routeAnchorWgs84": {
+        "lat": 29.0759275,
+        "lng": -110.9549709
+      },
+      "coordinateSource": {
+        "file": "public/recorrido/rutas.json",
+        "jsonPath": "rutas[id=R-001].puntos[orden=4]",
+        "sha256": "23fff937e208d67c5a59b9d960ee1aadbcd7207346eaf16f27918b6812b9676f"
+      },
+      "coordinateMeaning": "Ancla de la ruta canónica; no se afirma que sea el centro óptico medido de esta fotografía ni la coordenada del acceso #58.",
+      "photoCameraCenterWgs84": null,
+      "photoHeadingDegrees": null,
+      "photoCaptureDate": null,
+      "photoExifOrGPanoHeadingAvailable": false,
+      "visualMatch": "Arquería beige de cinco arcos, columnas oscuras, puerta central, remate superior y rampa azul reconocibles; contexto con frente rojo contiguo y monumento. P04 ofrece consulta oblicua desde el tramo occidental, con oclusión parcial por árbol."
+    },
+    {
+      "waypointCode": "R-001-P05",
+      "routeId": "R-001",
+      "waypointOrder": 5,
+      "panoramaId": "133OIriRrcYkbV0Y2VCPng",
+      "sourceFile": "public/recorrido/133OIriRrcYkbV0Y2VCPng.jpg",
+      "publicReferenceUrl": "https://yodesarrollo.github.io/amalaya-board/recorrido/133OIriRrcYkbV0Y2VCPng.jpg",
+      "immutableRepositoryReferenceUrl": "https://github.com/yodesarrollo/amalaya-board/blob/1a47acdfda03f6e8511479201fba32e41d35969c/public/recorrido/133OIriRrcYkbV0Y2VCPng.jpg",
+      "sourceOrigin": "Original del recorrido entregado en la carpeta privada autorizada; el JPG existente publicado coincide byte por byte con el original leído mediante el conector autenticado. No se incluyen identificadores privados de Drive en esta ficha.",
+      "originalByteMatchVerified": true,
+      "sha256": "17771531734d50aa78b9167a68fa21969ebd3f8c2bb03cdd46b9f329e4ea87cf",
+      "byteLength": 199171,
+      "imageDimensionsPixels": [
+        2048,
+        1024
+      ],
+      "routeAnchorWgs84": {
+        "lat": 29.0759512,
+        "lng": -110.9546564
+      },
+      "coordinateSource": {
+        "file": "public/recorrido/rutas.json",
+        "jsonPath": "rutas[id=R-001].puntos[orden=5]",
+        "sha256": "23fff937e208d67c5a59b9d960ee1aadbcd7207346eaf16f27918b6812b9676f"
+      },
+      "coordinateMeaning": "Ancla de la ruta canónica; no se afirma que sea el centro óptico medido de esta fotografía ni la coordenada del acceso #58.",
+      "photoCameraCenterWgs84": null,
+      "photoHeadingDegrees": null,
+      "photoCaptureDate": null,
+      "photoExifOrGPanoHeadingAvailable": false,
+      "visualMatch": "Arquería beige de cinco arcos, columnas oscuras, puerta central, remate superior y rampa azul reconocibles; contexto con frente rojo contiguo y monumento. P05 muestra el acceso beige a la izquierda del monumento en la imagen, con el paño rojo contiguo en el mismo contexto."
+    }
+  ],
+  "corroboratingSources": [
+    {
+      "id": "SIC-18",
+      "type": "official institutional register",
+      "url": "https://sic.cultura.gob.mx/ficha.php?table=institucion_cultural&table_id=18",
+      "publisher": "Secretaría de Cultura · Sistema de Información Cultural",
+      "declaredUpdate": "24 de junio del 2025, 14:43",
+      "supports": "Nombre y domicilio; no certifica fachada, planta ni escala."
+    },
+    {
+      "id": "COMMONS-ISC-BUILDING",
+      "type": "public independent photograph",
+      "url": "https://commons.wikimedia.org/wiki/File:Edificio_del_Instituto_Sonorense_de_Cultura.jpg",
+      "author": "Mariowab",
+      "declaredSource": "Own work",
+      "license": "CC BY-SA 4.0",
+      "declaredDate": "2016-08-13",
+      "originalExifTakenDate": "2008-01-09T17:10:10",
+      "exifTimezone": null,
+      "dateConflictDeclared": true,
+      "supports": "Letrero Instituto Sonorense de Cultura, numeral 58 y morfología de cinco arcos de la fachada beige. La discrepancia de fecha no se oculta."
+    },
+    {
+      "id": "FLICKR-ISC-FRONT",
+      "type": "public corroborating photograph",
+      "url": "https://www.flickr.com/photos/iscsonora/48309339622/",
+      "albumUrl": "https://www.flickr.com/photos/iscsonora/albums/72157709707125976/",
+      "accountLabel": "ISC Sonora / ISCSonora",
+      "institutionalBacklinkVerified": false,
+      "originalExifTakenDate": "2019-07-17T11:36:49",
+      "exifTimezone": null,
+      "uploadedAtUtc": "2019-07-17T18:48:53Z",
+      "license": "All rights reserved",
+      "usage": "Consulta visual por enlace; no republicación del archivo ni uso como textura.",
+      "supports": "Frente beige completo en fotografía oblicua, letrero y numeral 58, cinco arcos y rampa azul."
+    },
+    {
+      "id": "FLICKR-ISC-CONTEXT",
+      "type": "public corroborating photograph",
+      "url": "https://www.flickr.com/photos/iscsonora/48309284121/",
+      "accountLabel": "ISC Sonora / ISCSonora",
+      "institutionalBacklinkVerified": false,
+      "originalExifTakenDate": "2019-07-17T11:38:26",
+      "exifTimezone": null,
+      "uploadedAtUtc": "2019-07-17T18:57:44Z",
+      "license": "All rights reserved",
+      "usage": "Consulta visual por enlace; no republicación del archivo ni uso como textura.",
+      "supports": "Relación de la arquería beige con el paño rojo contiguo, rampa azul y monumento; contexto reconocible en P04/P05."
+    }
+  ],
+  "spatialEvidence": {
+    "method": "Emparejamiento visual manual de imágenes completas; sin rectificación métrica ni estimación de norte.",
+    "matchedTraits": [
+      "cinco arcos de la arquería beige",
+      "columnas oscuras y bases",
+      "portal central",
+      "balaustrada y remate con letrero ISC",
+      "numeral 58 en fuentes de corroboración",
+      "rampa con barandal azul",
+      "contexto de frente rojo contiguo y monumento"
+    ],
+    "primaryRouteReference": "R-001-P04",
+    "secondaryRouteReference": "R-001-P05",
+    "distinctionFromOB02": "El acceso beige se reconoce frente al espacio de plaza; la fachada gris del lado opuesto documentada para OB-02 conserva otra identidad.",
+    "redFacadeStatement": "Se reconoce un paño rojo contiguo como contexto. El numeral 58 está junto al portal beige; no se asigna institución, propiedad ni alcance administrativo al paño rojo por esa proximidad."
+  },
+  "knownUnknowns": {
+    "panoramaAbsoluteNorth": null,
+    "panoramaCaptureDate": null,
+    "panoramaMeasuredCameraCenter": null,
+    "physicalFrontEndpointsAndScale": null,
+    "osmPolygonToEachFacadeAdministrativeBoundary": null,
+    "heightAndRoof": null
+  },
+  "otherTaskImpact": {
+    "plan": "Mantener el bloqueo de extremos, escala y correspondencia precisa con OSM; la identificación del acceso es un avance documental, no cierre métrico.",
+    "volume": "No cambia alturas, niveles, cubierta ni fondo.",
+    "facade": "No valida la anchura de 21 m ni convierte al paño rojo en el acceso #58.",
+    "qa": "Norte/fecha del panorama y correspondencia métrica siguen pendientes."
+  },
+  "repositoryReadRevision": "1a47acdfda03f6e8511479201fba32e41d35969c",
+  "status": "done",
+  "closedAtUtc": "2026-10-03T16:01:45.536137+00:00"
+}

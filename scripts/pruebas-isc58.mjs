@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict'
 import { readFile } from 'node:fs/promises'
-import { applyIsc58, footprintColliderCells } from '../public/levantamiento/isc58-refinement.js'
+import { applyIsc58, footprintColliderCells, repairSouthWalk, repairNorthWalk } from '../public/levantamiento/isc58-refinement.js'
 import { BASE_WORLD_SHA256, BASE_VISOR_SHA256, refineBundle, refineVisorBundle, removeIsc58Hook, removeIsc58VisorHook, regionHashes, sha256 } from './preparar-isc58.mjs'
 
 const published = await readFile('public/levantamiento/world.js', 'utf8')
@@ -196,7 +196,7 @@ for (const [x, z] of voidPoints) assert.equal(rayAt(walkWorld, x, z).length, 0, 
 const west = [-11.05, 22.70]
 assert(rayAt(walkWorld, ...west).some(hit => hit.object === tiles), 'antes debe existir una loseta sobre calzada')
 const interiorBefore = rayAt(walkWorld, 5.70564, 23.0075)[0]
-const stage03 = applyIsc58(walkWorld, osm, walkDetail, walkColliders, runtime).southWalkRepair
+const stage03 = repairSouthWalk(walkWorld, walkColliders, runtime)
 assert.equal(stage03.status, 'technical-only')
 assert.equal(stage03.measured, false)
 assert.equal(stage03.transitionGap, 'retained; unresolved')
@@ -320,8 +320,91 @@ assert.equal(blockedAt(6.62, 23.0075), false, 'los colliders no deben extenderse
 assert.equal(blockedAt(-11.6, 22.965), true, 'la estrechez occidental debe permanecer visible como limitación, sin inventar accesibilidad')
 const walkColliderCountAfter = walkColliders.length
 const walkMeshCountAfter = walkWorld.children.length
-assert.equal(applyIsc58(walkWorld, osm, walkDetail, walkColliders, runtime).southWalkRepair, stage03)
+assert.equal(repairSouthWalk(walkWorld, walkColliders, runtime), stage03)
 assert.equal(walkColliders.length, walkColliderCountAfter)
 assert.equal(walkWorld.children.length, walkMeshCountAfter)
+
+// Phase 04 operates on the same real assembly after the isolated 03 checkpoint.
+const northVoids = [[-0.105, -0.24], [0, 0.005], [10, 0.005]]
+for (const [x,z] of northVoids) assert.equal(rayAt(walkWorld,x,z).length,0,'debe acreditarse una junta norte sin superficie antes del arreglo')
+const northInteriorBefore = rayAt(walkWorld,-0.47,-0.24)[0]
+assert.equal(northInteriorBefore.object,northPlaza)
+assert(rayAt(walkWorld,50.63,11.52).some(hit=>hit.object===northPlaza),'antes debe acreditarse pavimento sobre calzada')
+const generic = walkStreet.group.children.filter(object=>object.isInstancedMesh&&object.name==='Banqueta · losas de concreto modulares, variación tonal propia')
+const genericMatricesBefore = generic.map(object=>object.instanceMatrix.array.slice())
+const genericColorsBefore = generic.map(object=>object.instanceColor.array.slice())
+const transitionNorth = walkStreet.group.getObjectByName('Transición de plaza a banqueta · paño provisional, sin cruce inventado')
+const transitionNorthGeometry = transitionNorth.geometry
+const southGeometry = walkBase.geometry
+const southPositions = southGeometry.getAttribute('position').array.slice()
+const southTilesAfter03 = tiles.instanceMatrix.array.slice()
+const southRepairStats = JSON.stringify(stage03)
+const collidersAfter03 = [...walkColliders]
+const stage04 = repairNorthWalk(walkWorld,runtime)
+assert.equal(stage04.status,'technical-only')
+assert.equal(stage04.measured,false)
+assert.equal(stage04.accessibility,'not established')
+assert.equal(stage04.parcelAttribution,'unresolved')
+assert(stage04.clippedPlazaTiles>0&&stage04.clippedPlazaTiles<northPlaza.count)
+assert(stage04.removedPlazaTiles>0&&stage04.removedPlazaTiles<stage04.clippedPlazaTiles)
+assert(stage04.genericChanged>0&&stage04.genericChanged<generic[0].count)
+const northBase=walkWorld.getObjectByName('PH-01 · paseo B norte · base bajo juntas recortada por calzada · cota heredada provisional')
+assert(northBase)
+for (const [x,z] of northVoids) {
+  const hit=rayAt(walkWorld,x,z)[0]
+  assert.equal(hit.object,northBase,'la junta debe encontrar la base PH01, no el terreno ni otra banqueta')
+  assert(Math.abs(hit.point.y-stage04.inheritedMinTileTopMeters+0.002)<1e-6)
+}
+for (const [x,z] of [[0,11.78],[-46,0]]) assert(rayAt(walkWorld,x,z).every(hit=>hit.object!==northBase),'la base no debe extender la envolvente heredada')
+const invasionAfter=rayAt(walkWorld,50.63,11.52)
+assert(invasionAfter.some(hit=>hit.object===road),'el asfalto original debe conservarse')
+assert(invasionAfter.every(hit=>hit.object!==northPlaza&&hit.object!==northBase&&!hit.object.name.includes('paseo B norte')),'el punto invasor debe quedar libre de todos los componentes reparados')
+const northInteriorAfter=rayAt(walkWorld,-0.47,-0.24)[0]
+assert.equal(northInteriorAfter.object,northPlaza)
+assert.equal(northInteriorAfter.instanceId,northInteriorBefore.instanceId)
+assert.equal(northInteriorAfter.point.y,northInteriorBefore.point.y)
+for(let i=0;i<16;i++) assert.equal(northPlaza.instanceMatrix.array[northInteriorBefore.instanceId*16+i],northMatrix[northInteriorBefore.instanceId*16+i])
+assert.equal(northPlaza.geometry,northGeometry,'la geometría biselada compartida debe mantenerse intacta')
+assert.equal(transitionNorth.geometry,transitionNorthGeometry)
+assert.equal(walkBase.geometry,southGeometry)
+assert.deepEqual(walkBase.geometry.getAttribute('position').array,southPositions)
+assert.deepEqual(tiles.instanceMatrix.array,southTilesAfter03)
+assert.equal(JSON.stringify(walkWorld.userData.southWalkRepair),southRepairStats)
+assert.deepEqual(walkColliders,collidersAfter03,'04 no debe cambiar ningún collider de03niotros edificios')
+for(const [object,geometry,material] of [...inheritedOb01Meshes,...inheritedOb02Meshes]) {
+  assert.equal(object.geometry,geometry)
+  assert.equal(object.material,material)
+}
+generic.forEach((object,index)=>assert.deepEqual(object.instanceColor.array,genericColorsBefore[index]))
+assert.deepEqual(generic[1].instanceMatrix.array,genericMatricesBefore[1],'Juan Álvarez debe conservarse fuera de la huella PH01')
+const northMeshes=[northBase,...walkWorld.children.filter(object=>object.name==='PH-01 · paseo B norte · loseta original biselada recortada por calzada')]
+let northCaps=0
+for(const mesh of northMeshes) {
+  const p=mesh.geometry.getAttribute('position'),n=mesh.geometry.getAttribute('normal')
+  for(let t=0;t<p.count;t+=3) {
+    if(n.getY(t)<0.99)continue
+    const triangle=[t,t+1,t+2].map(i=>new runtime.Vector3(p.getX(i),p.getY(i),p.getZ(i)))
+    for(const roadTriangle of roadTriangles)assert(overlapArea(triangle,roadTriangle)<3e-5,'tampoco los biseles o fragmentos norte deben cubrir calzada')
+    northCaps++
+  }
+}
+assert(northCaps>50)
+// Hidden rotated instances must have zero extent, not a residual yaw-sized sliver.
+for(let index=0;index<northPlaza.count;index++) {
+  if(northPlaza.instanceMatrix.array[index*16+5]!==0)continue
+  for(const component of [0,1,2,4,5,6,8,9,10]) assert.equal(northPlaza.instanceMatrix.array[index*16+component],0)
+}
+// The new vertical road cuts must close the tile at its actual inherited bevel.
+const cutRay=rayAt(walkWorld,40.41,11.95,0.14,new runtime.Vector3(0,0,-1)).filter(hit=>hit.object.name==='PH-01 · paseo B norte · loseta original biselada recortada por calzada')[0]
+assert(cutRay,'un rayo horizontal debe encontrar el cierre del corte, no atravesar una loseta abierta')
+assert(cutRay.point.z>11.60&&cutRay.point.z<11.75,'el cierre debe coincidir con el nuevo borde junto a calzada, no con la cara lejana original')
+const keptMesh=northMeshes.find(mesh=>mesh!==northBase)
+const colorIndex=keptMesh.userData.originalInstance
+const expectedColor=northPlaza.material.color.clone().multiply(northPlaza.material.color.clone().fromArray(northPlaza.instanceColor.array,colorIndex*3))
+assert(keptMesh.material.color.equals(expectedColor),'el tono debe combinar material original y color de instancia')
+const after04Count=walkWorld.children.length
+assert.equal(repairNorthWalk(walkWorld,runtime),stage04)
+assert.equal(walkWorld.children.length,after04Count)
 console.log(`ISC-58: UV métricas, tres vanos, ${stats.colliderCells} celdas interiores (${stats.colliderAreaMeters2.toFixed(1)} m²), altura heredada, preservación OB-01/OB-02 e hooks invertibles comprobados.`)
 console.log(`PH-01 A: base bajo juntas, ${stage03.clippedTiles} losetas recortadas sin pisar calzada, ${stage03.pilasterColliders} colliders de sólidos visibles; cotas, transición y norte conservados.`)
+console.log(`PH-01 B: juntas con base, ${stage04.clippedPlazaTiles} losetas retiradas/recortadas con bisel y cierres, ${stage04.genericChanged} genéricas recortadas por ownership;03,OBytransición conservados.`)

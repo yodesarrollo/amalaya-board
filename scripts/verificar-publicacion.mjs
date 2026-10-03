@@ -7,6 +7,7 @@ const approved=new Set(['amalaya-observations.json','amalaya-routes.json','cerro
 const ob01EvidenceFiles=new Set(['01-planta.png','02-calzada.png','03-banqueta-sur.png','04-banqueta-norte.png','05-esquinas.png','06-identidad.png','07-volumen.png','08-fachada.png','09-materiales.png','10-equipamiento.png','11a-planta.png','11b-bloque.png','11c-peaton.png','manifest.json'])
 const isc58EvidenceFiles=new Set(['00-inicio-webgl-raw.png','00-inicio-seguimiento.png','plan-manifest.json','plan-record.json','progress-baseline.json','06-avance-punto11.png','07-banqueta-sur.png','08-paseo-norte.png','00-inicio-bloque.png','01-planta.png','02-bloque.png','03-peaton.png','04-fachada-detalle.png','05-visor-p05.png','manifest.json','identity-plan-record.json','review-record.json'])
 for(const file of ['09-banqueta-sur-reparada.png','10-avance-banqueta-sur.png','11-paseo-norte-reparado.png','12-avance-paseo-norte.png','sidewalkA-repair-manifest.json','sidewalkB-repair-manifest.json'])isc58EvidenceFiles.add(file)
+isc58EvidenceFiles.add('identity-record.json')
 const ob02EvidenceFiles=new Set(['01-fachada-p03.png','02-conjunto-p03.png','03-edificio-aislado-p03.png','04-retorno-oblicuo-p04.png','manifest.json','05-planta-ob02.png','plan-manifest.json','06-calzada-ob02.png','street-manifest.json','07-inicio-seguimiento.png','progress-baseline.json','08-avance-punto03.png','09-banqueta-sur-planta.png','10-banqueta-sur-peaton.png','sidewalkA-manifest.json','11-avance-punto04.png','12-banqueta-norte-planta.png','13-banqueta-norte-peaton.png','sidewalkB-manifest.json','14-avance-punto05.png','15-guarniciones-planta.png','16-guarnicion-detalle.png','corners-manifest.json','17-avance-punto06.png','identity-manifest.json','identity-record.json'])
 for(const file of ['18-avance-punto07.png','19-envolvente-antes.png','20-envolvente-despues.png','21-cubierta-planta.png','volume-before-manifest.json','volume-manifest.json'])ob02EvidenceFiles.add(file)
 for(const file of ['22-avance-punto08.png','23-fachada-siete-vanos.png','24-coronamiento.png','facade-manifest.json','facade-record.json'])ob02EvidenceFiles.add(file)
@@ -343,6 +344,7 @@ for(const [task,file]of [['sidewalkA','sidewalkA-repair-manifest.json'],['sidewa
  iscRepairs.push(repair)
 }
 const iscLatest=iscRepairs.at(-1)||isc
+if(iscRepairs.length===2)assert.equal(iscLatest.previousWorldSha256,iscRepairs[0].worldSha256,'04 debe conservar y enlazar el checkpoint real de03.')
 assert.equal(iscLatest.worldSha256,currentWorldHash,'El avance actual exige capturas nuevas del modelo actual.')
 assert.equal(iscLatest.runtimeModuleSha256,provenance.runtimeModuleSha256)
 assert.equal(iscLatest.visorSha256,provenance.visorSha256)
@@ -364,7 +366,31 @@ for(const ref of identityIsc.referenceAnchors){
 }
 const iscTracking=tracking.blocks.flatMap(b=>b.buildings).find(b=>b.id==='ISC-58')
 assert.deepEqual(Object.keys(iscTracking.tasks),Object.keys(tracking.taskDefinitions),'ISC-58 debe registrar las once acciones en orden.')
-for(const task of ['plan','corners','identity','volume','facade','equipment','qa'])assert.equal(iscTracking.tasks[task],'blocked','La revisión técnica conserva los pendientes físicos.')
+for(const task of ['plan','corners','volume','facade','equipment','qa'])assert.equal(iscTracking.tasks[task],'blocked','La revisión técnica conserva los pendientes físicos.')
+if(iscTracking.tasks.identity==='done'){
+ const identity=JSON.parse(await readFile(`${root}/evidence/ISC-58/identity-record.json`,'utf8'))
+ assert.equal(identity.status,'done')
+ assert.equal(identity.buildingId,'ISC-58')
+ assert.equal(identity.taskId,'identity')
+ assert.equal(identity.identity.observedNumber,'58')
+ assert.equal(identity.identity.redAdjacentFacadeAdministrativeAttribution,null)
+ assert.equal(identity.identity.accessMeasuredWgs84,null)
+ assert.equal(identity.panoramaReferences.length,2)
+ for(const ref of identity.panoramaReferences){
+  assert(/^public\/recorrido\/[A-Za-z0-9_-]+\.jpg$/.test(ref.sourceFile))
+  assert.equal(sha256(await readFile(ref.sourceFile)),ref.sha256)
+  assert.equal(ref.coordinateSource.file,'public/recorrido/rutas.json')
+  assert.equal(sha256(await readFile(ref.coordinateSource.file)),ref.coordinateSource.sha256)
+  const routes=JSON.parse(await readFile(ref.coordinateSource.file,'utf8'))
+  const waypoint=routes.rutas.find(route=>route.id===ref.routeId)?.puntos.find(point=>point.orden===ref.waypointOrder)
+  assert(waypoint,'La ficha debe vincular un punto existente de la ruta canónica.')
+  assert.equal(waypoint.id,ref.panoramaId)
+  assert.equal(waypoint.lat,ref.routeAnchorWgs84.lat)
+  assert.equal(waypoint.lng,ref.routeAnchorWgs84.lng)
+  assert.equal(ref.originalByteMatchVerified,true)
+  for(const field of ['photoCameraCenterWgs84','photoHeadingDegrees','photoCaptureDate'])assert.equal(ref[field],null)
+ }
+}else assert.equal(iscTracking.tasks.identity,'blocked')
 for(const [task,items]of Object.entries(iscTracking.evidence)){
  assert(iscTracking.taskDetails[task]&&items.length>0)
  for(const item of items)await stat(`public/${item.url}`)
