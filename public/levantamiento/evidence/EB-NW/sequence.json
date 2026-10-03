@@ -195,6 +195,14 @@
       "state": "done",
       "at": "2026-10-03T22:03:18.690Z",
       "mode": "phase-rounds"
+    },
+    {
+      "order": 2,
+      "task": "street",
+      "state": "done",
+      "at": "2026-10-03T22:41:45.225328Z",
+      "mode": "phase-rounds",
+      "capture": "levantamiento/evidence/EB-NW/02-avance-calzada.png"
     }
   ],
   "steps": [
@@ -321,5 +329,20 @@
   "updatedAt": "2026-10-03T22:03:18.690Z",
   "mode": "phase-rounds",
   "round": 1,
-  "currentWorldSha256": "2b84f6601ee387c40122cc2f5b10be71b03e3444de679b23eb341c5fed1b2a70"
+  "currentWorldSha256": "2b84f6601ee387c40122cc2f5b10be71b03e3444de679b23eb341c5fed1b2a70",
+  "currentRound": 2,
+  "currentAction": "street",
+  "currentWorldSHA256": "cb3fa2b4bfc722f06eddb733b655b6ce264af9489ff2e32e962c21bc4521d41c",
+  "headerUpdatedAt": "2026-10-03T23:05:47.243330Z",
+  "round02Events": [
+    {
+      "order": 2,
+      "task": "street",
+      "state": "done",
+      "at": "2026-10-03T23:05:47.243330Z",
+      "mode": "phase-rounds",
+      "capture": "levantamiento/evidence/EB-NW/02-avance-calzada.png"
+    }
+  ],
+  "round02NextAction": "sidewalkA"
 }

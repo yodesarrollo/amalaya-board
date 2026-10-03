@@ -1,14 +1,16 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-03T22:03:18.690Z",
+  "updatedAt": "2026-10-03T23:07:12.225532Z",
   "refreshSeconds": 30,
   "live": {
-    "status": "blocked",
-    "phase": "Ronda 01 · planta de todos los edificios",
-    "title": "9 plantas revisadas · 3 contornos por resolver",
-    "detail": "EB-NW, EB-NE y EB-SE ajustados; huella BBVA incorporada. OB-01/OB-02 y OXXO/biblioteca/HSBC conservan sus plantas revisadas. ISC-58, EB-SW y Bley mantienen impedimentos concretos de contorno. Paso 2 aún no iniciado.",
+    "status": "done",
+    "phase": "Ronda 02 · calzada en todos los edificios",
+    "title": "12 revisados · imágenes y registros actualizados",
+    "detail": "Chihuahua y Abasolo ajustadas; Serdán oeste y Yáñez incorporadas donde faltaban. Perfiles válidos conservados. Contornos ISC-58, EB-SW y Bley mantienen sus pendientes del paso 1.",
     "activeBlockId": "OB-YG",
-    "activeBuildingId": "ISC-58"
+    "activeBuildingId": "ISC-58",
+    "activeBlock": null,
+    "activeBuilding": null
   },
   "schedule": {
     "basis": "Horas de trabajo concentrado que faltan para revisar y cerrar las referencias conocidas, con la geometría actual como punto de partida.",
@@ -83,7 +85,7 @@
         "max": 33
       },
       "estimateBasis": "3 frentes/estructuras conocidas más revisión compartida de la cuadra; frentes anónimos se agregan cuando se cuenten.",
-      "next": "Ronda 01 · resolver las plantas de los edificios de este tramo antes de pasar al paso 2; ciclo por edificio: medir → editar → verificar.",
+      "next": "Ronda 02 revisada · siguiente ronda: banqueta A. Cada acción termina con imagen de cabecera y registro.",
       "sharedTasks": {
         "plan": "partial",
         "street": "partial",
@@ -115,7 +117,7 @@
           },
           "taskDetails": {
             "plan": "REVISADO · alineación del frente y huella provisional; posición ±5 m. Captura 01 reemplazada por render WebGL del modelo. No hay polígono catastral.",
-            "street": "REVISADO · calzada existente conservada, sin duplicarla; se interrumpe el filete en la bocacalle. La captura 02 muestra P02 hacia el frente; consulta 01 y 05 para planta y cruce.",
+            "street": "REVISADO · Obregón conserva el perfil OB-W 5,60 ±1,10 m ya publicado. Se verifica el dueño único de la calzada existente y el ancho sobre sus vértices, sin nueva medición ni duplicación de geometría. Imagen del modelo y registro actualizados después de esta revisión de acción 2; pendientes restantes conservados.",
             "sidewalkA": "REVISADO · sur 1.2 m ±0.8 m. Guarnición enrasada con la banqueta y base bajo las juntas para evitar huecos. Captura 03 mira a lo largo del lado sur.",
             "sidewalkB": "REVISADO · norte 2.0 m ±0.8 m, independiente del sur. Captura 04 mira a lo largo de esta banqueta. Cotas y sección siguen estimadas.",
             "qa": "COMPARACIÓN REALIZADA · capturas 11a/11b/11c desde exactamente P02 y rumbo 185°: planta, bloque y peatón. Prueba automática de coordenadas/azimut. La exactitud dimensional permanece pendiente en volumen, fachada y esquinas.",
@@ -141,6 +143,14 @@
               {
                 "title": "Planta · cruce Yáñez/Obregón",
                 "url": "levantamiento/evidence/OB-01/01-planta.png"
+              },
+              {
+                "title": "Ronda 02 · calzada y edificio en el modelo actual",
+                "url": "levantamiento/evidence/OB-01/02-avance-calzada.png"
+              },
+              {
+                "title": "Ronda 02 · calzada y edificio en el modelo actual",
+                "url": "levantamiento/evidence/OB-01/02-avance-calzada.png"
               }
             ],
             "sidewalkA": [
@@ -247,6 +257,43 @@
               "title": "Falta ubicar poste eléctrico y cables",
               "detail": "Los postes azul/amarillo y la malla del acceso están modelados. Falta posición medible del poste eléctrico y cables; no se añadieron en una posición supuesta."
             }
+          },
+          "visualProgress": {
+            "cameraId": "OB-01-round02-software-v1",
+            "baseline": {
+              "url": "levantamiento/evidence/OB-01/02-inicio-ronda.png",
+              "title": "Modelo al iniciar la ronda 02 · cámara fija",
+              "label": "Inicio · ronda 02",
+              "capturedAt": "2026-10-03T22:59:32.715147Z",
+              "worldSha256": "2b84f6601ee387c40122cc2f5b10be71b03e3444de679b23eb341c5fed1b2a70",
+              "sha256": "2bcf1b2d8656f520f9d0d3e73fd9be1f17f9c4489147b6119325268f65aa6e61",
+              "cameraId": "OB-01-round02-software-v1",
+              "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
+            },
+            "comparisonBaseline": {
+              "url": "levantamiento/evidence/OB-01/02-inicio-ronda.png",
+              "title": "Modelo al iniciar la ronda 02 · cámara fija",
+              "label": "Inicio · ronda 02",
+              "capturedAt": "2026-10-03T22:59:27.177338Z",
+              "worldSha256": "2b84f6601ee387c40122cc2f5b10be71b03e3444de679b23eb341c5fed1b2a70",
+              "sha256": "2bcf1b2d8656f520f9d0d3e73fd9be1f17f9c4489147b6119325268f65aa6e61",
+              "cameraId": "OB-01-round02-software-v1",
+              "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
+            },
+            "current": {
+              "url": "levantamiento/evidence/OB-01/02-avance-calzada.png",
+              "title": "Avance 02 · calzada revisada · OB-01",
+              "label": "Avance · 02",
+              "capturedAt": "2026-10-03T23:05:21.359596Z",
+              "worldSha256": "cb3fa2b4bfc722f06eddb733b655b6ce264af9489ff2e32e962c21bc4521d41c",
+              "sha256": "5576dc096f9eb8a2b5deec620a0fab7ee53b63c620204083436882c5546e0e4b",
+              "cameraId": "OB-01-round02-software-v1",
+              "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography.",
+              "action": 2,
+              "task": "street"
+            },
+            "manifest": "levantamiento/evidence/OB-01/02-record-calzada.json",
+            "history": []
           }
         },
         {
@@ -278,7 +325,7 @@
             "equipment": "REVISADO · inventario de bolardos, bancas, papeleras, farolas, árboles y elementos temporales en P03/P04. Corregido un bolardo rojo por pieza delgada gris oscura con pie/collar/capuchón; ancla previa conservada, medidas interpretadas. Apoyo sobre losa y colisión del objeto visibles comprobados; paso central libre. No se añadieron posiciones, vehículos, cables ni árboles. Capturas 28–30, 107 pruebas correctas. Falta ubicar y medir con respaldo el resto del mobiliario.",
             "qa": "REVISADO · planta32, bloque33 y peatón34 desde P03 con el mismo X/Z y rumbo184.7587° hacia el frente alineado actual. Alturas/proyecciones declaradas; bloque12 m y peatón1.68 m, VFOV85°. Captura limpia35 desde la cámara de bloque resuelve la etiqueta; la imagen03 histórica permanece. Consulta original P03 con el mismo yaw/FOV/pitch revela que su portal aparece al lado mientras el modelo lo centra: falta registro del norte del panorama. 108 pruebas y verificaciones correctas; comparación técnica entregada, registro fotográfico absoluto BLOQUEADO.",
             "plan": "HECHO · corregido el extremo oriental 1.46 m para alinear el frente con OB-01 y el eje OB-W, conservando estación, colindancia y P03/P04. Extremos/centro y collider comprobados. Revisión del modelo bajo posición ±5 m; fondo y límites catastrales siguen provisionales.",
-            "street": "HECHO · revisado de nuevo después del punto 5: ancho estimado 5.60 ±1.10 m, bordes y juntas continuos y una sola calzada frente a OB-02. Las dos pruebas focalizadas pasaron sobre el modelo vigente. No se encontró una corrección pendiente ni se cambió la geometría. La captura 06 conserva su checkpoint histórico; planta 15 y detalle 16 muestran el estado vigente. Rampas mantienen su bloqueo independiente.",
+            "street": "REVISADO · Obregón conserva el perfil OB-W 5,60 ±1,10 m previamente validado. Dueño único y ancho revisados sobre el modelo. Se mantiene el avance de las once etapas y su evidencia histórica; la cabecera registra esta revisión de calzada de la ronda 2 con comparación de cámara fija. No hubo cambio geométrico.",
             "sidewalkA": "HECHO · completada la franja sur de losas de 1.20 ±0.80 m, juntas con base continua y encuentro provisional hasta la fachada. Se retiraron losas sur duplicadas y el bordillo acompaña la cota de las losas. El cuerpo del vaquero tiene paso libre tras ajustar la caja de colisión girada del edificio. Revisión del modelo, no certificación métrica ni cierre de rampas.",
             "sidewalkB": "HECHO · completado el perfil norte independiente de 2.00 ±0.80 m, con última fila recortada, base continua y bordillo a cota de las losas. Se retiró pavimento norte duplicado y se comprobó el paso central del vaquero. Banqueta sur, sus colores y guarnición conservados. Revisión técnica del modelo bajo incertidumbre; rampas y esquinas siguen pendientes.",
             "corners": "GUARNICIÓN REVISADA · respaldo continuo norte/sur a 0.10 m bajo bloques de cota 0.1175 m, sin huecos hasta las banquetas. Frente a media cuadra: Yáñez y Juan Álvarez quedan fuera; no se añadieron esquinas ni rampas. BLOQUEADO solo el cierre de rebajes: P03/P04 no permiten confirmar presencia/ausencia y forma. Capturas 14–16; 102/102 pruebas."
@@ -462,6 +509,14 @@
               {
                 "title": "Revisión punto 2 · vista longitudinal del modelo vigente",
                 "url": "levantamiento/evidence/OB-02/16-guarnicion-detalle.png"
+              },
+              {
+                "title": "Ronda 02 · calzada y edificio en el modelo actual",
+                "url": "levantamiento/evidence/OB-02/02-avance-calzada.png"
+              },
+              {
+                "title": "Ronda 02 · calzada y edificio en el modelo actual",
+                "url": "levantamiento/evidence/OB-02/02-avance-calzada.png"
               }
             ],
             "sidewalkA": [
@@ -538,7 +593,7 @@
             }
           },
           "visualProgress": {
-            "cameraId": "OB-02-fixed-v1",
+            "cameraId": "OB-02-round02-software-v1",
             "baseline": {
               "url": "levantamiento/evidence/OB-02/07-inicio-seguimiento.png",
               "title": "Inicio del seguimiento visual · antes del punto 3",
@@ -546,13 +601,49 @@
               "capturedAt": "2026-10-03T04:04:02.318Z",
               "worldSha256": "4bdf262926cfd58d9d7dabf110a757e748e982797af2c4879e49265fad6d1fb3"
             },
+            "comparisonBaseline": {
+              "url": "levantamiento/evidence/OB-02/02-inicio-ronda.png",
+              "title": "Modelo al iniciar la ronda 02 · cámara fija",
+              "label": "Inicio · ronda 02",
+              "capturedAt": "2026-10-03T22:59:37.549176Z",
+              "worldSha256": "2b84f6601ee387c40122cc2f5b10be71b03e3444de679b23eb341c5fed1b2a70",
+              "sha256": "f9a89a416ef59e5092594db47617b1e743be21d04df0b0502b29a2f9ba09a3b6",
+              "cameraId": "OB-02-round02-software-v1",
+              "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
+            },
             "current": {
-              "url": "levantamiento/evidence/OB-02/31-avance-punto11.png",
-              "title": "Avance 11 · comparación técnica y captura limpia",
-              "label": "Avance · 11",
-              "capturedAt": "2026-10-03T09:16:43.986Z",
-              "worldSha256": "fb652de887d19482a4379645cb0db07091ba50b073e04eecd4b94855a6fdbd69"
-            }
+              "url": "levantamiento/evidence/OB-02/02-avance-calzada.png",
+              "title": "Avance 02 · calzada revisada · OB-02",
+              "label": "Avance · 02",
+              "capturedAt": "2026-10-03T23:05:26.307515Z",
+              "worldSha256": "cb3fa2b4bfc722f06eddb733b655b6ce264af9489ff2e32e962c21bc4521d41c",
+              "sha256": "c8ee7a2364b8764c214bbaaed9df31be7eb068caba95ddeed6befa3874a64fcc",
+              "cameraId": "OB-02-round02-software-v1",
+              "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography.",
+              "action": 2,
+              "task": "street"
+            },
+            "manifest": "levantamiento/evidence/OB-02/02-record-calzada.json",
+            "history": [
+              {
+                "cameraId": "OB-02-fixed-v1",
+                "baseline": {
+                  "url": "levantamiento/evidence/OB-02/07-inicio-seguimiento.png",
+                  "title": "Inicio del seguimiento visual · antes del punto 3",
+                  "label": "Inicio · 03",
+                  "capturedAt": "2026-10-03T04:04:02.318Z",
+                  "worldSha256": "4bdf262926cfd58d9d7dabf110a757e748e982797af2c4879e49265fad6d1fb3"
+                },
+                "current": {
+                  "url": "levantamiento/evidence/OB-02/31-avance-punto11.png",
+                  "title": "Avance 11 · comparación técnica y captura limpia",
+                  "label": "Avance · 11",
+                  "capturedAt": "2026-10-03T09:16:43.986Z",
+                  "worldSha256": "fb652de887d19482a4379645cb0db07091ba50b073e04eecd4b94855a6fdbd69"
+                },
+                "manifest": null
+              }
+            ]
           }
         },
         {
@@ -578,7 +669,7 @@
           },
           "taskDetails": {
             "plan": "RONDA 01 REVISADA · La huella OSM del conjunto está modelada, pero falta separar el contorno físico que corresponde al frente beige #58 de las masas contiguas. Las medidas aproximadas son válidas; el impedimento es asignar el contorno correcto, no disponer de un plano catastral.",
-            "street": "REVISADO · el entorno ISC/P05 utiliza la calibración PH-01 ya publicada: calzada 6.705 m y corrección del eje −1.53 m, derivadas de imagen aérea, no medidas de campo. Se conserva un único constructor vial. No se traslada aquí la sección OB-W de OB-01/OB-02 ni se certifica el ancho físico actual. El corte f12c7c2 registró un timeout de montaje antes de WebGL; las nuevas vistas y la capa MapLibre se renderizaron aquí sin errores. El fallo anterior se conserva en Git y en el relevo.",
+            "street": "REVISADO · calzada compartida Obregón / PH-01 conservada: 6,705 m, lectura aérea heredada con ±0,40 m y corrección de eje −1,53 m. Ancho contrastado en el dueño vial actual. Se actualiza imagen del conjunto de referencia y registro de acción 2; la separación del frente físico #58 y sus colindantes sigue pendiente del paso 1.",
             "sidewalkA": "REPARACIÓN TÉCNICA 03 · base continua bajo juntas y bordes a cota heredada; cuatro losetas recortadas por el mesh real de calzada y doce colliders de pilastras visibles. Planta/perfil/calzada conservados, sin ensanchar el paso. Rayos y recortes comprobados. BLOQUEADO el cierre: el extremo oeste sigue estrecho/impasable para el avatar; la transición queda desconectada y las cotas físicas siguen sin medir.",
             "sidewalkB": "REPARACIÓN TÉCNICA 04 · base bajo juntas del pavimento PH-01, 41 losetas de plaza y 165 genéricas retiradas o recortadas según calzada y propietario. Biseles, colores, UV y cotas heredadas conservados. Rayos en juntas y en el antiguo solape sobre asfalto comprobados; reparación03, transición y OB-01/OB-02 conservados. BLOQUEADO el cierre físico: límites del tramo, cotas y continuidad peatonal siguen sin medir/verificar; no se atribuye el paseo entero a una banqueta uniforme ISC.",
             "corners": "REVISIÓN REALIZADA · no se añadieron rebajes ni radios nuevos sin referencia cercana. Los encuentros pertenecen al constructor vial compartido. El panorama no permite certificar rampas y radios de los extremos Yáñez/Garmendia.",
@@ -612,6 +703,14 @@
               {
                 "title": "ISC-58 · bloque del modelo provisional · P05 · 355.065831°",
                 "url": "levantamiento/evidence/ISC-58/02-bloque.png"
+              },
+              {
+                "title": "Ronda 02 · calzada y edificio en el modelo actual",
+                "url": "levantamiento/evidence/ISC-58/02-avance-calzada.png"
+              },
+              {
+                "title": "Ronda 02 · calzada y edificio en el modelo actual",
+                "url": "levantamiento/evidence/ISC-58/02-avance-calzada.png"
               }
             ],
             "sidewalkA": [
@@ -768,7 +867,7 @@
             }
           },
           "visualProgress": {
-            "cameraId": "ISC-58-fixed-v1",
+            "cameraId": "ISC-58-round02-software-v1",
             "baseline": {
               "url": "levantamiento/evidence/ISC-58/00-inicio-webgl-raw.png",
               "title": "Inicio · planta ISC-58 · frame WebGL del builder PH-01",
@@ -776,14 +875,49 @@
               "capturedAt": "2026-10-03T10:00:33.398Z",
               "worldSha256": "fb652de887d19482a4379645cb0db07091ba50b073e04eecd4b94855a6fdbd69"
             },
-            "current": {
-              "url": "levantamiento/evidence/ISC-58/12-avance-paseo-norte.png",
-              "title": "Modelo tras reparación04 · PH-01 aislado; reparaciones en capturas09/11 · proceso incompleto",
-              "label": "Modelo actualizado · ISC-58 incompleto",
-              "capturedAt": "2026-10-03T15:54:50.826Z",
-              "worldSha256": "7f76cb47d6189e2f29681ec2a0f37dd9993d4d1db9788cd10c4fd986e2953e91"
+            "comparisonBaseline": {
+              "url": "levantamiento/evidence/ISC-58/02-inicio-ronda.png",
+              "title": "Modelo al iniciar la ronda 02 · cámara fija",
+              "label": "Inicio · ronda 02",
+              "capturedAt": "2026-10-03T23:00:33.596283Z",
+              "worldSha256": "2b84f6601ee387c40122cc2f5b10be71b03e3444de679b23eb341c5fed1b2a70",
+              "sha256": "712402e9d2123645379c0c5b1a6c9c955c57b76c8082088210ca46adc5178f90",
+              "cameraId": "ISC-58-round02-software-v1",
+              "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
             },
-            "manifest": "levantamiento/evidence/ISC-58/sidewalkB-repair-manifest.json"
+            "current": {
+              "url": "levantamiento/evidence/ISC-58/02-avance-calzada.png",
+              "title": "Avance 02 · calzada revisada · ISC-58",
+              "label": "Avance · 02",
+              "capturedAt": "2026-10-03T23:05:38.955308Z",
+              "worldSha256": "cb3fa2b4bfc722f06eddb733b655b6ce264af9489ff2e32e962c21bc4521d41c",
+              "sha256": "f4ac5752cb0fbd57192a35fc1022cce0d910a666200c27a1eb0cc56f3beb7e87",
+              "cameraId": "ISC-58-round02-software-v1",
+              "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography.",
+              "action": 2,
+              "task": "street"
+            },
+            "manifest": "levantamiento/evidence/ISC-58/02-record-calzada.json",
+            "history": [
+              {
+                "cameraId": "ISC-58-fixed-v1",
+                "baseline": {
+                  "url": "levantamiento/evidence/ISC-58/00-inicio-webgl-raw.png",
+                  "title": "Inicio · planta ISC-58 · frame WebGL del builder PH-01",
+                  "label": "Inicio · 01",
+                  "capturedAt": "2026-10-03T10:00:33.398Z",
+                  "worldSha256": "fb652de887d19482a4379645cb0db07091ba50b073e04eecd4b94855a6fdbd69"
+                },
+                "current": {
+                  "url": "levantamiento/evidence/ISC-58/12-avance-paseo-norte.png",
+                  "title": "Modelo tras reparación04 · PH-01 aislado; reparaciones en capturas09/11 · proceso incompleto",
+                  "label": "Modelo actualizado · ISC-58 incompleto",
+                  "capturedAt": "2026-10-03T15:54:50.826Z",
+                  "worldSha256": "7f76cb47d6189e2f29681ec2a0f37dd9993d4d1db9788cd10c4fd986e2953e91"
+                },
+                "manifest": "levantamiento/evidence/ISC-58/sidewalkB-repair-manifest.json"
+              }
+            ]
           }
         }
       ],
@@ -800,7 +934,7 @@
         "max": 42
       },
       "estimateBasis": "Una esquina compleja y tres masas provisionales, más revisión compartida. Un solo dueño de geometría vial para evitar duplicados.",
-      "next": "Ronda 01 · resolver las plantas de los edificios de este tramo antes de pasar al paso 2; ciclo por edificio: medir → editar → verificar.",
+      "next": "Ronda 02 revisada · siguiente ronda: banqueta A. Cada acción termina con imagen de cabecera y registro.",
       "sharedTasks": {
         "plan": "partial",
         "street": "partial",
@@ -832,7 +966,7 @@
           },
           "taskDetails": {
             "plan": "RONDA 01 REVISADA · Los frentes azul y rojo están identificados. Sus cuerpos posteriores y cubiertas contiguas aún no se pueden asignar de forma única a Barra Hidalgo y Club Obregón; hace falta resolver esa división para modificar sus plantas.",
-            "street": "Perfil técnico revisado: EastBlock es el único constructor vial; asfalto 5.61 m y transiciones continuas comprobadas. Fuente aérea heredada, incertidumbre de bordes ±0.56 m; no es una medición nueva de campo.",
+            "street": "REVISADO · calzadas comunes conservadas: Obregón 5,61 ±0,56 m y Garmendia 5,00 ±0,90 m, perfiles aéreos heredados contrastados en los vértices actuales. Un dueño por tramo. Imagen y registro actualizados al terminar la revisión 2. Reparto de cuerpos Barra / Club y banquetas continúan en sus etapas independientes.",
             "sidewalkA": "Base bajo juntas del lado sur reparada y comprobada sin invadir asfalto. El paso de 1.10 m sigue siendo provisional: faltan sección medida, obstáculos y continuidad en los extremos; después debe ajustarse el perfil y verificarse el recorrido.",
             "sidewalkB": "Base bajo juntas del norte reparada, preservando la reparación sur y el asfalto. Los 2.35 m peatonales y 2.40 m de estacionamiento son hipótesis heredadas. Faltan límites, niveles y continuidad medida hasta los accesos; se requiere sección ubicada antes de corregirlos.",
             "corners": "Encuentro Garmendia–Obregón identificado en P08. No hay escala ni vista completa de rebajes y cotas; radios y rampas siguen sin validar. Se necesita detalle ubicado del retorno para ajustarlo; no se añaden rampas supuestas.",
@@ -844,7 +978,7 @@
             "qa": "Planta, bloque y peatón comparados desde R-001 P09 con rumbo de consulta 355.84°, y visor real cargado sin errores. El modelo sigue separado y retranqueado respecto del frente continuo de las fotos; faltan límites y escala para corregirlo. Norte fotográfico, cotas y seguimiento vertical del avatar siguen sin verificar; QA no está cerrado."
           },
           "visualProgress": {
-            "cameraId": "EB-SW-fixed-v1",
+            "cameraId": "EB-SW-round02-software-v1",
             "baseline": {
               "url": "levantamiento/evidence/EB-SW/00-general.png",
               "title": "EB-SW · inicio del modelo heredado",
@@ -852,14 +986,49 @@
               "capturedAt": "2026-10-03T16:31:56.494Z",
               "worldSha256": "7f76cb47d6189e2f29681ec2a0f37dd9993d4d1db9788cd10c4fd986e2953e91"
             },
-            "current": {
-              "url": "levantamiento/evidence/EB-SW/09-general.png",
-              "title": "EB-SW · modelo mejorado; implantación y fachada pendientes",
-              "label": "Modelo actualizado · EB-SW incompleto",
-              "capturedAt": "2026-10-03T16:48:07.667Z",
-              "worldSha256": "58e389f3cb45279def82c2e0ea79a607e9394f22ab5a7d3eba37dc75642ec924"
+            "comparisonBaseline": {
+              "url": "levantamiento/evidence/EB-SW/02-inicio-ronda.png",
+              "title": "Modelo al iniciar la ronda 02 · cámara fija",
+              "label": "Inicio · ronda 02",
+              "capturedAt": "2026-10-03T23:00:50.728003Z",
+              "worldSha256": "2b84f6601ee387c40122cc2f5b10be71b03e3444de679b23eb341c5fed1b2a70",
+              "sha256": "fc0ed6917711ea0c88cc04366905b995ac8434c0456963b7008c1ed6d558d465",
+              "cameraId": "EB-SW-round02-software-v1",
+              "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
             },
-            "manifest": "levantamiento/evidence/EB-SW/manifest.json"
+            "current": {
+              "url": "levantamiento/evidence/EB-SW/02-avance-calzada.png",
+              "title": "Avance 02 · calzada revisada · EB-SW",
+              "label": "Avance · 02",
+              "capturedAt": "2026-10-03T23:05:43.999225Z",
+              "worldSha256": "cb3fa2b4bfc722f06eddb733b655b6ce264af9489ff2e32e962c21bc4521d41c",
+              "sha256": "999a6a9461f473f5a7a114b8e2ce7e300e31177110fe3e48c5423118333bba35",
+              "cameraId": "EB-SW-round02-software-v1",
+              "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography.",
+              "action": 2,
+              "task": "street"
+            },
+            "manifest": "levantamiento/evidence/EB-SW/02-record-calzada.json",
+            "history": [
+              {
+                "cameraId": "EB-SW-fixed-v1",
+                "baseline": {
+                  "url": "levantamiento/evidence/EB-SW/00-general.png",
+                  "title": "EB-SW · inicio del modelo heredado",
+                  "label": "Inicio · 01",
+                  "capturedAt": "2026-10-03T16:31:56.494Z",
+                  "worldSha256": "7f76cb47d6189e2f29681ec2a0f37dd9993d4d1db9788cd10c4fd986e2953e91"
+                },
+                "current": {
+                  "url": "levantamiento/evidence/EB-SW/09-general.png",
+                  "title": "EB-SW · modelo mejorado; implantación y fachada pendientes",
+                  "label": "Modelo actualizado · EB-SW incompleto",
+                  "capturedAt": "2026-10-03T16:48:07.667Z",
+                  "worldSha256": "58e389f3cb45279def82c2e0ea79a607e9394f22ab5a7d3eba37dc75642ec924"
+                },
+                "manifest": "levantamiento/evidence/EB-SW/manifest.json"
+              }
+            ]
           },
           "evidence": {
             "plan": [
@@ -872,6 +1041,14 @@
               {
                 "title": "Ajustar calzada y encuentros de calles · 02-block.png",
                 "url": "levantamiento/evidence/EB-SW/02-block.png"
+              },
+              {
+                "title": "Ronda 02 · calzada y edificio en el modelo actual",
+                "url": "levantamiento/evidence/EB-SW/02-avance-calzada.png"
+              },
+              {
+                "title": "Ronda 02 · calzada y edificio en el modelo actual",
+                "url": "levantamiento/evidence/EB-SW/02-avance-calzada.png"
               }
             ],
             "sidewalkA": [
@@ -998,7 +1175,7 @@
           },
           "tasks": {
             "plan": "done",
-            "street": "partial",
+            "street": "done",
             "sidewalkA": "partial",
             "sidewalkB": "partial",
             "corners": "blocked",
@@ -1011,7 +1188,7 @@
           },
           "taskDetails": {
             "plan": "PLANTA APLICADA · 15.20 × 15.06 m, margen ±1 m. Ubicación y orientación incorporadas al modelo vigente; colisiones adaptadas y vecinos comprobados. Envolvente aproximada del cuerpo visible; anexos, patios y contorno en suelo siguen por precisar en el levantamiento completo.",
-            "street": "MEDICIÓN MANUAL EN GOOGLE MAPS · Calzada de Av. Chihuahua frente a EB-NW: 5,21 m (±0,5 m) entre bordes visibles. No incluye radios/encuentros de esquina ni el ancho de Garmendia. Medida registrada; falta aplicarla y validar la calzada en la fuente 3D vigente.",
+            "street": "HECHO · Chihuahua aplicada a 5,21 ±0,50 m; Garmendia conserva el perfil aproximado 5,00 ±0,90 m ya existente. Un dueño vial por tramo y transiciones conservadas. Imagen y registro actualizados al terminar la acción 2. Radios y banquetas mantienen sus etapas independientes.",
             "sidewalkA": "MEDICIÓN MANUAL EN GOOGLE MAPS · Lado A: 1,04 m (±0,3 m) entre el borde visible de calzada y la línea aparente de fachada/cubierta. No confirma ancho libre continuo ni obstáculos. Medida registrada; falta aplicarla y verificar extremos en la fuente 3D vigente.",
             "sidewalkB": "MEDICIÓN MANUAL EN GOOGLE MAPS · Lado B: franja dura visible de 1,37 m (±0,4 m) entre borde de calzada y límite aparente. La vegetación y el acceso la hacen irregular; no confirma una banqueta pública ni ancho libre continuo. Medida registrada; falta aplicarla y verificar en la fuente 3D vigente.",
             "corners": "REVISADO Y BLOQUEADO · P07 muestra el encuentro desde una sola perspectiva, sin cotas de guarnición, radios o rebajes. No se dibuja una rampa supuesta; se requiere detalle completo de la esquina y medidas de niveles, ancho y pendiente.",
@@ -1083,7 +1260,54 @@
                 "url": "levantamiento/evidence/EB-NW/01-planta-geometria.png",
                 "title": "Paso 1 · planta y cuerpo del modelo; proyección por software"
               }
+            ],
+            "street": [
+              {
+                "title": "Ronda 02 · calzada y edificio en el modelo actual",
+                "url": "levantamiento/evidence/EB-NW/02-avance-calzada.png"
+              },
+              {
+                "title": "Ronda 02 · calzada y edificio en el modelo actual",
+                "url": "levantamiento/evidence/EB-NW/02-avance-calzada.png"
+              }
             ]
+          },
+          "visualProgress": {
+            "cameraId": "EB-NW-round02-software-v1",
+            "baseline": {
+              "url": "levantamiento/evidence/EB-NW/02-inicio-ronda.png",
+              "title": "Modelo al iniciar la ronda 02 · cámara fija",
+              "label": "Inicio · ronda 02",
+              "capturedAt": "2026-10-03T22:41:45.225328Z",
+              "worldSha256": "2b84f6601ee387c40122cc2f5b10be71b03e3444de679b23eb341c5fed1b2a70",
+              "sha256": "2e8d651ba365eb845f4a3bd747e6e014c7245e1dca5c9af090993c059f0b03c0",
+              "cameraId": "EB-NW-round02-software-v1",
+              "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
+            },
+            "comparisonBaseline": {
+              "url": "levantamiento/evidence/EB-NW/02-inicio-ronda.png",
+              "title": "Modelo al iniciar la ronda 02 · cámara fija",
+              "label": "Inicio · ronda 02",
+              "capturedAt": "2026-10-03T22:38:54.796603Z",
+              "worldSha256": "2b84f6601ee387c40122cc2f5b10be71b03e3444de679b23eb341c5fed1b2a70",
+              "sha256": "2e8d651ba365eb845f4a3bd747e6e014c7245e1dca5c9af090993c059f0b03c0",
+              "cameraId": "EB-NW-round02-software-v1",
+              "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
+            },
+            "current": {
+              "url": "levantamiento/evidence/EB-NW/02-avance-calzada.png",
+              "title": "Avance 02 · calzada revisada · EB-NW",
+              "label": "Avance · 02",
+              "capturedAt": "2026-10-03T23:05:47.123175Z",
+              "worldSha256": "cb3fa2b4bfc722f06eddb733b655b6ce264af9489ff2e32e962c21bc4521d41c",
+              "sha256": "b742ed64ed65a65ab4722d2307bfa7ef0716d2e33fbf322aaad759b34c6d29b9",
+              "cameraId": "EB-NW-round02-software-v1",
+              "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography.",
+              "action": 2,
+              "task": "street"
+            },
+            "manifest": "levantamiento/evidence/EB-NW/02-record-calzada.json",
+            "history": []
           }
         },
         {
@@ -1101,10 +1325,12 @@
             "finish": "pending",
             "equipment": "pending",
             "qa": "pending",
-            "plan": "done"
+            "plan": "done",
+            "street": "done"
           },
           "taskDetails": {
-            "plan": "PLANTA APLICADA · 24.07 × 16.83 m, margen ±1.5 m. Ubicación y orientación incorporadas al modelo vigente; colisiones adaptadas y vecinos comprobados. Envolvente aproximada del cuerpo visible; anexos, patios y contorno en suelo siguen por precisar en el levantamiento completo. Fondo ajustado 0,60 m dentro del margen visual para separar EB-NE y EB-SE."
+            "plan": "PLANTA APLICADA · 24.07 × 16.83 m, margen ±1.5 m. Ubicación y orientación incorporadas al modelo vigente; colisiones adaptadas y vecinos comprobados. Envolvente aproximada del cuerpo visible; anexos, patios y contorno en suelo siguen por precisar en el levantamiento completo. Fondo ajustado 0,60 m dentro del margen visual para separar EB-NE y EB-SE.",
+            "street": "HECHO · comparte Chihuahua 5,21 ±0,50 m con EB-NW. Abasolo: regla manual 6,98 ±0,70 m; modelo ajustado de 6,20 a 6,60 m dentro del rango, preservando el paso peatonal heredado. Transiciones de 8 m y un único constructor por calle. Imagen y registro de acción 2 actualizados; radios y dimensiones de banqueta siguen en sus etapas."
           },
           "issues": {},
           "evidence": {
@@ -1113,7 +1339,54 @@
                 "url": "levantamiento/evidence/EB-NE/01-planta-geometria.png",
                 "title": "Paso 1 · planta y cuerpo del modelo; proyección por software"
               }
+            ],
+            "street": [
+              {
+                "title": "Ronda 02 · calzada y edificio en el modelo actual",
+                "url": "levantamiento/evidence/EB-NE/02-avance-calzada.png"
+              },
+              {
+                "title": "Ronda 02 · calzada y edificio en el modelo actual",
+                "url": "levantamiento/evidence/EB-NE/02-avance-calzada.png"
+              }
             ]
+          },
+          "visualProgress": {
+            "cameraId": "EB-NE-round02-software-v1",
+            "baseline": {
+              "url": "levantamiento/evidence/EB-NE/02-inicio-ronda.png",
+              "title": "Modelo al iniciar la ronda 02 · cámara fija",
+              "label": "Inicio · ronda 02",
+              "capturedAt": "2026-10-03T22:44:54.590464Z",
+              "worldSha256": "2b84f6601ee387c40122cc2f5b10be71b03e3444de679b23eb341c5fed1b2a70",
+              "sha256": "e81e404d92c8137f97268cfd39a8c2842aa2bc841f616104ecb7cd0afcfd86ca",
+              "cameraId": "EB-NE-round02-software-v1",
+              "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
+            },
+            "comparisonBaseline": {
+              "url": "levantamiento/evidence/EB-NE/02-inicio-ronda.png",
+              "title": "Modelo al iniciar la ronda 02 · cámara fija",
+              "label": "Inicio · ronda 02",
+              "capturedAt": "2026-10-03T22:44:51.403014Z",
+              "worldSha256": "2b84f6601ee387c40122cc2f5b10be71b03e3444de679b23eb341c5fed1b2a70",
+              "sha256": "e81e404d92c8137f97268cfd39a8c2842aa2bc841f616104ecb7cd0afcfd86ca",
+              "cameraId": "EB-NE-round02-software-v1",
+              "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
+            },
+            "current": {
+              "url": "levantamiento/evidence/EB-NE/02-avance-calzada.png",
+              "title": "Avance 02 · calzada revisada · EB-NE",
+              "label": "Avance · 02",
+              "capturedAt": "2026-10-03T23:05:50.363122Z",
+              "worldSha256": "cb3fa2b4bfc722f06eddb733b655b6ce264af9489ff2e32e962c21bc4521d41c",
+              "sha256": "3c08914a7f5855464883d2d9ac66bd66fbb6c9e2b5cc76e61531864e9f5061bc",
+              "cameraId": "EB-NE-round02-software-v1",
+              "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography.",
+              "action": 2,
+              "task": "street"
+            },
+            "manifest": "levantamiento/evidence/EB-NE/02-record-calzada.json",
+            "history": []
           }
         },
         {
@@ -1131,10 +1404,12 @@
             "finish": "pending",
             "equipment": "pending",
             "qa": "pending",
-            "plan": "done"
+            "plan": "done",
+            "street": "done"
           },
           "taskDetails": {
-            "plan": "PLANTA APLICADA · 27.33 × 25.71 m, margen ±1.5 m. Ubicación y orientación incorporadas al modelo vigente; colisiones adaptadas y vecinos comprobados. Envolvente aproximada del cuerpo visible; anexos, patios y contorno en suelo siguen por precisar en el levantamiento completo."
+            "plan": "PLANTA APLICADA · 27.33 × 25.71 m, margen ±1.5 m. Ubicación y orientación incorporadas al modelo vigente; colisiones adaptadas y vecinos comprobados. Envolvente aproximada del cuerpo visible; anexos, patios y contorno en suelo siguen por precisar en el levantamiento completo.",
+            "street": "HECHO · Abasolo ajustada a 6,60 m dentro de la lectura manual 6,98 ±0,70 m compartida con EB-NE. Obregón conserva el tramo calibrado de 5,61 ±0,56 m ya publicado. La corrección utiliza la calzada existente y transiciones, sin duplicarla. Imagen y registro de acción 2 actualizados; radios y banquetas conservan sus etapas."
           },
           "issues": {},
           "evidence": {
@@ -1143,7 +1418,54 @@
                 "url": "levantamiento/evidence/EB-SE/01-planta-geometria.png",
                 "title": "Paso 1 · planta y cuerpo del modelo; proyección por software"
               }
+            ],
+            "street": [
+              {
+                "title": "Ronda 02 · calzada y edificio en el modelo actual",
+                "url": "levantamiento/evidence/EB-SE/02-avance-calzada.png"
+              },
+              {
+                "title": "Ronda 02 · calzada y edificio en el modelo actual",
+                "url": "levantamiento/evidence/EB-SE/02-avance-calzada.png"
+              }
             ]
+          },
+          "visualProgress": {
+            "cameraId": "EB-SE-round02-software-v1",
+            "baseline": {
+              "url": "levantamiento/evidence/EB-SE/02-inicio-ronda.png",
+              "title": "Modelo al iniciar la ronda 02 · cámara fija",
+              "label": "Inicio · ronda 02",
+              "capturedAt": "2026-10-03T22:45:01.692458Z",
+              "worldSha256": "2b84f6601ee387c40122cc2f5b10be71b03e3444de679b23eb341c5fed1b2a70",
+              "sha256": "3bf8e57f78ecb699aca0fd84042ede33705606c1021224ff468a686af5495809",
+              "cameraId": "EB-SE-round02-software-v1",
+              "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
+            },
+            "comparisonBaseline": {
+              "url": "levantamiento/evidence/EB-SE/02-inicio-ronda.png",
+              "title": "Modelo al iniciar la ronda 02 · cámara fija",
+              "label": "Inicio · ronda 02",
+              "capturedAt": "2026-10-03T22:44:58.098905Z",
+              "worldSha256": "2b84f6601ee387c40122cc2f5b10be71b03e3444de679b23eb341c5fed1b2a70",
+              "sha256": "3bf8e57f78ecb699aca0fd84042ede33705606c1021224ff468a686af5495809",
+              "cameraId": "EB-SE-round02-software-v1",
+              "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
+            },
+            "current": {
+              "url": "levantamiento/evidence/EB-SE/02-avance-calzada.png",
+              "title": "Avance 02 · calzada revisada · EB-SE",
+              "label": "Avance · 02",
+              "capturedAt": "2026-10-03T23:05:53.947064Z",
+              "worldSha256": "cb3fa2b4bfc722f06eddb733b655b6ce264af9489ff2e32e962c21bc4521d41c",
+              "sha256": "c4c2f64d251885c0d3a25036153e70418621e5c2e47d78d2c18de20f5678d16f",
+              "cameraId": "EB-SE-round02-software-v1",
+              "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography.",
+              "action": 2,
+              "task": "street"
+            },
+            "manifest": "levantamiento/evidence/EB-SE/02-record-calzada.json",
+            "history": []
           }
         }
       ],
@@ -1183,7 +1505,7 @@
         "max": 15
       },
       "estimateBasis": "Un ancla cartográfica con frente aún por empatar, más revisión compartida; fachadas adicionales por contar.",
-      "next": "Ronda 01 · resolver las plantas de los edificios de este tramo antes de pasar al paso 2; ciclo por edificio: medir → editar → verificar.",
+      "next": "Ronda 02 revisada · siguiente ronda: banqueta A. Cada acción termina con imagen de cabecera y registro.",
       "sharedTasks": {
         "plan": "partial",
         "street": "partial",
@@ -1207,10 +1529,62 @@
             "finish": "pending",
             "equipment": "pending",
             "qa": "pending",
-            "plan": "done"
+            "plan": "done",
+            "street": "done"
           },
           "taskDetails": {
-            "plan": "PLANTA CARTOGRÁFICA REVISADA · huella OSM 499760720 ya presente en el modelo, cotejada con el contexto aéreo. Se conserva como aproximación visual (±3 m); la correspondencia comercial, fachadas, alturas y entradas mantienen sus estados propios."
+            "plan": "PLANTA CARTOGRÁFICA REVISADA · huella OSM 499760720 ya presente en el modelo, cotejada con el contexto aéreo. Se conserva como aproximación visual (±3 m); la correspondencia comercial, fachadas, alturas y entradas mantienen sus estados propios.",
+            "street": "REVISADO · Garmendia entre Chihuahua y Serdán: regla manual 7,13 ±1,00 m por sombra y lectura de bordes. El perfil de 6,20 m ya existente cae dentro del rango y se conserva. Ancho contrastado en vértices del modelo; no se duplica la calle. Imagen y registro de acción 2 actualizados. La huella OSM da a Garmendia; asociación comercial y accesos quedan en su etapa."
+          },
+          "visualProgress": {
+            "cameraId": "CH-GA-OXXO-round02-software-v1",
+            "baseline": {
+              "url": "levantamiento/evidence/CH-GA-OXXO/02-inicio-ronda.png",
+              "title": "Modelo al iniciar la ronda 02 · cámara fija",
+              "label": "Inicio · ronda 02",
+              "capturedAt": "2026-10-03T22:47:14.168016Z",
+              "worldSha256": "2b84f6601ee387c40122cc2f5b10be71b03e3444de679b23eb341c5fed1b2a70",
+              "sha256": "c7943cee4ed7dfe8f1ccf902998304aef36dfa316f9ef7db26678a67a8370dab",
+              "cameraId": "CH-GA-OXXO-round02-software-v1",
+              "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
+            },
+            "comparisonBaseline": {
+              "url": "levantamiento/evidence/CH-GA-OXXO/02-inicio-ronda.png",
+              "title": "Modelo al iniciar la ronda 02 · cámara fija",
+              "label": "Inicio · ronda 02",
+              "capturedAt": "2026-10-03T22:47:11.608738Z",
+              "worldSha256": "2b84f6601ee387c40122cc2f5b10be71b03e3444de679b23eb341c5fed1b2a70",
+              "sha256": "c7943cee4ed7dfe8f1ccf902998304aef36dfa316f9ef7db26678a67a8370dab",
+              "cameraId": "CH-GA-OXXO-round02-software-v1",
+              "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
+            },
+            "current": {
+              "url": "levantamiento/evidence/CH-GA-OXXO/02-avance-calzada.png",
+              "title": "Avance 02 · calzada revisada · CH-GA-OXXO",
+              "label": "Avance · 02",
+              "capturedAt": "2026-10-03T23:05:56.711019Z",
+              "worldSha256": "cb3fa2b4bfc722f06eddb733b655b6ce264af9489ff2e32e962c21bc4521d41c",
+              "sha256": "88a5b8467d9698efbbc3a3f9ab309f5aae0113a9b682b11fffab7ab88873dc25",
+              "cameraId": "CH-GA-OXXO-round02-software-v1",
+              "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography.",
+              "action": 2,
+              "task": "street"
+            },
+            "manifest": "levantamiento/evidence/CH-GA-OXXO/02-record-calzada.json",
+            "history": []
+          },
+          "issues": {},
+          "evidence": {
+            "street": [
+              {
+                "title": "Ronda 02 · calzada y edificio en el modelo actual",
+                "url": "levantamiento/evidence/CH-GA-OXXO/02-avance-calzada.png"
+              },
+              {
+                "title": "Ronda 02 · calzada y edificio en el modelo actual",
+                "url": "levantamiento/evidence/CH-GA-OXXO/02-avance-calzada.png"
+              }
+            ]
           }
         }
       ],
@@ -1227,7 +1601,7 @@
         "max": 29
       },
       "estimateBasis": "Biblioteca y BBVA como anclas con huellas/frentes por empatar, más revisión compartida.",
-      "next": "Ronda 01 · resolver las plantas de los edificios de este tramo antes de pasar al paso 2; ciclo por edificio: medir → editar → verificar.",
+      "next": "Ronda 02 revisada · siguiente ronda: banqueta A. Cada acción termina con imagen de cabecera y registro.",
       "sharedTasks": {
         "plan": "partial",
         "street": "partial",
@@ -1251,10 +1625,62 @@
             "finish": "pending",
             "equipment": "pending",
             "qa": "pending",
-            "plan": "done"
+            "plan": "done",
+            "street": "done"
           },
           "taskDetails": {
-            "plan": "PLANTA CARTOGRÁFICA REVISADA · huella OSM 1533334038 ya presente en el modelo, cotejada con el contexto aéreo. Se conserva como aproximación visual (±3 m); la correspondencia comercial, fachadas, alturas y entradas mantienen sus estados propios."
+            "plan": "PLANTA CARTOGRÁFICA REVISADA · huella OSM 1533334038 ya presente en el modelo, cotejada con el contexto aéreo. Se conserva como aproximación visual (±3 m); la correspondencia comercial, fachadas, alturas y entradas mantienen sus estados propios.",
+            "street": "HECHO · Serdán frente a la huella de la biblioteca: lectura manual 11,00 ±1,50 m. Faltaba ese tramo en el modelo; se añadió una sola calzada de 11,00 m sobre el eje OSM 25757083 y se enlazó en 8 m al perfil de 12,00 m de Garmendia hacia el este. Imagen y registro actualizados. Banquetas y accesos mantienen sus etapas; se corrigió la referencia del frente a Serdán."
+          },
+          "visualProgress": {
+            "cameraId": "CH-YG-BIB-round02-software-v1",
+            "baseline": {
+              "url": "levantamiento/evidence/CH-YG-BIB/02-inicio-ronda.png",
+              "title": "Modelo al iniciar la ronda 02 · cámara fija",
+              "label": "Inicio · ronda 02",
+              "capturedAt": "2026-10-03T22:49:02.416498Z",
+              "worldSha256": "2b84f6601ee387c40122cc2f5b10be71b03e3444de679b23eb341c5fed1b2a70",
+              "sha256": "8758b173a534ef99e70010fc39a762a738597a8d5a57e470831d4e1855f0a07f",
+              "cameraId": "CH-YG-BIB-round02-software-v1",
+              "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
+            },
+            "comparisonBaseline": {
+              "url": "levantamiento/evidence/CH-YG-BIB/02-inicio-ronda.png",
+              "title": "Modelo al iniciar la ronda 02 · cámara fija",
+              "label": "Inicio · ronda 02",
+              "capturedAt": "2026-10-03T22:49:00.446946Z",
+              "worldSha256": "2b84f6601ee387c40122cc2f5b10be71b03e3444de679b23eb341c5fed1b2a70",
+              "sha256": "8758b173a534ef99e70010fc39a762a738597a8d5a57e470831d4e1855f0a07f",
+              "cameraId": "CH-YG-BIB-round02-software-v1",
+              "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
+            },
+            "current": {
+              "url": "levantamiento/evidence/CH-YG-BIB/02-avance-calzada.png",
+              "title": "Avance 02 · calzada revisada · CH-YG-BIB",
+              "label": "Avance · 02",
+              "capturedAt": "2026-10-03T23:05:58.778986Z",
+              "worldSha256": "cb3fa2b4bfc722f06eddb733b655b6ce264af9489ff2e32e962c21bc4521d41c",
+              "sha256": "f4562249d66f4ecf90f62c64be0a6b5a09b1518d34a2f5ea333545727e3d346e",
+              "cameraId": "CH-YG-BIB-round02-software-v1",
+              "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography.",
+              "action": 2,
+              "task": "street"
+            },
+            "manifest": "levantamiento/evidence/CH-YG-BIB/02-record-calzada.json",
+            "history": []
+          },
+          "issues": {},
+          "evidence": {
+            "street": [
+              {
+                "title": "Ronda 02 · calzada y edificio en el modelo actual",
+                "url": "levantamiento/evidence/CH-YG-BIB/02-avance-calzada.png"
+              },
+              {
+                "title": "Ronda 02 · calzada y edificio en el modelo actual",
+                "url": "levantamiento/evidence/CH-YG-BIB/02-avance-calzada.png"
+              }
+            ]
           }
         },
         {
@@ -1272,10 +1698,12 @@
             "finish": "pending",
             "equipment": "pending",
             "qa": "pending",
-            "plan": "done"
+            "plan": "done",
+            "street": "done"
           },
           "taskDetails": {
-            "plan": "PLANTA APLICADA · 42.13 × 39.58 m, margen ±3 m. Ubicación y orientación incorporadas al modelo vigente; colisiones adaptadas y vecinos comprobados. Huella OSM conservada; ocupación comercial y altura sin confirmar."
+            "plan": "PLANTA APLICADA · 42.13 × 39.58 m, margen ±3 m. Ubicación y orientación incorporadas al modelo vigente; colisiones adaptadas y vecinos comprobados. Huella OSM conservada; ocupación comercial y altura sin confirmar.",
+            "street": "HECHO · frentes de calzada confirmados: Yáñez añadido a 10,50 m dentro de lectura 10,67 ±1,30 m; Serdán comparte el tramo 11,00 ±1,50 m incorporado para biblioteca. Imagen y registro actualizados. El pavimento sur dio 5,63 ±0,70 m, pero no se certifica como calle pública ni se prolonga a Garmendia: esa unión atravesaría la huella ISC 664499024. La asociación de ese acceso y los contornos quedan documentados para revisión independiente."
           },
           "issues": {},
           "evidence": {
@@ -1284,7 +1712,58 @@
                 "url": "levantamiento/evidence/CH-YG-BBVA/01-planta-geometria.png",
                 "title": "Paso 1 · planta y cuerpo del modelo; proyección por software"
               }
+            ],
+            "street": [
+              {
+                "title": "Ronda 02 · calzada y edificio en el modelo actual",
+                "url": "levantamiento/evidence/CH-YG-BBVA/02-avance-calzada.png"
+              },
+              {
+                "title": "Ronda 02 · calzada y edificio en el modelo actual",
+                "url": "levantamiento/evidence/CH-YG-BBVA/02-avance-calzada.png"
+              },
+              {
+                "title": "Ronda 02 · calzada y edificio en el modelo actual",
+                "url": "levantamiento/evidence/CH-YG-BBVA/02-avance-calzada.png"
+              }
             ]
+          },
+          "visualProgress": {
+            "cameraId": "CH-YG-BBVA-round02-software-v1",
+            "baseline": {
+              "url": "levantamiento/evidence/CH-YG-BBVA/02-inicio-ronda.png",
+              "title": "Modelo al iniciar la ronda 02 · cámara fija",
+              "label": "Inicio · ronda 02",
+              "capturedAt": "2026-10-03T22:55:06.670363Z",
+              "worldSha256": "2b84f6601ee387c40122cc2f5b10be71b03e3444de679b23eb341c5fed1b2a70",
+              "sha256": "0327f29564cc2eb75592c24877e87d65ce2e06fb1e23fbc813ff2edfb21b9c7a",
+              "cameraId": "CH-YG-BBVA-round02-software-v1",
+              "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
+            },
+            "comparisonBaseline": {
+              "url": "levantamiento/evidence/CH-YG-BBVA/02-inicio-ronda.png",
+              "title": "Modelo al iniciar la ronda 02 · cámara fija",
+              "label": "Inicio · ronda 02",
+              "capturedAt": "2026-10-03T23:02:01.526855Z",
+              "worldSha256": "2b84f6601ee387c40122cc2f5b10be71b03e3444de679b23eb341c5fed1b2a70",
+              "sha256": "0327f29564cc2eb75592c24877e87d65ce2e06fb1e23fbc813ff2edfb21b9c7a",
+              "cameraId": "CH-YG-BBVA-round02-software-v1",
+              "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
+            },
+            "current": {
+              "url": "levantamiento/evidence/CH-YG-BBVA/02-avance-calzada.png",
+              "title": "Avance 02 · calzada revisada · CH-YG-BBVA",
+              "label": "Avance · 02",
+              "capturedAt": "2026-10-03T23:06:01.954934Z",
+              "worldSha256": "cb3fa2b4bfc722f06eddb733b655b6ce264af9489ff2e32e962c21bc4521d41c",
+              "sha256": "650b94af8d320c37e60951ecc667d9582872eea930897c39b121f55306535f2c",
+              "cameraId": "CH-YG-BBVA-round02-software-v1",
+              "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography.",
+              "action": 2,
+              "task": "street"
+            },
+            "manifest": "levantamiento/evidence/CH-YG-BBVA/02-record-calzada.json",
+            "history": []
           }
         }
       ],
@@ -1302,7 +1781,7 @@
         "max": 29
       },
       "estimateBasis": "Dos anclas cercanas y revisión de calle; el rango no supone que R-000 quede incorporada como ruta productiva.",
-      "next": "Ronda 01 · resolver las plantas de los edificios de este tramo antes de pasar al paso 2; ciclo por edificio: medir → editar → verificar.",
+      "next": "Ronda 02 revisada · siguiente ronda: banqueta A. Cada acción termina con imagen de cabecera y registro.",
       "sharedTasks": {
         "plan": "partial",
         "street": "partial",
@@ -1326,16 +1805,67 @@
             "finish": "pending",
             "equipment": "pending",
             "qa": "pending",
-            "plan": "blocked"
+            "plan": "blocked",
+            "street": "done"
           },
           "taskDetails": {
-            "plan": "RONDA 01 REVISADA · La referencia patrimonial ubica el edificio en Serdán/Garmendia, pero falta vincular el contorno visible a un cuerpo concreto del modelo actual. No hay una huella individual de Bley identificada en los datos aprobados."
+            "plan": "RONDA 01 REVISADA · La referencia patrimonial ubica el edificio en Serdán/Garmendia, pero falta vincular el contorno visible a un cuerpo concreto del modelo actual. No hay una huella individual de Bley identificada en los datos aprobados.",
+            "street": "REVISADO · tramo físico compartido Serdán–Garmendia: regla manual 10,66 ±1,50 m; se conserva el perfil 12,00 m dentro del rango y se verifica sobre vértices. Imagen del sector y registro actualizados. Este cierre corresponde a la calzada común; el cuerpo y la asociación individual de Bley siguen pendientes en el paso 1, sin inventar un edificio."
           },
           "issues": {
             "plan": {
               "title": "Contorno por asignar",
               "detail": "La referencia patrimonial ubica el edificio en Serdán/Garmendia, pero falta vincular el contorno visible a un cuerpo concreto del modelo actual. No hay una huella individual de Bley identificada en los datos aprobados."
             }
+          },
+          "visualProgress": {
+            "cameraId": "SER-BLEY-round02-software-v1",
+            "baseline": {
+              "url": "levantamiento/evidence/SER-BLEY/02-inicio-ronda.png",
+              "title": "Modelo al iniciar la ronda 02 · cámara fija",
+              "label": "Inicio · ronda 02",
+              "capturedAt": "2026-10-03T22:57:36.064637Z",
+              "worldSha256": "2b84f6601ee387c40122cc2f5b10be71b03e3444de679b23eb341c5fed1b2a70",
+              "sha256": "be2caf95db5a74a3394971443e5e0914acf3a53672b4f9d7e3051a4223108c1b",
+              "cameraId": "SER-BLEY-round02-software-v1",
+              "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
+            },
+            "comparisonBaseline": {
+              "url": "levantamiento/evidence/SER-BLEY/02-inicio-ronda.png",
+              "title": "Modelo al iniciar la ronda 02 · cámara fija",
+              "label": "Inicio · ronda 02",
+              "capturedAt": "2026-10-03T22:57:33.187127Z",
+              "worldSha256": "2b84f6601ee387c40122cc2f5b10be71b03e3444de679b23eb341c5fed1b2a70",
+              "sha256": "be2caf95db5a74a3394971443e5e0914acf3a53672b4f9d7e3051a4223108c1b",
+              "cameraId": "SER-BLEY-round02-software-v1",
+              "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
+            },
+            "current": {
+              "url": "levantamiento/evidence/SER-BLEY/02-avance-calzada.png",
+              "title": "Avance 02 · calzada revisada · SER-BLEY",
+              "label": "Avance · 02",
+              "capturedAt": "2026-10-03T23:06:04.970885Z",
+              "worldSha256": "cb3fa2b4bfc722f06eddb733b655b6ce264af9489ff2e32e962c21bc4521d41c",
+              "sha256": "b84672bcd075d3abcd990b9caef7277c1dc73f99621ad4d1177425e87e372f2c",
+              "cameraId": "SER-BLEY-round02-software-v1",
+              "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography.",
+              "action": 2,
+              "task": "street"
+            },
+            "manifest": "levantamiento/evidence/SER-BLEY/02-record-calzada.json",
+            "history": []
+          },
+          "evidence": {
+            "street": [
+              {
+                "title": "Ronda 02 · calzada y edificio en el modelo actual",
+                "url": "levantamiento/evidence/SER-BLEY/02-avance-calzada.png"
+              },
+              {
+                "title": "Ronda 02 · calzada y edificio en el modelo actual",
+                "url": "levantamiento/evidence/SER-BLEY/02-avance-calzada.png"
+              }
+            ]
           }
         },
         {
@@ -1353,10 +1883,66 @@
             "finish": "pending",
             "equipment": "pending",
             "qa": "pending",
-            "plan": "done"
+            "plan": "done",
+            "street": "done"
           },
           "taskDetails": {
-            "plan": "PLANTA CARTOGRÁFICA REVISADA · huella OSM 499759728 ya presente en el modelo, cotejada con el contexto aéreo. Se conserva como aproximación visual (±3 m); la correspondencia comercial, fachadas, alturas y entradas mantienen sus estados propios."
+            "plan": "PLANTA CARTOGRÁFICA REVISADA · huella OSM 499759728 ya presente en el modelo, cotejada con el contexto aéreo. Se conserva como aproximación visual (±3 m); la correspondencia comercial, fachadas, alturas y entradas mantienen sus estados propios.",
+            "street": "REVISADO · Serdán conserva 12,00 m dentro de lectura manual 10,66 ±1,50 m. Garmendia al norte de Serdán conserva el perfil GA-N 6,00 ±0,90 m. Ambos anchos se contrastaron en vértices del modelo. Una calzada por tramo; imagen y registro actualizados. Accesos, altura y banquetas conservan sus etapas; la identificación comercial sigue cartográfica."
+          },
+          "visualProgress": {
+            "cameraId": "SER-HSBC-round02-software-v1",
+            "baseline": {
+              "url": "levantamiento/evidence/SER-HSBC/02-inicio-ronda.png",
+              "title": "Modelo al iniciar la ronda 02 · cámara fija",
+              "label": "Inicio · ronda 02",
+              "capturedAt": "2026-10-03T22:57:40.714441Z",
+              "worldSha256": "2b84f6601ee387c40122cc2f5b10be71b03e3444de679b23eb341c5fed1b2a70",
+              "sha256": "dfdf6b2e1aeb5f8876b4acfa58bbca55722637fffc4a7d39ce82655ea7c4c934",
+              "cameraId": "SER-HSBC-round02-software-v1",
+              "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
+            },
+            "comparisonBaseline": {
+              "url": "levantamiento/evidence/SER-HSBC/02-inicio-ronda.png",
+              "title": "Modelo al iniciar la ronda 02 · cámara fija",
+              "label": "Inicio · ronda 02",
+              "capturedAt": "2026-10-03T22:59:19.577457Z",
+              "worldSha256": "2b84f6601ee387c40122cc2f5b10be71b03e3444de679b23eb341c5fed1b2a70",
+              "sha256": "dfdf6b2e1aeb5f8876b4acfa58bbca55722637fffc4a7d39ce82655ea7c4c934",
+              "cameraId": "SER-HSBC-round02-software-v1",
+              "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
+            },
+            "current": {
+              "url": "levantamiento/evidence/SER-HSBC/02-avance-calzada.png",
+              "title": "Avance 02 · calzada revisada · SER-HSBC",
+              "label": "Avance · 02",
+              "capturedAt": "2026-10-03T23:06:07.314846Z",
+              "worldSha256": "cb3fa2b4bfc722f06eddb733b655b6ce264af9489ff2e32e962c21bc4521d41c",
+              "sha256": "69f46f1762d0040cf6f5ca5e4aaa82cb5bd0cf8773edb683567bd364542f158b",
+              "cameraId": "SER-HSBC-round02-software-v1",
+              "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography.",
+              "action": 2,
+              "task": "street"
+            },
+            "manifest": "levantamiento/evidence/SER-HSBC/02-record-calzada.json",
+            "history": []
+          },
+          "issues": {},
+          "evidence": {
+            "street": [
+              {
+                "title": "Ronda 02 · calzada y edificio en el modelo actual",
+                "url": "levantamiento/evidence/SER-HSBC/02-avance-calzada.png"
+              },
+              {
+                "title": "Ronda 02 · calzada y edificio en el modelo actual",
+                "url": "levantamiento/evidence/SER-HSBC/02-avance-calzada.png"
+              },
+              {
+                "title": "Ronda 02 · calzada y edificio en el modelo actual",
+                "url": "levantamiento/evidence/SER-HSBC/02-avance-calzada.png"
+              }
+            ]
           }
         }
       ],
@@ -1365,8 +1951,9 @@
   ],
   "workflow": {
     "mode": "phase-rounds",
-    "round": 1,
-    "task": "plan",
+    "round": 2,
+    "task": "street",
+    "actionLabel": "Calzada",
     "buildingOrder": [
       "OB-01",
       "OB-02",
@@ -1384,34 +1971,36 @@
     "closedBuildings": [
       "OB-01",
       "OB-02",
+      "ISC-58",
+      "EB-SW",
       "EB-NW",
       "EB-NE",
       "EB-SE",
       "CH-GA-OXXO",
       "CH-YG-BIB",
       "CH-YG-BBVA",
+      "SER-BLEY",
       "SER-HSBC"
     ],
-    "unresolvedBuildings": [
+    "unresolvedBuildings": [],
+    "previousUnresolvedBuildings": [
       "ISC-58",
       "EB-SW",
       "SER-BLEY"
     ],
-    "readyForNextRound": false,
-    "criterion": "Ubicación, orientación y contorno/envolvente aproximados, con fuente, unidades, margen y comprobación en el modelo. Medir, editar y verificar un edificio antes de medir el siguiente.",
-    "instructions": "Terminar la misma acción en todos los edificios. Compartir criterios y revisar encuentros entre vecinos. No avanzar a la siguiente ronda mientras queden contornos sin resolver.",
-    "taskOrder": [
-      "plan",
-      "street",
-      "sidewalkA",
-      "sidewalkB",
-      "corners",
-      "identity",
-      "volume",
-      "facade",
-      "finish",
-      "equipment",
-      "qa"
-    ]
+    "readyForNextRound": true,
+    "nextTask": "sidewalkA",
+    "photoRequiredAfterEveryAction": true,
+    "criterion": "Calzada de frentes confirmados y tramos compartidos: ancho aproximado con margen, dueño vial único, geometría aplicada o contrastada, encuentros sin duplicación, imagen de cabecera y registro por edificio. Radios y banquetas conservan sus etapas.",
+    "instructions": [
+      "Medir el rango de una acción y editarla inmediatamente en el modelo.",
+      "Verificar el resultado, actualizar la imagen arriba de la columna y guardar el registro antes del siguiente edificio.",
+      "Una corrección física por tramo compartido; registrar todos sus edificios beneficiados.",
+      "Continúan en orden las rondas 1 a 11; el inicio de ronda 2 con tres pendientes de planta fue autorizado expresamente por el usuario."
+    ],
+    "round01Override": {
+      "at": "2026-10-03T23:07:12.225532Z",
+      "reason": "Explicit user instruction: start action 2 for every building that needs it; do not erase unresolved footprints."
+    }
   }
 }

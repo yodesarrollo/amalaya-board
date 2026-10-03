@@ -1,0 +1,11 @@
+{
+  "round": 2,
+  "task": "street",
+  "baseWorldSha256": "2b84f6601ee387c40122cc2f5b10be71b03e3444de679b23eb341c5fed1b2a70",
+  "baseVisorSha256": "298f3b2dafdc0da690583056f6eba78211ebbf86a33d9dd2e7e458122809c03c",
+  "worldSha256": "cb3fa2b4bfc722f06eddb733b655b6ce264af9489ff2e32e962c21bc4521d41c",
+  "visorSha256": "4bccd68214b58a5679e8a562287dcec38a7ea63d3be8b144dc6299d793f813b8",
+  "runtimeModuleSha256": "6e7bf650d403fa22fb629cb9e19ed59b69a24296942f0b792a98f1ceef418bec",
+  "editableSourceSha256": "c04a60fd47064136c1e0239b9ac1713f57d5fe4bbc6c2f13358ad4e6c2b9e092",
+  "sourceStatus": "Both prior October checkpoints preserved exactly by reversible street hook"
+}
