@@ -1,6 +1,6 @@
 # Amalaya · Matriz de levantamiento 3D
 
-Actualizado: 2026-10-03T05:39:49.143899+00:00. La web consulta estados cada 30 segundos; los cambios aparecen al publicar avances.
+Actualizado: 2026-10-03T05:51:49.348766+00:00. La web consulta estados cada 30 segundos; los cambios aparecen al publicar avances.
 
 Naranja: en proceso · Verde: terminado · Rojo: problema · Gris: pendiente o provisional.
 

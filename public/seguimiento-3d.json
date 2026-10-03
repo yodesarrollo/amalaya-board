@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-03T05:39:49.143899+00:00",
+  "updatedAt": "2026-10-03T05:51:49.348766+00:00",
   "refreshSeconds": 30,
   "live": {
     "status": "waiting",
-    "phase": "OB-02 · punto 5 revisado",
-    "title": "Guarnición continua · Avance 05 en cabecera",
-    "detail": "Guarniciones norte y sur corregidas y verificadas. OB-02 está a media cuadra; no se añadieron esquinas ni rampas. La celda roja explica la evidencia que falta para confirmar rebajes.",
+    "phase": "OB-02 · punto 2 revisado",
+    "title": "Calzada verificada · modelo vigente conservado",
+    "detail": "Revisión posterior al punto 5: calzada continua de 5.60 ±1.10 m, con un solo propietario y sin juntas abiertas. Pruebas focalizadas aprobadas. La imagen Avance 05 sigue vigente; no se modificó la geometría.",
     "activeBlockId": "OB-YG",
     "activeBuildingId": "OB-02"
   },
@@ -83,7 +83,7 @@
         "max": 33
       },
       "estimateBasis": "3 frentes/estructuras conocidas más revisión compartida de la cuadra; frentes anónimos se agregan cuando se cuenten.",
-      "next": "OB-02 · punto 5 entregado con guarniciones corregidas; rebajes sin verificar. Puntos 1–4 conservados. Siguiente acción a indicar por el usuario.",
+      "next": "OB-02 · punto 2 revisado sin cambios geométricos; puntos 1–4 conservados. Punto 5 con guarniciones corregidas y rebajes sin verificar. Siguiente fila en orden: 6, identificación del edificio.",
       "sharedTasks": {
         "plan": "partial",
         "street": "partial",
@@ -278,7 +278,7 @@
             "equipment": "PENDIENTE · no se añadieron elementos urbanos porque las tomas disponibles no permiten anclar con confianza qué elementos son permanentes ni sus posiciones.",
             "qa": "BLOQUEADO · el checkpoint está publicado y las pruebas/build pasaron. La comparación con Street View necesita el rumbo exacto del panorama P03/P04, que no está en el JSON. La captura aislada 03 conserva una etiqueta que tapa parte de la cornisa/balaustrada; la recaptura no pudo completar en este entorno. Abre el problema rojo para indicar el rumbo de referencia o cómo continuar con la captura pendiente.",
             "plan": "HECHO · corregido el extremo oriental 1.46 m para alinear el frente con OB-01 y el eje OB-W, conservando estación, colindancia y P03/P04. Extremos/centro y collider comprobados. Revisión del modelo bajo posición ±5 m; fondo y límites catastrales siguen provisionales.",
-            "street": "HECHO · inspeccionadas tres secciones de la malla real frente a OB-02: ancho estimado 5.60 ±1.10 m, una sola calzada y juntas continuas. Se conserva el eje OSM y su variación local; no se añadió otra calle. No cierra banquetas, guarniciones ni rampas.",
+            "street": "HECHO · revisado de nuevo después del punto 5: ancho estimado 5.60 ±1.10 m, bordes y juntas continuos y una sola calzada frente a OB-02. Las dos pruebas focalizadas pasaron sobre el modelo vigente. No se encontró una corrección pendiente ni se cambió la geometría. La captura 06 conserva su checkpoint histórico; planta 15 y detalle 16 muestran el estado vigente. Rampas mantienen su bloqueo independiente.",
             "sidewalkA": "HECHO · completada la franja sur de losas de 1.20 ±0.80 m, juntas con base continua y encuentro provisional hasta la fachada. Se retiraron losas sur duplicadas y el bordillo acompaña la cota de las losas. El cuerpo del vaquero tiene paso libre tras ajustar la caja de colisión girada del edificio. Revisión del modelo, no certificación métrica ni cierre de rampas.",
             "sidewalkB": "HECHO · completado el perfil norte independiente de 2.00 ±0.80 m, con última fila recortada, base continua y bordillo a cota de las losas. Se retiró pavimento norte duplicado y se comprobó el paso central del vaquero. Banqueta sur, sus colores y guarnición conservados. Revisión técnica del modelo bajo incertidumbre; rampas y esquinas siguen pendientes.",
             "corners": "GUARNICIÓN REVISADA · respaldo continuo norte/sur a 0.10 m bajo bloques de cota 0.1175 m, sin huecos hasta las banquetas. Frente a media cuadra: Yáñez y Juan Álvarez quedan fuera; no se añadieron esquinas ni rampas. BLOQUEADO solo el cierre de rebajes: P03/P04 no permiten confirmar presencia/ausencia y forma. Capturas 14–16; 102/102 pruebas."
@@ -370,6 +370,14 @@
               {
                 "title": "Punto 2 · tres secciones sobre la calzada existente",
                 "url": "levantamiento/evidence/OB-02/06-calzada-ob02.png"
+              },
+              {
+                "title": "Revisión punto 2 · planta del modelo vigente tras el punto 5",
+                "url": "levantamiento/evidence/OB-02/15-guarniciones-planta.png"
+              },
+              {
+                "title": "Revisión punto 2 · vista longitudinal del modelo vigente",
+                "url": "levantamiento/evidence/OB-02/16-guarnicion-detalle.png"
               }
             ],
             "sidewalkA": [
