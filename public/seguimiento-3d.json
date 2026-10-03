@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-03T19:14:43.694Z",
+  "updatedAt": "2026-10-03T20:31:27.312Z",
   "refreshSeconds": 30,
   "live": {
     "status": "blocked",
-    "phase": "EB-NW · secuencia 01–11 revisada",
+    "phase": "EB-NW · medidas manuales 01–04 registradas",
     "title": "Volumen provisional · Garmendia × Chihuahua",
-    "detail": "Las 11 acciones se recorrieron en orden: 06 identidad descriptiva cumplida; 01–04 provisionales; 05 y 07–11 bloqueadas con causa. No quedan acciones pendientes. Para reanudar modelado y QA hace falta la fuente 3D vigente, cotas de huella/altura y un visor con WebGL2.",
+    "detail": "Google Maps: huella visual 15,64 × 15,77 m; Av. Chihuahua 5,21 m; banqueta A 1,04 m; franja visible B 1,37 m. Los pasos 01–04 siguen parciales hasta aplicar y validar las medidas en la fuente 3D vigente. 05 y 07–11 mantienen sus bloqueos; 06 identidad descriptiva está cumplida.",
     "activeBlockId": "EB-GA",
     "activeBuildingId": "EB-NW"
   },
@@ -800,7 +800,7 @@
         "max": 42
       },
       "estimateBasis": "Una esquina compleja y tres masas provisionales, más revisión compartida. Un solo dueño de geometría vial para evitar duplicados.",
-      "next": "EB-SW: retomar 01 con extremos, escala e implantación verificados. La secuencia 01–11 está revisada; el edificio permanece incompleto.",
+      "next": "EB-NW: retomar desde el paso 01 y aplicar, en orden, las medidas manuales de huella, calzada y banquetas a la fuente 3D vigente; después continuar 05–11 sin saltos. La fuente actual aún debe recuperarse.",
       "sharedTasks": {
         "plan": "partial",
         "street": "partial",
@@ -991,7 +991,7 @@
         {
           "id": "EB-NW",
           "name": "Volumen provisional · Garmendia × Chihuahua",
-          "confidence": "R-002 P06/P07 (Street View, dic. 2023) empatan el frente con una fachada verde aparente de una planta. Nombre comercial sin confirmar; huella, cubierta y alturas sin medir.",
+          "confidence": "R-002 P06/P07 (Street View, dic. 2023) empatan el frente con una fachada verde aparente de una planta. Google Maps (03/10/2026) da una huella visual aproximada de 15.64 × 15.77 m; no son linderos ni cotas de campo. Nombre comercial, cubierta exacta y alturas sin confirmar.",
           "estimateHours": {
             "min": 4,
             "max": 8
@@ -1010,13 +1010,13 @@
             "qa": "blocked"
           },
           "taskDetails": {
-            "plan": "PROVISIONAL · El cruce OSM Garmendia × Chihuahua sitúa la esquina NW y la masa heredada. El recorte no contiene huella edificatoria; P06/P07 ayudan a ubicar el frente, pero no revelan linderos ni fondo. Mantener la planta como aproximada hasta contar con una huella medida.",
-            "street": "PROVISIONAL · La base vial sigue los ejes OSM y el cruce es reconocible en R-002 P06/P07. No hay sección métrica propia para la calzada y sus encuentros en Garmendia × Chihuahua; el perfil de Obregón P10 pertenece a otro tramo y no se extrapola.",
-            "sidewalkA": "PROVISIONAL · P06/P07 muestran el paso junto a la fachada, pero no acreditan ancho libre, obstáculos ni continuidad completa del lado A. Mantener la banda existente como aproximada hasta medir sección y extremos.",
-            "sidewalkB": "PROVISIONAL · La acera del lado B tampoco tiene ancho o continuidad medidos en esta esquina. La vista parcial no basta para validar guarnición, accesos y paso libre; se conserva como base provisional.",
+            "plan": "MEDICIÓN MANUAL EN GOOGLE MAPS · Huella visible: frente 15,64 m × fondo 15,77 m (±1 m cada lado), tomados sobre los bordes aparentes de cubierta. No fija lindero catastral ni huella en suelo. Medida registrada; falta aplicarla y validarla en la fuente 3D vigente.",
+            "street": "MEDICIÓN MANUAL EN GOOGLE MAPS · Calzada de Av. Chihuahua frente a EB-NW: 5,21 m (±0,5 m) entre bordes visibles. No incluye radios/encuentros de esquina ni el ancho de Garmendia. Medida registrada; falta aplicarla y validar la calzada en la fuente 3D vigente.",
+            "sidewalkA": "MEDICIÓN MANUAL EN GOOGLE MAPS · Lado A: 1,04 m (±0,3 m) entre el borde visible de calzada y la línea aparente de fachada/cubierta. No confirma ancho libre continuo ni obstáculos. Medida registrada; falta aplicarla y verificar extremos en la fuente 3D vigente.",
+            "sidewalkB": "MEDICIÓN MANUAL EN GOOGLE MAPS · Lado B: franja dura visible de 1,37 m (±0,4 m) entre borde de calzada y límite aparente. La vegetación y el acceso la hacen irregular; no confirma una banqueta pública ni ancho libre continuo. Medida registrada; falta aplicarla y verificar en la fuente 3D vigente.",
             "corners": "REVISADO Y BLOQUEADO · P07 muestra el encuentro desde una sola perspectiva, sin cotas de guarnición, radios o rebajes. No se dibuja una rampa supuesta; se requiere detalle completo de la esquina y medidas de niveles, ancho y pendiente.",
             "identity": "HECHO · R-002 P06 (103 Av. Chihuahua, rumbo 270°) y P07 (186 C. Garmendia, rumbo 180°), ambos con Street View de diciembre de 2023, empatan visualmente la esquina con una fachada verde aparente de una planta. Se conserva el nombre descriptivo EB-NW; no se atribuye comercio ni propietario.",
-            "volume": "REVISADO Y BLOQUEADO · P06/P07 sugieren una planta, pero no muestran la cubierta completa, el fondo ni una escala vertical verificable. No existe huella edificatoria OSM para esta esquina. Para corregir la masa sin reemplazar trabajo más reciente hace falta la fuente 3D vigente y medidas de huella, fondo y altura.",
+            "volume": "REVISADO Y BLOQUEADO · La regla manual de Google Maps aproxima la huella visible en 15,64 × 15,77 m; no verifica linderos, altura, aleros o cubierta. P06/P07 sugieren una planta, pero no resuelven esas cotas. Falta la fuente 3D vigente para aplicar las medidas sin reemplazar el mundo publicado.",
             "facade": "REVISADO Y BLOQUEADO · Las referencias sugieren estuco verde, banda y marcos claros, y vanos rectangulares con herrería oscura. Las tomas son parciales: no fijan el largo total, el conteo de vanos ni el remate completo. Falta la fuente 3D vigente para aplicar la corrección sin inventar la fachada.",
             "finish": "REVISADO Y BLOQUEADO · La lectura visual de P06/P07 permite describir tonos generales, pero no calibrar color, relieve o escala constructiva. Mantener materiales procedurales; se necesita alzado completo y revisión desde la fuente vigente. No se usan panoramas como texturas.",
             "equipment": "REVISADO Y BLOQUEADO · Se ven rejas y portones en la fachada, además de vallas, cables y vegetación en el entorno. Las tomas no fijan propiedad, coordenadas ni alturas de los elementos exteriores; no se añade equipamiento sin ubicación documentada.",
@@ -1029,7 +1029,7 @@
             },
             "volume": {
               "title": "Faltan huella y altura verificables",
-              "detail": "OSM no contiene una huella edificatoria para EB-NW. P06/P07 sugieren una planta, pero no muestran fondo o cubierta con escala. Recuperar la fuente 3D vigente y obtener huella, fondo y altura medidos antes de cambiar la masa."
+              "detail": "La regla de Google Maps da una huella visual aproximada de 15,64 × 15,77 m, pero no es deslinde catastral ni levantamiento de campo. P06/P07 no verifican altura, aleros o cubierta completa. Se necesita la fuente 3D vigente para aplicar y comprobar la masa."
             },
             "facade": {
               "title": "La referencia cubre solo parte de la fachada",
@@ -1046,6 +1046,35 @@
             "qa": {
               "title": "No fue posible cargar el 3D en esta sesión",
               "detail": "El visor público mostró que WebGL2 es requerido y no cargó el modelo en este navegador. Esto solo describe la limitación de esta sesión. Para cerrar QA, recuperar la fuente 3D vigente y producir vistas de planta, bloque y peatón desde el mismo punto y rumbo R-002."
+            }
+          },
+          "manualMeasurements": {
+            "source": "Google Maps · regla manual sobre imagen satelital",
+            "consultedAt": "2026-10-03",
+            "units": "m",
+            "classification": "aproximado; no es topografía ni deslinde catastral",
+            "imageryCaptureDate": "no indicada en la vista consultada",
+            "footprint": {
+              "front": 15.64,
+              "depth": 15.77,
+              "toleranceEach": 1,
+              "limits": "bordes visibles de cubierta"
+            },
+            "street": {
+              "name": "Av. Chihuahua",
+              "width": 5.21,
+              "tolerance": 0.5,
+              "limits": "entre bordes visibles de calzada; no incluye radios ni el tramo de Garmendia"
+            },
+            "sidewalkA": {
+              "width": 1.04,
+              "tolerance": 0.3,
+              "limits": "borde de calzada a línea aparente de fachada/cubierta"
+            },
+            "sidewalkB": {
+              "width": 1.37,
+              "tolerance": 0.4,
+              "limits": "franja dura visible al lado norte; irregular con vegetación/acceso"
             }
           }
         },
