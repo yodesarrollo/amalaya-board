@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-03T06:03:27.589789+00:00",
+  "updatedAt": "2026-10-03T06:13:51.020510+00:00",
   "refreshSeconds": 30,
   "live": {
-    "status": "waiting",
-    "phase": "OB-02 · punto 6 terminado",
-    "title": "Identificación visual cerrada · Avance 06 en cabecera",
-    "detail": "Frente gris de cinco arcos y rejas vinculado a P03/P04, contrastado con P02/P05. Nombre descriptivo confirmado para el seguimiento; atribución comercial pendiente. Avance 06 usa la cámara fija; geometría sin cambios.",
+    "status": "active",
+    "phase": "OB-02 · punto 7 en proceso",
+    "title": "Revisión de volumen, encuentros y cubierta",
+    "detail": "Comprobando silueta, apoyo de cubierta y encuentros de fachada con el volumen. Las dimensiones sin fuente métrica mantienen su incertidumbre; no se inventa el fondo.",
     "activeBlockId": "OB-YG",
     "activeBuildingId": "OB-02"
   },
@@ -83,7 +83,7 @@
         "max": 33
       },
       "estimateBasis": "3 frentes/estructuras conocidas más revisión compartida de la cuadra; frentes anónimos se agregan cuando se cuenten.",
-      "next": "OB-02 · punto 6 terminado: identidad visual documentada. Siguiente fila en orden: 7, volumen y cubierta. Rebajes y QA conservan sus pendientes.",
+      "next": "OB-02 · punto 7 activo: volumen y cubierta. Identidad cerrada y geometría urbana anterior conservada.",
       "sharedTasks": {
         "plan": "partial",
         "street": "partial",
@@ -259,7 +259,7 @@
           },
           "tasks": {
             "identity": "done",
-            "volume": "partial",
+            "volume": "active",
             "facade": "partial",
             "finish": "partial",
             "equipment": "pending",
@@ -272,7 +272,7 @@
           },
           "taskDetails": {
             "identity": "HECHO · código OB-02 vinculado al frente gris del lado sur de Obregón, junto a OB-01, por rasgos visibles en P03/P04 y contexto P02/P05. Coordenadas, IDs de panorama y JPG originales comprobados. P03 es el ancla; P04 mira desde el este. Nombre descriptivo: fachada gris de cinco arcos y rejas. El directorio oficial respalda el domicilio del Colegio en Obregón 65, pero no confirma esta fachada; nombre comercial, fechas y rumbo del panorama siguen sin verificar. No cierra exactitud de volumen ni QA.",
-            "volume": "PROVISIONAL · frente 16.67 ±2 m; fondo 9 ±3 m; cornisa 4.65 ±0.6 m; balaustrada 5.35 ±0.6 m. Sin polígono OSM ni medidas directas; retorno y fondo no verificados.",
+            "volume": "EN PROCESO · revisar envolvente y cubierta sobre el frente alineado; comprobar continuidad, silueta y colindancia con las referencias P03/P04. Fondo y alturas aún estimados.",
             "facade": "PARCIAL · se conservan cinco vanos abiertos y se añadieron 54 segmentos instanciados de juntas de piedra, interpretados a partir de P03/P04. Alturas, anchuras, separación de pilastras y patrón de herrería no tienen escala métrica.",
             "finish": "PARCIAL · tonos de piedra/remates moderados y juntas de hilada añadidas como detalle visual; alturas y espesor interpretados. Sin fotografías usadas como texturas.",
             "equipment": "PENDIENTE · no se añadieron elementos urbanos porque las tomas disponibles no permiten anclar con confianza qué elementos son permanentes ni sus posiciones.",
