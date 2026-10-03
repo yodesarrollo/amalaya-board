@@ -355,7 +355,9 @@ if(iscRepairs.length===2)assert.equal(iscLatest.previousWorldSha256,iscRepairs[0
 assert.equal(iscLatest.worldSha256,currentWorldHash,'El avance actual exige capturas nuevas del modelo actual.')
 assert.equal(iscLatest.runtimeModuleSha256,provenance.runtimeModuleSha256)
 assert.equal(iscLatest.visorSha256,provenance.visorSha256)
-for(const file of (await readdir(`${root}/evidence/ISC-58`)).filter(f=>f.endsWith('.png'))){
+// Historical WebGL images keep their original dimensions. Round 02 software
+// projections have separate hash/dimension checks in pruebas-calzadas.mjs.
+for(const file of (await readdir(`${root}/evidence/ISC-58`)).filter(f=>f.endsWith('.png')&&!roundProgressFiles.has(f))){
   const bytes=await readFile(`${root}/evidence/ISC-58/${file}`)
   assert(bytes.subarray(0,8).equals(Buffer.from([137,80,78,71,13,10,26,10])))
   assert.equal(bytes.readUInt32BE(16),1280)
