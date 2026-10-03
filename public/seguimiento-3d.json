@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-03T04:49:55.417967+00:00",
+  "updatedAt": "2026-10-03T05:39:49.143899+00:00",
   "refreshSeconds": 30,
   "live": {
-    "status": "active",
-    "phase": "OB-02 · punto 5 en proceso",
-    "title": "Revisión de esquinas, guarniciones y rampas",
-    "detail": "Comprobando límites del frente, continuidad de guarnición y qué cruces pertenecen a esta revisión. Sin añadir rampas sin evidencia.",
+    "status": "waiting",
+    "phase": "OB-02 · punto 5 revisado",
+    "title": "Guarnición continua · Avance 05 en cabecera",
+    "detail": "Guarniciones norte y sur corregidas y verificadas. OB-02 está a media cuadra; no se añadieron esquinas ni rampas. La celda roja explica la evidencia que falta para confirmar rebajes.",
     "activeBlockId": "OB-YG",
     "activeBuildingId": "OB-02"
   },
@@ -83,7 +83,7 @@
         "max": 33
       },
       "estimateBasis": "3 frentes/estructuras conocidas más revisión compartida de la cuadra; frentes anónimos se agregan cuando se cuenten.",
-      "next": "OB-02 · punto 5 activo: revisar guarniciones, encuentros y rampas; puntos 1–4 conservados.",
+      "next": "OB-02 · punto 5 entregado con guarniciones corregidas; rebajes sin verificar. Puntos 1–4 conservados. Siguiente acción a indicar por el usuario.",
       "sharedTasks": {
         "plan": "partial",
         "street": "partial",
@@ -268,7 +268,7 @@
             "street": "done",
             "sidewalkA": "done",
             "sidewalkB": "done",
-            "corners": "active"
+            "corners": "blocked"
           },
           "taskDetails": {
             "identity": "PARCIAL · P03 (29.0759089, -110.9551769) y P04 (29.0759275, -110.9549709) muestran el mismo frente claro de arcos, pilastras, rejas y balaustrada. “Colegio de Notarios #65” sigue sin confirmación; fechas de las imágenes sin verificar.",
@@ -281,7 +281,7 @@
             "street": "HECHO · inspeccionadas tres secciones de la malla real frente a OB-02: ancho estimado 5.60 ±1.10 m, una sola calzada y juntas continuas. Se conserva el eje OSM y su variación local; no se añadió otra calle. No cierra banquetas, guarniciones ni rampas.",
             "sidewalkA": "HECHO · completada la franja sur de losas de 1.20 ±0.80 m, juntas con base continua y encuentro provisional hasta la fachada. Se retiraron losas sur duplicadas y el bordillo acompaña la cota de las losas. El cuerpo del vaquero tiene paso libre tras ajustar la caja de colisión girada del edificio. Revisión del modelo, no certificación métrica ni cierre de rampas.",
             "sidewalkB": "HECHO · completado el perfil norte independiente de 2.00 ±0.80 m, con última fila recortada, base continua y bordillo a cota de las losas. Se retiró pavimento norte duplicado y se comprobó el paso central del vaquero. Banqueta sur, sus colores y guarnición conservados. Revisión técnica del modelo bajo incertidumbre; rampas y esquinas siguen pendientes.",
-            "corners": "EN PROCESO · localizar cruces reales y revisar guarnición y encuentros del frente; no inventar rampas ni trasladar las esquinas de OB-01."
+            "corners": "GUARNICIÓN REVISADA · respaldo continuo norte/sur a 0.10 m bajo bloques de cota 0.1175 m, sin huecos hasta las banquetas. Frente a media cuadra: Yáñez y Juan Álvarez quedan fuera; no se añadieron esquinas ni rampas. BLOQUEADO solo el cierre de rebajes: P03/P04 no permiten confirmar presencia/ausencia y forma. Capturas 14–16; 102/102 pruebas."
           },
           "evidence": {
             "identity": [
@@ -399,6 +399,28 @@
                 "title": "Punto 4 · vista longitudinal desde la banqueta norte",
                 "url": "levantamiento/evidence/OB-02/13-banqueta-norte-peaton.png"
               }
+            ],
+            "corners": [
+              {
+                "title": "Punto 5 · Avance 05 desde la cámara fija de Inicio",
+                "url": "levantamiento/evidence/OB-02/14-avance-punto05.png"
+              },
+              {
+                "title": "Punto 5 · planta norte arriba · ambas guarniciones",
+                "url": "levantamiento/evidence/OB-02/15-guarniciones-planta.png"
+              },
+              {
+                "title": "Punto 5 · detalle bajo desde la banqueta sur",
+                "url": "levantamiento/evidence/OB-02/16-guarnicion-detalle.png"
+              },
+              {
+                "title": "P03 · consulta; borde parcialmente oculto, fecha sin verificar",
+                "url": "recorrido/Apyr0uKeZr_XWmfLfLeBjQ.jpg"
+              },
+              {
+                "title": "P04 · consulta; rebajes sin verificar",
+                "url": "recorrido/h45BeWMtTog-TgjPTSYn6g.jpg"
+              }
             ]
           },
           "issues": {
@@ -413,6 +435,10 @@
             "qa": {
               "title": "QA requiere rumbo del 360 y recaptura de una etiqueta",
               "detail": "El JSON no incluye headingDegrees: P03→P04 es ≈84° de marcha y las cámaras actuales miran al frente estimado (P03 ≈186.2°, P04 ≈249.6°), así que no verifican la orientación de Street View. Además, la tarjeta de 03-edificio-aislado-p03.png tapa parte alta de cornisa/balaustrada y del primer vano. La recaptura falló al esperar document.body.dataset.ready=true durante 20 s; otro intento terminó a los 10 s con net::ERR_ABORTED en page.goto(waitUntil=commit). Se conserva la imagen anterior. Para comparar visualmente hace falta documentar el heading del panorama y volver a capturar con la etiqueta en el área libre inferior."
+            },
+            "corners": {
+              "title": "Falta confirmar los rebajes frente a OB-02",
+              "detail": "Ya corregido: continuidad de guarnición en ambos lados, sin alterar las calles ni los retornos de OB-01. OB-02 está a media cuadra; sus colindancias no son esquinas. P03/P04 tienen vehículos y mobiliario que ocultan parte del borde. Para cerrar: fotos cercanas de los bordes norte y sur frente a OB-02, ubicadas en planta y rotuladas por lado; mostrar inicio/fin y transición completa de cualquier rebaje, o confirmar que no existe. Para exactitud métrica, añadir escala/medidas y fecha. Aquí puedes indicar cómo resolver esta evidencia; no se modeló una rampa supuesta."
             }
           },
           "visualProgress": {
@@ -425,11 +451,11 @@
               "worldSha256": "4bdf262926cfd58d9d7dabf110a757e748e982797af2c4879e49265fad6d1fb3"
             },
             "current": {
-              "url": "levantamiento/evidence/OB-02/11-avance-punto04.png",
-              "title": "Avance después del punto 4 · banqueta norte",
-              "label": "Avance · 04",
-              "capturedAt": "2026-10-03T04:35:21.881Z",
-              "worldSha256": "d060f6f46e0952acd9230105bd90d1614b0bde55d2fb9b34394613c4c85b4001"
+              "url": "levantamiento/evidence/OB-02/14-avance-punto05.png",
+              "title": "Avance después del punto 5 · guarnición continua",
+              "label": "Avance · 05",
+              "capturedAt": "2026-10-03T05:38:53.048Z",
+              "worldSha256": "72a3b71f904a22ea6cd2c68bd534e93ddee90e49520d4826cc655f279e5a0225"
             }
           }
         },
