@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-03T07:23:42.713833+00:00",
+  "updatedAt": "2026-10-03T07:32:37.854854+00:00",
   "refreshSeconds": 30,
   "live": {
-    "status": "waiting",
-    "phase": "OB-02 · punto 7 revisado",
-    "title": "Volumen continuo; medidas pendientes de verificar",
-    "detail": "Corregidos el apoyo de cubierta y ambos encuentros laterales. Avance 07 y antes/después publicados; faltan referencias métricas de fondo, alturas y cubierta para cerrar exactitud.",
+    "status": "active",
+    "phase": "OB-02 · punto 8 en proceso",
+    "title": "Fachada y coronamiento",
+    "detail": "Secuencia autorizada: fachada, acabados, equipamiento y comparación final. Ahora solo punto 8; referencias P03/P04 de consulta, sin texturas fotográficas.",
     "activeBlockId": "OB-YG",
     "activeBuildingId": "OB-02"
   },
@@ -83,7 +83,7 @@
         "max": 33
       },
       "estimateBasis": "3 frentes/estructuras conocidas más revisión compartida de la cuadra; frentes anónimos se agregan cuando se cuenten.",
-      "next": "OB-02 · punto 7 revisado: envolvente continua. Exactitud bloqueada por medidas; siguiente acción 8, fachada, tras indicación del usuario.",
+      "next": "OB-02 · punto 8 activo; después 9, 10 y cierre de comparación 11, en ese orden.",
       "sharedTasks": {
         "plan": "partial",
         "street": "partial",
@@ -260,7 +260,7 @@
           "tasks": {
             "identity": "done",
             "volume": "blocked",
-            "facade": "partial",
+            "facade": "active",
             "finish": "partial",
             "equipment": "pending",
             "qa": "blocked",
@@ -273,7 +273,7 @@
           "taskDetails": {
             "identity": "HECHO · código OB-02 vinculado al frente gris del lado sur de Obregón, junto a OB-01, por rasgos visibles en P03/P04 y contexto P02/P05. Coordenadas, IDs de panorama y JPG originales comprobados. P03 es el ancla; P04 mira desde el este. Nombre descriptivo: fachada gris de cinco arcos y rejas. El directorio oficial respalda el domicilio del Colegio en Obregón 65, pero no confirma esta fachada; nombre comercial, fechas y rumbo del panorama siguen sin verificar. No cierra exactitud de volumen ni QA.",
             "volume": "REVISADO · cuerpo posterior unido a cubierta (eliminado hueco de 0.16 m del modelo); cerrados ambos encuentros laterales de 0.31 m entre fachada y cuerpo, manteniendo los cinco vanos. Frente 16.61 ±2 m, fondo 9 ±3 m, cornisa 4.65 ±0.6 m y pasamanos 5.35 ±0.6 m, todos provisionales. Cubierta plana interpretada, fondo e interior no restituidos. Capturas 19/20 desde la misma cámara, 21 planta norte arriba y Avance 07 en cabecera. 104 pruebas correctas; no certifican medidas del sitio.",
-            "facade": "PARCIAL · se conservan cinco vanos abiertos y se añadieron 54 segmentos instanciados de juntas de piedra, interpretados a partir de P03/P04. Alturas, anchuras, separación de pilastras y patrón de herrería no tienen escala métrica.",
+            "facade": "EN PROCESO · contraste de cinco arcos, pilastras y coronamiento con P03/P04; se revisan encuentros y vacío de balaustrada antes de acabados. Huella y dimensiones provisionales conservadas.",
             "finish": "PARCIAL · tonos de piedra/remates moderados y juntas de hilada añadidas como detalle visual; alturas y espesor interpretados. Sin fotografías usadas como texturas.",
             "equipment": "PENDIENTE · no se añadieron elementos urbanos porque las tomas disponibles no permiten anclar con confianza qué elementos son permanentes ni sus posiciones.",
             "qa": "BLOQUEADO · el checkpoint está publicado y las pruebas/build pasaron. La comparación con Street View necesita el rumbo exacto del panorama P03/P04, que no está en el JSON. La captura aislada 03 conserva una etiqueta que tapa parte de la cornisa/balaustrada; la recaptura no pudo completar en este entorno. Abre el problema rojo para indicar el rumbo de referencia o cómo continuar con la captura pendiente.",
