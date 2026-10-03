@@ -1,2 +1,2 @@
 // Generated from the published visual bundle by preparar:3d.
-export const VERSION_LEVANTAMIENTO = 'a321271639c3'
+export const VERSION_LEVANTAMIENTO = '70a5df5768f2'

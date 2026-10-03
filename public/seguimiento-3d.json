@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-03T08:42:31.547505+00:00",
+  "updatedAt": "2026-10-03T08:58:53.117644+00:00",
   "refreshSeconds": 30,
   "live": {
     "status": "active",
-    "phase": "OB-02 · punto 9 en proceso",
-    "title": "Acabados de piedra y herrería",
-    "detail": "Punto 8 visual publicado; medidas de fachada pendientes. Ahora acabados 9, después equipamiento 10 y comparación 11.",
+    "phase": "OB-02 · punto 10 en proceso",
+    "title": "Equipamiento frente a OB-02",
+    "detail": "Acabados 9 entregados. Ahora inventario y ajuste sustentado de equipamiento; después comparación 11. Medidas de fachada/volumen siguen pendientes.",
     "activeBlockId": "OB-YG",
     "activeBuildingId": "OB-02"
   },
@@ -261,8 +261,8 @@
             "identity": "done",
             "volume": "blocked",
             "facade": "blocked",
-            "finish": "active",
-            "equipment": "pending",
+            "finish": "done",
+            "equipment": "active",
             "qa": "blocked",
             "plan": "done",
             "street": "done",
@@ -274,8 +274,8 @@
             "identity": "HECHO · código OB-02 vinculado al frente gris del lado sur de Obregón, junto a OB-01, por rasgos visibles en P03/P04 y contexto P02/P05. Coordenadas, IDs de panorama y JPG originales comprobados. P03 es el ancla; P04 mira desde el este. Nombre descriptivo: fachada gris de siete vanos y rejas (recuento corregido al revisar el frente completo en el punto 8). El directorio oficial respalda el domicilio del Colegio en Obregón 65, pero no confirma esta fachada; nombre comercial, fechas y rumbo del panorama siguen sin verificar. No cierra exactitud de volumen ni QA.",
             "volume": "REVISADO · cuerpo posterior unido a cubierta (eliminado hueco de 0.16 m del modelo); cerrados ambos encuentros laterales de 0.31 m entre fachada y cuerpo, conservando los cinco vanos del modelo de ese checkpoint; corregidos a siete en el punto 8. Frente 16.61 ±2 m, fondo 9 ±3 m, cornisa 4.65 ±0.6 m y pasamanos 5.35 ±0.6 m, todos provisionales. Cubierta plana interpretada, fondo e interior no restituidos. Capturas 19/20 desde la misma cámara, 21 planta norte arriba y Avance 07 en cabecera. 104 pruebas correctas; no certifican medidas del sitio.",
             "facade": "REVISADO · corregidos cinco a siete vanos al inspeccionar la unión del panorama P03 y contrastar P04; ocho pilastras, alternancia estrecho/ancho y portal central mayor. Añadidos zócalo continuo de balaustrada y volutas de capiteles. Anchuras/ejes aún estimados dentro del frente 16.61 ±2 m; falta escala para cierre dimensional. Capturas 22–24; 105 pruebas correctas.",
-            "finish": "EN PROCESO · materiales de piedra y herrería; juntas verticales de sillares y ornamentos adaptados a los vanos estrechos. Mantener forma y medidas del punto 8, sin usar fotografías como texturas.",
-            "equipment": "PENDIENTE · no se añadieron elementos urbanos porque las tomas disponibles no permiten anclar con confianza qué elementos son permanentes ni sus posiciones.",
+            "finish": "HECHO · 90 juntas verticales escalonadas sobre paños sólidos, piedra gris fría, remates claros y hierro pintado oscuro. Anillos dentro de vanos estrechos y ocho piezas de marco en el portal; patrones interpretados, no restitución exacta. PBR procedural original albedo/normal/ORM, UV de 1 m; luz y huella sin cambios. Capturas 25–27 inspeccionadas; 106 pruebas correctas. Las medidas se verifican por separado en fachada/volumen.",
+            "equipment": "EN PROCESO · inventario de bolardos, bancas, luminarias, árboles y papeleras en P03/P04. Corregir solo elementos sustentados; registrar bases ocultas y posiciones aún aproximadas.",
             "qa": "BLOQUEADO · el checkpoint está publicado y las pruebas/build pasaron. La comparación con Street View necesita el rumbo exacto del panorama P03/P04, que no está en el JSON. La captura aislada 03 conserva una etiqueta que tapa parte de la cornisa/balaustrada; la recaptura no pudo completar en este entorno. Abre el problema rojo para indicar el rumbo de referencia o cómo continuar con la captura pendiente.",
             "plan": "HECHO · corregido el extremo oriental 1.46 m para alinear el frente con OB-01 y el eje OB-W, conservando estación, colindancia y P03/P04. Extremos/centro y collider comprobados. Revisión del modelo bajo posición ±5 m; fondo y límites catastrales siguen provisionales.",
             "street": "HECHO · revisado de nuevo después del punto 5: ancho estimado 5.60 ±1.10 m, bordes y juntas continuos y una sola calzada frente a OB-02. Las dos pruebas focalizadas pasaron sobre el modelo vigente. No se encontró una corrección pendiente ni se cambió la geometría. La captura 06 conserva su checkpoint histórico; planta 15 y detalle 16 muestran el estado vigente. Rampas mantienen su bloqueo independiente.",
@@ -368,12 +368,20 @@
             ],
             "finish": [
               {
-                "title": "P03 · detalle de piedra, hiladas interpretadas y rejas",
-                "url": "levantamiento/evidence/OB-02/01-fachada-p03.png"
+                "title": "Avance 09 · misma cámara de Inicio",
+                "url": "levantamiento/evidence/OB-02/25-avance-punto09.png"
               },
               {
-                "title": "P03 · conjunto aislado con cinco vanos visibles",
-                "url": "levantamiento/evidence/OB-02/03-edificio-aislado-p03.png"
+                "title": "Detalle · juntas y rejas dentro de los huecos",
+                "url": "levantamiento/evidence/OB-02/26-materiales-detalle.png"
+              },
+              {
+                "title": "Fachada completa · acabados originales",
+                "url": "levantamiento/evidence/OB-02/27-fachada-acabados.png"
+              },
+              {
+                "title": "Registro PBR y cámaras de acabados",
+                "url": "levantamiento/evidence/OB-02/finish-manifest.json"
               }
             ],
             "equipment": [
@@ -503,11 +511,11 @@
               "worldSha256": "4bdf262926cfd58d9d7dabf110a757e748e982797af2c4879e49265fad6d1fb3"
             },
             "current": {
-              "url": "levantamiento/evidence/OB-02/22-avance-punto08.png",
-              "title": "Avance 08 · siete vanos y coronamiento corregidos",
-              "label": "Avance · 08",
-              "capturedAt": "2026-10-03T08:38:41.190Z",
-              "worldSha256": "a321271639c3428048e69ff9ebeaf2ac334a605d9c083d6cf6969f89c8e130a5"
+              "url": "levantamiento/evidence/OB-02/25-avance-punto09.png",
+              "title": "Avance 09 · piedra y herrería",
+              "label": "Avance · 09",
+              "capturedAt": "2026-10-03T08:57:25.926Z",
+              "worldSha256": "70a5df5768f25a99ea408b5885cabcf50b4e79927287745136aa7e4647821428"
             }
           }
         },

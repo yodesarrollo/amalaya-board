@@ -1,10 +1,10 @@
 # Amalaya · Matriz de levantamiento 3D
 
-Actualizado: 2026-10-03T08:42:31.547505+00:00. La web consulta estados cada 30 segundos; los cambios aparecen al publicar avances.
+Actualizado: 2026-10-03T08:58:53.117644+00:00. La web consulta estados cada 30 segundos; los cambios aparecen al publicar avances.
 
 Naranja: en proceso · Verde: terminado · Rojo: problema · Gris: pendiente o provisional.
 
-| Acciones / Edificios | OB-01 | <a href="https://yodesarrollo.github.io/amalaya-board/levantamiento/evidence/OB-02/22-avance-punto08.png"><img src="https://yodesarrollo.github.io/amalaya-board/levantamiento/evidence/OB-02/22-avance-punto08.png" alt="OB-02 · avance del modelo" width="160"></a><br/>OB-02<br/>[Inicio](https://yodesarrollo.github.io/amalaya-board/levantamiento/evidence/OB-02/07-inicio-seguimiento.png) · Avance · 08 | ISC-58 | EB-SW | EB-NW | EB-NE | EB-SE | PL-GA | CH-GA-OXXO | CH-YG-BIB | CH-YG-BBVA | SER-BLEY | SER-HSBC |
+| Acciones / Edificios | OB-01 | <a href="https://yodesarrollo.github.io/amalaya-board/levantamiento/evidence/OB-02/25-avance-punto09.png"><img src="https://yodesarrollo.github.io/amalaya-board/levantamiento/evidence/OB-02/25-avance-punto09.png" alt="OB-02 · avance del modelo" width="160"></a><br/>OB-02<br/>[Inicio](https://yodesarrollo.github.io/amalaya-board/levantamiento/evidence/OB-02/07-inicio-seguimiento.png) · Avance · 09 | ISC-58 | EB-SW | EB-NW | EB-NE | EB-SE | PL-GA | CH-GA-OXXO | CH-YG-BIB | CH-YG-BBVA | SER-BLEY | SER-HSBC |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|
 | Alinear planta y huellas con cartografía visual | ✓ Terminado | ✓ Terminado | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional |
 | Ajustar calzada y encuentros de calles | ✓ Terminado | ✓ Terminado | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional |
@@ -14,8 +14,8 @@ Naranja: en proceso · Verde: terminado · Rojo: problema · Gris: pendiente o p
 | Empatar edificio, nombre y punto/foto 360 | ✓ Terminado | ✓ Terminado | ◐ Provisional | ◐ Provisional | · Pendiente | · Pendiente | · Pendiente | · Pendiente | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional |
 | Completar huella, volumen, altura y cubierta | ! Problema | ! Problema | · Pendiente | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente |
 | Ajustar forma de fachada a la referencia visual | ! Problema | ! Problema | · Pendiente | ◐ Provisional | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente |
-| Afinar materiales, vanos y detalles visibles | ✓ Terminado | • En proceso | · Pendiente | ◐ Provisional | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente |
-| Colocar equipamiento urbano documentado | ! Problema | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente |
+| Afinar materiales, vanos y detalles visibles | ✓ Terminado | ✓ Terminado | · Pendiente | ◐ Provisional | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente |
+| Colocar equipamiento urbano documentado | ! Problema | • En proceso | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente |
 | Comparar planta, bloque y peatón con rumbo coincidente | ✓ Terminado | ! Problema | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente |
 
 ## Nomenclatura
