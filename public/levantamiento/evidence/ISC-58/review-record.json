@@ -55,7 +55,7 @@
       "order": 3,
       "task": "sidewalkA",
       "criterion": "Ajustar banqueta del lado A",
-      "status": "blocked",
+      "status": "active",
       "result": "INCOMPLETO · lado A/sur del entorno P05: paso libre 0.931 m y transición 1.118 m de la calibración PH-01 existente; borde de lectura ±0.4 m y línea de fachada sur ±0.7 m según el registro previo. Se conserva pavimento/guarnición sin duplicarlos. No se usa aquí el perfil sur de 1.2 m de OB-W. La vista baja muestra paso estrecho y salientes; no acredita un itinerario accesible continuo. Hace falta comprobar continuidad/cotas del lado sur.",
       "evidence": [
         {
@@ -357,7 +357,6 @@
     ],
     "blockedTasks": [
       "plan",
-      "sidewalkA",
       "sidewalkB",
       "corners",
       "identity",
@@ -367,7 +366,8 @@
       "qa"
     ],
     "firstUnfinishedTask": "plan",
-    "notice": "Reviewing eleven actions did not complete them. A model capture after review is not completion of point 11."
+    "notice": "Reviewing eleven actions did not complete them. A model capture after review is not completion of point 11.",
+    "activeTask": "sidewalkA"
   },
   "corrections": [
     {
@@ -408,5 +408,14 @@
       "https://www.flickr.com/photos/iscsonora/48309284121/"
     ],
     "limits": "No verified front endpoints, metric X/Z, photo north or parcel attribution for the red frontage. Consultation images not copied into public assets."
-  }
+  },
+  "workLog": [
+    {
+      "at": "2026-10-03T15:11:58.248840+00:00",
+      "task": "sidewalkA",
+      "state": "active",
+      "scope": "Repair technical floor gaps and ownership against existing asphalt, plus visible pilaster collisions. Retain all physical measurement and continuity blockers.",
+      "modelChanged": false
+    }
+  ]
 }

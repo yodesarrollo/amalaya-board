@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-03T15:01:07.165239+00:00",
+  "updatedAt": "2026-10-03T15:11:58.248840+00:00",
   "refreshSeconds": 30,
   "live": {
-    "status": "blocked",
-    "phase": "ISC-58 · punto 01 pendiente de cierre",
-    "title": "ISC-58 incompleto · retomar desde el primer pendiente",
-    "detail": "La revisión anterior no terminó las once acciones. Solo 02 y 09 tienen cierre técnico del modelo; 01, 03, 04, 05, 06, 07, 08, 10 y 11 conservan impedimentos documentados. La captura muestra avance del modelo y no un cierre del punto 11. Retomar 01 y registrar cada resultado en orden. No se ha iniciado otro edificio.",
+    "status": "active",
+    "phase": "ISC-58 · 03 · banqueta sur en ejecución",
+    "title": "Corrigiendo base y colisiones de la banqueta sur",
+    "detail": "Punto 01 retomado: acceso #58 identificado visualmente; extremos y escala siguen bloqueados. Se retoma 03 para corregir juntas sin base, losetas que invaden asfalto y colisiones de salientes del modelo. El proceso 1–11 sigue incompleto; 04 conserva su impedimento explícito.",
     "activeBlockId": "OB-YG",
     "activeBuildingId": "ISC-58"
   },
@@ -83,7 +83,7 @@
         "max": 33
       },
       "estimateBasis": "3 frentes/estructuras conocidas más revisión compartida de la cuadra; frentes anónimos se agregan cuando se cuenten.",
-      "next": "ISC-58 · retomar el punto 01: vincular el frente físico y sus extremos con planta y panorama. Seguir después el orden 02–11, cerrando cada punto en verde o registrando su impedimento concreto en rojo. EB-SW sigue en cola; ISC-58 no está terminado.",
+      "next": "ISC-58 · corregir 03, documentar sus límites pendientes y continuar después con 04; el primer punto retomado (01) conserva bloqueo de extremos y escala. No iniciar otro edificio.",
       "sharedTasks": {
         "plan": "partial",
         "street": "partial",
@@ -566,7 +566,7 @@
           "tasks": {
             "plan": "blocked",
             "street": "done",
-            "sidewalkA": "blocked",
+            "sidewalkA": "active",
             "sidewalkB": "blocked",
             "corners": "blocked",
             "identity": "blocked",
