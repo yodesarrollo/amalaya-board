@@ -1,0 +1,631 @@
+{
+  "building": "ISC-58",
+  "phase": "03",
+  "worldSha256": "3b904653e02c3a6ade75d267cc55177f9bc314f3b3780ed354bf3a0cd9c72134",
+  "capturedAt": "2026-10-03T15:30:06.389Z",
+  "viewport": [
+    1280,
+    800
+  ],
+  "anchor": {
+    "point": "R-001-P05",
+    "lat": 29.0759512,
+    "lon": -110.9546564,
+    "x": 5.705639999683854,
+    "z": 18.17361000031319,
+    "azimuth": 355.06583118825637
+  },
+  "repairs": {
+    "southWalkRepair": {
+      "status": "technical-only",
+      "measured": false,
+      "confidence": "provisional",
+      "inheritedBounds": {
+        "minX": -11.6,
+        "maxX": 64.88,
+        "minZ": 22.542,
+        "maxZ": 23.473
+      },
+      "tileTopMeters": 0.1250000035762787,
+      "baseTopMeters": 0.12300000357627869,
+      "baseAreaMeters2": 70.22579199794308,
+      "clippedTiles": 4,
+      "pilasterColliders": 12,
+      "transitionGap": "retained; unresolved",
+      "accessibility": "not established",
+      "parcelAttribution": "neighbouring PH-01 model; not established as ISC-58 property"
+    }
+  },
+  "surfaceProbes": [
+    {
+      "label": "A/south camera tile center",
+      "x": 5.705639999683854,
+      "z": 23.0075,
+      "hits": [
+        {
+          "point": [
+            5.705639999683854,
+            0.1250000037252903,
+            23.0075
+          ],
+          "distance": 0.6749999962747097,
+          "object": "Banqueta PH-01 · una hilada dentro de 0.93 m de paso medido",
+          "ancestors": [
+            "Cuadra sur de Obregón · entre Juan Álvarez y Garmendia · masa provisional alineada a ortofoto/OSM",
+            "Amalaya · levantamiento actual provisional"
+          ],
+          "instanceId": 15
+        },
+        {
+          "point": [
+            5.705639999683854,
+            0.12300000339746475,
+            23.0075
+          ],
+          "distance": 0.6769999966025353,
+          "object": "PH-01 · banqueta A sur · base continua recortada por calzada · cota heredada provisional",
+          "ancestors": [
+            "Amalaya · levantamiento actual provisional",
+            ""
+          ],
+          "instanceId": null
+        }
+      ]
+    },
+    {
+      "label": "A/south front boundary",
+      "x": 5.70564,
+      "z": 22.6,
+      "hits": [
+        {
+          "point": [
+            5.70564,
+            0.12300000339746464,
+            22.6
+          ],
+          "distance": 0.6769999966025354,
+          "object": "PH-01 · banqueta A sur · base continua recortada por calzada · cota heredada provisional",
+          "ancestors": [
+            "Amalaya · levantamiento actual provisional",
+            ""
+          ],
+          "instanceId": null
+        }
+      ]
+    },
+    {
+      "label": "A/south rear boundary",
+      "x": 5.70564,
+      "z": 23.42,
+      "hits": [
+        {
+          "point": [
+            5.70564,
+            0.12300000339746486,
+            23.42
+          ],
+          "distance": 0.6769999966025352,
+          "object": "PH-01 · banqueta A sur · base continua recortada por calzada · cota heredada provisional",
+          "ancestors": [
+            "Amalaya · levantamiento actual provisional",
+            ""
+          ],
+          "instanceId": null
+        }
+      ]
+    },
+    {
+      "label": "A/south longitudinal joint",
+      "x": 6.62,
+      "z": 23.0075,
+      "hits": [
+        {
+          "point": [
+            6.62,
+            0.12300000339746475,
+            23.0075
+          ],
+          "distance": 0.6769999966025353,
+          "object": "PH-01 · banqueta A sur · base continua recortada por calzada · cota heredada provisional",
+          "ancestors": [
+            "Amalaya · levantamiento actual provisional",
+            ""
+          ],
+          "instanceId": null
+        }
+      ]
+    },
+    {
+      "label": "A/south west existing tile-asphalt overlap inspection",
+      "x": -11.05,
+      "z": 22.7,
+      "hits": [
+        {
+          "point": [
+            -11.05,
+            0.04100000113248825,
+            22.7
+          ],
+          "distance": 0.7589999988675118,
+          "object": "Superficies agrupadas para vista territorial",
+          "ancestors": [
+            "Amalaya · levantamiento actual provisional",
+            ""
+          ],
+          "instanceId": null
+        },
+        {
+          "point": [
+            -11.05,
+            0.03200000151991844,
+            22.7
+          ],
+          "distance": 0.7679999984800816,
+          "object": "Calle Obregón · perfil aéreo PH-01 6.71 m · eje corregido vs OSM 28788558",
+          "ancestors": [
+            "PH-01 ↔ PH-02 · calles, banquetas, arbolado, mobiliario y vehículos de alta densidad",
+            "Amalaya · levantamiento actual provisional"
+          ],
+          "instanceId": null
+        }
+      ]
+    },
+    {
+      "label": "B/north camera plaza tile center",
+      "x": 5.705639999683854,
+      "z": 11,
+      "hits": [
+        {
+          "point": [
+            5.705639999683853,
+            0.16100000217556965,
+            11.000000000000002
+          ],
+          "distance": 0.6389999978244304,
+          "object": "Pavimento peatonal · losa modular geométrica, sin imagen",
+          "ancestors": [
+            "Plaza Hidalgo · PH-01 · detalle geométrico de alta densidad · materiales procedurales",
+            "Amalaya · levantamiento actual provisional"
+          ],
+          "instanceId": 6508
+        }
+      ]
+    },
+    {
+      "label": "B/north existing plaza-asphalt overlap inspection",
+      "x": 50.63,
+      "z": 11.52,
+      "hits": [
+        {
+          "point": [
+            50.63000000000001,
+            0.1640000082552433,
+            11.519999999999998
+          ],
+          "distance": 0.6359999917447567,
+          "object": "Pavimento peatonal · losa modular geométrica, sin imagen",
+          "ancestors": [
+            "Plaza Hidalgo · PH-01 · detalle geométrico de alta densidad · materiales procedurales",
+            "Amalaya · levantamiento actual provisional"
+          ],
+          "instanceId": 6707
+        },
+        {
+          "point": [
+            50.63,
+            0.03200000151991855,
+            11.52
+          ],
+          "distance": 0.7679999984800815,
+          "object": "Calle Obregón · perfil aéreo PH-01 6.71 m · eje corregido vs OSM 28788558",
+          "ancestors": [
+            "PH-01 ↔ PH-02 · calles, banquetas, arbolado, mobiliario y vehículos de alta densidad",
+            "Amalaya · levantamiento actual provisional"
+          ],
+          "instanceId": null
+        }
+      ]
+    }
+  ],
+  "objects": [
+    {
+      "name": "PH-01 · Instituto Sonorense de Cultura · fachada patrimonial interpretada",
+      "study": {
+        "id": "ISC-58",
+        "source": "OSM way 664499024",
+        "inheritedHeightMeters": 7.45,
+        "heightConfidence": "provisional",
+        "redSpanMeters": 21,
+        "redSpanConfidence": "inherited modelling hypothesis",
+        "redPositionConfidence": "unmeasured",
+        "panoramaIds": [
+          "R-001-P05",
+          "R-001-P06"
+        ],
+        "redOpenings": 3,
+        "openingsConfidence": "visible morphology interpreted",
+        "paleFrontsConfidence": "baseline generic morphology; unverified",
+        "parcelCorrespondence": "unresolved"
+      }
+    },
+    {
+      "name": "OB-01 · cubierta del estacionamiento · piloto de detalle",
+      "study": {
+        "id": "OB-01",
+        "route": "R-001",
+        "waypoint": 2,
+        "frontStart": {
+          "lat": 29.075813172804676,
+          "lon": -110.95559192964741
+        },
+        "frontEnd": {
+          "lat": 29.075843831698624,
+          "lon": -110.95526725678737
+        },
+        "alignment": "Road-relative correction within existing position uncertainty; not a new measurement",
+        "depthMeters": 8.8,
+        "frontEavesMeters": 3.25,
+        "rearEavesMeters": 3.48,
+        "ridgeMeters": 4.05,
+        "wallMeters": 1.85,
+        "roofForm": "two slopes interpreted from the exposed western frame in P01",
+        "identity": {
+          "name": "Cubierta de estacionamiento",
+          "commercialName": null,
+          "location": "Obregón · frente sur · acceso desde Yáñez",
+          "imageDate": "not verified",
+          "observed": [
+            "white front wall",
+            "open ventilation band",
+            "exposed metal frame",
+            "western vehicle access"
+          ],
+          "notMeasured": [
+            "rear boundary",
+            "ridge height",
+            "support spacing",
+            "corner ramps"
+          ]
+        },
+        "confidence": "reference-based morphology; dimensions provisional",
+        "uncertainty": {
+          "positionMeters": 5,
+          "lengthMeters": 3,
+          "depthMeters": 2,
+          "heightMeters": 0.5
+        },
+        "references": [
+          "R-001/P01",
+          "R-001/P02"
+        ]
+      }
+    },
+    {
+      "name": "OB-02 · fachada gris con arcos y rejas · exterior interpretado",
+      "study": {
+        "id": "OB-02",
+        "route": "R-001",
+        "waypoint": 3,
+        "frontStart": {
+          "lat": 29.075843831698624,
+          "lon": -110.95526725678737
+        },
+        "frontEnd": {
+          "lat": 29.075859872722415,
+          "lon": -110.95509738487088
+        },
+        "depthMeters": 9,
+        "corniceMeters": 4.65,
+        "parapetMeters": 5.35,
+        "uncertainty": {
+          "positionMeters": 5,
+          "lengthMeters": 2,
+          "depthMeters": 3,
+          "heightMeters": 0.6
+        },
+        "references": [
+          "R-001/P03",
+          "R-001/P04"
+        ],
+        "footprintStatus": "estimated; no OSM polygon",
+        "roofStatus": "interpreted flat envelope; rear and roof plane unverified"
+      }
+    }
+  ],
+  "refinement": {
+    "version": "isc58-technical-1",
+    "confidence": "provisional",
+    "inheritedHeightMeters": 7.45,
+    "frontSpanMeters": 91.84443896506862,
+    "redSpanMeters": 21,
+    "redOpenings": 3,
+    "removedFrontTriangles": 2,
+    "colliderCells": 62,
+    "colliderAreaMeters2": 3631.9332781697804,
+    "photographic": false,
+    "southWalkRepair": {
+      "status": "technical-only",
+      "measured": false,
+      "confidence": "provisional",
+      "inheritedBounds": {
+        "minX": -11.6,
+        "maxX": 64.88,
+        "minZ": 22.542,
+        "maxZ": 23.473
+      },
+      "tileTopMeters": 0.1250000035762787,
+      "baseTopMeters": 0.12300000357627869,
+      "baseAreaMeters2": 70.22579199794308,
+      "clippedTiles": 4,
+      "pilasterColliders": 12,
+      "transitionGap": "retained; unresolved",
+      "accessibility": "not established",
+      "parcelAttribution": "neighbouring PH-01 model; not established as ISC-58 property"
+    }
+  },
+  "visualQuality": "pilot",
+  "colliders": 190,
+  "textureSize": 512,
+  "captures": [
+    {
+      "file": "09-banqueta-sur-reparada.png",
+      "view": "sidewalk-south",
+      "renderedRefinement": {
+        "version": "isc58-technical-1",
+        "confidence": "provisional",
+        "inheritedHeightMeters": 7.45,
+        "frontSpanMeters": 91.84443896506862,
+        "redSpanMeters": 21,
+        "redOpenings": 3,
+        "removedFrontTriangles": 2,
+        "colliderCells": 62,
+        "colliderAreaMeters2": 3631.9332781697804,
+        "photographic": false,
+        "southWalkRepair": {
+          "status": "technical-only",
+          "measured": false,
+          "confidence": "provisional",
+          "inheritedBounds": {
+            "minX": -11.6,
+            "maxX": 64.88,
+            "minZ": 22.542,
+            "maxZ": 23.473
+          },
+          "tileTopMeters": 0.1250000035762787,
+          "baseTopMeters": 0.12300000357627869,
+          "baseAreaMeters2": 70.22579199794308,
+          "clippedTiles": 4,
+          "pilasterColliders": 12,
+          "transitionGap": "retained; unresolved",
+          "accessibility": "not established",
+          "parcelAttribution": "neighbouring PH-01 model; not established as ISC-58 property"
+        }
+      },
+      "surface": {
+        "floor": {
+          "point": [
+            5.705639999683854,
+            0.1250000037252903,
+            23.0075
+          ],
+          "distance": 0.6749999962747097,
+          "object": "Banqueta PH-01 · una hilada dentro de 0.93 m de paso medido",
+          "ancestors": [
+            "Cuadra sur de Obregón · entre Juan Álvarez y Garmendia · masa provisional alineada a ortofoto/OSM",
+            "Amalaya · levantamiento actual provisional"
+          ],
+          "instanceId": 15
+        },
+        "eyeHeightAboveGround": 1.6,
+        "insideNavigationCollider": false,
+        "geographicSide": "south",
+        "source": "Vertical intersection against actual production world meshes, excluding neutral audit ground; y is model elevation, not a measured street height."
+      },
+      "cameraPosition": [
+        5.705639999683854,
+        1.7250000037252904,
+        23.0075
+      ],
+      "cameraTarget": [
+        29.616700318100335,
+        -0.2749999962747096,
+        20.943233919997574
+      ],
+      "cameraUp": [
+        0,
+        1,
+        0
+      ],
+      "quaternion": [
+        -0.030624111587473038,
+        -0.6754296203155278,
+        -0.028094210560864443,
+        0.736252475121722
+      ],
+      "measuredAzimuth": 85.06583118825642,
+      "planScreenUpAzimuth": null,
+      "pitchDegrees": -4.763641690726178,
+      "projection": {
+        "kind": "perspective",
+        "fov": 85,
+        "aspect": 1.6
+      },
+      "calls": 263,
+      "triangles": 342784,
+      "renderer": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+      "capturedAt": "2026-10-03T15:30:06.389Z",
+      "viewport": [
+        1280,
+        800
+      ],
+      "imageSha256": "e7e18cca3de84d02b268826b3f3438ff6aa95f9303efcb85414df17ef289903b"
+    },
+    {
+      "file": "10-avance-banqueta-sur.png",
+      "view": "progress",
+      "renderedRefinement": {
+        "version": "isc58-technical-1",
+        "confidence": "provisional",
+        "inheritedHeightMeters": 7.45,
+        "frontSpanMeters": 91.84443896506862,
+        "redSpanMeters": 21,
+        "redOpenings": 3,
+        "removedFrontTriangles": 2,
+        "colliderCells": 62,
+        "colliderAreaMeters2": 3631.9332781697804,
+        "photographic": false,
+        "southWalkRepair": {
+          "status": "not-in-subset",
+          "measured": false
+        }
+      },
+      "cameraId": "ISC-58-fixed-v1",
+      "source": "Production PH-01 detail subset with the same ISC runtime refinement. Omits StreetScene and neighbours, matching preserved baseline model scope; the old baseline audit labels/route annotation overlays are not repeated.",
+      "cameraPosition": [
+        -20,
+        135,
+        -17
+      ],
+      "cameraTarget": [
+        -20,
+        0,
+        -17
+      ],
+      "cameraUp": [
+        0,
+        0,
+        -1
+      ],
+      "quaternion": [
+        -0.7071067811865475,
+        0,
+        0,
+        0.7071067811865476
+      ],
+      "measuredAzimuth": null,
+      "planScreenUpAzimuth": 0,
+      "pitchDegrees": -90,
+      "projection": {
+        "kind": "orthographic",
+        "left": -88,
+        "right": 88,
+        "top": 55,
+        "bottom": -55
+      },
+      "calls": 981,
+      "triangles": 433091,
+      "renderer": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+      "capturedAt": "2026-10-03T15:30:06.389Z",
+      "viewport": [
+        1280,
+        800
+      ],
+      "imageSha256": "3e87afde273f8318e178033c36caec454886018dc1b5976ea736d563de614d6b",
+      "limits": "The fixed camera and original PH-01-only model scope are preserved. StreetScene and the opposite south frontage are excluded, so this header cannot prove the south sidewalk repair; the low south-side capture and raycast probes supply that evidence."
+    }
+  ],
+  "errors": [],
+  "source": "Existing production createWorld with original procedural materials plus neutral audit ground; local WebGL model render only.",
+  "limits": "P05 anchor is source WGS84; heading355.06583118825637 is the inspection direction normal to the source OSM frontage, not verified panorama north. Same horizontal anchor in plan/block/pedestrian; plan screen-up follows requested heading. Geometry does not establish measured building survey. Pavement elevations are procedural model values, not field measurements. Capture scope and camera declared for each view. Historical fa61d9 model captures remain untouched.",
+  "collisionValidation": {
+    "worldSha256": "3b904653e02c3a6ade75d267cc55177f9bc314f3b3780ed354bf3a0cd9c72134",
+    "verifiedAt": "2026-10-03T15:32:08.201Z",
+    "colliders": 190,
+    "southWalkRepair": {
+      "status": "technical-only",
+      "measured": false,
+      "confidence": "provisional",
+      "inheritedBounds": {
+        "minX": -11.6,
+        "maxX": 64.88,
+        "minZ": 22.542,
+        "maxZ": 23.473
+      },
+      "tileTopMeters": 0.1250000035762787,
+      "baseTopMeters": 0.12300000357627869,
+      "baseAreaMeters2": 70.22579199794308,
+      "clippedTiles": 4,
+      "pilasterColliders": 12,
+      "transitionGap": "retained; unresolved",
+      "accessibility": "not established",
+      "parcelAttribution": "neighbouring PH-01 model; not established as ISC-58 property"
+    },
+    "samples": [
+      {
+        "label": "A camera in free model floor",
+        "point": {
+          "x": 5.705639999683854,
+          "y": 1.7250000037252904,
+          "z": 23.0075
+        },
+        "expectedOccupied": false,
+        "hits": [],
+        "occupied": false
+      },
+      {
+        "label": "A provisional pilaster at station x7.52",
+        "point": {
+          "x": 7.52,
+          "y": 1.725,
+          "z": 23.193
+        },
+        "expectedOccupied": true,
+        "hits": [
+          {
+            "min": [
+              7.3499999982118585,
+              0.05000004768371591,
+              22.97300000119209
+            ],
+            "max": [
+              7.690000001788137,
+              7.649999952316284,
+              23.412999998807905
+            ]
+          }
+        ],
+        "occupied": true
+      },
+      {
+        "label": "A north of same pilaster",
+        "point": {
+          "x": 7.52,
+          "y": 1.725,
+          "z": 22.7
+        },
+        "expectedOccupied": false,
+        "hits": [],
+        "occupied": false
+      }
+    ],
+    "errors": []
+  },
+  "physicalPending": {
+    "measured": false,
+    "transitionGap": "retained; unresolved",
+    "accessibility": "not established"
+  },
+  "task": "sidewalkA",
+  "stageOrder": 3,
+  "recordKind": "new actual capture of this repair stage; no regenerated historical images",
+  "previousWorldSha256": "fa61d9c7aa4f4e651efd55d96bf6f2627b20c8919c06f8465a250d79a190ff39",
+  "runtimeModuleSha256": "ce9cf8dd71818e8fe4d26d7c68b4b93d5691851874f8fed1a62bef238fd4a8af",
+  "visorSha256": "57444eb49db8a49e8d986e292af159af9a224680ce42db6c4ffc74a99f58c78b",
+  "historicalEvidence": {
+    "manifest": "manifest.json",
+    "worldSha256": "fa61d9c7aa4f4e651efd55d96bf6f2627b20c8919c06f8465a250d79a190ff39",
+    "manifestSha256": "962e85664337402d432c4bdb095c8cb23fae3e321f0ba84206f807cc3e186adf",
+    "filesPreserved": [
+      "00-inicio-bloque.png",
+      "01-planta.png",
+      "02-bloque.png",
+      "03-peaton.png",
+      "04-fachada-detalle.png",
+      "05-visor-p05.png",
+      "06-avance-punto11.png",
+      "07-banqueta-sur.png",
+      "08-paseo-norte.png"
+    ]
+  },
+  "assembledAt": "2026-10-03T15:32:27.335Z"
+}

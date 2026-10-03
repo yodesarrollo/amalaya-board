@@ -1,6 +1,6 @@
 {
   "baseWorldSha256": "fb652de887d19482a4379645cb0db07091ba50b073e04eecd4b94855a6fdbd69",
-  "worldSha256": "fa61d9c7aa4f4e651efd55d96bf6f2627b20c8919c06f8465a250d79a190ff39",
+  "worldSha256": "3b904653e02c3a6ade75d267cc55177f9bc314f3b3780ed354bf3a0cd9c72134",
   "preservedRegions": {
     "src/obregon-ob01-frontage.ts": "77d5c1277f1035a8574a13ee1fe4e87f3f604208bb98e8af99240287d2d290ec",
     "src/obregon-ob01-corners.ts": "7158207bb357eb2414a29a0586d0a8630957c8340bea4d697a22544562224653",
@@ -10,9 +10,9 @@
   },
   "patchVersion": "isc58-technical-1",
   "baseVisorSha256": "fc34a1ebbca16fe0e4694de11e30f8c1ecdccf9f49cae8578fb07caf41d4704a",
-  "visorSha256": "f6f137cab022f5cd5722a41de6f012bd694746edc8e976a4f3752945dc249a1b",
-  "runtimeModuleSha256": "aa19477c64ed55e8e5832da886d5f8a051b036ab0e52248c44299f737590ff8c",
-  "editableSourceSha256": "0ee4121d3ab184336ea80f76f529f0b89021cb4088f56a6922e6fa3f886ad542",
+  "visorSha256": "57444eb49db8a49e8d986e292af159af9a224680ce42db6c4ffc74a99f58c78b",
+  "runtimeModuleSha256": "ce9cf8dd71818e8fe4d26d7c68b4b93d5691851874f8fed1a62bef238fd4a8af",
+  "editableSourceSha256": "3747a40cad4f848c347bca2d36b87517d0d3d45a3d08e4c497dec933a545025f",
   "generatedFrom": "private editable visual extension; esbuild ESM, no source maps",
   "baseSourceStatus": "published bundle retained; private source not recovered"
 }

@@ -3,8 +3,8 @@
   "reviewedAt": "2026-10-03T11:02:01.322983+00:00",
   "recordKind": "ordered evidence review with appended status correction; incomplete process, not a per-step completion history",
   "baseBoardCommit": "f12c7c2",
-  "worldSha256": "fa61d9c7aa4f4e651efd55d96bf6f2627b20c8919c06f8465a250d79a190ff39",
-  "runtimeModuleSha256": "aa19477c64ed55e8e5832da886d5f8a051b036ab0e52248c44299f737590ff8c",
+  "worldSha256": "3b904653e02c3a6ade75d267cc55177f9bc314f3b3780ed354bf3a0cd9c72134",
+  "runtimeModuleSha256": "ce9cf8dd71818e8fe4d26d7c68b4b93d5691851874f8fed1a62bef238fd4a8af",
   "privateSourceStatus": "Full Hidalgo3D a029964 unavailable; editable continuation extension preserved privately. September source not used to rebuild this release.",
   "guidanceUrl": "https://drive.google.com/file/d/1n563KsI5gP3n6s-rLtqgQJEhRfTno1D7/view",
   "actions": [
@@ -55,8 +55,8 @@
       "order": 3,
       "task": "sidewalkA",
       "criterion": "Ajustar banqueta del lado A",
-      "status": "active",
-      "result": "INCOMPLETO · lado A/sur del entorno P05: paso libre 0.931 m y transición 1.118 m de la calibración PH-01 existente; borde de lectura ±0.4 m y línea de fachada sur ±0.7 m según el registro previo. Se conserva pavimento/guarnición sin duplicarlos. No se usa aquí el perfil sur de 1.2 m de OB-W. La vista baja muestra paso estrecho y salientes; no acredita un itinerario accesible continuo. Hace falta comprobar continuidad/cotas del lado sur.",
+      "status": "blocked",
+      "result": "REPARACIÓN TÉCNICA 03 · base continua bajo juntas y bordes a cota heredada; cuatro losetas recortadas por el mesh real de calzada y doce colliders de pilastras visibles. Planta/perfil/calzada conservados, sin ensanchar el paso. Rayos y recortes comprobados. BLOQUEADO el cierre: el extremo oeste sigue estrecho/impasable para el avatar; la transición queda desconectada y las cotas físicas siguen sin medir.",
       "evidence": [
         {
           "title": "ISC-58 · planta del modelo provisional · P05 · 355.065831°",
@@ -69,19 +69,23 @@
         {
           "title": "03 · banqueta sur · cámara sobre loseta real del modelo",
           "url": "levantamiento/evidence/ISC-58/07-banqueta-sur.png"
+        },
+        {
+          "title": "03 · reparación técnica de base y recorte de losetas · paso sur todavía bloqueado",
+          "url": "levantamiento/evidence/ISC-58/09-banqueta-sur-reparada.png"
         }
       ],
       "issue": {
         "title": "Falta verificar cotas y continuidad de la banqueta sur",
-        "detail": "Problema: la base PH-01 y la vista baja muestran paso estrecho y salientes, sin una comprobación completa de ancho útil, cotas, accesos y continuidad del lado sur. Impacto: el punto 03 no está cerrado. Para resolver: identificar los límites del frente y documentar una sección o croquis del lado sur con cotas y obstáculos, fuente, fecha y margen de error. Después, ajustar el perfil y comprobar el recorrido, apoyos y colisiones con planta y vista peatonal. La revisión del modelo realizada se conserva como avance, no como terminación."
+        "detail": "Problema: aun con la base y colisiones reparadas, el extremo oeste del paso heredado queda estrecho/impasable; la banda de transición mantiene separaciones con el asfalto. No se acredita continuidad completa ni cotas de campo. Impacto: 03 sigue incompleto. Para resolver: documentar el límite de fachada y una sección del lado sur con ancho útil, cotas, accesos y obstáculos, fuente, fecha y margen de error; después ajustar transición y extremos sin ensanchar a ciegas y comprobar el recorrido con planta, peatón y colisiones. La reparación técnica ya publicada tiene capturas y pruebas propias."
       }
     },
     {
       "order": 4,
       "task": "sidewalkB",
       "criterion": "Ajustar banqueta del lado B",
-      "status": "blocked",
-      "result": "INCOMPLETO · lado B/norte del entorno P05: paseo de plaza 19.181 m y transición 1.118 m del perfil PH-01 existente, no una banqueta uniforme medida en el frente ISC. El collider recortado libera exteriores que ocupaba el rectángulo anterior. No se traslada aquí el perfil norte de 2.0 m de OB-W; cotas físicas pendientes. La vista baja muestra el paseo de plaza y su superficie del modelo; límites del frente ISC y cotas de campo aún provisionales.",
+      "status": "active",
+      "result": "EN EJECUCIÓN 04 · corregir base bajo juntas y pavimento que cubre calzada, conservando el perfil y cotas heredados del paseo de plaza. No se copiará A ni se declarará el paseo una banqueta ISC uniforme medida. Límites, continuidad física y cotas siguen pendientes.",
       "evidence": [
         {
           "title": "ISC-58 · planta del modelo provisional · P05 · 355.065831°",
@@ -98,7 +102,7 @@
       ],
       "issue": {
         "title": "Falta delimitar y verificar el paseo del lado norte",
-        "detail": "Problema: la base representa el paseo de plaza en P05, pero no delimita una banqueta uniforme del frente ISC ni acredita sus cotas, obstáculos y continuidad al tramo vecino. Impacto: el punto 04 no está cerrado y no puede copiarse la sección sur. Para resolver: identificar el tramo norte sobre la planta y documentar una sección o croquis con límites, cotas y obstáculos, fuente, fecha y margen de error. Después, ajustar este lado de forma independiente y comprobar el recorrido y las colisiones con planta y vista peatonal."
+        "detail": "Problema: falta base continua bajo juntas y parte del pavimento norte invade el mesh de calzada; el paseo de plaza tampoco tiene límites/cotas físicas verificados del frente ISC. Impacto: 04 sigue incompleto. Se ejecuta primero la reparación geométrica dentro del pavimento heredado, recortado por el asfalto actual, sin trasladar el perfil sur. Para su cierre físico: sección o croquis ubicado del lado norte, con límites, cotas y obstáculos, fuente, fecha y margen de error; después verificar recorrido y encuentros."
       }
     },
     {
@@ -357,7 +361,7 @@
     ],
     "blockedTasks": [
       "plan",
-      "sidewalkB",
+      "sidewalkA",
       "corners",
       "identity",
       "volume",
@@ -367,7 +371,7 @@
     ],
     "firstUnfinishedTask": "plan",
     "notice": "Reviewing eleven actions did not complete them. A model capture after review is not completion of point 11.",
-    "activeTask": "sidewalkA"
+    "activeTask": "sidewalkB"
   },
   "corrections": [
     {
@@ -415,6 +419,22 @@
       "task": "sidewalkA",
       "state": "active",
       "scope": "Repair technical floor gaps and ownership against existing asphalt, plus visible pilaster collisions. Retain all physical measurement and continuity blockers.",
+      "modelChanged": false
+    },
+    {
+      "at": "2026-10-03T15:35:21.665405+00:00",
+      "task": "sidewalkA",
+      "state": "blocked",
+      "scope": "Technical base, asphalt clipping and12pilaster collisions repaired and tested; west narrowing, disconnected transition and physical survey remain blocked.",
+      "worldSha256": "3b904653e02c3a6ade75d267cc55177f9bc314f3b3780ed354bf3a0cd9c72134",
+      "manifest": "sidewalkA-repair-manifest.json",
+      "modelChanged": true
+    },
+    {
+      "at": "2026-10-03T15:35:21.665405+00:00",
+      "task": "sidewalkB",
+      "state": "active",
+      "scope": "Repair inherited northern plaza paving: substrate and asphalt ownership; preserve physical survey blockers.",
       "modelChanged": false
     }
   ]

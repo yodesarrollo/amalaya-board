@@ -6,6 +6,7 @@ const root='public/levantamiento'
 const approved=new Set(['amalaya-observations.json','amalaya-routes.json','cerro-elevation.json','osm-context.json','osm-plaza-hidalgo.json','sector-survey.json'])
 const ob01EvidenceFiles=new Set(['01-planta.png','02-calzada.png','03-banqueta-sur.png','04-banqueta-norte.png','05-esquinas.png','06-identidad.png','07-volumen.png','08-fachada.png','09-materiales.png','10-equipamiento.png','11a-planta.png','11b-bloque.png','11c-peaton.png','manifest.json'])
 const isc58EvidenceFiles=new Set(['00-inicio-webgl-raw.png','00-inicio-seguimiento.png','plan-manifest.json','plan-record.json','progress-baseline.json','06-avance-punto11.png','07-banqueta-sur.png','08-paseo-norte.png','00-inicio-bloque.png','01-planta.png','02-bloque.png','03-peaton.png','04-fachada-detalle.png','05-visor-p05.png','manifest.json','identity-plan-record.json','review-record.json'])
+for(const file of ['09-banqueta-sur-reparada.png','10-avance-banqueta-sur.png','11-paseo-norte-reparado.png','12-avance-paseo-norte.png','sidewalkA-repair-manifest.json','sidewalkB-repair-manifest.json'])isc58EvidenceFiles.add(file)
 const ob02EvidenceFiles=new Set(['01-fachada-p03.png','02-conjunto-p03.png','03-edificio-aislado-p03.png','04-retorno-oblicuo-p04.png','manifest.json','05-planta-ob02.png','plan-manifest.json','06-calzada-ob02.png','street-manifest.json','07-inicio-seguimiento.png','progress-baseline.json','08-avance-punto03.png','09-banqueta-sur-planta.png','10-banqueta-sur-peaton.png','sidewalkA-manifest.json','11-avance-punto04.png','12-banqueta-norte-planta.png','13-banqueta-norte-peaton.png','sidewalkB-manifest.json','14-avance-punto05.png','15-guarniciones-planta.png','16-guarnicion-detalle.png','corners-manifest.json','17-avance-punto06.png','identity-manifest.json','identity-record.json'])
 for(const file of ['18-avance-punto07.png','19-envolvente-antes.png','20-envolvente-despues.png','21-cubierta-planta.png','volume-before-manifest.json','volume-manifest.json'])ob02EvidenceFiles.add(file)
 for(const file of ['22-avance-punto08.png','23-fachada-siete-vanos.png','24-coronamiento.png','facade-manifest.json','facade-record.json'])ob02EvidenceFiles.add(file)
@@ -303,10 +304,10 @@ assert(ob02Tracking.tasks.qa==='blocked'&&ob02Tracking.issues.qa?.detail,'La ori
 assert(ob02Tracking.visualProgress.current.url===`levantamiento/evidence/OB-02/${progressQ.file}`&&ob02Tracking.visualProgress.current.worldSha256===ob02CheckpointHash,'La cabecera OB-02 conserva Avance 11 de su checkpoint.')
 console.log('OB-02: planta/bloque/peatón desde P03, captura limpia y consulta original reproducible; norte de panorama pendiente.')
 
-// ISC-58: new evidence belongs to its own model and camera checkpoint.
+// ISC-58: the original review remains an immutable historical checkpoint.
 const isc=JSON.parse(await readFile(`${root}/evidence/ISC-58/manifest.json`,'utf8'))
 assert.equal(isc.building,'ISC-58')
-assert.equal(isc.worldSha256,currentWorldHash)
+assert.equal(isc.worldSha256,'fa61d9c7aa4f4e651efd55d96bf6f2627b20c8919c06f8465a250d79a190ff39')
 assert.deepEqual(isc.errors,[],'La captura ISC-58 debe terminar sin errores de ejecución.')
 assert.equal(isc.anchor.point,'R-001-P05')
 assert.equal(isc.anchor.lat,29.0759512)
@@ -324,9 +325,28 @@ for(const c of isc.captures){
  assert.equal(sha256(await readFile(`${root}/evidence/ISC-58/${c.file}`)),c.imageSha256,'Cada captura debe conservar sus bytes auditados.')
  assert(c.triangles>0&&c.calls>0&&c.renderer.includes('WebGL 2.0'))
 }
-assert.equal(isc.runtimeModuleSha256,provenance.runtimeModuleSha256)
-assert.equal(isc.visorSha256,provenance.visorSha256)
-for(const file of [...isc58EvidenceFiles].filter(f=>f.endsWith('.png'))){
+assert.equal(isc.runtimeModuleSha256,'aa19477c64ed55e8e5832da886d5f8a051b036ab0e52248c44299f737590ff8c')
+assert.equal(isc.visorSha256,'f6f137cab022f5cd5722a41de6f012bd694746edc8e976a4f3752945dc249a1b')
+const iscRepairs=[]
+for(const [task,file]of [['sidewalkA','sidewalkA-repair-manifest.json'],['sidewalkB','sidewalkB-repair-manifest.json']]){
+ let repair
+ try{repair=JSON.parse(await readFile(`${root}/evidence/ISC-58/${file}`,'utf8'))}catch(error){if(error.code==='ENOENT')continue;throw error}
+ assert.equal(repair.building,'ISC-58')
+ assert.equal(repair.task,task)
+ assert.deepEqual(repair.errors,[])
+ assert.equal(repair.captures.length,2,'Cada reparación tiene vista baja y avance propios.')
+ assert(repair.captures.some(c=>c.view==='progress'))
+ for(const c of repair.captures){
+  assert.equal(sha256(await readFile(`${root}/evidence/ISC-58/${c.file}`)),c.imageSha256)
+  assert(c.triangles>0&&c.calls>0&&c.renderer.includes('WebGL 2.0'))
+ }
+ iscRepairs.push(repair)
+}
+const iscLatest=iscRepairs.at(-1)||isc
+assert.equal(iscLatest.worldSha256,currentWorldHash,'El avance actual exige capturas nuevas del modelo actual.')
+assert.equal(iscLatest.runtimeModuleSha256,provenance.runtimeModuleSha256)
+assert.equal(iscLatest.visorSha256,provenance.visorSha256)
+for(const file of (await readdir(`${root}/evidence/ISC-58`)).filter(f=>f.endsWith('.png'))){
   const bytes=await readFile(`${root}/evidence/ISC-58/${file}`)
   assert(bytes.subarray(0,8).equals(Buffer.from([137,80,78,71,13,10,26,10])))
   assert.equal(bytes.readUInt32BE(16),1280)
@@ -377,7 +397,7 @@ assert(iscHistoricalTracking?.tasks.plan==='blocked'&&iscHistoricalTracking.issu
 assert(iscHistoricalTracking.visualProgress?.cameraId===iscBaseline.cameraId&&iscHistoricalTracking.visualProgress.baseline.url===`levantamiento/evidence/ISC-58/00-inicio-webgl-raw.png`,'La cabecera pública debe mostrar el estado actual de ISC-58.')
 console.log('ISC-58: punto 01 con frame WebGL 2.0, cámara fija, fuente OSM y bloqueo de frente documentado.')
 
-const iscProgress=isc.captures.find(c=>c.view==='progress')
+const iscProgress=iscLatest.captures.find(c=>c.view==='progress')
 assert.equal(iscProgress.cameraId,iscRaw.cameraId)
 for(const field of ['cameraPosition','cameraTarget','cameraUp','projection','viewport'])assert.deepEqual(iscProgress[field],iscRaw[field],`La cabecera ISC conserva cámara fija: ${field}`)
 assert.equal(iscTracking.visualProgress.current.url,`levantamiento/evidence/ISC-58/${iscProgress.file}`)

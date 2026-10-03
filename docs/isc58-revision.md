@@ -66,6 +66,18 @@ Las imágenes se consultaron sin copiarlas al paquete público ni usarlas como
 texturas. La fecha declarada y EXIF de Commons discrepan; Flickr no aporta GPS
 ni rumbo útil y su cuenta no se trató como fuente oficial certificada.
 
+Al retomar 03 se reparó la base bajo juntas y bordes del paso sur heredado,
+se recortaron cuatro losetas que invadían el mesh actual de calzada y se añadieron
+colliders para las doce pilastras visibles. Las pruebas usan rayos antes/después,
+intersección independiente contra triángulos de asfalto y comprobación de los
+sólidos visibles. No cambiaron cotas, perfil vial, transición ni OB-01/OB-02.
+[Captura 09](../public/levantamiento/evidence/ISC-58/09-banqueta-sur-reparada.png)
+y [manifiesto 03](../public/levantamiento/evidence/ISC-58/sidewalkA-repair-manifest.json)
+registran este checkpoint propio. El avance de cabecera conserva el ámbito PH-01
+aislado del inicio y no incluye la banqueta sur; su evidencia directa es 09.
+03 sigue rojo por estrechamiento occidental, transición desconectada y falta de
+cotas físicas. Se activa 04 únicamente después de registrar este resultado.
+
 ## Revisión de las once acciones
 
 | Orden | Acción | Trabajo y límite |
