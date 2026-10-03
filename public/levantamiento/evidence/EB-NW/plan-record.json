@@ -1,0 +1,71 @@
+{
+  "id": "EB-NW",
+  "task": "plan",
+  "confidence": "visual-approximation",
+  "before": [
+    {
+      "x": 63.74594012438216,
+      "z": -35.76437483338057
+    },
+    {
+      "x": 86.69635789204777,
+      "z": -37.27378673528763
+    },
+    {
+      "x": 89.55596121152676,
+      "z": -22.548887114060165
+    },
+    {
+      "x": 66.60554344386115,
+      "z": -21.039475212153107
+    }
+  ],
+  "after": [
+    {
+      "x": 64.84212000011098,
+      "z": -37.722999999754414
+    },
+    {
+      "x": 80.00532000050384,
+      "z": -38.72154999999253
+    },
+    {
+      "x": 82.43531999989386,
+      "z": -23.854250000082367
+    },
+    {
+      "x": 67.272119999501,
+      "z": -22.855699999844248
+    }
+  ],
+  "widthMeters": 15.196043444097207,
+  "depthMeters": 15.064577965690388,
+  "uncertaintyMeters": 1,
+  "depthInsetMeters": 0,
+  "insetReason": null,
+  "inheritedHeightMeters": 8.2,
+  "addedColliderCells": 62,
+  "scope": "envelope of visible corner body; adjoining rear wings and courtyard boundaries unresolved",
+  "source": "Google Maps satellite: manually selected roof corners; ruler frontage 15.15 m; prior 15.64 x 15.77 m within +/-1 m",
+  "consultedAt": "2026-10-03",
+  "round": 1,
+  "state": "done",
+  "criterion": "Approximate visual/cartographic plan accepted for this stage; no requirement for cadastral accuracy",
+  "checkedAt": "2026-10-03T22:03:18.690Z",
+  "worldSha256": "2b84f6601ee387c40122cc2f5b10be71b03e3444de679b23eb341c5fed1b2a70",
+  "renderMethod": "Software projection of the current compiled model vertices; not WebGL capture",
+  "capture": "01-planta-geometria.png",
+  "captureSha256": "afd27dcde35b67219d632fd5151d4e42a153be4d83a09d2bc066a73fcf06bf30",
+  "checks": [
+    "Shape applied with the exact compiled runtime constructors",
+    "Navigation cells inside the changed footprint",
+    "Inherited vertical coordinates preserved",
+    "Adjacent owners, roads, materials and earlier refinements preserved",
+    "New hook reversible in both world and viewer"
+  ],
+  "limits": "Envolvente aproximada del cuerpo visible; anexos, patios y contorno en suelo siguen por precisar en el levantamiento completo.",
+  "capturePixels": [
+    1280,
+    760
+  ]
+}

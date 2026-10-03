@@ -1,0 +1,71 @@
+{
+  "id": "EB-SE",
+  "task": "plan",
+  "confidence": "visual-approximation",
+  "before": [
+    {
+      "x": 181.18369393792284,
+      "z": 1.392317116908944
+    },
+    {
+      "x": 157.24687075447167,
+      "z": 3.132574535854489
+    },
+    {
+      "x": 155.887431702582,
+      "z": -11.805695961903856
+    },
+    {
+      "x": 179.82425488603317,
+      "z": -13.5459533808494
+    }
+  ],
+  "after": [
+    {
+      "x": 181.9681199999934,
+      "z": 1.664250000134082
+    },
+    {
+      "x": 154.65491999988785,
+      "z": 2.551850000258149
+    },
+    {
+      "x": 152.6137199995162,
+      "z": -23.077599999678178
+    },
+    {
+      "x": 179.92691999962176,
+      "z": -23.965199999802245
+    }
+  ],
+  "widthMeters": 27.327618410794347,
+  "depthMeters": 25.710604908106568,
+  "uncertaintyMeters": 1.5,
+  "depthInsetMeters": 0,
+  "insetReason": null,
+  "inheritedHeightMeters": 8.8,
+  "addedColliderCells": 105,
+  "scope": "interpreted envelope of the visible Obregon corner body; adjacent western roof excluded",
+  "source": "Google Maps satellite: three manually selected roof corners, local coordinate conversion",
+  "consultedAt": "2026-10-03",
+  "round": 1,
+  "state": "done",
+  "criterion": "Approximate visual/cartographic plan accepted for this stage; no requirement for cadastral accuracy",
+  "checkedAt": "2026-10-03T22:03:18.690Z",
+  "worldSha256": "2b84f6601ee387c40122cc2f5b10be71b03e3444de679b23eb341c5fed1b2a70",
+  "renderMethod": "Software projection of the current compiled model vertices; not WebGL capture",
+  "capture": "01-planta-geometria.png",
+  "captureSha256": "796d6ef29527dbe617229b20e5ba1fc3b3ce62bc911fc5b8822f1e7bc31ca558",
+  "checks": [
+    "Shape applied with the exact compiled runtime constructors",
+    "Navigation cells inside the changed footprint",
+    "Inherited vertical coordinates preserved",
+    "Adjacent owners, roads, materials and earlier refinements preserved",
+    "New hook reversible in both world and viewer"
+  ],
+  "limits": "Envolvente aproximada del cuerpo visible; anexos, patios y contorno en suelo siguen por precisar en el levantamiento completo.",
+  "capturePixels": [
+    1280,
+    760
+  ]
+}

@@ -1,0 +1,129 @@
+{
+  "schemaVersion": 1,
+  "mode": "phase-rounds",
+  "round": 1,
+  "task": "plan",
+  "updatedAt": "2026-10-03T22:03:18.690Z",
+  "state": "incomplete",
+  "buildingOrder": [
+    "OB-01",
+    "OB-02",
+    "ISC-58",
+    "EB-SW",
+    "EB-NW",
+    "EB-NE",
+    "EB-SE",
+    "CH-GA-OXXO",
+    "CH-YG-BIB",
+    "CH-YG-BBVA",
+    "SER-BLEY",
+    "SER-HSBC"
+  ],
+  "results": [
+    {
+      "building": "OB-01",
+      "state": "done",
+      "result": "Cierre previo de planta conservado, con evidencia histórica. No se rehace un frente ya revisado ni se reasigna su checkpoint.",
+      "at": "2026-10-03T22:03:18.690Z",
+      "operation": "retain"
+    },
+    {
+      "building": "OB-02",
+      "state": "done",
+      "result": "Cierre previo de planta conservado, con evidencia histórica. No se rehace un frente ya revisado ni se reasigna su checkpoint.",
+      "at": "2026-10-03T22:03:18.690Z",
+      "operation": "retain"
+    },
+    {
+      "building": "ISC-58",
+      "state": "blocked",
+      "result": "La huella OSM del conjunto está modelada, pero falta separar el contorno físico que corresponde al frente beige #58 de las masas contiguas. Las medidas aproximadas son válidas; el impedimento es asignar el contorno correcto, no disponer de un plano catastral.",
+      "at": "2026-10-03T22:03:18.690Z"
+    },
+    {
+      "building": "EB-SW",
+      "state": "blocked",
+      "result": "Los frentes azul y rojo están identificados. Sus cuerpos posteriores y cubiertas contiguas aún no se pueden asignar de forma única a Barra Hidalgo y Club Obregón; hace falta resolver esa división para modificar sus plantas.",
+      "at": "2026-10-03T22:03:18.690Z"
+    },
+    {
+      "building": "EB-NW",
+      "state": "done",
+      "result": "PLANTA APLICADA · 15.20 × 15.06 m, margen ±1 m. Ubicación y orientación incorporadas al modelo vigente; colisiones adaptadas y vecinos comprobados. Envolvente aproximada del cuerpo visible; anexos, patios y contorno en suelo siguen por precisar en el levantamiento completo.",
+      "evidence": "levantamiento/evidence/EB-NW/plan-record.json",
+      "at": "2026-10-03T22:03:18.690Z"
+    },
+    {
+      "building": "EB-NE",
+      "state": "done",
+      "result": "PLANTA APLICADA · 24.07 × 16.83 m, margen ±1.5 m. Ubicación y orientación incorporadas al modelo vigente; colisiones adaptadas y vecinos comprobados. Envolvente aproximada del cuerpo visible; anexos, patios y contorno en suelo siguen por precisar en el levantamiento completo. Fondo ajustado 0,60 m dentro del margen visual para separar EB-NE y EB-SE.",
+      "evidence": "levantamiento/evidence/EB-NE/plan-record.json",
+      "at": "2026-10-03T22:03:18.690Z"
+    },
+    {
+      "building": "EB-SE",
+      "state": "done",
+      "result": "PLANTA APLICADA · 27.33 × 25.71 m, margen ±1.5 m. Ubicación y orientación incorporadas al modelo vigente; colisiones adaptadas y vecinos comprobados. Envolvente aproximada del cuerpo visible; anexos, patios y contorno en suelo siguen por precisar en el levantamiento completo.",
+      "evidence": "levantamiento/evidence/EB-SE/plan-record.json",
+      "at": "2026-10-03T22:03:18.690Z"
+    },
+    {
+      "building": "CH-GA-OXXO",
+      "state": "done",
+      "result": "PLANTA CARTOGRÁFICA REVISADA · huella OSM 499760720 ya presente en el modelo, cotejada con el contexto aéreo. Se conserva como aproximación visual (±3 m); la correspondencia comercial, fachadas, alturas y entradas mantienen sus estados propios.",
+      "at": "2026-10-03T22:03:18.690Z",
+      "operation": "retain",
+      "osmWayId": 499760720
+    },
+    {
+      "building": "CH-YG-BIB",
+      "state": "done",
+      "result": "PLANTA CARTOGRÁFICA REVISADA · huella OSM 1533334038 ya presente en el modelo, cotejada con el contexto aéreo. Se conserva como aproximación visual (±3 m); la correspondencia comercial, fachadas, alturas y entradas mantienen sus estados propios.",
+      "at": "2026-10-03T22:03:18.690Z",
+      "operation": "retain",
+      "osmWayId": 1533334038
+    },
+    {
+      "building": "CH-YG-BBVA",
+      "state": "done",
+      "result": "PLANTA APLICADA · 42.13 × 39.58 m, margen ±3 m. Ubicación y orientación incorporadas al modelo vigente; colisiones adaptadas y vecinos comprobados. Huella OSM conservada; ocupación comercial y altura sin confirmar.",
+      "evidence": "levantamiento/evidence/CH-YG-BBVA/plan-record.json",
+      "at": "2026-10-03T22:03:18.690Z"
+    },
+    {
+      "building": "SER-BLEY",
+      "state": "blocked",
+      "result": "La referencia patrimonial ubica el edificio en Serdán/Garmendia, pero falta vincular el contorno visible a un cuerpo concreto del modelo actual. No hay una huella individual de Bley identificada en los datos aprobados.",
+      "at": "2026-10-03T22:03:18.690Z"
+    },
+    {
+      "building": "SER-HSBC",
+      "state": "done",
+      "result": "PLANTA CARTOGRÁFICA REVISADA · huella OSM 499759728 ya presente en el modelo, cotejada con el contexto aéreo. Se conserva como aproximación visual (±3 m); la correspondencia comercial, fachadas, alturas y entradas mantienen sus estados propios.",
+      "at": "2026-10-03T22:03:18.690Z",
+      "operation": "retain",
+      "osmWayId": 499759728
+    }
+  ],
+  "closedBuildings": [
+    "OB-01",
+    "OB-02",
+    "EB-NW",
+    "EB-NE",
+    "EB-SE",
+    "CH-GA-OXXO",
+    "CH-YG-BIB",
+    "CH-YG-BBVA",
+    "SER-HSBC"
+  ],
+  "unresolvedBuildings": [
+    "ISC-58",
+    "EB-SW",
+    "SER-BLEY"
+  ],
+  "nextRound": 2,
+  "readyForNextRound": false,
+  "criterion": "Ubicación, orientación y contorno/envolvente aproximados, con fuente, unidades, margen y comprobación en el modelo. Medir, editar y verificar un edificio antes de medir el siguiente.",
+  "instructions": "Terminar la misma acción en todos los edificios. Compartir criterios y revisar encuentros entre vecinos. No avanzar a la siguiente ronda mientras queden contornos sin resolver.",
+  "registeredAt": "2026-10-03T22:03:18.690Z"
+}

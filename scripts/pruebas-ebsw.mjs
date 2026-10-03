@@ -1,9 +1,10 @@
+import {removePlanRoundHook} from './preparar-plantas.mjs'
 import assert from 'node:assert/strict'
 import {readFile} from 'node:fs/promises'
 import {applyEbSw} from '../public/levantamiento/ebsw-refinement.js'
 import {removeEbSwHook,refineEbSw,EB_BASE_WORLD,EB_BASE_VISOR} from './preparar-ebsw.mjs'
 import {removeIsc58Hook,sha256} from './preparar-isc58.mjs'
-const source=await readFile('public/levantamiento/world.js','utf8'),visor=await readFile('public/levantamiento/visor/assets/index-RoPA5goG.js','utf8'),moduleHash=sha256(await readFile('public/levantamiento/ebsw-refinement.js'))
+const source=removePlanRoundHook(await readFile('public/levantamiento/world.js','utf8')),visor=removePlanRoundHook(await readFile('public/levantamiento/visor/assets/index-RoPA5goG.js','utf8'),'visor'),moduleHash=sha256(await readFile('public/levantamiento/ebsw-refinement.js'))
 const p=JSON.parse(await readFile('public/levantamiento/ebsw-provenance.json','utf8')),stage=Number(process.argv[2]||p.stage)
 assert.equal(sha256(removeEbSwHook(source)),EB_BASE_WORLD);assert.equal(sha256(removeEbSwHook(visor,'visor')),EB_BASE_VISOR)
 assert.equal(source,refineEbSw(source,'world',moduleHash,p.stage));assert.equal(visor,refineEbSw(visor,'visor',moduleHash,p.stage))

@@ -1,3 +1,4 @@
+import {removePlanRoundHook} from './preparar-plantas.mjs'
 import {removeEbSwHook,refineEbSw,EB_BASE_WORLD,EB_BASE_VISOR} from './preparar-ebsw.mjs'
 import { readdir, readFile, stat } from 'node:fs/promises'
 import assert from 'node:assert/strict'
@@ -19,8 +20,8 @@ async function check(dir){
   for(const item of await readdir(dir,{withFileTypes:true})){
     const path=`${dir}/${item.name}`
     assert(!item.isSymbolicLink(),`No se permiten enlaces: ${path}`)
-    if(item.isDirectory()){const allowed=['data','visor','assets','fonts','evidence'].includes(item.name)||(dir===`${root}/evidence`&&['OB-01','OB-02','ISC-58','EB-SW','EB-NW'].includes(item.name));assert(allowed,`Carpeta inesperada: ${path}`);await check(path);continue}
-    if(path.includes('/evidence/EB-NW/'))assert(/^sequence\.json$/.test(item.name),'Evidencia fuera del alcance EB-NW: '+path)
+    if(item.isDirectory()){const allowed=['data','visor','assets','fonts','evidence'].includes(item.name)||(dir===`${root}/evidence`&&['OB-01','OB-02','ISC-58','EB-SW','EB-NW','EB-NE','EB-SE','CH-YG-BBVA'].includes(item.name));assert(allowed,`Carpeta inesperada: ${path}`);await check(path);continue}
+    if(['/evidence/EB-NW/','/evidence/EB-NE/','/evidence/EB-SE/','/evidence/CH-YG-BBVA/'].some(p=>path.includes(p)))assert(/^(?:sequence\.json|plan-record\.json|01-planta-geometria\.png)$/.test(item.name),'Evidencia fuera del alcance EB-NW: '+path)
     if(path.includes('/evidence/EB-SW/'))assert(/^(?:\d{2}-(?:general|plan|block|pedestrian|south|north)\.png|manifest\.json|sequence\.json|survey\.json)$/.test(item.name),`Evidencia fuera del alcance EB-SW: ${path}`)
     if(path.includes('/evidence/ISC-58/'))assert(isc58EvidenceFiles.has(item.name),`Evidencia fuera del alcance ISC-58: ${path}`)
     if(path.includes('/evidence/OB-01/'))assert(ob01EvidenceFiles.has(item.name),`Evidencia fuera del alcance OB-01: ${path}`)
@@ -77,11 +78,11 @@ assert(ob02States.some(s=>s.view==='perspective-detail'&&s.point==='R-001-P03')&
 console.log('OB-02: cuatro capturas WebGL revisadas, referencias identificadas, cámaras registradas y límites conservados.')
 
 // Point 1/2 evidence retains its historical checkpoint; point 3 has separate captures.
-const currentWorldHash=sha256(removeEbSwHook(await readFile(`${root}/world.js`,'utf8')))
+const currentWorldHash=sha256(removeEbSwHook(removePlanRoundHook(await readFile(`${root}/world.js`,'utf8'))))
 // OB-02 retains its immutable published checkpoint when a later building is refined.
 const ob02CheckpointHash=BASE_WORLD_SHA256
 const provenance=JSON.parse(await readFile(`${root}/isc58-provenance.json`,'utf8'))
-const worldSource=removeEbSwHook(await readFile(`${root}/world.js`,'utf8'))
+const worldSource=removeEbSwHook(removePlanRoundHook(await readFile(`${root}/world.js`,'utf8')))
 assert.equal(sha256(removeIsc58Hook(worldSource)),ob02CheckpointHash,'El mundo base debe conservar todos los avances previos byte por byte.')
 assert.equal(provenance.baseWorldSha256,ob02CheckpointHash)
 assert.equal(provenance.worldSha256,currentWorldHash)
@@ -89,7 +90,7 @@ assert.deepEqual(provenance.preservedRegions,regionHashes(worldSource))
 const runtimeSource=await readFile(`${root}/isc58-refinement.js`,'utf8')
 assert(!runtimeSource.includes('sourceMappingURL'),'El activo público no debe enlazar código fuente privado.')
 assert.equal(provenance.runtimeModuleSha256,sha256(runtimeSource))
-const visorSource=removeEbSwHook(await readFile(`${root}/visor/assets/index-RoPA5goG.js`,'utf8'),'visor')
+const visorSource=removeEbSwHook(removePlanRoundHook(await readFile(`${root}/visor/assets/index-RoPA5goG.js`,'utf8'),'visor'),'visor')
 assert.equal(sha256(removeIsc58VisorHook(visorSource)),BASE_VISOR_SHA256,'El visor base debe conservarse byte por byte.')
 assert.equal(provenance.visorSha256,sha256(visorSource))
 assert.equal(provenance.baseVisorSha256,BASE_VISOR_SHA256)
@@ -436,8 +437,8 @@ const ebRoot=`${root}/evidence/EB-SW`
 const eb=JSON.parse(await readFile(`${root}/ebsw-provenance.json`,'utf8'))
 const ebModule=await readFile(`${root}/ebsw-refinement.js`,'utf8')
 assert.equal(eb.baseWorldSha256,EB_BASE_WORLD);assert.equal(eb.baseVisorSha256,EB_BASE_VISOR)
-assert.equal(eb.worldSha256,sha256(await readFile(`${root}/world.js`)))
-assert.equal(eb.visorSha256,sha256(await readFile(`${root}/visor/assets/index-RoPA5goG.js`)))
+assert.equal(eb.worldSha256,sha256(removePlanRoundHook(await readFile(`${root}/world.js`,'utf8'))))
+assert.equal(eb.visorSha256,sha256(removePlanRoundHook(await readFile(`${root}/visor/assets/index-RoPA5goG.js`,'utf8'),'visor')))
 assert.equal(eb.runtimeModuleSha256,sha256(ebModule));assert(!ebModule.includes('sourceMappingURL'))
 const ebManifest=JSON.parse(await readFile(`${ebRoot}/manifest.json`,'utf8'))
 const ebSequence=JSON.parse(await readFile(`${ebRoot}/sequence.json`,'utf8'))
@@ -454,7 +455,7 @@ for(let i=0;i<11;i++){
 }
 assert.equal(ebSequence.state,'incomplete');assert(!Object.values(ebTracking.tasks).includes('active'))
 assert.equal(ebSequence.currentWorldSha256,eb.worldSha256)
-const beforeEb=removeEbSwHook(await readFile(`${root}/world.js`,'utf8'))
+const beforeEb=removeEbSwHook(removePlanRoundHook(await readFile(`${root}/world.js`,'utf8')))
 for(const c of ebManifest.captures){
  assert(c.renderer.includes('WebGL 2.0')&&c.calls>0&&c.triangles>0&&c.errors.length===0)
  const bytes=await readFile(`${ebRoot}/${c.file}`);assert.equal(sha256(bytes),c.sha256);assert.equal(bytes.readUInt32BE(16),1280);assert.equal(bytes.readUInt32BE(20),800)
@@ -471,3 +472,5 @@ for(const c of comparisons){assert.deepEqual(c.anchor,comparisons[0].anchor);ass
 for(const ref of ebSurvey.sources){assert.equal(sha256(await readFile(`public/${ref.file}`)),ref.sha256);assert.equal(ref.captureDate,null);assert.equal(ref.panoramaHeading,null)}
 assert.equal(ebSurvey.identity.neighbour.attributedToClub,false)
 console.log('EB-SW: once acciones ordenadas, capturas por etapa reproducibles, fuentes y cierre incompleto verificados.')
+
+await import('./pruebas-plantas.mjs')
