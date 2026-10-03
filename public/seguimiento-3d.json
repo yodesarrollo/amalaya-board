@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-03T06:13:51.020510+00:00",
+  "updatedAt": "2026-10-03T07:23:42.713833+00:00",
   "refreshSeconds": 30,
   "live": {
-    "status": "active",
-    "phase": "OB-02 · punto 7 en proceso",
-    "title": "Revisión de volumen, encuentros y cubierta",
-    "detail": "Comprobando silueta, apoyo de cubierta y encuentros de fachada con el volumen. Las dimensiones sin fuente métrica mantienen su incertidumbre; no se inventa el fondo.",
+    "status": "waiting",
+    "phase": "OB-02 · punto 7 revisado",
+    "title": "Volumen continuo; medidas pendientes de verificar",
+    "detail": "Corregidos el apoyo de cubierta y ambos encuentros laterales. Avance 07 y antes/después publicados; faltan referencias métricas de fondo, alturas y cubierta para cerrar exactitud.",
     "activeBlockId": "OB-YG",
     "activeBuildingId": "OB-02"
   },
@@ -83,7 +83,7 @@
         "max": 33
       },
       "estimateBasis": "3 frentes/estructuras conocidas más revisión compartida de la cuadra; frentes anónimos se agregan cuando se cuenten.",
-      "next": "OB-02 · punto 7 activo: volumen y cubierta. Identidad cerrada y geometría urbana anterior conservada.",
+      "next": "OB-02 · punto 7 revisado: envolvente continua. Exactitud bloqueada por medidas; siguiente acción 8, fachada, tras indicación del usuario.",
       "sharedTasks": {
         "plan": "partial",
         "street": "partial",
@@ -259,7 +259,7 @@
           },
           "tasks": {
             "identity": "done",
-            "volume": "active",
+            "volume": "blocked",
             "facade": "partial",
             "finish": "partial",
             "equipment": "pending",
@@ -272,7 +272,7 @@
           },
           "taskDetails": {
             "identity": "HECHO · código OB-02 vinculado al frente gris del lado sur de Obregón, junto a OB-01, por rasgos visibles en P03/P04 y contexto P02/P05. Coordenadas, IDs de panorama y JPG originales comprobados. P03 es el ancla; P04 mira desde el este. Nombre descriptivo: fachada gris de cinco arcos y rejas. El directorio oficial respalda el domicilio del Colegio en Obregón 65, pero no confirma esta fachada; nombre comercial, fechas y rumbo del panorama siguen sin verificar. No cierra exactitud de volumen ni QA.",
-            "volume": "EN PROCESO · revisar envolvente y cubierta sobre el frente alineado; comprobar continuidad, silueta y colindancia con las referencias P03/P04. Fondo y alturas aún estimados.",
+            "volume": "REVISADO · cuerpo posterior unido a cubierta (eliminado hueco de 0.16 m del modelo); cerrados ambos encuentros laterales de 0.31 m entre fachada y cuerpo, manteniendo los cinco vanos. Frente 16.61 ±2 m, fondo 9 ±3 m, cornisa 4.65 ±0.6 m y pasamanos 5.35 ±0.6 m, todos provisionales. Cubierta plana interpretada, fondo e interior no restituidos. Capturas 19/20 desde la misma cámara, 21 planta norte arriba y Avance 07 en cabecera. 104 pruebas correctas; no certifican medidas del sitio.",
             "facade": "PARCIAL · se conservan cinco vanos abiertos y se añadieron 54 segmentos instanciados de juntas de piedra, interpretados a partir de P03/P04. Alturas, anchuras, separación de pilastras y patrón de herrería no tienen escala métrica.",
             "finish": "PARCIAL · tonos de piedra/remates moderados y juntas de hilada añadidas como detalle visual; alturas y espesor interpretados. Sin fotografías usadas como texturas.",
             "equipment": "PENDIENTE · no se añadieron elementos urbanos porque las tomas disponibles no permiten anclar con confianza qué elementos son permanentes ni sus posiciones.",
@@ -316,12 +316,28 @@
             ],
             "volume": [
               {
-                "title": "P03 · conjunto integrado · geometría y ubicación provisionales",
-                "url": "levantamiento/evidence/OB-02/02-conjunto-p03.png"
+                "title": "Avance 07 · misma cámara de Inicio · conjunto integrado",
+                "url": "levantamiento/evidence/OB-02/18-avance-punto07.png"
               },
               {
-                "title": "P04 · retorno y fondo provisionales",
-                "url": "levantamiento/evidence/OB-02/04-retorno-oblicuo-p04.png"
+                "title": "Antes · hueco bajo cubierta · detalle aislado",
+                "url": "levantamiento/evidence/OB-02/19-envolvente-antes.png"
+              },
+              {
+                "title": "Después · cubierta apoyada · misma cámara de detalle",
+                "url": "levantamiento/evidence/OB-02/20-envolvente-despues.png"
+              },
+              {
+                "title": "Planta de cubierta · norte arriba · forma provisional, no levantamiento",
+                "url": "levantamiento/evidence/OB-02/21-cubierta-planta.png"
+              },
+              {
+                "title": "P03 · consulta del frente; cubierta completa no visible",
+                "url": "recorrido/Apyr0uKeZr_XWmfLfLeBjQ.jpg"
+              },
+              {
+                "title": "P04 · consulta oblicua; fondo sin verificar",
+                "url": "recorrido/h45BeWMtTog-TgjPTSYn6g.jpg"
               }
             ],
             "facade": [
@@ -453,8 +469,8 @@
           },
           "issues": {
             "volume": {
-              "title": "Faltan medidas para verificar volumen",
-              "detail": "El frente (~16.67 ±2 m), fondo (~9 ±3 m), cornisa (~4.65 ±0.6 m) y balaustrada (~5.35 ±0.6 m) siguen estimados. Para cerrar exactitud hacen falta frente y fondo medidos y alturas referidas al mismo nivel, con unidades, método, fecha y margen de error; no hay huella de edificio en OSM."
+              "title": "Faltan fondo, alturas y forma real de cubierta",
+              "detail": "La continuidad del modelo está corregida. P03/P04 no muestran el fondo ni el plano completo de cubierta; la azotea plana sigue interpretada. Para cerrar: vista identificada de fondo/cubierta y frente, fondo, cornisa y coronamiento medidos respecto del mismo nivel de suelo, con unidades, método, fecha y margen de error. Valores provisionales: frente 16.61 ±2 m; fondo 9 ±3 m; cornisa 4.65 ±0.6 m; pasamanos 5.35 ±0.6 m; posición ±5 m. Puedes adjuntar la evidencia o indicar aquí cómo obtenerla; no hay huella de edificio en OSM."
             },
             "facade": {
               "title": "Falta escala para proporciones de fachada",
@@ -479,11 +495,11 @@
               "worldSha256": "4bdf262926cfd58d9d7dabf110a757e748e982797af2c4879e49265fad6d1fb3"
             },
             "current": {
-              "url": "levantamiento/evidence/OB-02/17-avance-punto06.png",
-              "title": "Avance 06 · identificación visual documentada · geometría sin cambios",
-              "label": "Avance · 06",
-              "capturedAt": "2026-10-03T06:00:23.942Z",
-              "worldSha256": "72a3b71f904a22ea6cd2c68bd534e93ddee90e49520d4826cc655f279e5a0225"
+              "url": "levantamiento/evidence/OB-02/18-avance-punto07.png",
+              "title": "Avance 07 · apoyo de cubierta y encuentros laterales corregidos",
+              "label": "Avance · 07",
+              "capturedAt": "2026-10-03T07:22:03.088Z",
+              "worldSha256": "d42c8b38335695af1c87f22e9b264316adfc78252d8eaa76f2b9540bc1d72506"
             }
           }
         },

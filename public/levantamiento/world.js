@@ -16131,13 +16131,21 @@ var Ap = {
 		heightMeters: .6
 	},
 	references: ["R-001/P03", "R-001/P04"],
-	footprintStatus: "estimated; no OSM polygon"
+	footprintStatus: "estimated; no OSM polygon",
+	roofStatus: "interpreted flat envelope; rear and roof plane unverified"
+}, jp = {
+	base: .15,
+	facadeThickness: .34,
+	rearStart: .65,
+	roofCenter: 4.52,
+	roofThickness: .12,
+	returnThickness: .2
 };
-function jp(e, t, n, r) {
+function Mp(e, t, n, r) {
 	let i = new Qr(), a = t / 2;
 	return i.moveTo(e - a, n), i.lineTo(e - a, r), i.absarc(e, r, a, Math.PI, 0, !0), i.lineTo(e + a, n), i.closePath(), i;
 }
-function Mp(e = 1024) {
+function Np(e = 1024) {
 	let t = new Ot();
 	t.name = "OB-02 · fachada gris con arcos y rejas · exterior interpretado", t.userData.study = Ap;
 	let n = Nl(Ap.frontStart), r = Nl(Ap.frontEnd), i = Math.hypot(r.x - n.x, r.z - n.z), a = Ap.depthMeters;
@@ -16149,8 +16157,8 @@ function Mp(e = 1024) {
 		let s = new Y(Ep(n), r);
 		return s.name = e, s.position.set(i, a, o), s.castShadow = s.receiveShadow = !0, t.add(s), s;
 	}, f = (e, t, n, r, i, a, o, c = s) => d(e, new X(t, n, r), c, i, a, o), p = Array.from({ length: 5 }, (e, t) => i * (t + .5) / 5), m = p.map((e, t) => t === 2 ? 2.65 : 2.05), h = .32, g = 2.56, _ = Ap.corniceMeters, v = new $r();
-	v.moveTo(0, .15), v.lineTo(i, .15), v.lineTo(i, _), v.lineTo(0, _), v.closePath(), p.forEach((e, t) => v.holes.push(jp(e, m[t], h, g))), d("Paño de fachada con cinco vanos abiertos en la geometría", new Li(v, {
-		depth: .34,
+	v.moveTo(0, .15), v.lineTo(i, .15), v.lineTo(i, _), v.lineTo(0, _), v.closePath(), p.forEach((e, t) => v.holes.push(Mp(e, m[t], h, g))), d("Paño de fachada con cinco vanos abiertos en la geometría", new Li(v, {
+		depth: jp.facadeThickness,
 		bevelEnabled: !1,
 		curveSegments: 20
 	}), o);
@@ -16187,11 +16195,17 @@ function Mp(e = 1024) {
 	}), S = new dr(new X(1, .009, .012), x, b.length), C = new Dt();
 	b.forEach((e, t) => {
 		C.position.set(e.x, e.y, -.022), C.scale.set(e.width, 1, 1), C.updateMatrix(), S.setMatrixAt(t, C.matrix);
-	}), S.name = "Juntas de hilada · detalle interpretado · segmentos fuera de los arcos", S.castShadow = !1, S.receiveShadow = !1, t.add(S), f("Volumen posterior estimado · sin interior restituido", i, 4.15, a - .65, i / 2, 2.225, (a + .65) / 2, c), f("Azotea estimada tras el pretil", i, .12, a, i / 2, 4.52, a / 2, c);
-	let w = 0;
+	}), S.name = "Juntas de hilada · detalle interpretado · segmentos fuera de los arcos", S.castShadow = !1, S.receiveShadow = !1, t.add(S);
+	let w = jp, T = w.roofCenter - w.roofThickness / 2, E = T - w.base, D = (T + w.base) / 2;
+	f("Volumen posterior estimado · sin interior restituido", i, E, a - w.rearStart, i / 2, D, (a + w.rearStart) / 2, c), f("Azotea estimada tras el pretil", i, w.roofThickness, a, i / 2, w.roofCenter, a / 2, c);
+	for (let [e, t] of [["oeste", w.returnThickness / 2], ["este", i - w.returnThickness / 2]]) {
+		let n = f(`Encuentro lateral de fachada con envolvente · ${e} · interpretado`, w.returnThickness, E, w.rearStart - w.facadeThickness, t, D, (w.rearStart + w.facadeThickness) / 2, c);
+		n.userData.status = "model continuity; dimensions interpreted, not measured";
+	}
+	let O = 0;
 	for (let e = 0; e < 5; e++) {
 		let t = p[e], n = m[e] / 2;
-		d("Receso oscuro tras reja · profundidad 28 cm", new Wi(new $r(jp(0, m[e] - .08, h, g).getPoints(32)), 24), u, t, 0, .29);
+		d("Receso oscuro tras reja · profundidad 28 cm", new Wi(new $r(Mp(0, m[e] - .08, h, g).getPoints(32)), 24), u, t, 0, .29);
 		for (let e of [-1, 1]) f("Jamba de piedra", .18, 2.24, .2, t + e * (n + .09), 1.4400000000000002, -.075);
 		for (let e = 0; e < 13; e++) {
 			let r = Math.PI * e / 13 + .007, i = Math.PI * (e + 1) / 13 - .007, a = new $r();
@@ -16205,7 +16219,7 @@ function Mp(e = 1024) {
 		let r = Math.floor(m[e] / .17);
 		for (let i = 1; i < r; i++) {
 			let a = -n + m[e] * i / r, o = g + Math.sqrt(Math.max(0, n * n - a * a)) - .045;
-			f("Barra vertical de reja · patrón interpretado", .023, o - h - .08, .027, t + a, (o + h + .08) / 2, .13, l), w++;
+			f("Barra vertical de reja · patrón interpretado", .023, o - h - .08, .027, t + a, (o + h + .08) / 2, .13, l), O++;
 		}
 		for (let n of [
 			.65,
@@ -16244,7 +16258,7 @@ function Mp(e = 1024) {
 	]) f("Perfil escalonado de cornisa", i + .4, t, n, i / 2, e, -.07);
 	for (let e = .18; e < i; e += .27) f("Dentículo bajo cornisa", .1, .12, .14, e, 4.53, -.26);
 	f("Pasamanos de balaustrada", i + .12, .11, .29, i / 2, 5.35, .12);
-	let T = new Vi([
+	let k = new Vi([
 		new V(.055, 0),
 		new V(.08, .06),
 		new V(.1, .13),
@@ -16252,32 +16266,32 @@ function Mp(e = 1024) {
 		new V(.035, .3),
 		new V(.065, .38),
 		new V(.06, .44)
-	], 10), E = Math.floor(i / .52), D = new dr(T, s, E), O = new Dt();
-	for (let e = 0; e < E; e++) O.position.set(i * (e + .5) / E, 4.87, .12), O.updateMatrix(), D.setMatrixAt(e, O.matrix);
-	D.name = "Balaustrada superior · silueta observada, despiece estimado", D.castShadow = D.receiveShadow = !0, t.add(D);
+	], 10), A = Math.floor(i / .52), j = new dr(k, s, A), M = new Dt();
+	for (let e = 0; e < A; e++) M.position.set(i * (e + .5) / A, 4.87, .12), M.updateMatrix(), j.setMatrixAt(e, M.matrix);
+	j.name = "Balaustrada superior · silueta observada, despiece estimado", j.castShadow = j.receiveShadow = !0, t.add(j);
 	for (let e of [0, i]) f("Remate de esquina", .44, .65, .44, e, 5.11, .12), f("Tapa del remate de esquina", .55, .1, .55, e, 5.46, .12);
 	t.updateMatrixWorld(!0);
-	let k = Math.ceil((i + .44) / .5), A = Array.from({ length: k }, (e, n) => {
-		let r = -.22 + (i + .44) * n / k, o = -.22 + (i + .44) * (n + 1) / k;
+	let N = Math.ceil((i + .44) / .5), P = Array.from({ length: N }, (e, n) => {
+		let r = -.22 + (i + .44) * n / N, o = -.22 + (i + .44) * (n + 1) / N;
 		return new Zt(new U(r, .15, -.28), new U(o, 5.52, a)).applyMatrix4(t.matrixWorld);
-	}), j = {
+	}), ee = {
 		lengthMeters: i,
 		depthMeters: a,
 		bays: 5,
-		bars: w,
-		balusters: E,
+		bars: O,
+		balusters: A,
 		masonryCourseSegments: b.length,
 		textureSize: e
 	};
-	return t.userData.stats = j, {
+	return t.userData.stats = ee, {
 		group: t,
-		colliders: A,
-		stats: j
+		colliders: P,
+		stats: ee
 	};
 }
 //#endregion
 //#region src/amalaya-world.ts
-async function Np(e, t, n = "pilot", r = {}) {
+async function Pp(e, t, n = "pilot", r = {}) {
 	let i = async (n) => {
 		let r = await fetch(`${e}data/${n}.json`, { signal: t });
 		if (!r.ok) throw Error(`No se pudo cargar ${n} (${r.status})`);
@@ -16303,10 +16317,10 @@ async function Np(e, t, n = "pilot", r = {}) {
 		let e = kp(d);
 		c.add(e.group), f.push(...e.colliders);
 	}
-	let p = Mp(d);
-	return c.add(p.group), f.push(...p.colliders), c.userData.navigationColliders = f, Pp(c, n), Vp(c), c;
+	let p = Np(d);
+	return c.add(p.group), f.push(...p.colliders), c.userData.navigationColliders = f, Fp(c, n), Hp(c), c;
 }
-function Pp(e, t) {
+function Fp(e, t) {
 	let n = /* @__PURE__ */ new Map();
 	e.traverse((e) => {
 		let r = e;
@@ -16343,7 +16357,7 @@ function Pp(e, t) {
 		r.material = Array.isArray(r.material) ? r.material.map(i) : i(r.material);
 	}), e.userData.visualQuality = t;
 }
-function Fp(e, t) {
+function Ip(e, t) {
 	e.add(new ka(t === "pilot" ? 14478583 : 16774887, t === "pilot" ? 7888971 : 6976358, t === "pilot" ? 1.25 : 2.2));
 	let n = new Wa(16772817, t === "pilot" ? 3 : 2.8);
 	if (t === "baseline") n.position.set(-70, 130, 60);
@@ -16360,10 +16374,10 @@ function Fp(e, t) {
 	}
 	e.add(n);
 }
-function Ip(e, t) {
+function Lp(e, t) {
 	e.outputColorSpace = k, e.toneMapping = t === "pilot" ? 4 : 0, e.toneMappingExposure = 1.05, e.shadowMap.enabled = t === "pilot", e.shadowMap.type = 2, e.shadowMap.autoUpdate = !1, e.shadowMap.needsUpdate = t === "pilot";
 }
-function Lp(e) {
+function Rp(e) {
 	let t = /* @__PURE__ */ new Set(), n = /* @__PURE__ */ new Set(), r = /* @__PURE__ */ new Set();
 	e.traverse((e) => {
 		let i = e;
@@ -16374,14 +16388,14 @@ function Lp(e) {
 		});
 	}), t.forEach((e) => e.dispose()), n.forEach((e) => e.dispose()), r.forEach((e) => e.dispose());
 }
-function Rp(e) {
+function zp(e) {
 	let { lat: t, lon: n } = Al, r = e.fromLngLat([n, t], 0), i = e.fromLngLat([n + 1 / 97200, t], 0), a = e.fromLngLat([n, t - 1 / 110950], 0);
 	return new et().set(i.x - r.x, 0, 0, r.x, 0, 0, a.y - r.y, r.y, 0, r.meterInMercatorCoordinateUnits(), 0, r.z, 0, 0, 0, 1);
 }
-function zp({ mercator: e, world: t, quality: n = "pilot" }) {
-	let r = new It(), i = Bp();
-	i.visible = !1, t.add(i), r.add(t), Fp(r, n);
-	let a = new La(), o = Rp(e), s;
+function Bp({ mercator: e, world: t, quality: n = "pilot" }) {
+	let r = new It(), i = Vp();
+	i.visible = !1, t.add(i), r.add(t), Ip(r, n);
+	let a = new La(), o = zp(e), s;
 	return {
 		setScenario(e) {
 			i.visible = e === "amalaya";
@@ -16394,17 +16408,17 @@ function zp({ mercator: e, world: t, quality: n = "pilot" }) {
 				canvas: e.getCanvas(),
 				context: t,
 				antialias: !0
-			}), s.autoClear = !1, Ip(s, n);
+			}), s.autoClear = !1, Lp(s, n);
 		},
 		render(e, t) {
 			a.projectionMatrix.fromArray(t).multiply(o), a.projectionMatrixInverse.copy(a.projectionMatrix).invert(), s.resetState(), s.render(r, a);
 		},
 		onRemove() {
-			s?.dispose(), Lp(t);
+			s?.dispose(), Rp(t);
 		}
 	};
 }
-function Bp() {
+function Vp() {
 	let e = new Ot();
 	e.name = "Amalaya · ensayo conceptual de sombra y estancia · no aprobado";
 	let t = new Z({
@@ -16428,7 +16442,7 @@ function Bp() {
 	}
 	return e;
 }
-function Vp(e) {
+function Hp(e) {
 	e.updateMatrixWorld(!0);
 	let t = /* @__PURE__ */ new Map();
 	e.traverse((e) => {
@@ -16447,4 +16461,4 @@ function Vp(e) {
 	}
 }
 //#endregion
-export { Fp as addWorldLighting, Ip as configureWorldRenderer, Bp as createConcept, zp as createMapLayer, Np as createWorld, Lp as disposeWorld, Rp as mapTransform, Pp as prepareWorldSurfaces };
+export { Ip as addWorldLighting, Lp as configureWorldRenderer, Vp as createConcept, Bp as createMapLayer, Pp as createWorld, Rp as disposeWorld, zp as mapTransform, Fp as prepareWorldSurfaces };

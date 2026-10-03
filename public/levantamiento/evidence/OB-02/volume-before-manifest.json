@@ -1,0 +1,68 @@
+{
+  "building": "OB-02",
+  "task": "volume-before",
+  "capturedAt": "2026-10-03T06:24:57.481Z",
+  "worldSha256": "72a3b71f904a22ea6cd2c68bd534e93ddee90e49520d4826cc655f279e5a0225",
+  "render": "Three.js production builders through WebGLRenderer (SwiftShader)",
+  "limits": "Not site photography or cadastral survey. Initial visual tracking begins before point 3; earlier captures retain their historical revision. Width remains an imagery estimate. Envelope continuity audit. Roof plane, rear extent and heights unverified; no interior reconstructed. Closeup and roof views isolate the production building on neutral ground.",
+  "captures": [
+    {
+      "file": "19-envolvente-antes.png",
+      "building": "OB-02",
+      "view": "volume",
+      "cameraId": "OB-02-volume-envelope-v1",
+      "cameraPosition": [
+        -31.787947727111987,
+        4.9,
+        40.80283406294382
+      ],
+      "cameraTarget": [
+        -36.63414513459584,
+        4.2,
+        36.89971086636179
+      ],
+      "cameraUp": [
+        0,
+        1,
+        0
+      ],
+      "projection": {
+        "kind": "orthographic",
+        "left": -2.5,
+        "right": 2.5,
+        "top": 1.5625,
+        "bottom": -1.5625
+      },
+      "viewport": [
+        1280,
+        800
+      ],
+      "textureSize": 512,
+      "source": "production builder: OB-02 isolated on neutral ground; not full city or site photography",
+      "cameraFootwayHeight": null,
+      "sidewalkSide": "south",
+      "sidewalkWidthMeters": 1.2,
+      "sidewalkUncertaintyMeters": 0.8,
+      "calls": 149,
+      "triangles": 9977,
+      "renderer": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+      "envelope": {
+        "bodyTop": 4.3000000476837155,
+        "roofUnderside": 4.460000001341104,
+        "roofTop": 4.579999998658895,
+        "roofGapMeters": 0.15999995365738862,
+        "lateralReturns": 0,
+        "frontMeters": 16.60719146762562,
+        "depthMeters": 9,
+        "uncertainty": {
+          "positionMeters": 5,
+          "lengthMeters": 2,
+          "depthMeters": 3,
+          "heightMeters": 0.6
+        },
+        "roofStatus": "interpreted flat envelope; rear and roof plane unverified"
+      },
+      "isolated": true
+    }
+  ]
+}
