@@ -1,0 +1,115 @@
+{
+  "schemaVersion": 1,
+  "building": "OB-02",
+  "task": "identity",
+  "reviewedAt": "2026-10-03T05:59:35.248Z",
+  "reviewMethod": "Manual visual inspection of original P02–P05; coordinate and file association checked programmatically",
+  "descriptiveName": "Fachada gris de cinco arcos y rejas",
+  "street": "Obregón",
+  "side": "south",
+  "junctions": [
+    "Yáñez",
+    "Juan Álvarez"
+  ],
+  "recognitionFeatures": [
+    "cinco vanos arqueados",
+    "pilastras y juntas de piedra",
+    "rejas oscuras",
+    "cornisa y balaustrada",
+    "cubierta abierta OB-01 al oeste"
+  ],
+  "frontEstimate": {
+    "start": {
+      "lat": 29.075843831698624,
+      "lon": -110.95526725678737
+    },
+    "end": {
+      "lat": 29.075859872722415,
+      "lon": -110.95509738487088
+    },
+    "positionUncertaintyMeters": 5
+  },
+  "commercialAttribution": {
+    "candidate": "Colegio de Notarios del Estado de Sonora",
+    "directoryAddress": "Obregón 65 Poniente, entre Yáñez y Álvarez, Centro, Hermosillo",
+    "addressSource": "https://www.notariadomexicano.org.mx/directorio-colegios-nacionales/",
+    "consultedAt": "2026-10-03T05:59:35.345Z",
+    "status": "unconfirmed for this facade",
+    "limit": "The official directory supports the street address, not a photographic match of this exact facade."
+  },
+  "references": [
+    {
+      "routePointId": "R-001-P02",
+      "order": 2,
+      "panoramaId": "XLuGJnj_XmtAuKd4eXeTDw",
+      "imagePath": "recorrido/XLuGJnj_XmtAuKd4eXeTDw.jpg",
+      "imageSha256": "371c799d09c090cc1be4360528ddccf32ac6987d94cd9d6cea3780df45fc4f43",
+      "lat": 29.0758917,
+      "lng": -110.9553893,
+      "imageCaptureDate": null,
+      "imageHeadingDegrees": null,
+      "travelBearingDegrees": 84.72,
+      "frontProjection": {
+        "alongMeters": -11.23,
+        "northOffsetMeters": 6.55
+      },
+      "role": "western-context",
+      "observation": "Cubierta abierta OB-01 en primer plano; fachada gris de arcos más al este, en el mismo lado sur."
+    },
+    {
+      "routePointId": "R-001-P03",
+      "order": 3,
+      "panoramaId": "Apyr0uKeZr_XWmfLfLeBjQ",
+      "imagePath": "recorrido/Apyr0uKeZr_XWmfLfLeBjQ.jpg",
+      "imageSha256": "647926706b3597bedb0f32b615fd22c1225116cfc4b93a8aa14343fde0d50802",
+      "lat": 29.0759089,
+      "lng": -110.9551769,
+      "imageCaptureDate": null,
+      "imageHeadingDegrees": null,
+      "travelBearingDegrees": 84.12,
+      "frontProjection": {
+        "alongMeters": 9.51,
+        "northOffsetMeters": 6.24
+      },
+      "role": "primary-anchor",
+      "observation": "Mismo frente gris de arcos, pilastras, rejas y balaustrada, partido por la costura horizontal del panorama; cubierta OB-01 contigua al oeste."
+    },
+    {
+      "routePointId": "R-001-P04",
+      "order": 4,
+      "panoramaId": "h45BeWMtTog-TgjPTSYn6g",
+      "imagePath": "recorrido/h45BeWMtTog-TgjPTSYn6g.jpg",
+      "imageSha256": "7cc232bdf2ad46a9b6379e0e5aa530c02d5a5da4f55fc27e92d612b346d15546",
+      "lat": 29.0759275,
+      "lng": -110.9549709,
+      "imageCaptureDate": null,
+      "imageHeadingDegrees": null,
+      "travelBearingDegrees": 85.08,
+      "frontProjection": {
+        "alongMeters": 29.63,
+        "northOffsetMeters": 6.14
+      },
+      "role": "secondary-oblique-view",
+      "observation": "Mismo frente gris al oeste desde una posición más oriental; colindante claro de vanos rectangulares permite distinguir el límite del frente."
+    },
+    {
+      "routePointId": "R-001-P05",
+      "order": 5,
+      "panoramaId": "133OIriRrcYkbV0Y2VCPng",
+      "imagePath": "recorrido/133OIriRrcYkbV0Y2VCPng.jpg",
+      "imageSha256": "17771531734d50aa78b9167a68fa21969ebd3f8c2bb03cdd46b9f329e4ea87cf",
+      "lat": 29.0759512,
+      "lng": -110.9546564,
+      "imageCaptureDate": null,
+      "imageHeadingDegrees": null,
+      "travelBearingDegrees": 84.86,
+      "frontProjection": {
+        "alongMeters": 60.31,
+        "northOffsetMeters": 5.48
+      },
+      "role": "eastern-context",
+      "observation": "Domina otra fachada clara con portada y remates triangulares; no se asigna este punto como ancla principal de OB-02."
+    }
+  ],
+  "limits": "Visual identity only. No cadastral footprint, measurement, image capture date or panorama heading verified. Bearings are calculated from consecutive route coordinates using the existing local scale; projections use the provisional model facade. Geometry and route points unchanged."
+}

@@ -1,17 +1,17 @@
 # Amalaya · Matriz de levantamiento 3D
 
-Actualizado: 2026-10-03T05:54:41.979934+00:00. La web consulta estados cada 30 segundos; los cambios aparecen al publicar avances.
+Actualizado: 2026-10-03T06:03:27.589789+00:00. La web consulta estados cada 30 segundos; los cambios aparecen al publicar avances.
 
 Naranja: en proceso · Verde: terminado · Rojo: problema · Gris: pendiente o provisional.
 
-| Acciones / Edificios | OB-01 | <a href="https://yodesarrollo.github.io/amalaya-board/levantamiento/evidence/OB-02/14-avance-punto05.png"><img src="https://yodesarrollo.github.io/amalaya-board/levantamiento/evidence/OB-02/14-avance-punto05.png" alt="OB-02 · avance del modelo" width="160"></a><br/>OB-02<br/>[Inicio](https://yodesarrollo.github.io/amalaya-board/levantamiento/evidence/OB-02/07-inicio-seguimiento.png) · Avance · 05 | ISC-58 | EB-SW | EB-NW | EB-NE | EB-SE | PL-GA | CH-GA-OXXO | CH-YG-BIB | CH-YG-BBVA | SER-BLEY | SER-HSBC |
+| Acciones / Edificios | OB-01 | <a href="https://yodesarrollo.github.io/amalaya-board/levantamiento/evidence/OB-02/17-avance-punto06.png"><img src="https://yodesarrollo.github.io/amalaya-board/levantamiento/evidence/OB-02/17-avance-punto06.png" alt="OB-02 · avance del modelo" width="160"></a><br/>OB-02<br/>[Inicio](https://yodesarrollo.github.io/amalaya-board/levantamiento/evidence/OB-02/07-inicio-seguimiento.png) · Avance · 06 | ISC-58 | EB-SW | EB-NW | EB-NE | EB-SE | PL-GA | CH-GA-OXXO | CH-YG-BIB | CH-YG-BBVA | SER-BLEY | SER-HSBC |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|
 | Alinear planta y huellas con cartografía visual | ✓ Terminado | ✓ Terminado | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional |
 | Ajustar calzada y encuentros de calles | ✓ Terminado | ✓ Terminado | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional |
 | Ajustar banqueta del lado A | ✓ Terminado | ✓ Terminado | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional |
 | Ajustar banqueta del lado B | ✓ Terminado | ✓ Terminado | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional |
 | Corregir esquinas, guarniciones y rampas | ! Problema | ! Problema | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional |
-| Empatar edificio, nombre y punto/foto 360 | ✓ Terminado | • En proceso | ◐ Provisional | ◐ Provisional | · Pendiente | · Pendiente | · Pendiente | · Pendiente | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional |
+| Empatar edificio, nombre y punto/foto 360 | ✓ Terminado | ✓ Terminado | ◐ Provisional | ◐ Provisional | · Pendiente | · Pendiente | · Pendiente | · Pendiente | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional |
 | Completar huella, volumen, altura y cubierta | ! Problema | ◐ Provisional | · Pendiente | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente |
 | Ajustar forma de fachada a la referencia visual | ! Problema | ◐ Provisional | · Pendiente | ◐ Provisional | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente |
 | Afinar materiales, vanos y detalles visibles | ✓ Terminado | ◐ Provisional | · Pendiente | ◐ Provisional | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente | · Pendiente |
@@ -21,7 +21,7 @@ Naranja: en proceso · Verde: terminado · Rojo: problema · Gris: pendiente o p
 ## Nomenclatura
 
 - **OB-01**: Cubierta de estacionamiento · OB-YG · Obregón · Yáñez–Garmendia.
-- **OB-02**: Fachada clara de arcos y rejas · posible Colegio de Notarios #65, por confirmar · OB-YG · Obregón · Yáñez–Garmendia.
+- **OB-02**: Fachada gris de cinco arcos y rejas · OB-YG · Obregón · Yáñez–Garmendia.
 - **ISC-58**: Instituto Sonorense de Cultura · Obregón #58 · OB-YG · Obregón · Yáñez–Garmendia.
 - **EB-SW**: Conjunto de esquina · Barra Hidalgo / Club Obregón · EB-GA · Garmendia–Abasolo · Obregón–Chihuahua.
 - **EB-NW**: Volumen provisional · Garmendia × Chihuahua · EB-GA · Garmendia–Abasolo · Obregón–Chihuahua.

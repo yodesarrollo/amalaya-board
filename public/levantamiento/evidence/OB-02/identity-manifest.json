@@ -1,0 +1,51 @@
+{
+  "building": "OB-02",
+  "task": "identity",
+  "capturedAt": "2026-10-03T06:00:23.942Z",
+  "worldSha256": "72a3b71f904a22ea6cd2c68bd534e93ddee90e49520d4826cc655f279e5a0225",
+  "render": "Three.js production builders through WebGLRenderer (SwiftShader)",
+  "limits": "Not site photography or cadastral survey. Initial visual tracking begins before point 3; earlier captures retain their historical revision. Width remains an imagery estimate. Visual identity documented separately; geometry unchanged and commercial attribution unconfirmed.",
+  "captures": [
+    {
+      "file": "17-avance-punto06.png",
+      "building": "OB-02",
+      "view": "progress",
+      "cameraId": "OB-02-fixed-v1",
+      "cameraPosition": [
+        -49.2,
+        17,
+        2.2
+      ],
+      "cameraTarget": [
+        -45.95,
+        2.3,
+        31
+      ],
+      "cameraUp": [
+        0,
+        1,
+        0
+      ],
+      "projection": {
+        "kind": "orthographic",
+        "left": -15,
+        "right": 15,
+        "top": 9.375,
+        "bottom": -9.375
+      },
+      "viewport": [
+        1280,
+        800
+      ],
+      "textureSize": 512,
+      "source": "production builders: OB-01 + OB-02 + streetContinuation + routeStreetscape; local audit subset",
+      "cameraFootwayHeight": null,
+      "sidewalkSide": "south",
+      "sidewalkWidthMeters": 1.2,
+      "sidewalkUncertaintyMeters": 0.8,
+      "calls": 411,
+      "triangles": 36440,
+      "renderer": "WebGL 2.0 (OpenGL ES 3.0 Chromium)"
+    }
+  ]
+}

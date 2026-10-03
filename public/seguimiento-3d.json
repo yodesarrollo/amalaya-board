@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-03T05:54:41.979934+00:00",
+  "updatedAt": "2026-10-03T06:03:27.589789+00:00",
   "refreshSeconds": 30,
   "live": {
-    "status": "active",
-    "phase": "OB-02 · punto 6 en proceso",
-    "title": "Identificación del frente y sus puntos 360",
-    "detail": "Contrastando fachada, colindantes y ubicación con P02–P05. Identificación por código y rasgos observables; nombre comercial separado de la evidencia visual.",
+    "status": "waiting",
+    "phase": "OB-02 · punto 6 terminado",
+    "title": "Identificación visual cerrada · Avance 06 en cabecera",
+    "detail": "Frente gris de cinco arcos y rejas vinculado a P03/P04, contrastado con P02/P05. Nombre descriptivo confirmado para el seguimiento; atribución comercial pendiente. Avance 06 usa la cámara fija; geometría sin cambios.",
     "activeBlockId": "OB-YG",
     "activeBuildingId": "OB-02"
   },
@@ -83,7 +83,7 @@
         "max": 33
       },
       "estimateBasis": "3 frentes/estructuras conocidas más revisión compartida de la cuadra; frentes anónimos se agregan cuando se cuenten.",
-      "next": "OB-02 · punto 6 activo: verificar identidad y vínculo con P03/P04; geometría y estados anteriores conservados.",
+      "next": "OB-02 · punto 6 terminado: identidad visual documentada. Siguiente fila en orden: 7, volumen y cubierta. Rebajes y QA conservan sus pendientes.",
       "sharedTasks": {
         "plan": "partial",
         "street": "partial",
@@ -251,14 +251,14 @@
         },
         {
           "id": "OB-02",
-          "name": "Fachada clara de arcos y rejas · posible Colegio de Notarios #65, por confirmar",
-          "confidence": "Fachada de cinco arcos vinculada provisionalmente a R-001 P03/P04. El posible nombre comercial no está confirmado; proporciones y fondo son estimados.",
+          "name": "Fachada gris de cinco arcos y rejas",
+          "confidence": "Frente sur de Obregón identificado por arcos, pilastras, rejas, balaustrada y colindante OB-01; P03 ancla y P04 vista oblicua. Nombre comercial sin atribución confirmada; posición, proporciones y fondo continúan estimados.",
           "estimateHours": {
             "min": 4,
             "max": 8
           },
           "tasks": {
-            "identity": "active",
+            "identity": "done",
             "volume": "partial",
             "facade": "partial",
             "finish": "partial",
@@ -271,7 +271,7 @@
             "corners": "blocked"
           },
           "taskDetails": {
-            "identity": "EN PROCESO · verificar el mismo frente en P03/P04, sus colindantes y ubicación; separar nombre descriptivo de cualquier atribución comercial sin confirmar.",
+            "identity": "HECHO · código OB-02 vinculado al frente gris del lado sur de Obregón, junto a OB-01, por rasgos visibles en P03/P04 y contexto P02/P05. Coordenadas, IDs de panorama y JPG originales comprobados. P03 es el ancla; P04 mira desde el este. Nombre descriptivo: fachada gris de cinco arcos y rejas. El directorio oficial respalda el domicilio del Colegio en Obregón 65, pero no confirma esta fachada; nombre comercial, fechas y rumbo del panorama siguen sin verificar. No cierra exactitud de volumen ni QA.",
             "volume": "PROVISIONAL · frente 16.67 ±2 m; fondo 9 ±3 m; cornisa 4.65 ±0.6 m; balaustrada 5.35 ±0.6 m. Sin polígono OSM ni medidas directas; retorno y fondo no verificados.",
             "facade": "PARCIAL · se conservan cinco vanos abiertos y se añadieron 54 segmentos instanciados de juntas de piedra, interpretados a partir de P03/P04. Alturas, anchuras, separación de pilastras y patrón de herrería no tienen escala métrica.",
             "finish": "PARCIAL · tonos de piedra/remates moderados y juntas de hilada añadidas como detalle visual; alturas y espesor interpretados. Sin fotografías usadas como texturas.",
@@ -286,12 +286,32 @@
           "evidence": {
             "identity": [
               {
-                "title": "R-001 P03 · panorama de consulta · fecha sin verificar",
+                "title": "Punto 6 · Avance 06 desde la cámara fija · geometría sin cambios",
+                "url": "levantamiento/evidence/OB-02/17-avance-punto06.png"
+              },
+              {
+                "title": "P03 · ancla primaria del frente · panorama de consulta",
                 "url": "recorrido/Apyr0uKeZr_XWmfLfLeBjQ.jpg"
               },
               {
-                "title": "R-001 P04 · panorama de consulta · fecha sin verificar",
+                "title": "P04 · mismo frente visto desde el este · panorama de consulta",
                 "url": "recorrido/h45BeWMtTog-TgjPTSYn6g.jpg"
+              },
+              {
+                "title": "P02 · contexto al oeste: cubierta OB-01",
+                "url": "recorrido/XLuGJnj_XmtAuKd4eXeTDw.jpg"
+              },
+              {
+                "title": "P05 · contexto al este: fachada distinta",
+                "url": "recorrido/133OIriRrcYkbV0Y2VCPng.jpg"
+              },
+              {
+                "title": "Registro de identidad · IDs, coordenadas, archivos y límites",
+                "url": "levantamiento/evidence/OB-02/identity-record.json"
+              },
+              {
+                "title": "Directorio oficial: domicilio del Colegio; no confirma este frente",
+                "url": "https://www.notariadomexicano.org.mx/directorio-colegios-nacionales/"
               }
             ],
             "volume": [
@@ -459,10 +479,10 @@
               "worldSha256": "4bdf262926cfd58d9d7dabf110a757e748e982797af2c4879e49265fad6d1fb3"
             },
             "current": {
-              "url": "levantamiento/evidence/OB-02/14-avance-punto05.png",
-              "title": "Avance después del punto 5 · guarnición continua",
-              "label": "Avance · 05",
-              "capturedAt": "2026-10-03T05:38:53.048Z",
+              "url": "levantamiento/evidence/OB-02/17-avance-punto06.png",
+              "title": "Avance 06 · identificación visual documentada · geometría sin cambios",
+              "label": "Avance · 06",
+              "capturedAt": "2026-10-03T06:00:23.942Z",
               "worldSha256": "72a3b71f904a22ea6cd2c68bd534e93ddee90e49520d4826cc655f279e5a0225"
             }
           }

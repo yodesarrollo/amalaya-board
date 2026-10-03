@@ -4,7 +4,7 @@ import { createHash } from 'node:crypto'
 const root='public/levantamiento'
 const approved=new Set(['amalaya-observations.json','amalaya-routes.json','cerro-elevation.json','osm-context.json','osm-plaza-hidalgo.json','sector-survey.json'])
 const ob01EvidenceFiles=new Set(['01-planta.png','02-calzada.png','03-banqueta-sur.png','04-banqueta-norte.png','05-esquinas.png','06-identidad.png','07-volumen.png','08-fachada.png','09-materiales.png','10-equipamiento.png','11a-planta.png','11b-bloque.png','11c-peaton.png','manifest.json'])
-const ob02EvidenceFiles=new Set(['01-fachada-p03.png','02-conjunto-p03.png','03-edificio-aislado-p03.png','04-retorno-oblicuo-p04.png','manifest.json','05-planta-ob02.png','plan-manifest.json','06-calzada-ob02.png','street-manifest.json','07-inicio-seguimiento.png','progress-baseline.json','08-avance-punto03.png','09-banqueta-sur-planta.png','10-banqueta-sur-peaton.png','sidewalkA-manifest.json','11-avance-punto04.png','12-banqueta-norte-planta.png','13-banqueta-norte-peaton.png','sidewalkB-manifest.json','14-avance-punto05.png','15-guarniciones-planta.png','16-guarnicion-detalle.png','corners-manifest.json'])
+const ob02EvidenceFiles=new Set(['01-fachada-p03.png','02-conjunto-p03.png','03-edificio-aislado-p03.png','04-retorno-oblicuo-p04.png','manifest.json','05-planta-ob02.png','plan-manifest.json','06-calzada-ob02.png','street-manifest.json','07-inicio-seguimiento.png','progress-baseline.json','08-avance-punto03.png','09-banqueta-sur-planta.png','10-banqueta-sur-peaton.png','sidewalkA-manifest.json','11-avance-punto04.png','12-banqueta-norte-planta.png','13-banqueta-norte-peaton.png','sidewalkB-manifest.json','14-avance-punto05.png','15-guarniciones-planta.png','16-guarnicion-detalle.png','corners-manifest.json','17-avance-punto06.png','identity-manifest.json','identity-record.json'])
 async function check(dir){
   for(const item of await readdir(dir,{withFileTypes:true})){
     const path=`${dir}/${item.name}`
@@ -118,11 +118,10 @@ for(const state of sidewalkB.captures){
 console.log('OB-02: punto 4 norte y Avance 04 desde la cámara fija; evidencias anteriores conservadas.')
 
 const corners=JSON.parse(await readFile(`${root}/evidence/OB-02/corners-manifest.json`,'utf8'))
-assert(corners.building==='OB-02'&&corners.task==='corners'&&corners.worldSha256===currentWorldHash,'El punto 5 debe corresponder al modelo publicado.')
+assert(corners.building==='OB-02'&&corners.task==='corners'&&corners.worldSha256==='72a3b71f904a22ea6cd2c68bd534e93ddee90e49520d4826cc655f279e5a0225','El punto 5 conserva su checkpoint histórico.')
 assert(corners.captures?.length===3&&['progress','plan','pedestrian'].every(view=>corners.captures.some(s=>s.view===view)),'Se requieren avance 05, planta y detalle de guarnición.')
 const progressC=corners.captures.find(s=>s.view==='progress')
 for(const field of ['cameraId','cameraPosition','cameraTarget','cameraUp','projection','viewport','textureSize'])assert.deepEqual(progressC[field],initialView[field],`La toma de inicio/avance 05 cambió: ${field}`)
-assert(ob02Tracking.visualProgress?.current?.url===`levantamiento/evidence/OB-02/${progressC.file}`&&ob02Tracking.visualProgress.current.worldSha256===currentWorldHash,'La cabecera debe mostrar Avance 05 auditado.')
 assert(ob02Tracking.tasks.corners==='blocked'&&ob02Tracking.issues.corners?.detail,'El rebaje sin evidencia debe conservar su problema visible.')
 for(const state of corners.captures){
   assert(ob02EvidenceFiles.has(state.file)&&state.triangles>0&&state.calls>0&&state.renderer?.includes('WebGL 2.0'),'Captura de guarnición inválida.')
@@ -132,3 +131,32 @@ for(const state of corners.captures){
   assert(bytes.subarray(0,8).equals(Buffer.from([137,80,78,71,13,10,26,10]))&&bytes.readUInt32BE(16)===1280&&bytes.readUInt32BE(20)===800,`PNG de guarnición inválido: ${state.file}`)
 }
 console.log('OB-02: guarnición continua, Avance 05 desde cámara fija y bloqueo de rampas explícito.')
+
+const identity=JSON.parse(await readFile(`${root}/evidence/OB-02/identity-manifest.json`,'utf8'))
+assert(identity.building==='OB-02'&&identity.task==='identity'&&identity.worldSha256===currentWorldHash,'La evidencia de identificación debe corresponder al modelo vigente.')
+assert(identity.captures?.length===1,'Se requiere una captura de Avance 06.')
+const progressI=identity.captures[0]
+assert(progressI.file==='17-avance-punto06.png'&&progressI.view==='progress'&&progressI.triangles>0&&progressI.calls>0&&progressI.renderer?.includes('WebGL 2.0'),'Avance 06 debe ser un render real.')
+for(const field of ['cameraId','cameraPosition','cameraTarget','cameraUp','projection','viewport','textureSize'])assert.deepEqual(progressI[field],initialView[field],`La toma de inicio/avance 06 cambió: ${field}`)
+assert(ob02Tracking.visualProgress.current.url===`levantamiento/evidence/OB-02/${progressI.file}`&&ob02Tracking.visualProgress.current.worldSha256===currentWorldHash,'La cabecera debe mostrar Avance 06 auditado.')
+const identityPng=await readFile(`${root}/evidence/OB-02/${progressI.file}`)
+assert(identityPng.subarray(0,8).equals(Buffer.from([137,80,78,71,13,10,26,10]))&&identityPng.readUInt32BE(16)===1280&&identityPng.readUInt32BE(20)===800,'PNG de identidad inválido.')
+const record=JSON.parse(await readFile(`${root}/evidence/OB-02/identity-record.json`,'utf8'))
+assert(record.building==='OB-02'&&record.task==='identity'&&record.side==='south'&&record.references.length===4,'Falta el vínculo de identidad con los puntos y su contexto.')
+assert(record.commercialAttribution.status==='unconfirmed for this facade'&&record.commercialAttribution.addressSource==='https://www.notariadomexicano.org.mx/directorio-colegios-nacionales/','El domicilio de un directorio no confirma por sí solo la fachada.')
+assert(ob02Tracking.tasks.identity==='done'&&ob02Tracking.name===record.descriptiveName,'El verde de identidad debe identificar el frente mediante nombre descriptivo.')
+const normalized=JSON.parse(await readFile(`${root}/data/amalaya-routes.json`,'utf8')).routes.find(r=>r.id==='R-001')
+const routePhotos=JSON.parse(await readFile('public/recorrido/rutas.json','utf8')).rutas.find(r=>r.id==='R-001')
+assert.deepEqual(record.references.map(r=>r.order),[2,3,4,5],'Se requieren dos vistas y contexto anterior/posterior.')
+assert(record.references.find(r=>r.order===3).role==='primary-anchor'&&record.references.find(r=>r.order===4).role==='secondary-oblique-view','P03 es el ancla; P04 no es el centro del edificio.')
+for(const ref of record.references){
+ const point=normalized.points.find(p=>p.id===ref.routePointId),photo=routePhotos.puntos.find(p=>p.orden===ref.order)
+ assert(point&&photo&&point.lat===ref.lat&&point.lng===ref.lng&&photo.lat===ref.lat&&photo.lng===ref.lng&&photo.id===ref.panoramaId,'La imagen debe estar ligada a las coordenadas originales correctas.')
+ assert(ref.imagePath===`recorrido/${photo.id}.jpg`&&ref.imageHeadingDegrees===null&&ref.imageCaptureDate===null,'No se inventan orientación ni fecha de captura.')
+ assert(createHash('sha256').update(await readFile(`public/${ref.imagePath}`)).digest('hex')===ref.imageSha256,'La referencia debe ser el panorama original, sin reemplazo.')
+ const next=normalized.points.find(p=>p.order===point.order+1)
+ const bearing=(Math.atan2((next.lng-point.lng)*97200,(next.lat-point.lat)*110950)*180/Math.PI+360)%360
+ assert(Math.abs(bearing-ref.travelBearingDegrees)<.011,'El rumbo de marcha se calcula desde coordenadas consecutivas, no desde la imagen.')
+}
+assert.deepEqual(record.frontEstimate.start,JSON.parse(await readFile(`${root}/evidence/OB-02/plan-manifest.json`,'utf8')).frontStart,'Se conserva el frente alineado de OB-02.')
+console.log('OB-02: identidad visual con P03/P04 y contexto P02/P05, rutas originales y Avance 06 desde cámara fija.')
