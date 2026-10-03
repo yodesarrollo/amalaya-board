@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-03T07:32:37.854854+00:00",
+  "updatedAt": "2026-10-03T08:42:31.547505+00:00",
   "refreshSeconds": 30,
   "live": {
     "status": "active",
-    "phase": "OB-02 · punto 8 en proceso",
-    "title": "Fachada y coronamiento",
-    "detail": "Secuencia autorizada: fachada, acabados, equipamiento y comparación final. Ahora solo punto 8; referencias P03/P04 de consulta, sin texturas fotográficas.",
+    "phase": "OB-02 · punto 9 en proceso",
+    "title": "Acabados de piedra y herrería",
+    "detail": "Punto 8 visual publicado; medidas de fachada pendientes. Ahora acabados 9, después equipamiento 10 y comparación 11.",
     "activeBlockId": "OB-YG",
     "activeBuildingId": "OB-02"
   },
@@ -83,7 +83,7 @@
         "max": 33
       },
       "estimateBasis": "3 frentes/estructuras conocidas más revisión compartida de la cuadra; frentes anónimos se agregan cuando se cuenten.",
-      "next": "OB-02 · punto 8 activo; después 9, 10 y cierre de comparación 11, en ese orden.",
+      "next": "OB-02 · acabados 9 activos; fachada visual corregida y medidas pendientes, después 10 y 11.",
       "sharedTasks": {
         "plan": "partial",
         "street": "partial",
@@ -251,7 +251,7 @@
         },
         {
           "id": "OB-02",
-          "name": "Fachada gris de cinco arcos y rejas",
+          "name": "Fachada gris de siete vanos y rejas",
           "confidence": "Frente sur de Obregón identificado por arcos, pilastras, rejas, balaustrada y colindante OB-01; P03 ancla y P04 vista oblicua. Nombre comercial sin atribución confirmada; posición, proporciones y fondo continúan estimados.",
           "estimateHours": {
             "min": 4,
@@ -260,8 +260,8 @@
           "tasks": {
             "identity": "done",
             "volume": "blocked",
-            "facade": "active",
-            "finish": "partial",
+            "facade": "blocked",
+            "finish": "active",
             "equipment": "pending",
             "qa": "blocked",
             "plan": "done",
@@ -271,10 +271,10 @@
             "corners": "blocked"
           },
           "taskDetails": {
-            "identity": "HECHO · código OB-02 vinculado al frente gris del lado sur de Obregón, junto a OB-01, por rasgos visibles en P03/P04 y contexto P02/P05. Coordenadas, IDs de panorama y JPG originales comprobados. P03 es el ancla; P04 mira desde el este. Nombre descriptivo: fachada gris de cinco arcos y rejas. El directorio oficial respalda el domicilio del Colegio en Obregón 65, pero no confirma esta fachada; nombre comercial, fechas y rumbo del panorama siguen sin verificar. No cierra exactitud de volumen ni QA.",
-            "volume": "REVISADO · cuerpo posterior unido a cubierta (eliminado hueco de 0.16 m del modelo); cerrados ambos encuentros laterales de 0.31 m entre fachada y cuerpo, manteniendo los cinco vanos. Frente 16.61 ±2 m, fondo 9 ±3 m, cornisa 4.65 ±0.6 m y pasamanos 5.35 ±0.6 m, todos provisionales. Cubierta plana interpretada, fondo e interior no restituidos. Capturas 19/20 desde la misma cámara, 21 planta norte arriba y Avance 07 en cabecera. 104 pruebas correctas; no certifican medidas del sitio.",
-            "facade": "EN PROCESO · contraste de cinco arcos, pilastras y coronamiento con P03/P04; se revisan encuentros y vacío de balaustrada antes de acabados. Huella y dimensiones provisionales conservadas.",
-            "finish": "PARCIAL · tonos de piedra/remates moderados y juntas de hilada añadidas como detalle visual; alturas y espesor interpretados. Sin fotografías usadas como texturas.",
+            "identity": "HECHO · código OB-02 vinculado al frente gris del lado sur de Obregón, junto a OB-01, por rasgos visibles en P03/P04 y contexto P02/P05. Coordenadas, IDs de panorama y JPG originales comprobados. P03 es el ancla; P04 mira desde el este. Nombre descriptivo: fachada gris de siete vanos y rejas (recuento corregido al revisar el frente completo en el punto 8). El directorio oficial respalda el domicilio del Colegio en Obregón 65, pero no confirma esta fachada; nombre comercial, fechas y rumbo del panorama siguen sin verificar. No cierra exactitud de volumen ni QA.",
+            "volume": "REVISADO · cuerpo posterior unido a cubierta (eliminado hueco de 0.16 m del modelo); cerrados ambos encuentros laterales de 0.31 m entre fachada y cuerpo, conservando los cinco vanos del modelo de ese checkpoint; corregidos a siete en el punto 8. Frente 16.61 ±2 m, fondo 9 ±3 m, cornisa 4.65 ±0.6 m y pasamanos 5.35 ±0.6 m, todos provisionales. Cubierta plana interpretada, fondo e interior no restituidos. Capturas 19/20 desde la misma cámara, 21 planta norte arriba y Avance 07 en cabecera. 104 pruebas correctas; no certifican medidas del sitio.",
+            "facade": "REVISADO · corregidos cinco a siete vanos al inspeccionar la unión del panorama P03 y contrastar P04; ocho pilastras, alternancia estrecho/ancho y portal central mayor. Añadidos zócalo continuo de balaustrada y volutas de capiteles. Anchuras/ejes aún estimados dentro del frente 16.61 ±2 m; falta escala para cierre dimensional. Capturas 22–24; 105 pruebas correctas.",
+            "finish": "EN PROCESO · materiales de piedra y herrería; juntas verticales de sillares y ornamentos adaptados a los vanos estrechos. Mantener forma y medidas del punto 8, sin usar fotografías como texturas.",
             "equipment": "PENDIENTE · no se añadieron elementos urbanos porque las tomas disponibles no permiten anclar con confianza qué elementos son permanentes ni sus posiciones.",
             "qa": "BLOQUEADO · el checkpoint está publicado y las pruebas/build pasaron. La comparación con Street View necesita el rumbo exacto del panorama P03/P04, que no está en el JSON. La captura aislada 03 conserva una etiqueta que tapa parte de la cornisa/balaustrada; la recaptura no pudo completar en este entorno. Abre el problema rojo para indicar el rumbo de referencia o cómo continuar con la captura pendiente.",
             "plan": "HECHO · corregido el extremo oriental 1.46 m para alinear el frente con OB-01 y el eje OB-W, conservando estación, colindancia y P03/P04. Extremos/centro y collider comprobados. Revisión del modelo bajo posición ±5 m; fondo y límites catastrales siguen provisionales.",
@@ -342,19 +342,27 @@
             ],
             "facade": [
               {
-                "title": "P03 · detalle de fachada a nivel peatonal · recorta extremos",
-                "url": "levantamiento/evidence/OB-02/01-fachada-p03.png"
+                "title": "Avance 08 · misma cámara de Inicio",
+                "url": "levantamiento/evidence/OB-02/22-avance-punto08.png"
               },
               {
-                "title": "P03 · cinco vanos completos · modelo aislado para lectura",
-                "url": "levantamiento/evidence/OB-02/03-edificio-aislado-p03.png"
+                "title": "Fachada completa · siete vanos, ocho pilastras · modelo aislado",
+                "url": "levantamiento/evidence/OB-02/23-fachada-siete-vanos.png"
               },
               {
-                "title": "P03 · panorama original de consulta; no se copió al modelo",
+                "title": "Coronamiento · zócalo continuo y capiteles",
+                "url": "levantamiento/evidence/OB-02/24-coronamiento.png"
+              },
+              {
+                "title": "Registro de recuento · fuentes y medidas interpretadas",
+                "url": "levantamiento/evidence/OB-02/facade-record.json"
+              },
+              {
+                "title": "P03 original · el frente cruza la unión del panorama",
                 "url": "recorrido/Apyr0uKeZr_XWmfLfLeBjQ.jpg"
               },
               {
-                "title": "P04 · panorama original de consulta; fecha sin verificar",
+                "title": "P04 original · extremo oriental visto en oblicua",
                 "url": "recorrido/h45BeWMtTog-TgjPTSYn6g.jpg"
               }
             ],
@@ -473,8 +481,8 @@
               "detail": "La continuidad del modelo está corregida. P03/P04 no muestran el fondo ni el plano completo de cubierta; la azotea plana sigue interpretada. Para cerrar: vista identificada de fondo/cubierta y frente, fondo, cornisa y coronamiento medidos respecto del mismo nivel de suelo, con unidades, método, fecha y margen de error. Valores provisionales: frente 16.61 ±2 m; fondo 9 ±3 m; cornisa 4.65 ±0.6 m; pasamanos 5.35 ±0.6 m; posición ±5 m. Puedes adjuntar la evidencia o indicar aquí cómo obtenerla; no hay huella de edificio en OSM."
             },
             "facade": {
-              "title": "Falta escala para proporciones de fachada",
-              "detail": "P03/P04 permiten reconocer cinco arcos, pilastras, rejas y balaustrada, pero no fijar separaciones y alturas. Hace falta vista frontal con una referencia de escala o medidas de anchuras de vanos, ejes de pilastras y alturas."
+              "title": "Faltan medidas de vanos, ejes y alturas",
+              "detail": "La forma visible ya fue corregida: siete vanos y ocho pilastras con portal mayor, zócalo y capiteles. Sus anchuras y separaciones siguen interpretadas; P03/P04 no proporcionan escala métrica. Para verificar proporciones: vista frontal identificada con escala o medidas de cada vano, ejes de pilastras y alturas referidas al mismo suelo, indicando unidades, método, fecha y error. No es necesario volver a contar los vanos; la incertidumbre está en sus medidas."
             },
             "qa": {
               "title": "QA requiere rumbo del 360 y recaptura de una etiqueta",
@@ -495,11 +503,11 @@
               "worldSha256": "4bdf262926cfd58d9d7dabf110a757e748e982797af2c4879e49265fad6d1fb3"
             },
             "current": {
-              "url": "levantamiento/evidence/OB-02/18-avance-punto07.png",
-              "title": "Avance 07 · apoyo de cubierta y encuentros laterales corregidos",
-              "label": "Avance · 07",
-              "capturedAt": "2026-10-03T07:22:03.088Z",
-              "worldSha256": "d42c8b38335695af1c87f22e9b264316adfc78252d8eaa76f2b9540bc1d72506"
+              "url": "levantamiento/evidence/OB-02/22-avance-punto08.png",
+              "title": "Avance 08 · siete vanos y coronamiento corregidos",
+              "label": "Avance · 08",
+              "capturedAt": "2026-10-03T08:38:41.190Z",
+              "worldSha256": "a321271639c3428048e69ff9ebeaf2ac334a605d9c083d6cf6969f89c8e130a5"
             }
           }
         },

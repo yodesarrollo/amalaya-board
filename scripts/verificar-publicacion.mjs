@@ -6,6 +6,7 @@ const approved=new Set(['amalaya-observations.json','amalaya-routes.json','cerro
 const ob01EvidenceFiles=new Set(['01-planta.png','02-calzada.png','03-banqueta-sur.png','04-banqueta-norte.png','05-esquinas.png','06-identidad.png','07-volumen.png','08-fachada.png','09-materiales.png','10-equipamiento.png','11a-planta.png','11b-bloque.png','11c-peaton.png','manifest.json'])
 const ob02EvidenceFiles=new Set(['01-fachada-p03.png','02-conjunto-p03.png','03-edificio-aislado-p03.png','04-retorno-oblicuo-p04.png','manifest.json','05-planta-ob02.png','plan-manifest.json','06-calzada-ob02.png','street-manifest.json','07-inicio-seguimiento.png','progress-baseline.json','08-avance-punto03.png','09-banqueta-sur-planta.png','10-banqueta-sur-peaton.png','sidewalkA-manifest.json','11-avance-punto04.png','12-banqueta-norte-planta.png','13-banqueta-norte-peaton.png','sidewalkB-manifest.json','14-avance-punto05.png','15-guarniciones-planta.png','16-guarnicion-detalle.png','corners-manifest.json','17-avance-punto06.png','identity-manifest.json','identity-record.json'])
 for(const file of ['18-avance-punto07.png','19-envolvente-antes.png','20-envolvente-despues.png','21-cubierta-planta.png','volume-before-manifest.json','volume-manifest.json'])ob02EvidenceFiles.add(file)
+for(const file of ['22-avance-punto08.png','23-fachada-siete-vanos.png','24-coronamiento.png','facade-manifest.json','facade-record.json'])ob02EvidenceFiles.add(file)
 async function check(dir){
   for(const item of await readdir(dir,{withFileTypes:true})){
     const path=`${dir}/${item.name}`
@@ -95,7 +96,7 @@ assert(sidewalkA.building==='OB-02'&&sidewalkA.task==='sidewalkA'&&sidewalkA.wor
 assert(sidewalkA.captures?.length===3&&['progress','plan','pedestrian'].every(view=>sidewalkA.captures.some(s=>s.view===view)),'Se requieren avance de cabecera, planta y peatón.')
 const progressView=sidewalkA.captures.find(s=>s.view==='progress')
 for(const field of ['cameraId','cameraPosition','cameraTarget','cameraUp','projection','viewport','textureSize'])assert.deepEqual(progressView[field],initialView[field],`La toma de inicio/avance cambió: ${field}`)
-// Earlier views retain their immutable checkpoints; point 7 is the current header.
+// Earlier views retain their immutable checkpoints; point 8 is the current header.
 for(const state of [initialView,...sidewalkA.captures]){
   assert(ob02EvidenceFiles.has(state.file)&&state.triangles>0&&state.calls>0&&state.renderer?.includes('WebGL 2.0'),'Captura de seguimiento inválida.')
   assert(state.sidewalkWidthMeters===1.2&&state.sidewalkUncertaintyMeters===.8&&state.source?.includes('production builders'),'Faltan perfil e incertidumbre de la banqueta.')
@@ -144,7 +145,9 @@ assert(identityPng.subarray(0,8).equals(Buffer.from([137,80,78,71,13,10,26,10]))
 const record=JSON.parse(await readFile(`${root}/evidence/OB-02/identity-record.json`,'utf8'))
 assert(record.building==='OB-02'&&record.task==='identity'&&record.side==='south'&&record.references.length===4,'Falta el vínculo de identidad con los puntos y su contexto.')
 assert(record.commercialAttribution.status==='unconfirmed for this facade'&&record.commercialAttribution.addressSource==='https://www.notariadomexicano.org.mx/directorio-colegios-nacionales/','El domicilio de un directorio no confirma por sí solo la fachada.')
-assert(ob02Tracking.tasks.identity==='done'&&ob02Tracking.name===record.descriptiveName,'El verde de identidad debe identificar el frente mediante nombre descriptivo.')
+const facadeRecord=JSON.parse(await readFile(`${root}/evidence/OB-02/facade-record.json`,'utf8'))
+assert(ob02Tracking.tasks.identity==='done'&&ob02Tracking.name===facadeRecord.descriptiveName,'El nombre actual debe reflejar el recuento revisado de fachada.')
+assert(facadeRecord.building==='OB-02'&&facadeRecord.task==='facade'&&facadeRecord.supersedes.file==='identity-record.json'&&facadeRecord.supersedes.previousCount===5,'La corrección de recuento debe conservar el registro anterior como histórico.')
 const normalized=JSON.parse(await readFile(`${root}/data/amalaya-routes.json`,'utf8')).routes.find(r=>r.id==='R-001')
 const routePhotos=JSON.parse(await readFile('public/recorrido/rutas.json','utf8')).rutas.find(r=>r.id==='R-001')
 assert.deepEqual(record.references.map(r=>r.order),[2,3,4,5],'Se requieren dos vistas y contexto anterior/posterior.')
@@ -164,7 +167,7 @@ console.log('OB-02: identidad visual con P03/P04 y contexto P02/P05, rutas origi
 const volumeBefore=JSON.parse(await readFile(`${root}/evidence/OB-02/volume-before-manifest.json`,'utf8'))
 const volume=JSON.parse(await readFile(`${root}/evidence/OB-02/volume-manifest.json`,'utf8'))
 assert(volumeBefore.building==='OB-02'&&volumeBefore.task==='volume-before'&&volumeBefore.worldSha256===identity.worldSha256,'El antes del punto 7 debe conservar el modelo anterior.')
-assert(volume.building==='OB-02'&&volume.task==='volume'&&volume.worldSha256===currentWorldHash,'El punto 7 debe auditar el paquete publicado.')
+assert(volume.building==='OB-02'&&volume.task==='volume'&&volume.worldSha256==='d42c8b38335695af1c87f22e9b264316adfc78252d8eaa76f2b9540bc1d72506','El punto 7 conserva su checkpoint histórico.')
 assert(volumeBefore.captures?.length===1&&volumeBefore.captures[0].file==='19-envolvente-antes.png','Falta la captura anterior al cambio de envolvente.')
 assert(volume.captures?.length===3&&['progress','volume','roof'].every(view=>volume.captures.some(s=>s.view===view)),'Se requieren Avance 07, detalle y planta de cubierta.')
 const envelopeBefore=volumeBefore.captures[0],envelopeAfter=volume.captures.find(s=>s.view==='volume'),progressV=volume.captures.find(s=>s.view==='progress'),roofView=volume.captures.find(s=>s.view==='roof')
@@ -186,6 +189,29 @@ for(const state of [...volumeBefore.captures,...volume.captures]){
  const bytes=await readFile(`${root}/evidence/OB-02/${state.file}`)
  assert(bytes.subarray(0,8).equals(Buffer.from([137,80,78,71,13,10,26,10]))&&bytes.readUInt32BE(16)===1280&&bytes.readUInt32BE(20)===800,`PNG de volumen inválido: ${state.file}`)
 }
-assert(ob02Tracking.visualProgress.current.url===`levantamiento/evidence/OB-02/${progressV.file}`&&ob02Tracking.visualProgress.current.worldSha256===currentWorldHash,'La cabecera debe mostrar Avance 07 del paquete vigente.')
 assert(ob02Tracking.tasks.volume==='blocked'&&ob02Tracking.issues.volume?.detail,'La verificación métrica de fondo/cubierta requiere evidencia explícita.')
 console.log('OB-02: punto 7 con apoyo de cubierta, dos encuentros laterales, antes/después equivalente y medidas pendientes visibles.')
+
+const facade=JSON.parse(await readFile(`${root}/evidence/OB-02/facade-manifest.json`,'utf8'))
+assert(facade.building==='OB-02'&&facade.task==='facade'&&facade.worldSha256===currentWorldHash,'La fachada debe corresponder al modelo vigente.')
+assert(facade.captures?.length===3&&['progress','facade','facade-detail'].every(view=>facade.captures.some(s=>s.view===view)),'Faltan Avance 08, fachada completa o coronamiento.')
+assert(facadeRecord.observations.openingCount===7&&facadeRecord.observations.pilasterCount===8&&facadeRecord.observations.primaryImageInspection.wrapsAcrossSeam===true,'El recuento debe revisar el frente completo, incluida la unión del panorama.')
+assert.deepEqual(facadeRecord.observations.fromWestToEast,['narrow','wide','narrow','central portal','narrow','wide','narrow'])
+for(const ref of facadeRecord.references){
+ assert(record.references.some(r=>r.order===ref.order&&r.panoramaId===ref.panoramaId&&r.imageSha256===ref.imageSha256),'La fachada debe usar las referencias originales de identidad.')
+ assert(createHash('sha256').update(await readFile(`public/${ref.imagePath}`)).digest('hex')===ref.imageSha256,'La fotografía de consulta debe permanecer intacta.')
+}
+const progressF=facade.captures.find(s=>s.view==='progress')
+for(const field of ['cameraId','cameraPosition','cameraTarget','cameraUp','projection','viewport','textureSize'])assert.deepEqual(progressF[field],initialView[field],`La toma de inicio/avance 08 cambió: ${field}`)
+for(const state of facade.captures){
+ assert(ob02EvidenceFiles.has(state.file)&&state.triangles>0&&state.calls>0&&state.renderer?.includes('WebGL 2.0'),'La fachada requiere renders WebGL reales.')
+ assert(state.facade?.bays===7&&state.facade.continuousPlinth===true&&state.facade.volutes===16,'Faltan los siete vanos, el zócalo o los capiteles revisados.')
+ assert.deepEqual(state.facade.bayWidthsMeters,facadeRecord.modelEstimates.openingWidthsMeters,'El modelo debe conservar el ritmo de vanos registrado, con anchuras estimadas.')
+ assert(state.facade.pilasterCentersMeters.length===8,'Se requieren ocho pilastras.')
+ const bytes=await readFile(`${root}/evidence/OB-02/${state.file}`)
+ assert(bytes.subarray(0,8).equals(Buffer.from([137,80,78,71,13,10,26,10]))&&bytes.readUInt32BE(16)===1280&&bytes.readUInt32BE(20)===800,`PNG de fachada inválido: ${state.file}`)
+ if(state.view!=='progress')assert(state.isolated===true&&state.source.includes('neutral ground'),'La vista aislada de fachada debe declarar su alcance.')
+}
+assert(ob02Tracking.visualProgress.current.url===`levantamiento/evidence/OB-02/${progressF.file}`&&ob02Tracking.visualProgress.current.worldSha256===currentWorldHash,'La cabecera debe mostrar Avance 08 vigente.')
+assert(ob02Tracking.tasks.facade==='blocked'&&ob02Tracking.issues.facade?.detail,'La verificación métrica de proporciones conserva su problema explícito.')
+console.log('OB-02: siete vanos documentados, ocho pilastras, zócalo continuo y Avance 08 desde cámara fija.')

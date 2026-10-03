@@ -1,0 +1,105 @@
+{
+  "building": "OB-02",
+  "task": "facade",
+  "reviewedAt": "2026-10-03T08:35:56.218716+00:00",
+  "descriptiveName": "Fachada gris de siete vanos y rejas",
+  "supersedes": {
+    "file": "identity-record.json",
+    "scope": "opening count and descriptive name only",
+    "previousCount": 5,
+    "reason": "The complete frontage crosses the P03 panorama seam. Inspecting both ends reveals the narrow openings omitted by the earlier five-bay simplification."
+  },
+  "observations": {
+    "openingCount": 7,
+    "pilasterCount": 8,
+    "fromWestToEast": [
+      "narrow",
+      "wide",
+      "narrow",
+      "central portal",
+      "narrow",
+      "wide",
+      "narrow"
+    ],
+    "continuousBalustradePlinth": true,
+    "capitalVolutes": true,
+    "primaryImageInspection": {
+      "imagePath": "recorrido/Apyr0uKeZr_XWmfLfLeBjQ.jpg",
+      "unwrappedPixelX": [
+        1630,
+        2240
+      ],
+      "pixelY": [
+        270,
+        710
+      ],
+      "imageWidth": 2048,
+      "wrapsAcrossSeam": true,
+      "method": "Visual inspection of original panorama and enlarged seam; P04 confirms the oblique eastern end. No photograph changed or applied as a model texture."
+    }
+  },
+  "references": [
+    {
+      "routePointId": "R-001-P03",
+      "order": 3,
+      "panoramaId": "Apyr0uKeZr_XWmfLfLeBjQ",
+      "imagePath": "recorrido/Apyr0uKeZr_XWmfLfLeBjQ.jpg",
+      "imageSha256": "647926706b3597bedb0f32b615fd22c1225116cfc4b93a8aa14343fde0d50802",
+      "lat": 29.0759089,
+      "lng": -110.9551769,
+      "imageCaptureDate": null,
+      "imageHeadingDegrees": null,
+      "travelBearingDegrees": 84.12,
+      "frontProjection": {
+        "alongMeters": 9.51,
+        "northOffsetMeters": 6.24
+      },
+      "role": "primary-anchor",
+      "observation": "Mismo frente gris de arcos, pilastras, rejas y balaustrada, partido por la costura horizontal del panorama; cubierta OB-01 contigua al oeste."
+    },
+    {
+      "routePointId": "R-001-P04",
+      "order": 4,
+      "panoramaId": "h45BeWMtTog-TgjPTSYn6g",
+      "imagePath": "recorrido/h45BeWMtTog-TgjPTSYn6g.jpg",
+      "imageSha256": "7cc232bdf2ad46a9b6379e0e5aa530c02d5a5da4f55fc27e92d612b346d15546",
+      "lat": 29.0759275,
+      "lng": -110.9549709,
+      "imageCaptureDate": null,
+      "imageHeadingDegrees": null,
+      "travelBearingDegrees": 85.08,
+      "frontProjection": {
+        "alongMeters": 29.63,
+        "northOffsetMeters": 6.14
+      },
+      "role": "secondary-oblique-view",
+      "observation": "Mismo frente gris al oeste desde una posición más oriental; colindante claro de vanos rectangulares permite distinguir el límite del frente."
+    }
+  ],
+  "modelEstimates": {
+    "openingWidthsMeters": [
+      0.95,
+      1.9,
+      0.95,
+      2.65,
+      0.95,
+      1.9,
+      0.95
+    ],
+    "frontMeters": 16.60719146762562,
+    "corniceMeters": 4.65,
+    "balustradeRailMeters": 5.35,
+    "uncertainty": {
+      "positionMeters": 5,
+      "lengthMeters": 2,
+      "depthMeters": 3,
+      "heightMeters": 0.6
+    },
+    "status": "interpreted proportions, not measured spans"
+  },
+  "limits": [
+    "Count and order are morphological observations; dimensions and ironwork pattern remain estimates.",
+    "No confirmed commercial attribution, photograph date or original panorama heading.",
+    "Roof and rear extent retain their independent uncertainty."
+  ]
+}

@@ -1,0 +1,256 @@
+{
+  "building": "OB-02",
+  "task": "facade",
+  "capturedAt": "2026-10-03T08:38:41.190Z",
+  "worldSha256": "a321271639c3428048e69ff9ebeaf2ac334a605d9c083d6cf6969f89c8e130a5",
+  "render": "Three.js production builders through WebGLRenderer (SwiftShader)",
+  "limits": "Not site photography or cadastral survey. Initial visual tracking begins before point 3; earlier captures retain their historical revision. Seven openings observed across P03 panorama seam and P04 oblique view; dimensions and spacing estimated. No cadastral scale. Detail views isolate the production building on neutral ground.",
+  "captures": [
+    {
+      "file": "22-avance-punto08.png",
+      "building": "OB-02",
+      "view": "progress",
+      "cameraId": "OB-02-fixed-v1",
+      "cameraPosition": [
+        -49.2,
+        17,
+        2.2
+      ],
+      "cameraTarget": [
+        -45.95,
+        2.3,
+        31
+      ],
+      "cameraUp": [
+        0,
+        1,
+        0
+      ],
+      "projection": {
+        "kind": "orthographic",
+        "left": -15,
+        "right": 15,
+        "top": 9.375,
+        "bottom": -9.375
+      },
+      "viewport": [
+        1280,
+        800
+      ],
+      "textureSize": 512,
+      "source": "production builders: OB-01 + OB-02 + streetContinuation + routeStreetscape; local audit subset",
+      "cameraFootwayHeight": null,
+      "sidewalkSide": "south",
+      "sidewalkWidthMeters": 1.2,
+      "sidewalkUncertaintyMeters": 0.8,
+      "calls": 500,
+      "triangles": 43342,
+      "renderer": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+      "facade": {
+        "bays": 7,
+        "bayWidthsMeters": [
+          0.95,
+          1.9,
+          0.95,
+          2.65,
+          0.95,
+          1.9,
+          0.95
+        ],
+        "bayCentersMeters": [
+          0.9290851048304014,
+          3.2622553144912043,
+          5.595425524152007,
+          8.30359573381281,
+          11.011765943473613,
+          13.344936153134416,
+          15.67810636279522
+        ],
+        "pilasterCentersMeters": [
+          0,
+          1.8581702096608028,
+          4.666340419321606,
+          6.524510628982408,
+          10.08268083864321,
+          11.940851048304014,
+          14.749021257964817,
+          16.60719146762562
+        ],
+        "balusters": 31,
+        "continuousPlinth": true,
+        "volutes": 16,
+        "uncertainty": {
+          "positionMeters": 5,
+          "lengthMeters": 2,
+          "depthMeters": 3,
+          "heightMeters": 0.6
+        }
+      },
+      "isolated": false
+    },
+    {
+      "file": "23-fachada-siete-vanos.png",
+      "building": "OB-02",
+      "view": "facade",
+      "cameraId": "OB-02-facade-v1",
+      "cameraPosition": [
+        -47.34288002210087,
+        2.7,
+        11.299909643839051
+      ],
+      "cameraTarget": [
+        -45.40100448783484,
+        2.7,
+        29.315556160392905
+      ],
+      "cameraUp": [
+        0,
+        1,
+        0
+      ],
+      "projection": {
+        "kind": "orthographic",
+        "left": -9.5,
+        "right": 9.5,
+        "top": 5.9375,
+        "bottom": -5.9375
+      },
+      "viewport": [
+        1280,
+        800
+      ],
+      "textureSize": 512,
+      "source": "production builder: OB-02 isolated on neutral ground; not full city or site photography",
+      "cameraFootwayHeight": null,
+      "sidewalkSide": "south",
+      "sidewalkWidthMeters": 1.2,
+      "sidewalkUncertaintyMeters": 0.8,
+      "calls": 435,
+      "triangles": 22237,
+      "renderer": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+      "facade": {
+        "bays": 7,
+        "bayWidthsMeters": [
+          0.95,
+          1.9,
+          0.95,
+          2.65,
+          0.95,
+          1.9,
+          0.95
+        ],
+        "bayCentersMeters": [
+          0.9290851048304014,
+          3.2622553144912043,
+          5.595425524152007,
+          8.30359573381281,
+          11.011765943473613,
+          13.344936153134416,
+          15.67810636279522
+        ],
+        "pilasterCentersMeters": [
+          0,
+          1.8581702096608028,
+          4.666340419321606,
+          6.524510628982408,
+          10.08268083864321,
+          11.940851048304014,
+          14.749021257964817,
+          16.60719146762562
+        ],
+        "balusters": 31,
+        "continuousPlinth": true,
+        "volutes": 16,
+        "uncertainty": {
+          "positionMeters": 5,
+          "lengthMeters": 2,
+          "depthMeters": 3,
+          "heightMeters": 0.6
+        }
+      },
+      "isolated": true
+    },
+    {
+      "file": "24-coronamiento.png",
+      "building": "OB-02",
+      "view": "facade-detail",
+      "cameraId": "OB-02-facade-detail-v1",
+      "cameraPosition": [
+        -47.34288002210087,
+        4.2,
+        11.299909643839051
+      ],
+      "cameraTarget": [
+        -45.40100448783484,
+        4.2,
+        29.315556160392905
+      ],
+      "cameraUp": [
+        0,
+        1,
+        0
+      ],
+      "projection": {
+        "kind": "orthographic",
+        "left": -2.9,
+        "right": 2.9,
+        "top": 1.8124999999999998,
+        "bottom": -1.8124999999999998
+      },
+      "viewport": [
+        1280,
+        800
+      ],
+      "textureSize": 512,
+      "source": "production builder: OB-02 isolated on neutral ground; not full city or site photography",
+      "cameraFootwayHeight": null,
+      "sidewalkSide": "south",
+      "sidewalkWidthMeters": 1.2,
+      "sidewalkUncertaintyMeters": 0.8,
+      "calls": 137,
+      "triangles": 11265,
+      "renderer": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+      "facade": {
+        "bays": 7,
+        "bayWidthsMeters": [
+          0.95,
+          1.9,
+          0.95,
+          2.65,
+          0.95,
+          1.9,
+          0.95
+        ],
+        "bayCentersMeters": [
+          0.9290851048304014,
+          3.2622553144912043,
+          5.595425524152007,
+          8.30359573381281,
+          11.011765943473613,
+          13.344936153134416,
+          15.67810636279522
+        ],
+        "pilasterCentersMeters": [
+          0,
+          1.8581702096608028,
+          4.666340419321606,
+          6.524510628982408,
+          10.08268083864321,
+          11.940851048304014,
+          14.749021257964817,
+          16.60719146762562
+        ],
+        "balusters": 31,
+        "continuousPlinth": true,
+        "volutes": 16,
+        "uncertainty": {
+          "positionMeters": 5,
+          "lengthMeters": 2,
+          "depthMeters": 3,
+          "heightMeters": 0.6
+        }
+      },
+      "isolated": true
+    }
+  ]
+}

@@ -16156,13 +16156,28 @@ function Np(e = 1024) {
 	}), d = (e, n, r, i = 0, a = 0, o = 0) => {
 		let s = new Y(Ep(n), r);
 		return s.name = e, s.position.set(i, a, o), s.castShadow = s.receiveShadow = !0, t.add(s), s;
-	}, f = (e, t, n, r, i, a, o, c = s) => d(e, new X(t, n, r), c, i, a, o), p = Array.from({ length: 5 }, (e, t) => i * (t + .5) / 5), m = p.map((e, t) => t === 2 ? 2.65 : 2.05), h = .32, g = 2.56, _ = Ap.corniceMeters, v = new $r();
-	v.moveTo(0, .15), v.lineTo(i, .15), v.lineTo(i, _), v.lineTo(0, _), v.closePath(), p.forEach((e, t) => v.holes.push(Mp(e, m[t], h, g))), d("Paño de fachada con cinco vanos abiertos en la geometría", new Li(v, {
+	}, f = (e, t, n, r, i, a, o, c = s) => d(e, new X(t, n, r), c, i, a, o), p = [
+		.95,
+		1.9,
+		.95,
+		2.65,
+		.95,
+		1.9,
+		.95
+	], m = p.length, h = (i - p.reduce((e, t) => e + t, 0)) / m, g = h / 2, _ = p.map((e) => {
+		let t = g + e / 2;
+		return g += e + h, t;
+	}), v = [
+		0,
+		..._.slice(0, -1).map((e, t) => e + p[t] / 2 + h / 2),
+		i
+	], y = .32, b = 2.56, x = Ap.corniceMeters, S = new $r();
+	S.moveTo(0, .15), S.lineTo(i, .15), S.lineTo(i, x), S.lineTo(0, x), S.closePath(), _.forEach((e, t) => S.holes.push(Mp(e, p[t], y, b))), d("Paño de fachada con siete vanos abiertos en la geometría", new Li(S, {
 		depth: jp.facadeThickness,
 		bevelEnabled: !1,
 		curveSegments: 20
 	}), o);
-	let y = [
+	let C = [
 		.75,
 		1.18,
 		1.61,
@@ -16172,40 +16187,40 @@ function Np(e = 1024) {
 		3.33,
 		3.76,
 		4.08
-	], b = [];
-	for (let e of y) {
+	], w = [];
+	for (let e of C) {
 		let t = 0;
-		for (let n = 0; n < 5; n++) {
-			let r = m[n] / 2, i = e <= g ? r : Math.sqrt(Math.max(0, r * r - (e - g) ** 2)), a = p[n] - i, o = p[n] + i;
-			a - t > .16 && b.push({
+		for (let n = 0; n < m; n++) {
+			let r = p[n] / 2, i = e <= b ? r : Math.sqrt(Math.max(0, r * r - (e - b) ** 2)), a = _[n] - i, o = _[n] + i;
+			a - t > .16 && w.push({
 				x: (t + a) / 2,
 				y: e,
 				width: a - t
 			}), t = Math.max(t, o);
 		}
-		i - t > .16 && b.push({
+		i - t > .16 && w.push({
 			x: (t + i) / 2,
 			y: e,
 			width: i - t
 		});
 	}
-	let x = new Z({
+	let T = new Z({
 		color: "#a6a49e",
 		roughness: .98
-	}), S = new dr(new X(1, .009, .012), x, b.length), C = new Dt();
-	b.forEach((e, t) => {
-		C.position.set(e.x, e.y, -.022), C.scale.set(e.width, 1, 1), C.updateMatrix(), S.setMatrixAt(t, C.matrix);
-	}), S.name = "Juntas de hilada · detalle interpretado · segmentos fuera de los arcos", S.castShadow = !1, S.receiveShadow = !1, t.add(S);
-	let w = jp, T = w.roofCenter - w.roofThickness / 2, E = T - w.base, D = (T + w.base) / 2;
-	f("Volumen posterior estimado · sin interior restituido", i, E, a - w.rearStart, i / 2, D, (a + w.rearStart) / 2, c), f("Azotea estimada tras el pretil", i, w.roofThickness, a, i / 2, w.roofCenter, a / 2, c);
-	for (let [e, t] of [["oeste", w.returnThickness / 2], ["este", i - w.returnThickness / 2]]) {
-		let n = f(`Encuentro lateral de fachada con envolvente · ${e} · interpretado`, w.returnThickness, E, w.rearStart - w.facadeThickness, t, D, (w.rearStart + w.facadeThickness) / 2, c);
+	}), E = new dr(new X(1, .009, .012), T, w.length), D = new Dt();
+	w.forEach((e, t) => {
+		D.position.set(e.x, e.y, -.022), D.scale.set(e.width, 1, 1), D.updateMatrix(), E.setMatrixAt(t, D.matrix);
+	}), E.name = "Juntas de hilada · detalle interpretado · segmentos fuera de los arcos", E.castShadow = !1, E.receiveShadow = !1, t.add(E);
+	let O = jp, k = O.roofCenter - O.roofThickness / 2, A = k - O.base, j = (k + O.base) / 2;
+	f("Volumen posterior estimado · sin interior restituido", i, A, a - O.rearStart, i / 2, j, (a + O.rearStart) / 2, c), f("Azotea estimada tras el pretil", i, O.roofThickness, a, i / 2, O.roofCenter, a / 2, c);
+	for (let [e, t] of [["oeste", O.returnThickness / 2], ["este", i - O.returnThickness / 2]]) {
+		let n = f(`Encuentro lateral de fachada con envolvente · ${e} · interpretado`, O.returnThickness, A, O.rearStart - O.facadeThickness, t, j, (O.rearStart + O.facadeThickness) / 2, c);
 		n.userData.status = "model continuity; dimensions interpreted, not measured";
 	}
-	let O = 0;
-	for (let e = 0; e < 5; e++) {
-		let t = p[e], n = m[e] / 2;
-		d("Receso oscuro tras reja · profundidad 28 cm", new Wi(new $r(Mp(0, m[e] - .08, h, g).getPoints(32)), 24), u, t, 0, .29);
+	let M = 0;
+	for (let e = 0; e < m; e++) {
+		let t = _[e], n = p[e] / 2;
+		d("Receso oscuro tras reja · profundidad 28 cm", new Wi(new $r(Mp(0, p[e] - .08, y, b).getPoints(32)), 24), u, t, 0, .29);
 		for (let e of [-1, 1]) f("Jamba de piedra", .18, 2.24, .2, t + e * (n + .09), 1.4400000000000002, -.075);
 		for (let e = 0; e < 13; e++) {
 			let r = Math.PI * e / 13 + .007, i = Math.PI * (e + 1) / 13 - .007, a = new $r();
@@ -16213,26 +16228,26 @@ function Np(e = 1024) {
 				depth: .2,
 				bevelEnabled: !1,
 				curveSegments: 4
-			}), s, t, g, -.15);
+			}), s, t, b, -.15);
 		}
-		f("Umbral de piedra", m[e] + .16, .12, .42, t, h, .01);
-		let r = Math.floor(m[e] / .17);
+		f("Umbral de piedra", p[e] + .16, .12, .42, t, y, .01);
+		let r = Math.floor(p[e] / .17);
 		for (let i = 1; i < r; i++) {
-			let a = -n + m[e] * i / r, o = g + Math.sqrt(Math.max(0, n * n - a * a)) - .045;
-			f("Barra vertical de reja · patrón interpretado", .023, o - h - .08, .027, t + a, (o + h + .08) / 2, .13, l), O++;
+			let a = -n + p[e] * i / r, o = b + Math.sqrt(Math.max(0, n * n - a * a)) - .045;
+			f("Barra vertical de reja · patrón interpretado", .023, o - y - .08, .027, t + a, (o + y + .08) / 2, .13, l), M++;
 		}
 		for (let n of [
 			.65,
 			1.75,
 			2.45
-		]) f("Travesaño de reja", m[e] - .04, .032, .034, t, n, .11, l);
+		]) f("Travesaño de reja", p[e] - .04, .032, .034, t, n, .11, l);
 		for (let e of [-.35, .35]) d("Detalle ornamental de reja · interpretación", new qi(.16, .012, 5, 22), l, t + e, 2.84, .1);
 		f("División central de hoja enrejada", .043, 2.24, .045, t, 2.88 / 2, .1, l);
 	}
-	for (let e = 0; e <= 5; e++) {
-		let t = i * e / 5;
-		f("Pilastra estriada en sillares", .38, 3.85, .22, t, 2.1, -.1), f("Base de pilastra", .55, .3, .32, t, .3, -.13), f("Capitel de pilastra", .57, .16, .33, t, 4.07, -.13);
-		for (let e = .64; e < 3.92; e += .27) f("Junta horizontal del sillar", .42, .014, .035, t, e, -.225, c);
+	for (let e of v) {
+		f("Pilastra estriada en sillares", .38, 3.85, .22, e, 2.1, -.1), f("Base de pilastra", .55, .3, .32, e, .3, -.13), f("Capitel de pilastra", .57, .16, .33, e, 4.07, -.13);
+		for (let t of [-1, 1]) d("Voluta de capitel · silueta observada, perfil interpretado", new qi(.065, .015, 6, 16), s, e + t * .23, 4.025, -.315);
+		for (let t = .64; t < 3.92; t += .27) f("Junta horizontal del sillar", .42, .014, .035, e, t, -.225, c);
 	}
 	for (let [e, t, n] of [
 		[
@@ -16257,8 +16272,8 @@ function Np(e = 1024) {
 		]
 	]) f("Perfil escalonado de cornisa", i + .4, t, n, i / 2, e, -.07);
 	for (let e = .18; e < i; e += .27) f("Dentículo bajo cornisa", .1, .12, .14, e, 4.53, -.26);
-	f("Pasamanos de balaustrada", i + .12, .11, .29, i / 2, 5.35, .12);
-	let k = new Vi([
+	f("Zócalo continuo de balaustrada · remate interpretado", i + .12, .09, .29, i / 2, 4.825, .12), f("Pasamanos de balaustrada", i + .12, .11, .29, i / 2, 5.35, .12);
+	let N = new Vi([
 		new V(.055, 0),
 		new V(.08, .06),
 		new V(.1, .13),
@@ -16266,27 +16281,30 @@ function Np(e = 1024) {
 		new V(.035, .3),
 		new V(.065, .38),
 		new V(.06, .44)
-	], 10), A = Math.floor(i / .52), j = new dr(k, s, A), M = new Dt();
-	for (let e = 0; e < A; e++) M.position.set(i * (e + .5) / A, 4.87, .12), M.updateMatrix(), j.setMatrixAt(e, M.matrix);
-	j.name = "Balaustrada superior · silueta observada, despiece estimado", j.castShadow = j.receiveShadow = !0, t.add(j);
+	], 10), P = Math.floor(i / .52), ee = new dr(N, s, P), te = new Dt();
+	for (let e = 0; e < P; e++) te.position.set(i * (e + .5) / P, 4.87, .12), te.updateMatrix(), ee.setMatrixAt(e, te.matrix);
+	ee.name = "Balaustrada superior · silueta observada, despiece estimado", ee.castShadow = ee.receiveShadow = !0, t.add(ee);
 	for (let e of [0, i]) f("Remate de esquina", .44, .65, .44, e, 5.11, .12), f("Tapa del remate de esquina", .55, .1, .55, e, 5.46, .12);
 	t.updateMatrixWorld(!0);
-	let N = Math.ceil((i + .44) / .5), P = Array.from({ length: N }, (e, n) => {
-		let r = -.22 + (i + .44) * n / N, o = -.22 + (i + .44) * (n + 1) / N;
+	let F = Math.ceil((i + .44) / .5), ne = Array.from({ length: F }, (e, n) => {
+		let r = -.22 + (i + .44) * n / F, o = -.22 + (i + .44) * (n + 1) / F;
 		return new Zt(new U(r, .15, -.28), new U(o, 5.52, a)).applyMatrix4(t.matrixWorld);
-	}), ee = {
+	}), I = {
 		lengthMeters: i,
 		depthMeters: a,
-		bays: 5,
-		bars: O,
-		balusters: A,
-		masonryCourseSegments: b.length,
+		bays: m,
+		bayWidthsMeters: p,
+		bayCentersMeters: _,
+		pilasterCentersMeters: v,
+		bars: M,
+		balusters: P,
+		masonryCourseSegments: w.length,
 		textureSize: e
 	};
-	return t.userData.stats = ee, {
+	return t.userData.stats = I, {
 		group: t,
-		colliders: P,
-		stats: ee
+		colliders: ne,
+		stats: I
 	};
 }
 //#endregion
