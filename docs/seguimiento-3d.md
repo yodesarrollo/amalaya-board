@@ -1,10 +1,10 @@
 # Amalaya · Matriz de levantamiento 3D
 
-Actualizado: 2026-10-03T03:59:16.685470+00:00. La web consulta estados cada 30 segundos; los cambios aparecen al publicar avances.
+Actualizado: 2026-10-03T04:09:33.800832+00:00. La web consulta estados cada 30 segundos; los cambios aparecen al publicar avances.
 
 Naranja: en proceso · Verde: terminado · Rojo: problema · Gris: pendiente o provisional.
 
-| Acciones / Edificios | OB-01 | OB-02 | ISC-58 | EB-SW | EB-NW | EB-NE | EB-SE | PL-GA | CH-GA-OXXO | CH-YG-BIB | CH-YG-BBVA | SER-BLEY | SER-HSBC |
+| Acciones / Edificios | OB-01 | <a href="https://yodesarrollo.github.io/amalaya-board/levantamiento/evidence/OB-02/07-inicio-seguimiento.png"><img src="https://yodesarrollo.github.io/amalaya-board/levantamiento/evidence/OB-02/07-inicio-seguimiento.png" alt="OB-02 · avance del modelo" width="160"></a><br/>OB-02<br/>[Inicio](https://yodesarrollo.github.io/amalaya-board/levantamiento/evidence/OB-02/07-inicio-seguimiento.png) · Inicio · 03 | ISC-58 | EB-SW | EB-NW | EB-NE | EB-SE | PL-GA | CH-GA-OXXO | CH-YG-BIB | CH-YG-BBVA | SER-BLEY | SER-HSBC |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|
 | Alinear planta y huellas con cartografía visual | ✓ Terminado | ✓ Terminado | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional |
 | Ajustar calzada y encuentros de calles | ✓ Terminado | ✓ Terminado | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional | ◐ Provisional |

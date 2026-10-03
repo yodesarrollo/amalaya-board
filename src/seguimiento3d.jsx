@@ -8,6 +8,17 @@ import './index.css'
 import './seguimiento3d.css'
 
 const BASE = import.meta.env.BASE_URL
+function BuildingPreview({ building }) {
+  const progress = building.visualProgress
+  if (!progress) return null
+  const current = progress.current || progress.baseline
+  return <div className="tracker-building-preview">
+    <a href={`${BASE}${current.url}`} target="_blank" rel="noreferrer" aria-label={`Ampliar avance de ${building.id}: ${current.title}`}>
+      <img src={`${BASE}${current.url}`} alt={`${building.id} · ${current.title} · captura del modelo`} width="160" height="100" decoding="async" />
+    </a>
+    <div><a href={`${BASE}${progress.baseline.url}`} target="_blank" rel="noreferrer" title={progress.baseline.title}>Inicio</a><a href={`${BASE}${current.url}`} target="_blank" rel="noreferrer">{current.label || 'Avance'}</a></div>
+  </div>
+}
 function CellDialog({ selected, onClose }) {
   const dialog = useRef(null)
   const storageKey = `amalaya-3d-instruccion:${selected.cell.key}`
@@ -166,7 +177,7 @@ function Seguimiento() {
     {error && <p className="tracker-error" role="status">{error}</p>}
     {data && <div className="tracker-table-scroll" tabIndex="0" role="region" aria-label="Matriz de acciones por edificio">
       <table className="tracker-matrix">
-        <thead><tr><th scope="col" className="tracker-sticky-col">Acciones ↓ / Edificios →</th>{targets.map(column => <th scope="col" key={column.building.id} title={`${column.block.name} · ${column.building.name}`}><strong>{column.building.id}</strong><span>{column.building.publicSpace ? 'Espacio público' : column.building.name}</span><small>{column.block.id}{column.block.testRoute ? ' · prueba' : ''}</small></th>)}</tr></thead>
+        <thead><tr><th scope="col" className="tracker-sticky-col">Acciones ↓ / Edificios →</th>{targets.map(column => <th scope="col" key={column.building.id} title={`${column.block.name} · ${column.building.name}`}><BuildingPreview building={column.building} /><strong>{column.building.id}</strong><span>{column.building.publicSpace ? 'Espacio público' : column.building.name}</span><small>{column.block.id}{column.block.testRoute ? ' · prueba' : ''}</small></th>)}</tr></thead>
         <tbody>{Object.entries(data.taskDefinitions).map(([task, label], index) => <tr key={task}><th scope="row" className="tracker-sticky-col"><small>{String(index + 1).padStart(2, '0')}</small>{label}</th>{targets.map(column => {
           const cell = cellInfo(column, task)
           const state = STATES[cell.state] || STATES.pending

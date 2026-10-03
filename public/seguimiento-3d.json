@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-03T03:59:16.685470+00:00",
+  "updatedAt": "2026-10-03T04:09:33.800832+00:00",
   "refreshSeconds": 30,
   "live": {
     "status": "active",
@@ -385,6 +385,16 @@
             "qa": {
               "title": "QA requiere rumbo del 360 y recaptura de una etiqueta",
               "detail": "El JSON no incluye headingDegrees: P03→P04 es ≈84° de marcha y las cámaras actuales miran al frente estimado (P03 ≈186.2°, P04 ≈249.6°), así que no verifican la orientación de Street View. Además, la tarjeta de 03-edificio-aislado-p03.png tapa parte alta de cornisa/balaustrada y del primer vano. La recaptura falló al esperar document.body.dataset.ready=true durante 20 s; otro intento terminó a los 10 s con net::ERR_ABORTED en page.goto(waitUntil=commit). Se conserva la imagen anterior. Para comparar visualmente hace falta documentar el heading del panorama y volver a capturar con la etiqueta en el área libre inferior."
+            }
+          },
+          "visualProgress": {
+            "cameraId": "OB-02-fixed-v1",
+            "baseline": {
+              "url": "levantamiento/evidence/OB-02/07-inicio-seguimiento.png",
+              "title": "Inicio del seguimiento visual · antes del punto 3",
+              "label": "Inicio · 03",
+              "capturedAt": "2026-10-03T04:04:02.318Z",
+              "worldSha256": "4bdf262926cfd58d9d7dabf110a757e748e982797af2c4879e49265fad6d1fb3"
             }
           }
         },

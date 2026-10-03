@@ -4,7 +4,7 @@ import { createHash } from 'node:crypto'
 const root='public/levantamiento'
 const approved=new Set(['amalaya-observations.json','amalaya-routes.json','cerro-elevation.json','osm-context.json','osm-plaza-hidalgo.json','sector-survey.json'])
 const ob01EvidenceFiles=new Set(['01-planta.png','02-calzada.png','03-banqueta-sur.png','04-banqueta-norte.png','05-esquinas.png','06-identidad.png','07-volumen.png','08-fachada.png','09-materiales.png','10-equipamiento.png','11a-planta.png','11b-bloque.png','11c-peaton.png','manifest.json'])
-const ob02EvidenceFiles=new Set(['01-fachada-p03.png','02-conjunto-p03.png','03-edificio-aislado-p03.png','04-retorno-oblicuo-p04.png','manifest.json','05-planta-ob02.png','plan-manifest.json','06-calzada-ob02.png','street-manifest.json'])
+const ob02EvidenceFiles=new Set(['01-fachada-p03.png','02-conjunto-p03.png','03-edificio-aislado-p03.png','04-retorno-oblicuo-p04.png','manifest.json','05-planta-ob02.png','plan-manifest.json','06-calzada-ob02.png','street-manifest.json','07-inicio-seguimiento.png','progress-baseline.json'])
 async function check(dir){
   for(const item of await readdir(dir,{withFileTypes:true})){
     const path=`${dir}/${item.name}`
@@ -79,3 +79,11 @@ for(const [view,file] of [['plan','05-planta-ob02.png'],['street','06-calzada-ob
   if(view==='street')assert(state.sections?.length===3&&state.sections.every(s=>Math.abs(s.widthMeters-5.6)<.01&&Math.abs(s.centerOffsetMeters)<1.1),'Faltan las tres secciones verificadas de la calzada.')
 }
 console.log('OB-02: planta y calzada con capturas independientes del checkpoint actual.')
+
+const visualBaseline=JSON.parse(await readFile(`${root}/evidence/OB-02/progress-baseline.json`,'utf8'))
+assert(visualBaseline.building==='OB-02'&&visualBaseline.task==='visual-baseline-before-point3'&&visualBaseline.captures?.length===1,'Falta la captura inicial anterior al punto 3.')
+const initialView=visualBaseline.captures[0]
+assert(initialView.cameraId==='OB-02-fixed-v1'&&initialView.file==='07-inicio-seguimiento.png'&&initialView.triangles>0&&initialView.renderer?.includes('WebGL 2.0'),'La cabecera debe usar un render inicial con cámara fija.')
+const tracking=JSON.parse(await readFile('public/seguimiento-3d.json','utf8'))
+const ob02Tracking=tracking.blocks.flatMap(b=>b.buildings).find(b=>b.id==='OB-02')
+assert(ob02Tracking.visualProgress?.cameraId===initialView.cameraId&&ob02Tracking.visualProgress.baseline.url===`levantamiento/evidence/OB-02/${initialView.file}`,'La matriz debe enlazar la captura inicial auditada.')
