@@ -4,7 +4,7 @@ import { createHash } from 'node:crypto'
 const root='public/levantamiento'
 const approved=new Set(['amalaya-observations.json','amalaya-routes.json','cerro-elevation.json','osm-context.json','osm-plaza-hidalgo.json','sector-survey.json'])
 const ob01EvidenceFiles=new Set(['01-planta.png','02-calzada.png','03-banqueta-sur.png','04-banqueta-norte.png','05-esquinas.png','06-identidad.png','07-volumen.png','08-fachada.png','09-materiales.png','10-equipamiento.png','11a-planta.png','11b-bloque.png','11c-peaton.png','manifest.json'])
-const ob02EvidenceFiles=new Set(['01-fachada-p03.png','02-conjunto-p03.png','03-edificio-aislado-p03.png','04-retorno-oblicuo-p04.png','manifest.json','05-planta-ob02.png','plan-manifest.json','06-calzada-ob02.png','street-manifest.json','07-inicio-seguimiento.png','progress-baseline.json','08-avance-punto03.png','09-banqueta-sur-planta.png','10-banqueta-sur-peaton.png','sidewalkA-manifest.json'])
+const ob02EvidenceFiles=new Set(['01-fachada-p03.png','02-conjunto-p03.png','03-edificio-aislado-p03.png','04-retorno-oblicuo-p04.png','manifest.json','05-planta-ob02.png','plan-manifest.json','06-calzada-ob02.png','street-manifest.json','07-inicio-seguimiento.png','progress-baseline.json','08-avance-punto03.png','09-banqueta-sur-planta.png','10-banqueta-sur-peaton.png','sidewalkA-manifest.json','11-avance-punto04.png','12-banqueta-norte-planta.png','13-banqueta-norte-peaton.png','sidewalkB-manifest.json'])
 async function check(dir){
   for(const item of await readdir(dir,{withFileTypes:true})){
     const path=`${dir}/${item.name}`
@@ -90,11 +90,11 @@ assert(ob02Tracking.visualProgress?.cameraId===initialView.cameraId&&ob02Trackin
 
 assert(visualBaseline.worldSha256==='4bdf262926cfd58d9d7dabf110a757e748e982797af2c4879e49265fad6d1fb3','La imagen inicial conserva el modelo previo al punto 3.')
 const sidewalkA=JSON.parse(await readFile(`${root}/evidence/OB-02/sidewalkA-manifest.json`,'utf8'))
-assert(sidewalkA.building==='OB-02'&&sidewalkA.task==='sidewalkA'&&sidewalkA.worldSha256===currentWorldHash,'El punto 3 debe corresponder al modelo publicado.')
+assert(sidewalkA.building==='OB-02'&&sidewalkA.task==='sidewalkA'&&sidewalkA.worldSha256==='7e5055049e02d22683548df7252674eec8248da16e9288c0f4257e816154d0b9','El punto 3 conserva su checkpoint histórico.')
 assert(sidewalkA.captures?.length===3&&['progress','plan','pedestrian'].every(view=>sidewalkA.captures.some(s=>s.view===view)),'Se requieren avance de cabecera, planta y peatón.')
 const progressView=sidewalkA.captures.find(s=>s.view==='progress')
 for(const field of ['cameraId','cameraPosition','cameraTarget','cameraUp','projection','viewport','textureSize'])assert.deepEqual(progressView[field],initialView[field],`La toma de inicio/avance cambió: ${field}`)
-assert(ob02Tracking.visualProgress?.current?.url===`levantamiento/evidence/OB-02/${progressView.file}`&&ob02Tracking.visualProgress.current.worldSha256===currentWorldHash,'La cabecera debe mostrar el avance actual auditado.')
+// The point-3 view is historical; point 4 is now the current header image.
 for(const state of [initialView,...sidewalkA.captures]){
   assert(ob02EvidenceFiles.has(state.file)&&state.triangles>0&&state.calls>0&&state.renderer?.includes('WebGL 2.0'),'Captura de seguimiento inválida.')
   assert(state.sidewalkWidthMeters===1.2&&state.sidewalkUncertaintyMeters===.8&&state.source?.includes('production builders'),'Faltan perfil e incertidumbre de la banqueta.')
@@ -102,3 +102,18 @@ for(const state of [initialView,...sidewalkA.captures]){
   assert(bytes.subarray(0,8).equals(Buffer.from([137,80,78,71,13,10,26,10]))&&bytes.readUInt32BE(16)===1280&&bytes.readUInt32BE(20)===800,`PNG de seguimiento inválido: ${state.file}`)
 }
 console.log('OB-02: punto 3 con planta/peatón y cabecera de inicio/avance desde idéntica cámara.')
+
+const sidewalkB=JSON.parse(await readFile(`${root}/evidence/OB-02/sidewalkB-manifest.json`,'utf8'))
+assert(sidewalkB.building==='OB-02'&&sidewalkB.task==='sidewalkB'&&sidewalkB.worldSha256===currentWorldHash,'El punto 4 debe corresponder al modelo publicado.')
+assert(sidewalkB.captures?.length===3&&['progress','plan','pedestrian'].every(view=>sidewalkB.captures.some(s=>s.view===view)),'Se requieren avance 04, planta y peatón norte.')
+const progressB=sidewalkB.captures.find(s=>s.view==='progress')
+for(const field of ['cameraId','cameraPosition','cameraTarget','cameraUp','projection','viewport','textureSize'])assert.deepEqual(progressB[field],initialView[field],`La toma de inicio/avance 04 cambió: ${field}`)
+assert(ob02Tracking.visualProgress?.current?.url===`levantamiento/evidence/OB-02/${progressB.file}`&&ob02Tracking.visualProgress.current.worldSha256===currentWorldHash,'La cabecera debe mostrar Avance 04 auditado.')
+for(const state of sidewalkB.captures){
+  assert(ob02EvidenceFiles.has(state.file)&&state.triangles>0&&state.calls>0&&state.renderer?.includes('WebGL 2.0'),'Captura norte inválida.')
+  if(state.view==='pedestrian')assert(state.cameraFootwayHeight>=.09999&&state.cameraFootwayHeight<=.11751,'La cámara peatonal debe estar sobre la banqueta del modelo.')
+  assert(state.sidewalkSide==='north'&&state.sidewalkWidthMeters===2&&state.sidewalkUncertaintyMeters===.8&&state.source?.includes('production builders'),'El norte conserva su ancho independiente de 2 m, con incertidumbre.')
+  const bytes=await readFile(`${root}/evidence/OB-02/${state.file}`)
+  assert(bytes.subarray(0,8).equals(Buffer.from([137,80,78,71,13,10,26,10]))&&bytes.readUInt32BE(16)===1280&&bytes.readUInt32BE(20)===800,`PNG norte inválido: ${state.file}`)
+}
+console.log('OB-02: punto 4 norte y Avance 04 desde la cámara fija; evidencias anteriores conservadas.')

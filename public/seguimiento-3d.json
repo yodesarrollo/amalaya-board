@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-03T04:23:37.934587+00:00",
+  "updatedAt": "2026-10-03T04:37:17.378123+00:00",
   "refreshSeconds": 30,
   "live": {
-    "status": "active",
-    "phase": "OB-02 · punto 4 · banqueta lado B",
-    "title": "Banqueta norte en revisión",
-    "detail": "Puntos 1–3 terminados. Se comprueba el perfil norte de 2.00 ±0.80 m, sin reflejar el perfil sur. La imagen de cabecera conserva el avance 03 hasta publicar una nueva captura real.",
+    "status": "waiting",
+    "phase": "OB-02 · puntos 1–4 cerrados",
+    "title": "Banqueta norte revisada · Avance 04 en cabecera",
+    "detail": "Norte de 2.00 ±0.80 m con juntas apoyadas, cota coherente y paso central comprobado. Foto Avance 04 desde la cámara fija de Inicio; el sur y las evidencias anteriores se conservan. Esquinas y rampas pendientes.",
     "activeBlockId": "OB-YG",
     "activeBuildingId": "OB-02"
   },
@@ -83,7 +83,7 @@
         "max": 33
       },
       "estimateBasis": "3 frentes/estructuras conocidas más revisión compartida de la cuadra; frentes anónimos se agregan cuando se cuenten.",
-      "next": "OB-02 · punto 4 activo: banqueta lado B (norte).",
+      "next": "OB-02 · punto 5 pendiente: esquinas, guarniciones y rampas. Puntos 1–4 cerrados bajo incertidumbres declaradas.",
       "sharedTasks": {
         "plan": "partial",
         "street": "partial",
@@ -267,7 +267,7 @@
             "plan": "done",
             "street": "done",
             "sidewalkA": "done",
-            "sidewalkB": "active",
+            "sidewalkB": "done",
             "corners": "pending"
           },
           "taskDetails": {
@@ -280,7 +280,7 @@
             "plan": "HECHO · corregido el extremo oriental 1.46 m para alinear el frente con OB-01 y el eje OB-W, conservando estación, colindancia y P03/P04. Extremos/centro y collider comprobados. Revisión del modelo bajo posición ±5 m; fondo y límites catastrales siguen provisionales.",
             "street": "HECHO · inspeccionadas tres secciones de la malla real frente a OB-02: ancho estimado 5.60 ±1.10 m, una sola calzada y juntas continuas. Se conserva el eje OSM y su variación local; no se añadió otra calle. No cierra banquetas, guarniciones ni rampas.",
             "sidewalkA": "HECHO · completada la franja sur de losas de 1.20 ±0.80 m, juntas con base continua y encuentro provisional hasta la fachada. Se retiraron losas sur duplicadas y el bordillo acompaña la cota de las losas. El cuerpo del vaquero tiene paso libre tras ajustar la caja de colisión girada del edificio. Revisión del modelo, no certificación métrica ni cierre de rampas.",
-            "sidewalkB": "EN PROCESO · revisión de la banqueta norte frente a OB-02: ancho independiente 2.00 ±0.80 m del perfil OB-W, juntas, continuidad y cota de bordillo. Se conserva la banqueta sur terminada; no se cierran rampas ni esquinas.",
+            "sidewalkB": "HECHO · completado el perfil norte independiente de 2.00 ±0.80 m, con última fila recortada, base continua y bordillo a cota de las losas. Se retiró pavimento norte duplicado y se comprobó el paso central del vaquero. Banqueta sur, sus colores y guarnición conservados. Revisión técnica del modelo bajo incertidumbre; rampas y esquinas siguen pendientes.",
             "corners": "PENDIENTE · revisión específica del frente OB-02 en orden de matriz; el estado compartido de la cuadra y OB-01 se conserva."
           },
           "evidence": {
@@ -385,6 +385,20 @@
                 "title": "Punto 3 · vista longitudinal peatonal del lado sur",
                 "url": "levantamiento/evidence/OB-02/10-banqueta-sur-peaton.png"
               }
+            ],
+            "sidewalkB": [
+              {
+                "title": "Punto 4 · avance desde la misma cámara de Inicio y Avance 03",
+                "url": "levantamiento/evidence/OB-02/11-avance-punto04.png"
+              },
+              {
+                "title": "Punto 4 · planta norte arriba · banqueta norte",
+                "url": "levantamiento/evidence/OB-02/12-banqueta-norte-planta.png"
+              },
+              {
+                "title": "Punto 4 · vista longitudinal desde la banqueta norte",
+                "url": "levantamiento/evidence/OB-02/13-banqueta-norte-peaton.png"
+              }
             ]
           },
           "issues": {
@@ -411,11 +425,11 @@
               "worldSha256": "4bdf262926cfd58d9d7dabf110a757e748e982797af2c4879e49265fad6d1fb3"
             },
             "current": {
-              "url": "levantamiento/evidence/OB-02/08-avance-punto03.png",
-              "title": "Avance después del punto 3 · banqueta sur",
-              "label": "Avance · 03",
-              "capturedAt": "2026-10-03T04:14:52.527Z",
-              "worldSha256": "7e5055049e02d22683548df7252674eec8248da16e9288c0f4257e816154d0b9"
+              "url": "levantamiento/evidence/OB-02/11-avance-punto04.png",
+              "title": "Avance después del punto 4 · banqueta norte",
+              "label": "Avance · 04",
+              "capturedAt": "2026-10-03T04:35:21.881Z",
+              "worldSha256": "d060f6f46e0952acd9230105bd90d1614b0bde55d2fb9b34394613c4c85b4001"
             }
           }
         },

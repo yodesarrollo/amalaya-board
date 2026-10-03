@@ -1,0 +1,130 @@
+{
+  "building": "OB-02",
+  "task": "sidewalkB",
+  "capturedAt": "2026-10-03T04:35:21.881Z",
+  "worldSha256": "d060f6f46e0952acd9230105bd90d1614b0bde55d2fb9b34394613c4c85b4001",
+  "render": "Three.js production builders through WebGLRenderer (SwiftShader)",
+  "limits": "Not site photography or cadastral survey. Initial visual tracking begins before point 3; earlier captures retain their historical revision. Width remains an imagery estimate.",
+  "captures": [
+    {
+      "file": "11-avance-punto04.png",
+      "building": "OB-02",
+      "view": "progress",
+      "cameraId": "OB-02-fixed-v1",
+      "cameraPosition": [
+        -49.2,
+        17,
+        2.2
+      ],
+      "cameraTarget": [
+        -45.95,
+        2.3,
+        31
+      ],
+      "cameraUp": [
+        0,
+        1,
+        0
+      ],
+      "projection": {
+        "kind": "orthographic",
+        "left": -15,
+        "right": 15,
+        "top": 9.375,
+        "bottom": -9.375
+      },
+      "viewport": [
+        1280,
+        800
+      ],
+      "textureSize": 512,
+      "source": "production builders: OB-01 + OB-02 + streetContinuation + routeStreetscape; local audit subset",
+      "cameraFootwayHeight": null,
+      "sidewalkSide": "north",
+      "sidewalkWidthMeters": 2,
+      "sidewalkUncertaintyMeters": 0.8,
+      "calls": 409,
+      "triangles": 36296,
+      "renderer": "WebGL 2.0 (OpenGL ES 3.0 Chromium)"
+    },
+    {
+      "file": "12-banqueta-norte-planta.png",
+      "building": "OB-02",
+      "view": "plan",
+      "cameraId": "OB-02-sidewalkB-plan-v1",
+      "cameraPosition": [
+        -46,
+        70,
+        18
+      ],
+      "cameraTarget": [
+        -46,
+        0,
+        18
+      ],
+      "cameraUp": [
+        0,
+        0,
+        -1
+      ],
+      "projection": {
+        "kind": "orthographic",
+        "left": -11,
+        "right": 11,
+        "top": 6.875,
+        "bottom": -6.875
+      },
+      "viewport": [
+        1280,
+        800
+      ],
+      "textureSize": 512,
+      "source": "production builders: OB-01 + OB-02 + streetContinuation + routeStreetscape; local audit subset",
+      "cameraFootwayHeight": null,
+      "sidewalkSide": "north",
+      "sidewalkWidthMeters": 2,
+      "sidewalkUncertaintyMeters": 0.8,
+      "calls": 50,
+      "triangles": 26003,
+      "renderer": "WebGL 2.0 (OpenGL ES 3.0 Chromium)"
+    },
+    {
+      "file": "13-banqueta-norte-peaton.png",
+      "building": "OB-02",
+      "view": "pedestrian",
+      "cameraId": "OB-02-sidewalkB-pedestrian-v1",
+      "cameraPosition": [
+        -54.8,
+        1.68,
+        20.49
+      ],
+      "cameraTarget": [
+        -37.8,
+        1,
+        18.8
+      ],
+      "cameraUp": [
+        0,
+        1,
+        0
+      ],
+      "projection": {
+        "kind": "perspective",
+        "fov": 65
+      },
+      "viewport": [
+        1280,
+        800
+      ],
+      "textureSize": 512,
+      "source": "production builders: OB-01 + OB-02 + streetContinuation + routeStreetscape; local audit subset",
+      "cameraFootwayHeight": 0.11750000342726663,
+      "sidewalkSide": "north",
+      "sidewalkWidthMeters": 2,
+      "sidewalkUncertaintyMeters": 0.8,
+      "calls": 235,
+      "triangles": 34964,
+      "renderer": "WebGL 2.0 (OpenGL ES 3.0 Chromium)"
+    }
+  ]
+}
