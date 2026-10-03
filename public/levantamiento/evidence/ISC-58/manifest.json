@@ -1,0 +1,876 @@
+{
+  "building": "ISC-58",
+  "phase": "final",
+  "worldSha256": "fa61d9c7aa4f4e651efd55d96bf6f2627b20c8919c06f8465a250d79a190ff39",
+  "capturedAt": "2026-10-03T10:52:35.643Z",
+  "viewport": [
+    1280,
+    800
+  ],
+  "anchor": {
+    "point": "R-001-P05",
+    "lat": 29.0759512,
+    "lon": -110.9546564,
+    "x": 5.705639999683854,
+    "z": 18.17361000031319,
+    "azimuth": 355.06583118825637
+  },
+  "surfaceProbes": [
+    {
+      "x": 5.705639999683854,
+      "z": 23.0075,
+      "hits": [
+        {
+          "point": [
+            5.705639999683854,
+            0.1250000037252903,
+            23.0075
+          ],
+          "distance": 0.6749999962747097,
+          "object": "Banqueta PH-01 · una hilada dentro de 0.93 m de paso medido",
+          "ancestors": [
+            "Cuadra sur de Obregón · entre Juan Álvarez y Garmendia · masa provisional alineada a ortofoto/OSM",
+            "Amalaya · levantamiento actual provisional"
+          ],
+          "instanceId": 15
+        }
+      ]
+    },
+    {
+      "x": 5.705639999683854,
+      "z": 13.1,
+      "hits": [
+        {
+          "point": [
+            5.705639999683854,
+            0.11800000071525574,
+            13.1
+          ],
+          "distance": 0.6819999992847443,
+          "object": "Transición de plaza a banqueta · paño provisional, sin cruce inventado",
+          "ancestors": [
+            "PH-01 ↔ PH-02 · calles, banquetas, arbolado, mobiliario y vehículos de alta densidad",
+            "Amalaya · levantamiento actual provisional"
+          ],
+          "instanceId": null
+        },
+        {
+          "point": [
+            5.705639999683853,
+            0.11750000342726707,
+            13.1
+          ],
+          "distance": 0.682499996572733,
+          "object": "Banqueta · losas de concreto modulares, variación tonal propia",
+          "ancestors": [
+            "PH-01 ↔ PH-02 · calles, banquetas, arbolado, mobiliario y vehículos de alta densidad",
+            "Amalaya · levantamiento actual provisional"
+          ],
+          "instanceId": 294
+        }
+      ]
+    },
+    {
+      "x": 5.705639999683854,
+      "z": 11,
+      "hits": [
+        {
+          "point": [
+            5.705639999683853,
+            0.16100000217556965,
+            11.000000000000002
+          ],
+          "distance": 0.6389999978244304,
+          "object": "Pavimento peatonal · losa modular geométrica, sin imagen",
+          "ancestors": [
+            "Plaza Hidalgo · PH-01 · detalle geométrico de alta densidad · materiales procedurales",
+            "Amalaya · levantamiento actual provisional"
+          ],
+          "instanceId": 6508
+        }
+      ]
+    },
+    {
+      "x": 5.705639999683854,
+      "z": 8,
+      "hits": [
+        {
+          "point": [
+            5.705639999683854,
+            0.16200000420212746,
+            8
+          ],
+          "distance": 0.6379999957978726,
+          "object": "Pavimento peatonal · losa modular geométrica, sin imagen",
+          "ancestors": [
+            "Plaza Hidalgo · PH-01 · detalle geométrico de alta densidad · materiales procedurales",
+            "Amalaya · levantamiento actual provisional"
+          ],
+          "instanceId": 5686
+        }
+      ]
+    },
+    {
+      "x": 5.705639999683854,
+      "z": 3,
+      "hits": [
+        {
+          "point": [
+            5.705639999683854,
+            0.16200000420212746,
+            3.000000000000001
+          ],
+          "distance": 0.6379999957978726,
+          "object": "Pavimento peatonal · losa modular geométrica, sin imagen",
+          "ancestors": [
+            "Plaza Hidalgo · PH-01 · detalle geométrico de alta densidad · materiales procedurales",
+            "Amalaya · levantamiento actual provisional"
+          ],
+          "instanceId": 4316
+        }
+      ]
+    }
+  ],
+  "objects": [
+    {
+      "name": "PH-01 · Instituto Sonorense de Cultura · fachada patrimonial interpretada",
+      "study": {
+        "id": "ISC-58",
+        "source": "OSM way 664499024",
+        "inheritedHeightMeters": 7.45,
+        "heightConfidence": "provisional",
+        "redSpanMeters": 21,
+        "redSpanConfidence": "inherited modelling hypothesis",
+        "redPositionConfidence": "unmeasured",
+        "panoramaIds": [
+          "R-001-P05",
+          "R-001-P06"
+        ],
+        "redOpenings": 3,
+        "openingsConfidence": "visible morphology interpreted",
+        "paleFrontsConfidence": "baseline generic morphology; unverified",
+        "parcelCorrespondence": "unresolved"
+      }
+    },
+    {
+      "name": "OB-01 · cubierta del estacionamiento · piloto de detalle",
+      "study": {
+        "id": "OB-01",
+        "route": "R-001",
+        "waypoint": 2,
+        "frontStart": {
+          "lat": 29.075813172804676,
+          "lon": -110.95559192964741
+        },
+        "frontEnd": {
+          "lat": 29.075843831698624,
+          "lon": -110.95526725678737
+        },
+        "alignment": "Road-relative correction within existing position uncertainty; not a new measurement",
+        "depthMeters": 8.8,
+        "frontEavesMeters": 3.25,
+        "rearEavesMeters": 3.48,
+        "ridgeMeters": 4.05,
+        "wallMeters": 1.85,
+        "roofForm": "two slopes interpreted from the exposed western frame in P01",
+        "identity": {
+          "name": "Cubierta de estacionamiento",
+          "commercialName": null,
+          "location": "Obregón · frente sur · acceso desde Yáñez",
+          "imageDate": "not verified",
+          "observed": [
+            "white front wall",
+            "open ventilation band",
+            "exposed metal frame",
+            "western vehicle access"
+          ],
+          "notMeasured": [
+            "rear boundary",
+            "ridge height",
+            "support spacing",
+            "corner ramps"
+          ]
+        },
+        "confidence": "reference-based morphology; dimensions provisional",
+        "uncertainty": {
+          "positionMeters": 5,
+          "lengthMeters": 3,
+          "depthMeters": 2,
+          "heightMeters": 0.5
+        },
+        "references": [
+          "R-001/P01",
+          "R-001/P02"
+        ]
+      }
+    },
+    {
+      "name": "OB-02 · fachada gris con arcos y rejas · exterior interpretado",
+      "study": {
+        "id": "OB-02",
+        "route": "R-001",
+        "waypoint": 3,
+        "frontStart": {
+          "lat": 29.075843831698624,
+          "lon": -110.95526725678737
+        },
+        "frontEnd": {
+          "lat": 29.075859872722415,
+          "lon": -110.95509738487088
+        },
+        "depthMeters": 9,
+        "corniceMeters": 4.65,
+        "parapetMeters": 5.35,
+        "uncertainty": {
+          "positionMeters": 5,
+          "lengthMeters": 2,
+          "depthMeters": 3,
+          "heightMeters": 0.6
+        },
+        "references": [
+          "R-001/P03",
+          "R-001/P04"
+        ],
+        "footprintStatus": "estimated; no OSM polygon",
+        "roofStatus": "interpreted flat envelope; rear and roof plane unverified"
+      }
+    }
+  ],
+  "refinement": {
+    "version": "isc58-technical-1",
+    "confidence": "provisional",
+    "inheritedHeightMeters": 7.45,
+    "frontSpanMeters": 91.84443896506862,
+    "redSpanMeters": 21,
+    "redOpenings": 3,
+    "removedFrontTriangles": 2,
+    "colliderCells": 62,
+    "colliderAreaMeters2": 3631.9332781697804,
+    "photographic": false
+  },
+  "visualQuality": "pilot",
+  "colliders": 178,
+  "textureSize": 512,
+  "captures": [
+    {
+      "file": "00-inicio-bloque.png",
+      "view": "baseline",
+      "cameraPosition": [
+        5.705639999683854,
+        12,
+        18.17361000031319
+      ],
+      "cameraUp": [
+        0,
+        1,
+        0
+      ],
+      "quaternion": [
+        -0.16921357547294083,
+        0.042423539903340406,
+        0.007290630635249333,
+        0.9846389469458708
+      ],
+      "measuredAzimuth": 355.0658311882563,
+      "planScreenUpAzimuth": null,
+      "pitchDegrees": -19.502448506662216,
+      "projection": {
+        "kind": "perspective",
+        "fov": 85,
+        "aspect": 1.6
+      },
+      "calls": 179,
+      "triangles": 333571,
+      "renderer": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+      "capturedAt": "2026-10-03T10:22:24.326Z",
+      "worldSha256": "fb652de887d19482a4379645cb0db07091ba50b073e04eecd4b94855a6fdbd69",
+      "source": "Existing production createWorld with original procedural materials plus neutral audit ground; local WebGL model render only.",
+      "viewport": [
+        1280,
+        800
+      ],
+      "imageSha256": "45da4c2a0f63f82f830b0a02022742e428a47016213eecad1f3658dc109530f0"
+    },
+    {
+      "file": "01-planta.png",
+      "view": "plan",
+      "cameraPosition": [
+        5.705639999683854,
+        70,
+        18.17361000031319
+      ],
+      "cameraTarget": [
+        5.705639999683854,
+        0,
+        18.17361000031319
+      ],
+      "cameraUp": [
+        -0.08601108666676865,
+        0,
+        -0.9962941799340201
+      ],
+      "quaternion": [
+        -0.7064513748188936,
+        0.03043772357609839,
+        0.03043772357609839,
+        0.7064513748188938
+      ],
+      "measuredAzimuth": null,
+      "planScreenUpAzimuth": 355.0658311882563,
+      "pitchDegrees": -90,
+      "projection": {
+        "kind": "orthographic",
+        "left": -50,
+        "right": 50,
+        "top": 31.25,
+        "bottom": -31.25
+      },
+      "calls": 20,
+      "triangles": 26413,
+      "renderer": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+      "capturedAt": "2026-10-03T10:52:35.643Z",
+      "viewport": [
+        1280,
+        800
+      ],
+      "imageSha256": "9e23dbd64a766c5df13efd7292d9dd169dfe6fa876d28f1784c90c6d0a098c01"
+    },
+    {
+      "file": "02-bloque.png",
+      "view": "block",
+      "cameraPosition": [
+        5.705639999683854,
+        12,
+        18.17361000031319
+      ],
+      "cameraTarget": [
+        3.641373919681406,
+        3.5,
+        -5.737450318103292
+      ],
+      "cameraUp": [
+        0,
+        1,
+        0
+      ],
+      "quaternion": [
+        -0.16921357547294083,
+        0.042423539903340406,
+        0.007290630635249333,
+        0.9846389469458708
+      ],
+      "measuredAzimuth": 355.0658311882563,
+      "planScreenUpAzimuth": null,
+      "pitchDegrees": -19.502448506662216,
+      "projection": {
+        "kind": "perspective",
+        "fov": 85,
+        "aspect": 1.6
+      },
+      "calls": 187,
+      "triangles": 322906,
+      "renderer": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+      "capturedAt": "2026-10-03T10:52:35.643Z",
+      "viewport": [
+        1280,
+        800
+      ],
+      "imageSha256": "b40fe00a14a17465f3959bdb0d063fa6f15e30ad9ab079ec08cf380a72b7db23"
+    },
+    {
+      "file": "03-peaton.png",
+      "view": "pedestrian",
+      "cameraPosition": [
+        5.705639999683854,
+        1.68,
+        18.17361000031319
+      ],
+      "cameraTarget": [
+        3.641373919681406,
+        1.68,
+        -5.737450318103292
+      ],
+      "cameraUp": [
+        0,
+        1,
+        0
+      ],
+      "quaternion": [
+        0,
+        0.04304544148908166,
+        0,
+        0.9990731154259983
+      ],
+      "measuredAzimuth": 355.0658311882563,
+      "planScreenUpAzimuth": null,
+      "pitchDegrees": 0,
+      "projection": {
+        "kind": "perspective",
+        "fov": 85,
+        "aspect": 1.6
+      },
+      "calls": 189,
+      "triangles": 323166,
+      "renderer": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+      "capturedAt": "2026-10-03T10:52:35.643Z",
+      "viewport": [
+        1280,
+        800
+      ],
+      "imageSha256": "580bb9fdac1210362dc23fdd0c2eab9bf0a28a712f30af7a1de68008cfefec6e"
+    },
+    {
+      "file": "04-fachada-detalle.png",
+      "view": "detail",
+      "cameraPosition": [
+        19.278183651522472,
+        3.1,
+        -3.3755777551343753
+      ],
+      "cameraTarget": [
+        19.020150391522165,
+        3.1,
+        -6.3644602949364355
+      ],
+      "cameraUp": [
+        0,
+        1,
+        0
+      ],
+      "quaternion": [
+        0,
+        0.04304544148908179,
+        0,
+        0.9990731154259983
+      ],
+      "measuredAzimuth": 355.0658311882563,
+      "planScreenUpAzimuth": null,
+      "pitchDegrees": 0,
+      "projection": {
+        "kind": "orthographic",
+        "left": -13,
+        "right": 13,
+        "top": 8.125,
+        "bottom": -8.125
+      },
+      "calls": 158,
+      "triangles": 279237,
+      "renderer": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+      "capturedAt": "2026-10-03T10:52:35.643Z",
+      "viewport": [
+        1280,
+        800
+      ],
+      "imageSha256": "2cff7f695934f0bf4481953a25c85581a76064b2444dce4c7a5249994121619b"
+    },
+    {
+      "file": "05-visor-p05.png",
+      "view": "visor",
+      "cameraPosition": [
+        5.705639999683854,
+        1.74,
+        18.17361000031319
+      ],
+      "cameraUp": [
+        0,
+        1,
+        0
+      ],
+      "quaternion": [
+        0.017482887132373434,
+        -0.0430388503240678,
+        -0.000753256777203844,
+        -0.9989201362594143
+      ],
+      "measuredAzimuth": 355.06583118825637,
+      "pitchDegrees": -2.005352282957882,
+      "projection": {
+        "kind": "perspective",
+        "fov": 63,
+        "aspect": 1.6,
+        "near": 0.1,
+        "far": 1600
+      },
+      "calls": 2146,
+      "triangles": 595626,
+      "renderer": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+      "viewport": [
+        1280,
+        800
+      ],
+      "refinement": {
+        "version": "isc58-technical-1",
+        "confidence": "provisional",
+        "inheritedHeightMeters": 7.45,
+        "frontSpanMeters": 91.84443896506862,
+        "redSpanMeters": 21,
+        "redOpenings": 3,
+        "removedFrontTriangles": 2,
+        "colliderCells": 62,
+        "colliderAreaMeters2": 3631.9332781697804,
+        "photographic": false
+      },
+      "colliderCount": 182,
+      "objectNames": [
+        "ISC-58 · tramo claro procedural con vanos · límites provisionales",
+        "ISC-58 · tramo claro procedural con vanos · límites provisionales",
+        "ISC-58 · tramo rojo/blanco de tres vanos · interpretación provisional P05/P06",
+        "ISC-58 · estuco rojo/blanco con tres huecos geométricos",
+        "ISC-58 · pilastra clara del tramo rojo · proporción provisional",
+        "ISC-58 · pilastra clara del tramo rojo · proporción provisional",
+        "ISC-58 · pilastra clara del tramo rojo · proporción provisional",
+        "ISC-58 · pilastra clara del tramo rojo · proporción provisional",
+        "ISC-58 · remate claro del tramo rojo · cota heredada provisional",
+        "ISC-58 · cierre superior del cuerpo heredado · cota provisional",
+        "OB-01 · base continua bajo juntas",
+        "OB-02 · base continua bajo juntas",
+        "OB-02 · base continua norte bajo juntas",
+        "OB-01 · banqueta B norte · piezas de loseta y borde de cuadra",
+        "OB-01 · banqueta B norte · piezas de loseta y borde de cuadra",
+        "OB-01 · banqueta A sur · piezas de loseta y borde de cuadra",
+        "OB-01 · banqueta A sur · piezas de loseta y borde de cuadra",
+        "OB-01 · banqueta B norte · piezas de loseta y borde de cuadra",
+        "OB-01 · banqueta A sur · piezas de loseta y borde de cuadra",
+        "OB-02 · banqueta B norte · piezas de loseta y borde de cuadra",
+        "OB-02 · banqueta B norte · piezas de loseta y borde de cuadra",
+        "OB-02 · banqueta A sur · piezas de loseta y borde de cuadra",
+        "OB-02 · banqueta A sur · piezas de loseta y borde de cuadra",
+        "OB-01 · retornos de esquina · radios provisionales",
+        "OB-01 · esquina norte · banqueta",
+        "OB-01 · esquina norte · guarnición",
+        "OB-01 · esquina sur · banqueta",
+        "OB-01 · esquina sur · guarnición",
+        "OB-02 · guarnición continua norte bajo juntas",
+        "OB-02 · guarnición continua sur bajo juntas",
+        "OB-02 · bolardo norte · forma observada, ancla estimada",
+        "OB-01 · cubierta del estacionamiento · piloto de detalle",
+        "OB-02 · fachada gris con arcos y rejas · exterior interpretado"
+      ],
+      "coordinates": "29.0759512, -110.9546564",
+      "compass": "N 355°",
+      "visorSha256": "f6f137cab022f5cd5722a41de6f012bd694746edc8e976a4f3752945dc249a1b",
+      "url": "http://localhost:5174/amalaya-board/levantamiento/visor/index.html?route=R-001&waypoint=05&heading=355.06583118825637&movement=walk&clean=1",
+      "source": "Actual production viewer, with a read-only accessor appended to the browser response to measure its existing camera, renderer and scene; no geometry, camera, lighting or application behavior overridden.",
+      "capturedAt": "2026-10-03T10:52:36.609Z",
+      "imageSha256": "85d3512eca46c85407cddfb06d7e3a31c9f1ecdb06ed71c0e392b2517a3c9af7",
+      "capturedAtSource": "File modification time from completed actual-viewer capture"
+    },
+    {
+      "file": "06-avance-punto11.png",
+      "view": "progress",
+      "cameraId": "ISC-58-fixed-v1",
+      "source": "Production PH-01 detail subset with the same ISC runtime refinement. Omits StreetScene and neighbours, matching preserved baseline model scope; the old baseline audit labels/route annotation overlays are not repeated.",
+      "cameraPosition": [
+        -20,
+        135,
+        -17
+      ],
+      "cameraTarget": [
+        -20,
+        0,
+        -17
+      ],
+      "cameraUp": [
+        0,
+        0,
+        -1
+      ],
+      "quaternion": [
+        -0.7071067811865475,
+        0,
+        0,
+        0.7071067811865476
+      ],
+      "measuredAzimuth": null,
+      "planScreenUpAzimuth": 0,
+      "pitchDegrees": -90,
+      "projection": {
+        "kind": "orthographic",
+        "left": -88,
+        "right": 88,
+        "top": 55,
+        "bottom": -55
+      },
+      "calls": 981,
+      "triangles": 433091,
+      "renderer": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+      "capturedAt": "2026-10-03T10:52:35.643Z",
+      "viewport": [
+        1280,
+        800
+      ],
+      "imageSha256": "3e87afde273f8318e178033c36caec454886018dc1b5976ea736d563de614d6b"
+    },
+    {
+      "file": "07-banqueta-sur.png",
+      "view": "sidewalk-south",
+      "surface": {
+        "floor": {
+          "point": [
+            5.705639999683854,
+            0.1250000037252903,
+            23.0075
+          ],
+          "distance": 0.6749999962747097,
+          "object": "Banqueta PH-01 · una hilada dentro de 0.93 m de paso medido",
+          "ancestors": [
+            "Cuadra sur de Obregón · entre Juan Álvarez y Garmendia · masa provisional alineada a ortofoto/OSM",
+            "Amalaya · levantamiento actual provisional"
+          ],
+          "instanceId": 15
+        },
+        "eyeHeightAboveGround": 1.6,
+        "insideNavigationCollider": false,
+        "geographicSide": "south",
+        "source": "Vertical intersection against actual production world meshes, excluding neutral audit ground; y is model elevation, not a measured street height."
+      },
+      "cameraPosition": [
+        5.705639999683854,
+        1.7250000037252904,
+        23.0075
+      ],
+      "cameraTarget": [
+        29.616700318100335,
+        -0.2749999962747096,
+        20.943233919997574
+      ],
+      "cameraUp": [
+        0,
+        1,
+        0
+      ],
+      "quaternion": [
+        -0.030624111587473038,
+        -0.6754296203155278,
+        -0.028094210560864443,
+        0.736252475121722
+      ],
+      "measuredAzimuth": 85.06583118825642,
+      "planScreenUpAzimuth": null,
+      "pitchDegrees": -4.763641690726178,
+      "projection": {
+        "kind": "perspective",
+        "fov": 85,
+        "aspect": 1.6
+      },
+      "calls": 262,
+      "triangles": 342696,
+      "renderer": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+      "capturedAt": "2026-10-03T10:52:35.643Z",
+      "viewport": [
+        1280,
+        800
+      ],
+      "imageSha256": "94ed11fbe2abfb80df0a1a6ab074bbe576c52b6535c4ac19b7e30dbee0801cd3",
+      "limits": "Existing model south passage. Surface y=0.125 m is procedural elevation, not field measurement. Narrow floor and protruding provisional facade details visible; this still image does not establish a continuous accessible walking route."
+    },
+    {
+      "file": "08-paseo-norte.png",
+      "view": "sidewalk-north",
+      "surface": {
+        "floor": {
+          "point": [
+            5.705639999683853,
+            0.16100000217556965,
+            11.000000000000002
+          ],
+          "distance": 0.6389999978244304,
+          "object": "Pavimento peatonal · losa modular geométrica, sin imagen",
+          "ancestors": [
+            "Plaza Hidalgo · PH-01 · detalle geométrico de alta densidad · materiales procedurales",
+            "Amalaya · levantamiento actual provisional"
+          ],
+          "instanceId": 6508
+        },
+        "eyeHeightAboveGround": 1.6,
+        "insideNavigationCollider": false,
+        "geographicSide": "north",
+        "source": "Vertical intersection against actual production world meshes, excluding neutral audit ground; y is model elevation, not a measured street height."
+      },
+      "cameraPosition": [
+        5.705639999683854,
+        1.7610000021755696,
+        11
+      ],
+      "cameraTarget": [
+        29.616700318100335,
+        -0.23899999782443038,
+        8.935733919997572
+      ],
+      "cameraUp": [
+        0,
+        1,
+        0
+      ],
+      "quaternion": [
+        -0.030624111587473038,
+        -0.6754296203155278,
+        -0.028094210560864443,
+        0.736252475121722
+      ],
+      "measuredAzimuth": 85.06583118825642,
+      "planScreenUpAzimuth": null,
+      "pitchDegrees": -4.763641690726178,
+      "projection": {
+        "kind": "perspective",
+        "fov": 85,
+        "aspect": 1.6
+      },
+      "calls": 264,
+      "triangles": 338256,
+      "renderer": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+      "capturedAt": "2026-10-03T10:52:35.643Z",
+      "viewport": [
+        1280,
+        800
+      ],
+      "imageSha256": "94d01b20b826b244a6e735da878185e4bd5004e0584113eb854156335269c39a",
+      "limits": "Existing model north plaza promenade. Surface y=0.161 m is procedural elevation, not field measurement. This is the broad plaza pavement, not a uniform opposite-side sidewalk."
+    }
+  ],
+  "errors": [],
+  "source": "Existing production createWorld with original procedural materials plus neutral audit ground; local WebGL model render only.",
+  "limits": "P05 anchor is source WGS84; heading355.06583118825637 is the inspection direction normal to the source OSM frontage, not verified panorama north. Same horizontal anchor in plan/block/pedestrian; plan screen-up follows requested heading. Geometry does not establish measured building survey. Detail uses a close orthographic frontal camera to inspect the three openings without removing production trees or monuments. Header progress uses the preserved PH-01 subset and ISC-58-fixed-v1 camera; audit annotation overlays from the initial image are omitted. Actual viewer has its existing 63-degree vertical field of view and camera height; the embedded Sonora avatar uses its existing third-person offset.",
+  "baseWorldSha256": "fb652de887d19482a4379645cb0db07091ba50b073e04eecd4b94855a6fdbd69",
+  "runtimeModuleSha256": "aa19477c64ed55e8e5832da886d5f8a051b036ab0e52248c44299f737590ff8c",
+  "visorSha256": "f6f137cab022f5cd5722a41de6f012bd694746edc8e976a4f3752945dc249a1b",
+  "stats": {
+    "version": "isc58-technical-1",
+    "confidence": "provisional",
+    "inheritedHeightMeters": 7.45,
+    "frontSpanMeters": 91.84443896506862,
+    "redSpanMeters": 21,
+    "redOpenings": 3,
+    "removedFrontTriangles": 2,
+    "colliderCells": 62,
+    "colliderAreaMeters2": 3631.9332781697804,
+    "photographic": false
+  },
+  "baseline": {
+    "worldSha256": "fb652de887d19482a4379645cb0db07091ba50b073e04eecd4b94855a6fdbd69",
+    "anchor": {
+      "point": "R-001-P05",
+      "lat": 29.0759512,
+      "lon": -110.9546564,
+      "x": 5.705639999683854,
+      "z": 18.17361000031319,
+      "azimuth": 355.06583118825637
+    },
+    "capture": {
+      "file": "00-inicio-bloque.png",
+      "view": "baseline",
+      "cameraPosition": [
+        5.705639999683854,
+        12,
+        18.17361000031319
+      ],
+      "cameraUp": [
+        0,
+        1,
+        0
+      ],
+      "quaternion": [
+        -0.16921357547294083,
+        0.042423539903340406,
+        0.007290630635249333,
+        0.9846389469458708
+      ],
+      "measuredAzimuth": 355.0658311882563,
+      "planScreenUpAzimuth": null,
+      "pitchDegrees": -19.502448506662216,
+      "projection": {
+        "kind": "perspective",
+        "fov": 85,
+        "aspect": 1.6
+      },
+      "calls": 179,
+      "triangles": 333571,
+      "renderer": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+      "capturedAt": "2026-10-03T10:22:24.326Z",
+      "worldSha256": "fb652de887d19482a4379645cb0db07091ba50b073e04eecd4b94855a6fdbd69",
+      "source": "Existing production createWorld with original procedural materials plus neutral audit ground; local WebGL model render only.",
+      "viewport": [
+        1280,
+        800
+      ],
+      "imageSha256": "45da4c2a0f63f82f830b0a02022742e428a47016213eecad1f3658dc109530f0"
+    }
+  },
+  "fixedHeaderBaseline": {
+    "file": "00-inicio-webgl-raw.png",
+    "record": "progress-baseline.json",
+    "cameraId": "ISC-58-fixed-v1",
+    "worldSha256": "fb652de887d19482a4379645cb0db07091ba50b073e04eecd4b94855a6fdbd69",
+    "cameraPosition": [
+      -20,
+      135,
+      -17
+    ],
+    "cameraTarget": [
+      -20,
+      0,
+      -17
+    ],
+    "cameraUp": [
+      0,
+      0,
+      -1
+    ],
+    "projection": {
+      "kind": "orthographic",
+      "left": -88,
+      "right": 88,
+      "top": 55,
+      "bottom": -55
+    },
+    "preserved": true
+  },
+  "actualViewer": {
+    "embedded": {
+      "refinement": {
+        "version": "isc58-technical-1",
+        "confidence": "provisional",
+        "inheritedHeightMeters": 7.45,
+        "frontSpanMeters": 91.84443896506862,
+        "redSpanMeters": 21,
+        "redOpenings": 3,
+        "removedFrontTriangles": 2,
+        "colliderCells": 62,
+        "colliderAreaMeters2": 3631.9332781697804,
+        "photographic": false
+      },
+      "colliderCount": 182,
+      "characterMode": true,
+      "coordinates": "29.0759140, -110.9546551",
+      "compass": "N 355°"
+    },
+    "responses": [
+      {
+        "url": "http://localhost:5174/amalaya-board/levantamiento/visor/assets/index-RoPA5goG.js?v=f6f137cab022",
+        "status": 200
+      },
+      {
+        "url": "http://localhost:5174/amalaya-board/levantamiento/isc58-refinement.js?v=aa19477c64ed",
+        "status": 200
+      },
+      {
+        "url": "http://localhost:5174/amalaya-board/levantamiento/visor/data/osm-plaza-hidalgo.json",
+        "status": 200
+      },
+      {
+        "url": "http://localhost:5174/amalaya-board/levantamiento/visor/assets/index-RoPA5goG.js?v=f6f137cab022",
+        "status": 200
+      },
+      {
+        "url": "http://localhost:5174/amalaya-board/levantamiento/isc58-refinement.js?v=aa19477c64ed",
+        "status": 200
+      },
+      {
+        "url": "http://localhost:5174/amalaya-board/levantamiento/visor/data/osm-plaza-hidalgo.json",
+        "status": 200
+      }
+    ],
+    "errors": []
+  },
+  "assembledAt": "2026-10-03T10:53:15.319Z"
+}

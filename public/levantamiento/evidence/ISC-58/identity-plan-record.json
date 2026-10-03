@@ -1,0 +1,285 @@
+{
+  "schemaVersion": 1,
+  "buildingId": "ISC-58",
+  "reviewedAt": "2026-10-03",
+  "purpose": "Evidencia de identidad y planta para acciones 1/6; las dimensiones son derivadas del polígono OSM, no mediciones físicas ni alzados aceptados.",
+  "identity": {
+    "canonicalName": "Instituto Sonorense de Cultura",
+    "osmName": "Instituto Sonorense de Cultura",
+    "officialAddress": "Av. Obregón 58 entre Yáñez y Garmendia, Centro, CP 83000, Hermosillo, Sonora",
+    "officialPublisher": "Secretaría de Cultura · Sistema de Información Cultural",
+    "officialSourceUrl": "https://sic.cultura.gob.mx/ficha.php?table=institucion_cultural&table_id=18",
+    "officialSourceLastModifiedText": "24 de junio del 2025, 14:43",
+    "officialQuote": "Instituto Sonorense de Cultura. Gobierno del Estado de Sonora. Av. Obregón 58 entre Yáñez y Garmendia. Centro. CP 83000, Hermosillo, Sonora.",
+    "officialPageReadDirectly": true,
+    "confidence": {
+      "nameAndAddress": "alta: registro institucional oficial leído directamente",
+      "mappedBuildingIdentity": "media-alta: OSM atribuye ese nombre a la huella en el tramo del domicilio; falta identificar cada paño físico y la geometría vigente en una revisión de campo",
+      "photographicRegistration": "pendiente: no se verificó el norte ni fecha de captura del panorama en esta revisión"
+    }
+  },
+  "cartographicSource": {
+    "url": "https://api.openstreetmap.org/api/0.6/way/664499024/full.json",
+    "mapUrl": "https://www.openstreetmap.org/way/664499024",
+    "publishedSnapshotUrl": "https://yodesarrollo.github.io/amalaya-board/levantamiento/data/osm-plaza-hidalgo.json",
+    "localSnapshotSha256": "a38c4d09a4cf3a01f5a5e30f3632791e287f5bd760ad4a969430bc95ba16568c",
+    "snapshotBaseTimestamp": "2026-07-24T11:04:51Z",
+    "osmWayId": 664499024,
+    "currentWayVersion": 2,
+    "currentWayTimestamp": "2026-06-28T20:01:53Z",
+    "currentApiReadDirectly": true,
+    "currentNodeCoordinatesMatchPublishedSnapshot": true,
+    "currentNodeIdsMatchPublishedSnapshot": true,
+    "tags": {
+      "building": "yes",
+      "name": "Instituto Sonorense de Cultura",
+      "office": "government"
+    },
+    "attribution": "© OpenStreetMap contributors",
+    "licenseUrl": "https://www.openstreetmap.org/copyright",
+    "nodeIdsClosed": [
+      6219440825,
+      6219440826,
+      6219440827,
+      6219440828,
+      6219440829,
+      6219440830,
+      13973052461,
+      6219440825
+    ]
+  },
+  "coordinateFrame": {
+    "originWgs84": {
+      "lat": 29.076115,
+      "lng": -110.9547151
+    },
+    "metersPerLatitudeDegree": 110950,
+    "metersPerLongitudeDegree": 97200,
+    "axes": {
+      "x": "este",
+      "z": "sur"
+    },
+    "method": "Proyección local existente src/geo.ts; trigonometría planar aproximada, no CRS de control topográfico."
+  },
+  "footprint": {
+    "polygonWgs84Closed": [
+      {
+        "lat": 29.0764583,
+        "lng": -110.9553613
+      },
+      {
+        "lat": 29.0761165,
+        "lng": -110.9553011
+      },
+      {
+        "lat": 29.0761877,
+        "lng": -110.9543597
+      },
+      {
+        "lat": 29.0762897,
+        "lng": -110.9543738
+      },
+      {
+        "lat": 29.0762866,
+        "lng": -110.9545579
+      },
+      {
+        "lat": 29.0766702,
+        "lng": -110.9546074
+      },
+      {
+        "lat": 29.0766496,
+        "lng": -110.9546808
+      },
+      {
+        "lat": 29.0764583,
+        "lng": -110.9553613
+      }
+    ],
+    "polygonLocalOpen": [
+      {
+        "x": -62.81064000054357,
+        "z": -38.089134999697194
+      },
+      {
+        "x": -56.95919999984653,
+        "z": -0.16642499997399085
+      },
+      {
+        "x": 34.54488000035667,
+        "z": -8.066064999659162
+      },
+      {
+        "x": 33.17436000022553,
+        "z": -19.382964999861407
+      },
+      {
+        "x": 15.279840000374634,
+        "z": -19.03901999978377
+      },
+      {
+        "x": 10.468440000090595,
+        "z": -61.59943999970192
+      },
+      {
+        "x": 3.3339599995940716,
+        "z": -59.31386999979633
+      }
+    ],
+    "areaSquareMeters": 3720.6630845014056,
+    "centroidLocal": {
+      "x": -18.32046469560204,
+      "z": -26.339875968168815
+    },
+    "centroidWgs84": {
+      "lat": 29.076352403118236,
+      "lng": -110.95490358214708
+    },
+    "shape": "polígono irregular de siete vértices únicos; no reducir a un rectángulo",
+    "frontFacingObregon": {
+      "startNodeId": 6219440826,
+      "endNodeId": 6219440827,
+      "startLocal": {
+        "x": -56.95919999984653,
+        "z": -0.16642499997399085
+      },
+      "endLocal": {
+        "x": 34.54488000035667,
+        "z": -8.066064999659162
+      },
+      "edgeLengthMeters": 91.84443896506862,
+      "axisBearingDegrees": 85.06583118825642,
+      "axisUnitLocal": {
+        "x": 0.9962941799340201,
+        "z": -0.08601108666676767
+      },
+      "interiorNormalBearingDegrees": 355.06583118825637,
+      "interiorNormalUnitLocal": {
+        "x": -0.08601108666676767,
+        "z": -0.9962941799340201
+      },
+      "classification": "borde sur cartográfico orientado a Obregón; no confirma retranqueos de alzado, accesos ni una fachada plana continua"
+    },
+    "projectedAlongFrontExtentMeters": 94.41242108557131,
+    "depthAxis": {
+      "bearingDegrees": 355.06583118825637,
+      "maxInteriorDepthMeters": 55.405830712258094,
+      "minInteriorDepthMeters": -0.0,
+      "projectionByNode": [
+        {
+          "nodeId": 6219440825,
+          "frontAxisMeters": -2.5679821205026894,
+          "depthAxisMeters": 38.28546397307524
+        },
+        {
+          "nodeId": 6219440826,
+          "frontAxisMeters": 0.0,
+          "depthAxisMeters": -0.0
+        },
+        {
+          "nodeId": 6219440827,
+          "frontAxisMeters": 91.84443896506862,
+          "depthAxisMeters": 8.881784197001252e-16
+        },
+        {
+          "nodeId": 6219440828,
+          "frontAxisMeters": 91.45237673217132,
+          "depthAxisMeters": 11.392841519606627
+        },
+        {
+          "nodeId": 6219440829,
+          "frontAxisMeters": 73.59458752039667,
+          "depthAxisMeters": 12.589298228379253
+        },
+        {
+          "nodeId": 6219440830,
+          "frontAxisMeters": 72.46168567596614,
+          "depthAxisMeters": 55.405830712258094
+        },
+        {
+          "nodeId": 13973052461,
+          "frontAxisMeters": 65.15706041527093,
+          "depthAxisMeters": 53.742375001165385
+        }
+      ],
+      "classification": "alcance máximo de la huella perpendicular al borde sur; no es fondo uniforme ni dimensión de una crujía"
+    },
+    "heightMeters": null,
+    "buildingLevels": null,
+    "roofHeightMeters": null,
+    "roofShape": null,
+    "missingOsmTags": [
+      "height",
+      "building:levels",
+      "roof:height",
+      "roof:shape"
+    ],
+    "absolutePositionAccuracyMeters": null,
+    "dimensionUncertaintyMeters": null,
+    "uncertaintyStatement": "La API/huella consultada no proporciona exactitud, método de captura ni error de bordes. No se asigna un ± inventado. Cifras derivadas conservan precisión numérica para repetir el cálculo; presentar aproximadamente 91.84 m de borde sur y 55.41 m de alcance perpendicular. Se requiere control de campo o fuente de cotas antes de declarar exactitud."
+  },
+  "referenceAnchors": [
+    {
+      "id": "R-001-P05",
+      "wgs84": {
+        "lat": 29.0759512,
+        "lng": -110.9546564
+      },
+      "local": {
+        "x": 5.705639999683854,
+        "z": 18.17361000031319
+      },
+      "routeTangentDegrees": 84.8590904410936,
+      "towardsMappedSouthEdgeDegrees": 355.06583118825637,
+      "distanceToMappedSouthEdgeMeters": 23.661941114731082,
+      "nearestMappedSouthEdgeWgs84": {
+        "lat": 29.076163676378716,
+        "lng": -110.9546773381612
+      },
+      "existingPanoramaReferenceUrl": "https://yodesarrollo.github.io/amalaya-board/recorrido/133OIriRrcYkbV0Y2VCPng.jpg",
+      "externalQueryUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.0759512,-110.9546564&heading=355.065831&pitch=0&fov=90",
+      "captureHeadingVerified": false,
+      "captureDateVerified": false,
+      "notes": "Ancla de ruta canónica; rumbo al borde calculado desde OSM. El enlace Maps pide un panorama cercano; no acredita una toma exacta ni calibra el norte del JPG existente.",
+      "existingPanoramaSha256": "17771531734d50aa78b9167a68fa21969ebd3f8c2bb03cdd46b9f329e4ea87cf"
+    },
+    {
+      "id": "R-001-P06",
+      "wgs84": {
+        "lat": 29.0759672,
+        "lng": -110.9544534
+      },
+      "local": {
+        "x": 25.437239999592975,
+        "z": 16.398410000065056
+      },
+      "routeTangentDegrees": 85.33651498725692,
+      "towardsMappedSouthEdgeDegrees": 355.06583118825637,
+      "distanceToMappedSouthEdgeMeters": 23.59045604393117,
+      "nearestMappedSouthEdgeWgs84": {
+        "lat": 29.076179034466506,
+        "lng": -110.95447427490494
+      },
+      "existingPanoramaReferenceUrl": "https://yodesarrollo.github.io/amalaya-board/recorrido/rgjklAAPPcOxEB4RX95K1w.jpg",
+      "externalQueryUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.0759672,-110.9544534&heading=355.065831&pitch=0&fov=90",
+      "captureHeadingVerified": false,
+      "captureDateVerified": false,
+      "notes": "Ancla de ruta canónica; rumbo al borde calculado desde OSM. El enlace Maps pide un panorama cercano; no acredita una toma exacta ni calibra el norte del JPG existente.",
+      "existingPanoramaSha256": "1dde0979b494c622b3a63797241765a0244d7ac2bb24bb1365aab88665a0530b"
+    }
+  ],
+  "notEstablished": [
+    "alturas, pisos y cubierta",
+    "dimensiones y posiciones de vanos",
+    "retiros o profundidad de alzado respecto del contorno OSM",
+    "radios, guarniciones o rampas",
+    "norte absoluto y fecha del JPG existente",
+    "límites catastrales o número de predios"
+  ],
+  "notes": [
+    "El contorno OSM abarca el conjunto nombrado Instituto; no acredita que toda la envolvente sea una fachada rectilínea de92m.",
+    "P05/P06 tienen tangentes de marcha de~85°; para mirar al borde sur desde esos puntos la orientación geométrica es~355.07°. No usar tangente de marcha como heading fotográfico.",
+    "isc.sonora.gob.mx y cultura.sonora.gob.mx respondieron403 en esta sesión; la ficha federalSIC sí se leyó completa, por lo que el domicilio no depende de un snippet."
+  ],
+  "referenceUse": "Panoramas already present in the visual repository; consultation only, not applied as textures. Capture date and absolute north unverified."
+}

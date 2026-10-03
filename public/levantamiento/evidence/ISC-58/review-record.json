@@ -1,0 +1,345 @@
+{
+  "building": "ISC-58",
+  "reviewedAt": "2026-10-03T11:02:01.322983+00:00",
+  "recordKind": "ordered evidence review at session close; not a fabricated per-step publication history",
+  "baseBoardCommit": "f12c7c2",
+  "worldSha256": "fa61d9c7aa4f4e651efd55d96bf6f2627b20c8919c06f8465a250d79a190ff39",
+  "runtimeModuleSha256": "aa19477c64ed55e8e5832da886d5f8a051b036ab0e52248c44299f737590ff8c",
+  "privateSourceStatus": "Full Hidalgo3D a029964 unavailable; editable continuation extension preserved privately. September source not used to rebuild this release.",
+  "guidanceUrl": "https://drive.google.com/file/d/1n563KsI5gP3n6s-rLtqgQJEhRfTno1D7/view",
+  "actions": [
+    {
+      "order": 1,
+      "task": "plan",
+      "criterion": "Alinear planta y huellas con cartografía visual",
+      "status": "blocked",
+      "result": "REVISIÓN AMPLIADA · huella OSM 664499024 comprobada contra API vigente, con siete vértices. Borde sur ≈91.84 m y alcance máximo perpendicular ≈55.41 m, derivados de cartografía. Se conserva el bloqueo publicado en 01: el nombre OSM no certifica los extremos del frente físico de Obregón #58 ni su escala de campo.",
+      "evidence": [
+        {
+          "title": "Inicio · ISC-58 · render WebGL sin overlays",
+          "url": "levantamiento/evidence/ISC-58/00-inicio-webgl-raw.png"
+        },
+        {
+          "title": "Punto 01 · planta · candidato OSM y P03/P04",
+          "url": "levantamiento/evidence/ISC-58/00-inicio-seguimiento.png"
+        },
+        {
+          "title": "ISC-58 · planta final · P05 · 355.065831°",
+          "url": "levantamiento/evidence/ISC-58/01-planta.png"
+        }
+      ],
+      "issue": {
+        "title": "Falta asociar el frente Obregón #58 con la huella y un panorama",
+        "detail": "El nombre y la dirección del ISC están confirmados, pero R-001 P03/P04 no traen heading de panorama y las imágenes equirectangulares muestran una vista amplia con árboles y vehículos que interrumpen la observación. El way OSM 664499024 ya se dibuja en PH-01 y no demuestra por sí solo qué borde es el frente del #58. Hace falta identificar el segmento completo del frente en una vista/croquis ubicado sobre la planta y vincularlo a P03 o P04 con orientación de consulta; para cerrar escala, añadir medidas con unidades, método, fecha y margen de error. Sin eso no se verifica inicio/fin ni separación respecto de la calzada y colindantes."
+      }
+    },
+    {
+      "order": 2,
+      "task": "street",
+      "criterion": "Ajustar calzada y encuentros de calles",
+      "status": "done",
+      "result": "REVISADO · el entorno ISC/P05 utiliza la calibración PH-01 ya publicada: calzada 6.705 m y corrección del eje −1.53 m, derivadas de imagen aérea, no medidas de campo. Se conserva un único constructor vial. No se traslada aquí la sección OB-W de OB-01/OB-02 ni se certifica el ancho físico actual. El corte f12c7c2 registró un timeout de montaje antes de WebGL; las nuevas vistas y la capa MapLibre se renderizaron aquí sin errores. El fallo anterior se conserva en Git y en el relevo.",
+      "evidence": [
+        {
+          "title": "ISC-58 · planta final · P05 · 355.065831°",
+          "url": "levantamiento/evidence/ISC-58/01-planta.png"
+        },
+        {
+          "title": "ISC-58 · bloque final · P05 · 355.065831°",
+          "url": "levantamiento/evidence/ISC-58/02-bloque.png"
+        }
+      ],
+      "issue": null
+    },
+    {
+      "order": 3,
+      "task": "sidewalkA",
+      "criterion": "Ajustar banqueta del lado A",
+      "status": "partial",
+      "result": "BASE REVISADA · lado A/sur del entorno P05: paso libre 0.931 m y transición 1.118 m de la calibración PH-01 existente; borde de lectura ±0.4 m y línea de fachada sur ±0.7 m según el registro previo. Se conserva pavimento/guarnición sin duplicarlos. No se usa aquí el perfil sur de 1.2 m de OB-W. La vista baja muestra paso estrecho y salientes; no acredita un itinerario accesible continuo. Hace falta comprobar continuidad/cotas del lado sur.",
+      "evidence": [
+        {
+          "title": "ISC-58 · planta final · P05 · 355.065831°",
+          "url": "levantamiento/evidence/ISC-58/01-planta.png"
+        },
+        {
+          "title": "ISC-58 · bloque final · P05 · 355.065831°",
+          "url": "levantamiento/evidence/ISC-58/02-bloque.png"
+        },
+        {
+          "title": "03 · banqueta sur · cámara sobre loseta real del modelo",
+          "url": "levantamiento/evidence/ISC-58/07-banqueta-sur.png"
+        }
+      ],
+      "issue": null
+    },
+    {
+      "order": 4,
+      "task": "sidewalkB",
+      "criterion": "Ajustar banqueta del lado B",
+      "status": "partial",
+      "result": "BASE REVISADA · lado B/norte del entorno P05: paseo de plaza 19.181 m y transición 1.118 m del perfil PH-01 existente, no una banqueta uniforme medida en el frente ISC. El collider recortado libera exteriores que ocupaba el rectángulo anterior. No se traslada aquí el perfil norte de 2.0 m de OB-W; cotas físicas pendientes. La vista baja muestra el paseo de plaza y su superficie del modelo; límites del frente ISC y cotas de campo aún provisionales.",
+      "evidence": [
+        {
+          "title": "ISC-58 · planta final · P05 · 355.065831°",
+          "url": "levantamiento/evidence/ISC-58/01-planta.png"
+        },
+        {
+          "title": "ISC-58 · peatón final · P05 · 355.065831°",
+          "url": "levantamiento/evidence/ISC-58/03-peaton.png"
+        },
+        {
+          "title": "04 · paseo norte · cámara sobre la plaza del modelo",
+          "url": "levantamiento/evidence/ISC-58/08-paseo-norte.png"
+        }
+      ],
+      "issue": null
+    },
+    {
+      "order": 5,
+      "task": "corners",
+      "criterion": "Corregir esquinas, guarniciones y rampas",
+      "status": "blocked",
+      "result": "REVISIÓN REALIZADA · no se añadieron rebajes ni radios nuevos sin referencia cercana. Los encuentros pertenecen al constructor vial compartido. El panorama no permite certificar rampas y radios de los extremos Yáñez/Garmendia.",
+      "evidence": [
+        {
+          "title": "ISC-58 · planta final · P05 · 355.065831°",
+          "url": "levantamiento/evidence/ISC-58/01-planta.png"
+        },
+        {
+          "title": "ISC-58 · bloque final · P05 · 355.065831°",
+          "url": "levantamiento/evidence/ISC-58/02-bloque.png"
+        }
+      ],
+      "issue": {
+        "title": "Faltan referencias cercanas de rampas y radios",
+        "detail": "Se revisó la geometría compartida sin inventar rebajes. Hace falta detalle de los extremos Yáñez/Obregón y Garmendia/Obregón para certificar rampas, radios y cotas."
+      }
+    },
+    {
+      "order": 6,
+      "task": "identity",
+      "criterion": "Empatar edificio, nombre y punto/foto 360",
+      "status": "blocked",
+      "result": "IDENTIDAD DOCUMENTADA · SIC confirma Instituto Sonorense de Cultura en Obregón 58 entre Yáñez/Garmendia. P05/P06 son referencias de consulta con coordenadas e IDs; se conservan P03/P04 del corte anterior. La correspondencia de cada paño físico con el domicilio sigue bloqueada, no se cierra por proximidad ni nombre de OSM.",
+      "evidence": [
+        {
+          "title": "ISC-58 · bloque final · P05 · 355.065831°",
+          "url": "levantamiento/evidence/ISC-58/02-bloque.png"
+        },
+        {
+          "title": "Referencia P05 existente · fecha y norte sin verificar",
+          "url": "recorrido/133OIriRrcYkbV0Y2VCPng.jpg"
+        },
+        {
+          "title": "Referencia P06 existente · oclusiones del frente",
+          "url": "recorrido/rgjklAAPPcOxEB4RX95K1w.jpg"
+        }
+      ],
+      "issue": {
+        "title": "Nombre confirmado; paño físico pendiente de asociar",
+        "detail": "El domicilio oficial y el nombre OSM identifican la institución/conjunto. P05/P06 amplían la consulta, pero no confirman la atribución exacta del paño rojo de 21 m ni los límites de cada frente. Hace falta una foto/croquis ubicado en planta, con identificación del acceso del #58 y orientación verificable."
+      }
+    },
+    {
+      "order": 7,
+      "task": "volume",
+      "criterion": "Completar huella, volumen, altura y cubierta",
+      "status": "blocked",
+      "result": "CORREGIDO EN EL MODELO · contorno irregular conservado; retirado el relleno opaco detrás de los vanos; cerrada la franja superior hasta la cubierta heredada y conservados techo/laterales. Altura 7.45 m heredada como hipótesis, no medida; OSM no contiene altura, niveles ni cubierta. El borde cartográfico no implica una fachada física plana uniforme de 91.84 m.",
+      "evidence": [
+        {
+          "title": "ISC-58 · planta final · P05 · 355.065831°",
+          "url": "levantamiento/evidence/ISC-58/01-planta.png"
+        },
+        {
+          "title": "ISC-58 · bloque final · P05 · 355.065831°",
+          "url": "levantamiento/evidence/ISC-58/02-bloque.png"
+        }
+      ],
+      "issue": {
+        "title": "Altura y cubierta sin medición",
+        "detail": "La huella está comprobada contra OSM; no hay datos de altura, niveles o cubierta. Los 7.45 m del modelo siguen provisionales. Se requieren cotas o alzados identificados."
+      }
+    },
+    {
+      "order": 8,
+      "task": "facade",
+      "criterion": "Ajustar forma de fachada a la referencia visual",
+      "status": "blocked",
+      "result": "CORREGIDO · el paño rojo/blanco sustituye su tramo de crema, con tres vanos plenamente legibles interpretados de P05: ventana arqueada, portal central más ancho y ventana arqueada. Retirados adornos y vanos superpuestos. Su ancho de 21 m y posición son hipótesis editables; los tramos crema exteriores siguen siendo una base genérica. No se certifica restitución métrica. P05 también muestra un vano adicional parcialmente oculto junto al árbol; el modelo de tres vanos no afirma representar todo el frente rojo.",
+      "evidence": [
+        {
+          "title": "ISC-58 · detalle del paño rojo interpretado",
+          "url": "levantamiento/evidence/ISC-58/04-fachada-detalle.png"
+        },
+        {
+          "title": "Referencia P05 existente · fecha y norte sin verificar",
+          "url": "recorrido/133OIriRrcYkbV0Y2VCPng.jpg"
+        },
+        {
+          "title": "Referencia P06 existente · oclusiones del frente",
+          "url": "recorrido/rgjklAAPPcOxEB4RX95K1w.jpg"
+        }
+      ],
+      "issue": {
+        "title": "Paño rojo y tramos exteriores sin restitución métrica",
+        "detail": "Tres vanos interpretados de P05 y superposición corregida. El tramo de 21 m, su posición y las proporciones siguen siendo hipótesis; árboles ocultan parte del frente. Falta foto frontal cercana o alzado con escala para sustituir la base genérica restante. Hay un vano adicional parcialmente oculto a la derecha; no se afirma que los tres modelados sean el recuento completo de la fachada."
+      }
+    },
+    {
+      "order": 9,
+      "task": "finish",
+      "criterion": "Afinar materiales, vanos y detalles visibles",
+      "status": "done",
+      "result": "REVISADO · materiales procedurales propios, sin fotografías como texturas. Corregida la doble escala UV del estuco: una repetición cada 2.2 m en las superficies métricas del alzado. Marcos, retranqueos y remates pertenecen al modelo interpretado; colores no medidos en sitio.",
+      "evidence": [
+        {
+          "title": "ISC-58 · detalle del paño rojo interpretado",
+          "url": "levantamiento/evidence/ISC-58/04-fachada-detalle.png"
+        }
+      ],
+      "issue": null
+    },
+    {
+      "order": 10,
+      "task": "equipment",
+      "criterion": "Colocar equipamiento urbano documentado",
+      "status": "blocked",
+      "result": "INVENTARIADO · P05 muestra monumento, al menos dos bolardos próximos a su pedestal, bancos, arbolado, luminaria ornamental y señalética del entorno. Registro por tipo con base/altura/ancla desconocidas; no se atribuye todo a ISC. Se conserva equipamiento ya modelado, sin añadir elementos nuevos ni repetir vehículos/anuncios temporales. Falta inventario medible del frente exacto.",
+      "evidence": [
+        {
+          "title": "ISC-58 · bloque final · P05 · 355.065831°",
+          "url": "levantamiento/evidence/ISC-58/02-bloque.png"
+        },
+        {
+          "title": "Referencia P05 existente · fecha y norte sin verificar",
+          "url": "recorrido/133OIriRrcYkbV0Y2VCPng.jpg"
+        },
+        {
+          "title": "Referencia P06 existente · oclusiones del frente",
+          "url": "recorrido/rgjklAAPPcOxEB4RX95K1w.jpg"
+        }
+      ],
+      "issue": {
+        "title": "Falta inventario con anclas del frente ISC",
+        "detail": "No se añadieron elementos nuevos sin ubicación comprobada. Hace falta vincular postes, luminarias, árboles y señalización a medidas o coordenadas verificables del frente."
+      }
+    },
+    {
+      "order": 11,
+      "task": "qa",
+      "criterion": "Comparar planta, bloque y peatón con rumbo coincidente",
+      "status": "blocked",
+      "result": "COMPARACIÓN TÉCNICA REALIZADA · planta, bloque y peatón desde R-001 P05, misma X/Z y rumbo geométrico 355.065831° hacia el borde sur OSM. Comparación antes/después y comprobación del visor. El norte absoluto y la fecha del JPG siguen sin verificar; las capturas del modelo no acreditan coincidencia fotogramétrica.",
+      "evidence": [
+        {
+          "title": "ISC-58 · planta final · P05 · 355.065831°",
+          "url": "levantamiento/evidence/ISC-58/01-planta.png"
+        },
+        {
+          "title": "ISC-58 · bloque final · P05 · 355.065831°",
+          "url": "levantamiento/evidence/ISC-58/02-bloque.png"
+        },
+        {
+          "title": "ISC-58 · peatón final · P05 · 355.065831°",
+          "url": "levantamiento/evidence/ISC-58/03-peaton.png"
+        },
+        {
+          "title": "ISC-58 · comprobación del visor desde P05",
+          "url": "levantamiento/evidence/ISC-58/05-visor-p05.png"
+        }
+      ],
+      "issue": {
+        "title": "Norte fotográfico y cotas pendientes",
+        "detail": "Las tres vistas del modelo comparten P05 y rumbo 355.065831° derivado del borde OSM. Esto no calibra el norte del panorama: falta metadato o registro visual verificable, fecha de captura y medidas físicas."
+      }
+    }
+  ],
+  "equipmentInventory": [
+    {
+      "type": "monumento y pedestal",
+      "reference": "P05",
+      "observed": "silueta y pedestal en plaza",
+      "owner": "PH-01 entorno compartido",
+      "position": "modelo previo; no medida de campo",
+      "height": "interpretada",
+      "added": false
+    },
+    {
+      "type": "bolardos próximos al pedestal",
+      "reference": "P05",
+      "observedAtLeast": 2,
+      "owner": "plaza; no atribución exclusiva al frente ISC",
+      "anchor": "sin levantamiento",
+      "height": "desconocida",
+      "added": false
+    },
+    {
+      "type": "bancos de plaza",
+      "reference": "P05",
+      "observedAtLeast": 2,
+      "baseVisibility": "parcial por árboles/vehículos",
+      "anchor": "sin levantamiento",
+      "height": "desconocida",
+      "added": false
+    },
+    {
+      "type": "arbolado",
+      "reference": "P05/P06",
+      "count": null,
+      "observed": "copas y varios troncos; ocultan fachada",
+      "anchor": "sin levantamiento",
+      "height": "desconocida",
+      "added": false
+    },
+    {
+      "type": "luminaria ornamental",
+      "reference": "P05",
+      "observedAtLeast": 1,
+      "baseVisibility": "parcial junto a árbol",
+      "anchor": "sin levantamiento",
+      "height": "desconocida",
+      "added": false
+    },
+    {
+      "type": "señalética y carteles",
+      "reference": "P05",
+      "observed": "placas verdes y carteles visibles en el entorno",
+      "permanence": "no comprobada para todos los carteles",
+      "anchor": "sin levantamiento",
+      "added": false
+    },
+    {
+      "type": "vehículos y conos",
+      "reference": "P05/P06",
+      "permanence": "temporal",
+      "action": "no añadidos a esta extensión ni tratados como equipamiento permanente"
+    },
+    {
+      "type": "cables",
+      "reference": "P05/P06",
+      "anchor": "sin anclas confirmadas del frente ISC",
+      "action": "no añadidos"
+    }
+  ],
+  "openings": {
+    "model": 3,
+    "reference": "three fully legible openings and another partly obscured at the edge in P05; complete extent unresolved"
+  },
+  "validation": {
+    "boardTests": "passed",
+    "bridgeTests": "2 passed",
+    "geometryAndViewerContract": "passed",
+    "publicationCheck": "passed local asset/evidence verification",
+    "browser": "standalone and character embed passed with no errors",
+    "mapLayer": "actual MapLibre custom layer and shared WebGL context rendered 2 frames; no runtime errors"
+  },
+  "next": "No other building started; await selection/review after ISC-58.",
+  "resumeDiagnostics": {
+    "priorCommit": "f12c7c2",
+    "priorFailure": "page.goto: Timeout 30000ms exceeded waiting for commit before WebGL; no frame obtained",
+    "currentEvidence": "nine audited PNGs, actual viewer and MapLibre layer rendered without errors",
+    "continuation": "existing public October bundle with privately preserved editable extension; no dependence on locating old terminal workspace"
+  }
+}

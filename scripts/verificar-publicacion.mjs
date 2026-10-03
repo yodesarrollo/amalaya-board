@@ -1,11 +1,12 @@
 import { readdir, readFile, stat } from 'node:fs/promises'
 import assert from 'node:assert/strict'
 import { createHash } from 'node:crypto'
+import { BASE_WORLD_SHA256, BASE_VISOR_SHA256, removeIsc58Hook, removeIsc58VisorHook, regionHashes, sha256 } from './preparar-isc58.mjs'
 const root='public/levantamiento'
 const approved=new Set(['amalaya-observations.json','amalaya-routes.json','cerro-elevation.json','osm-context.json','osm-plaza-hidalgo.json','sector-survey.json'])
 const ob01EvidenceFiles=new Set(['01-planta.png','02-calzada.png','03-banqueta-sur.png','04-banqueta-norte.png','05-esquinas.png','06-identidad.png','07-volumen.png','08-fachada.png','09-materiales.png','10-equipamiento.png','11a-planta.png','11b-bloque.png','11c-peaton.png','manifest.json'])
+const isc58EvidenceFiles=new Set(['00-inicio-webgl-raw.png','00-inicio-seguimiento.png','plan-manifest.json','plan-record.json','progress-baseline.json','06-avance-punto11.png','07-banqueta-sur.png','08-paseo-norte.png','00-inicio-bloque.png','01-planta.png','02-bloque.png','03-peaton.png','04-fachada-detalle.png','05-visor-p05.png','manifest.json','identity-plan-record.json','review-record.json'])
 const ob02EvidenceFiles=new Set(['01-fachada-p03.png','02-conjunto-p03.png','03-edificio-aislado-p03.png','04-retorno-oblicuo-p04.png','manifest.json','05-planta-ob02.png','plan-manifest.json','06-calzada-ob02.png','street-manifest.json','07-inicio-seguimiento.png','progress-baseline.json','08-avance-punto03.png','09-banqueta-sur-planta.png','10-banqueta-sur-peaton.png','sidewalkA-manifest.json','11-avance-punto04.png','12-banqueta-norte-planta.png','13-banqueta-norte-peaton.png','sidewalkB-manifest.json','14-avance-punto05.png','15-guarniciones-planta.png','16-guarnicion-detalle.png','corners-manifest.json','17-avance-punto06.png','identity-manifest.json','identity-record.json'])
-const isc58EvidenceFiles=new Set(['00-inicio-webgl-raw.png','00-inicio-seguimiento.png','progress-baseline.json','plan-manifest.json','plan-record.json'])
 for(const file of ['18-avance-punto07.png','19-envolvente-antes.png','20-envolvente-despues.png','21-cubierta-planta.png','volume-before-manifest.json','volume-manifest.json'])ob02EvidenceFiles.add(file)
 for(const file of ['22-avance-punto08.png','23-fachada-siete-vanos.png','24-coronamiento.png','facade-manifest.json','facade-record.json'])ob02EvidenceFiles.add(file)
 for(const file of ['25-avance-punto09.png','26-materiales-detalle.png','27-fachada-acabados.png','finish-manifest.json'])ob02EvidenceFiles.add(file)
@@ -16,9 +17,9 @@ async function check(dir){
     const path=`${dir}/${item.name}`
     assert(!item.isSymbolicLink(),`No se permiten enlaces: ${path}`)
     if(item.isDirectory()){const allowed=['data','visor','assets','fonts','evidence'].includes(item.name)||(dir===`${root}/evidence`&&['OB-01','OB-02','ISC-58'].includes(item.name));assert(allowed,`Carpeta inesperada: ${path}`);await check(path);continue}
+    if(path.includes('/evidence/ISC-58/'))assert(isc58EvidenceFiles.has(item.name),`Evidencia fuera del alcance ISC-58: ${path}`)
     if(path.includes('/evidence/OB-01/'))assert(ob01EvidenceFiles.has(item.name),`Evidencia fuera del alcance OB-01: ${path}`)
     if(path.includes('/evidence/OB-02/'))assert(ob02EvidenceFiles.has(item.name),`Evidencia fuera del alcance OB-02: ${path}`)
-    if(path.includes('/evidence/ISC-58/'))assert(isc58EvidenceFiles.has(item.name),`Evidencia fuera del alcance ISC-58: ${path}`)
     assert(!/\.(map|env|csv|zip|bundle)$/i.test(item.name),`Archivo no publicable: ${path}`)
     if(path.includes('/data/'))assert(approved.has(item.name),`Datos no revisados: ${path}`)
     assert((await stat(path)).size<25000000,`Activo demasiado grande: ${path}`)
@@ -39,7 +40,7 @@ for(const file of ['world.js','visor/index.html',...Array.from(approved,n=>`data
 const worldHash=createHash('sha256').update(await readFile(`${root}/world.js`)).digest('hex').slice(0,12)
 assert((await readFile('src/levantamiento-version.js','utf8')).includes(`'${worldHash}'`),'El hash de caché debe corresponder al modelo publicado.')
 const page=await readFile(`${root}/visor/index.html`,'utf8')
-for(const [,asset] of page.matchAll(/(?:src|href)="(\.\/assets\/[^"]+)"/g))await stat(`${root}/visor/${asset}`)
+for(const [,asset] of page.matchAll(/(?:src|href)="(\.\/assets\/[^"]+)"/g))await stat(`${root}/visor/${asset.split('?')[0]}`)
 assert(!(await readFile('src/preview-recorrido.jsx','utf8')).includes('datos.jsx'),'El portal público no carga el proveedor de negocio')
 console.log('Publicación: activos visuales presentes, datos geográficos autorizados y sin credenciales reconocibles. El acceso al negocio se conserva.')
 
@@ -72,6 +73,21 @@ console.log('OB-02: cuatro capturas WebGL revisadas, referencias identificadas, 
 
 // Point 1/2 evidence retains its historical checkpoint; point 3 has separate captures.
 const currentWorldHash=createHash('sha256').update(await readFile(`${root}/world.js`)).digest('hex')
+// OB-02 retains its immutable published checkpoint when a later building is refined.
+const ob02CheckpointHash=BASE_WORLD_SHA256
+const provenance=JSON.parse(await readFile(`${root}/isc58-provenance.json`,'utf8'))
+const worldSource=await readFile(`${root}/world.js`,'utf8')
+assert.equal(sha256(removeIsc58Hook(worldSource)),ob02CheckpointHash,'El mundo base debe conservar todos los avances previos byte por byte.')
+assert.equal(provenance.baseWorldSha256,ob02CheckpointHash)
+assert.equal(provenance.worldSha256,currentWorldHash)
+assert.deepEqual(provenance.preservedRegions,regionHashes(worldSource))
+const runtimeSource=await readFile(`${root}/isc58-refinement.js`,'utf8')
+assert(!runtimeSource.includes('sourceMappingURL'),'El activo público no debe enlazar código fuente privado.')
+assert.equal(provenance.runtimeModuleSha256,sha256(runtimeSource))
+const visorSource=await readFile(`${root}/visor/assets/index-RoPA5goG.js`,'utf8')
+assert.equal(sha256(removeIsc58VisorHook(visorSource)),BASE_VISOR_SHA256,'El visor base debe conservarse byte por byte.')
+assert.equal(provenance.visorSha256,sha256(visorSource))
+assert.equal(provenance.baseVisorSha256,BASE_VISOR_SHA256)
 for(const [view,file] of [['plan','05-planta-ob02.png'],['street','06-calzada-ob02.png']]){
   const state=JSON.parse(await readFile(`${root}/evidence/OB-02/${view}-manifest.json`,'utf8'))
   assert(state.building==='OB-02'&&state.view===view&&state.file===file,'Evidencia de tarea OB-02 incorrecta.')
@@ -237,7 +253,7 @@ console.log('OB-02: acabados originales, juntas en paños sólidos y Avance 09 d
 
 const equipment=JSON.parse(await readFile(`${root}/evidence/OB-02/equipment-manifest.json`,'utf8'))
 const equipmentRecord=JSON.parse(await readFile(`${root}/evidence/OB-02/equipment-record.json`,'utf8'))
-assert(equipment.building==='OB-02'&&equipment.task==='equipment'&&equipment.worldSha256===currentWorldHash,'Equipamiento debe corresponder al modelo vigente.')
+assert(equipment.building==='OB-02'&&equipment.task==='equipment'&&equipment.worldSha256===ob02CheckpointHash,'Equipamiento OB-02 conserva el checkpoint previo a ISC-58.')
 assert(equipment.captures?.length===3&&['progress','equipment-plan','equipment-detail'].every(view=>equipment.captures.some(s=>s.view===view)),'Faltan avance, planta o detalle de bolardo.')
 const progressE=equipment.captures.find(s=>s.view==='progress')
 for(const field of ['cameraId','cameraPosition','cameraTarget','cameraUp','projection','viewport','textureSize'])assert.deepEqual(progressE[field],initialView[field],`La toma de inicio/avance 10 cambió: ${field}`)
@@ -256,7 +272,7 @@ console.log('OB-02: inventario documentado, bolardo apoyado y Avance 10 desde c�
 
 const qa=JSON.parse(await readFile(`${root}/evidence/OB-02/qa-manifest.json`,'utf8'))
 const qaRecord=JSON.parse(await readFile(`${root}/evidence/OB-02/qa-record.json`,'utf8'))
-assert(qa.building==='OB-02'&&qa.task==='qa'&&qa.worldSha256===currentWorldHash,'QA debe auditar el modelo publicado.')
+assert(qa.building==='OB-02'&&qa.task==='qa'&&qa.worldSha256===ob02CheckpointHash,'QA de OB-02 conserva el checkpoint auditado previo a ISC-58.')
 assert(qa.captures?.length===5&&['progress','qa-plan','qa-block','qa-pedestrian','qa-isolated'].every(v=>qa.captures.some(s=>s.view===v)),'Faltan las cinco capturas de QA.')
 const progressQ=qa.captures.find(s=>s.view==='progress')
 for(const field of ['cameraId','cameraPosition','cameraTarget','cameraUp','projection','viewport','textureSize'])assert.deepEqual(progressQ[field],initialView[field],`La toma de inicio/avance 11 cambió: ${field}`)
@@ -284,13 +300,65 @@ for(const s of qa.captures){
 }
 assert(qaRecord.resolved.includes('overlay obstruction')&&qaRecord.open.includes('absolute panorama north registration')&&qaRecord.discrepancies.length>=3,'Faltan resultados reales y discrepancias del QA.')
 assert(ob02Tracking.tasks.qa==='blocked'&&ob02Tracking.issues.qa?.detail,'La orientación no verificada sigue siendo un problema explícito.')
-assert(ob02Tracking.visualProgress.current.url===`levantamiento/evidence/OB-02/${progressQ.file}`&&ob02Tracking.visualProgress.current.worldSha256===currentWorldHash,'La cabecera debe mostrar Avance 11 vigente.')
+assert(ob02Tracking.visualProgress.current.url===`levantamiento/evidence/OB-02/${progressQ.file}`&&ob02Tracking.visualProgress.current.worldSha256===ob02CheckpointHash,'La cabecera OB-02 conserva Avance 11 de su checkpoint.')
 console.log('OB-02: planta/bloque/peatón desde P03, captura limpia y consulta original reproducible; norte de panorama pendiente.')
+
+// ISC-58: new evidence belongs to its own model and camera checkpoint.
+const isc=JSON.parse(await readFile(`${root}/evidence/ISC-58/manifest.json`,'utf8'))
+assert.equal(isc.building,'ISC-58')
+assert.equal(isc.worldSha256,currentWorldHash)
+assert.deepEqual(isc.errors,[],'La captura ISC-58 debe terminar sin errores de ejecución.')
+assert.equal(isc.anchor.point,'R-001-P05')
+assert.equal(isc.anchor.lat,29.0759512)
+assert.equal(isc.anchor.lon,-110.9546564)
+assert(Math.abs(isc.anchor.azimuth-355.06583118825637)<1e-9)
+const comparedIsc=isc.captures.filter(c=>['plan','block','pedestrian'].includes(c.view))
+assert.equal(comparedIsc.length,3)
+for(const c of comparedIsc){
+  assert(c.triangles>0&&c.calls>0&&c.renderer.includes('WebGL 2.0'))
+  assert.equal(c.cameraPosition[0],isc.anchor.x)
+  assert.equal(c.cameraPosition[2],isc.anchor.z)
+  assert(Math.abs((c.view==='plan'?c.planScreenUpAzimuth:c.measuredAzimuth)-isc.anchor.azimuth)<1e-8)
+}
+for(const c of isc.captures){
+ assert.equal(sha256(await readFile(`${root}/evidence/ISC-58/${c.file}`)),c.imageSha256,'Cada captura debe conservar sus bytes auditados.')
+ assert(c.triangles>0&&c.calls>0&&c.renderer.includes('WebGL 2.0'))
+}
+assert.equal(isc.runtimeModuleSha256,provenance.runtimeModuleSha256)
+assert.equal(isc.visorSha256,provenance.visorSha256)
+for(const file of [...isc58EvidenceFiles].filter(f=>f.endsWith('.png'))){
+  const bytes=await readFile(`${root}/evidence/ISC-58/${file}`)
+  assert(bytes.subarray(0,8).equals(Buffer.from([137,80,78,71,13,10,26,10])))
+  assert.equal(bytes.readUInt32BE(16),1280)
+  assert.equal(bytes.readUInt32BE(20),800)
+}
+const identityIsc=JSON.parse(await readFile(`${root}/evidence/ISC-58/identity-plan-record.json`,'utf8'))
+assert.equal(identityIsc.cartographicSource.osmWayId,664499024)
+assert.equal(identityIsc.footprint.polygonLocalOpen.length,7)
+for(const k of ['heightMeters','roofShape','absolutePositionAccuracyMeters','dimensionUncertaintyMeters'])assert.equal(identityIsc.footprint[k],null,'No se inventan cotas ni precisión cartográfica.')
+for(const ref of identityIsc.referenceAnchors){
+ const name=ref.existingPanoramaReferenceUrl.split('/').at(-1)
+ assert.equal(sha256(await readFile(`public/recorrido/${name}`)),ref.existingPanoramaSha256)
+ assert.equal(ref.captureHeadingVerified,false)
+ assert.equal(ref.captureDateVerified,false)
+}
+const iscTracking=tracking.blocks.flatMap(b=>b.buildings).find(b=>b.id==='ISC-58')
+assert.deepEqual(Object.keys(iscTracking.tasks),Object.keys(tracking.taskDefinitions),'ISC-58 debe registrar las once acciones en orden.')
+for(const task of ['plan','corners','identity','volume','facade','equipment','qa'])assert.equal(iscTracking.tasks[task],'blocked','La revisión técnica conserva los pendientes físicos.')
+for(const [task,items]of Object.entries(iscTracking.evidence)){
+ assert(iscTracking.taskDetails[task]&&items.length>0)
+ for(const item of items)await stat(`public/${item.url}`)
+}
+const reviewIsc=JSON.parse(await readFile(`${root}/evidence/ISC-58/review-record.json`,'utf8'))
+assert.deepEqual(reviewIsc.actions.map(a=>a.task),Object.keys(tracking.taskDefinitions))
+assert.equal(reviewIsc.worldSha256,currentWorldHash)
+assert.equal(iscTracking.visualProgress.current.worldSha256,currentWorldHash)
+console.log('ISC-58: once acciones, referencias originales, cámaras coincidentes y checkpoints anteriores preservados.')
 
 const iscBaseline=JSON.parse(await readFile(`${root}/evidence/ISC-58/progress-baseline.json`,'utf8'))
 const iscPlan=JSON.parse(await readFile(`${root}/evidence/ISC-58/plan-manifest.json`,'utf8'))
 const iscRecord=JSON.parse(await readFile(`${root}/evidence/ISC-58/plan-record.json`,'utf8'))
-const iscTracking=tracking.blocks.flatMap(b=>b.buildings).find(b=>b.id==='ISC-58')
+const iscHistoricalTracking=tracking.blocks.flatMap(b=>b.buildings).find(b=>b.id==='ISC-58')
 assert(iscBaseline.building==='ISC-58'&&iscBaseline.task==='visual-baseline-before-point01'&&iscBaseline.cameraId==='ISC-58-fixed-v1','Falta la cabecera de inicio fija de ISC-58.')
 assert(iscPlan.building==='ISC-58'&&iscPlan.route==='R-001'&&iscPlan.task==='plan'&&iscPlan.captures?.length===2,'Falta el registro de planta y avance 01 de ISC-58.')
 assert(iscRecord.status==='blocked'&&iscRecord.issue?.detail?.includes('orientación de consulta'),'El bloqueo de planta debe señalar la evidencia precisa que falta.')
@@ -298,13 +366,18 @@ const iscRaw=iscPlan.captures.find(s=>s.file==='00-inicio-webgl-raw.png'),iscCur
 assert(iscRaw?.cameraId==='ISC-58-fixed-v1'&&iscCurrent?.cameraId===iscRaw.cameraId,'Inicio y avance deben usar la cámara fija ISC-58.')
 assert(iscRaw.triangles===424695&&iscRaw.calls>0&&iscRaw.renderer?.includes('WebGL 2.0'),'La imagen inicial debe corresponder a un render WebGL inspeccionable.')
 assert(iscCurrent.sharedBaselineAndCurrent===true&&iscCurrent.annotatedFrom===iscRaw.file,'Las anotaciones deben derivar del frame real preservado.')
-assert(iscCurrent.worldSha256===currentWorldHash&&iscRaw.worldSha256===currentWorldHash,'La evidencia ISC-58 debe usar el mundo publicado vigente.')
+assert(iscCurrent.worldSha256===ob02CheckpointHash&&iscRaw.worldSha256===ob02CheckpointHash,'Las capturas históricas del punto 01 deben conservar su checkpoint original.')
 assert(iscRaw.route?.some(p=>p.id==='R-001-P03'&&p.panoramaId==='Apyr0uKeZr_XWmfLfLeBjQ')&&iscRaw.route?.some(p=>p.id==='R-001-P04'&&p.panoramaId==='h45BeWMtTog-TgjPTSYn6g'),'Falta la asociación de fuente R-001 P03/P04.')
 assert(Math.abs(iscRaw.p03ToP04TravelBearingDegrees-84.115647)<.001&&iscRaw.candidateFootprint?.osmWayId===664499024,'Heading de marcha u OSM candidato incorrecto.')
 for(const file of ['00-inicio-webgl-raw.png','00-inicio-seguimiento.png']){
  const bytes=await readFile(`${root}/evidence/ISC-58/${file}`)
  assert(bytes.subarray(0,8).equals(Buffer.from([137,80,78,71,13,10,26,10]))&&bytes.readUInt32BE(16)===1280&&bytes.readUInt32BE(20)===800,`PNG ISC-58 inválido: ${file}`)
 }
-assert(iscTracking?.tasks.plan==='blocked'&&iscTracking.issues?.plan?.detail,'La celda de planta debe conservar su blocker rojo.')
-assert(iscTracking.visualProgress?.cameraId===iscBaseline.cameraId&&iscTracking.visualProgress.current.url===`levantamiento/evidence/ISC-58/00-inicio-seguimiento.png`,'La cabecera pública debe mostrar el estado actual de ISC-58.')
+assert(iscHistoricalTracking?.tasks.plan==='blocked'&&iscHistoricalTracking.issues?.plan?.detail,'La celda de planta debe conservar su blocker rojo.')
+assert(iscHistoricalTracking.visualProgress?.cameraId===iscBaseline.cameraId&&iscHistoricalTracking.visualProgress.baseline.url===`levantamiento/evidence/ISC-58/00-inicio-webgl-raw.png`,'La cabecera pública debe mostrar el estado actual de ISC-58.')
 console.log('ISC-58: punto 01 con frame WebGL 2.0, cámara fija, fuente OSM y bloqueo de frente documentado.')
+
+const iscProgress=isc.captures.find(c=>c.view==='progress')
+assert.equal(iscProgress.cameraId,iscRaw.cameraId)
+for(const field of ['cameraPosition','cameraTarget','cameraUp','projection','viewport'])assert.deepEqual(iscProgress[field],iscRaw[field],`La cabecera ISC conserva cámara fija: ${field}`)
+assert.equal(iscTracking.visualProgress.current.url,`levantamiento/evidence/ISC-58/${iscProgress.file}`)
