@@ -1,0 +1,65 @@
+{
+  "building": "ISC-58",
+  "name": "Instituto Sonorense de Cultura · Obregón #58",
+  "block": "OB-YG",
+  "route": "R-001",
+  "task": "plan",
+  "status": "blocked",
+  "observations": [
+    {
+      "item": "R-001 P03",
+      "source": "amalaya-routes.json and board panorama Apyr0uKeZr_XWmfLfLeBjQ.jpg",
+      "classification": "observed coordinate; image association incomplete",
+      "wgs84": { "lat": 29.0759089, "lng": -110.9551769 },
+      "localMeters": { "x": -44.88696, "z": 22.866795 },
+      "imageDate": "not verified",
+      "imageHeading": "not recorded in route point or roll.json"
+    },
+    {
+      "item": "R-001 P04",
+      "source": "amalaya-routes.json and board panorama h45BeWMtTog-TgjPTSYn6g.jpg",
+      "classification": "observed coordinate; image association incomplete",
+      "wgs84": { "lat": 29.0759275, "lng": -110.9549709 },
+      "localMeters": { "x": -24.86376, "z": 20.803125 },
+      "imageDate": "not verified",
+      "imageHeading": "not recorded in route point or roll.json"
+    },
+    {
+      "item": "P03→P04 route movement",
+      "source": "consecutive R-001 WGS84 waypoints",
+      "classification": "derived bearing, not panorama heading",
+      "value": "84.12°",
+      "lengthMeters": 20.13
+    },
+    {
+      "item": "Named Institute footprint candidate",
+      "source": "OSM way 664499024 in osm-plaza-hidalgo.json; already rendered by PH-01 buildPlazaHidalgoDetail",
+      "classification": "mapped OSM footprint; association to Obregón #58 frontage unverified",
+      "localBoundsMeters": { "minX": -62.81064, "maxX": 34.54488, "minZ": -61.59944, "maxZ": -0.166425 },
+      "extractDate": "not stated in the local dataset",
+      "cadastral": false
+    },
+    {
+      "item": "Street geometry ownership",
+      "source": "amalaya-world.ts and street-scene.ts",
+      "classification": "existing production builder",
+      "value": "StreetScene buildStreetContinuation owns the PH-01 Obregón section; the route streetscape respects its detailed core. This step adds no road or building geometry."
+    }
+  ],
+  "camera": {
+    "id": "ISC-58-fixed-v1",
+    "projection": "orthographic, north-up",
+    "cameraPosition": [-20, 135, -17],
+    "cameraTarget": [-20, 0, -17],
+    "cameraUp": [0, 0, -1],
+    "viewport": [1280, 800],
+    "scaleBarMeters": 10
+  },
+  "result": "La planta muestra la huella OSM candidata y P02–P05 sin mover los puntos fuente. No se agrega una huella provisional del #58 ni se cambia la geometría existente.",
+  "issue": {
+    "title": "Falta asociar el frente Obregón #58 con la huella y un panorama",
+    "detail": "El nombre y la dirección del ISC están confirmados, pero R-001 P03/P04 no traen heading de panorama y las imágenes equirectangulares muestran una vista amplia con árboles y vehículos que interrumpen la observación. El way OSM 664499024 ya se dibuja en PH-01 y no demuestra por sí solo qué borde es el frente del #58. Hace falta identificar el segmento completo del frente en una vista/croquis ubicado sobre la planta y vincularlo a P03 o P04 con orientación de consulta; para cerrar escala, añadir medidas con unidades, método, fecha y margen de error. Sin eso no se verifica inicio/fin ni separación respecto de la calzada y colindantes."
+  },
+  "captureLimit": "El render real aislado del builder PH-01 se guardó en WebGL 2.0 (424695 triángulos). Una vista más amplia agotó 30 s en page.goto; la captura anotada en página agotó 60 s esperando ready. El activo final conserva el frame WebGL y añade etiquetas HTML, sin recalcular ni editar píxeles del modelo.",
+  "next": "ISC-58 · punto 02 (calzada): inspeccionar el perfil existente y su continuidad en el tramo OB-YG, conservando la calle del builder actual."
+}

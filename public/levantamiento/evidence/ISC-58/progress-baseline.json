@@ -1,0 +1,135 @@
+{
+  "building": "ISC-58",
+  "task": "visual-baseline-before-point01",
+  "cameraId": "ISC-58-fixed-v1",
+  "capturedAt": "2026-10-03T10:00:33.398Z",
+  "worldSha256": "fb652de887d19482a4379645cb0db07091ba50b073e04eecd4b94855a6fdbd69",
+  "captures": [
+    {
+      "file": "00-inicio-webgl-raw.png",
+      "capturedAt": "2026-10-03T10:00:33.398Z",
+      "worldSha256": "fb652de887d19482a4379645cb0db07091ba50b073e04eecd4b94855a6fdbd69",
+      "renderMethod": "Three.js production PH-01 builder through WebGLRenderer (SwiftShader)",
+      "sharedBaselineAndCurrent": false,
+      "building": "ISC-58",
+      "task": "plan",
+      "stage": "baseline-and-close",
+      "cameraId": "ISC-58-fixed-v1",
+      "cameraPosition": [
+        -20,
+        135,
+        -17
+      ],
+      "cameraTarget": [
+        -20,
+        0,
+        -17
+      ],
+      "cameraUp": [
+        0,
+        0,
+        -1
+      ],
+      "projection": {
+        "kind": "orthographic",
+        "left": -88,
+        "right": 88,
+        "top": 55,
+        "bottom": -55
+      },
+      "viewport": [
+        1280,
+        800
+      ],
+      "northUp": true,
+      "scaleBarMeters": 10,
+      "route": [
+        {
+          "id": "R-001-P02",
+          "lat": 29.0758917,
+          "lng": -110.9553893,
+          "local": {
+            "x": -65.53223999919737,
+            "z": 24.77513500020123
+          },
+          "panoramaId": null
+        },
+        {
+          "id": "R-001-P03",
+          "lat": 29.0759089,
+          "lng": -110.9551769,
+          "local": {
+            "x": -44.88695999966126,
+            "z": 22.866794999973905
+          },
+          "panoramaId": "Apyr0uKeZr_XWmfLfLeBjQ"
+        },
+        {
+          "id": "R-001-P04",
+          "lat": 29.0759275,
+          "lng": -110.9549709,
+          "local": {
+            "x": -24.863760000488355,
+            "z": 20.80312500029642
+          },
+          "panoramaId": "h45BeWMtTog-TgjPTSYn6g"
+        },
+        {
+          "id": "R-001-P05",
+          "lat": 29.0759512,
+          "lng": -110.9546564,
+          "local": {
+            "x": 5.705639999683854,
+            "z": 18.17361000031319
+          },
+          "panoramaId": null
+        }
+      ],
+      "p03ToP04TravelBearingDegrees": 84.11564707400652,
+      "candidateFootprint": {
+        "osmWayId": 664499024,
+        "points": [
+          {
+            "x": -62.81064000054357,
+            "z": -38.089134999697194
+          },
+          {
+            "x": -56.95919999984653,
+            "z": -0.16642499997399085
+          },
+          {
+            "x": 34.54488000035667,
+            "z": -8.066064999659162
+          },
+          {
+            "x": 33.17436000022553,
+            "z": -19.382964999861407
+          },
+          {
+            "x": 15.279840000374634,
+            "z": -19.03901999978377
+          },
+          {
+            "x": 10.468440000090595,
+            "z": -61.59943999970192
+          },
+          {
+            "x": 3.3339599995940716,
+            "z": -59.31386999979633
+          },
+          {
+            "x": -62.81064000054357,
+            "z": -38.089134999697194
+          }
+        ],
+        "association": "unverified; no cadastre",
+        "height": "provisional existing PH-01 builder"
+      },
+      "source": "production builder: PH-01 detail for the existing OSM Institute; OSM Obregon axis and R-001 points as audit annotations; no duplicate road or building geometry",
+      "limits": "OSM way is a named building footprint, not proof of the Obregon #58 frontage. Panorama heading/date and ground scale are unverified; trees/vehicles interrupt the full observation. This isolated plan omits StreetScene surfaces. No footprint or route point was moved; no new building geometry was added.",
+      "calls": 671,
+      "triangles": 424695,
+      "renderer": "WebGL 2.0 (OpenGL ES 3.0 Chromium)"
+    }
+  ]
+}

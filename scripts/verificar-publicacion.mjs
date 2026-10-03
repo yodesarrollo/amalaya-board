@@ -5,6 +5,7 @@ const root='public/levantamiento'
 const approved=new Set(['amalaya-observations.json','amalaya-routes.json','cerro-elevation.json','osm-context.json','osm-plaza-hidalgo.json','sector-survey.json'])
 const ob01EvidenceFiles=new Set(['01-planta.png','02-calzada.png','03-banqueta-sur.png','04-banqueta-norte.png','05-esquinas.png','06-identidad.png','07-volumen.png','08-fachada.png','09-materiales.png','10-equipamiento.png','11a-planta.png','11b-bloque.png','11c-peaton.png','manifest.json'])
 const ob02EvidenceFiles=new Set(['01-fachada-p03.png','02-conjunto-p03.png','03-edificio-aislado-p03.png','04-retorno-oblicuo-p04.png','manifest.json','05-planta-ob02.png','plan-manifest.json','06-calzada-ob02.png','street-manifest.json','07-inicio-seguimiento.png','progress-baseline.json','08-avance-punto03.png','09-banqueta-sur-planta.png','10-banqueta-sur-peaton.png','sidewalkA-manifest.json','11-avance-punto04.png','12-banqueta-norte-planta.png','13-banqueta-norte-peaton.png','sidewalkB-manifest.json','14-avance-punto05.png','15-guarniciones-planta.png','16-guarnicion-detalle.png','corners-manifest.json','17-avance-punto06.png','identity-manifest.json','identity-record.json'])
+const isc58EvidenceFiles=new Set(['00-inicio-webgl-raw.png','00-inicio-seguimiento.png','progress-baseline.json','plan-manifest.json','plan-record.json'])
 for(const file of ['18-avance-punto07.png','19-envolvente-antes.png','20-envolvente-despues.png','21-cubierta-planta.png','volume-before-manifest.json','volume-manifest.json'])ob02EvidenceFiles.add(file)
 for(const file of ['22-avance-punto08.png','23-fachada-siete-vanos.png','24-coronamiento.png','facade-manifest.json','facade-record.json'])ob02EvidenceFiles.add(file)
 for(const file of ['25-avance-punto09.png','26-materiales-detalle.png','27-fachada-acabados.png','finish-manifest.json'])ob02EvidenceFiles.add(file)
@@ -14,9 +15,10 @@ async function check(dir){
   for(const item of await readdir(dir,{withFileTypes:true})){
     const path=`${dir}/${item.name}`
     assert(!item.isSymbolicLink(),`No se permiten enlaces: ${path}`)
-    if(item.isDirectory()){const allowed=['data','visor','assets','fonts','evidence'].includes(item.name)||(dir===`${root}/evidence`&&['OB-01','OB-02'].includes(item.name));assert(allowed,`Carpeta inesperada: ${path}`);await check(path);continue}
+    if(item.isDirectory()){const allowed=['data','visor','assets','fonts','evidence'].includes(item.name)||(dir===`${root}/evidence`&&['OB-01','OB-02','ISC-58'].includes(item.name));assert(allowed,`Carpeta inesperada: ${path}`);await check(path);continue}
     if(path.includes('/evidence/OB-01/'))assert(ob01EvidenceFiles.has(item.name),`Evidencia fuera del alcance OB-01: ${path}`)
     if(path.includes('/evidence/OB-02/'))assert(ob02EvidenceFiles.has(item.name),`Evidencia fuera del alcance OB-02: ${path}`)
+    if(path.includes('/evidence/ISC-58/'))assert(isc58EvidenceFiles.has(item.name),`Evidencia fuera del alcance ISC-58: ${path}`)
     assert(!/\.(map|env|csv|zip|bundle)$/i.test(item.name),`Archivo no publicable: ${path}`)
     if(path.includes('/data/'))assert(approved.has(item.name),`Datos no revisados: ${path}`)
     assert((await stat(path)).size<25000000,`Activo demasiado grande: ${path}`)
@@ -284,3 +286,25 @@ assert(qaRecord.resolved.includes('overlay obstruction')&&qaRecord.open.includes
 assert(ob02Tracking.tasks.qa==='blocked'&&ob02Tracking.issues.qa?.detail,'La orientación no verificada sigue siendo un problema explícito.')
 assert(ob02Tracking.visualProgress.current.url===`levantamiento/evidence/OB-02/${progressQ.file}`&&ob02Tracking.visualProgress.current.worldSha256===currentWorldHash,'La cabecera debe mostrar Avance 11 vigente.')
 console.log('OB-02: planta/bloque/peatón desde P03, captura limpia y consulta original reproducible; norte de panorama pendiente.')
+
+const iscBaseline=JSON.parse(await readFile(`${root}/evidence/ISC-58/progress-baseline.json`,'utf8'))
+const iscPlan=JSON.parse(await readFile(`${root}/evidence/ISC-58/plan-manifest.json`,'utf8'))
+const iscRecord=JSON.parse(await readFile(`${root}/evidence/ISC-58/plan-record.json`,'utf8'))
+const iscTracking=tracking.blocks.flatMap(b=>b.buildings).find(b=>b.id==='ISC-58')
+assert(iscBaseline.building==='ISC-58'&&iscBaseline.task==='visual-baseline-before-point01'&&iscBaseline.cameraId==='ISC-58-fixed-v1','Falta la cabecera de inicio fija de ISC-58.')
+assert(iscPlan.building==='ISC-58'&&iscPlan.route==='R-001'&&iscPlan.task==='plan'&&iscPlan.captures?.length===2,'Falta el registro de planta y avance 01 de ISC-58.')
+assert(iscRecord.status==='blocked'&&iscRecord.issue?.detail?.includes('orientación de consulta'),'El bloqueo de planta debe señalar la evidencia precisa que falta.')
+const iscRaw=iscPlan.captures.find(s=>s.file==='00-inicio-webgl-raw.png'),iscCurrent=iscPlan.captures.find(s=>s.file==='00-inicio-seguimiento.png')
+assert(iscRaw?.cameraId==='ISC-58-fixed-v1'&&iscCurrent?.cameraId===iscRaw.cameraId,'Inicio y avance deben usar la cámara fija ISC-58.')
+assert(iscRaw.triangles===424695&&iscRaw.calls>0&&iscRaw.renderer?.includes('WebGL 2.0'),'La imagen inicial debe corresponder a un render WebGL inspeccionable.')
+assert(iscCurrent.sharedBaselineAndCurrent===true&&iscCurrent.annotatedFrom===iscRaw.file,'Las anotaciones deben derivar del frame real preservado.')
+assert(iscCurrent.worldSha256===currentWorldHash&&iscRaw.worldSha256===currentWorldHash,'La evidencia ISC-58 debe usar el mundo publicado vigente.')
+assert(iscRaw.route?.some(p=>p.id==='R-001-P03'&&p.panoramaId==='Apyr0uKeZr_XWmfLfLeBjQ')&&iscRaw.route?.some(p=>p.id==='R-001-P04'&&p.panoramaId==='h45BeWMtTog-TgjPTSYn6g'),'Falta la asociación de fuente R-001 P03/P04.')
+assert(Math.abs(iscRaw.p03ToP04TravelBearingDegrees-84.115647)<.001&&iscRaw.candidateFootprint?.osmWayId===664499024,'Heading de marcha u OSM candidato incorrecto.')
+for(const file of ['00-inicio-webgl-raw.png','00-inicio-seguimiento.png']){
+ const bytes=await readFile(`${root}/evidence/ISC-58/${file}`)
+ assert(bytes.subarray(0,8).equals(Buffer.from([137,80,78,71,13,10,26,10]))&&bytes.readUInt32BE(16)===1280&&bytes.readUInt32BE(20)===800,`PNG ISC-58 inválido: ${file}`)
+}
+assert(iscTracking?.tasks.plan==='blocked'&&iscTracking.issues?.plan?.detail,'La celda de planta debe conservar su blocker rojo.')
+assert(iscTracking.visualProgress?.cameraId===iscBaseline.cameraId&&iscTracking.visualProgress.current.url===`levantamiento/evidence/ISC-58/00-inicio-seguimiento.png`,'La cabecera pública debe mostrar el estado actual de ISC-58.')
+console.log('ISC-58: punto 01 con frame WebGL 2.0, cámara fija, fuente OSM y bloqueo de frente documentado.')

@@ -1,14 +1,15 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-03T09:19:26.565922+00:00",
+  "updatedAt": "2026-10-03T10:17:01.105Z",
   "refreshSeconds": 30,
   "live": {
     "status": "blocked",
-    "phase": "OB-02 · revisión 8–11 entregada",
-    "title": "Capturas al día · faltan referencias de exactitud",
-    "detail": "Fachada visual, acabados, inventario/bolardo y comparación técnica entregados. Los rojos detallan medidas, anclas y orientación del panorama que faltan para cerrar el edificio.",
+    "phase": "ISC-58 · punto 01 revisado",
+    "title": "Planta bloqueada · frente #58 aún no asociado",
+    "detail": "Inicio/avance desde ISC-58-fixed-v1. El candidato OSM 664499024 y P03/P04 quedan documentados; faltan heading, observación completa y escala del frente.",
     "activeBlockId": "OB-YG",
-    "activeBuildingId": "OB-02"
+    "activeBuildingId": "ISC-58",
+    "activeTask": "plan"
   },
   "schedule": {
     "basis": "Horas de trabajo concentrado que faltan para revisar y cerrar las referencias conocidas, con la geometría actual como punto de partida.",
@@ -565,11 +566,50 @@
           },
           "tasks": {
             "identity": "partial",
+            "plan": "blocked",
             "volume": "pending",
             "facade": "pending",
             "finish": "pending",
             "equipment": "pending",
             "qa": "pending"
+          },
+          "taskDetails": {
+            "plan": "BLOQUEADO · 01 Planta · captura WebGL fija con P03/P04 y way OSM 664499024. El builder PH-01 ya modela ese candidato; no se añadió una segunda huella. Falta identificar el frente completo de Obregón #58 en un panorama con orientación y escala/método."
+          },
+          "issues": {
+            "plan": {
+              "title": "Falta asociar el frente Obregón #58 con la huella y un panorama",
+              "detail": "El nombre y la dirección del ISC están confirmados, pero R-001 P03/P04 no traen heading de panorama y las imágenes equirectangulares muestran una vista amplia con árboles y vehículos que interrumpen la observación. El way OSM 664499024 ya se dibuja en PH-01 y no demuestra por sí solo qué borde es el frente del #58. Hace falta identificar el segmento completo del frente en una vista/croquis ubicado sobre la planta y vincularlo a P03 o P04 con orientación de consulta; para cerrar escala, añadir medidas con unidades, método, fecha y margen de error. Sin eso no se verifica inicio/fin ni separación respecto de la calzada y colindantes."
+            }
+          },
+          "evidence": {
+            "plan": [
+              {
+                "title": "Inicio · ISC-58 · render WebGL sin overlays",
+                "url": "levantamiento/evidence/ISC-58/00-inicio-webgl-raw.png"
+              },
+              {
+                "title": "Punto 01 · planta · candidato OSM y P03/P04",
+                "url": "levantamiento/evidence/ISC-58/00-inicio-seguimiento.png"
+              }
+            ]
+          },
+          "visualProgress": {
+            "cameraId": "ISC-58-fixed-v1",
+            "baseline": {
+              "url": "levantamiento/evidence/ISC-58/00-inicio-webgl-raw.png",
+              "title": "Inicio · planta ISC-58 · frame WebGL del builder PH-01",
+              "label": "Inicio · 01",
+              "capturedAt": "2026-10-03T10:00:33.398Z",
+              "worldSha256": "fb652de887d19482a4379645cb0db07091ba50b073e04eecd4b94855a6fdbd69"
+            },
+            "current": {
+              "url": "levantamiento/evidence/ISC-58/00-inicio-seguimiento.png",
+              "title": "Punto 01 · planta · frente pendiente",
+              "label": "Avance · 01",
+              "capturedAt": "2026-10-03T10:11:57.359Z",
+              "worldSha256": "fb652de887d19482a4379645cb0db07091ba50b073e04eecd4b94855a6fdbd69"
+            }
           }
         }
       ],
