@@ -7,7 +7,8 @@ function heading(building) {
   const progress = building.visualProgress
   if (!progress) return building.id
   const current = progress.current || progress.baseline
-  return `<a href="${publicRoot}${current.url}"><img src="${publicRoot}${current.url}" alt="${building.id} · avance del modelo" width="160"></a><br/>${building.id}<br/>[Inicio](${publicRoot}${progress.baseline.url}) · ${current.label || 'Avance'}`
+  const baseline = progress.comparisonBaseline || progress.baseline
+  return `<a href="${publicRoot}${current.url}"><img src="${publicRoot}${current.url}" alt="${building.id} · avance del modelo" width="160"></a><br/>${building.id}<br/>${baseline ? `[Inicio](${publicRoot}${baseline.url}) · ` : ''}${current.label || 'Avance'}${progress.manifest ? ` · [Registro](${publicRoot}${progress.manifest})` : ''}`
 }
 const lines = [
   '# Amalaya · Matriz de levantamiento 3D', '',

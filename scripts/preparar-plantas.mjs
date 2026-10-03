@@ -2,6 +2,7 @@ import {readFile,writeFile} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
 import {resolve} from 'node:path';
 import {fileURLToPath} from 'node:url';
+import {removeStreetRoundHook} from './preparar-calzadas.mjs';
 export const PLAN_BASE_WORLD='58e389f3cb45279def82c2e0ea79a607e9394f22ab5a7d3eba37dc75642ec924';
 export const PLAN_BASE_VISOR='7b2db314cd7b1f361be2a741bd664786bf0f1ad569fc4e5eff7bd20b0e8139a4';
 export const planHash=value=>createHash('sha256').update(value).digest('hex');
@@ -9,6 +10,7 @@ const anchors={world:'Ip(c, n), Up(c), c;',visor:'Ig&&(Ug=new Eg(Ng,$,Hg)'};
 const calls={world:'applyPlanRoundRefinement(c,f,{Box3:Zt,Vector3:U,Shape:$r,Mesh:Y}), ',visor:'applyPlanRoundRefinement(Ng,Hg,{Box3:Jn,Vector3:U,Shape:da,Mesh:J});'};
 const expected=kind=>kind==='world'?PLAN_BASE_WORLD:PLAN_BASE_VISOR;
 export function removePlanRoundHook(source,kind='world'){
+ source=removeStreetRoundHook(source,kind);
  if(!source.includes('applyPlanRoundRefinement'))return source;
  const match=source.match(/\nimport \{ applyPlanRound as applyPlanRoundRefinement \} from "(?:\.\/|\.\.\/\.\.\/)plantas-refinement\.js\?v=[a-f0-9]{12}";\n$/);
  const variants=[calls[kind],calls[kind].replace(',Shape:$r,Mesh:Y','').replace(',Shape:da,Mesh:J','')],found=variants.filter(c=>source.split(c+anchors[kind]).length===2);

@@ -12,11 +12,12 @@ function BuildingPreview({ building }) {
   const progress = building.visualProgress
   if (!progress) return null
   const current = progress.current || progress.baseline
+  const comparison = progress.comparisonBaseline || progress.baseline
   return <div className="tracker-building-preview">
     <a href={`${BASE}${current.url}`} target="_blank" rel="noreferrer" aria-label={`Ampliar avance de ${building.id}: ${current.title}`}>
-      <img src={`${BASE}${current.url}`} alt={`${building.id} · ${current.title} · captura del modelo`} width="160" height="100" decoding="async" />
+      <img src={`${BASE}${current.url}`} alt={`${building.id} · ${current.title} · imagen del modelo`} width="160" height="100" decoding="async" />
     </a>
-    <div><a href={`${BASE}${progress.baseline.url}`} target="_blank" rel="noreferrer" title={progress.baseline.title}>Inicio</a><a href={`${BASE}${current.url}`} target="_blank" rel="noreferrer">{current.label || 'Avance'}</a></div>
+    <div>{comparison && <a href={`${BASE}${comparison.url}`} target="_blank" rel="noreferrer" title={comparison.title}>Inicio</a>}<a href={`${BASE}${current.url}`} target="_blank" rel="noreferrer">{current.label || 'Avance'}</a>{progress.manifest && <a href={`${BASE}${progress.manifest}`} target="_blank" rel="noreferrer">Registro</a>}</div>
   </div>
 }
 function CellDialog({ selected, onClose }) {
@@ -175,9 +176,10 @@ function Seguimiento() {
       <small>{data ? `Actualizado ${new Intl.DateTimeFormat('es-MX', { dateStyle: 'short', timeStyle: 'short', timeZone: 'America/Hermosillo' }).format(new Date(data.updatedAt))}` : 'Cargando…'}</small>
     </div>
     {data?.workflow?.mode === 'phase-rounds' && <section className="tracker-round" aria-label="Trabajo por etapas">
-      <strong>Paso {data.workflow.round} en todos los edificios</strong>
-      <p>{data.workflow.closedBuildings.length} de {data.workflow.buildingOrder.length} plantas revisadas · Medir → editar → verificar un edificio antes del siguiente.</p>
-      {data.workflow.unresolvedBuildings.length > 0 && <p>Contornos por resolver: {data.workflow.unresolvedBuildings.join(', ')}. La siguiente etapa comienza al cerrar esta ronda.</p>}
+      <strong>Paso {data.workflow.round} · {data.workflow.actionLabel || data.taskDefinitions[data.workflow.task]} en todos los edificios</strong>
+      <p>{data.workflow.closedBuildings.length} de {data.workflow.buildingOrder.length} revisados · Medir → editar → verificar → actualizar imagen y registro antes del siguiente.</p>
+      {data.workflow.unresolvedBuildings.length > 0 && <p>Pendientes de esta ronda: {data.workflow.unresolvedBuildings.join(', ')}.</p>}
+      {data.workflow.previousUnresolvedBuildings?.length > 0 && <p>El paso 1 conserva contornos pendientes: {data.workflow.previousUnresolvedBuildings.join(', ')}. Esta ronda de calzadas continúa por tu indicación.</p>}
     </section>}
     {error && <p className="tracker-error" role="status">{error}</p>}
     {data && <div className="tracker-table-scroll" tabIndex="0" role="region" aria-label="Matriz de acciones por edificio">

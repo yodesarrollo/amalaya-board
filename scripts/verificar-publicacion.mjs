@@ -6,6 +6,8 @@ import { createHash } from 'node:crypto'
 import { BASE_WORLD_SHA256, BASE_VISOR_SHA256, removeIsc58Hook, removeIsc58VisorHook, regionHashes, sha256 } from './preparar-isc58.mjs'
 const root='public/levantamiento'
 const approved=new Set(['amalaya-observations.json','amalaya-routes.json','cerro-elevation.json','osm-context.json','osm-plaza-hidalgo.json','sector-survey.json'])
+const roundProgressFiles=new Set(['02-inicio-ronda.png','02-avance-calzada.png','02-record-calzada.json']);
+function historicalOwner(building,cameraId){const progress=building.visualProgress?.cameraId===cameraId?building.visualProgress:building.visualProgress?.history?.find(p=>p.cameraId===cameraId);assert(progress,'Missing preserved progress checkpoint '+building.id+' '+cameraId);return {...building,visualProgress:progress};}
 const ob01EvidenceFiles=new Set(['01-planta.png','02-calzada.png','03-banqueta-sur.png','04-banqueta-norte.png','05-esquinas.png','06-identidad.png','07-volumen.png','08-fachada.png','09-materiales.png','10-equipamiento.png','11a-planta.png','11b-bloque.png','11c-peaton.png','manifest.json'])
 const isc58EvidenceFiles=new Set(['00-inicio-webgl-raw.png','00-inicio-seguimiento.png','plan-manifest.json','plan-record.json','progress-baseline.json','06-avance-punto11.png','07-banqueta-sur.png','08-paseo-norte.png','00-inicio-bloque.png','01-planta.png','02-bloque.png','03-peaton.png','04-fachada-detalle.png','05-visor-p05.png','manifest.json','identity-plan-record.json','review-record.json'])
 for(const file of ['09-banqueta-sur-reparada.png','10-avance-banqueta-sur.png','11-paseo-norte-reparado.png','12-avance-paseo-norte.png','sidewalkA-repair-manifest.json','sidewalkB-repair-manifest.json'])isc58EvidenceFiles.add(file)
@@ -20,12 +22,13 @@ async function check(dir){
   for(const item of await readdir(dir,{withFileTypes:true})){
     const path=`${dir}/${item.name}`
     assert(!item.isSymbolicLink(),`No se permiten enlaces: ${path}`)
-    if(item.isDirectory()){const allowed=['data','visor','assets','fonts','evidence'].includes(item.name)||(dir===`${root}/evidence`&&['OB-01','OB-02','ISC-58','EB-SW','EB-NW','EB-NE','EB-SE','CH-YG-BBVA'].includes(item.name));assert(allowed,`Carpeta inesperada: ${path}`);await check(path);continue}
-    if(['/evidence/EB-NW/','/evidence/EB-NE/','/evidence/EB-SE/','/evidence/CH-YG-BBVA/'].some(p=>path.includes(p)))assert(/^(?:sequence\.json|plan-record\.json|01-planta-geometria\.png)$/.test(item.name),'Evidencia fuera del alcance EB-NW: '+path)
-    if(path.includes('/evidence/EB-SW/'))assert(/^(?:\d{2}-(?:general|plan|block|pedestrian|south|north)\.png|manifest\.json|sequence\.json|survey\.json)$/.test(item.name),`Evidencia fuera del alcance EB-SW: ${path}`)
-    if(path.includes('/evidence/ISC-58/'))assert(isc58EvidenceFiles.has(item.name),`Evidencia fuera del alcance ISC-58: ${path}`)
-    if(path.includes('/evidence/OB-01/'))assert(ob01EvidenceFiles.has(item.name),`Evidencia fuera del alcance OB-01: ${path}`)
-    if(path.includes('/evidence/OB-02/'))assert(ob02EvidenceFiles.has(item.name),`Evidencia fuera del alcance OB-02: ${path}`)
+    if(item.isDirectory()){const allowed=['data','visor','assets','fonts','evidence'].includes(item.name)||(dir===`${root}/evidence`&&['OB-01','OB-02','ISC-58','EB-SW','EB-NW','EB-NE','EB-SE','CH-YG-BBVA','CH-GA-OXXO','CH-YG-BIB','SER-BLEY','SER-HSBC'].includes(item.name));assert(allowed,`Carpeta inesperada: ${path}`);await check(path);continue}
+    if(['/evidence/CH-GA-OXXO/','/evidence/CH-YG-BIB/','/evidence/SER-BLEY/','/evidence/SER-HSBC/'].some(p=>path.includes(p)))assert(roundProgressFiles.has(item.name),'Unexpected round evidence: '+path)
+    if(['/evidence/EB-NW/','/evidence/EB-NE/','/evidence/EB-SE/','/evidence/CH-YG-BBVA/'].some(p=>path.includes(p)))assert(roundProgressFiles.has(item.name)||/^(?:sequence\.json|plan-record\.json|01-planta-geometria\.png)$/.test(item.name),'Evidencia fuera del alcance EB-NW: '+path)
+    if(path.includes('/evidence/EB-SW/'))assert(roundProgressFiles.has(item.name)||/^(?:\d{2}-(?:general|plan|block|pedestrian|south|north)\.png|manifest\.json|sequence\.json|survey\.json)$/.test(item.name),`Evidencia fuera del alcance EB-SW: ${path}`)
+    if(path.includes('/evidence/ISC-58/'))assert(roundProgressFiles.has(item.name)||isc58EvidenceFiles.has(item.name),`Evidencia fuera del alcance ISC-58: ${path}`)
+    if(path.includes('/evidence/OB-01/'))assert(roundProgressFiles.has(item.name)||ob01EvidenceFiles.has(item.name),`Evidencia fuera del alcance OB-01: ${path}`)
+    if(path.includes('/evidence/OB-02/'))assert(roundProgressFiles.has(item.name)||ob02EvidenceFiles.has(item.name),`Evidencia fuera del alcance OB-02: ${path}`)
     assert(!/\.(map|env|csv|zip|bundle)$/i.test(item.name),`Archivo no publicable: ${path}`)
     if(path.includes('/data/'))assert(approved.has(item.name),`Datos no revisados: ${path}`)
     assert((await stat(path)).size<25000000,`Activo demasiado grande: ${path}`)
@@ -114,7 +117,7 @@ assert(visualBaseline.building==='OB-02'&&visualBaseline.task==='visual-baseline
 const initialView=visualBaseline.captures[0]
 assert(initialView.cameraId==='OB-02-fixed-v1'&&initialView.file==='07-inicio-seguimiento.png'&&initialView.triangles>0&&initialView.renderer?.includes('WebGL 2.0'),'La cabecera debe usar un render inicial con cámara fija.')
 const tracking=JSON.parse(await readFile('public/seguimiento-3d.json','utf8'))
-const ob02Tracking=tracking.blocks.flatMap(b=>b.buildings).find(b=>b.id==='OB-02')
+const ob02Tracking=historicalOwner(tracking.blocks.flatMap(b=>b.buildings).find(b=>b.id==='OB-02'),'OB-02-fixed-v1')
 assert(ob02Tracking.visualProgress?.cameraId===initialView.cameraId&&ob02Tracking.visualProgress.baseline.url===`levantamiento/evidence/OB-02/${initialView.file}`,'La matriz debe enlazar la captura inicial auditada.')
 
 assert(visualBaseline.worldSha256==='4bdf262926cfd58d9d7dabf110a757e748e982797af2c4879e49265fad6d1fb3','La imagen inicial conserva el modelo previo al punto 3.')
@@ -352,7 +355,9 @@ if(iscRepairs.length===2)assert.equal(iscLatest.previousWorldSha256,iscRepairs[0
 assert.equal(iscLatest.worldSha256,currentWorldHash,'El avance actual exige capturas nuevas del modelo actual.')
 assert.equal(iscLatest.runtimeModuleSha256,provenance.runtimeModuleSha256)
 assert.equal(iscLatest.visorSha256,provenance.visorSha256)
-for(const file of (await readdir(`${root}/evidence/ISC-58`)).filter(f=>f.endsWith('.png'))){
+// Historical WebGL images keep their original dimensions. Round 02 software
+// projections have separate hash/dimension checks in pruebas-calzadas.mjs.
+for(const file of (await readdir(`${root}/evidence/ISC-58`)).filter(f=>f.endsWith('.png')&&!roundProgressFiles.has(f))){
   const bytes=await readFile(`${root}/evidence/ISC-58/${file}`)
   assert(bytes.subarray(0,8).equals(Buffer.from([137,80,78,71,13,10,26,10])))
   assert.equal(bytes.readUInt32BE(16),1280)
@@ -368,7 +373,7 @@ for(const ref of identityIsc.referenceAnchors){
  assert.equal(ref.captureHeadingVerified,false)
  assert.equal(ref.captureDateVerified,false)
 }
-const iscTracking=tracking.blocks.flatMap(b=>b.buildings).find(b=>b.id==='ISC-58')
+const iscTracking=historicalOwner(tracking.blocks.flatMap(b=>b.buildings).find(b=>b.id==='ISC-58'),'ISC-58-fixed-v1')
 assert.deepEqual(Object.keys(iscTracking.tasks),Object.keys(tracking.taskDefinitions),'ISC-58 debe registrar las once acciones en orden.')
 for(const task of ['plan','corners','volume','facade','equipment','qa'])assert.equal(iscTracking.tasks[task],'blocked','La revisión técnica conserva los pendientes físicos.')
 if(iscTracking.tasks.identity==='done'){
@@ -408,7 +413,7 @@ console.log('ISC-58: once acciones, referencias originales, cámaras coincidente
 const iscBaseline=JSON.parse(await readFile(`${root}/evidence/ISC-58/progress-baseline.json`,'utf8'))
 const iscPlan=JSON.parse(await readFile(`${root}/evidence/ISC-58/plan-manifest.json`,'utf8'))
 const iscRecord=JSON.parse(await readFile(`${root}/evidence/ISC-58/plan-record.json`,'utf8'))
-const iscHistoricalTracking=tracking.blocks.flatMap(b=>b.buildings).find(b=>b.id==='ISC-58')
+const iscHistoricalTracking=historicalOwner(tracking.blocks.flatMap(b=>b.buildings).find(b=>b.id==='ISC-58'),'ISC-58-fixed-v1')
 assert(iscBaseline.building==='ISC-58'&&iscBaseline.task==='visual-baseline-before-point01'&&iscBaseline.cameraId==='ISC-58-fixed-v1','Falta la cabecera de inicio fija de ISC-58.')
 assert(iscPlan.building==='ISC-58'&&iscPlan.route==='R-001'&&iscPlan.task==='plan'&&iscPlan.captures?.length===2,'Falta el registro de planta y avance 01 de ISC-58.')
 assert(iscRecord.status==='blocked'&&iscRecord.issue?.detail?.includes('orientación de consulta'),'El bloqueo de planta debe señalar la evidencia precisa que falta.')
@@ -443,7 +448,7 @@ assert.equal(eb.runtimeModuleSha256,sha256(ebModule));assert(!ebModule.includes(
 const ebManifest=JSON.parse(await readFile(`${ebRoot}/manifest.json`,'utf8'))
 const ebSequence=JSON.parse(await readFile(`${ebRoot}/sequence.json`,'utf8'))
 const ebSurvey=JSON.parse(await readFile(`${ebRoot}/survey.json`,'utf8'))
-const ebTracking=tracking.blocks.flatMap(b=>b.buildings).find(b=>b.id==='EB-SW')
+const ebTracking=historicalOwner(tracking.blocks.flatMap(b=>b.buildings).find(b=>b.id==='EB-SW'),'EB-SW-fixed-v1')
 const expectedTasks=Object.keys(tracking.taskDefinitions)
 assert.deepEqual(ebSequence.steps.map(s=>s.task),expectedTasks)
 assert.equal(ebSequence.events.length,22)
@@ -474,3 +479,5 @@ assert.equal(ebSurvey.identity.neighbour.attributedToClub,false)
 console.log('EB-SW: once acciones ordenadas, capturas por etapa reproducibles, fuentes y cierre incompleto verificados.')
 
 await import('./pruebas-plantas.mjs')
+
+await import('./pruebas-calzadas.mjs')

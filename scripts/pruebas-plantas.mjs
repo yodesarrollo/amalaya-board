@@ -5,7 +5,8 @@ import {removePlanRoundHook,refinePlans,planHash,PLAN_BASE_WORLD,PLAN_BASE_VISOR
 import {removeEbSwHook} from './preparar-ebsw.mjs';
 import {removeIsc58Hook} from './preparar-isc58.mjs';
 import {applyEbSw} from '../public/levantamiento/ebsw-refinement.js';
-const source=await readFile('public/levantamiento/world.js','utf8'),visor=await readFile('public/levantamiento/visor/assets/index-RoPA5goG.js','utf8'),provenance=JSON.parse(await readFile('public/levantamiento/plantas-provenance.json'));
+import {removeStreetRoundHook} from './preparar-calzadas.mjs';
+const source=removeStreetRoundHook(await readFile('public/levantamiento/world.js','utf8')),visor=removeStreetRoundHook(await readFile('public/levantamiento/visor/assets/index-RoPA5goG.js','utf8'),'visor'),provenance=JSON.parse(await readFile('public/levantamiento/plantas-provenance.json'));
 const hash=planHash(await readFile('public/levantamiento/plantas-refinement.js'));
 assert.equal(planHash(removePlanRoundHook(source)),PLAN_BASE_WORLD);assert.equal(planHash(removePlanRoundHook(visor,'visor')),PLAN_BASE_VISOR);
 assert.equal(source,refinePlans(source,'world',hash));assert.equal(visor,refinePlans(visor,'visor',hash));
