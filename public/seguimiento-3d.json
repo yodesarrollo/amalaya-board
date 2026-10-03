@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-03T05:51:49.348766+00:00",
+  "updatedAt": "2026-10-03T05:54:41.979934+00:00",
   "refreshSeconds": 30,
   "live": {
-    "status": "waiting",
-    "phase": "OB-02 · punto 2 revisado",
-    "title": "Calzada verificada · modelo vigente conservado",
-    "detail": "Revisión posterior al punto 5: calzada continua de 5.60 ±1.10 m, con un solo propietario y sin juntas abiertas. Pruebas focalizadas aprobadas. La imagen Avance 05 sigue vigente; no se modificó la geometría.",
+    "status": "active",
+    "phase": "OB-02 · punto 6 en proceso",
+    "title": "Identificación del frente y sus puntos 360",
+    "detail": "Contrastando fachada, colindantes y ubicación con P02–P05. Identificación por código y rasgos observables; nombre comercial separado de la evidencia visual.",
     "activeBlockId": "OB-YG",
     "activeBuildingId": "OB-02"
   },
@@ -83,7 +83,7 @@
         "max": 33
       },
       "estimateBasis": "3 frentes/estructuras conocidas más revisión compartida de la cuadra; frentes anónimos se agregan cuando se cuenten.",
-      "next": "OB-02 · punto 2 revisado sin cambios geométricos; puntos 1–4 conservados. Punto 5 con guarniciones corregidas y rebajes sin verificar. Siguiente fila en orden: 6, identificación del edificio.",
+      "next": "OB-02 · punto 6 activo: verificar identidad y vínculo con P03/P04; geometría y estados anteriores conservados.",
       "sharedTasks": {
         "plan": "partial",
         "street": "partial",
@@ -258,7 +258,7 @@
             "max": 8
           },
           "tasks": {
-            "identity": "partial",
+            "identity": "active",
             "volume": "partial",
             "facade": "partial",
             "finish": "partial",
@@ -271,7 +271,7 @@
             "corners": "blocked"
           },
           "taskDetails": {
-            "identity": "PARCIAL · P03 (29.0759089, -110.9551769) y P04 (29.0759275, -110.9549709) muestran el mismo frente claro de arcos, pilastras, rejas y balaustrada. “Colegio de Notarios #65” sigue sin confirmación; fechas de las imágenes sin verificar.",
+            "identity": "EN PROCESO · verificar el mismo frente en P03/P04, sus colindantes y ubicación; separar nombre descriptivo de cualquier atribución comercial sin confirmar.",
             "volume": "PROVISIONAL · frente 16.67 ±2 m; fondo 9 ±3 m; cornisa 4.65 ±0.6 m; balaustrada 5.35 ±0.6 m. Sin polígono OSM ni medidas directas; retorno y fondo no verificados.",
             "facade": "PARCIAL · se conservan cinco vanos abiertos y se añadieron 54 segmentos instanciados de juntas de piedra, interpretados a partir de P03/P04. Alturas, anchuras, separación de pilastras y patrón de herrería no tienen escala métrica.",
             "finish": "PARCIAL · tonos de piedra/remates moderados y juntas de hilada añadidas como detalle visual; alturas y espesor interpretados. Sin fotografías usadas como texturas.",
