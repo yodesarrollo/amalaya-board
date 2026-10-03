@@ -1,0 +1,257 @@
+{
+  "building": "EB-NW",
+  "startedAt": "2026-10-03T19:14:43.694Z",
+  "events": [
+    {
+      "order": 1,
+      "task": "plan",
+      "state": "active",
+      "at": "2026-10-03T19:14:43.694Z"
+    },
+    {
+      "order": 1,
+      "task": "plan",
+      "state": "blocked",
+      "at": "2026-10-03T19:14:43.694Z"
+    },
+    {
+      "order": 2,
+      "task": "street",
+      "state": "active",
+      "at": "2026-10-03T19:14:43.694Z"
+    },
+    {
+      "order": 2,
+      "task": "street",
+      "state": "blocked",
+      "at": "2026-10-03T19:14:43.694Z"
+    },
+    {
+      "order": 3,
+      "task": "sidewalkA",
+      "state": "active",
+      "at": "2026-10-03T19:14:43.694Z"
+    },
+    {
+      "order": 3,
+      "task": "sidewalkA",
+      "state": "blocked",
+      "at": "2026-10-03T19:14:43.694Z"
+    },
+    {
+      "order": 4,
+      "task": "sidewalkB",
+      "state": "active",
+      "at": "2026-10-03T19:14:43.694Z"
+    },
+    {
+      "order": 4,
+      "task": "sidewalkB",
+      "state": "blocked",
+      "at": "2026-10-03T19:14:43.694Z"
+    },
+    {
+      "order": 5,
+      "task": "corners",
+      "state": "active",
+      "at": "2026-10-03T19:14:43.694Z"
+    },
+    {
+      "order": 5,
+      "task": "corners",
+      "state": "blocked",
+      "at": "2026-10-03T19:14:43.694Z"
+    },
+    {
+      "order": 6,
+      "task": "identity",
+      "state": "active",
+      "at": "2026-10-03T19:14:43.694Z"
+    },
+    {
+      "order": 6,
+      "task": "identity",
+      "state": "done",
+      "at": "2026-10-03T19:14:43.694Z"
+    },
+    {
+      "order": 7,
+      "task": "volume",
+      "state": "active",
+      "at": "2026-10-03T19:14:43.694Z"
+    },
+    {
+      "order": 7,
+      "task": "volume",
+      "state": "blocked",
+      "at": "2026-10-03T19:14:43.694Z"
+    },
+    {
+      "order": 8,
+      "task": "facade",
+      "state": "active",
+      "at": "2026-10-03T19:14:43.694Z"
+    },
+    {
+      "order": 8,
+      "task": "facade",
+      "state": "blocked",
+      "at": "2026-10-03T19:14:43.694Z"
+    },
+    {
+      "order": 9,
+      "task": "finish",
+      "state": "active",
+      "at": "2026-10-03T19:14:43.694Z"
+    },
+    {
+      "order": 9,
+      "task": "finish",
+      "state": "blocked",
+      "at": "2026-10-03T19:14:43.694Z"
+    },
+    {
+      "order": 10,
+      "task": "equipment",
+      "state": "active",
+      "at": "2026-10-03T19:14:43.694Z"
+    },
+    {
+      "order": 10,
+      "task": "equipment",
+      "state": "blocked",
+      "at": "2026-10-03T19:14:43.694Z"
+    },
+    {
+      "order": 11,
+      "task": "qa",
+      "state": "active",
+      "at": "2026-10-03T19:14:43.694Z"
+    },
+    {
+      "order": 11,
+      "task": "qa",
+      "state": "blocked",
+      "at": "2026-10-03T19:14:43.694Z"
+    }
+  ],
+  "steps": [
+    {
+      "order": 1,
+      "task": "plan",
+      "state": "blocked",
+      "result": "La esquina se ubica por el cruce OSM Garmendia × Chihuahua, pero no hay huella edificatoria ni linderos medidos. P06/P07 solo anclan el frente.",
+      "at": "2026-10-03T19:14:43.694Z",
+      "matrixState": "partial"
+    },
+    {
+      "order": 2,
+      "task": "street",
+      "state": "blocked",
+      "result": "Ejes OSM y encuentro revisados; falta sección métrica de la calzada Garmendia × Chihuahua. No se extrapola el perfil Obregón P10.",
+      "at": "2026-10-03T19:14:43.694Z",
+      "matrixState": "partial"
+    },
+    {
+      "order": 3,
+      "task": "sidewalkA",
+      "state": "blocked",
+      "result": "El paso junto al lado A se ve en P06/P07, pero ancho, obstáculos y continuidad no están medidos.",
+      "at": "2026-10-03T19:14:43.694Z",
+      "matrixState": "partial"
+    },
+    {
+      "order": 4,
+      "task": "sidewalkB",
+      "state": "blocked",
+      "result": "El lado B permanece provisional; falta ancho libre, niveles y continuidad en sus extremos.",
+      "at": "2026-10-03T19:14:43.694Z",
+      "matrixState": "partial"
+    },
+    {
+      "order": 5,
+      "task": "corners",
+      "state": "blocked",
+      "result": "P07 no permite medir guarnición, radio ni rebajes. Se requiere detalle completo del retorno y medidas; no se añaden rampas supuestas.",
+      "at": "2026-10-03T19:14:43.694Z",
+      "matrixState": "blocked"
+    },
+    {
+      "order": 6,
+      "task": "identity",
+      "state": "done",
+      "result": "R-002 P06/P07 (diciembre de 2023) empatan la fachada verde aparente de una planta con la esquina NW. Se conserva EB-NW descriptivo; negocio y propietario sin confirmar.",
+      "at": "2026-10-03T19:14:43.694Z",
+      "matrixState": "done"
+    },
+    {
+      "order": 7,
+      "task": "volume",
+      "state": "blocked",
+      "result": "P06/P07 sugieren una planta, pero no dan huella, fondo, cubierta ni escala. Falta la fuente 3D vigente y medidas.",
+      "at": "2026-10-03T19:14:43.694Z",
+      "matrixState": "blocked"
+    },
+    {
+      "order": 8,
+      "task": "facade",
+      "state": "blocked",
+      "result": "Referencias parciales: verde aparente, marcos claros y vanos enrejados. No se puede cerrar geometría o conteo completo sin escala y fuente 3D vigente.",
+      "at": "2026-10-03T19:14:43.694Z",
+      "matrixState": "blocked"
+    },
+    {
+      "order": 9,
+      "task": "finish",
+      "state": "blocked",
+      "result": "Tonos generales observados; falta calibración de materiales. No se guardaron panoramas ni se crearon texturas fotográficas.",
+      "at": "2026-10-03T19:14:43.694Z",
+      "matrixState": "blocked"
+    },
+    {
+      "order": 10,
+      "task": "equipment",
+      "state": "blocked",
+      "result": "Rejas, vallas, cables y vegetación visibles sin ubicación/altura verificables. No se colocan elementos exteriores a ojo.",
+      "at": "2026-10-03T19:14:43.694Z",
+      "matrixState": "blocked"
+    },
+    {
+      "order": 11,
+      "task": "qa",
+      "state": "blocked",
+      "result": "El visor público requirió WebGL2 en esta sesión y no cargó el modelo. Faltan comparativas de planta, bloque y peatón desde la misma cámara.",
+      "at": "2026-10-03T19:14:43.694Z",
+      "matrixState": "blocked"
+    }
+  ],
+  "state": "incomplete",
+  "completedAt": "2026-10-03T19:14:43.694Z",
+  "done": [
+    "identity"
+  ],
+  "blocked": [
+    "corners",
+    "volume",
+    "facade",
+    "finish",
+    "equipment",
+    "qa"
+  ],
+  "closure": "Revisión de 11 acciones completada en orden: 1 identidad descriptiva cumplida, 4 provisionales y 6 bloqueadas con evidencia requerida. No quedan acciones pendientes; el edificio sigue incompleto.",
+  "firstPending": null,
+  "checks": [
+    "R-002 P06 resuelve a 103 Av. Chihuahua; Street View fecha dic. 2023; rumbo 270°.",
+    "R-002 P07 resuelve a 186 C. Garmendia; Street View fecha dic. 2023; rumbo 180°.",
+    "El nombre comercial y el propietario de la fachada EB-NW no se confirman.",
+    "La página pública de recorrido indicó que este navegador requiere WebGL2; el modelo no cargó en esta sesión.",
+    "No se guardaron ni publicaron imágenes panorámicas como evidencia o textura."
+  ],
+  "provisional": [
+    "plan",
+    "street",
+    "sidewalkA",
+    "sidewalkB"
+  ],
+  "baseCommit": "a4abe92537cf0cfa7d1db5fdf0ff41c73ca913dd"
+}
