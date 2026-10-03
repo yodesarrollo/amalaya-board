@@ -221,6 +221,158 @@
       "heading": 127.76386845045033,
       "geometrySource": "production builders: buildStreetContinuation + buildAmalayaRouteStreetscape + buildObregonOB01",
       "renderer": "WebGL 2.0 (OpenGL ES 3.0 Chromium)"
+    },
+    {
+      "file": "09-materiales.png",
+      "ready": true,
+      "view": "materials",
+      "point": "R-001-P02",
+      "stats": {
+        "lengthMeters": 31.740999117091338,
+        "depthMeters": 8.8,
+        "bays": 6,
+        "columns": 14,
+        "bolts": 56,
+        "accessPosts": 2,
+        "roofTriangles": 4240,
+        "ridgeMeters": 4.05,
+        "textureSize": 512,
+        "secondaryTextureSize": 512
+      },
+      "calls": 101,
+      "triangles": 20961,
+      "cameraPosition": [
+        -80.83291774662382,
+        5.5,
+        27.502263782578805
+      ],
+      "heading": 128.84793868254565,
+      "geometrySource": "production builders: buildStreetContinuation + buildAmalayaRouteStreetscape + buildObregonOB01",
+      "renderer": "WebGL 2.0 (OpenGL ES 3.0 Chromium)"
+    },
+    {
+      "file": "10-equipamiento.png",
+      "ready": true,
+      "view": "equipment",
+      "point": "R-001-P02",
+      "stats": {
+        "lengthMeters": 31.740999117091338,
+        "depthMeters": 8.8,
+        "bays": 6,
+        "columns": 14,
+        "bolts": 56,
+        "accessPosts": 2,
+        "roofTriangles": 4240,
+        "ridgeMeters": 4.05,
+        "textureSize": 512,
+        "secondaryTextureSize": 512
+      },
+      "calls": 172,
+      "triangles": 34661,
+      "cameraPosition": [
+        -90.91222830995378,
+        2.1,
+        36.63503436811006
+      ],
+      "heading": 85.56946836822323,
+      "geometrySource": "production builders: buildStreetContinuation + buildAmalayaRouteStreetscape + buildObregonOB01",
+      "renderer": "WebGL 2.0 (OpenGL ES 3.0 Chromium)"
+    },
+    {
+      "file": "11a-planta.png",
+      "ready": true,
+      "view": "compare-plan",
+      "point": "R-001-P02",
+      "stats": {
+        "lengthMeters": 31.740999117091338,
+        "depthMeters": 8.8,
+        "bays": 6,
+        "columns": 14,
+        "bolts": 56,
+        "accessPosts": 2,
+        "roofTriangles": 4240,
+        "ridgeMeters": 4.05,
+        "textureSize": 512,
+        "secondaryTextureSize": 512
+      },
+      "calls": 138,
+      "triangles": 21871,
+      "cameraPosition": [
+        -65.53223999919737,
+        90,
+        24.77513500020123
+      ],
+      "comparison": {
+        "point": "R-001-P02",
+        "azimuth": 185
+      },
+      "heading": 0,
+      "geometrySource": "production builders: buildStreetContinuation + buildAmalayaRouteStreetscape + buildObregonOB01",
+      "renderer": "WebGL 2.0 (OpenGL ES 3.0 Chromium)"
+    },
+    {
+      "file": "11b-bloque.png",
+      "ready": true,
+      "view": "compare-block",
+      "point": "R-001-P02",
+      "stats": {
+        "lengthMeters": 31.740999117091338,
+        "depthMeters": 8.8,
+        "bays": 6,
+        "columns": 14,
+        "bolts": 56,
+        "accessPosts": 2,
+        "roofTriangles": 4240,
+        "ridgeMeters": 4.05,
+        "textureSize": 512,
+        "secondaryTextureSize": 512
+      },
+      "calls": 107,
+      "triangles": 21044,
+      "cameraPosition": [
+        -65.53223999919737,
+        12,
+        24.77513500020123
+      ],
+      "comparison": {
+        "point": "R-001-P02",
+        "azimuth": 185
+      },
+      "heading": 184.99999999999997,
+      "geometrySource": "production builders: buildStreetContinuation + buildAmalayaRouteStreetscape + buildObregonOB01",
+      "renderer": "WebGL 2.0 (OpenGL ES 3.0 Chromium)"
+    },
+    {
+      "file": "11c-peaton.png",
+      "ready": true,
+      "view": "compare-street",
+      "point": "R-001-P02",
+      "stats": {
+        "lengthMeters": 31.740999117091338,
+        "depthMeters": 8.8,
+        "bays": 6,
+        "columns": 14,
+        "bolts": 56,
+        "accessPosts": 2,
+        "roofTriangles": 4240,
+        "ridgeMeters": 4.05,
+        "textureSize": 512,
+        "secondaryTextureSize": 512
+      },
+      "calls": 91,
+      "triangles": 16160,
+      "cameraPosition": [
+        -65.53223999919737,
+        1.68,
+        24.77513500020123
+      ],
+      "comparison": {
+        "point": "R-001-P02",
+        "azimuth": 185
+      },
+      "heading": 184.99999999999997,
+      "geometrySource": "production builders: buildStreetContinuation + buildAmalayaRouteStreetscape + buildObregonOB01",
+      "renderer": "WebGL 2.0 (OpenGL ES 3.0 Chromium)"
     }
   ],
   "captures": [
@@ -263,6 +415,31 @@
       "file": "08-fachada.png",
       "title": "Fachada y estructura",
       "view": "facade"
+    },
+    {
+      "file": "09-materiales.png",
+      "title": "Materiales y remates",
+      "view": "materials"
+    },
+    {
+      "file": "10-equipamiento.png",
+      "title": "Acceso y cerramiento",
+      "view": "equipment"
+    },
+    {
+      "file": "11a-planta.png",
+      "title": "P02 · planta · 185°",
+      "view": "compare-plan"
+    },
+    {
+      "file": "11b-bloque.png",
+      "title": "P02 · bloque · 185°",
+      "view": "compare-block"
+    },
+    {
+      "file": "11c-peaton.png",
+      "title": "P02 · peatón · 185°",
+      "view": "compare-street"
     }
   ]
 }

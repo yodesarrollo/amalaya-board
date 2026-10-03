@@ -3,7 +3,7 @@ import assert from 'node:assert/strict'
 import { createHash } from 'node:crypto'
 const root='public/levantamiento'
 const approved=new Set(['amalaya-observations.json','amalaya-routes.json','cerro-elevation.json','osm-context.json','osm-plaza-hidalgo.json','sector-survey.json'])
-const evidenceFiles=new Set(['01-planta.png','02-calzada.png','03-banqueta-sur.png','04-banqueta-norte.png','05-esquinas.png','06-identidad.png','07-volumen.png','08-fachada.png','manifest.json'])
+const evidenceFiles=new Set(['01-planta.png','02-calzada.png','03-banqueta-sur.png','04-banqueta-norte.png','05-esquinas.png','06-identidad.png','07-volumen.png','08-fachada.png','09-materiales.png','10-equipamiento.png','11a-planta.png','11b-bloque.png','11c-peaton.png','manifest.json'])
 async function check(dir){
   for(const item of await readdir(dir,{withFileTypes:true})){
     const path=`${dir}/${item.name}`
@@ -23,8 +23,8 @@ await check(root)
 const evidence=JSON.parse(await readFile(`${root}/evidence/OB-01/manifest.json`,'utf8'))
 assert(evidence.render?.includes('Three.js production OB-01 and street geometry through WebGLRenderer'),'La evidencia debe provenir del modelo OB-01 con el render auditado.')
 assert(evidence.limits?.includes('not cadastral survey or site photography'),'La evidencia debe declarar que no es foto del sitio ni levantamiento catastral.')
-assert(evidence.captures?.length===8 && evidence.captures.every(item=>evidenceFiles.has(item.file)),'Faltan capturas requeridas de los puntos 1–8.')
-assert(evidence.states?.length===8 && evidence.states.every(s=>s.triangles>0 && s.renderer.includes('WebGL 2.0')),'Falta comprobación de render WebGL por captura.')
+assert(evidence.captures?.length===13 && evidence.captures.every(item=>evidenceFiles.has(item.file)),'Faltan capturas requeridas de los puntos 1–11.')
+assert(evidence.states?.length===13 && evidence.states.every(s=>s.triangles>0 && s.renderer.includes('WebGL 2.0')),'Falta comprobación de render WebGL por captura.')
 for(const name of [...evidenceFiles].filter(name=>name.endsWith('.png'))){const bytes=await readFile(`${root}/evidence/OB-01/${name}`);assert(bytes.subarray(0,8).equals(Buffer.from([137,80,78,71,13,10,26,10])),`PNG inválido: ${name}`);assert(bytes.readUInt32BE(16)===1280 && bytes.readUInt32BE(20)===800,`Dimensiones de evidencia inesperadas: ${name}`)}
 for(const file of ['world.js','visor/index.html',...Array.from(approved,n=>`data/${n}`)])await stat(`${root}/${file}`)
 const worldHash=createHash('sha256').update(await readFile(`${root}/world.js`)).digest('hex').slice(0,12)
@@ -33,3 +33,7 @@ const page=await readFile(`${root}/visor/index.html`,'utf8')
 for(const [,asset] of page.matchAll(/(?:src|href)="(\.\/assets\/[^"]+)"/g))await stat(`${root}/visor/${asset}`)
 assert(!(await readFile('src/preview-recorrido.jsx','utf8')).includes('datos.jsx'),'El portal público no carga el proveedor de negocio')
 console.log('Publicación: activos visuales presentes, datos geográficos autorizados y sin credenciales reconocibles. El acceso al negocio se conserva.')
+
+const compared=evidence.states.filter(s=>s.comparison)
+assert(compared.length===3,'Se requieren planta, bloque y peatón del mismo punto.')
+for(const state of compared){assert(state.comparison.azimuth===185);assert(Math.abs(state.cameraPosition[0]-compared[0].cameraPosition[0])<1e-6);assert(Math.abs(state.cameraPosition[2]-compared[0].cameraPosition[2])<1e-6)}

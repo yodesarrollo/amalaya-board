@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-03T00:03:23.483277+00:00",
+  "updatedAt": "2026-10-03T01:18:35.384393+00:00",
   "refreshSeconds": 30,
   "live": {
     "status": "waiting",
-    "phase": "OB-01 · revisión 1–4 y avance 5–8",
-    "title": "OB-01 · esquinas, identidad, volumen y fachada revisados",
-    "detail": "Modelo actualizado en el tablero y ocho capturas WebGL. Identificación cerrada; rampas en rojo por falta de referencia, volumen y fachada provisionales por medidas pendientes. Pulsa cada celda para ver evidencia o dejar una indicación.",
+    "phase": "OB-01 · cierre de primera etapa",
+    "title": "OB-01 · modelo y evidencias listos para revisión",
+    "detail": "Terminada la pasada visual y técnica con las referencias disponibles. Las celdas pendientes indican datos que faltan para verificar medidas, rampas y equipamiento; no son trabajos confirmados. No se inició otro edificio.",
     "activeBlockId": "OB-YG",
     "activeBuildingId": "OB-01"
   },
@@ -83,7 +83,7 @@
         "max": 33
       },
       "estimateBasis": "3 frentes/estructuras conocidas más revisión compartida de la cuadra; frentes anónimos se agregan cuando se cuenten.",
-      "next": "Revisar OB-01, puntos 5–8. Confirmar rampas, fondo y alturas antes de cerrar; no se inició otro edificio.",
+      "next": "Revisar OB-01 y aportar las referencias faltantes indicadas en sus celdas antes del cierre dimensional.",
       "sharedTasks": {
         "plan": "partial",
         "street": "partial",
@@ -95,18 +95,18 @@
         {
           "id": "OB-01",
           "name": "Cubierta de estacionamiento",
-          "confidence": "OB-01 identificado en P01/P02. Geometría revisada con render WebGL; dimensiones, fondo y rampas sin medición de campo.",
+          "confidence": "Primera etapa visual entregada con referencias P01/P02 y 13 capturas. No equivale a levantamiento exacto: medidas, rampas y equipamiento externo pendientes de verificar.",
           "estimateHours": {
             "min": 3,
             "max": 6
           },
           "tasks": {
             "identity": "done",
-            "volume": "partial",
-            "facade": "partial",
-            "finish": "partial",
-            "equipment": "pending",
-            "qa": "pending",
+            "volume": "blocked",
+            "facade": "blocked",
+            "finish": "done",
+            "equipment": "blocked",
+            "qa": "done",
             "plan": "done",
             "street": "done",
             "sidewalkA": "done",
@@ -118,11 +118,13 @@
             "street": "REVISADO · calzada existente conservada, sin duplicarla; se interrumpe el filete en la bocacalle. La captura 02 muestra P02 hacia el frente; consulta 01 y 05 para planta y cruce.",
             "sidewalkA": "REVISADO · sur 1.2 m ±0.8 m. Guarnición enrasada con la banqueta y base bajo las juntas para evitar huecos. Captura 03 mira a lo largo del lado sur.",
             "sidewalkB": "REVISADO · norte 2.0 m ±0.8 m, independiente del sur. Captura 04 mira a lo largo de esta banqueta. Cotas y sección siguen estimadas.",
-            "qa": "AVANCE · ocho capturas WebGL de los mismos edificios y calles usados en el tablero; estas vistas aíslan OB-01 y no representan todos los vecinos. Pendiente cierre de correspondencia métrica con fotos actuales. P02 de comparación: cámara 1.68 m, rumbo 185°.",
+            "qa": "COMPARACIÓN REALIZADA · capturas 11a/11b/11c desde exactamente P02 y rumbo 185°: planta, bloque y peatón. Prueba automática de coordenadas/azimut. La exactitud dimensional permanece pendiente en volumen, fachada y esquinas.",
             "corners": "AVANCE · retornos de esquina independientes (sur 0.45 m, norte 0.80 m, ambos provisionales); guarnición al nivel de la banqueta y bocacalle libre. Cierre pendiente por falta de detalle de rampas.",
             "identity": "LISTO · OB-01 corresponde a la cubierta abierta de estacionamiento del frente sur de Obregón, vista en R-001 P01/P02. Nombre descriptivo; no hay razón comercial confirmada. Los anuncios del muro no identifican al propietario. Fecha de las panorámicas no verificada.",
             "volume": "BASE REVISADA · 31.74 m de frente ±3 m; 8.8 m de fondo ±2 m; aleros 3.25/3.48 m ±0.5 m; cumbrera 4.05 m interpretada, no medida. Dos faldones y estructura abierta según P01. Falta confirmar fondo y alturas para cerrar.",
-            "facade": "BASE REVISADA · cerramiento blanco, franja abierta superior, cerchas a dos aguas y acceso oeste libre. Captura del modelo con materiales propios. La separación de apoyos y la proporción completa requieren referencia más cercana; no se copiaron anuncios ni fotos como texturas."
+            "facade": "BASE REVISADA · cerramiento blanco, franja abierta superior, cerchas a dos aguas y acceso oeste libre. Captura del modelo con materiales propios. La separación de apoyos y la proporción completa requieren referencia más cercana; no se copiaron anuncios ni fotos como texturas.",
+            "finish": "REVISADO · materiales originales de metal, aplanado y concreto; remate de cumbrera y encuentro inferior del muro. Tonos y respuesta a la luz ajustados. Detalles constructivos interpretados, sin texturas de fotografías.",
+            "equipment": "MODELADO VISIBLE LISTO; VERIFICACIÓN BLOQUEADA · postes azul/amarillo y malla del acceso de P01 representados; paso central libre y colisiones solo en piezas sólidas. Falta ancla medible del poste eléctrico y cables, y confirmar posiciones/alturas. Vehículos y anuncios temporales no se repiten."
           },
           "evidence": {
             "plan": [
@@ -196,12 +198,54 @@
                 "title": "Referencia P01 para estructura y acceso · consulta, no textura",
                 "url": "recorrido/G5UapkZfu_gIeRoydqjPBw.jpg"
               }
+            ],
+            "finish": [
+              {
+                "title": "09 · materiales y remates",
+                "url": "levantamiento/evidence/OB-01/09-materiales.png"
+              }
+            ],
+            "equipment": [
+              {
+                "title": "10 · acceso y cerramiento",
+                "url": "levantamiento/evidence/OB-01/10-equipamiento.png"
+              },
+              {
+                "title": "Referencia existente P01 · fecha sin verificar",
+                "url": "recorrido/G5UapkZfu_gIeRoydqjPBw.jpg"
+              }
+            ],
+            "qa": [
+              {
+                "title": "11a · P02 planta · 185°",
+                "url": "levantamiento/evidence/OB-01/11a-planta.png"
+              },
+              {
+                "title": "11b · P02 bloque · 185°",
+                "url": "levantamiento/evidence/OB-01/11b-bloque.png"
+              },
+              {
+                "title": "11c · P02 peatón · 185°",
+                "url": "levantamiento/evidence/OB-01/11c-peaton.png"
+              }
             ]
           },
           "issues": {
             "corners": {
               "title": "Falta confirmar rampas y radios reales",
               "detail": "Se corrigieron los retornos y la altura de guarnición. P01 permite interpretar la forma redondeada, pero no medir los radios ni confirmar las rampas. Hace falta una foto cercana del encuentro Obregón–Yáñez o una medida del sitio; puedes dejar aquí tu indicación. No se añadió una rampa supuesta."
+            },
+            "volume": {
+              "title": "Faltan medidas de fondo y alturas",
+              "detail": "El fondo no se ve completo. Se requieren medidas del frente, fondo, aleros y cumbrera para sustituir las estimaciones; no se puede certificar exactitud desde P01/P02."
+            },
+            "facade": {
+              "title": "Falta confirmar separación de apoyos",
+              "detail": "Hace falta referencia frontal cercana o medidas de los apoyos y del cerramiento. La forma visible está representada, las proporciones siguen estimadas."
+            },
+            "equipment": {
+              "title": "Falta ubicar poste eléctrico y cables",
+              "detail": "Los postes azul/amarillo y la malla del acceso están modelados. Falta posición medible del poste eléctrico y cables; no se añadieron en una posición supuesta."
             }
           }
         },
