@@ -1,3 +1,4 @@
+import {removeSidewalkRoundHook} from './preparar-banquetas.mjs';
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import {applyIsc58} from '../public/levantamiento/isc58-refinement.js';
@@ -5,7 +6,7 @@ import {applyEbSw} from '../public/levantamiento/ebsw-refinement.js';
 import {applyPlanRound} from '../public/levantamiento/plantas-refinement.js';
 import {applyStreetRound,STREET_TARGETS,STREET_ADDITIONS} from '../public/levantamiento/calzadas-refinement.js';
 import {removeStreetRoundHook,refineStreets,streetHash,STREET_BASE_WORLD,STREET_BASE_VISOR} from './preparar-calzadas.mjs';
-const root='public/levantamiento',source=await readFile(root+'/world.js','utf8'),visor=await readFile(root+'/visor/assets/index-RoPA5goG.js','utf8'),runtime=await readFile(root+'/calzadas-refinement.js','utf8'),provenance=JSON.parse(await readFile(root+'/calzadas-provenance.json'));
+const root='public/levantamiento',source=removeSidewalkRoundHook(await readFile(root+'/world.js','utf8')),visor=removeSidewalkRoundHook(await readFile(root+'/visor/assets/index-RoPA5goG.js','utf8'),'visor'),runtime=await readFile(root+'/calzadas-refinement.js','utf8'),provenance=JSON.parse(await readFile(root+'/calzadas-provenance.json'));
 assert.equal(streetHash(removeStreetRoundHook(source)),STREET_BASE_WORLD);assert.equal(streetHash(removeStreetRoundHook(visor,'visor')),STREET_BASE_VISOR);
 assert.equal(refineStreets(source,'world',streetHash(runtime)),source);assert.equal(refineStreets(visor,'visor',streetHash(runtime)),visor);
 assert.equal(provenance.worldSha256,streetHash(source));assert.equal(provenance.visorSha256,streetHash(visor));assert.equal(provenance.runtimeModuleSha256,streetHash(runtime));
@@ -40,11 +41,11 @@ const tracking=JSON.parse(await readFile('public/seguimiento-3d.json'));
 assert.equal(tracking.workflow.photoRequiredAfterEveryAction,true);
 const buildings=tracking.blocks.flatMap(b=>b.buildings);
 for(const b of buildings){
- const progress=b.visualProgress;assert(progress?.current?.url&&progress.manifest,`${b.id}: missing mandatory image/record`);
+ const latest=b.visualProgress;const progress=latest.manifest.endsWith('02-record-calzada.json')?latest:latest.history.find(p=>p.manifest?.endsWith('02-record-calzada.json')); assert(progress?.current?.url&&progress.manifest,`${b.id}: missing mandatory image/record`);
  const record=JSON.parse(await readFile('public/'+progress.manifest));assert.equal(record.building,b.id);assert.equal(record.action,2);assert.equal(record.status,'done');assert.equal(progress.current.url,record.current.url);assert.equal(progress.current.worldSha256,record.worldSha256);assert.equal(record.camera.id,progress.cameraId);assert(record.triangles>0);
  for(const image of [record.baseline,record.current]){const bytes=await readFile('public/'+image.url);assert.equal(streetHash(bytes),image.sha256);assert.equal(bytes.readUInt32BE(16),960);assert.equal(bytes.readUInt32BE(20),600);}
  assert(record.renderMethod.includes('Software rasterization')&&record.renderMethod.includes('Not WebGL'),'Capture method stays explicit');
  assert.equal(b.tasks.street,'done');
 }
-assert.equal(buildings.length,12);assert.equal(tracking.workflow.round,2);assert.equal(tracking.workflow.closedBuildings.length,12);
+const round=JSON.parse(await readFile(root+'/street-round.json'));assert.equal(buildings.length,12);assert.equal(round.round,2);assert.equal(round.workflow.closedBuildings.length,12);
 console.log('Round 02: both reversible viewers, widths and joins, unchanged buildings/sidewalks, production merge, 12 mandatory progress images and records checked.');

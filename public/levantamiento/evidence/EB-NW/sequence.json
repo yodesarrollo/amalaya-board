@@ -217,18 +217,18 @@
     {
       "order": 2,
       "task": "street",
-      "state": "partial",
-      "result": "MEDIDO A MANO · Av. Chihuahua frente a EB-NW: 5,21 m (±0,5 m) entre bordes visibles de calzada. No incluye radios/encuentros ni el ancho de Garmendia. La geometría sigue parcial hasta aplicar y validar.",
-      "at": "2026-10-03T20:31:27.309Z",
-      "matrixState": "partial"
+      "state": "done",
+      "result": "HECHO · Chihuahua aplicada a 5,21 ±0,50 m; Garmendia conserva el perfil aproximado 5,00 ±0,90 m ya existente. Un dueño vial por tramo y transiciones conservadas. Imagen y registro actualizados al terminar la acción 2. Radios y banquetas mantienen sus etapas independientes.",
+      "at": "2026-10-03T23:05:47.243330Z",
+      "matrixState": "done"
     },
     {
       "order": 3,
       "task": "sidewalkA",
-      "state": "partial",
-      "result": "MEDIDO A MANO · Banqueta A: 1,04 m (±0,3 m) desde borde de calzada hasta línea aparente de fachada/cubierta. No certifica ancho libre ni continuidad; falta aplicar y validar.",
-      "at": "2026-10-03T20:31:27.311Z",
-      "matrixState": "partial"
+      "state": "done",
+      "result": "APLICADO 03 · lado A sur de Chihuahua. Lectura manual heredada 1,04 ±0,30 m; franja total 0,94 m incluida guarnición heredada de 0,26 m y paño de 0,68 m. Se corrigió el registro de cubierta a suelo 0,98 m hacia el interior dentro del margen de posición ±1 m; alturas y formas conservadas, colisiones trasladadas con su dueño. Losas y base ajustadas solo en este frente, calzada y vecinos preservados; 28 secciones reales verificadas. Comparación con cámara fija, imagen y registro renovados antes de EB-NE. Cotas, rampas y QA peatonal siguen en sus etapas.",
+      "at": "2026-10-04T03:23:13.410477Z",
+      "matrixState": "done"
     },
     {
       "order": 4,
@@ -299,6 +299,8 @@
   "completedAt": "2026-10-03T19:14:43.694Z",
   "done": [
     "plan",
+    "street",
+    "sidewalkA",
     "identity"
   ],
   "blocked": [
@@ -309,8 +311,8 @@
     "equipment",
     "qa"
   ],
-  "closure": "Paso 1 aplicado y comprobado como planta aproximada. Por indicación del usuario, continuar el paso 1 en los otros edificios antes del paso 2. EB-NW no está cerrado en sus once acciones.",
-  "firstPending": "street",
+  "closure": "Planta, calzada y banqueta A aplicadas y comprobadas como aproximaciones. Banqueta B y acciones 05–11 conservan su revisión pendiente; el edificio no está cerrado en sus once acciones.",
+  "firstPending": "sidewalkB",
   "checks": [
     "R-002 P06 resuelve a 103 Av. Chihuahua; Street View fecha dic. 2023; rumbo 270°.",
     "R-002 P07 resuelve a 186 C. Garmendia; Street View fecha dic. 2023; rumbo 180°.",
@@ -321,8 +323,6 @@
     "Cotas manuales orientativas tomadas sobre imagen satelital; no equivalen a topografía, deslinde catastral ni ancho libre certificado. La fecha de captura de la imagen no se muestra."
   ],
   "provisional": [
-    "street",
-    "sidewalkA",
     "sidewalkB"
   ],
   "baseCommit": "a4abe92537cf0cfa7d1db5fdf0ff41c73ca913dd",
@@ -330,10 +330,10 @@
   "mode": "phase-rounds",
   "round": 1,
   "currentWorldSha256": "2b84f6601ee387c40122cc2f5b10be71b03e3444de679b23eb341c5fed1b2a70",
-  "currentRound": 2,
-  "currentAction": "street",
-  "currentWorldSHA256": "cb3fa2b4bfc722f06eddb733b655b6ce264af9489ff2e32e962c21bc4521d41c",
-  "headerUpdatedAt": "2026-10-03T23:05:47.243330Z",
+  "currentRound": 3,
+  "currentAction": "sidewalkA",
+  "currentWorldSHA256": "44217a1f386bb39e746ee5843d7b789f5f337a7a77379125b0a3431557b1b7d0",
+  "headerUpdatedAt": "2026-10-04T03:23:13.410477Z",
   "round02Events": [
     {
       "order": 2,
@@ -344,5 +344,15 @@
       "capture": "levantamiento/evidence/EB-NW/02-avance-calzada.png"
     }
   ],
-  "round02NextAction": "sidewalkA"
+  "round02NextAction": "sidewalkA",
+  "round03Events": [
+    {
+      "order": 3,
+      "task": "sidewalkA",
+      "state": "done",
+      "at": "2026-10-04T03:23:13.410477Z",
+      "mode": "phase-rounds",
+      "capture": "levantamiento/evidence/EB-NW/03-avance-banqueta-a.png"
+    }
+  ]
 }

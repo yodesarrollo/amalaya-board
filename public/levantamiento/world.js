@@ -16389,7 +16389,7 @@ async function Fp(e, t, n = "pilot", r = {}) {
 		c.add(e.group), f.push(...e.colliders);
 	}
 	let p = Pp(d);
-	return c.add(p.group), f.push(...p.colliders), c.userData.navigationColliders = f, applyIsc58Refinement(c, a, u[0], f, { Group: Ot, Mesh: Y, Shape: $r, Path: Qr, ShapeGeometry: Wi, BoxGeometry: X, BufferGeometry: An, Float32BufferAttribute: J, Box3: Zt, Vector3: U, createProceduralMaterial: $, addArchedWindow: pu }), applyEbSwRefinement(c,f,{Group:Ot,Mesh:Y,Shape:$r,Path:Qr,ShapeGeometry:Wi,BoxGeometry:X,BufferGeometry:An,Float32BufferAttribute:J,Box3:Zt,Vector3:U,createProceduralMaterial:$},9), applyPlanRoundRefinement(c,f,{Box3:Zt,Vector3:U,Shape:$r,Mesh:Y}), applyStreetRoundRefinement(c,f,{BufferGeometry:An,Float32BufferAttribute:J,Mesh:Y}), Ip(c, n), Up(c), c;
+	return c.add(p.group), f.push(...p.colliders), c.userData.navigationColliders = f, applyIsc58Refinement(c, a, u[0], f, { Group: Ot, Mesh: Y, Shape: $r, Path: Qr, ShapeGeometry: Wi, BoxGeometry: X, BufferGeometry: An, Float32BufferAttribute: J, Box3: Zt, Vector3: U, createProceduralMaterial: $, addArchedWindow: pu }), applyEbSwRefinement(c,f,{Group:Ot,Mesh:Y,Shape:$r,Path:Qr,ShapeGeometry:Wi,BoxGeometry:X,BufferGeometry:An,Float32BufferAttribute:J,Box3:Zt,Vector3:U,createProceduralMaterial:$},9), applyPlanRoundRefinement(c,f,{Box3:Zt,Vector3:U,Shape:$r,Mesh:Y}), applyStreetRoundRefinement(c,f,{BufferGeometry:An,Float32BufferAttribute:J,Mesh:Y}), applySidewalkRoundRefinement(c,f,{BufferGeometry:An,Float32BufferAttribute:J,Mesh:Y,Vector3:U,Box3:Zt}), Ip(c, n), Up(c), c;
 }
 function Ip(e, t) {
 	let n = /* @__PURE__ */ new Map();
@@ -16539,3 +16539,5 @@ import { applyEbSw as applyEbSwRefinement } from "./ebsw-refinement.js?v=765e5fd
 import { applyPlanRound as applyPlanRoundRefinement } from "./plantas-refinement.js?v=8a5221b14a88";
 
 import { applyStreetRound as applyStreetRoundRefinement } from "./calzadas-refinement.js?v=6e7bf650d403";
+
+import { applySidewalkRound as applySidewalkRoundRefinement } from "./banquetas-refinement.js?v=4c0e1c096e78";

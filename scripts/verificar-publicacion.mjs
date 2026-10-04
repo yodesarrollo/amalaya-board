@@ -6,7 +6,7 @@ import { createHash } from 'node:crypto'
 import { BASE_WORLD_SHA256, BASE_VISOR_SHA256, removeIsc58Hook, removeIsc58VisorHook, regionHashes, sha256 } from './preparar-isc58.mjs'
 const root='public/levantamiento'
 const approved=new Set(['amalaya-observations.json','amalaya-routes.json','cerro-elevation.json','osm-context.json','osm-plaza-hidalgo.json','sector-survey.json'])
-const roundProgressFiles=new Set(['02-inicio-ronda.png','02-avance-calzada.png','02-record-calzada.json']);
+const roundProgressFiles=new Set(['02-inicio-ronda.png','02-avance-calzada.png','02-record-calzada.json','03-inicio-ronda.png','03-avance-banqueta-a.png','03-record-banqueta-a.json']);
 function historicalOwner(building,cameraId){const progress=building.visualProgress?.cameraId===cameraId?building.visualProgress:building.visualProgress?.history?.find(p=>p.cameraId===cameraId);assert(progress,'Missing preserved progress checkpoint '+building.id+' '+cameraId);return {...building,visualProgress:progress};}
 const ob01EvidenceFiles=new Set(['01-planta.png','02-calzada.png','03-banqueta-sur.png','04-banqueta-norte.png','05-esquinas.png','06-identidad.png','07-volumen.png','08-fachada.png','09-materiales.png','10-equipamiento.png','11a-planta.png','11b-bloque.png','11c-peaton.png','manifest.json'])
 const isc58EvidenceFiles=new Set(['00-inicio-webgl-raw.png','00-inicio-seguimiento.png','plan-manifest.json','plan-record.json','progress-baseline.json','06-avance-punto11.png','07-banqueta-sur.png','08-paseo-norte.png','00-inicio-bloque.png','01-planta.png','02-bloque.png','03-peaton.png','04-fachada-detalle.png','05-visor-p05.png','manifest.json','identity-plan-record.json','review-record.json'])
@@ -481,3 +481,5 @@ console.log('EB-SW: once acciones ordenadas, capturas por etapa reproducibles, f
 await import('./pruebas-plantas.mjs')
 
 await import('./pruebas-calzadas.mjs')
+
+await import('./pruebas-banquetas.mjs')
