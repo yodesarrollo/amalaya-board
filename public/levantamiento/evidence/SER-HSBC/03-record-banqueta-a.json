@@ -1,0 +1,309 @@
+{
+  "building": "SER-HSBC",
+  "action": 3,
+  "task": "sidewalkA",
+  "status": "done",
+  "checkedAt": "2026-10-04T03:23:53.697998Z",
+  "note": "Lado A = Serdán norte. Lectura a ojo usando la escala visible de 5 m: aproximadamente 2,30 ±0,80 m hasta el encuentro aparente con el suelo. Se descartaron las reglas de 3,19/3,20 m que tocaban la fachada y la polilínea accidental de 4,05 m. Franja continua de 1,94 m más guarnición heredada de 0,36 m. Huella OSM registrada 2,88 m hacia el interior dentro del margen previo de ±3 m, manteniendo forma y altura; 30 celdas de colisión inscriptas añadidas al cuerpo antes sin colisiones propias. Verificados pavimento fuera de calle y cuerpo, y sin nuevas intersecciones de planta con vecinos. Árboles, accesos, retornos y niveles permanecen en sus acciones específicas; comercio actual sin confirmar.",
+  "worldSha256": "44217a1f386bb39e746ee5843d7b789f5f337a7a77379125b0a3431557b1b7d0",
+  "camera": {
+    "id": "SER-HSBC-round03-software-v1",
+    "direction": [
+      -0.4,
+      1,
+      1
+    ],
+    "span": 63,
+    "projection": "orthographic",
+    "target": [
+      67.28183937072754,
+      1,
+      -139.63612365722656
+    ]
+  },
+  "modelCenter": [
+    67.28183937072754,
+    1,
+    -139.63612365722656
+  ],
+  "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography.",
+  "triangles": 14790,
+  "baseline": {
+    "url": "levantamiento/evidence/SER-HSBC/03-inicio-ronda.png",
+    "title": "Modelo al iniciar la ronda 03 · cámara fija",
+    "label": "Inicio · ronda 03",
+    "capturedAt": "2026-10-04T03:23:51.219177Z",
+    "worldSha256": "cb3fa2b4bfc722f06eddb733b655b6ce264af9489ff2e32e962c21bc4521d41c",
+    "sha256": "b89ecd4668fa5133842398a7dc6c9b41434e39ede65886606dc1f8b6bcd0a720",
+    "cameraId": "SER-HSBC-round03-software-v1",
+    "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
+  },
+  "current": {
+    "url": "levantamiento/evidence/SER-HSBC/03-avance-banqueta-a.png",
+    "title": "Avance 03 · banqueta A · SER-HSBC",
+    "label": "Avance · 03",
+    "capturedAt": "2026-10-04T03:23:53.623137Z",
+    "worldSha256": "44217a1f386bb39e746ee5843d7b789f5f337a7a77379125b0a3431557b1b7d0",
+    "sha256": "4fabf972b5fcca1b595fca3be0343bfe56704306faf2822efb7b0be27e79ed93",
+    "cameraId": "SER-HSBC-round03-software-v1",
+    "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
+  },
+  "checks": [
+    "Side A named explicitly in action note",
+    "Actual existing owner or measured adjustment reviewed",
+    "Current model image and registry linked above column before next building"
+  ],
+  "measurement": {
+    "widthMeters": 2.3,
+    "uncertaintyMeters": 0.8,
+    "method": "Visual estimate from Google Maps visible 5 m scale; apparent ground/front contact",
+    "sideA": "Serdán norte",
+    "discardedRulers": [
+      {
+        "meters": 3.19,
+        "reason": "Endpoint on facade above ground"
+      },
+      {
+        "meters": 3.2,
+        "reason": "Attempted endpoint move did not resolve ground contact"
+      },
+      {
+        "meters": 4.05,
+        "reason": "Unwanted extra polyline point; not width"
+      }
+    ],
+    "modelTotalMeters": 2.3,
+    "registrationMeters": 2.88,
+    "priorPositionUncertaintyMeters": 3,
+    "reference": "https://www.google.com/maps/@29.07728,-110.9540159,61m/data=!3m1!1e3?entry=ttu",
+    "commercialIdentity": "OSM reference only; current commerce unconfirmed"
+  },
+  "audit": {
+    "round": 3,
+    "entries": [
+      {
+        "id": "EB-NW-A",
+        "actualSections": 28,
+        "baseWidthMeters": 0.68,
+        "totalVisibleWidthMeters": 0.94,
+        "changedInstances": 21,
+        "registration": {
+          "dx": 0.06439695989507573,
+          "dz": 0.9778819108441836,
+          "distanceMeters": 0.98,
+          "declaredUncertaintyMeters": 1,
+          "before": [
+            {
+              "x": 64.84212000011098,
+              "z": -37.722999999754414
+            },
+            {
+              "x": 80.00532000050384,
+              "z": -38.72154999999253
+            },
+            {
+              "x": 82.43531999989386,
+              "z": -23.854250000082367
+            },
+            {
+              "x": 67.272119999501,
+              "z": -22.855699999844248
+            }
+          ],
+          "after": [
+            {
+              "x": 64.90651696000606,
+              "z": -36.74511808891023
+            },
+            {
+              "x": 80.06971696039892,
+              "z": -37.74366808914835
+            },
+            {
+              "x": 82.49971695978894,
+              "z": -22.876368089238184
+            },
+            {
+              "x": 67.33651695939608,
+              "z": -21.877818089000066
+            }
+          ],
+          "collidersMoved": 62,
+          "heightsUnchanged": true
+        }
+      },
+      {
+        "id": "EB-NE-A",
+        "actualSections": 36,
+        "baseWidthMeters": 1.1,
+        "totalVisibleWidthMeters": 1.36,
+        "changedInstances": 25
+      },
+      {
+        "id": "EB-SE-A",
+        "actualSections": 38,
+        "baseWidthMeters": 1.1,
+        "totalVisibleWidthMeters": 1.36,
+        "changedInstances": 26
+      },
+      {
+        "id": "CH-GA-OXXO-A",
+        "building": "CH-GA-OXXO",
+        "widthMeters": 0.9400000000000001,
+        "edgeToFacadeMeters": 1.3,
+        "source": "Google Maps manual ruler 1.30 ±0.50 m on the apparent south Serdan frontage near 29.077141,-110.953987; shared adjacent sample, not a commercial/property boundary. OSM roof-to-ground registration translated 2.45 m within its previously declared ±3 m positional margin. Current commercial identity unconfirmed; intersection return and inherited levels retain their later checks.",
+        "addedSections": 23,
+        "removedInstances": 12,
+        "registration": {
+          "dx": 0.495,
+          "dz": 2.4,
+          "distanceMeters": 2.4505152519419258,
+          "declaredUncertaintyMeters": 3,
+          "before": [
+            {
+              "x": 53.08092,
+              "z": -107.743545
+            },
+            {
+              "x": 55.62756,
+              "z": -112.19264
+            },
+            {
+              "x": 66.86388,
+              "z": -114.511495
+            },
+            {
+              "x": 73.63872,
+              "z": -78.9964
+            },
+            {
+              "x": 59.01984,
+              "z": -75.40162
+            }
+          ],
+          "after": [
+            {
+              "x": 53.575919999999996,
+              "z": -105.34354499999999
+            },
+            {
+              "x": 56.12256,
+              "z": -109.79263999999999
+            },
+            {
+              "x": 67.35888,
+              "z": -112.11149499999999
+            },
+            {
+              "x": 74.13372000000001,
+              "z": -76.59639999999999
+            },
+            {
+              "x": 59.51484,
+              "z": -73.00161999999999
+            }
+          ],
+          "collidersMoved": 0,
+          "addedColliderCells": 39,
+          "heightsUnchanged": true
+        },
+        "actualSections": 23
+      },
+      {
+        "id": "CH-YG-BIB-A",
+        "building": "CH-YG-BIB",
+        "widthMeters": 0.9400000000000001,
+        "edgeToFacadeMeters": 1.3,
+        "source": "Google Maps manual ruler 2026-10-04 UTC: south Serdan frontage apparent strip 1.30 ±0.50 m, sample start 29.077014,-110.954653. New continuous paving/curb on confirmed road edge; OSM body and height retained. Roof line and public/forecourt boundary are approximate; corner returns and levels await their own checks.",
+        "addedSections": 26,
+        "removedInstances": 0,
+        "actualSections": 26
+      },
+      {
+        "id": "CH-YG-BBVA-A",
+        "building": "CH-YG-BBVA",
+        "widthMeters": 4.85,
+        "edgeToFacadeMeters": 5.21,
+        "source": "Google Maps manual ruler 2026-10-04 UTC: east Yanez pedestrian paving strip 5.21 ±0.90 m, sample start 29.076679,-110.955578. Width from apparent street curb to inner paving edge, excludes roof/forecourt gap; no public-property or accessibility certification. OSM body, height and existing inscribed collision cells retained. End returns, planting and access interruptions await later actions.",
+        "addedSections": 67,
+        "removedInstances": 0,
+        "actualSections": 67
+      },
+      {
+        "id": "SER-HSBC-A",
+        "building": "SER-HSBC",
+        "widthMeters": 1.94,
+        "edgeToFacadeMeters": 2.3,
+        "source": "Visual Google Maps estimate using the visible 5 m scale: approximately 2.30 ±0.80 m for north Serdan paving from curb to apparent ground/front contact. Initial 3.19/3.20 m ruler readings discarded because the endpoint touched the facade above ground; subsequent 4.05 m was an unwanted polyline, also discarded. OSM body registered 2.88 m inward/north within its previously declared ±3 m position margin; inherited height and shape unchanged. Trees, access interruptions and curb levels retain later stages; commercial identity remains unconfirmed.",
+        "addedSections": 59,
+        "removedInstances": 60,
+        "registration": {
+          "dx": -0.458,
+          "dz": -2.843,
+          "distanceMeters": 2.8796550140598436,
+          "declaredUncertaintyMeters": 3,
+          "before": [
+            {
+              "x": 48.20148,
+              "z": -146.6759
+            },
+            {
+              "x": 80.58852,
+              "z": -154.675395
+            },
+            {
+              "x": 86.3622,
+              "z": -129.400985
+            },
+            {
+              "x": 56.54124,
+              "z": -124.59685
+            },
+            {
+              "x": 51.72984,
+              "z": -127.803305
+            }
+          ],
+          "after": [
+            {
+              "x": 47.74348,
+              "z": -149.5189
+            },
+            {
+              "x": 80.13052,
+              "z": -157.518395
+            },
+            {
+              "x": 85.9042,
+              "z": -132.24398499999998
+            },
+            {
+              "x": 56.08324,
+              "z": -127.43985
+            },
+            {
+              "x": 51.271840000000005,
+              "z": -130.64630499999998
+            }
+          ],
+          "collidersMoved": 0,
+          "addedColliderCells": 30,
+          "heightsUnchanged": true
+        },
+        "actualSections": 59
+      }
+    ],
+    "checks": [
+      "Actual sidewalk widths on world vertices",
+      "Unselected geometry, transforms and materials preserved",
+      "Collision count retained and registered owner moved within footprint-position uncertainty",
+      "No height or ramp certification"
+    ],
+    "checkedAt": "2026-10-04T03:21:04.461Z"
+  },
+  "limits": [
+    "Manual imagery estimates with explicit margins; inherited levels remain provisional",
+    "Ramps, heights and final pedestrian QA retain independent stages"
+  ],
+  "buildingIdentificationPending": false
+}

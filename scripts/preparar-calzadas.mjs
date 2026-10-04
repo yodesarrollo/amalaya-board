@@ -1,3 +1,4 @@
+import {removeSidewalkRoundHook} from './preparar-banquetas.mjs';
 import {readFile,writeFile} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
 import {resolve} from 'node:path';
@@ -8,6 +9,7 @@ export const streetHash=value=>createHash('sha256').update(value).digest('hex');
 const anchors={world:'Ip(c, n), Up(c), c;',visor:'Ig&&(Ug=new Eg(Ng,$,Hg)'};
 const calls={world:'applyStreetRoundRefinement(c,f,{BufferGeometry:An,Float32BufferAttribute:J,Mesh:Y}), ',visor:'applyStreetRoundRefinement(Ng,Hg,{BufferGeometry:Er,Float32BufferAttribute:q,Mesh:J});'};
 export function removeStreetRoundHook(source,kind='world'){
+ source=removeSidewalkRoundHook(source,kind);
  if(!source.includes('applyStreetRoundRefinement'))return source;
  const match=source.match(/\nimport \{ applyStreetRound as applyStreetRoundRefinement \} from "(?:\.\/|\.\.\/\.\.\/)calzadas-refinement\.js\?v=[a-f0-9]{12}";\n$/);
  const call=calls[kind],anchor=anchors[kind];

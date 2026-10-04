@@ -177,9 +177,9 @@ function Seguimiento() {
     </div>
     {data?.workflow?.mode === 'phase-rounds' && <section className="tracker-round" aria-label="Trabajo por etapas">
       <strong>Paso {data.workflow.round} · {data.workflow.actionLabel || data.taskDefinitions[data.workflow.task]} en todos los edificios</strong>
-      <p>{data.workflow.closedBuildings.length} de {data.workflow.buildingOrder.length} revisados · Medir → editar → verificar → actualizar imagen y registro antes del siguiente.</p>
+      <p>{(data.workflow.reviewedBuildings || data.workflow.closedBuildings).length} de {data.workflow.buildingOrder.length} revisados · {data.workflow.closedBuildings.length} resueltos · Medir → editar → verificar → actualizar imagen y registro antes del siguiente.</p>
       {data.workflow.unresolvedBuildings.length > 0 && <p>Pendientes de esta ronda: {data.workflow.unresolvedBuildings.join(', ')}.</p>}
-      {data.workflow.previousUnresolvedBuildings?.length > 0 && <p>El paso 1 conserva contornos pendientes: {data.workflow.previousUnresolvedBuildings.join(', ')}. Esta ronda de calzadas continúa por tu indicación.</p>}
+      {data.workflow.previousUnresolvedBuildings?.length > 0 && <p>El paso 1 conserva contornos pendientes: {data.workflow.previousUnresolvedBuildings.join(', ')}. Esta ronda continúa por tu indicación.</p>}
     </section>}
     {error && <p className="tracker-error" role="status">{error}</p>}
     {data && <div className="tracker-table-scroll" tabIndex="0" role="region" aria-label="Matriz de acciones por edificio">

@@ -1,0 +1,654 @@
+{
+  "round": 3,
+  "task": "sidewalkA",
+  "status": "incomplete",
+  "reviewCompletedAt": "2026-10-04T03:23:53.716663Z",
+  "worldSha256": "44217a1f386bb39e746ee5843d7b789f5f337a7a77379125b0a3431557b1b7d0",
+  "buildingOrder": [
+    "OB-01",
+    "OB-02",
+    "ISC-58",
+    "EB-SW",
+    "EB-NW",
+    "EB-NE",
+    "EB-SE",
+    "CH-GA-OXXO",
+    "CH-YG-BIB",
+    "CH-YG-BBVA",
+    "SER-BLEY",
+    "SER-HSBC"
+  ],
+  "workflow": {
+    "mode": "phase-rounds",
+    "round": 3,
+    "task": "sidewalkA",
+    "actionLabel": "Banqueta A",
+    "buildingOrder": [
+      "OB-01",
+      "OB-02",
+      "ISC-58",
+      "EB-SW",
+      "EB-NW",
+      "EB-NE",
+      "EB-SE",
+      "CH-GA-OXXO",
+      "CH-YG-BIB",
+      "CH-YG-BBVA",
+      "SER-BLEY",
+      "SER-HSBC"
+    ],
+    "closedBuildings": [
+      "OB-01",
+      "OB-02",
+      "EB-NW",
+      "EB-NE",
+      "EB-SE",
+      "CH-GA-OXXO",
+      "CH-YG-BIB",
+      "CH-YG-BBVA",
+      "SER-HSBC"
+    ],
+    "unresolvedBuildings": [
+      "ISC-58",
+      "EB-SW",
+      "SER-BLEY"
+    ],
+    "previousUnresolvedBuildings": [
+      "ISC-58",
+      "EB-SW",
+      "SER-BLEY"
+    ],
+    "readyForNextRound": false,
+    "nextTask": "sidewalkB",
+    "photoRequiredAfterEveryAction": true,
+    "criterion": "Calzada de frentes confirmados y tramos compartidos: ancho aproximado con margen, dueño vial único, geometría aplicada o contrastada, encuentros sin duplicación, imagen de cabecera y registro por edificio. Radios y banquetas conservan sus etapas.",
+    "instructions": "Ronda 03 revisada en orden en las doce columnas. Resolver los frentes pendientes antes de certificar la ronda completa. Medir, editar, comprobar, capturar y actualizar imagen/registro de cada acción antes del siguiente edificio.",
+    "round01Override": {
+      "at": "2026-10-03T23:07:12.225532Z",
+      "reason": "Explicit user instruction: start action 2 for every building that needs it; do not erase unresolved footprints."
+    },
+    "reviewedBuildings": [
+      "OB-01",
+      "OB-02",
+      "ISC-58",
+      "EB-SW",
+      "EB-NW",
+      "EB-NE",
+      "EB-SE",
+      "CH-GA-OXXO",
+      "CH-YG-BIB",
+      "CH-YG-BBVA",
+      "SER-BLEY",
+      "SER-HSBC"
+    ],
+    "state": "incomplete"
+  },
+  "closedBuildings": [
+    "OB-01",
+    "OB-02",
+    "EB-NW",
+    "EB-NE",
+    "EB-SE",
+    "CH-GA-OXXO",
+    "CH-YG-BIB",
+    "CH-YG-BBVA",
+    "SER-HSBC"
+  ],
+  "unresolvedBuildings": [
+    "ISC-58",
+    "EB-SW",
+    "SER-BLEY"
+  ],
+  "readyForNextRound": false,
+  "nextRound": 4,
+  "results": [
+    {
+      "building": "OB-01",
+      "state": "done",
+      "result": "REVISADO 03 · lado A sur de Obregón. Se conserva la franja previamente calibrada de 1,20 ±0,80 m, las losas y la base continua bajo juntas. Dueños del modelo, imágenes y evidencia histórica contrastados; sin cambio geométrico ni nueva medición de campo. Radios y rampas permanecen en la acción 5. Imagen y registro actualizados antes de pasar a OB-02.",
+      "record": "levantamiento/evidence/OB-01/03-record-banqueta-a.json",
+      "currentImage": {
+        "url": "levantamiento/evidence/OB-01/03-avance-banqueta-a.png",
+        "title": "Avance 03 · banqueta A · OB-01",
+        "label": "Avance · 03",
+        "capturedAt": "2026-10-04T03:22:23.232645Z",
+        "worldSha256": "44217a1f386bb39e746ee5843d7b789f5f337a7a77379125b0a3431557b1b7d0",
+        "sha256": "56f798860af404a64a363bca8f78db044c8b54e5c01670ffd10a98f2b24ae5fe",
+        "cameraId": "OB-01-round03-software-v1",
+        "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
+      }
+    },
+    {
+      "building": "OB-02",
+      "state": "done",
+      "result": "REVISADO 03 · lado A sur de Obregón. Se conserva la franja aplicada de 1,20 ±0,80 m, base continua, encuentro hasta fachada y guarnición a cota heredada. La reparación previa retiró losas duplicadas y ajustó la colisión girada del cuerpo del vaquero; se mantiene. Nueva imagen del modelo y registro, sin repetir geometría. Rampas y QA conservan pendientes propios.",
+      "record": "levantamiento/evidence/OB-02/03-record-banqueta-a.json",
+      "currentImage": {
+        "url": "levantamiento/evidence/OB-02/03-avance-banqueta-a.png",
+        "title": "Avance 03 · banqueta A · OB-02",
+        "label": "Avance · 03",
+        "capturedAt": "2026-10-04T03:22:33.636472Z",
+        "worldSha256": "44217a1f386bb39e746ee5843d7b789f5f337a7a77379125b0a3431557b1b7d0",
+        "sha256": "65f726d9ee18fc84f94f645ae24b590f79658395e9df207906b36fcb9e8a33fa",
+        "cameraId": "OB-02-round03-software-v1",
+        "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
+      }
+    },
+    {
+      "building": "ISC-58",
+      "state": "blocked",
+      "result": "REVISADO 03 · lado A sur de Obregón / PH-01. Las pruebas actuales confirman base continua, cuatro losetas recortadas fuera de la calzada y doce colisiones de pilastras visibles. No se ensancha sobre el asfalto ni se borra la masa pendiente de separar. El extremo oeste conserva un estrechamiento y el enlace cruzaría Juan Álvarez: cierre bloqueado hasta resolver el frente y el encuentro físico. Imagen y registro actualizados en este paso; no se declara paso libre ni accesibilidad.",
+      "record": "levantamiento/evidence/ISC-58/03-record-banqueta-a.json",
+      "currentImage": {
+        "url": "levantamiento/evidence/ISC-58/03-avance-banqueta-a.png",
+        "title": "Avance 03 · banqueta A · ISC-58",
+        "label": "Avance · 03",
+        "capturedAt": "2026-10-04T03:22:57.464075Z",
+        "worldSha256": "44217a1f386bb39e746ee5843d7b789f5f337a7a77379125b0a3431557b1b7d0",
+        "sha256": "5a63d62888175daaa20f4d0f59f5a384718e69279c714265b8241ed486abe114",
+        "cameraId": "ISC-58-round03-software-v1",
+        "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
+      }
+    },
+    {
+      "building": "EB-SW",
+      "state": "blocked",
+      "result": "REVISADO 03 · lado A sur de Obregón, tramo Garmendia–Abasolo. Lectura a ojo en Google Maps con escala visible de 5 m: franja estrecha de aproximadamente 1,0 ±0,5 m; se conserva el perfil del modelo de 1,10 m dentro de ese rango y la reparación de base bajo juntas. La lectura de regla 0,84 m se descarta por selección incierta de los bordes. Las pruebas confirman que la reparación conserva calzada y vecinos. Cierre bloqueado: extremos, obstáculos y frente todavía sin atribución completa; no se certifica continuidad. Imagen y registro actualizados antes de EB-NW.",
+      "record": "levantamiento/evidence/EB-SW/03-record-banqueta-a.json",
+      "currentImage": {
+        "url": "levantamiento/evidence/EB-SW/03-avance-banqueta-a.png",
+        "title": "Avance 03 · banqueta A · EB-SW",
+        "label": "Avance · 03",
+        "capturedAt": "2026-10-04T03:23:07.075915Z",
+        "worldSha256": "44217a1f386bb39e746ee5843d7b789f5f337a7a77379125b0a3431557b1b7d0",
+        "sha256": "72bdf0b0a551a6944fefa3d6f7e1baa8173bbcbdcb83892ade1297474bf0477e",
+        "cameraId": "EB-SW-round03-software-v1",
+        "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
+      }
+    },
+    {
+      "building": "EB-NW",
+      "state": "done",
+      "result": "APLICADO 03 · lado A sur de Chihuahua. Lectura manual heredada 1,04 ±0,30 m; franja total 0,94 m incluida guarnición heredada de 0,26 m y paño de 0,68 m. Se corrigió el registro de cubierta a suelo 0,98 m hacia el interior dentro del margen de posición ±1 m; alturas y formas conservadas, colisiones trasladadas con su dueño. Losas y base ajustadas solo en este frente, calzada y vecinos preservados; 28 secciones reales verificadas. Comparación con cámara fija, imagen y registro renovados antes de EB-NE. Cotas, rampas y QA peatonal siguen en sus etapas.",
+      "record": "levantamiento/evidence/EB-NW/03-record-banqueta-a.json",
+      "currentImage": {
+        "url": "levantamiento/evidence/EB-NW/03-avance-banqueta-a.png",
+        "title": "Avance 03 · banqueta A · EB-NW",
+        "label": "Avance · 03",
+        "capturedAt": "2026-10-04T03:23:13.295811Z",
+        "worldSha256": "44217a1f386bb39e746ee5843d7b789f5f337a7a77379125b0a3431557b1b7d0",
+        "sha256": "93b21901a435a6135c611be451ab28371e33dff9deecbafca3d45086a1471d8e",
+        "cameraId": "EB-NW-round03-software-v1",
+        "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
+      }
+    },
+    {
+      "building": "EB-NE",
+      "state": "done",
+      "result": "APLICADO 03 · lado A sur de Chihuahua, frente recto antes del retorno de Abasolo. Regla manual: franja aparente 1,43 ±0,50 m. Se conserva paño de 1,10 m más guarnición heredada de 0,26 m dentro del rango; base bajo juntas a 2 mm de las losas actuales y borde registrado a la calzada vigente. El retorno mantiene la acción 5. Una sola franja, sin duplicar losas ni afectar el lado B; secciones reales verificadas. Línea aparente de cubierta, obstáculos y ancho libre conservan incertidumbre; imagen y registro actualizados antes de EB-SE.",
+      "record": "levantamiento/evidence/EB-NE/03-record-banqueta-a.json",
+      "currentImage": {
+        "url": "levantamiento/evidence/EB-NE/03-avance-banqueta-a.png",
+        "title": "Avance 03 · banqueta A · EB-NE",
+        "label": "Avance · 03",
+        "capturedAt": "2026-10-04T03:23:19.843702Z",
+        "worldSha256": "44217a1f386bb39e746ee5843d7b789f5f337a7a77379125b0a3431557b1b7d0",
+        "sha256": "294c7b33e26a75865b050284d4669d87339f234d6dececdc76c34fb1de6791f3",
+        "cameraId": "EB-NE-round03-software-v1",
+        "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
+      }
+    },
+    {
+      "building": "EB-SE",
+      "state": "done",
+      "result": "APLICADO 03 · lado A sur de Obregón, franja física compartida del tramo Garmendia–Abasolo. Se utiliza la revisión visual de aproximadamente 1,0 ±0,5 m con escala de Maps realizada en EB-SW; no se presenta como medición independiente de EB-SE. Perfil de 1,10 m más guarnición heredada de 0,26 m conservado dentro del rango. Base continua bajo juntas añadida a la cota heredada de las losas en este frente, sin duplicarlas, y sin tocar la calzada o el lado B. El retorno de Abasolo queda en acción 5. Secciones reales, imagen y registro verificados antes de OXXO.",
+      "record": "levantamiento/evidence/EB-SE/03-record-banqueta-a.json",
+      "currentImage": {
+        "url": "levantamiento/evidence/EB-SE/03-avance-banqueta-a.png",
+        "title": "Avance 03 · banqueta A · EB-SE",
+        "label": "Avance · 03",
+        "capturedAt": "2026-10-04T03:23:27.347576Z",
+        "worldSha256": "44217a1f386bb39e746ee5843d7b789f5f337a7a77379125b0a3431557b1b7d0",
+        "sha256": "fe008a0a768e02f8cea14e7dfe428414efcbd814d7a332603a2980e78ede11fb",
+        "cameraId": "EB-SE-round03-software-v1",
+        "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
+      }
+    },
+    {
+      "building": "CH-GA-OXXO",
+      "state": "done",
+      "result": "Lado A = Serdán sur. Regla manual en la franja contigua: 1,30 ±0,50 m; no delimita ocupación comercial ni predio. Franja continua del modelo de 1,30 m total, incluida la guarnición heredada de 0,36 m; base al nivel provisional de las losetas. La huella OSM se registró 2,45 m hacia el interior dentro del margen previo de ±3 m, conservando forma y altura. Se añadieron 39 celdas inscriptas de colisión porque el cuerpo OSM no tenía colisiones propias. Geometría comprobada fuera del edificio y de la calzada. Retornos, rampas, accesibilidad y comercio actual quedan en sus acciones correspondientes.",
+      "record": "levantamiento/evidence/CH-GA-OXXO/03-record-banqueta-a.json",
+      "currentImage": {
+        "url": "levantamiento/evidence/CH-GA-OXXO/03-avance-banqueta-a.png",
+        "title": "Avance 03 · banqueta A · CH-GA-OXXO",
+        "label": "Avance · 03",
+        "capturedAt": "2026-10-04T03:23:32.515490Z",
+        "worldSha256": "44217a1f386bb39e746ee5843d7b789f5f337a7a77379125b0a3431557b1b7d0",
+        "sha256": "d364c6fa8d84076efea69c4b4d435bdc90e8f02d66ac2f2619fcc424e11d01cf",
+        "cameraId": "CH-GA-OXXO-round03-software-v1",
+        "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
+      }
+    },
+    {
+      "building": "CH-YG-BIB",
+      "state": "done",
+      "result": "Lado A = Serdán sur. Regla manual de 1,30 ±0,50 m entre los bordes aparentes. Se agregó la franja continua que faltaba junto a la calzada incorporada en ronda 02: 0,94 m de pavimento y 0,36 m de guarnición, total 1,30 m. Comprobada fuera de la huella OSM, sin mover el edificio ni certificar el límite del predio. Niveles heredados provisionales; retornos y rampas conservan la acción 05.",
+      "record": "levantamiento/evidence/CH-YG-BIB/03-record-banqueta-a.json",
+      "currentImage": {
+        "url": "levantamiento/evidence/CH-YG-BIB/03-avance-banqueta-a.png",
+        "title": "Avance 03 · banqueta A · CH-YG-BIB",
+        "label": "Avance · 03",
+        "capturedAt": "2026-10-04T03:23:36.667420Z",
+        "worldSha256": "44217a1f386bb39e746ee5843d7b789f5f337a7a77379125b0a3431557b1b7d0",
+        "sha256": "94756ab0e802344980def03732d5d3073d494ed31da2a86e691b479521108be5",
+        "cameraId": "CH-YG-BIB-round03-software-v1",
+        "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
+      }
+    },
+    {
+      "building": "CH-YG-BBVA",
+      "state": "done",
+      "result": "Lado A = Yáñez oriente. Regla manual: 5,21 ±0,90 m desde el borde de calle hasta el borde interior aparente del pavimento, excluyendo el espacio hasta la cubierta. Franja continua añadida junto a la calzada de ronda 02: 4,85 m pavimentados más 0,36 m de guarnición heredada. Se conserva la huella, altura y colisiones del edificio. Comprobada fuera del cuerpo; retornos, jardineras, accesos y niveles tienen revisión en sus acciones posteriores. El pavimento al sur de BBVA sigue sin certificarse como calle pública.",
+      "record": "levantamiento/evidence/CH-YG-BBVA/03-record-banqueta-a.json",
+      "currentImage": {
+        "url": "levantamiento/evidence/CH-YG-BBVA/03-avance-banqueta-a.png",
+        "title": "Avance 03 · banqueta A · CH-YG-BBVA",
+        "label": "Avance · 03",
+        "capturedAt": "2026-10-04T03:23:42.887317Z",
+        "worldSha256": "44217a1f386bb39e746ee5843d7b789f5f337a7a77379125b0a3431557b1b7d0",
+        "sha256": "17cb830d1067ba6117bf39a56dadbe065b9a4263b2225803bf49f5a8248aae8b",
+        "cameraId": "CH-YG-BBVA-round03-software-v1",
+        "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
+      }
+    },
+    {
+      "building": "SER-BLEY",
+      "state": "blocked",
+      "result": "Acción 03 revisada en su turno. La franja física de Serdán/Garmendia está documentada en CH-GA-OXXO (muestra 1,30 ±0,50 m), sin duplicar geometría ni presentarla como medición independiente de Bley. Falta vincular Bley a un cuerpo individual del modelo para asignar su lado A. Imagen de contexto actualizada con identificación pendiente; no se marca la banqueta individual como terminada.",
+      "record": "levantamiento/evidence/SER-BLEY/03-record-banqueta-a.json",
+      "currentImage": {
+        "url": "levantamiento/evidence/SER-BLEY/03-avance-banqueta-a.png",
+        "title": "Avance 03 · banqueta A · SER-BLEY",
+        "label": "Avance · 03",
+        "capturedAt": "2026-10-04T03:23:48.915216Z",
+        "worldSha256": "44217a1f386bb39e746ee5843d7b789f5f337a7a77379125b0a3431557b1b7d0",
+        "sha256": "0dcf44df9539489fcba62b2e281140e14dca7af630fad77635a76a93d495e80b",
+        "cameraId": "SER-BLEY-round03-software-v1",
+        "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
+      }
+    },
+    {
+      "building": "SER-HSBC",
+      "state": "done",
+      "result": "Lado A = Serdán norte. Lectura a ojo usando la escala visible de 5 m: aproximadamente 2,30 ±0,80 m hasta el encuentro aparente con el suelo. Se descartaron las reglas de 3,19/3,20 m que tocaban la fachada y la polilínea accidental de 4,05 m. Franja continua de 1,94 m más guarnición heredada de 0,36 m. Huella OSM registrada 2,88 m hacia el interior dentro del margen previo de ±3 m, manteniendo forma y altura; 30 celdas de colisión inscriptas añadidas al cuerpo antes sin colisiones propias. Verificados pavimento fuera de calle y cuerpo, y sin nuevas intersecciones de planta con vecinos. Árboles, accesos, retornos y niveles permanecen en sus acciones específicas; comercio actual sin confirmar.",
+      "record": "levantamiento/evidence/SER-HSBC/03-record-banqueta-a.json",
+      "currentImage": {
+        "url": "levantamiento/evidence/SER-HSBC/03-avance-banqueta-a.png",
+        "title": "Avance 03 · banqueta A · SER-HSBC",
+        "label": "Avance · 03",
+        "capturedAt": "2026-10-04T03:23:53.623137Z",
+        "worldSha256": "44217a1f386bb39e746ee5843d7b789f5f337a7a77379125b0a3431557b1b7d0",
+        "sha256": "4fabf972b5fcca1b595fca3be0343bfe56704306faf2822efb7b0be27e79ed93",
+        "cameraId": "SER-HSBC-round03-software-v1",
+        "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
+      }
+    }
+  ],
+  "measurements": {
+    "EB-NE": {
+      "source": "Google Maps manual ruler",
+      "valueMeters": 1.43,
+      "uncertaintyMeters": 0.5,
+      "sample": {
+        "lat": 29.076495,
+        "lon": -110.953039
+      },
+      "classification": "apparent road-edge to facade/roof strip; approximate",
+      "url": "https://www.google.com/maps/@29.076476,-110.953147,122m/data=!3m1!1e3?entry=ttu&g_ep=EgoyMDI2MDkzMC4wIKXMDSoASAFQAw%3D%3D"
+    },
+    "OB-01": {
+      "widthMeters": 1.2,
+      "uncertaintyMeters": 0.8,
+      "method": "Prior manual visual estimate retained",
+      "sideA": "Obregón sur"
+    },
+    "OB-02": {
+      "widthMeters": 1.2,
+      "uncertaintyMeters": 0.8,
+      "method": "Shared prior manual visual estimate retained",
+      "sideA": "Obregón sur"
+    },
+    "ISC-58": {
+      "widthMeters": 0.93,
+      "uncertaintyMeters": 0.7,
+      "method": "Inherited narrow frontage; boundary attribution unresolved",
+      "sideA": "Obregón sur, pendiente lateral Juan Álvarez"
+    },
+    "EB-SW": {
+      "widthMeters": 1.0,
+      "uncertaintyMeters": 0.5,
+      "method": "Visual estimate using Google Maps visible 5 m scale; 0.84 m ruler discarded because selected edges were ambiguous",
+      "sideA": "Obregón sur"
+    },
+    "EB-NW": {
+      "widthMeters": 1.04,
+      "uncertaintyMeters": 0.3,
+      "method": "Previously recorded Google Maps manual ruler",
+      "sideA": "Chihuahua sur",
+      "modelTotalMeters": 0.94,
+      "registrationMeters": 0.98,
+      "priorPositionUncertaintyMeters": 1
+    },
+    "EB-SE": {
+      "widthMeters": 1.0,
+      "uncertaintyMeters": 0.5,
+      "method": "Shared Obregón south estimate reviewed for EB-SW; no second independent survey",
+      "sideA": "Obregón sur",
+      "modelTotalMeters": 1.36
+    },
+    "CH-GA-OXXO": {
+      "widthMeters": 1.3,
+      "uncertaintyMeters": 0.5,
+      "method": "Google Maps manual ruler on adjacent same south Serdán strip",
+      "sideA": "Serdán sur",
+      "sampleStart": {
+        "lat": 29.077141,
+        "lon": -110.953987
+      },
+      "modelTotalMeters": 1.3,
+      "registrationMeters": 2.45,
+      "priorPositionUncertaintyMeters": 3,
+      "reference": "https://www.google.com/maps/@29.0770861,-110.954169,122m/data=!3m1!1e3?entry=ttu",
+      "commercialIdentity": "Reference OSM label; current commerce unconfirmed"
+    },
+    "CH-YG-BIB": {
+      "widthMeters": 1.3,
+      "uncertaintyMeters": 0.5,
+      "method": "Google Maps manual ruler across apparent south Serdán strip",
+      "sideA": "Serdán sur",
+      "sampleStart": {
+        "lat": 29.077014,
+        "lon": -110.954653
+      },
+      "modelTotalMeters": 1.3,
+      "reference": "https://www.google.com/maps/@29.076998,-110.95468,122m/data=!3m1!1e3?entry=ttu"
+    },
+    "CH-YG-BBVA": {
+      "widthMeters": 5.21,
+      "uncertaintyMeters": 0.9,
+      "method": "Google Maps manual ruler: apparent street curb to inner paving edge; roof/forecourt gap excluded",
+      "sideA": "Yáñez oriente",
+      "sampleStart": {
+        "lat": 29.076679,
+        "lon": -110.955578
+      },
+      "modelTotalMeters": 5.21,
+      "reference": "https://www.google.com/maps/@29.07674,-110.9556,122m/data=!3m1!1e3?entry=ttu"
+    },
+    "SER-BLEY": {
+      "method": "Same physical Serdán/Garmendia frontage reviewed for CH-GA-OXXO; no unique building frontage identified",
+      "sharedPhysicalWidthMeters": 1.3,
+      "sharedUncertaintyMeters": 0.5,
+      "sideA": "No asignable de forma única",
+      "individualMeasurement": false,
+      "blocker": "Individual model body and its front are not linked to the approved reference"
+    },
+    "SER-HSBC": {
+      "widthMeters": 2.3,
+      "uncertaintyMeters": 0.8,
+      "method": "Visual estimate from Google Maps visible 5 m scale; apparent ground/front contact",
+      "sideA": "Serdán norte",
+      "discardedRulers": [
+        {
+          "meters": 3.19,
+          "reason": "Endpoint on facade above ground"
+        },
+        {
+          "meters": 3.2,
+          "reason": "Attempted endpoint move did not resolve ground contact"
+        },
+        {
+          "meters": 4.05,
+          "reason": "Unwanted extra polyline point; not width"
+        }
+      ],
+      "modelTotalMeters": 2.3,
+      "registrationMeters": 2.88,
+      "priorPositionUncertaintyMeters": 3,
+      "reference": "https://www.google.com/maps/@29.07728,-110.9540159,61m/data=!3m1!1e3?entry=ttu",
+      "commercialIdentity": "OSM reference only; current commerce unconfirmed"
+    }
+  },
+  "geometryAudit": {
+    "round": 3,
+    "entries": [
+      {
+        "id": "EB-NW-A",
+        "actualSections": 28,
+        "baseWidthMeters": 0.68,
+        "totalVisibleWidthMeters": 0.94,
+        "changedInstances": 21,
+        "registration": {
+          "dx": 0.06439695989507573,
+          "dz": 0.9778819108441836,
+          "distanceMeters": 0.98,
+          "declaredUncertaintyMeters": 1,
+          "before": [
+            {
+              "x": 64.84212000011098,
+              "z": -37.722999999754414
+            },
+            {
+              "x": 80.00532000050384,
+              "z": -38.72154999999253
+            },
+            {
+              "x": 82.43531999989386,
+              "z": -23.854250000082367
+            },
+            {
+              "x": 67.272119999501,
+              "z": -22.855699999844248
+            }
+          ],
+          "after": [
+            {
+              "x": 64.90651696000606,
+              "z": -36.74511808891023
+            },
+            {
+              "x": 80.06971696039892,
+              "z": -37.74366808914835
+            },
+            {
+              "x": 82.49971695978894,
+              "z": -22.876368089238184
+            },
+            {
+              "x": 67.33651695939608,
+              "z": -21.877818089000066
+            }
+          ],
+          "collidersMoved": 62,
+          "heightsUnchanged": true
+        }
+      },
+      {
+        "id": "EB-NE-A",
+        "actualSections": 36,
+        "baseWidthMeters": 1.1,
+        "totalVisibleWidthMeters": 1.36,
+        "changedInstances": 25
+      },
+      {
+        "id": "EB-SE-A",
+        "actualSections": 38,
+        "baseWidthMeters": 1.1,
+        "totalVisibleWidthMeters": 1.36,
+        "changedInstances": 26
+      },
+      {
+        "id": "CH-GA-OXXO-A",
+        "building": "CH-GA-OXXO",
+        "widthMeters": 0.9400000000000001,
+        "edgeToFacadeMeters": 1.3,
+        "source": "Google Maps manual ruler 1.30 ±0.50 m on the apparent south Serdan frontage near 29.077141,-110.953987; shared adjacent sample, not a commercial/property boundary. OSM roof-to-ground registration translated 2.45 m within its previously declared ±3 m positional margin. Current commercial identity unconfirmed; intersection return and inherited levels retain their later checks.",
+        "addedSections": 23,
+        "removedInstances": 12,
+        "registration": {
+          "dx": 0.495,
+          "dz": 2.4,
+          "distanceMeters": 2.4505152519419258,
+          "declaredUncertaintyMeters": 3,
+          "before": [
+            {
+              "x": 53.08092,
+              "z": -107.743545
+            },
+            {
+              "x": 55.62756,
+              "z": -112.19264
+            },
+            {
+              "x": 66.86388,
+              "z": -114.511495
+            },
+            {
+              "x": 73.63872,
+              "z": -78.9964
+            },
+            {
+              "x": 59.01984,
+              "z": -75.40162
+            }
+          ],
+          "after": [
+            {
+              "x": 53.575919999999996,
+              "z": -105.34354499999999
+            },
+            {
+              "x": 56.12256,
+              "z": -109.79263999999999
+            },
+            {
+              "x": 67.35888,
+              "z": -112.11149499999999
+            },
+            {
+              "x": 74.13372000000001,
+              "z": -76.59639999999999
+            },
+            {
+              "x": 59.51484,
+              "z": -73.00161999999999
+            }
+          ],
+          "collidersMoved": 0,
+          "addedColliderCells": 39,
+          "heightsUnchanged": true
+        },
+        "actualSections": 23
+      },
+      {
+        "id": "CH-YG-BIB-A",
+        "building": "CH-YG-BIB",
+        "widthMeters": 0.9400000000000001,
+        "edgeToFacadeMeters": 1.3,
+        "source": "Google Maps manual ruler 2026-10-04 UTC: south Serdan frontage apparent strip 1.30 ±0.50 m, sample start 29.077014,-110.954653. New continuous paving/curb on confirmed road edge; OSM body and height retained. Roof line and public/forecourt boundary are approximate; corner returns and levels await their own checks.",
+        "addedSections": 26,
+        "removedInstances": 0,
+        "actualSections": 26
+      },
+      {
+        "id": "CH-YG-BBVA-A",
+        "building": "CH-YG-BBVA",
+        "widthMeters": 4.85,
+        "edgeToFacadeMeters": 5.21,
+        "source": "Google Maps manual ruler 2026-10-04 UTC: east Yanez pedestrian paving strip 5.21 ±0.90 m, sample start 29.076679,-110.955578. Width from apparent street curb to inner paving edge, excludes roof/forecourt gap; no public-property or accessibility certification. OSM body, height and existing inscribed collision cells retained. End returns, planting and access interruptions await later actions.",
+        "addedSections": 67,
+        "removedInstances": 0,
+        "actualSections": 67
+      },
+      {
+        "id": "SER-HSBC-A",
+        "building": "SER-HSBC",
+        "widthMeters": 1.94,
+        "edgeToFacadeMeters": 2.3,
+        "source": "Visual Google Maps estimate using the visible 5 m scale: approximately 2.30 ±0.80 m for north Serdan paving from curb to apparent ground/front contact. Initial 3.19/3.20 m ruler readings discarded because the endpoint touched the facade above ground; subsequent 4.05 m was an unwanted polyline, also discarded. OSM body registered 2.88 m inward/north within its previously declared ±3 m position margin; inherited height and shape unchanged. Trees, access interruptions and curb levels retain later stages; commercial identity remains unconfirmed.",
+        "addedSections": 59,
+        "removedInstances": 60,
+        "registration": {
+          "dx": -0.458,
+          "dz": -2.843,
+          "distanceMeters": 2.8796550140598436,
+          "declaredUncertaintyMeters": 3,
+          "before": [
+            {
+              "x": 48.20148,
+              "z": -146.6759
+            },
+            {
+              "x": 80.58852,
+              "z": -154.675395
+            },
+            {
+              "x": 86.3622,
+              "z": -129.400985
+            },
+            {
+              "x": 56.54124,
+              "z": -124.59685
+            },
+            {
+              "x": 51.72984,
+              "z": -127.803305
+            }
+          ],
+          "after": [
+            {
+              "x": 47.74348,
+              "z": -149.5189
+            },
+            {
+              "x": 80.13052,
+              "z": -157.518395
+            },
+            {
+              "x": 85.9042,
+              "z": -132.24398499999998
+            },
+            {
+              "x": 56.08324,
+              "z": -127.43985
+            },
+            {
+              "x": 51.271840000000005,
+              "z": -130.64630499999998
+            }
+          ],
+          "collidersMoved": 0,
+          "addedColliderCells": 30,
+          "heightsUnchanged": true
+        },
+        "actualSections": 59
+      }
+    ],
+    "checks": [
+      "Actual sidewalk widths on world vertices",
+      "Unselected geometry, transforms and materials preserved",
+      "Collision count retained and registered owner moved within footprint-position uncertainty",
+      "No height or ramp certification"
+    ],
+    "checkedAt": "2026-10-04T03:21:04.461Z"
+  },
+  "capturePolicy": "Measure/read one building action, apply its actual geometry, verify, capture the model and update the column header before proceeding. Shared physical strips are identified; never fabricate independent measurements or completion. Final integration refresh retains identical fixed cameras and complete historical images.",
+  "renderMethod": "Software rasterization of actual model vertices; flat material colours, procedural textures omitted. Not WebGL or site photographs.",
+  "previousRound": "levantamiento/street-round.json",
+  "limits": [
+    "Only action 03 reviewed in this round; stages 04–11 keep their own states",
+    "Approximate manual imagery widths; no parcel, level, public-property or accessibility certification",
+    "ISC-58, EB-SW and Bley retain explicit frontage-attribution blockers"
+  ]
+}

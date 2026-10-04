@@ -1,0 +1,11 @@
+{
+  "round": 3,
+  "task": "sidewalkA",
+  "baseWorldSha256": "cb3fa2b4bfc722f06eddb733b655b6ce264af9489ff2e32e962c21bc4521d41c",
+  "baseVisorSha256": "4bccd68214b58a5679e8a562287dcec38a7ea63d3be8b144dc6299d793f813b8",
+  "worldSha256": "44217a1f386bb39e746ee5843d7b789f5f337a7a77379125b0a3431557b1b7d0",
+  "visorSha256": "7a4dee5cf39ef5be4737545ad91e2e4e449e12e6f01bd931607be805b6f0c59f",
+  "runtimeModuleSha256": "4c0e1c096e78f0771dc76fd84cf42d5d7180dea5490b83022827d709758ea8f9",
+  "editableSourceSha256": "bd36164a3b7b554ecb46df3af298013a39fcb63ae1228d46cf333a8c0d0e6ac6",
+  "sourceStatus": "Both round 02 checkpoints preserved by reversible sidewalk hook"
+}
