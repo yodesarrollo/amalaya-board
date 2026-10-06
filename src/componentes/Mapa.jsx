@@ -1,4 +1,4 @@
-import { useState, useRef, useCallback, useMemo, lazy, Suspense } from 'react'
+import { useState, useRef, useCallback, useMemo } from 'react'
 import { Plus, Pencil, Check, ArrowUp, ArrowDown, ArrowLeft, ArrowRight, ClipboardList, X } from 'lucide-react'
 import { usarDatos } from '../datos.jsx'
 import { puedeEditarRol } from '../roles.js'
@@ -9,8 +9,8 @@ import ManijaSheet from './ManijaSheet.jsx'
 import Peticiones from './Peticiones.jsx'
 import { RutasCapa, PuntosEdicion, BarraRutas, Recorrido, leerPuntos, guardarRuta } from './Rutas.jsx'
 import { GLIFO_TIPO, NOMBRE_TIPO } from './Glifos.jsx'
-const Mapa3D = lazy(() => import('./Mapa3D.jsx'))
-const RecorridoModelo = lazy(() => import('./RecorridoModelo.jsx'))
+import Mapa3D from './Mapa3D.jsx'
+import RecorridoModelo from './RecorridoModelo.jsx'
 import { usarDialogo } from '../usarDialogo.js'
 
 // ============================================================
@@ -75,7 +75,6 @@ export default function Mapa() {
   const puedeEditar = modo !== 'demo' && puedeEditarRol(sesion?.rol)
 
   // Capa activa
-  const [detalle, setDetalle] = useState(false)
   const [vista, setVista] = useState('3d') // '3d' | 'espacios' | 'rutas'
 
   // Espacios
@@ -215,7 +214,7 @@ export default function Mapa() {
 
   // --- la cámara (una sola, para espacios y recorridos) ------
   const espacioAbierto = espacios.find((e) => e.id === abierto)
-  const refFicha = usarDialogo(!!espacioAbierto, () => setAbierto(null), '#espacio-board')
+  const refFicha = usarDialogo(!!espacioAbierto, () => setAbierto(null), 'button[title="Lista y buscador de espacios"]')
   const rutaRecorrida = recorrido ? rutas.find((r) => r.id === recorrido.rutaId) : null
   const paradasDeRuta = rutaRecorrida
     ? paradas
@@ -233,7 +232,7 @@ export default function Mapa() {
   }
 
   const enRutas = vista === 'rutas'
-  const mostrarDetalle = detalle || modoEdicion || enRutas
+  const en3d = vista === '3d'
 
   return (
     <div className="relative">
@@ -241,21 +240,9 @@ export default function Mapa() {
       <div className="max-w-6xl mx-auto px-4 pt-4 pb-2 flex items-center gap-2 flex-wrap">
         <h2 className="font-cartel font-normal uppercase tracking-wide text-2xl">Mapa Amalaya</h2>
 
-        <span className="text-xs text-terciario ml-2 hidden sm:inline">El conjunto y los espacios del proyecto</span>
+        <span className="text-xs text-terciario ml-2 hidden sm:inline">planta · 3D · caminar · Street View, en una sola vista</span>
 
         <div className="flex-1" />
-
-        <button type="button" className="boton-secundario !px-3 !py-2 text-sm"
-          aria-pressed={mostrarDetalle} disabled={modoEdicion || enRutas}
-          onClick={() => setDetalle(!detalle)}>
-          {mostrarDetalle ? 'Volver al conjunto' : 'Recorrido detallado'}
-        </button>
-        <label className="sr-only" htmlFor="espacio-board">Abrir ficha de un espacio</label>
-        <select id="espacio-board" className="campo !py-2 text-sm max-w-full sm:!w-56"
-          value={abierto || ''} onChange={(e) => setAbierto(espacios.find(x => String(x.id) === e.target.value)?.id ?? null)}>
-          <option value="">Espacios del proyecto ({espacios.length})</option>
-          {espacios.map(e => <option key={e.id} value={e.id}>{e.nombre || e.id}</option>)}
-        </select>
 
         {/* Rutas: la barra de rutas se abre sobre el mismo mapa */}
         {puedeEditar && (
@@ -326,11 +313,6 @@ export default function Mapa() {
       {/* El mapa */}
       <div className="px-2 pb-3">
           <div className="relative mx-auto rounded-2xl overflow-hidden border border-linea" style={{ height: 'calc(100dvh - 150px)', minHeight: '420px' }}>
-            {!mostrarDetalle ? (
-              <iframe title="Conjunto Amalaya 3D" className="w-full h-full border-0"
-                src={`${BASE}modelo-completo.html?embed=1&vista=volumen&v=board-20261006`}
-              />
-            ) : <Suspense fallback={<p role="status" className="p-6 text-sm">Abriendo recorrido detallado…</p>}>
             <Mapa3D
               espacios={espacios} rutas={rutas} paradas={paradas} onAbrir={setAbierto} enfocado={abierto}
               onNuevo={puedeEditar ? () => setCreando(true) : undefined}
@@ -360,7 +342,6 @@ export default function Mapa() {
               }}
             />
             <RecorridoModelo />
-            </Suspense>}
           </div>
         <div
           ref={contRef}
