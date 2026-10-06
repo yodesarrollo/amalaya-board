@@ -1,7 +1,8 @@
 // Lightweight, precomputed geometry. The detailed world is only loaded through its explicit link.
 const $=id=>document.getElementById(id),canvas=$('model'),ctx=canvas.getContext('2d');
 let yaw=0,tilt=0,span=620,target=[-24,0,20],triangles=[],buildings=[],width=1,height=1,drag,frame=0,loadId=0;
-const requested=new URLSearchParams(location.search).get('edificio')||'';
+const params=new URLSearchParams(location.search),requested=params.get('edificio')||'';
+function updateSelection(id){const url=new URL(location.href);if(id)url.searchParams.set('edificio',id);else url.searchParams.delete('edificio');history.replaceState(null,'',url.pathname+url.search)}
 function schedule(){if(!frame)frame=requestAnimationFrame(()=>{frame=0;render()})}
 function render(){
  if(!ctx)return;const rect=canvas.getBoundingClientRect();width=Math.max(1,rect.width);height=Math.max(1,rect.height);const ratio=Math.min(1.5,devicePixelRatio||1),w=Math.round(width*ratio),h=Math.round(height*ratio);if(canvas.width!==w||canvas.height!==h){canvas.width=w;canvas.height=h}ctx.setTransform(ratio,0,0,ratio,0,0);ctx.fillStyle='#edf0e7';ctx.fillRect(0,0,width,height);
@@ -13,11 +14,11 @@ function render(){
 }
 function choose(id){
  $('building').value=id;const b=buildings.find(b=>b.id===id);$('detail').replaceChildren();
- if(!b){target=[-24,0,20];span=620;$('detail').textContent='Elige un edificio para ubicarlo y ver su imagen.';history.replaceState(null,'',location.pathname);schedule();return}
- const title=document.createElement('strong');title.textContent=b.id+' · '+b.name;const link=document.createElement('a');link.href='seguimiento-3d.html';link.textContent='Volver al avance del proyecto ↗';$('detail').append(title,link);
+ if(!b){target=[-24,0,20];span=620;$('detail').textContent='Elige un edificio para ubicarlo y ver su imagen.';updateSelection('');schedule();return}
+ const title=document.createElement('strong');title.textContent=b.id+' · '+b.name;const link=document.createElement('a');link.href='./';link.textContent='Volver al board Amalaya ↗';$('detail').append(title,link);
  if(b.image){const im=document.createElement('img');im.src=b.image;im.alt='Última imagen de '+b.id;im.loading='lazy';im.decoding='async';$('detail').append(im)}
  if(b.camera?.target){target=b.camera.target;span=Math.max(45,b.camera.span||85)}else{target=[-24,0,20];span=620}
- history.replaceState(null,'','?edificio='+encodeURIComponent(id));schedule();
+ updateSelection(id);schedule();
 }
 function mode(plan){tilt=plan?0:.82;if(plan)yaw=0;$('plan').setAttribute('aria-pressed',String(plan));$('iso').setAttribute('aria-pressed',String(!plan));schedule()}
 $('all').onclick=()=>choose('');$('building').onchange=e=>choose(e.target.value);$('plan').onclick=()=>mode(true);$('iso').onclick=()=>mode(false);$('rotate').onclick=()=>{yaw+=Math.PI/4;schedule()};$('plus').onclick=()=>{span=Math.max(15,span*.8);schedule()};$('minus').onclick=()=>{span=Math.min(1400,span/.8);schedule()};
@@ -38,4 +39,5 @@ async function load(){
  }catch(e){if(id!==loadId)return;$('error').textContent=e.name==='AbortError'?'La conexión está tardando. Reintenta o vuelve al tablero; tus avances están guardados.':e.message;$('status').textContent='No se completó la carga.';$('retry').hidden=false}
  finally{clearTimeout(timeout)}
 }
+if(params.get('vista')==='volumen')mode(false);
 $('retry').onclick=load;load();
