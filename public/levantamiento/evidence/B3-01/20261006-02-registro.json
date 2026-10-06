@@ -1,0 +1,239 @@
+{
+  "id": "B3-01",
+  "building": "B3-01",
+  "order": 33,
+  "action": 2,
+  "task": "street",
+  "status": "done",
+  "executedAt": "2026-10-06T23:55:14.733122+00:00",
+  "note": "REVISADO · Calzada contrastada y conservada: Chihuahua · Garmendia–Abasolo. Anchos visuales aproximados con margen; cruces compartidos sin duplicar asfalto. No certifica accesos privados, radios, banquetas, alturas ni fachadas.",
+  "source": {
+    "id": "B3-01",
+    "sector": "B3",
+    "name": "Chihuahua · cuerpo norte intermedio",
+    "viewCenter": [
+      29.0763166,
+      -110.9535192
+    ],
+    "zoomMeters": 244,
+    "pixels": [
+      [
+        888.6269676890488,
+        356.0653333340124
+      ],
+      [
+        944.6269676890488,
+        352.5653333340124
+      ],
+      [
+        947.1269676890488,
+        380.5653333340124
+      ],
+      [
+        921.6269676890488,
+        384.0653333340124
+      ],
+      [
+        921.6269676890488,
+        386.0653333340124
+      ],
+      [
+        902.1269676890488,
+        388.0653333340124
+      ],
+      [
+        888.6269676890488,
+        386.5653333340124
+      ]
+    ],
+    "note": "CERRADO · Cuerpo intermedio entre la esquina EB-NW y De Ayón; contorno quebrado conserva las separaciones del patio posterior. Trazado manual ±3 m; imagen del cuerpo en el modelo y registro por columna.",
+    "sourceScreenPixels": [
+      [
+        558,
+        411
+      ],
+      [
+        670,
+        404
+      ],
+      [
+        675,
+        460
+      ],
+      [
+        624,
+        467
+      ],
+      [
+        624,
+        471
+      ],
+      [
+        585,
+        475
+      ],
+      [
+        558,
+        472
+      ]
+    ],
+    "pixelHoles": [],
+    "points": [
+      [
+        84.044,
+        -37.19
+      ],
+      [
+        113.243,
+        -39.01
+      ],
+      [
+        114.547,
+        -24.448
+      ],
+      [
+        101.251,
+        -22.628
+      ],
+      [
+        101.251,
+        -21.587
+      ],
+      [
+        91.083,
+        -20.547
+      ],
+      [
+        84.044,
+        -21.327
+      ]
+    ],
+    "holes": [],
+    "uncertaintyMeters": 3,
+    "heightMeters": 6.2,
+    "measuredAt": "2026-10-06T02:20:49.326624+00:00",
+    "source": "Google Maps satellite, manually interpreted visible roof boundary; two screen anchors and scale. Source imagery date unverified.",
+    "calibration": {
+      "a": [
+        550,
+        300,
+        29.076713,
+        -110.955667
+      ],
+      "b": [
+        1000,
+        700,
+        29.074838,
+        -110.953253
+      ],
+      "viewport": [
+        1363,
+        936
+      ],
+      "metersPerPixel": [
+        0.521424,
+        0.520078
+      ]
+    },
+    "mapUrl": "https://www.google.com/maps/@29.0759255,-110.9549615,488m/data=!3m1!1e3"
+  },
+  "heightMeasured": false,
+  "baseline": {
+    "url": "levantamiento/evidence/B3-01/20261006-02-antes.png",
+    "title": "Acción 2 · antes",
+    "label": "Calzada · 02",
+    "capturedAt": "2026-10-06T23:55:14.733122+00:00",
+    "worldSha256": "0abab345f69cc7db494dffebff8228d222348d8a1648541b5ac6318b7408b6a3",
+    "sha256": "e23be215666b54fc445e743139bb72d4f88f9786be725e0a96e81b52f56750d3",
+    "cameraId": "B3-01-street50-20261006",
+    "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
+  },
+  "current": {
+    "url": "levantamiento/evidence/B3-01/20261006-02-calzada.png",
+    "title": "Acción 2 · calzada revisada",
+    "label": "Calzada · 02",
+    "capturedAt": "2026-10-06T23:55:14.733122+00:00",
+    "worldSha256": "b589e6acf74ad7ebc55658df314d14b3ee6ecd7527e5261db0ae427cd8134386",
+    "sha256": "81cb435115b9da1df534500dedc8f90057dd12c04468873a4d593bd0ccd11791",
+    "cameraId": "B3-01-street50-20261006",
+    "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
+  },
+  "camera": {
+    "id": "B3-01-street50-20261006",
+    "direction": [
+      0.2,
+      1,
+      1
+    ],
+    "span": 70,
+    "projection": "orthographic",
+    "target": [
+      99.29549789428711,
+      1,
+      -29.778499603271484
+    ]
+  },
+  "worldSha256": "b589e6acf74ad7ebc55658df314d14b3ee6ecd7527e5261db0ae427cd8134386",
+  "baselineWorldSha256": "0abab345f69cc7db494dffebff8228d222348d8a1648541b5ac6318b7408b6a3",
+  "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography.",
+  "triangles": 31829,
+  "streetSegments": [
+    {
+      "id": "CH-E",
+      "name": "Chihuahua · Garmendia–Abasolo",
+      "widthMeters": 5.21,
+      "uncertaintyMeters": 0.5,
+      "operation": "retained-verified",
+      "source": "street-round.json; existing geometry owner retained"
+    }
+  ],
+  "references": [
+    {
+      "id": "A1",
+      "url": "https://www.google.com/maps/@29.0770989,-110.9564038,244m/data=!3m1!1e3",
+      "observedAt": "2026-10-06T23:55:14.733122+00:00",
+      "scaleBarMeters": 20,
+      "scaleBarPixels": 79,
+      "viewport": [
+        1363,
+        936
+      ],
+      "imageryDateVerified": false
+    },
+    {
+      "id": "C1",
+      "url": "https://www.google.com/maps/@29.0755344,-110.9564038,244m/data=!3m1!1e3",
+      "observedAt": "2026-10-06T23:55:14.733122+00:00",
+      "scaleBarMeters": 20,
+      "scaleBarPixels": 79,
+      "viewport": [
+        1363,
+        936
+      ],
+      "imageryDateVerified": false
+    },
+    {
+      "id": "A3",
+      "url": "https://www.google.com/maps/@29.0770989,-110.9535192,244m/data=!3m1!1e3",
+      "observedAt": "2026-10-06T23:55:14.733122+00:00",
+      "scaleBarMeters": 20,
+      "scaleBarPixels": 79,
+      "viewport": [
+        1363,
+        936
+      ],
+      "imageryDateVerified": false
+    }
+  ],
+  "checks": {
+    "unchangedBuildingAndColliderGeometry": true,
+    "uniqueRoadOwners": true,
+    "noNewRoadOverlapWithFootprints": true,
+    "sameComparisonCamera": true
+  },
+  "limits": [
+    "Anchos y ejes aproximados; no es levantamiento topográfico.",
+    "Las franjas se recortan en el límite de plantas aproximadas para no invadirlas; el ancho nominal puede estrecharse localmente.",
+    "Las vistas son renders del modelo, no capturas WebGL ni fotografías."
+  ]
+}

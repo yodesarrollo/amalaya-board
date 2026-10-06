@@ -9,10 +9,10 @@
     "visor": "a293ff5b0562649401b8449301d289042fcd8ed828e49d7dc8a5f86f277f1099"
   },
   "hashes": {
-    "world": "0abab345f69cc7db494dffebff8228d222348d8a1648541b5ac6318b7408b6a3",
-    "visor": "add46ddb42799d9bbd6b7764c1fb747383308ac71ffc178b646d1f3df197b8c5"
+    "world": "b589e6acf74ad7ebc55658df314d14b3ee6ecd7527e5261db0ae427cd8134386",
+    "visor": "fe5742f79e2f2ebba04ea1f71e20f7ed006c37db6d24e7ec69c3aad89e818021"
   },
-  "moduleSha256": "32f4975475fd57afe95d414622cb8189dd55fcae76c4cf703cd4955cc182335d",
+  "moduleSha256": "67a6ef85ca77c27d5e9c32187f3097cf881c7c305af531a5ae75418e57ab5b7f",
   "dataSha256": "9ae568697dde4a4c780a54b0e76ff3255ecadd9ca6b2605fe0f01b53aacaf30f",
   "newOrIndividualizedPolygons": 127,
   "scope": "whole calibrated sheet including intersecting edge bodies",
@@ -23,5 +23,12 @@
     "New heights 6.2 m are modelling placeholders for action 7.",
     "Images are renders of actual model vertices; no satellite images published."
   ],
-  "preserved": "Prior valid completed actions and historical evidence retained; four generic south-front modules replaced by individual roof contours."
+  "preserved": "Prior valid completed actions and historical evidence retained; four generic south-front modules replaced by individual roof contours.",
+  "streetBatch50": {
+    "module": "street-batch50-refinement.js",
+    "moduleSha256": "9300d223f642a2e4889a565415fb73e29b0580e47110e8f85a7725ebab673cca",
+    "dataSha256": "dbace99ec7008f142f5310b13e178a8fa56de22bdcd1b6a964cec48d348201ab",
+    "task": "street",
+    "buildingCount": 50
+  }
 }

@@ -1,0 +1,313 @@
+{
+  "id": "A2-01",
+  "building": "A2-01",
+  "order": 7,
+  "action": 2,
+  "task": "street",
+  "status": "done",
+  "executedAt": "2026-10-06T23:55:14.733122+00:00",
+  "note": "REVISADO · Calzada añadida o conectada: Yáñez · Plutarco–Serdán, Plutarco Elías Calles · Rosales–Garmendia. Anchos visuales aproximados con margen; cruces compartidos sin duplicar asfalto. No certifica accesos privados, radios, banquetas, alturas ni fachadas.",
+  "source": {
+    "id": "A2-01",
+    "sector": "A2",
+    "name": "Serdán · cubiertas posteriores a Santander",
+    "viewCenter": [
+      29.0770989,
+      -110.9549615
+    ],
+    "zoomMeters": 244,
+    "pixels": [
+      [
+        535.2640845087855,
+        91.67466666715336
+      ],
+      [
+        660.7640845087855,
+        82.17466666715336
+      ],
+      [
+        665.2640845087855,
+        152.67466666715336
+      ],
+      [
+        543.2640845087855,
+        173.17466666715336
+      ]
+    ],
+    "pixelHoles": [
+      [
+        [
+          613.7640845087855,
+          113.67466666715336
+        ],
+        [
+          658.7640845087855,
+          106.67466666715336
+        ],
+        [
+          661.2640845087855,
+          125.17466666715336
+        ],
+        [
+          614.7640845087855,
+          134.17466666715336
+        ]
+      ]
+    ],
+    "note": "CERRADO · Conjunto de cubiertas al norte de Santander, con patio interior descubierto excluido; se incluye el cuerpo completo cortado por el borde norte. Planta manual con escala verificada, ±3 m. Altura y comercio pendientes en sus acciones.",
+    "sourceScreenPixels": [
+      [
+        389,
+        216
+      ],
+      [
+        640,
+        197
+      ],
+      [
+        649,
+        338
+      ],
+      [
+        405,
+        379
+      ]
+    ],
+    "points": [
+      [
+        -100.208,
+        -174.694
+      ],
+      [
+        -34.77,
+        -179.634
+      ],
+      [
+        -32.423,
+        -142.969
+      ],
+      [
+        -96.037,
+        -132.307
+      ]
+    ],
+    "holes": [
+      [
+        [
+          -59.277,
+          -163.252
+        ],
+        [
+          -35.812,
+          -166.892
+        ],
+        [
+          -34.509,
+          -157.271
+        ],
+        [
+          -58.755,
+          -152.59
+        ]
+      ]
+    ],
+    "uncertaintyMeters": 3,
+    "heightMeters": 6.2,
+    "measuredAt": "2026-10-06T02:10:30.115436+00:00",
+    "source": "Google Maps satellite, manually interpreted visible roof boundary; two screen anchors and scale. Source imagery date unverified.",
+    "calibration": {
+      "a": [
+        550,
+        300,
+        29.076713,
+        -110.955667
+      ],
+      "b": [
+        1000,
+        700,
+        29.074838,
+        -110.953253
+      ],
+      "viewport": [
+        1363,
+        936
+      ],
+      "metersPerPixel": [
+        0.521424,
+        0.520078
+      ]
+    },
+    "mapUrl": "https://www.google.com/maps/@29.0759255,-110.9549615,488m/data=!3m1!1e3"
+  },
+  "heightMeasured": false,
+  "baseline": {
+    "url": "levantamiento/evidence/A2-01/20261006-02-antes.png",
+    "title": "Acción 2 · antes",
+    "label": "Calzada · 02",
+    "capturedAt": "2026-10-06T23:55:14.733122+00:00",
+    "worldSha256": "0abab345f69cc7db494dffebff8228d222348d8a1648541b5ac6318b7408b6a3",
+    "sha256": "7f173414d81f93c2498415d6d4f96bd12d8ed46ef24a31f387cfb7773839d271",
+    "cameraId": "A2-01-street50-20261006",
+    "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
+  },
+  "current": {
+    "url": "levantamiento/evidence/A2-01/20261006-02-calzada.png",
+    "title": "Acción 2 · calzada revisada",
+    "label": "Calzada · 02",
+    "capturedAt": "2026-10-06T23:55:14.733122+00:00",
+    "worldSha256": "b589e6acf74ad7ebc55658df314d14b3ee6ecd7527e5261db0ae427cd8134386",
+    "sha256": "5b52873af8f31ea99a6d58898afe600b690c84795344df16b15c0558a07f38a7",
+    "cameraId": "A2-01-street50-20261006",
+    "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
+  },
+  "camera": {
+    "id": "A2-01-street50-20261006",
+    "direction": [
+      0.2,
+      1,
+      1
+    ],
+    "span": 140.99280000000002,
+    "projection": "orthographic",
+    "target": [
+      -66.31550025939941,
+      1,
+      -155.9705047607422
+    ]
+  },
+  "worldSha256": "b589e6acf74ad7ebc55658df314d14b3ee6ecd7527e5261db0ae427cd8134386",
+  "baselineWorldSha256": "0abab345f69cc7db494dffebff8228d222348d8a1648541b5ac6318b7408b6a3",
+  "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography.",
+  "triangles": 4747,
+  "streetSegments": [
+    {
+      "id": "YA-N",
+      "name": "Yáñez · Plutarco–Serdán",
+      "points": [
+        [
+          -108.35856,
+          -181.71391
+        ],
+        [
+          -100.64088,
+          -137.61128
+        ],
+        [
+          -91.83456,
+          -87.31765
+        ]
+      ],
+      "widthMeters": 8,
+      "uncertaintyMeters": 1.5,
+      "reference": "A1",
+      "samplePixels": [
+        [
+          939,
+          419
+        ],
+        [
+          971,
+          416
+        ]
+      ],
+      "areaMeters2": 723.3201731502232,
+      "trimmedBuildingAreaMeters2": 1.9464611234973432,
+      "operation": "added"
+    },
+    {
+      "id": "PL",
+      "name": "Plutarco Elías Calles · Rosales–Garmendia",
+      "points": [
+        [
+          -246.36312,
+          -160.05647
+        ],
+        [
+          -178.97436,
+          -171.37337
+        ],
+        [
+          -108.35856,
+          -181.71391
+        ],
+        [
+          -43.02072,
+          -188.58171
+        ],
+        [
+          -27.2646,
+          -190.14611
+        ],
+        [
+          31.9788,
+          -196.01536
+        ]
+      ],
+      "widthMeters": 9,
+      "uncertaintyMeters": 1.5,
+      "reference": "A3",
+      "samplePixels": [
+        [
+          591,
+          97
+        ],
+        [
+          595,
+          132
+        ]
+      ],
+      "areaMeters2": 2400.6373186214064,
+      "trimmedBuildingAreaMeters2": 0.0,
+      "operation": "added"
+    }
+  ],
+  "references": [
+    {
+      "id": "A1",
+      "url": "https://www.google.com/maps/@29.0770989,-110.9564038,244m/data=!3m1!1e3",
+      "observedAt": "2026-10-06T23:55:14.733122+00:00",
+      "scaleBarMeters": 20,
+      "scaleBarPixels": 79,
+      "viewport": [
+        1363,
+        936
+      ],
+      "imageryDateVerified": false
+    },
+    {
+      "id": "C1",
+      "url": "https://www.google.com/maps/@29.0755344,-110.9564038,244m/data=!3m1!1e3",
+      "observedAt": "2026-10-06T23:55:14.733122+00:00",
+      "scaleBarMeters": 20,
+      "scaleBarPixels": 79,
+      "viewport": [
+        1363,
+        936
+      ],
+      "imageryDateVerified": false
+    },
+    {
+      "id": "A3",
+      "url": "https://www.google.com/maps/@29.0770989,-110.9535192,244m/data=!3m1!1e3",
+      "observedAt": "2026-10-06T23:55:14.733122+00:00",
+      "scaleBarMeters": 20,
+      "scaleBarPixels": 79,
+      "viewport": [
+        1363,
+        936
+      ],
+      "imageryDateVerified": false
+    }
+  ],
+  "checks": {
+    "unchangedBuildingAndColliderGeometry": true,
+    "uniqueRoadOwners": true,
+    "noNewRoadOverlapWithFootprints": true,
+    "sameComparisonCamera": true
+  },
+  "limits": [
+    "Anchos y ejes aproximados; no es levantamiento topográfico.",
+    "Las franjas se recortan en el límite de plantas aproximadas para no invadirlas; el ancho nominal puede estrecharse localmente.",
+    "Las vistas son renders del modelo, no capturas WebGL ni fotografías."
+  ]
+}

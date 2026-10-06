@@ -1,3 +1,4 @@
+import { applyStreetBatch50 } from './street-batch50-refinement.js?v=9300d223f642';
 import { SHEET_PLANS } from './sheet-plan-data.js?v=9ae568697dde';
 import { footprintColliderCells } from './isc58-refinement.js?v=76eca0365d35';
 
@@ -67,5 +68,6 @@ export function applySheetPlan(world, colliders, R) {
   }
   world.add(group); world.updateMatrixWorld(true);
   const result={version:'sheet-plan-20261006',task:'plan',entries,replacedGenericFront,landSurvey:false};
+  applyStreetBatch50(world);
   world.userData.sheetPlan=result; return result;
 }

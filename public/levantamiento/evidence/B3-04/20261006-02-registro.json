@@ -1,0 +1,335 @@
+{
+  "id": "B3-04",
+  "building": "B3-04",
+  "order": 36,
+  "action": 2,
+  "task": "street",
+  "status": "done",
+  "executedAt": "2026-10-06T23:55:14.733122+00:00",
+  "note": "REVISADO · Calzada añadida o conectada: Abasolo · Serdán–Chihuahua, Chihuahua · Abasolo–borde del lote, Chihuahua · encuentro existente junto a B3-04. Anchos visuales aproximados con margen; cruces compartidos sin duplicar asfalto. No certifica accesos privados, radios, banquetas, alturas ni fachadas. Se recorta el encuentro antiguo de Chihuahua que cruzaba la planta de B3-04.",
+  "source": {
+    "id": "B3-04",
+    "sector": "B3",
+    "name": "Chihuahua–Abasolo · cuerpo del borde noreste",
+    "viewCenter": [
+      29.0763166,
+      -110.9535192
+    ],
+    "zoomMeters": 244,
+    "pixels": [
+      [
+        1082.6269676890488,
+        306.0653333340124
+      ],
+      [
+        1105.1269676890488,
+        304.5653333340124
+      ],
+      [
+        1106.1269676890488,
+        287.0653333340124
+      ],
+      [
+        1123.6269676890488,
+        284.0653333340124
+      ],
+      [
+        1128.6269676890488,
+        326.5653333340124
+      ],
+      [
+        1084.6269676890488,
+        332.0653333340124
+      ]
+    ],
+    "pixelHoles": [
+      [
+        [
+          1090.1269676890488,
+          316.5653333340124
+        ],
+        [
+          1100.1269676890488,
+          315.0653333340124
+        ],
+        [
+          1102.1269676890488,
+          324.0653333340124
+        ],
+        [
+          1092.1269676890488,
+          326.5653333340124
+        ]
+      ]
+    ],
+    "note": "CERRADO · Cuerpo que cruza el límite oriental junto al cruce; vacío interior visible excluido. Planta visual ±3 m; altura provisional y comercio sin confirmar.",
+    "sourceScreenPixels": [
+      [
+        946,
+        311
+      ],
+      [
+        991,
+        308
+      ],
+      [
+        993,
+        273
+      ],
+      [
+        1028,
+        267
+      ],
+      [
+        1038,
+        352
+      ],
+      [
+        950,
+        363
+      ]
+    ],
+    "points": [
+      [
+        185.2,
+        -63.194
+      ],
+      [
+        196.932,
+        -63.974
+      ],
+      [
+        197.453,
+        -73.075
+      ],
+      [
+        206.578,
+        -74.635
+      ],
+      [
+        209.185,
+        -52.532
+      ],
+      [
+        186.243,
+        -49.672
+      ]
+    ],
+    "holes": [
+      [
+        [
+          189.11,
+          -57.733
+        ],
+        [
+          194.325,
+          -58.513
+        ],
+        [
+          195.368,
+          -53.832
+        ],
+        [
+          190.153,
+          -52.532
+        ]
+      ]
+    ],
+    "uncertaintyMeters": 3,
+    "heightMeters": 6.2,
+    "measuredAt": "2026-10-06T02:21:03.741259+00:00",
+    "source": "Google Maps satellite, manually interpreted visible roof boundary; two screen anchors and scale. Source imagery date unverified.",
+    "calibration": {
+      "a": [
+        550,
+        300,
+        29.076713,
+        -110.955667
+      ],
+      "b": [
+        1000,
+        700,
+        29.074838,
+        -110.953253
+      ],
+      "viewport": [
+        1363,
+        936
+      ],
+      "metersPerPixel": [
+        0.521424,
+        0.520078
+      ]
+    },
+    "mapUrl": "https://www.google.com/maps/@29.0759255,-110.9549615,488m/data=!3m1!1e3"
+  },
+  "heightMeasured": false,
+  "baseline": {
+    "url": "levantamiento/evidence/B3-04/20261006-02-antes.png",
+    "title": "Acción 2 · antes",
+    "label": "Calzada · 02",
+    "capturedAt": "2026-10-06T23:55:14.733122+00:00",
+    "worldSha256": "0abab345f69cc7db494dffebff8228d222348d8a1648541b5ac6318b7408b6a3",
+    "sha256": "aa36515cd11b2228ddbddfd67aedb74dd393c07dd696d1dcc6f1cb0cd9556f21",
+    "cameraId": "B3-04-street50-20261006",
+    "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
+  },
+  "current": {
+    "url": "levantamiento/evidence/B3-04/20261006-02-calzada.png",
+    "title": "Acción 2 · calzada revisada",
+    "label": "Calzada · 02",
+    "capturedAt": "2026-10-06T23:55:14.733122+00:00",
+    "worldSha256": "b589e6acf74ad7ebc55658df314d14b3ee6ecd7527e5261db0ae427cd8134386",
+    "sha256": "4492143acef4900e90f1e83f016502140c0c66a7d23c8077b1e1c2f449652145",
+    "cameraId": "B3-04-street50-20261006",
+    "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
+  },
+  "camera": {
+    "id": "B3-04-street50-20261006",
+    "direction": [
+      0.2,
+      1,
+      1
+    ],
+    "span": 70,
+    "projection": "orthographic",
+    "target": [
+      197.19249725341797,
+      1,
+      -62.15350151062012
+    ]
+  },
+  "worldSha256": "b589e6acf74ad7ebc55658df314d14b3ee6ecd7527e5261db0ae427cd8134386",
+  "baselineWorldSha256": "0abab345f69cc7db494dffebff8228d222348d8a1648541b5ac6318b7408b6a3",
+  "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography.",
+  "triangles": 8626,
+  "streetSegments": [
+    {
+      "id": "AB-N",
+      "name": "Abasolo · Serdán–Chihuahua",
+      "points": [
+        [
+          175.87368,
+          -141.15059
+        ],
+        [
+          178.77996,
+          -90.44644
+        ],
+        [
+          179.5284,
+          -77.35434
+        ],
+        [
+          181.20996,
+          -47.96368
+        ]
+      ],
+      "widthMeters": 6.6,
+      "uncertaintyMeters": 1,
+      "reference": "A3",
+      "samplePixels": [
+        [
+          903,
+          440
+        ],
+        [
+          929,
+          438
+        ]
+      ],
+      "areaMeters2": 579.5769234884112,
+      "trimmedBuildingAreaMeters2": 0.0,
+      "operation": "added"
+    },
+    {
+      "id": "CH-E50",
+      "name": "Chihuahua · Abasolo–borde del lote",
+      "points": [
+        [
+          181.20996,
+          -47.96368
+        ],
+        [
+          222,
+          -49.0
+        ]
+      ],
+      "widthMeters": 5.21,
+      "uncertaintyMeters": 0.7,
+      "reference": "A3",
+      "samplePixels": [
+        [
+          1040,
+          698
+        ],
+        [
+          1041,
+          719
+        ]
+      ],
+      "areaMeters2": 149.0286682260269,
+      "trimmedBuildingAreaMeters2": 7.190452890835899,
+      "operation": "added"
+    },
+    {
+      "id": "CH-JOIN",
+      "owner": "Chihuahua · calzada de continuidad Amalaya",
+      "name": "Chihuahua · encuentro existente junto a B3-04",
+      "removedAreaMeters2": 9.331575878412096,
+      "reason": "Remove old roadway overlap with B3-04 roof footprint; building and collisions are unchanged.",
+      "operation": "repaired",
+      "widthMeters": 5.21,
+      "uncertaintyMeters": 0.7
+    }
+  ],
+  "references": [
+    {
+      "id": "A1",
+      "url": "https://www.google.com/maps/@29.0770989,-110.9564038,244m/data=!3m1!1e3",
+      "observedAt": "2026-10-06T23:55:14.733122+00:00",
+      "scaleBarMeters": 20,
+      "scaleBarPixels": 79,
+      "viewport": [
+        1363,
+        936
+      ],
+      "imageryDateVerified": false
+    },
+    {
+      "id": "C1",
+      "url": "https://www.google.com/maps/@29.0755344,-110.9564038,244m/data=!3m1!1e3",
+      "observedAt": "2026-10-06T23:55:14.733122+00:00",
+      "scaleBarMeters": 20,
+      "scaleBarPixels": 79,
+      "viewport": [
+        1363,
+        936
+      ],
+      "imageryDateVerified": false
+    },
+    {
+      "id": "A3",
+      "url": "https://www.google.com/maps/@29.0770989,-110.9535192,244m/data=!3m1!1e3",
+      "observedAt": "2026-10-06T23:55:14.733122+00:00",
+      "scaleBarMeters": 20,
+      "scaleBarPixels": 79,
+      "viewport": [
+        1363,
+        936
+      ],
+      "imageryDateVerified": false
+    }
+  ],
+  "checks": {
+    "unchangedBuildingAndColliderGeometry": true,
+    "uniqueRoadOwners": true,
+    "noNewRoadOverlapWithFootprints": true,
+    "sameComparisonCamera": true
+  },
+  "limits": [
+    "Anchos y ejes aproximados; no es levantamiento topográfico.",
+    "Las franjas se recortan en el límite de plantas aproximadas para no invadirlas; el ancho nominal puede estrecharse localmente.",
+    "Las vistas son renders del modelo, no capturas WebGL ni fotografías."
+  ]
+}

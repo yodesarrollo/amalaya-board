@@ -1,0 +1,211 @@
+{
+  "id": "A2-05",
+  "building": "A2-05",
+  "order": 11,
+  "action": 2,
+  "task": "street",
+  "status": "done",
+  "executedAt": "2026-10-06T23:55:14.733122+00:00",
+  "note": "REVISADO · Calzada contrastada y conservada: Serdán · Yáñez–Garmendia, Garmendia · Chihuahua–Serdán. Anchos visuales aproximados con margen; cruces compartidos sin duplicar asfalto. No certifica accesos privados, radios, banquetas, alturas ni fachadas.",
+  "source": {
+    "id": "A2-05",
+    "sector": "A2",
+    "name": "Serdán sur · cubierta central contigua a Biblioteca",
+    "viewCenter": [
+      29.0770989,
+      -110.9549615
+    ],
+    "zoomMeters": 244,
+    "pixels": [
+      [
+        751.7640845087855,
+        235.17466666715336
+      ],
+      [
+        774.7640845087855,
+        229.17466666715336
+      ],
+      [
+        786.2640845087855,
+        292.17466666715336
+      ],
+      [
+        762.7640845087855,
+        297.17466666715336
+      ]
+    ],
+    "note": "CERRADO · Cubierta alargada central al este de la huella de Biblioteca; se registra como cuerpo físico independiente para evitar omitirlo. Planta visual ±3 m, medidas convertidas con escala comprobada; altura provisional.",
+    "sourceScreenPixels": [
+      [
+        822,
+        503
+      ],
+      [
+        868,
+        491
+      ],
+      [
+        891,
+        617
+      ],
+      [
+        844,
+        627
+      ]
+    ],
+    "pixelHoles": [],
+    "points": [
+      [
+        12.68,
+        -100.062
+      ],
+      [
+        24.673,
+        -103.183
+      ],
+      [
+        30.669,
+        -70.418
+      ],
+      [
+        18.416,
+        -67.817
+      ]
+    ],
+    "holes": [],
+    "uncertaintyMeters": 3,
+    "heightMeters": 6.2,
+    "measuredAt": "2026-10-06T02:11:28.490711+00:00",
+    "source": "Google Maps satellite, manually interpreted visible roof boundary; two screen anchors and scale. Source imagery date unverified.",
+    "calibration": {
+      "a": [
+        550,
+        300,
+        29.076713,
+        -110.955667
+      ],
+      "b": [
+        1000,
+        700,
+        29.074838,
+        -110.953253
+      ],
+      "viewport": [
+        1363,
+        936
+      ],
+      "metersPerPixel": [
+        0.521424,
+        0.520078
+      ]
+    },
+    "mapUrl": "https://www.google.com/maps/@29.0759255,-110.9549615,488m/data=!3m1!1e3"
+  },
+  "heightMeasured": false,
+  "baseline": {
+    "url": "levantamiento/evidence/A2-05/20261006-02-antes.png",
+    "title": "Acción 2 · antes",
+    "label": "Calzada · 02",
+    "capturedAt": "2026-10-06T23:55:14.733122+00:00",
+    "worldSha256": "0abab345f69cc7db494dffebff8228d222348d8a1648541b5ac6318b7408b6a3",
+    "sha256": "7bde45f507b4e95c11f508178f6a86140e2d10b4739aa893242e21fc2ec35ad8",
+    "cameraId": "A2-05-street50-20261006",
+    "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
+  },
+  "current": {
+    "url": "levantamiento/evidence/A2-05/20261006-02-calzada.png",
+    "title": "Acción 2 · calzada revisada",
+    "label": "Calzada · 02",
+    "capturedAt": "2026-10-06T23:55:14.733122+00:00",
+    "worldSha256": "b589e6acf74ad7ebc55658df314d14b3ee6ecd7527e5261db0ae427cd8134386",
+    "sha256": "ae61fdfdac296a59e7a00b4d95ac705f98d5476c94fdf7feb5f67506a0bf27a8",
+    "cameraId": "A2-05-street50-20261006",
+    "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
+  },
+  "camera": {
+    "id": "A2-05-street50-20261006",
+    "direction": [
+      0.2,
+      1,
+      1
+    ],
+    "span": 73.56128000000004,
+    "projection": "orthographic",
+    "target": [
+      21.674500465393066,
+      1,
+      -85.5
+    ]
+  },
+  "worldSha256": "b589e6acf74ad7ebc55658df314d14b3ee6ecd7527e5261db0ae427cd8134386",
+  "baselineWorldSha256": "0abab345f69cc7db494dffebff8228d222348d8a1648541b5ac6318b7408b6a3",
+  "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography.",
+  "triangles": 11592,
+  "streetSegments": [
+    {
+      "id": "SE-W",
+      "name": "Serdán · Yáñez–Garmendia",
+      "widthMeters": 11,
+      "uncertaintyMeters": 1.5,
+      "operation": "retained-verified",
+      "source": "street-round.json; existing geometry owner retained"
+    },
+    {
+      "id": "GA-M",
+      "name": "Garmendia · Chihuahua–Serdán",
+      "widthMeters": 6.2,
+      "uncertaintyMeters": 1,
+      "operation": "retained-verified",
+      "source": "street-round.json; existing geometry owner retained"
+    }
+  ],
+  "references": [
+    {
+      "id": "A1",
+      "url": "https://www.google.com/maps/@29.0770989,-110.9564038,244m/data=!3m1!1e3",
+      "observedAt": "2026-10-06T23:55:14.733122+00:00",
+      "scaleBarMeters": 20,
+      "scaleBarPixels": 79,
+      "viewport": [
+        1363,
+        936
+      ],
+      "imageryDateVerified": false
+    },
+    {
+      "id": "C1",
+      "url": "https://www.google.com/maps/@29.0755344,-110.9564038,244m/data=!3m1!1e3",
+      "observedAt": "2026-10-06T23:55:14.733122+00:00",
+      "scaleBarMeters": 20,
+      "scaleBarPixels": 79,
+      "viewport": [
+        1363,
+        936
+      ],
+      "imageryDateVerified": false
+    },
+    {
+      "id": "A3",
+      "url": "https://www.google.com/maps/@29.0770989,-110.9535192,244m/data=!3m1!1e3",
+      "observedAt": "2026-10-06T23:55:14.733122+00:00",
+      "scaleBarMeters": 20,
+      "scaleBarPixels": 79,
+      "viewport": [
+        1363,
+        936
+      ],
+      "imageryDateVerified": false
+    }
+  ],
+  "checks": {
+    "unchangedBuildingAndColliderGeometry": true,
+    "uniqueRoadOwners": true,
+    "noNewRoadOverlapWithFootprints": true,
+    "sameComparisonCamera": true
+  },
+  "limits": [
+    "Anchos y ejes aproximados; no es levantamiento topográfico.",
+    "Las franjas se recortan en el límite de plantas aproximadas para no invadirlas; el ancho nominal puede estrecharse localmente.",
+    "Las vistas son renders del modelo, no capturas WebGL ni fotografías."
+  ]
+}

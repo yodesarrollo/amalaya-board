@@ -1,0 +1,203 @@
+{
+  "id": "A2-02",
+  "building": "A2-02",
+  "order": 8,
+  "action": 2,
+  "task": "street",
+  "status": "done",
+  "executedAt": "2026-10-06T23:55:14.733122+00:00",
+  "note": "REVISADO · Calzada contrastada y conservada: Serdán · Yáñez–Garmendia. Anchos visuales aproximados con margen; cruces compartidos sin duplicar asfalto. No certifica accesos privados, radios, banquetas, alturas ni fachadas.",
+  "source": {
+    "id": "A2-02",
+    "sector": "A2",
+    "name": "Serdán · cuerpo intermedio occidental",
+    "viewCenter": [
+      29.0770989,
+      -110.9549615
+    ],
+    "zoomMeters": 244,
+    "pixels": [
+      [
+        638.2640845087855,
+        162.67466666715336
+      ],
+      [
+        695.2640845087855,
+        153.67466666715336
+      ],
+      [
+        712.7640845087855,
+        211.67466666715336
+      ],
+      [
+        645.7640845087855,
+        224.17466666715336
+      ]
+    ],
+    "pixelHoles": [],
+    "note": "CERRADO · Cubierta contigua al este de Santander, con borde frontal oblicuo y sin ocupar el paso lateral. Planta manual con escala verificada, ±3 m. Altura y comercio pendientes en sus acciones.",
+    "sourceScreenPixels": [
+      [
+        595,
+        358
+      ],
+      [
+        709,
+        340
+      ],
+      [
+        744,
+        456
+      ],
+      [
+        610,
+        481
+      ]
+    ],
+    "points": [
+      [
+        -46.502,
+        -137.768
+      ],
+      [
+        -16.78,
+        -142.449
+      ],
+      [
+        -7.656,
+        -112.284
+      ],
+      [
+        -42.591,
+        -105.783
+      ]
+    ],
+    "holes": [],
+    "uncertaintyMeters": 3,
+    "heightMeters": 6.2,
+    "measuredAt": "2026-10-06T02:10:33.471935+00:00",
+    "source": "Google Maps satellite, manually interpreted visible roof boundary; two screen anchors and scale. Source imagery date unverified.",
+    "calibration": {
+      "a": [
+        550,
+        300,
+        29.076713,
+        -110.955667
+      ],
+      "b": [
+        1000,
+        700,
+        29.074838,
+        -110.953253
+      ],
+      "viewport": [
+        1363,
+        936
+      ],
+      "metersPerPixel": [
+        0.521424,
+        0.520078
+      ]
+    },
+    "mapUrl": "https://www.google.com/maps/@29.0759255,-110.9549615,488m/data=!3m1!1e3"
+  },
+  "heightMeasured": false,
+  "baseline": {
+    "url": "levantamiento/evidence/A2-02/20261006-02-antes.png",
+    "title": "Acción 2 · antes",
+    "label": "Calzada · 02",
+    "capturedAt": "2026-10-06T23:55:14.733122+00:00",
+    "worldSha256": "0abab345f69cc7db494dffebff8228d222348d8a1648541b5ac6318b7408b6a3",
+    "sha256": "cb34404fd0ef83d210d18adf19071579c0e8409f8e1d4e95583855ab04d823d7",
+    "cameraId": "A2-02-street50-20261006",
+    "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
+  },
+  "current": {
+    "url": "levantamiento/evidence/A2-02/20261006-02-calzada.png",
+    "title": "Acción 2 · calzada revisada",
+    "label": "Calzada · 02",
+    "capturedAt": "2026-10-06T23:55:14.733122+00:00",
+    "worldSha256": "b589e6acf74ad7ebc55658df314d14b3ee6ecd7527e5261db0ae427cd8134386",
+    "sha256": "e2dcd13e5032d49f91279fe359b1c1468aa999b378b5fb4a9e89ac4139e42987",
+    "cameraId": "A2-02-street50-20261006",
+    "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
+  },
+  "camera": {
+    "id": "A2-02-street50-20261006",
+    "direction": [
+      0.2,
+      1,
+      1
+    ],
+    "span": 80.79968000000002,
+    "projection": "orthographic",
+    "target": [
+      -27.078999519348145,
+      1,
+      -124.11600112915039
+    ]
+  },
+  "worldSha256": "b589e6acf74ad7ebc55658df314d14b3ee6ecd7527e5261db0ae427cd8134386",
+  "baselineWorldSha256": "0abab345f69cc7db494dffebff8228d222348d8a1648541b5ac6318b7408b6a3",
+  "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography.",
+  "triangles": 1851,
+  "streetSegments": [
+    {
+      "id": "SE-W",
+      "name": "Serdán · Yáñez–Garmendia",
+      "widthMeters": 11,
+      "uncertaintyMeters": 1.5,
+      "operation": "retained-verified",
+      "source": "street-round.json; existing geometry owner retained"
+    }
+  ],
+  "references": [
+    {
+      "id": "A1",
+      "url": "https://www.google.com/maps/@29.0770989,-110.9564038,244m/data=!3m1!1e3",
+      "observedAt": "2026-10-06T23:55:14.733122+00:00",
+      "scaleBarMeters": 20,
+      "scaleBarPixels": 79,
+      "viewport": [
+        1363,
+        936
+      ],
+      "imageryDateVerified": false
+    },
+    {
+      "id": "C1",
+      "url": "https://www.google.com/maps/@29.0755344,-110.9564038,244m/data=!3m1!1e3",
+      "observedAt": "2026-10-06T23:55:14.733122+00:00",
+      "scaleBarMeters": 20,
+      "scaleBarPixels": 79,
+      "viewport": [
+        1363,
+        936
+      ],
+      "imageryDateVerified": false
+    },
+    {
+      "id": "A3",
+      "url": "https://www.google.com/maps/@29.0770989,-110.9535192,244m/data=!3m1!1e3",
+      "observedAt": "2026-10-06T23:55:14.733122+00:00",
+      "scaleBarMeters": 20,
+      "scaleBarPixels": 79,
+      "viewport": [
+        1363,
+        936
+      ],
+      "imageryDateVerified": false
+    }
+  ],
+  "checks": {
+    "unchangedBuildingAndColliderGeometry": true,
+    "uniqueRoadOwners": true,
+    "noNewRoadOverlapWithFootprints": true,
+    "sameComparisonCamera": true
+  },
+  "limits": [
+    "Anchos y ejes aproximados; no es levantamiento topográfico.",
+    "Las franjas se recortan en el límite de plantas aproximadas para no invadirlas; el ancho nominal puede estrecharse localmente.",
+    "Las vistas son renders del modelo, no capturas WebGL ni fotografías."
+  ]
+}

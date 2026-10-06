@@ -1,0 +1,233 @@
+{
+  "id": "A3-02",
+  "building": "A3-02",
+  "order": 14,
+  "action": 2,
+  "task": "street",
+  "status": "done",
+  "executedAt": "2026-10-06T23:55:14.733122+00:00",
+  "note": "REVISADO · Calzada añadida o conectada: Serdán · Guerrero–borde oriental. Anchos visuales aproximados con margen; cruces compartidos sin duplicar asfalto. No certifica accesos privados, radios, banquetas, alturas ni fachadas.",
+  "source": {
+    "id": "A3-02",
+    "sector": "A3",
+    "name": "Serdán norte · cubierta del borde oriental",
+    "viewCenter": [
+      29.0770989,
+      -110.9535192
+    ],
+    "zoomMeters": 244,
+    "pixels": [
+      [
+        1030.1269676890488,
+        101.17466666715336
+      ],
+      [
+        1099.1269676890488,
+        93.17466666715336
+      ],
+      [
+        1105.1269676890488,
+        128.67466666715336
+      ],
+      [
+        1042.1269676890488,
+        141.67466666715336
+      ]
+    ],
+    "note": "CERRADO · Cubierta meridional del conjunto del borde noreste. Se incluye el cuerpo entero que cruza el encuadre, sin rellenar el espacio al norte. Contorno visual con escala comprobada, ±3 m; altura no medida.",
+    "sourceScreenPixels": [
+      [
+        841,
+        235
+      ],
+      [
+        979,
+        219
+      ],
+      [
+        991,
+        290
+      ],
+      [
+        865,
+        316
+      ]
+    ],
+    "pixelHoles": [],
+    "points": [
+      [
+        157.825,
+        -169.753
+      ],
+      [
+        193.803,
+        -173.913
+      ],
+      [
+        196.932,
+        -155.451
+      ],
+      [
+        164.082,
+        -148.69
+      ]
+    ],
+    "holes": [],
+    "uncertaintyMeters": 3,
+    "heightMeters": 6.2,
+    "measuredAt": "2026-10-06T02:12:53.933495+00:00",
+    "source": "Google Maps satellite, manually interpreted visible roof boundary; two screen anchors and scale. Source imagery date unverified.",
+    "calibration": {
+      "a": [
+        550,
+        300,
+        29.076713,
+        -110.955667
+      ],
+      "b": [
+        1000,
+        700,
+        29.074838,
+        -110.953253
+      ],
+      "viewport": [
+        1363,
+        936
+      ],
+      "metersPerPixel": [
+        0.521424,
+        0.520078
+      ]
+    },
+    "mapUrl": "https://www.google.com/maps/@29.0759255,-110.9549615,488m/data=!3m1!1e3"
+  },
+  "heightMeasured": false,
+  "baseline": {
+    "url": "levantamiento/evidence/A3-02/20261006-02-antes.png",
+    "title": "Acción 2 · antes",
+    "label": "Calzada · 02",
+    "capturedAt": "2026-10-06T23:55:14.733122+00:00",
+    "worldSha256": "0abab345f69cc7db494dffebff8228d222348d8a1648541b5ac6318b7408b6a3",
+    "sha256": "f9fd832fda79f4fee1dcf4c9c129c9fc16b0544a36e491d8d3851ca0364e944a",
+    "cameraId": "A3-02-street50-20261006",
+    "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
+  },
+  "current": {
+    "url": "levantamiento/evidence/A3-02/20261006-02-calzada.png",
+    "title": "Acción 2 · calzada revisada",
+    "label": "Calzada · 02",
+    "capturedAt": "2026-10-06T23:55:14.733122+00:00",
+    "worldSha256": "b589e6acf74ad7ebc55658df314d14b3ee6ecd7527e5261db0ae427cd8134386",
+    "sha256": "12061f3fbcb7a842e91dcdfbc4ef841da55a90b118fdbc6bf3bf2e3d87a8c45a",
+    "cameraId": "A3-02-street50-20261006",
+    "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
+  },
+  "camera": {
+    "id": "A3-02-street50-20261006",
+    "direction": [
+      0.2,
+      1,
+      1
+    ],
+    "span": 81.34256,
+    "projection": "orthographic",
+    "target": [
+      177.37850189208984,
+      1,
+      -161.30149841308594
+    ]
+  },
+  "worldSha256": "b589e6acf74ad7ebc55658df314d14b3ee6ecd7527e5261db0ae427cd8134386",
+  "baselineWorldSha256": "0abab345f69cc7db494dffebff8228d222348d8a1648541b5ac6318b7408b6a3",
+  "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography.",
+  "triangles": 2903,
+  "streetSegments": [
+    {
+      "id": "SE-E50",
+      "name": "Serdán · Guerrero–borde oriental",
+      "points": [
+        [
+          159.02892,
+          -138.60983
+        ],
+        [
+          175.87368,
+          -141.15059
+        ],
+        [
+          226.83564,
+          -152.20121
+        ],
+        [
+          237.09024,
+          -154.42021
+        ]
+      ],
+      "widthMeters": 10,
+      "uncertaintyMeters": 1.5,
+      "reference": "A3",
+      "samplePixels": [
+        [
+          1021,
+          322
+        ],
+        [
+          1030,
+          360
+        ]
+      ],
+      "areaMeters2": 744.9863984312337,
+      "trimmedBuildingAreaMeters2": 18.59648870001117,
+      "operation": "added"
+    }
+  ],
+  "references": [
+    {
+      "id": "A1",
+      "url": "https://www.google.com/maps/@29.0770989,-110.9564038,244m/data=!3m1!1e3",
+      "observedAt": "2026-10-06T23:55:14.733122+00:00",
+      "scaleBarMeters": 20,
+      "scaleBarPixels": 79,
+      "viewport": [
+        1363,
+        936
+      ],
+      "imageryDateVerified": false
+    },
+    {
+      "id": "C1",
+      "url": "https://www.google.com/maps/@29.0755344,-110.9564038,244m/data=!3m1!1e3",
+      "observedAt": "2026-10-06T23:55:14.733122+00:00",
+      "scaleBarMeters": 20,
+      "scaleBarPixels": 79,
+      "viewport": [
+        1363,
+        936
+      ],
+      "imageryDateVerified": false
+    },
+    {
+      "id": "A3",
+      "url": "https://www.google.com/maps/@29.0770989,-110.9535192,244m/data=!3m1!1e3",
+      "observedAt": "2026-10-06T23:55:14.733122+00:00",
+      "scaleBarMeters": 20,
+      "scaleBarPixels": 79,
+      "viewport": [
+        1363,
+        936
+      ],
+      "imageryDateVerified": false
+    }
+  ],
+  "checks": {
+    "unchangedBuildingAndColliderGeometry": true,
+    "uniqueRoadOwners": true,
+    "noNewRoadOverlapWithFootprints": true,
+    "sameComparisonCamera": true
+  },
+  "limits": [
+    "Anchos y ejes aproximados; no es levantamiento topográfico.",
+    "Las franjas se recortan en el límite de plantas aproximadas para no invadirlas; el ancho nominal puede estrecharse localmente.",
+    "Las vistas son renders del modelo, no capturas WebGL ni fotografías."
+  ]
+}
