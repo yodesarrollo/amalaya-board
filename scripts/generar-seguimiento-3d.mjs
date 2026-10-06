@@ -2,6 +2,7 @@ import { mkdir, readFile, writeFile } from 'node:fs/promises'
 import { columns, cellInfo, STATES } from '../src/seguimiento3d-model.js'
 const data = JSON.parse(await readFile(new URL('../public/seguimiento-3d.json', import.meta.url), 'utf8'))
 const targets = columns(data)
+if(data.activeReview)targets.sort((a,b)=>(data.activeReview.buildingOrder.indexOf(a.building.id)<0?999:data.activeReview.buildingOrder.indexOf(a.building.id))-(data.activeReview.buildingOrder.indexOf(b.building.id)<0?999:data.activeReview.buildingOrder.indexOf(b.building.id)))
 const publicRoot = 'https://yodesarrollo.github.io/amalaya-board/'
 function heading(building) {
   const progress = building.visualProgress
@@ -13,6 +14,7 @@ function heading(building) {
 const lines = [
   '# Amalaya · Matriz de levantamiento 3D', '',
   `Actualizado: ${data.updatedAt}. La web consulta estados cada ${data.refreshSeconds} segundos; los cambios aparecen al publicar avances.`, '',
+  ...(data.activeReview ? [`Paso 1 reiniciado para toda la lámina. ${data.activeReview.closedBuildings.length} de ${data.activeReview.buildingOrder.length} columnas conocidas revisadas. Inventario abierto: el total de edificios aún no está completo. Siguiente: ${data.activeReview.nextBuilding}.`, '', `Columnas agregadas: ${data.activeReview.addedBuildings.join(', ')}. Medir → editar → verificar → imagen y registro antes de avanzar.`, ''] : []),
   'Naranja: en proceso · Verde: terminado · Rojo: problema · Gris: pendiente o provisional.', '',
   `| Acciones / Edificios | ${targets.map(c => heading(c.building)).join(' | ')} |`,
   `|---|${targets.map(() => '---').join('|')}|`,

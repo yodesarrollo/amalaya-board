@@ -16389,7 +16389,7 @@ async function Fp(e, t, n = "pilot", r = {}) {
 		c.add(e.group), f.push(...e.colliders);
 	}
 	let p = Pp(d);
-	return c.add(p.group), f.push(...p.colliders), c.userData.navigationColliders = f, applyIsc58Refinement(c, a, u[0], f, { Group: Ot, Mesh: Y, Shape: $r, Path: Qr, ShapeGeometry: Wi, BoxGeometry: X, BufferGeometry: An, Float32BufferAttribute: J, Box3: Zt, Vector3: U, createProceduralMaterial: $, addArchedWindow: pu }), applyEbSwRefinement(c,f,{Group:Ot,Mesh:Y,Shape:$r,Path:Qr,ShapeGeometry:Wi,BoxGeometry:X,BufferGeometry:An,Float32BufferAttribute:J,Box3:Zt,Vector3:U,createProceduralMaterial:$},9), applyPlanRoundRefinement(c,f,{Box3:Zt,Vector3:U,Shape:$r,Mesh:Y}), applyStreetRoundRefinement(c,f,{BufferGeometry:An,Float32BufferAttribute:J,Mesh:Y}), applySidewalkRoundRefinement(c,f,{BufferGeometry:An,Float32BufferAttribute:J,Mesh:Y,Vector3:U,Box3:Zt}), Ip(c, n), Up(c), c;
+	return c.add(p.group), f.push(...p.colliders), c.userData.navigationColliders = f, applyIsc58Refinement(c, a, u[0], f, { Group: Ot, Mesh: Y, Shape: $r, Path: Qr, ShapeGeometry: Wi, BoxGeometry: X, BufferGeometry: An, Float32BufferAttribute: J, Box3: Zt, Vector3: U, createProceduralMaterial: $, addArchedWindow: pu }), applyEbSwRefinement(c,f,{Group:Ot,Mesh:Y,Shape:$r,Path:Qr,ShapeGeometry:Wi,BoxGeometry:X,BufferGeometry:An,Float32BufferAttribute:J,Box3:Zt,Vector3:U,createProceduralMaterial:$},9), applyPlanRoundRefinement(c,f,{Box3:Zt,Vector3:U,Shape:$r,Mesh:Y}), applyStreetRoundRefinement(c,f,{BufferGeometry:An,Float32BufferAttribute:J,Mesh:Y}), applySidewalkRoundRefinement(c,f,{BufferGeometry:An,Float32BufferAttribute:J,Mesh:Y,Vector3:U,Box3:Zt}), applyPlanReviewRefinement(c,f,{Vector3:U,Box3:Zt}), Ip(c, n), Up(c), c;
 }
 function Ip(e, t) {
 	let n = /* @__PURE__ */ new Map();
@@ -16541,3 +16541,5 @@ import { applyPlanRound as applyPlanRoundRefinement } from "./plantas-refinement
 import { applyStreetRound as applyStreetRoundRefinement } from "./calzadas-refinement.js?v=6e7bf650d403";
 
 import { applySidewalkRound as applySidewalkRoundRefinement } from "./banquetas-refinement.js?v=4c0e1c096e78";
+
+import { applyPlanReview as applyPlanReviewRefinement } from "./plan-review-refinement.js?v=eb8d22536cb3";

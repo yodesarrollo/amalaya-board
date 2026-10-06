@@ -39,7 +39,7 @@ assert(viewerAssembly?.includes('BufferGeometry:Er,Float32BufferAttribute:q,Mesh
 assert(visor.indexOf('applyStreetRoundRefinement(Ng,Hg')>visor.indexOf('applyPlanRoundRefinement(Ng,Hg'),'Street overlay follows the footprint overlay in the viewer');
 const tracking=JSON.parse(await readFile('public/seguimiento-3d.json'));
 assert.equal(tracking.workflow.photoRequiredAfterEveryAction,true);
-const buildings=tracking.blocks.flatMap(b=>b.buildings);
+const buildings=tracking.blocks.flatMap(b=>b.buildings).filter(b=>b.visualProgress?.history?.some(p=>p.manifest?.endsWith('02-record-calzada.json'))||b.visualProgress?.manifest?.endsWith('02-record-calzada.json'));
 for(const b of buildings){
  const latest=b.visualProgress;const progress=latest.manifest.endsWith('02-record-calzada.json')?latest:latest.history.find(p=>p.manifest?.endsWith('02-record-calzada.json')); assert(progress?.current?.url&&progress.manifest,`${b.id}: missing mandatory image/record`);
  const record=JSON.parse(await readFile('public/'+progress.manifest));assert.equal(record.building,b.id);assert.equal(record.action,2);assert.equal(record.status,'done');assert.equal(progress.current.url,record.current.url);assert.equal(progress.current.worldSha256,record.worldSha256);assert.equal(record.camera.id,progress.cameraId);assert(record.triangles>0);

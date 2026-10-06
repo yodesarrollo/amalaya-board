@@ -22,12 +22,12 @@ for (const block of data.blocks) {
     assert.ok(!ids.has(building.id), `ID de edificio duplicado: ${building.id}`)
     ids.add(building.id)
     buildingCount++
-    assert.ok(building.estimateHours.min <= building.estimateHours.max, `rango invertido en ${building.id}`)
+    assert.ok(building.estimateHours === null || building.estimateHours.min <= building.estimateHours.max, `rango invertido en ${building.id}`)
     for (const state of Object.values(building.tasks)) assert.ok(validStates.has(state), `${building.id}: estado ${state}`)
   }
 }
 
-assert.equal(buildingCount, 12, 'las anclas conocidas deben seguir contadas explícitamente')
+assert.equal(buildingCount, 14, 'las anclas conocidas deben seguir contadas explícitamente')
 assert.equal(totalMin, 81, 'el mínimo del resumen debe coincidir con los bloques')
 assert.equal(totalMax, 152, 'el máximo del resumen debe coincidir con los bloques')
 assert.equal(data.blocks.find(block => block.id === 'SER-GG')?.testRoute, true, 'R-000 debe seguir marcada como prueba')
@@ -51,7 +51,7 @@ console.log(`Seguimiento 3D: ${data.blocks.length} tramos, ${buildingCount} ancl
 
 const { columns, cellInfo, report, STATES } = await import('../src/seguimiento3d-model.js')
 const targets = columns(data)
-assert.equal(targets.length, 13, '12 edificios y un espacio público, sin frentes inventados')
+assert.equal(targets.length, 15, '14 edificios registrados y un espacio público; inventario abierto')
 const ob = targets.find(c => c.building.id === 'OB-02')
 const sharedOb = { ...ob, building: { ...ob.building, tasks: { identity: 'partial' } } }
 assert.equal(cellInfo(sharedOb, 'plan').key, 'OB-YG:plan', 'sin revisión propia se conserva la tarea compartida de cuadra')
