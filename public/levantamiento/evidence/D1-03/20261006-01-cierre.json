@@ -1,0 +1,156 @@
+{
+  "id": "D1-03",
+  "action": 1,
+  "status": "closed-visual-approximation",
+  "executedAt": "2026-10-06T02:36:23.198151+00:00",
+  "note": "CERRADO · Cuerpo poligonal del cruce, dejando libre el estacionamiento triangular sur. Planta visual ±3 m; no se extruyen superficies abiertas.",
+  "source": {
+    "id": "D1-03",
+    "sector": "D1",
+    "name": "Rosales–Yáñez · cuerpo de la glorieta",
+    "viewCenter": [
+      29.0747521,
+      -110.9564038
+    ],
+    "zoomMeters": 244,
+    "pixels": [
+      [
+        394.9012013258731,
+        694.32533333339
+      ],
+      [
+        421.9012013258731,
+        675.82533333339
+      ],
+      [
+        439.4012013258731,
+        672.82533333339
+      ],
+      [
+        454.9012013258731,
+        707.82533333339
+      ],
+      [
+        427.4012013258731,
+        728.82533333339
+      ],
+      [
+        406.9012013258731,
+        720.32533333339
+      ]
+    ],
+    "note": "CERRADO · Cuerpo poligonal del cruce, dejando libre el estacionamiento triangular sur. Planta visual ±3 m; no se extruyen superficies abiertas.",
+    "sourceScreenPixels": [
+      [
+        646,
+        420
+      ],
+      [
+        700,
+        383
+      ],
+      [
+        735,
+        377
+      ],
+      [
+        766,
+        447
+      ],
+      [
+        711,
+        489
+      ],
+      [
+        670,
+        472
+      ]
+    ],
+    "pixelHoles": [],
+    "points": [
+      [
+        -173.397,
+        138.732
+      ],
+      [
+        -159.318,
+        129.11
+      ],
+      [
+        -150.194,
+        127.55
+      ],
+      [
+        -142.111,
+        145.753
+      ],
+      [
+        -156.451,
+        156.675
+      ],
+      [
+        -167.14,
+        152.254
+      ]
+    ],
+    "holes": [],
+    "uncertaintyMeters": 3,
+    "heightMeters": 6.2,
+    "measuredAt": "2026-10-06T02:36:23.198151+00:00",
+    "source": "Google Maps satellite, manually interpreted visible roof boundary; two screen anchors and scale. Source imagery date unverified.",
+    "calibration": {
+      "a": [
+        550,
+        300,
+        29.076713,
+        -110.955667
+      ],
+      "b": [
+        1000,
+        700,
+        29.074838,
+        -110.953253
+      ],
+      "viewport": [
+        1363,
+        936
+      ],
+      "metersPerPixel": [
+        0.521424,
+        0.520078
+      ]
+    },
+    "mapUrl": "https://www.google.com/maps/@29.0759255,-110.9549615,488m/data=!3m1!1e3"
+  },
+  "current": {
+    "url": "levantamiento/evidence/D1-03/20261006-01-cierre.png",
+    "title": "Acción 1 · planta revisada",
+    "label": "Planta · 01",
+    "capturedAt": "2026-10-06T02:36:23.198151+00:00",
+    "worldSha256": "549f0288e920e9b9f7d0e0e4efe92d17e964cb96a1ddc53425794458ab09ef48",
+    "sheetDataSha256": "f5ab03e8920a8c877431754a9419fd52b098a5fee2261e76528446672a476dc8",
+    "sha256": "ee4859bb7e32daf9a448c92b99ea00ad34aa9a128fb68314ec00d580ac2f19d9",
+    "cameraId": "D1-03-review01-20261006-software-v1",
+    "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
+  },
+  "camera": {
+    "id": "D1-03-review01-20261006-software-v1",
+    "direction": [
+      0.25,
+      1,
+      1
+    ],
+    "span": 50.05760000000001,
+    "projection": "orthographic",
+    "target": [
+      -157.75399780273438,
+      1,
+      142.1125030517578
+    ]
+  },
+  "worldSha256": "549f0288e920e9b9f7d0e0e4efe92d17e964cb96a1ddc53425794458ab09ef48",
+  "triangles": 20,
+  "heightMeasured": false,
+  "landSurvey": false,
+  "sequence": 88
+}

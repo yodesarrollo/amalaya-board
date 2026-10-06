@@ -1,0 +1,132 @@
+{
+  "id": "C3-11",
+  "action": 1,
+  "status": "closed-visual-approximation",
+  "executedAt": "2026-10-06T02:33:51.746984+00:00",
+  "note": "CERRADO · Cuerpo posterior del borde oriental junto al callejón; vegetación y patios adyacentes excluidos. Planta visual ±3 m; altura provisional y registro de la acción 1.",
+  "source": {
+    "id": "C3-11",
+    "sector": "C3",
+    "name": "Abasolo–Elvira Murillo · cuerpo posterior",
+    "viewCenter": [
+      29.0755344,
+      -110.9535192
+    ],
+    "zoomMeters": 244,
+    "pixels": [
+      [
+        1073.6269676890488,
+        523.4346666672889
+      ],
+      [
+        1094.6269676890488,
+        519.4346666672889
+      ],
+      [
+        1101.1269676890488,
+        537.9346666672889
+      ],
+      [
+        1080.1269676890488,
+        543.9346666672889
+      ]
+    ],
+    "pixelHoles": [],
+    "note": "CERRADO · Cuerpo posterior del borde oriental junto al callejón; vegetación y patios adyacentes excluidos. Planta visual ±3 m; altura provisional y registro de la acción 1.",
+    "sourceScreenPixels": [
+      [
+        928,
+        412
+      ],
+      [
+        970,
+        404
+      ],
+      [
+        983,
+        441
+      ],
+      [
+        941,
+        453
+      ]
+    ],
+    "points": [
+      [
+        180.507,
+        49.855
+      ],
+      [
+        191.457,
+        47.775
+      ],
+      [
+        194.846,
+        57.397
+      ],
+      [
+        183.896,
+        60.517
+      ]
+    ],
+    "holes": [],
+    "uncertaintyMeters": 3,
+    "heightMeters": 6.2,
+    "measuredAt": "2026-10-06T02:33:51.746984+00:00",
+    "source": "Google Maps satellite, manually interpreted visible roof boundary; two screen anchors and scale. Source imagery date unverified.",
+    "calibration": {
+      "a": [
+        550,
+        300,
+        29.076713,
+        -110.955667
+      ],
+      "b": [
+        1000,
+        700,
+        29.074838,
+        -110.953253
+      ],
+      "viewport": [
+        1363,
+        936
+      ],
+      "metersPerPixel": [
+        0.521424,
+        0.520078
+      ]
+    },
+    "mapUrl": "https://www.google.com/maps/@29.0759255,-110.9549615,488m/data=!3m1!1e3"
+  },
+  "current": {
+    "url": "levantamiento/evidence/C3-11/20261006-01-cierre.png",
+    "title": "Acción 1 · planta revisada",
+    "label": "Planta · 01",
+    "capturedAt": "2026-10-06T02:33:51.746984+00:00",
+    "worldSha256": "549f0288e920e9b9f7d0e0e4efe92d17e964cb96a1ddc53425794458ab09ef48",
+    "sheetDataSha256": "73311a03e588ebb687113866def42beec3b8aec300d7d3bb8278dca103680dcd",
+    "sha256": "6c4d527f312c3a8e68bbdc31a18a8afe9a511626778a45f48a87342b8375fa99",
+    "cameraId": "C3-11-review01-20261006-software-v1",
+    "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
+  },
+  "camera": {
+    "id": "C3-11-review01-20261006-software-v1",
+    "direction": [
+      0.25,
+      1,
+      1
+    ],
+    "span": 30,
+    "projection": "orthographic",
+    "target": [
+      187.67649841308594,
+      1,
+      54.145999908447266
+    ]
+  },
+  "worldSha256": "549f0288e920e9b9f7d0e0e4efe92d17e964cb96a1ddc53425794458ab09ef48",
+  "triangles": 12,
+  "heightMeasured": false,
+  "landSurvey": false,
+  "sequence": 85
+}

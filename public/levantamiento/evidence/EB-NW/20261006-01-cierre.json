@@ -1,0 +1,42 @@
+{
+  "id": "EB-NW",
+  "action": 1,
+  "status": "closed-visual-approximation",
+  "executedAt": "2026-10-06T02:03:50.588668+00:00",
+  "note": "CERRADO · se conserva la huella física de esquina 15,20 × 15,06 m, interpretada con tres anclas de Maps y tolerancia ±1 m. Registro posterior de 0,98 m dentro del margen; contorno y colisiones propios comprobados. No se elimina la revisión anterior.",
+  "source": {
+    "id": "EB-NW",
+    "note": "CERRADO · se conserva la huella física de esquina 15,20 × 15,06 m, interpretada con tres anclas de Maps y tolerancia ±1 m. Registro posterior de 0,98 m dentro del margen; contorno y colisiones propios comprobados. No se elimina la revisión anterior."
+  },
+  "current": {
+    "url": "levantamiento/evidence/EB-NW/20261006-01-cierre.png",
+    "title": "Acción 1 · planta revisada",
+    "label": "Planta · 01",
+    "capturedAt": "2026-10-06T02:03:50.588668+00:00",
+    "worldSha256": "cd0e932a95d99fb60c35c6ca0898450e0d8aa735934da921cbe91c4f516afe8f",
+    "sheetDataSha256": "4e61a8d81dd7895437c61429198c0f3d13b9d87736f5916661c893012d1e47fe",
+    "sha256": "b872d72b3cfb85e09ab32f1539b41d9652ee7e9adf62c8a42f03e1fa343e9c3c",
+    "cameraId": "EB-NW-review01-20261006-software-v1",
+    "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
+  },
+  "camera": {
+    "id": "EB-NW-review01-20261006-software-v1",
+    "direction": [
+      -0.5,
+      1,
+      -1
+    ],
+    "span": 43,
+    "projection": "orthographic",
+    "target": [
+      73.46767005015212,
+      1,
+      -30.9327040065425
+    ]
+  },
+  "worldSha256": "cd0e932a95d99fb60c35c6ca0898450e0d8aa735934da921cbe91c4f516afe8f",
+  "triangles": 32157,
+  "heightMeasured": false,
+  "landSurvey": false,
+  "sequence": 3
+}

@@ -1,0 +1,43 @@
+{
+  "id": "EB-SW",
+  "action": 1,
+  "status": "closed-visual-approximation",
+  "executedAt": "2026-10-06T02:06:58.003772+00:00",
+  "note": "CERRADO · se conservan los cuerpos físicos separados de Barra Hidalgo y las tres alas en U del cuerpo contiguo, con patio abierto. Contraste visual de cubiertas en Maps; tolerancia de planta ±5 m. La columna agrupa estos cuerpos ya modelados: no se rellena el patio ni se afirma una división de propietarios. El reparto comercial se mantiene pendiente en identidad.",
+  "source": {
+    "id": "EB-SW",
+    "note": "CERRADO · se conservan los cuerpos físicos separados de Barra Hidalgo y las tres alas en U del cuerpo contiguo, con patio abierto. Contraste visual de cubiertas en Maps; tolerancia de planta ±5 m. La columna agrupa estos cuerpos ya modelados: no se rellena el patio ni se afirma una división de propietarios. El reparto comercial se mantiene pendiente en identidad.",
+    "warning": "Cuerpos Barra / Club · planta aproximada ±5 m · patio abierto"
+  },
+  "current": {
+    "url": "levantamiento/evidence/EB-SW/20261006-01-cierre.png",
+    "title": "Acción 1 · planta revisada",
+    "label": "Planta · 01",
+    "capturedAt": "2026-10-06T02:06:58.003772+00:00",
+    "worldSha256": "cd0e932a95d99fb60c35c6ca0898450e0d8aa735934da921cbe91c4f516afe8f",
+    "sheetDataSha256": "a32f5ab045dee7bb6e335f5226500b5b0be4fd0e70e3cb9633c6823bd0c1f1b0",
+    "sha256": "e974e69bc586079b8de0c0a1af172f0e8e911a0097cbf43dab5e9edd1bfdf25a",
+    "cameraId": "EB-SW-review01-20261006-software-v1",
+    "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
+  },
+  "camera": {
+    "id": "EB-SW-review01-20261006-software-v1",
+    "direction": [
+      -0.6,
+      1,
+      1
+    ],
+    "span": 62,
+    "projection": "orthographic",
+    "target": [
+      105.53249108009578,
+      1,
+      -9.109454211147144
+    ]
+  },
+  "worldSha256": "cd0e932a95d99fb60c35c6ca0898450e0d8aa735934da921cbe91c4f516afe8f",
+  "triangles": 54544,
+  "heightMeasured": false,
+  "landSurvey": false,
+  "sequence": 13
+}

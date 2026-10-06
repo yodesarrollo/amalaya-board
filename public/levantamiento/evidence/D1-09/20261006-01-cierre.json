@@ -1,0 +1,192 @@
+{
+  "id": "D1-09",
+  "action": 1,
+  "status": "closed-visual-approximation",
+  "executedAt": "2026-10-06T02:37:14.387675+00:00",
+  "note": "CERRADO · Nave al oeste de Mina con anexo bajo del extremo sur; solar posterior abierto. Planta visual ±3 m; no certifica particiones prediales ni alturas.",
+  "source": {
+    "id": "D1-09",
+    "sector": "D1",
+    "name": "Sufragio sur · nave occidental de Mina",
+    "viewCenter": [
+      29.0747521,
+      -110.9564038
+    ],
+    "zoomMeters": 244,
+    "pixels": [
+      [
+        530.9012013258731,
+        635.82533333339
+      ],
+      [
+        554.9012013258731,
+        639.82533333339
+      ],
+      [
+        557.4012013258731,
+        646.32533333339
+      ],
+      [
+        554.4012013258731,
+        685.32533333339
+      ],
+      [
+        538.4012013258731,
+        689.32533333339
+      ],
+      [
+        536.9012013258731,
+        694.32533333339
+      ],
+      [
+        511.9012013258731,
+        690.82533333339
+      ],
+      [
+        509.4012013258731,
+        681.82533333339
+      ],
+      [
+        525.4012013258731,
+        680.82533333339
+      ]
+    ],
+    "pixelHoles": [],
+    "note": "CERRADO · Nave al oeste de Mina con anexo bajo del extremo sur; solar posterior abierto. Planta visual ±3 m; no certifica particiones prediales ni alturas.",
+    "sourceScreenPixels": [
+      [
+        918,
+        303
+      ],
+      [
+        966,
+        311
+      ],
+      [
+        971,
+        324
+      ],
+      [
+        965,
+        402
+      ],
+      [
+        933,
+        410
+      ],
+      [
+        930,
+        420
+      ],
+      [
+        880,
+        413
+      ],
+      [
+        875,
+        395
+      ],
+      [
+        907,
+        393
+      ]
+    ],
+    "points": [
+      [
+        -102.483,
+        108.307
+      ],
+      [
+        -89.969,
+        110.388
+      ],
+      [
+        -88.666,
+        113.768
+      ],
+      [
+        -90.23,
+        134.051
+      ],
+      [
+        -98.573,
+        136.131
+      ],
+      [
+        -99.355,
+        138.732
+      ],
+      [
+        -112.39,
+        136.912
+      ],
+      [
+        -113.694,
+        132.231
+      ],
+      [
+        -105.351,
+        131.711
+      ]
+    ],
+    "holes": [],
+    "uncertaintyMeters": 3,
+    "heightMeters": 6.2,
+    "measuredAt": "2026-10-06T02:37:14.387675+00:00",
+    "source": "Google Maps satellite, manually interpreted visible roof boundary; two screen anchors and scale. Source imagery date unverified.",
+    "calibration": {
+      "a": [
+        550,
+        300,
+        29.076713,
+        -110.955667
+      ],
+      "b": [
+        1000,
+        700,
+        29.074838,
+        -110.953253
+      ],
+      "viewport": [
+        1363,
+        936
+      ],
+      "metersPerPixel": [
+        0.521424,
+        0.520078
+      ]
+    },
+    "mapUrl": "https://www.google.com/maps/@29.0759255,-110.9549615,488m/data=!3m1!1e3"
+  },
+  "current": {
+    "url": "levantamiento/evidence/D1-09/20261006-01-cierre.png",
+    "title": "Acción 1 · planta revisada",
+    "label": "Planta · 01",
+    "capturedAt": "2026-10-06T02:37:14.387675+00:00",
+    "worldSha256": "549f0288e920e9b9f7d0e0e4efe92d17e964cb96a1ddc53425794458ab09ef48",
+    "sheetDataSha256": "91268b3d7119e837cd1110229f318dde86501dc7c2146a43ecb3a9d9028d144f",
+    "sha256": "4458c39ae29ffa0c8a9563ba9f7cad3a6beebc68827f301a7308363a589bbb84",
+    "cameraId": "D1-09-review01-20261006-software-v1",
+    "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
+  },
+  "camera": {
+    "id": "D1-09-review01-20261006-software-v1",
+    "direction": [
+      0.25,
+      1,
+      1
+    ],
+    "span": 48.68,
+    "projection": "orthographic",
+    "target": [
+      -101.18000030517578,
+      1,
+      123.51949691772461
+    ]
+  },
+  "worldSha256": "549f0288e920e9b9f7d0e0e4efe92d17e964cb96a1ddc53425794458ab09ef48",
+  "triangles": 32,
+  "heightMeasured": false,
+  "landSurvey": false,
+  "sequence": 94
+}

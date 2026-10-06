@@ -1,0 +1,156 @@
+{
+  "id": "A2-06",
+  "action": 1,
+  "status": "closed-visual-approximation",
+  "executedAt": "2026-10-06T02:11:30.780897+00:00",
+  "note": "CERRADO · Cubierta del lado oeste de Garmendia con entrante posterior; no se confunde con OXXO, situado al otro lado de la calle. Planta visual ±3 m, medidas convertidas con escala comprobada; altura provisional.",
+  "source": {
+    "id": "A2-06",
+    "sector": "A2",
+    "name": "Serdán–Garmendia · cubierta occidental de esquina",
+    "viewCenter": [
+      29.0770989,
+      -110.9549615
+    ],
+    "zoomMeters": 244,
+    "pixels": [
+      [
+        778.7640845087855,
+        227.17466666715336
+      ],
+      [
+        806.2640845087855,
+        223.67466666715336
+      ],
+      [
+        816.2640845087855,
+        275.17466666715336
+      ],
+      [
+        794.2640845087855,
+        283.67466666715336
+      ],
+      [
+        795.2640845087855,
+        295.67466666715336
+      ],
+      [
+        787.7640845087855,
+        297.17466666715336
+      ]
+    ],
+    "note": "CERRADO · Cubierta del lado oeste de Garmendia con entrante posterior; no se confunde con OXXO, situado al otro lado de la calle. Planta visual ±3 m, medidas convertidas con escala comprobada; altura provisional.",
+    "sourceScreenPixels": [
+      [
+        876,
+        487
+      ],
+      [
+        931,
+        480
+      ],
+      [
+        951,
+        583
+      ],
+      [
+        907,
+        600
+      ],
+      [
+        909,
+        624
+      ],
+      [
+        894,
+        627
+      ]
+    ],
+    "pixelHoles": [],
+    "points": [
+      [
+        26.758,
+        -104.223
+      ],
+      [
+        41.098,
+        -106.043
+      ],
+      [
+        46.312,
+        -79.259
+      ],
+      [
+        34.84,
+        -74.839
+      ],
+      [
+        35.362,
+        -68.598
+      ],
+      [
+        31.451,
+        -67.817
+      ]
+    ],
+    "holes": [],
+    "uncertaintyMeters": 3,
+    "heightMeters": 6.2,
+    "measuredAt": "2026-10-06T02:11:30.780897+00:00",
+    "source": "Google Maps satellite, manually interpreted visible roof boundary; two screen anchors and scale. Source imagery date unverified.",
+    "calibration": {
+      "a": [
+        550,
+        300,
+        29.076713,
+        -110.955667
+      ],
+      "b": [
+        1000,
+        700,
+        29.074838,
+        -110.953253
+      ],
+      "viewport": [
+        1363,
+        936
+      ],
+      "metersPerPixel": [
+        0.521424,
+        0.520078
+      ]
+    },
+    "mapUrl": "https://www.google.com/maps/@29.0759255,-110.9549615,488m/data=!3m1!1e3"
+  },
+  "current": {
+    "url": "levantamiento/evidence/A2-06/20261006-01-cierre.png",
+    "title": "Acción 1 · planta revisada",
+    "label": "Planta · 01",
+    "capturedAt": "2026-10-06T02:11:30.780897+00:00",
+    "worldSha256": "7d2bea2ba657cf820bc1d7acfaa8328bc67d954a013ef2e0201f6bf1f0d6e0e3",
+    "sheetDataSha256": "69b8228b237dfa5d5c1ba5377d2eaf6d89f4c5feeaa46a15415cb87503015ab8",
+    "sha256": "ce96a5c519b60b7ba1e50615cef4091cd07eeb7dea6ce932c860682ef21dde9f",
+    "cameraId": "A2-06-review01-20261006-software-v1",
+    "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
+  },
+  "camera": {
+    "id": "A2-06-review01-20261006-software-v1",
+    "direction": [
+      0.25,
+      1,
+      1
+    ],
+    "span": 61.16160000000002,
+    "projection": "orthographic",
+    "target": [
+      36.53499984741211,
+      1,
+      -86.93000030517578
+    ]
+  },
+  "worldSha256": "7d2bea2ba657cf820bc1d7acfaa8328bc67d954a013ef2e0201f6bf1f0d6e0e3",
+  "triangles": 20,
+  "heightMeasured": false,
+  "landSurvey": false,
+  "sequence": 24
+}

@@ -1,0 +1,194 @@
+{
+  "id": "D2-06",
+  "action": 1,
+  "status": "closed-visual-approximation",
+  "executedAt": "2026-10-06T02:40:47.215806+00:00",
+  "note": "CERRADO · Juan Álvarez oeste · cuerpo con patio. Planta física trazada a escala visual ±3 m. Vacíos interiores visibles excluidos; altura no medida. Geometría, imagen y registro actualizados antes de continuar.",
+  "source": {
+    "id": "D2-06",
+    "sector": "D2",
+    "name": "Juan Álvarez oeste · cuerpo con patio",
+    "viewCenter": [
+      29.0747521,
+      -110.9549615
+    ],
+    "zoomMeters": 244,
+    "pixels": [
+      [
+        683.7640845087855,
+        666.32533333339
+      ],
+      [
+        715.2640845087855,
+        667.32533333339
+      ],
+      [
+        717.2640845087855,
+        714.82533333339
+      ],
+      [
+        693.7640845087855,
+        714.32533333339
+      ],
+      [
+        693.7640845087855,
+        692.32533333339
+      ],
+      [
+        679.7640845087855,
+        691.82533333339
+      ]
+    ],
+    "pixelHoles": [
+      [
+        [
+          695.7640845087855,
+          693.32533333339
+        ],
+        [
+          704.2640845087855,
+          692.32533333339
+        ],
+        [
+          705.2640845087855,
+          707.82533333339
+        ],
+        [
+          696.7640845087855,
+          708.82533333339
+        ]
+      ]
+    ],
+    "note": "CERRADO · Juan Álvarez oeste · cuerpo con patio. Planta física trazada a escala visual ±3 m. Vacíos interiores visibles excluidos; altura no medida. Geometría, imagen y registro actualizados antes de continuar.",
+    "sourceScreenPixels": [
+      [
+        686,
+        364
+      ],
+      [
+        749,
+        366
+      ],
+      [
+        753,
+        461
+      ],
+      [
+        706,
+        460
+      ],
+      [
+        706,
+        416
+      ],
+      [
+        678,
+        415
+      ]
+    ],
+    "points": [
+      [
+        -22.777,
+        124.17
+      ],
+      [
+        -6.352,
+        124.69
+      ],
+      [
+        -5.309,
+        149.393
+      ],
+      [
+        -17.563,
+        149.133
+      ],
+      [
+        -17.563,
+        137.692
+      ],
+      [
+        -24.863,
+        137.432
+      ]
+    ],
+    "holes": [
+      [
+        [
+          -16.52,
+          138.212
+        ],
+        [
+          -12.088,
+          137.692
+        ],
+        [
+          -11.566,
+          145.753
+        ],
+        [
+          -15.998,
+          146.273
+        ]
+      ]
+    ],
+    "uncertaintyMeters": 3,
+    "heightMeters": 6.2,
+    "measuredAt": "2026-10-06T02:40:47.215806+00:00",
+    "source": "Google Maps satellite, manually interpreted visible roof boundary; two screen anchors and scale. Source imagery date unverified.",
+    "calibration": {
+      "a": [
+        550,
+        300,
+        29.076713,
+        -110.955667
+      ],
+      "b": [
+        1000,
+        700,
+        29.074838,
+        -110.953253
+      ],
+      "viewport": [
+        1363,
+        936
+      ],
+      "metersPerPixel": [
+        0.521424,
+        0.520078
+      ]
+    },
+    "mapUrl": "https://www.google.com/maps/@29.0759255,-110.9549615,488m/data=!3m1!1e3"
+  },
+  "current": {
+    "url": "levantamiento/evidence/D2-06/20261006-01-cierre.png",
+    "title": "Acción 1 · planta revisada",
+    "label": "Planta · 01",
+    "capturedAt": "2026-10-06T02:40:47.215806+00:00",
+    "worldSha256": "549f0288e920e9b9f7d0e0e4efe92d17e964cb96a1ddc53425794458ab09ef48",
+    "sheetDataSha256": "cec8629d2cbb382b8528e31e76088ac3ea6ee5b4bfa95054189af72836f83754",
+    "sha256": "6e999caae1ae2b270bb94f5854af392a32d1ff95ef013ba419b3acaddfd14ac8",
+    "cameraId": "D2-06-review01-20261006-software-v1",
+    "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
+  },
+  "camera": {
+    "id": "D2-06-review01-20261006-software-v1",
+    "direction": [
+      0.25,
+      1,
+      1
+    ],
+    "span": 40.3568,
+    "projection": "orthographic",
+    "target": [
+      -15.086000442504883,
+      1,
+      136.78150177001953
+    ]
+  },
+  "worldSha256": "549f0288e920e9b9f7d0e0e4efe92d17e964cb96a1ddc53425794458ab09ef48",
+  "triangles": 40,
+  "heightMeasured": false,
+  "landSurvey": false,
+  "sequence": 103
+}

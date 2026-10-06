@@ -1,0 +1,132 @@
+{
+  "id": "C1-04",
+  "action": 1,
+  "status": "closed-visual-approximation",
+  "executedAt": "2026-10-06T02:22:40.608912+00:00",
+  "note": "CERRADO · Nave rectangular de cubierta clara del costado de Yáñez, separada de C1-03. Contorno manual ±3 m; altura provisional y registro visual propio.",
+  "source": {
+    "id": "C1-04",
+    "sector": "C1",
+    "name": "Yáñez · nave intermedia",
+    "viewCenter": [
+      29.0755344,
+      -110.9564038
+    ],
+    "zoomMeters": 244,
+    "pixels": [
+      [
+        397.4012013258731,
+        541.9346666672889
+      ],
+      [
+        431.9012013258731,
+        535.9346666672889
+      ],
+      [
+        437.4012013258731,
+        584.4346666672889
+      ],
+      [
+        403.9012013258731,
+        590.4346666672889
+      ]
+    ],
+    "note": "CERRADO · Nave rectangular de cubierta clara del costado de Yáñez, separada de C1-03. Contorno manual ±3 m; altura provisional y registro visual propio.",
+    "sourceScreenPixels": [
+      [
+        651,
+        449
+      ],
+      [
+        720,
+        437
+      ],
+      [
+        731,
+        534
+      ],
+      [
+        664,
+        546
+      ]
+    ],
+    "pixelHoles": [],
+    "points": [
+      [
+        -172.093,
+        59.477
+      ],
+      [
+        -154.104,
+        56.356
+      ],
+      [
+        -151.236,
+        81.58
+      ],
+      [
+        -168.704,
+        84.701
+      ]
+    ],
+    "holes": [],
+    "uncertaintyMeters": 3,
+    "heightMeters": 6.2,
+    "measuredAt": "2026-10-06T02:22:40.608912+00:00",
+    "source": "Google Maps satellite, manually interpreted visible roof boundary; two screen anchors and scale. Source imagery date unverified.",
+    "calibration": {
+      "a": [
+        550,
+        300,
+        29.076713,
+        -110.955667
+      ],
+      "b": [
+        1000,
+        700,
+        29.074838,
+        -110.953253
+      ],
+      "viewport": [
+        1363,
+        936
+      ],
+      "metersPerPixel": [
+        0.521424,
+        0.520078
+      ]
+    },
+    "mapUrl": "https://www.google.com/maps/@29.0759255,-110.9549615,488m/data=!3m1!1e3"
+  },
+  "current": {
+    "url": "levantamiento/evidence/C1-04/20261006-01-cierre.png",
+    "title": "Acción 1 · planta revisada",
+    "label": "Planta · 01",
+    "capturedAt": "2026-10-06T02:22:40.608912+00:00",
+    "worldSha256": "549f0288e920e9b9f7d0e0e4efe92d17e964cb96a1ddc53425794458ab09ef48",
+    "sheetDataSha256": "b69b1431bc429488db0e9f65d4d11ce49bb498e94dccf368e23539c17ad630b5",
+    "sha256": "896b008d0aa4638a5c22f9f1978e9ba0d7514271578e36082b17d16e5b48fdac",
+    "cameraId": "C1-04-review01-20261006-software-v1",
+    "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
+  },
+  "camera": {
+    "id": "C1-04-review01-20261006-software-v1",
+    "direction": [
+      0.25,
+      1,
+      1
+    ],
+    "span": 45.35199999999999,
+    "projection": "orthographic",
+    "target": [
+      -161.66449737548828,
+      1,
+      70.52849769592285
+    ]
+  },
+  "worldSha256": "549f0288e920e9b9f7d0e0e4efe92d17e964cb96a1ddc53425794458ab09ef48",
+  "triangles": 12,
+  "heightMeasured": false,
+  "landSurvey": false,
+  "sequence": 53
+}

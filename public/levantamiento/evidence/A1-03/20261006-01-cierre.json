@@ -1,0 +1,132 @@
+{
+  "id": "A1-03",
+  "action": 1,
+  "status": "closed-visual-approximation",
+  "executedAt": "2026-10-06T02:09:03.350211+00:00",
+  "note": "CERRADO · pequeña cubierta independiente en el borde norte del solar de Yáñez. Se incluye el cuerpo entero aunque atraviesa el límite superior de la lámina; el solar abierto circundante no se extruye. Planta visual ±3 m.",
+  "source": {
+    "id": "A1-03",
+    "sector": "A1",
+    "name": "Yáñez · anexo norte del solar",
+    "viewCenter": [
+      29.0770989,
+      -110.9564038
+    ],
+    "zoomMeters": 244,
+    "pixels": [
+      [
+        409.9012013258731,
+        115.17466666715336
+      ],
+      [
+        435.9012013258731,
+        110.67466666715336
+      ],
+      [
+        440.4012013258731,
+        132.17466666715336
+      ],
+      [
+        414.4012013258731,
+        137.17466666715336
+      ]
+    ],
+    "note": "CERRADO · pequeña cubierta independiente en el borde norte del solar de Yáñez. Se incluye el cuerpo entero aunque atraviesa el límite superior de la lámina; el solar abierto circundante no se extruye. Planta visual ±3 m.",
+    "sourceScreenPixels": [
+      [
+        676,
+        263
+      ],
+      [
+        728,
+        254
+      ],
+      [
+        737,
+        297
+      ],
+      [
+        685,
+        307
+      ]
+    ],
+    "pixelHoles": [],
+    "points": [
+      [
+        -165.576,
+        -162.472
+      ],
+      [
+        -152.019,
+        -164.812
+      ],
+      [
+        -149.672,
+        -153.63
+      ],
+      [
+        -163.229,
+        -151.03
+      ]
+    ],
+    "holes": [],
+    "uncertaintyMeters": 3,
+    "heightMeters": 6.2,
+    "measuredAt": "2026-10-06T02:09:03.350211+00:00",
+    "source": "Google Maps satellite, manually interpreted visible roof boundary; two screen anchors and scale. Source imagery date unverified.",
+    "calibration": {
+      "a": [
+        550,
+        300,
+        29.076713,
+        -110.955667
+      ],
+      "b": [
+        1000,
+        700,
+        29.074838,
+        -110.953253
+      ],
+      "viewport": [
+        1363,
+        936
+      ],
+      "metersPerPixel": [
+        0.521424,
+        0.520078
+      ]
+    },
+    "mapUrl": "https://www.google.com/maps/@29.0759255,-110.9549615,488m/data=!3m1!1e3"
+  },
+  "current": {
+    "url": "levantamiento/evidence/A1-03/20261006-01-cierre.png",
+    "title": "Acción 1 · planta revisada",
+    "label": "Planta · 01",
+    "capturedAt": "2026-10-06T02:09:03.350211+00:00",
+    "worldSha256": "7d2bea2ba657cf820bc1d7acfaa8328bc67d954a013ef2e0201f6bf1f0d6e0e3",
+    "sheetDataSha256": "439f8c9555d9b12b63f79ce34bb47919c5ce20d62c29f5e42c5fa20ecd876746",
+    "sha256": "e851b78b7f40015a48911e7374e65a5f02c5fcdbee9b08dbe3a432b159993361",
+    "cameraId": "A1-03-review01-20261006-software-v1",
+    "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
+  },
+  "camera": {
+    "id": "A1-03-review01-20261006-software-v1",
+    "direction": [
+      0.25,
+      1,
+      1
+    ],
+    "span": 30,
+    "projection": "orthographic",
+    "target": [
+      -157.6240005493164,
+      1,
+      -157.9209976196289
+    ]
+  },
+  "worldSha256": "7d2bea2ba657cf820bc1d7acfaa8328bc67d954a013ef2e0201f6bf1f0d6e0e3",
+  "triangles": 12,
+  "heightMeasured": false,
+  "landSurvey": false,
+  "sequence": 17
+}

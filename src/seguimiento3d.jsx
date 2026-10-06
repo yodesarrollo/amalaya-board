@@ -17,7 +17,7 @@ function BuildingPreview({ building }) {
     <a href={`${BASE}${current.url}`} target="_blank" rel="noreferrer" aria-label={`Ampliar avance de ${building.id}: ${current.title}`}>
       <img src={`${BASE}${current.url}`} alt={`${building.id} · ${current.title} · imagen del modelo`} width="160" height="100" decoding="async" />
     </a>
-    <div>{comparison && <a href={`${BASE}${comparison.url}`} target="_blank" rel="noreferrer" title={comparison.title}>Inicio</a>}<a href={`${BASE}${current.url}`} target="_blank" rel="noreferrer">{current.label || 'Avance'}</a>{progress.manifest && <a href={`${BASE}${progress.manifest}`} target="_blank" rel="noreferrer">Registro</a>}</div>
+    <div><a href={`${BASE}modelo-completo.html?edificio=${encodeURIComponent(building.id)}`}>Ver en modelo</a>{comparison && <a href={`${BASE}${comparison.url}`} target="_blank" rel="noreferrer" title={comparison.title}>Inicio</a>}<a href={`${BASE}${current.url}`} target="_blank" rel="noreferrer">{current.label || 'Avance'}</a>{progress.manifest && <a href={`${BASE}${progress.manifest}`} target="_blank" rel="noreferrer">Registro</a>}</div>
   </div>
 }
 function CellDialog({ selected, onClose }) {
@@ -170,6 +170,7 @@ function Seguimiento() {
     <header className="tracker-toolbar">
       <a href={`${BASE}explorar.html`} aria-label="Volver al recorrido"><ArrowLeft size={20} /></a>
       <h1>Amalaya <span>/ Levantamiento 3D</span></h1>
+      <a href={`${BASE}modelo-completo.html`}>Abrir modelo completo</a>
       <a href={`${BASE}seguimiento-3d.md`} target="_blank" rel="noreferrer">Markdown</a>
       <button onClick={refresh} disabled={refreshing} aria-label="Actualizar estados"><RefreshCw size={17} /></button>
     </header>
@@ -184,10 +185,10 @@ function Seguimiento() {
       {workflow.previousUnresolvedBuildings?.length > 0 && <p>El paso 1 conserva contornos pendientes: {workflow.previousUnresolvedBuildings.join(', ')}. Esta ronda continúa por tu indicación.</p>}
     </section>}
     {data?.activeReview && <section className="tracker-round" aria-label="Cobertura del inventario">
-      <strong>Inventario abierto · toda la lámina</strong>
-      <p>{workflow.buildingOrder.length} columnas conocidas. Agregadas: {workflow.addedBuildings.join(', ')}. El total de edificios del polígono todavía está por completar.</p>
-      <p>Siguiente: <b>{workflow.nextBuilding}</b>, paso 1. Las celdas de planta pendientes corresponden a esta nueva revisión; las imágenes anteriores se conservan hasta revisar cada edificio.</p>
-      <details><summary>Recorrido para enumerar los edificios faltantes</summary><p>12 sectores de búsqueda, de norte a sur y de oeste a este. Cada cuerpo confirmado recibe su propia columna; un patio o un predio no equivale automáticamente a un edificio.</p><div className="tracker-coverage">{workflow.coverageSectors.map(sector => <a key={sector.id} href={sector.mapUrl} target="_blank" rel="noreferrer">{sector.id} · Por enumerar</a>)}</div><p><a href={`${BASE}${workflow.mapUrl}`} target="_blank" rel="noreferrer">Ver lámina completa</a> · La ronda no se cierra hasta completar el inventario.</p></details>
+      <strong>{workflow.inventoryComplete ? "Inventario revisado · toda la lámina" : "Inventario abierto · toda la lámina"}</strong>
+      <p>{workflow.buildingOrder.length} columnas físicas · {workflow.addedBuildings.length} incorporadas al inventario. {workflow.inventoryComplete ? "Recorrido visual de las 12 zonas de la lámina completado, incluidos cuerpos que cruzan sus bordes." : "Continúa la revisión de cubiertas faltantes."}</p>
+      <p>{workflow.readyForNextRound ? "Acción 1 terminada en todas las columnas. Los pasos 2–11 conservan su estado propio." : `Siguiente: ${workflow.nextBuilding || "enumeración de cuerpos faltantes"}, paso 1.`} Los cierres válidos anteriores se conservan; cada imagen y registro permite revisar el alcance de la planta.</p>
+      <details><summary>Recorrido para enumerar los edificios faltantes</summary><p>12 sectores de búsqueda, de norte a sur y de oeste a este. Cada cuerpo confirmado recibe su propia columna; un patio o un predio no equivale automáticamente a un edificio.</p><div className="tracker-coverage">{workflow.coverageSectors.map(sector => <a key={sector.id} href={sector.mapUrl} target="_blank" rel="noreferrer">{sector.id} · {sector.state === 'done' ? 'Revisado' : 'En revisión'}</a>)}</div><p><a href={`${BASE}${workflow.mapUrl}`} target="_blank" rel="noreferrer">Ver lámina completa</a> · Plantas visuales aproximadas, sin equivalencia catastral.</p></details>
     </section>}
     {error && <p className="tracker-error" role="status">{error}</p>}
     {data && <div className="tracker-table-scroll" tabIndex="0" role="region" aria-label="Matriz de acciones por edificio">

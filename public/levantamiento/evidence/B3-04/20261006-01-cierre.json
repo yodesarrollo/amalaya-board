@@ -1,0 +1,194 @@
+{
+  "id": "B3-04",
+  "action": 1,
+  "status": "closed-visual-approximation",
+  "executedAt": "2026-10-06T02:21:03.741259+00:00",
+  "note": "CERRADO · Cuerpo que cruza el límite oriental junto al cruce; vacío interior visible excluido. Planta visual ±3 m; altura provisional y comercio sin confirmar.",
+  "source": {
+    "id": "B3-04",
+    "sector": "B3",
+    "name": "Chihuahua–Abasolo · cuerpo del borde noreste",
+    "viewCenter": [
+      29.0763166,
+      -110.9535192
+    ],
+    "zoomMeters": 244,
+    "pixels": [
+      [
+        1082.6269676890488,
+        306.0653333340124
+      ],
+      [
+        1105.1269676890488,
+        304.5653333340124
+      ],
+      [
+        1106.1269676890488,
+        287.0653333340124
+      ],
+      [
+        1123.6269676890488,
+        284.0653333340124
+      ],
+      [
+        1128.6269676890488,
+        326.5653333340124
+      ],
+      [
+        1084.6269676890488,
+        332.0653333340124
+      ]
+    ],
+    "pixelHoles": [
+      [
+        [
+          1090.1269676890488,
+          316.5653333340124
+        ],
+        [
+          1100.1269676890488,
+          315.0653333340124
+        ],
+        [
+          1102.1269676890488,
+          324.0653333340124
+        ],
+        [
+          1092.1269676890488,
+          326.5653333340124
+        ]
+      ]
+    ],
+    "note": "CERRADO · Cuerpo que cruza el límite oriental junto al cruce; vacío interior visible excluido. Planta visual ±3 m; altura provisional y comercio sin confirmar.",
+    "sourceScreenPixels": [
+      [
+        946,
+        311
+      ],
+      [
+        991,
+        308
+      ],
+      [
+        993,
+        273
+      ],
+      [
+        1028,
+        267
+      ],
+      [
+        1038,
+        352
+      ],
+      [
+        950,
+        363
+      ]
+    ],
+    "points": [
+      [
+        185.2,
+        -63.194
+      ],
+      [
+        196.932,
+        -63.974
+      ],
+      [
+        197.453,
+        -73.075
+      ],
+      [
+        206.578,
+        -74.635
+      ],
+      [
+        209.185,
+        -52.532
+      ],
+      [
+        186.243,
+        -49.672
+      ]
+    ],
+    "holes": [
+      [
+        [
+          189.11,
+          -57.733
+        ],
+        [
+          194.325,
+          -58.513
+        ],
+        [
+          195.368,
+          -53.832
+        ],
+        [
+          190.153,
+          -52.532
+        ]
+      ]
+    ],
+    "uncertaintyMeters": 3,
+    "heightMeters": 6.2,
+    "measuredAt": "2026-10-06T02:21:03.741259+00:00",
+    "source": "Google Maps satellite, manually interpreted visible roof boundary; two screen anchors and scale. Source imagery date unverified.",
+    "calibration": {
+      "a": [
+        550,
+        300,
+        29.076713,
+        -110.955667
+      ],
+      "b": [
+        1000,
+        700,
+        29.074838,
+        -110.953253
+      ],
+      "viewport": [
+        1363,
+        936
+      ],
+      "metersPerPixel": [
+        0.521424,
+        0.520078
+      ]
+    },
+    "mapUrl": "https://www.google.com/maps/@29.0759255,-110.9549615,488m/data=!3m1!1e3"
+  },
+  "current": {
+    "url": "levantamiento/evidence/B3-04/20261006-01-cierre.png",
+    "title": "Acción 1 · planta revisada",
+    "label": "Planta · 01",
+    "capturedAt": "2026-10-06T02:21:03.741259+00:00",
+    "worldSha256": "549f0288e920e9b9f7d0e0e4efe92d17e964cb96a1ddc53425794458ab09ef48",
+    "sheetDataSha256": "3b8c3bf52af4d51c9988b49389316c93ae4528aa2153f39ef7c8527d265d6987",
+    "sha256": "e9170771fa8ee72816da47ea31af5aaca85d2706b46015d99c163fbb05872073",
+    "cameraId": "B3-04-review01-20261006-software-v1",
+    "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
+  },
+  "camera": {
+    "id": "B3-04-review01-20261006-software-v1",
+    "direction": [
+      0.25,
+      1,
+      1
+    ],
+    "span": 39.94080000000002,
+    "projection": "orthographic",
+    "target": [
+      197.19249725341797,
+      1,
+      -62.15350151062012
+    ]
+  },
+  "worldSha256": "549f0288e920e9b9f7d0e0e4efe92d17e964cb96a1ddc53425794458ab09ef48",
+  "triangles": 40,
+  "heightMeasured": false,
+  "landSurvey": false,
+  "sequence": 48
+}

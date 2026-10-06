@@ -1,0 +1,238 @@
+{
+  "id": "D1-12",
+  "action": 1,
+  "status": "closed-visual-approximation",
+  "executedAt": "2026-10-06T02:37:22.753672+00:00",
+  "note": "CERRADO · Conjunto conectado de cubiertas alrededor de patios, cortado por el borde inferior de la lámina e incluido completo; patios visibles abiertos. Planta visual ±3 m; no certifica particiones prediales ni alturas.",
+  "source": {
+    "id": "D1-12",
+    "sector": "D1",
+    "name": "Yáñez–Bavispe · conjunto del borde sur",
+    "viewCenter": [
+      29.0747521,
+      -110.9564038
+    ],
+    "zoomMeters": 244,
+    "pixels": [
+      [
+        481.9012013258731,
+        792.82533333339
+      ],
+      [
+        531.4012013258731,
+        787.32533333339
+      ],
+      [
+        536.9012013258731,
+        794.32533333339
+      ],
+      [
+        573.9012013258731,
+        783.32533333339
+      ],
+      [
+        587.4012013258731,
+        860.32533333339
+      ],
+      [
+        488.4012013258731,
+        864.82533333339
+      ]
+    ],
+    "pixelHoles": [
+      [
+        [
+          499.9012013258731,
+          811.32533333339
+        ],
+        [
+          514.4012013258731,
+          808.32533333339
+        ],
+        [
+          531.9012013258731,
+          813.32533333339
+        ],
+        [
+          534.9012013258731,
+          840.82533333339
+        ],
+        [
+          508.4012013258731,
+          847.82533333339
+        ]
+      ],
+      [
+        [
+          547.4012013258731,
+          798.32533333339
+        ],
+        [
+          563.4012013258731,
+          796.32533333339
+        ],
+        [
+          570.9012013258731,
+          811.32533333339
+        ],
+        [
+          554.4012013258731,
+          815.32533333339
+        ]
+      ]
+    ],
+    "note": "CERRADO · Conjunto conectado de cubiertas alrededor de patios, cortado por el borde inferior de la lámina e incluido completo; patios visibles abiertos. Planta visual ±3 m; no certifica particiones prediales ni alturas.",
+    "sourceScreenPixels": [
+      [
+        820,
+        617
+      ],
+      [
+        919,
+        606
+      ],
+      [
+        930,
+        620
+      ],
+      [
+        1004,
+        598
+      ],
+      [
+        1031,
+        752
+      ],
+      [
+        833,
+        761
+      ]
+    ],
+    "points": [
+      [
+        -128.033,
+        189.96
+      ],
+      [
+        -102.223,
+        187.099
+      ],
+      [
+        -99.355,
+        190.74
+      ],
+      [
+        -80.062,
+        185.019
+      ],
+      [
+        -73.023,
+        225.065
+      ],
+      [
+        -124.644,
+        227.405
+      ]
+    ],
+    "holes": [
+      [
+        [
+          -118.647,
+          199.581
+        ],
+        [
+          -111.087,
+          198.021
+        ],
+        [
+          -101.962,
+          200.621
+        ],
+        [
+          -100.398,
+          214.923
+        ],
+        [
+          -114.215,
+          218.564
+        ]
+      ],
+      [
+        [
+          -93.88,
+          192.82
+        ],
+        [
+          -85.537,
+          191.78
+        ],
+        [
+          -81.626,
+          199.581
+        ],
+        [
+          -90.23,
+          201.661
+        ]
+      ]
+    ],
+    "uncertaintyMeters": 3,
+    "heightMeters": 6.2,
+    "measuredAt": "2026-10-06T02:37:22.753672+00:00",
+    "source": "Google Maps satellite, manually interpreted visible roof boundary; two screen anchors and scale. Source imagery date unverified.",
+    "calibration": {
+      "a": [
+        550,
+        300,
+        29.076713,
+        -110.955667
+      ],
+      "b": [
+        1000,
+        700,
+        29.074838,
+        -110.953253
+      ],
+      "viewport": [
+        1363,
+        936
+      ],
+      "metersPerPixel": [
+        0.521424,
+        0.520078
+      ]
+    },
+    "mapUrl": "https://www.google.com/maps/@29.0759255,-110.9549615,488m/data=!3m1!1e3"
+  },
+  "current": {
+    "url": "levantamiento/evidence/D1-12/20261006-01-cierre.png",
+    "title": "Acción 1 · planta revisada",
+    "label": "Planta · 01",
+    "capturedAt": "2026-10-06T02:37:22.753672+00:00",
+    "worldSha256": "549f0288e920e9b9f7d0e0e4efe92d17e964cb96a1ddc53425794458ab09ef48",
+    "sheetDataSha256": "ba5cc378030942d480afde28fc59e97703263a2f13b732959d30f5d0f4ec82a3",
+    "sha256": "0705e4af2c41c6146646dc6cb4c09df6f2375c710d738a6880a64c2a1f9b3806",
+    "cameraId": "D1-12-review01-20261006-software-v1",
+    "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
+  },
+  "camera": {
+    "id": "D1-12-review01-20261006-software-v1",
+    "direction": [
+      0.25,
+      1,
+      1
+    ],
+    "span": 88.01599999999999,
+    "projection": "orthographic",
+    "target": [
+      -100.52800369262695,
+      1,
+      206.21199798583984
+    ]
+  },
+  "worldSha256": "549f0288e920e9b9f7d0e0e4efe92d17e964cb96a1ddc53425794458ab09ef48",
+  "triangles": 64,
+  "heightMeasured": false,
+  "landSurvey": false,
+  "sequence": 97
+}

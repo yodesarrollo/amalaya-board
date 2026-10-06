@@ -1,0 +1,144 @@
+{
+  "id": "A3-01",
+  "action": 1,
+  "status": "closed-visual-approximation",
+  "executedAt": "2026-10-06T02:12:51.339115+00:00",
+  "note": "CERRADO · Cubierta amplia al este del cuerpo conservado de HSBC; borde frontal oblicuo. Contorno visual con escala comprobada, ±3 m; altura no medida.",
+  "source": {
+    "id": "A3-01",
+    "sector": "A3",
+    "name": "Serdán norte · cuerpo oriental contiguo",
+    "viewCenter": [
+      29.0770989,
+      -110.9535192
+    ],
+    "zoomMeters": 244,
+    "pixels": [
+      [
+        885.1269676890488,
+        106.17466666715336
+      ],
+      [
+        919.6269676890488,
+        98.67466666715336
+      ],
+      [
+        981.6269676890488,
+        89.17466666715336
+      ],
+      [
+        1006.6269676890488,
+        151.67466666715336
+      ],
+      [
+        901.6269676890488,
+        169.67466666715336
+      ]
+    ],
+    "note": "CERRADO · Cubierta amplia al este del cuerpo conservado de HSBC; borde frontal oblicuo. Contorno visual con escala comprobada, ±3 m; altura no medida.",
+    "sourceScreenPixels": [
+      [
+        551,
+        245
+      ],
+      [
+        620,
+        230
+      ],
+      [
+        744,
+        211
+      ],
+      [
+        794,
+        336
+      ],
+      [
+        584,
+        372
+      ]
+    ],
+    "pixelHoles": [],
+    "points": [
+      [
+        82.219,
+        -167.152
+      ],
+      [
+        100.208,
+        -171.053
+      ],
+      [
+        132.536,
+        -175.994
+      ],
+      [
+        145.572,
+        -143.489
+      ],
+      [
+        90.822,
+        -134.127
+      ]
+    ],
+    "holes": [],
+    "uncertaintyMeters": 3,
+    "heightMeters": 6.2,
+    "measuredAt": "2026-10-06T02:12:51.339115+00:00",
+    "source": "Google Maps satellite, manually interpreted visible roof boundary; two screen anchors and scale. Source imagery date unverified.",
+    "calibration": {
+      "a": [
+        550,
+        300,
+        29.076713,
+        -110.955667
+      ],
+      "b": [
+        1000,
+        700,
+        29.074838,
+        -110.953253
+      ],
+      "viewport": [
+        1363,
+        936
+      ],
+      "metersPerPixel": [
+        0.521424,
+        0.520078
+      ]
+    },
+    "mapUrl": "https://www.google.com/maps/@29.0759255,-110.9549615,488m/data=!3m1!1e3"
+  },
+  "current": {
+    "url": "levantamiento/evidence/A3-01/20261006-01-cierre.png",
+    "title": "Acción 1 · planta revisada",
+    "label": "Planta · 01",
+    "capturedAt": "2026-10-06T02:12:51.339115+00:00",
+    "worldSha256": "7d2bea2ba657cf820bc1d7acfaa8328bc67d954a013ef2e0201f6bf1f0d6e0e3",
+    "sheetDataSha256": "55261f927ec2163e94038f2879b80d17022c6f7249e26762e10479528f2e0577",
+    "sha256": "e010588745c35fde9c1872a2e198af4ba8d4dc0c9558f3e4032c2b881d998167",
+    "cameraId": "A3-01-review01-20261006-software-v1",
+    "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
+  },
+  "camera": {
+    "id": "A3-01-review01-20261006-software-v1",
+    "direction": [
+      0.25,
+      1,
+      1
+    ],
+    "span": 101.36480000000002,
+    "projection": "orthographic",
+    "target": [
+      113.89550399780273,
+      1,
+      -155.0605010986328
+    ]
+  },
+  "worldSha256": "7d2bea2ba657cf820bc1d7acfaa8328bc67d954a013ef2e0201f6bf1f0d6e0e3",
+  "triangles": 16,
+  "heightMeasured": false,
+  "landSurvey": false,
+  "sequence": 25
+}

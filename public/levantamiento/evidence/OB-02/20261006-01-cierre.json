@@ -1,0 +1,42 @@
+{
+  "id": "OB-02",
+  "action": 1,
+  "status": "closed-visual-approximation",
+  "executedAt": "2026-10-06T02:03:26.195169+00:00",
+  "note": "CERRADO · se conserva la planta ya ajustada en la ronda 01 y su alineación propia, sin eliminar el avance. Comprobación del dueño OB-02 y captura del modelo actual. Posición visual ±5 m y profundidad aproximada; alturas y detalle permanecen en sus acciones.",
+  "source": {
+    "id": "OB-02",
+    "note": "CERRADO · se conserva la planta ya ajustada en la ronda 01 y su alineación propia, sin eliminar el avance. Comprobación del dueño OB-02 y captura del modelo actual. Posición visual ±5 m y profundidad aproximada; alturas y detalle permanecen en sus acciones."
+  },
+  "current": {
+    "url": "levantamiento/evidence/OB-02/20261006-01-cierre.png",
+    "title": "Acción 1 · planta revisada",
+    "label": "Planta · 01",
+    "capturedAt": "2026-10-06T02:03:26.195169+00:00",
+    "worldSha256": "cd0e932a95d99fb60c35c6ca0898450e0d8aa735934da921cbe91c4f516afe8f",
+    "sheetDataSha256": "4e61a8d81dd7895437c61429198c0f3d13b9d87736f5916661c893012d1e47fe",
+    "sha256": "3a657fb126d98c5330f5bcc19a87912ff3222a344e07b0afb279b713ef81f179",
+    "cameraId": "OB-02-review01-20261006-software-v1",
+    "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
+  },
+  "camera": {
+    "id": "OB-02-review01-20261006-software-v1",
+    "direction": [
+      0.3,
+      0.85,
+      1
+    ],
+    "span": 39,
+    "projection": "orthographic",
+    "target": [
+      -45.10329312669457,
+      1,
+      33.48562282381685
+    ]
+  },
+  "worldSha256": "cd0e932a95d99fb60c35c6ca0898450e0d8aa735934da921cbe91c4f516afe8f",
+  "triangles": 61473,
+  "heightMeasured": false,
+  "landSurvey": false,
+  "sequence": 2
+}

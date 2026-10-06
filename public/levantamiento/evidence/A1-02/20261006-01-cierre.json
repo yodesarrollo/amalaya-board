@@ -1,0 +1,180 @@
+{
+  "id": "A1-02",
+  "action": 1,
+  "status": "closed-visual-approximation",
+  "executedAt": "2026-10-06T02:08:41.385110+00:00",
+  "note": "CERRADO · cubierta principal de gran claro al noroeste de Yáñez–Serdán, con entrante y anexo pequeño del extremo suroeste. Patio norte excluido. Contorno visual y escala manual, ±3 m; altura provisional independiente del cierre de planta.",
+  "source": {
+    "id": "A1-02",
+    "sector": "A1",
+    "name": "Yáñez–Serdán · cubierta de gran claro",
+    "viewCenter": [
+      29.0770989,
+      -110.9564038
+    ],
+    "zoomMeters": 244,
+    "pixels": [
+      [
+        437.4012013258731,
+        166.17466666715336
+      ],
+      [
+        519.4012013258731,
+        150.17466666715336
+      ],
+      [
+        536.4012013258731,
+        249.67466666715336
+      ],
+      [
+        454.9012013258731,
+        264.17466666715336
+      ],
+      [
+        450.9012013258731,
+        254.67466666715336
+      ],
+      [
+        436.4012013258731,
+        257.67466666715336
+      ],
+      [
+        432.9012013258731,
+        242.67466666715336
+      ],
+      [
+        449.4012013258731,
+        238.67466666715336
+      ]
+    ],
+    "note": "CERRADO · cubierta principal de gran claro al noroeste de Yáñez–Serdán, con entrante y anexo pequeño del extremo suroeste. Patio norte excluido. Contorno visual y escala manual, ±3 m; altura provisional independiente del cierre de planta.",
+    "sourceScreenPixels": [
+      [
+        731,
+        365
+      ],
+      [
+        895,
+        333
+      ],
+      [
+        929,
+        532
+      ],
+      [
+        766,
+        561
+      ],
+      [
+        758,
+        542
+      ],
+      [
+        729,
+        548
+      ],
+      [
+        722,
+        518
+      ],
+      [
+        755,
+        510
+      ]
+    ],
+    "pixelHoles": [],
+    "points": [
+      [
+        -151.236,
+        -135.948
+      ],
+      [
+        -108.48,
+        -144.269
+      ],
+      [
+        -99.615,
+        -92.521
+      ],
+      [
+        -142.111,
+        -84.98
+      ],
+      [
+        -144.197,
+        -89.921
+      ],
+      [
+        -151.758,
+        -88.361
+      ],
+      [
+        -153.583,
+        -96.162
+      ],
+      [
+        -144.979,
+        -98.242
+      ]
+    ],
+    "holes": [],
+    "uncertaintyMeters": 3,
+    "heightMeters": 6.2,
+    "measuredAt": "2026-10-06T02:08:41.385110+00:00",
+    "source": "Google Maps satellite, manually interpreted visible roof boundary; two screen anchors and scale. Source imagery date unverified.",
+    "calibration": {
+      "a": [
+        550,
+        300,
+        29.076713,
+        -110.955667
+      ],
+      "b": [
+        1000,
+        700,
+        29.074838,
+        -110.953253
+      ],
+      "viewport": [
+        1363,
+        936
+      ],
+      "metersPerPixel": [
+        0.521424,
+        0.520078
+      ]
+    },
+    "mapUrl": "https://www.google.com/maps/@29.0759255,-110.9549615,488m/data=!3m1!1e3"
+  },
+  "current": {
+    "url": "levantamiento/evidence/A1-02/20261006-01-cierre.png",
+    "title": "Acción 1 · planta revisada",
+    "label": "Planta · 01",
+    "capturedAt": "2026-10-06T02:08:41.385110+00:00",
+    "worldSha256": "7d2bea2ba657cf820bc1d7acfaa8328bc67d954a013ef2e0201f6bf1f0d6e0e3",
+    "sheetDataSha256": "1ca33dfed19f8a1b94a5a7d08c923233c14d718d9d304dfd25ea5e31fcb9f77b",
+    "sha256": "f6ace99245465db7c5eb0844f2dad697f5479a8ae8fb88d382a47d8c72126ef0",
+    "cameraId": "A1-02-review01-20261006-software-v1",
+    "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
+  },
+  "camera": {
+    "id": "A1-02-review01-20261006-software-v1",
+    "direction": [
+      0.25,
+      1,
+      1
+    ],
+    "span": 94.86240000000001,
+    "projection": "orthographic",
+    "target": [
+      -126.59899520874023,
+      1,
+      -114.6245002746582
+    ]
+  },
+  "worldSha256": "7d2bea2ba657cf820bc1d7acfaa8328bc67d954a013ef2e0201f6bf1f0d6e0e3",
+  "triangles": 28,
+  "heightMeasured": false,
+  "landSurvey": false,
+  "sequence": 16
+}

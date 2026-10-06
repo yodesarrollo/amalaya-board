@@ -1,0 +1,132 @@
+{
+  "id": "D2-02",
+  "action": 1,
+  "status": "closed-visual-approximation",
+  "executedAt": "2026-10-06T02:40:13.997265+00:00",
+  "note": "CERRADO · Felipe Salido norte · cuerpo blanco de Mina. Contorno físico de cubierta interpretado manualmente con escala comprobada, ±3 m. Patios y calles adyacentes excluidos; altura provisional, imagen y registro propios.",
+  "source": {
+    "id": "D2-02",
+    "sector": "D2",
+    "name": "Felipe Salido norte · cuerpo blanco de Mina",
+    "viewCenter": [
+      29.0747521,
+      -110.9549615
+    ],
+    "zoomMeters": 244,
+    "pixels": [
+      [
+        562.2640845087855,
+        744.32533333339
+      ],
+      [
+        601.2640845087855,
+        742.82533333339
+      ],
+      [
+        605.2640845087855,
+        763.32533333339
+      ],
+      [
+        562.7640845087855,
+        767.32533333339
+      ]
+    ],
+    "pixelHoles": [],
+    "note": "CERRADO · Felipe Salido norte · cuerpo blanco de Mina. Contorno físico de cubierta interpretado manualmente con escala comprobada, ±3 m. Patios y calles adyacentes excluidos; altura provisional, imagen y registro propios.",
+    "sourceScreenPixels": [
+      [
+        443,
+        520
+      ],
+      [
+        521,
+        517
+      ],
+      [
+        529,
+        558
+      ],
+      [
+        444,
+        566
+      ]
+    ],
+    "points": [
+      [
+        -86.13,
+        164.736
+      ],
+      [
+        -65.794,
+        163.956
+      ],
+      [
+        -63.709,
+        174.617
+      ],
+      [
+        -85.869,
+        176.698
+      ]
+    ],
+    "holes": [],
+    "uncertaintyMeters": 3,
+    "heightMeters": 6.2,
+    "measuredAt": "2026-10-06T02:40:13.997265+00:00",
+    "source": "Google Maps satellite, manually interpreted visible roof boundary; two screen anchors and scale. Source imagery date unverified.",
+    "calibration": {
+      "a": [
+        550,
+        300,
+        29.076713,
+        -110.955667
+      ],
+      "b": [
+        1000,
+        700,
+        29.074838,
+        -110.953253
+      ],
+      "viewport": [
+        1363,
+        936
+      ],
+      "metersPerPixel": [
+        0.521424,
+        0.520078
+      ]
+    },
+    "mapUrl": "https://www.google.com/maps/@29.0759255,-110.9549615,488m/data=!3m1!1e3"
+  },
+  "current": {
+    "url": "levantamiento/evidence/D2-02/20261006-01-cierre.png",
+    "title": "Acción 1 · planta revisada",
+    "label": "Planta · 01",
+    "capturedAt": "2026-10-06T02:40:13.997265+00:00",
+    "worldSha256": "549f0288e920e9b9f7d0e0e4efe92d17e964cb96a1ddc53425794458ab09ef48",
+    "sheetDataSha256": "e328db4ee89859b41f7c8af3feb87c4123d37b1e36471bc5192333559e0900b1",
+    "sha256": "5eb6ce73f910d98ff95a6ef81de2d2bcca56d3b8a807dcbb3aae8da88c14a979",
+    "cameraId": "D2-02-review01-20261006-software-v1",
+    "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
+  },
+  "camera": {
+    "id": "D2-02-review01-20261006-software-v1",
+    "direction": [
+      0.25,
+      1,
+      1
+    ],
+    "span": 35.87359999999999,
+    "projection": "orthographic",
+    "target": [
+      -74.91949844360352,
+      1,
+      170.32699584960938
+    ]
+  },
+  "worldSha256": "549f0288e920e9b9f7d0e0e4efe92d17e964cb96a1ddc53425794458ab09ef48",
+  "triangles": 12,
+  "heightMeasured": false,
+  "landSurvey": false,
+  "sequence": 99
+}

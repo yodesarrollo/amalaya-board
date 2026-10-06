@@ -1,0 +1,206 @@
+{
+  "id": "C3-09",
+  "action": 1,
+  "status": "closed-visual-approximation",
+  "executedAt": "2026-10-06T02:33:46.638744+00:00",
+  "note": "CERRADO · Cuerpo de esquina con patio interior, dejando libre el terreno rocoso posterior. Planta visual ±3 m; altura provisional y registro de la acción 1.",
+  "source": {
+    "id": "C3-09",
+    "sector": "C3",
+    "name": "Sufragio–Abasolo · cuerpo junto al cerro",
+    "viewCenter": [
+      29.0755344,
+      -110.9535192
+    ],
+    "zoomMeters": 244,
+    "pixels": [
+      [
+        1010.1269676890488,
+        496.93466666728887
+      ],
+      [
+        1045.6269676890488,
+        488.93466666728887
+      ],
+      [
+        1057.6269676890488,
+        529.4346666672889
+      ],
+      [
+        1060.1269676890488,
+        541.4346666672889
+      ],
+      [
+        1035.1269676890488,
+        548.4346666672889
+      ],
+      [
+        1023.6269676890488,
+        536.4346666672889
+      ],
+      [
+        1019.1269676890488,
+        525.4346666672889
+      ]
+    ],
+    "pixelHoles": [
+      [
+        [
+          1024.1269676890488,
+          511.43466666728887
+        ],
+        [
+          1034.6269676890488,
+          508.43466666728887
+        ],
+        [
+          1038.6269676890488,
+          523.4346666672889
+        ],
+        [
+          1028.6269676890488,
+          526.9346666672889
+        ]
+      ]
+    ],
+    "note": "CERRADO · Cuerpo de esquina con patio interior, dejando libre el terreno rocoso posterior. Planta visual ±3 m; altura provisional y registro de la acción 1.",
+    "sourceScreenPixels": [
+      [
+        801,
+        359
+      ],
+      [
+        872,
+        343
+      ],
+      [
+        896,
+        424
+      ],
+      [
+        901,
+        448
+      ],
+      [
+        851,
+        462
+      ],
+      [
+        828,
+        438
+      ],
+      [
+        819,
+        416
+      ]
+    ],
+    "points": [
+      [
+        147.397,
+        36.073
+      ],
+      [
+        165.907,
+        31.913
+      ],
+      [
+        172.164,
+        52.976
+      ],
+      [
+        173.468,
+        59.217
+      ],
+      [
+        160.432,
+        62.857
+      ],
+      [
+        154.436,
+        56.616
+      ],
+      [
+        152.089,
+        50.896
+      ]
+    ],
+    "holes": [
+      [
+        [
+          154.696,
+          43.614
+        ],
+        [
+          160.171,
+          42.054
+        ],
+        [
+          162.257,
+          49.855
+        ],
+        [
+          157.043,
+          51.676
+        ]
+      ]
+    ],
+    "uncertaintyMeters": 3,
+    "heightMeters": 6.2,
+    "measuredAt": "2026-10-06T02:33:46.638744+00:00",
+    "source": "Google Maps satellite, manually interpreted visible roof boundary; two screen anchors and scale. Source imagery date unverified.",
+    "calibration": {
+      "a": [
+        550,
+        300,
+        29.076713,
+        -110.955667
+      ],
+      "b": [
+        1000,
+        700,
+        29.074838,
+        -110.953253
+      ],
+      "viewport": [
+        1363,
+        936
+      ],
+      "metersPerPixel": [
+        0.521424,
+        0.520078
+      ]
+    },
+    "mapUrl": "https://www.google.com/maps/@29.0759255,-110.9549615,488m/data=!3m1!1e3"
+  },
+  "current": {
+    "url": "levantamiento/evidence/C3-09/20261006-01-cierre.png",
+    "title": "Acción 1 · planta revisada",
+    "label": "Planta · 01",
+    "capturedAt": "2026-10-06T02:33:46.638744+00:00",
+    "worldSha256": "549f0288e920e9b9f7d0e0e4efe92d17e964cb96a1ddc53425794458ab09ef48",
+    "sheetDataSha256": "d7d910ff03eb7a4344900a4ee8b9a0067036871d0e2693607575943ef8f66df8",
+    "sha256": "84db67a376f36dd851b58cf5e4d3513afb8ec25d35263e2073ad1403788a39ad",
+    "cameraId": "C3-09-review01-20261006-software-v1",
+    "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
+  },
+  "camera": {
+    "id": "C3-09-review01-20261006-software-v1",
+    "direction": [
+      0.25,
+      1,
+      1
+    ],
+    "span": 49.510400000000004,
+    "projection": "orthographic",
+    "target": [
+      160.43250274658203,
+      1,
+      47.38499927520752
+    ]
+  },
+  "worldSha256": "549f0288e920e9b9f7d0e0e4efe92d17e964cb96a1ddc53425794458ab09ef48",
+  "triangles": 44,
+  "heightMeasured": false,
+  "landSurvey": false,
+  "sequence": 83
+}

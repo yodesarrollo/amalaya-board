@@ -1,0 +1,132 @@
+{
+  "id": "D3-07",
+  "action": 1,
+  "status": "closed-visual-approximation",
+  "executedAt": "2026-10-06T02:49:16.632766+00:00",
+  "note": "CERRADO · Contorno físico de cubierta interpretado en vista satelital norte arriba y aplicado al modelo. Planta visual ±3 m; altura provisional pendiente del paso 7. Se conserva completo el cuerpo cuando cruza el borde de la lámina; patios y terreno rocoso se excluyen.",
+  "source": {
+    "id": "D3-07",
+    "sector": "D3",
+    "name": "Pie del cerro · cubierta central este",
+    "viewCenter": [
+      29.0747521,
+      -110.9535192
+    ],
+    "zoomMeters": 244,
+    "pixels": [
+      [
+        896.1269676890488,
+        707.32533333339
+      ],
+      [
+        904.6269676890488,
+        708.82533333339
+      ],
+      [
+        903.6269676890488,
+        723.32533333339
+      ],
+      [
+        898.1269676890488,
+        723.82533333339
+      ]
+    ],
+    "pixelHoles": [],
+    "note": "CERRADO · Contorno físico de cubierta interpretado en vista satelital norte arriba y aplicado al modelo. Planta visual ±3 m; altura provisional pendiente del paso 7. Se conserva completo el cuerpo cuando cruza el borde de la lámina; patios y terreno rocoso se excluyen.",
+    "sourceScreenPixels": [
+      [
+        573,
+        446
+      ],
+      [
+        590,
+        449
+      ],
+      [
+        588,
+        478
+      ],
+      [
+        577,
+        479
+      ]
+    ],
+    "points": [
+      [
+        87.954,
+        145.493
+      ],
+      [
+        92.386,
+        146.273
+      ],
+      [
+        91.865,
+        153.814
+      ],
+      [
+        88.997,
+        154.074
+      ]
+    ],
+    "holes": [],
+    "uncertaintyMeters": 3,
+    "heightMeters": 6.2,
+    "measuredAt": "2026-10-06T02:49:16.632766+00:00",
+    "source": "Google Maps satellite, manually interpreted visible roof boundary; two screen anchors and scale. Source imagery date unverified.",
+    "calibration": {
+      "a": [
+        550,
+        300,
+        29.076713,
+        -110.955667
+      ],
+      "b": [
+        1000,
+        700,
+        29.074838,
+        -110.953253
+      ],
+      "viewport": [
+        1363,
+        936
+      ],
+      "metersPerPixel": [
+        0.521424,
+        0.520078
+      ]
+    },
+    "mapUrl": "https://www.google.com/maps/@29.0759255,-110.9549615,488m/data=!3m1!1e3"
+  },
+  "current": {
+    "url": "levantamiento/evidence/D3-07/20261006-01-cierre.png",
+    "title": "Acción 1 · planta revisada",
+    "label": "Planta · 01",
+    "capturedAt": "2026-10-06T02:49:16.632766+00:00",
+    "worldSha256": "549f0288e920e9b9f7d0e0e4efe92d17e964cb96a1ddc53425794458ab09ef48",
+    "sheetDataSha256": "f2ea3910dc05afbc2fbc66c74b95bcaba87a11b39694eea29f14e78b10bebbd7",
+    "sha256": "c8532f9aa3d4452c0f33f5c9df4ad89ac8983cf6f1888576f5a8ba0be242d85a",
+    "cameraId": "D3-07-review01-20261006-software-v1",
+    "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
+  },
+  "camera": {
+    "id": "D3-07-review01-20261006-software-v1",
+    "direction": [
+      0.25,
+      1,
+      1
+    ],
+    "span": 30,
+    "projection": "orthographic",
+    "target": [
+      90.17000198364258,
+      1,
+      149.78350067138672
+    ]
+  },
+  "worldSha256": "549f0288e920e9b9f7d0e0e4efe92d17e964cb96a1ddc53425794458ab09ef48",
+  "triangles": 12,
+  "heightMeasured": false,
+  "landSurvey": false,
+  "sequence": 128
+}

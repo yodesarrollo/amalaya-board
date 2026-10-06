@@ -6,8 +6,8 @@ import { createHash } from 'node:crypto'
 import { BASE_WORLD_SHA256, BASE_VISOR_SHA256, removeIsc58Hook, removeIsc58VisorHook, regionHashes, sha256 } from './preparar-isc58.mjs'
 const root='public/levantamiento'
 const approved=new Set(['amalaya-observations.json','amalaya-routes.json','cerro-elevation.json','osm-context.json','osm-plaza-hidalgo.json','sector-survey.json'])
-const roundProgressFiles=new Set(['02-inicio-ronda.png','02-avance-calzada.png','02-record-calzada.json','03-inicio-ronda.png','03-avance-banqueta-a.png','03-record-banqueta-a.json','20261006-01-antes.png','20261006-01-planta.png','20261006-01-record.json']);
-function historicalOwner(building,cameraId){const progress=building.visualProgress?.cameraId===cameraId?building.visualProgress:building.visualProgress?.history?.find(p=>p.cameraId===cameraId);assert(progress,'Missing preserved progress checkpoint '+building.id+' '+cameraId);return {...building,visualProgress:progress};}
+const roundProgressFiles=new Set(['20261006-01-cierre.png','20261006-01-cierre.json','02-inicio-ronda.png','02-avance-calzada.png','02-record-calzada.json','03-inicio-ronda.png','03-avance-banqueta-a.png','03-record-banqueta-a.json','20261006-01-antes.png','20261006-01-planta.png','20261006-01-record.json']);
+function historicalOwner(building,cameraId){const progress=building.visualProgress?.cameraId===cameraId?building.visualProgress:building.visualProgress?.history?.find(p=>p.cameraId===cameraId);assert(progress,'Missing preserved progress checkpoint '+building.id+' '+cameraId);const previous=building.action1PreviousState;return {...building,tasks:{...building.tasks,...(previous?{plan:previous.state}:{})},issues:{...building.issues,...(previous?.issue?{plan:previous.issue}:{})},visualProgress:progress};}
 const ob01EvidenceFiles=new Set(['01-planta.png','02-calzada.png','03-banqueta-sur.png','04-banqueta-norte.png','05-esquinas.png','06-identidad.png','07-volumen.png','08-fachada.png','09-materiales.png','10-equipamiento.png','11a-planta.png','11b-bloque.png','11c-peaton.png','manifest.json'])
 const isc58EvidenceFiles=new Set(['00-inicio-webgl-raw.png','00-inicio-seguimiento.png','plan-manifest.json','plan-record.json','progress-baseline.json','06-avance-punto11.png','07-banqueta-sur.png','08-paseo-norte.png','00-inicio-bloque.png','01-planta.png','02-bloque.png','03-peaton.png','04-fachada-detalle.png','05-visor-p05.png','manifest.json','identity-plan-record.json','review-record.json'])
 for(const file of ['09-banqueta-sur-reparada.png','10-avance-banqueta-sur.png','11-paseo-norte-reparado.png','12-avance-paseo-norte.png','sidewalkA-repair-manifest.json','sidewalkB-repair-manifest.json'])isc58EvidenceFiles.add(file)
@@ -22,9 +22,10 @@ async function check(dir){
   for(const item of await readdir(dir,{withFileTypes:true})){
     const path=`${dir}/${item.name}`
     assert(!item.isSymbolicLink(),`No se permiten enlaces: ${path}`)
-    if(item.isDirectory()){const allowed=['data','visor','assets','fonts','evidence'].includes(item.name)||(dir===`${root}/evidence`&&['OB-01','OB-02','ISC-58','EB-SW','EB-NW','EB-NE','EB-SE','CH-YG-BBVA','CH-GA-OXXO','CH-YG-BIB','SER-BLEY','SER-HSBC'].includes(item.name));assert(allowed,`Carpeta inesperada: ${path}`);await check(path);continue}
+    if(item.isDirectory()){const allowed=['data','visor','assets','fonts','evidence'].includes(item.name)||(dir===`${root}/evidence`&&(['OB-01','OB-02','ISC-58','EB-SW','EB-NW','EB-NE','EB-SE','CH-YG-BBVA','CH-GA-OXXO','CH-YG-BIB','SER-BLEY','SER-HSBC','OB-21','SER-SANT','PL-GA'].includes(item.name)||/^[ABCD][123]-\d{2}$/.test(item.name)));assert(allowed,`Carpeta inesperada: ${path}`);await check(path);continue}
     if(['/evidence/CH-GA-OXXO/','/evidence/CH-YG-BIB/','/evidence/SER-BLEY/','/evidence/SER-HSBC/'].some(p=>path.includes(p)))assert(roundProgressFiles.has(item.name),'Unexpected round evidence: '+path)
     if(['/evidence/EB-NW/','/evidence/EB-NE/','/evidence/EB-SE/','/evidence/CH-YG-BBVA/'].some(p=>path.includes(p)))assert(roundProgressFiles.has(item.name)||/^(?:sequence\.json|plan-record\.json|01-planta-geometria\.png)$/.test(item.name),'Evidencia fuera del alcance EB-NW: '+path)
+    if(/\/evidence\/(?:[ABCD][123]-\d{2}|OB-21|SER-SANT|PL-GA)\//.test(path))assert(roundProgressFiles.has(item.name),'Unexpected sheet evidence: '+path)
     if(path.includes('/evidence/EB-SW/'))assert(roundProgressFiles.has(item.name)||/^(?:\d{2}-(?:general|plan|block|pedestrian|south|north)\.png|manifest\.json|sequence\.json|survey\.json)$/.test(item.name),`Evidencia fuera del alcance EB-SW: ${path}`)
     if(path.includes('/evidence/ISC-58/'))assert(roundProgressFiles.has(item.name)||isc58EvidenceFiles.has(item.name),`Evidencia fuera del alcance ISC-58: ${path}`)
     if(path.includes('/evidence/OB-01/'))assert(roundProgressFiles.has(item.name)||ob01EvidenceFiles.has(item.name),`Evidencia fuera del alcance OB-01: ${path}`)
@@ -485,3 +486,5 @@ await import('./pruebas-calzadas.mjs')
 await import('./pruebas-banquetas.mjs')
 
 await import('./pruebas-revision-plantas.mjs');
+
+await import('./pruebas-lamina.mjs');

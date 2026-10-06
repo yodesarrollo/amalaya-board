@@ -1,0 +1,132 @@
+{
+  "id": "D1-11",
+  "action": 1,
+  "status": "closed-visual-approximation",
+  "executedAt": "2026-10-06T02:37:20.123690+00:00",
+  "note": "CERRADO · Cuerpo de cubierta roja contiguo al conjunto occidental; se conserva la junta lateral. Planta visual ±3 m; no certifica particiones prediales ni alturas.",
+  "source": {
+    "id": "D1-11",
+    "sector": "D1",
+    "name": "Felipe Salido · cuerpo rojo central",
+    "viewCenter": [
+      29.0747521,
+      -110.9564038
+    ],
+    "zoomMeters": 244,
+    "pixels": [
+      [
+        542.9012013258731,
+        743.32533333339
+      ],
+      [
+        559.4012013258731,
+        740.82533333339
+      ],
+      [
+        561.4012013258731,
+        764.82533333339
+      ],
+      [
+        543.4012013258731,
+        768.32533333339
+      ]
+    ],
+    "pixelHoles": [],
+    "note": "CERRADO · Cuerpo de cubierta roja contiguo al conjunto occidental; se conserva la junta lateral. Planta visual ±3 m; no certifica particiones prediales ni alturas.",
+    "sourceScreenPixels": [
+      [
+        942,
+        518
+      ],
+      [
+        975,
+        513
+      ],
+      [
+        979,
+        561
+      ],
+      [
+        943,
+        568
+      ]
+    ],
+    "points": [
+      [
+        -96.226,
+        164.216
+      ],
+      [
+        -87.623,
+        162.916
+      ],
+      [
+        -86.58,
+        175.397
+      ],
+      [
+        -95.965,
+        177.218
+      ]
+    ],
+    "holes": [],
+    "uncertaintyMeters": 3,
+    "heightMeters": 6.2,
+    "measuredAt": "2026-10-06T02:37:20.123690+00:00",
+    "source": "Google Maps satellite, manually interpreted visible roof boundary; two screen anchors and scale. Source imagery date unverified.",
+    "calibration": {
+      "a": [
+        550,
+        300,
+        29.076713,
+        -110.955667
+      ],
+      "b": [
+        1000,
+        700,
+        29.074838,
+        -110.953253
+      ],
+      "viewport": [
+        1363,
+        936
+      ],
+      "metersPerPixel": [
+        0.521424,
+        0.520078
+      ]
+    },
+    "mapUrl": "https://www.google.com/maps/@29.0759255,-110.9549615,488m/data=!3m1!1e3"
+  },
+  "current": {
+    "url": "levantamiento/evidence/D1-11/20261006-01-cierre.png",
+    "title": "Acción 1 · planta revisada",
+    "label": "Planta · 01",
+    "capturedAt": "2026-10-06T02:37:20.123690+00:00",
+    "worldSha256": "549f0288e920e9b9f7d0e0e4efe92d17e964cb96a1ddc53425794458ab09ef48",
+    "sheetDataSha256": "88b9114782cefacbe78591c56dfc96db49310df95bfc2dda37138b0bf2a093ef",
+    "sha256": "94504584c3d3650d2534177b6af49ead1512b16252275dcfb2587eb91645b770",
+    "cameraId": "D1-11-review01-20261006-software-v1",
+    "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
+  },
+  "camera": {
+    "id": "D1-11-review01-20261006-software-v1",
+    "direction": [
+      0.25,
+      1,
+      1
+    ],
+    "span": 30,
+    "projection": "orthographic",
+    "target": [
+      -91.40299987792969,
+      1,
+      170.06700134277344
+    ]
+  },
+  "worldSha256": "549f0288e920e9b9f7d0e0e4efe92d17e964cb96a1ddc53425794458ab09ef48",
+  "triangles": 12,
+  "heightMeasured": false,
+  "landSurvey": false,
+  "sequence": 96
+}

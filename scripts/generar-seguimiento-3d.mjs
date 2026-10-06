@@ -14,7 +14,8 @@ function heading(building) {
 const lines = [
   '# Amalaya · Matriz de levantamiento 3D', '',
   `Actualizado: ${data.updatedAt}. La web consulta estados cada ${data.refreshSeconds} segundos; los cambios aparecen al publicar avances.`, '',
-  ...(data.activeReview ? [`Paso 1 reiniciado para toda la lámina. ${data.activeReview.closedBuildings.length} de ${data.activeReview.buildingOrder.length} columnas conocidas revisadas. Inventario abierto: el total de edificios aún no está completo. Siguiente: ${data.activeReview.nextBuilding}.`, '', `Columnas agregadas: ${data.activeReview.addedBuildings.join(', ')}. Medir → editar → verificar → imagen y registro antes de avanzar.`, ''] : []),
+  ...(data.activeReview ? [`Acción 1 · ${data.activeReview.closedBuildings.length} de ${data.activeReview.buildingOrder.length} columnas revisadas. ${data.activeReview.inventoryComplete ? "Inventario visual de toda la lámina completado." : "Inventario en revisión."} Los cierres anteriores válidos se conservan.`, '', `Columnas agregadas: ${data.activeReview.addedBuildings.join(', ')}. Medir → editar → verificar → imagen y registro antes de avanzar.`, ''] : []),
+  `[Abrir modelo completo](${publicRoot}modelo-completo.html)`, '',
   'Naranja: en proceso · Verde: terminado · Rojo: problema · Gris: pendiente o provisional.', '',
   `| Acciones / Edificios | ${targets.map(c => heading(c.building)).join(' | ')} |`,
   `|---|${targets.map(() => '---').join('|')}|`,

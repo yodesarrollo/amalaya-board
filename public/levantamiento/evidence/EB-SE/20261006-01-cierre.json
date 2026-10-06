@@ -1,0 +1,42 @@
+{
+  "id": "EB-SE",
+  "action": 1,
+  "status": "closed-visual-approximation",
+  "executedAt": "2026-10-06T02:04:01.299450+00:00",
+  "note": "CERRADO · se conserva la huella 27,33 × 25,71 m, tolerancia ±1,5 m, y sus colisiones inscritas. Nueva imagen de la geometría actual; no se reinicia el avance válido.",
+  "source": {
+    "id": "EB-SE",
+    "note": "CERRADO · se conserva la huella 27,33 × 25,71 m, tolerancia ±1,5 m, y sus colisiones inscritas. Nueva imagen de la geometría actual; no se reinicia el avance válido."
+  },
+  "current": {
+    "url": "levantamiento/evidence/EB-SE/20261006-01-cierre.png",
+    "title": "Acción 1 · planta revisada",
+    "label": "Planta · 01",
+    "capturedAt": "2026-10-06T02:04:01.299450+00:00",
+    "worldSha256": "cd0e932a95d99fb60c35c6ca0898450e0d8aa735934da921cbe91c4f516afe8f",
+    "sheetDataSha256": "4e61a8d81dd7895437c61429198c0f3d13b9d87736f5916661c893012d1e47fe",
+    "sha256": "53687753955d8d64dc26e788b05597a90fe44a8c0c63f04db752d25f3de9fb67",
+    "cameraId": "EB-SE-review01-20261006-software-v1",
+    "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
+  },
+  "camera": {
+    "id": "EB-SE-review01-20261006-software-v1",
+    "direction": [
+      0.6,
+      1,
+      1
+    ],
+    "span": 57,
+    "projection": "orthographic",
+    "target": [
+      167.67607596597475,
+      1,
+      -10.70667482467261
+    ]
+  },
+  "worldSha256": "cd0e932a95d99fb60c35c6ca0898450e0d8aa735934da921cbe91c4f516afe8f",
+  "triangles": 36946,
+  "heightMeasured": false,
+  "landSurvey": false,
+  "sequence": 5
+}

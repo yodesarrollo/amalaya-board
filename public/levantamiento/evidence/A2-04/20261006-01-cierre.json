@@ -1,0 +1,192 @@
+{
+  "id": "A2-04",
+  "action": 1,
+  "status": "closed-visual-approximation",
+  "executedAt": "2026-10-06T02:11:26.124694+00:00",
+  "note": "CERRADO · Cuerpo posterior en L, incluyendo la parte que cruza el borde norte; se deja vacío el patio central visible. Planta visual ±3 m, medidas convertidas con escala comprobada; altura provisional.",
+  "source": {
+    "id": "A2-04",
+    "sector": "A2",
+    "name": "Garmendia · cuerpo rojo posterior",
+    "viewCenter": [
+      29.0770989,
+      -110.9549615
+    ],
+    "zoomMeters": 244,
+    "pixels": [
+      [
+        700.7640845087855,
+        108.17466666715336
+      ],
+      [
+        736.7640845087855,
+        103.67466666715336
+      ],
+      [
+        742.7640845087855,
+        119.17466666715336
+      ],
+      [
+        773.2640845087855,
+        111.17466666715336
+      ],
+      [
+        765.7640845087855,
+        82.67466666715336
+      ],
+      [
+        783.7640845087855,
+        76.17466666715336
+      ],
+      [
+        794.2640845087855,
+        130.67466666715336
+      ],
+      [
+        739.2640845087855,
+        143.67466666715336
+      ],
+      [
+        709.7640845087855,
+        140.17466666715336
+      ]
+    ],
+    "note": "CERRADO · Cuerpo posterior en L, incluyendo la parte que cruza el borde norte; se deja vacío el patio central visible. Planta visual ±3 m, medidas convertidas con escala comprobada; altura provisional.",
+    "sourceScreenPixels": [
+      [
+        720,
+        249
+      ],
+      [
+        792,
+        240
+      ],
+      [
+        804,
+        271
+      ],
+      [
+        865,
+        255
+      ],
+      [
+        850,
+        198
+      ],
+      [
+        886,
+        185
+      ],
+      [
+        907,
+        294
+      ],
+      [
+        797,
+        320
+      ],
+      [
+        738,
+        313
+      ]
+    ],
+    "pixelHoles": [],
+    "points": [
+      [
+        -13.913,
+        -166.112
+      ],
+      [
+        4.859,
+        -168.453
+      ],
+      [
+        7.987,
+        -160.391
+      ],
+      [
+        23.891,
+        -164.552
+      ],
+      [
+        19.98,
+        -179.374
+      ],
+      [
+        29.366,
+        -182.755
+      ],
+      [
+        34.84,
+        -154.411
+      ],
+      [
+        6.162,
+        -147.649
+      ],
+      [
+        -9.22,
+        -149.47
+      ]
+    ],
+    "holes": [],
+    "uncertaintyMeters": 3,
+    "heightMeters": 6.2,
+    "measuredAt": "2026-10-06T02:11:26.124694+00:00",
+    "source": "Google Maps satellite, manually interpreted visible roof boundary; two screen anchors and scale. Source imagery date unverified.",
+    "calibration": {
+      "a": [
+        550,
+        300,
+        29.076713,
+        -110.955667
+      ],
+      "b": [
+        1000,
+        700,
+        29.074838,
+        -110.953253
+      ],
+      "viewport": [
+        1363,
+        936
+      ],
+      "metersPerPixel": [
+        0.521424,
+        0.520078
+      ]
+    },
+    "mapUrl": "https://www.google.com/maps/@29.0759255,-110.9549615,488m/data=!3m1!1e3"
+  },
+  "current": {
+    "url": "levantamiento/evidence/A2-04/20261006-01-cierre.png",
+    "title": "Acción 1 · planta revisada",
+    "label": "Planta · 01",
+    "capturedAt": "2026-10-06T02:11:26.124694+00:00",
+    "worldSha256": "7d2bea2ba657cf820bc1d7acfaa8328bc67d954a013ef2e0201f6bf1f0d6e0e3",
+    "sheetDataSha256": "9303df26df3b3836899b254f1309cbd5e87bc8e3f778abb082819f52348100b3",
+    "sha256": "13209905c5390f606549dd79accab67a3046bc03f874eca049887be3f582d650",
+    "cameraId": "A2-04-review01-20261006-software-v1",
+    "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
+  },
+  "camera": {
+    "id": "A2-04-review01-20261006-software-v1",
+    "direction": [
+      0.25,
+      1,
+      1
+    ],
+    "span": 78.0048,
+    "projection": "orthographic",
+    "target": [
+      10.463500022888184,
+      1,
+      -165.2020034790039
+    ]
+  },
+  "worldSha256": "7d2bea2ba657cf820bc1d7acfaa8328bc67d954a013ef2e0201f6bf1f0d6e0e3",
+  "triangles": 32,
+  "heightMeasured": false,
+  "landSurvey": false,
+  "sequence": 22
+}

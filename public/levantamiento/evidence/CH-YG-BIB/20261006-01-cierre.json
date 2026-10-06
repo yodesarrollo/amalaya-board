@@ -1,0 +1,42 @@
+{
+  "id": "CH-YG-BIB",
+  "action": 1,
+  "status": "closed-visual-approximation",
+  "executedAt": "2026-10-06T02:04:11.119820+00:00",
+  "note": "CERRADO · huella física OSM 1533334038 conservada, tolerancia visual ±3 m. Se comprueba el dueño de geometría y se actualiza imagen; altura y fachada conservan sus pendientes.",
+  "source": {
+    "id": "CH-YG-BIB",
+    "note": "CERRADO · huella física OSM 1533334038 conservada, tolerancia visual ±3 m. Se comprueba el dueño de geometría y se actualiza imagen; altura y fachada conservan sus pendientes."
+  },
+  "current": {
+    "url": "levantamiento/evidence/CH-YG-BIB/20261006-01-cierre.png",
+    "title": "Acción 1 · planta revisada",
+    "label": "Planta · 01",
+    "capturedAt": "2026-10-06T02:04:11.119820+00:00",
+    "worldSha256": "cd0e932a95d99fb60c35c6ca0898450e0d8aa735934da921cbe91c4f516afe8f",
+    "sheetDataSha256": "4e61a8d81dd7895437c61429198c0f3d13b9d87736f5916661c893012d1e47fe",
+    "sha256": "f44411fe9e15e3c83c03ff5077e77dfcee6a06ac3c6c8a2b02979c6dc9aab784",
+    "cameraId": "CH-YG-BIB-review01-20261006-software-v1",
+    "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
+  },
+  "camera": {
+    "id": "CH-YG-BIB-review01-20261006-software-v1",
+    "direction": [
+      -0.2,
+      1,
+      -1
+    ],
+    "span": 69,
+    "projection": "orthographic",
+    "target": [
+      6.925499796867371,
+      1,
+      -79.17946815490723
+    ]
+  },
+  "worldSha256": "cd0e932a95d99fb60c35c6ca0898450e0d8aa735934da921cbe91c4f516afe8f",
+  "triangles": 16131,
+  "heightMeasured": false,
+  "landSurvey": false,
+  "sequence": 7
+}

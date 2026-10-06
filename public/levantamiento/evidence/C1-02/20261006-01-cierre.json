@@ -1,0 +1,132 @@
+{
+  "id": "C1-02",
+  "action": 1,
+  "status": "closed-visual-approximation",
+  "executedAt": "2026-10-06T02:22:34.938533+00:00",
+  "note": "CERRADO · Cuerpo oriental del mismo frente, junto a Yáñez. Contorno manual ±3 m; altura provisional y registro visual propio.",
+  "source": {
+    "id": "C1-02",
+    "sector": "C1",
+    "name": "Obregón · cubierta sur oriental",
+    "viewCenter": [
+      29.0755344,
+      -110.9564038
+    ],
+    "zoomMeters": 244,
+    "pixels": [
+      [
+        391.9012013258731,
+        512.9346666672889
+      ],
+      [
+        425.9012013258731,
+        508.93466666728887
+      ],
+      [
+        430.4012013258731,
+        528.9346666672889
+      ],
+      [
+        396.4012013258731,
+        537.9346666672889
+      ]
+    ],
+    "note": "CERRADO · Cuerpo oriental del mismo frente, junto a Yáñez. Contorno manual ±3 m; altura provisional y registro visual propio.",
+    "sourceScreenPixels": [
+      [
+        640,
+        391
+      ],
+      [
+        708,
+        383
+      ],
+      [
+        717,
+        423
+      ],
+      [
+        649,
+        441
+      ]
+    ],
+    "pixelHoles": [],
+    "points": [
+      [
+        -174.961,
+        44.395
+      ],
+      [
+        -157.233,
+        42.314
+      ],
+      [
+        -154.886,
+        52.716
+      ],
+      [
+        -172.615,
+        57.397
+      ]
+    ],
+    "holes": [],
+    "uncertaintyMeters": 3,
+    "heightMeters": 6.2,
+    "measuredAt": "2026-10-06T02:22:34.938533+00:00",
+    "source": "Google Maps satellite, manually interpreted visible roof boundary; two screen anchors and scale. Source imagery date unverified.",
+    "calibration": {
+      "a": [
+        550,
+        300,
+        29.076713,
+        -110.955667
+      ],
+      "b": [
+        1000,
+        700,
+        29.074838,
+        -110.953253
+      ],
+      "viewport": [
+        1363,
+        936
+      ],
+      "metersPerPixel": [
+        0.521424,
+        0.520078
+      ]
+    },
+    "mapUrl": "https://www.google.com/maps/@29.0759255,-110.9549615,488m/data=!3m1!1e3"
+  },
+  "current": {
+    "url": "levantamiento/evidence/C1-02/20261006-01-cierre.png",
+    "title": "Acción 1 · planta revisada",
+    "label": "Planta · 01",
+    "capturedAt": "2026-10-06T02:22:34.938533+00:00",
+    "worldSha256": "549f0288e920e9b9f7d0e0e4efe92d17e964cb96a1ddc53425794458ab09ef48",
+    "sheetDataSha256": "12862ea8fa54beeddb0f9b0806d3da16105687be340298b2286c8b660ef4cc0b",
+    "sha256": "8fcfc135f342776a770a06c83497428ce126b33b98c6c70342270dfda6924b18",
+    "cameraId": "C1-02-review01-20261006-software-v1",
+    "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
+  },
+  "camera": {
+    "id": "C1-02-review01-20261006-software-v1",
+    "direction": [
+      0.25,
+      1,
+      1
+    ],
+    "span": 32.120000000000026,
+    "projection": "orthographic",
+    "target": [
+      -164.92350006103516,
+      1,
+      49.855499267578125
+    ]
+  },
+  "worldSha256": "549f0288e920e9b9f7d0e0e4efe92d17e964cb96a1ddc53425794458ab09ef48",
+  "triangles": 12,
+  "heightMeasured": false,
+  "landSurvey": false,
+  "sequence": 51
+}

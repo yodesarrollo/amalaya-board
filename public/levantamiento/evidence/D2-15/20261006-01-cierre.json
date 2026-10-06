@@ -1,0 +1,132 @@
+{
+  "id": "D2-15",
+  "action": 1,
+  "status": "closed-visual-approximation",
+  "executedAt": "2026-10-06T02:42:20.321642+00:00",
+  "note": "CERRADO · Juan Álvarez · anexo oriental del solar. Planta de cuerpo visible ±3 m; no se incluye como edificio el solar ni el estacionamiento contiguo. Altura provisional y registro individual.",
+  "source": {
+    "id": "D2-15",
+    "sector": "D2",
+    "name": "Juan Álvarez · anexo oriental del solar",
+    "viewCenter": [
+      29.0747521,
+      -110.9549615
+    ],
+    "zoomMeters": 244,
+    "pixels": [
+      [
+        751.7640845087855,
+        686.32533333339
+      ],
+      [
+        769.2640845087855,
+        685.32533333339
+      ],
+      [
+        771.7640845087855,
+        693.32533333339
+      ],
+      [
+        753.2640845087855,
+        696.32533333339
+      ]
+    ],
+    "pixelHoles": [],
+    "note": "CERRADO · Juan Álvarez · anexo oriental del solar. Planta de cuerpo visible ±3 m; no se incluye como edificio el solar ni el estacionamiento contiguo. Altura provisional y registro individual.",
+    "sourceScreenPixels": [
+      [
+        822,
+        404
+      ],
+      [
+        857,
+        402
+      ],
+      [
+        862,
+        418
+      ],
+      [
+        825,
+        424
+      ]
+    ],
+    "points": [
+      [
+        12.68,
+        134.571
+      ],
+      [
+        21.805,
+        134.051
+      ],
+      [
+        23.108,
+        138.212
+      ],
+      [
+        13.462,
+        139.772
+      ]
+    ],
+    "holes": [],
+    "uncertaintyMeters": 3,
+    "heightMeters": 6.2,
+    "measuredAt": "2026-10-06T02:42:20.321642+00:00",
+    "source": "Google Maps satellite, manually interpreted visible roof boundary; two screen anchors and scale. Source imagery date unverified.",
+    "calibration": {
+      "a": [
+        550,
+        300,
+        29.076713,
+        -110.955667
+      ],
+      "b": [
+        1000,
+        700,
+        29.074838,
+        -110.953253
+      ],
+      "viewport": [
+        1363,
+        936
+      ],
+      "metersPerPixel": [
+        0.521424,
+        0.520078
+      ]
+    },
+    "mapUrl": "https://www.google.com/maps/@29.0759255,-110.9549615,488m/data=!3m1!1e3"
+  },
+  "current": {
+    "url": "levantamiento/evidence/D2-15/20261006-01-cierre.png",
+    "title": "Acción 1 · planta revisada",
+    "label": "Planta · 01",
+    "capturedAt": "2026-10-06T02:42:20.321642+00:00",
+    "worldSha256": "549f0288e920e9b9f7d0e0e4efe92d17e964cb96a1ddc53425794458ab09ef48",
+    "sheetDataSha256": "39aa742412bf37a44340484618f46e2b0ccbb54d5425fd049c5d8596704163bc",
+    "sha256": "77368bdf8da7254d7fd6a055a09cf0eab2c3269dd603af6cdc3f45caffbb16a7",
+    "cameraId": "D2-15-review01-20261006-software-v1",
+    "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
+  },
+  "camera": {
+    "id": "D2-15-review01-20261006-software-v1",
+    "direction": [
+      0.25,
+      1,
+      1
+    ],
+    "span": 30,
+    "projection": "orthographic",
+    "target": [
+      17.89400005340576,
+      1,
+      136.9114990234375
+    ]
+  },
+  "worldSha256": "549f0288e920e9b9f7d0e0e4efe92d17e964cb96a1ddc53425794458ab09ef48",
+  "triangles": 12,
+  "heightMeasured": false,
+  "landSurvey": false,
+  "sequence": 112
+}

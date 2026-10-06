@@ -1,0 +1,132 @@
+{
+  "id": "C2-03",
+  "action": 1,
+  "status": "closed-visual-approximation",
+  "executedAt": "2026-10-06T02:28:14.775262+00:00",
+  "note": "CERRADO · Cubierta transversal interior, independiente de la cubierta de frente OB-01; el área de aparcamiento descubierta sigue abierta. Planta visual ±3 m; altura provisional.",
+  "source": {
+    "id": "C2-03",
+    "sector": "C2",
+    "name": "El Imparcial · cubierta interior transversal",
+    "viewCenter": [
+      29.0755344,
+      -110.9549615
+    ],
+    "zoomMeters": 244,
+    "pixels": [
+      [
+        609.7640845087855,
+        525.9346666672889
+      ],
+      [
+        657.2640845087855,
+        520.4346666672889
+      ],
+      [
+        660.2640845087855,
+        537.4346666672889
+      ],
+      [
+        611.7640845087855,
+        541.4346666672889
+      ]
+    ],
+    "note": "CERRADO · Cubierta transversal interior, independiente de la cubierta de frente OB-01; el área de aparcamiento descubierta sigue abierta. Planta visual ±3 m; altura provisional.",
+    "sourceScreenPixels": [
+      [
+        538,
+        417
+      ],
+      [
+        633,
+        406
+      ],
+      [
+        639,
+        440
+      ],
+      [
+        542,
+        448
+      ]
+    ],
+    "pixelHoles": [],
+    "points": [
+      [
+        -61.362,
+        51.156
+      ],
+      [
+        -36.595,
+        48.295
+      ],
+      [
+        -35.03,
+        57.136
+      ],
+      [
+        -60.319,
+        59.217
+      ]
+    ],
+    "holes": [],
+    "uncertaintyMeters": 3,
+    "heightMeters": 6.2,
+    "measuredAt": "2026-10-06T02:28:14.775262+00:00",
+    "source": "Google Maps satellite, manually interpreted visible roof boundary; two screen anchors and scale. Source imagery date unverified.",
+    "calibration": {
+      "a": [
+        550,
+        300,
+        29.076713,
+        -110.955667
+      ],
+      "b": [
+        1000,
+        700,
+        29.074838,
+        -110.953253
+      ],
+      "viewport": [
+        1363,
+        936
+      ],
+      "metersPerPixel": [
+        0.521424,
+        0.520078
+      ]
+    },
+    "mapUrl": "https://www.google.com/maps/@29.0759255,-110.9549615,488m/data=!3m1!1e3"
+  },
+  "current": {
+    "url": "levantamiento/evidence/C2-03/20261006-01-cierre.png",
+    "title": "Acción 1 · planta revisada",
+    "label": "Planta · 01",
+    "capturedAt": "2026-10-06T02:28:14.775262+00:00",
+    "worldSha256": "549f0288e920e9b9f7d0e0e4efe92d17e964cb96a1ddc53425794458ab09ef48",
+    "sheetDataSha256": "4c21f35da288700c8c60f873e9971be66bbd1eed43110e0e48cc08c4b28a6d0a",
+    "sha256": "cd968928831ae0f16765341d014e6ca2a0c3fca33a222630335f2c34a148383f",
+    "cameraId": "C2-03-review01-20261006-software-v1",
+    "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
+  },
+  "camera": {
+    "id": "C2-03-review01-20261006-software-v1",
+    "direction": [
+      0.25,
+      1,
+      1
+    ],
+    "span": 42.13120000000001,
+    "projection": "orthographic",
+    "target": [
+      -48.19599914550781,
+      1,
+      53.755998611450195
+    ]
+  },
+  "worldSha256": "549f0288e920e9b9f7d0e0e4efe92d17e964cb96a1ddc53425794458ab09ef48",
+  "triangles": 12,
+  "heightMeasured": false,
+  "landSurvey": false,
+  "sequence": 65
+}

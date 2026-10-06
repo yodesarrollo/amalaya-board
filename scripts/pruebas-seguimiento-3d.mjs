@@ -14,9 +14,9 @@ assert.ok(data.live.title && data.live.detail)
 
 for (const block of data.blocks) {
   assert.ok(block.id && block.name && block.next, `falta contexto en ${block.id || 'cuadra'}`)
-  assert.ok(block.estimateHours.min <= block.estimateHours.max, `rango invertido en ${block.id}`)
-  totalMin += block.estimateHours.min
-  totalMax += block.estimateHours.max
+  assert.ok(block.estimateHours === null || block.estimateHours.min <= block.estimateHours.max, `rango invertido en ${block.id}`)
+  totalMin += block.estimateHours?.min || 0
+  totalMax += block.estimateHours?.max || 0
   for (const state of Object.values(block.sharedTasks)) assert.ok(validStates.has(state), `${block.id}: estado compartido ${state}`)
   for (const building of block.buildings) {
     assert.ok(!ids.has(building.id), `ID de edificio duplicado: ${building.id}`)
@@ -27,7 +27,8 @@ for (const block of data.blocks) {
   }
 }
 
-assert.equal(buildingCount, 14, 'las anclas conocidas deben seguir contadas explícitamente')
+assert.equal(buildingCount, data.activeReview.buildingOrder.length, 'cada cuerpo inventariado tiene una columna');
+for (const id of ['OB-01','OB-02','ISC-58','EB-SW','EB-NW','EB-NE','EB-SE','CH-YG-BBVA','CH-GA-OXXO','CH-YG-BIB','SER-BLEY','SER-HSBC','OB-21','SER-SANT']) assert(ids.has(id), 'Se conserva la columna '+id)
 assert.equal(totalMin, 81, 'el mínimo del resumen debe coincidir con los bloques')
 assert.equal(totalMax, 152, 'el máximo del resumen debe coincidir con los bloques')
 assert.equal(data.blocks.find(block => block.id === 'SER-GG')?.testRoute, true, 'R-000 debe seguir marcada como prueba')
@@ -51,7 +52,7 @@ console.log(`Seguimiento 3D: ${data.blocks.length} tramos, ${buildingCount} ancl
 
 const { columns, cellInfo, report, STATES } = await import('../src/seguimiento3d-model.js')
 const targets = columns(data)
-assert.equal(targets.length, 15, '14 edificios registrados y un espacio público; inventario abierto')
+assert.equal(targets.length, buildingCount + 1, 'cada edificio y el espacio público se muestran')
 const ob = targets.find(c => c.building.id === 'OB-02')
 const sharedOb = { ...ob, building: { ...ob.building, tasks: { identity: 'partial' } } }
 assert.equal(cellInfo(sharedOb, 'plan').key, 'OB-YG:plan', 'sin revisión propia se conserva la tarea compartida de cuadra')

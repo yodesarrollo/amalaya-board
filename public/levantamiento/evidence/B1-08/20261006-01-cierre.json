@@ -1,0 +1,132 @@
+{
+  "id": "B1-08",
+  "action": 1,
+  "status": "closed-visual-approximation",
+  "executedAt": "2026-10-06T02:17:17.345456+00:00",
+  "note": "CERRADO · Cuerpo blanco cortado por el límite oeste de la lámina, incluido completo para no dejarlo omitido. Planta visual ±3 m, sin atribución predial ni altura medida.",
+  "source": {
+    "id": "B1-08",
+    "sector": "B1",
+    "name": "Rosales oeste · cuerpo blanco del borde",
+    "viewCenter": [
+      29.0763166,
+      -110.9564038
+    ],
+    "zoomMeters": 244,
+    "pixels": [
+      [
+        242.4012013258731,
+        446.0653333340124
+      ],
+      [
+        281.4012013258731,
+        438.5653333340124
+      ],
+      [
+        290.9012013258731,
+        472.5653333340124
+      ],
+      [
+        249.4012013258731,
+        480.5653333340124
+      ]
+    ],
+    "note": "CERRADO · Cuerpo blanco cortado por el límite oeste de la lámina, incluido completo para no dejarlo omitido. Planta visual ±3 m, sin atribución predial ni altura medida.",
+    "sourceScreenPixels": [
+      [
+        341,
+        591
+      ],
+      [
+        419,
+        576
+      ],
+      [
+        438,
+        644
+      ],
+      [
+        355,
+        660
+      ]
+    ],
+    "pixelHoles": [],
+    "points": [
+      [
+        -252.914,
+        9.617
+      ],
+      [
+        -232.579,
+        5.717
+      ],
+      [
+        -227.625,
+        23.399
+      ],
+      [
+        -249.264,
+        27.56
+      ]
+    ],
+    "holes": [],
+    "uncertaintyMeters": 3,
+    "heightMeters": 6.2,
+    "measuredAt": "2026-10-06T02:17:17.345456+00:00",
+    "source": "Google Maps satellite, manually interpreted visible roof boundary; two screen anchors and scale. Source imagery date unverified.",
+    "calibration": {
+      "a": [
+        550,
+        300,
+        29.076713,
+        -110.955667
+      ],
+      "b": [
+        1000,
+        700,
+        29.074838,
+        -110.953253
+      ],
+      "viewport": [
+        1363,
+        936
+      ],
+      "metersPerPixel": [
+        0.521424,
+        0.520078
+      ]
+    },
+    "mapUrl": "https://www.google.com/maps/@29.0759255,-110.9549615,488m/data=!3m1!1e3"
+  },
+  "current": {
+    "url": "levantamiento/evidence/B1-08/20261006-01-cierre.png",
+    "title": "Acción 1 · planta revisada",
+    "label": "Planta · 01",
+    "capturedAt": "2026-10-06T02:17:17.345456+00:00",
+    "worldSha256": "549f0288e920e9b9f7d0e0e4efe92d17e964cb96a1ddc53425794458ab09ef48",
+    "sheetDataSha256": "ce63358bde57b26315f1bac25a022814045e87ed587cc497de77725a5bc25629",
+    "sha256": "70b5b878128164a6698f40ebed9dc186e2119765341a8a7f0238f0a390b3beee",
+    "cameraId": "B1-08-review01-20261006-software-v1",
+    "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
+  },
+  "camera": {
+    "id": "B1-08-review01-20261006-software-v1",
+    "direction": [
+      0.25,
+      1,
+      1
+    ],
+    "span": 40.46239999999998,
+    "projection": "orthographic",
+    "target": [
+      -240.26950073242188,
+      1,
+      16.63849973678589
+    ]
+  },
+  "worldSha256": "549f0288e920e9b9f7d0e0e4efe92d17e964cb96a1ddc53425794458ab09ef48",
+  "triangles": 12,
+  "heightMeasured": false,
+  "landSurvey": false,
+  "sequence": 41
+}

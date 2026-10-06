@@ -1,0 +1,42 @@
+{
+  "id": "CH-GA-OXXO",
+  "action": 1,
+  "status": "closed-visual-approximation",
+  "executedAt": "2026-10-06T02:04:07.367187+00:00",
+  "note": "CERRADO · huella física OSM 499760720 conservada y contrastada con la cubierta satelital. Registro de banqueta dentro del margen ±3 m. Identidad comercial actual pendiente del paso 6; no impide cerrar la planta.",
+  "source": {
+    "id": "CH-GA-OXXO",
+    "note": "CERRADO · huella física OSM 499760720 conservada y contrastada con la cubierta satelital. Registro de banqueta dentro del margen ±3 m. Identidad comercial actual pendiente del paso 6; no impide cerrar la planta."
+  },
+  "current": {
+    "url": "levantamiento/evidence/CH-GA-OXXO/20261006-01-cierre.png",
+    "title": "Acción 1 · planta revisada",
+    "label": "Planta · 01",
+    "capturedAt": "2026-10-06T02:04:07.367187+00:00",
+    "worldSha256": "cd0e932a95d99fb60c35c6ca0898450e0d8aa735934da921cbe91c4f516afe8f",
+    "sheetDataSha256": "4e61a8d81dd7895437c61429198c0f3d13b9d87736f5916661c893012d1e47fe",
+    "sha256": "f77a8d4683e18dda0aaf71231651bbb2f69752f3072b2b4359e6ef5dfee68fc0",
+    "cameraId": "CH-GA-OXXO-review01-20261006-software-v1",
+    "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
+  },
+  "camera": {
+    "id": "CH-GA-OXXO-review01-20261006-software-v1",
+    "direction": [
+      -0.6,
+      1,
+      -0.6
+    ],
+    "span": 66,
+    "projection": "orthographic",
+    "target": [
+      63.359819412231445,
+      1,
+      -94.95655822753906
+    ]
+  },
+  "worldSha256": "cd0e932a95d99fb60c35c6ca0898450e0d8aa735934da921cbe91c4f516afe8f",
+  "triangles": 21310,
+  "heightMeasured": false,
+  "landSurvey": false,
+  "sequence": 6
+}

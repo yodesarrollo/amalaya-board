@@ -1,0 +1,194 @@
+{
+  "id": "D2-10",
+  "action": 1,
+  "status": "closed-visual-approximation",
+  "executedAt": "2026-10-06T02:41:45.564857+00:00",
+  "note": "CERRADO · Felipe Salido norte · conjunto entre Mina y Juan Álvarez. Contorno de cubierta visual ±3 m; se excluyen patios y estacionamientos abiertos. Geometría propia y colisiones inscritas; altura provisional.",
+  "source": {
+    "id": "D2-10",
+    "sector": "D2",
+    "name": "Felipe Salido norte · conjunto entre Mina y Juan Álvarez",
+    "viewCenter": [
+      29.0747521,
+      -110.9549615
+    ],
+    "zoomMeters": 244,
+    "pixels": [
+      [
+        630.2640845087855,
+        726.82533333339
+      ],
+      [
+        664.2640845087855,
+        729.32533333339
+      ],
+      [
+        669.7640845087855,
+        718.82533333339
+      ],
+      [
+        715.7640845087855,
+        720.32533333339
+      ],
+      [
+        718.2640845087855,
+        754.32533333339
+      ],
+      [
+        630.2640845087855,
+        757.82533333339
+      ]
+    ],
+    "pixelHoles": [
+      [
+        [
+          645.7640845087855,
+          736.82533333339
+        ],
+        [
+          664.7640845087855,
+          736.82533333339
+        ],
+        [
+          664.7640845087855,
+          747.32533333339
+        ],
+        [
+          646.2640845087855,
+          747.32533333339
+        ]
+      ]
+    ],
+    "note": "CERRADO · Felipe Salido norte · conjunto entre Mina y Juan Álvarez. Contorno de cubierta visual ±3 m; se excluyen patios y estacionamientos abiertos. Geometría propia y colisiones inscritas; altura provisional.",
+    "sourceScreenPixels": [
+      [
+        579,
+        485
+      ],
+      [
+        647,
+        490
+      ],
+      [
+        658,
+        469
+      ],
+      [
+        750,
+        472
+      ],
+      [
+        755,
+        540
+      ],
+      [
+        579,
+        547
+      ]
+    ],
+    "points": [
+      [
+        -50.673,
+        155.634
+      ],
+      [
+        -32.945,
+        156.935
+      ],
+      [
+        -30.077,
+        151.474
+      ],
+      [
+        -6.091,
+        152.254
+      ],
+      [
+        -4.788,
+        169.937
+      ],
+      [
+        -50.673,
+        171.757
+      ]
+    ],
+    "holes": [
+      [
+        [
+          -42.591,
+          160.835
+        ],
+        [
+          -32.684,
+          160.835
+        ],
+        [
+          -32.684,
+          166.296
+        ],
+        [
+          -42.33,
+          166.296
+        ]
+      ]
+    ],
+    "uncertaintyMeters": 3,
+    "heightMeters": 6.2,
+    "measuredAt": "2026-10-06T02:41:45.564857+00:00",
+    "source": "Google Maps satellite, manually interpreted visible roof boundary; two screen anchors and scale. Source imagery date unverified.",
+    "calibration": {
+      "a": [
+        550,
+        300,
+        29.076713,
+        -110.955667
+      ],
+      "b": [
+        1000,
+        700,
+        29.074838,
+        -110.953253
+      ],
+      "viewport": [
+        1363,
+        936
+      ],
+      "metersPerPixel": [
+        0.521424,
+        0.520078
+      ]
+    },
+    "mapUrl": "https://www.google.com/maps/@29.0759255,-110.9549615,488m/data=!3m1!1e3"
+  },
+  "current": {
+    "url": "levantamiento/evidence/D2-10/20261006-01-cierre.png",
+    "title": "Acción 1 · planta revisada",
+    "label": "Planta · 01",
+    "capturedAt": "2026-10-06T02:41:45.564857+00:00",
+    "worldSha256": "549f0288e920e9b9f7d0e0e4efe92d17e964cb96a1ddc53425794458ab09ef48",
+    "sheetDataSha256": "d97501f1f663a51dfad6cffd7e123081004292d8995a3960f8b9d2a509f9e607",
+    "sha256": "06cf66ca5768f48014dcd6a5328d241b62bcfb08a739c5eb89ba82cc06d34edf",
+    "cameraId": "D2-10-review01-20261006-software-v1",
+    "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
+  },
+  "camera": {
+    "id": "D2-10-review01-20261006-software-v1",
+    "direction": [
+      0.25,
+      1,
+      1
+    ],
+    "span": 73.41600000000001,
+    "projection": "orthographic",
+    "target": [
+      -27.73050022125244,
+      1,
+      161.6155014038086
+    ]
+  },
+  "worldSha256": "549f0288e920e9b9f7d0e0e4efe92d17e964cb96a1ddc53425794458ab09ef48",
+  "triangles": 40,
+  "heightMeasured": false,
+  "landSurvey": false,
+  "sequence": 107
+}

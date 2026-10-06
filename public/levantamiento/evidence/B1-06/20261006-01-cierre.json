@@ -1,0 +1,132 @@
+{
+  "id": "B1-06",
+  "action": 1,
+  "status": "closed-visual-approximation",
+  "executedAt": "2026-10-06T02:16:47.263818+00:00",
+  "note": "CERRADO · Cubierta oriental contigua, individualizada por la junta visible de los cuerpos; estacionamiento sur abierto. Planta interpretada a escala ±3 m; altura provisional.",
+  "source": {
+    "id": "B1-06",
+    "sector": "B1",
+    "name": "Serdán–Yáñez · cubierta bancaria oriental",
+    "viewCenter": [
+      29.0763166,
+      -110.9564038
+    ],
+    "zoomMeters": 244,
+    "pixels": [
+      [
+        497.4012013258731,
+        288.0653333340124
+      ],
+      [
+        534.4012013258731,
+        279.0653333340124
+      ],
+      [
+        544.9012013258731,
+        327.5653333340124
+      ],
+      [
+        503.4012013258731,
+        336.0653333340124
+      ]
+    ],
+    "note": "CERRADO · Cubierta oriental contigua, individualizada por la junta visible de los cuerpos; estacionamiento sur abierto. Planta interpretada a escala ±3 m; altura provisional.",
+    "sourceScreenPixels": [
+      [
+        851,
+        275
+      ],
+      [
+        925,
+        257
+      ],
+      [
+        946,
+        354
+      ],
+      [
+        863,
+        371
+      ]
+    ],
+    "pixelHoles": [],
+    "points": [
+      [
+        -119.951,
+        -72.555
+      ],
+      [
+        -100.658,
+        -77.236
+      ],
+      [
+        -95.183,
+        -52.012
+      ],
+      [
+        -116.822,
+        -47.591
+      ]
+    ],
+    "holes": [],
+    "uncertaintyMeters": 3,
+    "heightMeters": 6.2,
+    "measuredAt": "2026-10-06T02:16:47.263818+00:00",
+    "source": "Google Maps satellite, manually interpreted visible roof boundary; two screen anchors and scale. Source imagery date unverified.",
+    "calibration": {
+      "a": [
+        550,
+        300,
+        29.076713,
+        -110.955667
+      ],
+      "b": [
+        1000,
+        700,
+        29.074838,
+        -110.953253
+      ],
+      "viewport": [
+        1363,
+        936
+      ],
+      "metersPerPixel": [
+        0.521424,
+        0.520078
+      ]
+    },
+    "mapUrl": "https://www.google.com/maps/@29.0759255,-110.9549615,488m/data=!3m1!1e3"
+  },
+  "current": {
+    "url": "levantamiento/evidence/B1-06/20261006-01-cierre.png",
+    "title": "Acción 1 · planta revisada",
+    "label": "Planta · 01",
+    "capturedAt": "2026-10-06T02:16:47.263818+00:00",
+    "worldSha256": "549f0288e920e9b9f7d0e0e4efe92d17e964cb96a1ddc53425794458ab09ef48",
+    "sheetDataSha256": "61975ba084944a435f61665a81d2800be0e08c6cad87b1c1bf82de68531dfbe8",
+    "sha256": "214bac1a8baa51d62b9233f314ae334bbb2332728e1b5fa11d17ab814b7540bd",
+    "cameraId": "B1-06-review01-20261006-software-v1",
+    "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
+  },
+  "camera": {
+    "id": "B1-06-review01-20261006-software-v1",
+    "direction": [
+      0.25,
+      1,
+      1
+    ],
+    "span": 47.43200000000001,
+    "projection": "orthographic",
+    "target": [
+      -107.56699752807617,
+      1,
+      -62.41349983215332
+    ]
+  },
+  "worldSha256": "549f0288e920e9b9f7d0e0e4efe92d17e964cb96a1ddc53425794458ab09ef48",
+  "triangles": 12,
+  "heightMeasured": false,
+  "landSurvey": false,
+  "sequence": 39
+}

@@ -1,0 +1,170 @@
+{
+  "id": "A3-09",
+  "action": 1,
+  "status": "closed-visual-approximation",
+  "executedAt": "2026-10-06T02:14:54.736887+00:00",
+  "note": "CERRADO · Cuerpo de cubierta al este de Abasolo que cruza el borde de la lámina. Se modela entero y se excluye el patio visible. Lectura visual a escala, ±3 m; altura pendiente del paso 7.",
+  "source": {
+    "id": "A3-09",
+    "sector": "A3",
+    "name": "Serdán–Abasolo · cuerpo del borde este",
+    "viewCenter": [
+      29.0770989,
+      -110.9535192
+    ],
+    "zoomMeters": 244,
+    "pixels": [
+      [
+        1077.6269676890488,
+        160.17466666715336
+      ],
+      [
+        1158.1269676890488,
+        149.17466666715336
+      ],
+      [
+        1176.6269676890488,
+        221.67466666715336
+      ],
+      [
+        1089.6269676890488,
+        233.67466666715336
+      ]
+    ],
+    "pixelHoles": [
+      [
+        [
+          1097.1269676890488,
+          203.17466666715336
+        ],
+        [
+          1119.1269676890488,
+          200.17466666715336
+        ],
+        [
+          1122.1269676890488,
+          222.17466666715336
+        ],
+        [
+          1100.1269676890488,
+          225.67466666715336
+        ]
+      ]
+    ],
+    "note": "CERRADO · Cuerpo de cubierta al este de Abasolo que cruza el borde de la lámina. Se modela entero y se excluye el patio visible. Lectura visual a escala, ±3 m; altura pendiente del paso 7.",
+    "sourceScreenPixels": [
+      [
+        936,
+        353
+      ],
+      [
+        1097,
+        331
+      ],
+      [
+        1134,
+        476
+      ],
+      [
+        960,
+        500
+      ]
+    ],
+    "points": [
+      [
+        182.593,
+        -139.068
+      ],
+      [
+        224.567,
+        -144.789
+      ],
+      [
+        234.214,
+        -107.083
+      ],
+      [
+        188.85,
+        -100.842
+      ]
+    ],
+    "holes": [
+      [
+        [
+          192.76,
+          -116.705
+        ],
+        [
+          204.232,
+          -118.265
+        ],
+        [
+          205.796,
+          -106.823
+        ],
+        [
+          194.325,
+          -105.003
+        ]
+      ]
+    ],
+    "uncertaintyMeters": 3,
+    "heightMeters": 6.2,
+    "measuredAt": "2026-10-06T02:14:54.736887+00:00",
+    "source": "Google Maps satellite, manually interpreted visible roof boundary; two screen anchors and scale. Source imagery date unverified.",
+    "calibration": {
+      "a": [
+        550,
+        300,
+        29.076713,
+        -110.955667
+      ],
+      "b": [
+        1000,
+        700,
+        29.074838,
+        -110.953253
+      ],
+      "viewport": [
+        1363,
+        936
+      ],
+      "metersPerPixel": [
+        0.521424,
+        0.520078
+      ]
+    },
+    "mapUrl": "https://www.google.com/maps/@29.0759255,-110.9549615,488m/data=!3m1!1e3"
+  },
+  "current": {
+    "url": "levantamiento/evidence/A3-09/20261006-01-cierre.png",
+    "title": "Acción 1 · planta revisada",
+    "label": "Planta · 01",
+    "capturedAt": "2026-10-06T02:14:54.736887+00:00",
+    "worldSha256": "7d2bea2ba657cf820bc1d7acfaa8328bc67d954a013ef2e0201f6bf1f0d6e0e3",
+    "sheetDataSha256": "c786a74ccf2f1955314668ba8cb2dec0b618119a86c2d308c8612f3802efff09",
+    "sha256": "aeee209eaa14ddcce690bc7b25d17c5c4531b261d2f2db930b2e7bd21c438d5e",
+    "cameraId": "A3-09-review01-20261006-software-v1",
+    "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
+  },
+  "camera": {
+    "id": "A3-09-review01-20261006-software-v1",
+    "direction": [
+      0.25,
+      1,
+      1
+    ],
+    "span": 82.59360000000002,
+    "projection": "orthographic",
+    "target": [
+      208.40350341796875,
+      1,
+      -122.81550216674805
+    ]
+  },
+  "worldSha256": "7d2bea2ba657cf820bc1d7acfaa8328bc67d954a013ef2e0201f6bf1f0d6e0e3",
+  "triangles": 32,
+  "heightMeasured": false,
+  "landSurvey": false,
+  "sequence": 33
+}

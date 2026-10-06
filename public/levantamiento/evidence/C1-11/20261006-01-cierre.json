@@ -1,0 +1,156 @@
+{
+  "id": "C1-11",
+  "action": 1,
+  "status": "closed-visual-approximation",
+  "executedAt": "2026-10-06T02:24:40.244100+00:00",
+  "note": "CERRADO · Cuerpo de planta quebrada al sureste del cruce; espacio lateral y callejón sur excluidos. Planta visual ±3 m; altura no medida.",
+  "source": {
+    "id": "C1-11",
+    "sector": "C1",
+    "name": "Obregón–Yáñez · cuerpo sureste del cruce",
+    "viewCenter": [
+      29.0755344,
+      -110.9564038
+    ],
+    "zoomMeters": 244,
+    "pixels": [
+      [
+        472.4012013258731,
+        504.93466666728887
+      ],
+      [
+        528.9012013258731,
+        499.93466666728887
+      ],
+      [
+        533.4012013258731,
+        541.4346666672889
+      ],
+      [
+        500.9012013258731,
+        549.9346666672889
+      ],
+      [
+        475.4012013258731,
+        561.9346666672889
+      ],
+      [
+        466.4012013258731,
+        546.4346666672889
+      ]
+    ],
+    "note": "CERRADO · Cuerpo de planta quebrada al sureste del cruce; espacio lateral y callejón sur excluidos. Planta visual ±3 m; altura no medida.",
+    "sourceScreenPixels": [
+      [
+        801,
+        375
+      ],
+      [
+        914,
+        365
+      ],
+      [
+        923,
+        448
+      ],
+      [
+        858,
+        465
+      ],
+      [
+        807,
+        489
+      ],
+      [
+        789,
+        458
+      ]
+    ],
+    "pixelHoles": [],
+    "points": [
+      [
+        -132.987,
+        40.234
+      ],
+      [
+        -103.526,
+        37.634
+      ],
+      [
+        -101.18,
+        59.217
+      ],
+      [
+        -118.126,
+        63.637
+      ],
+      [
+        -131.422,
+        69.878
+      ],
+      [
+        -136.115,
+        61.817
+      ]
+    ],
+    "holes": [],
+    "uncertaintyMeters": 3,
+    "heightMeters": 6.2,
+    "measuredAt": "2026-10-06T02:24:40.244100+00:00",
+    "source": "Google Maps satellite, manually interpreted visible roof boundary; two screen anchors and scale. Source imagery date unverified.",
+    "calibration": {
+      "a": [
+        550,
+        300,
+        29.076713,
+        -110.955667
+      ],
+      "b": [
+        1000,
+        700,
+        29.074838,
+        -110.953253
+      ],
+      "viewport": [
+        1363,
+        936
+      ],
+      "metersPerPixel": [
+        0.521424,
+        0.520078
+      ]
+    },
+    "mapUrl": "https://www.google.com/maps/@29.0759255,-110.9549615,488m/data=!3m1!1e3"
+  },
+  "current": {
+    "url": "levantamiento/evidence/C1-11/20261006-01-cierre.png",
+    "title": "Acción 1 · planta revisada",
+    "label": "Planta · 01",
+    "capturedAt": "2026-10-06T02:24:40.244100+00:00",
+    "worldSha256": "549f0288e920e9b9f7d0e0e4efe92d17e964cb96a1ddc53425794458ab09ef48",
+    "sheetDataSha256": "b48a7d5201e07d95843cfe4afa2ece2f85c03e67bd27d5aead6b0284ad6b9827",
+    "sha256": "4d552f81db8f1feb72b41a40dbfe6aab68a4a112a6633e70e7261d00ecec568f",
+    "cameraId": "C1-11-review01-20261006-software-v1",
+    "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
+  },
+  "camera": {
+    "id": "C1-11-review01-20261006-software-v1",
+    "direction": [
+      0.25,
+      1,
+      1
+    ],
+    "span": 55.89600000000001,
+    "projection": "orthographic",
+    "target": [
+      -118.64750289916992,
+      1,
+      53.755998611450195
+    ]
+  },
+  "worldSha256": "549f0288e920e9b9f7d0e0e4efe92d17e964cb96a1ddc53425794458ab09ef48",
+  "triangles": 20,
+  "heightMeasured": false,
+  "landSurvey": false,
+  "sequence": 60
+}

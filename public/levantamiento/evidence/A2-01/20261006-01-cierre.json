@@ -1,0 +1,170 @@
+{
+  "id": "A2-01",
+  "action": 1,
+  "status": "closed-visual-approximation",
+  "executedAt": "2026-10-06T02:10:30.115436+00:00",
+  "note": "CERRADO · Conjunto de cubiertas al norte de Santander, con patio interior descubierto excluido; se incluye el cuerpo completo cortado por el borde norte. Planta manual con escala verificada, ±3 m. Altura y comercio pendientes en sus acciones.",
+  "source": {
+    "id": "A2-01",
+    "sector": "A2",
+    "name": "Serdán · cubiertas posteriores a Santander",
+    "viewCenter": [
+      29.0770989,
+      -110.9549615
+    ],
+    "zoomMeters": 244,
+    "pixels": [
+      [
+        535.2640845087855,
+        91.67466666715336
+      ],
+      [
+        660.7640845087855,
+        82.17466666715336
+      ],
+      [
+        665.2640845087855,
+        152.67466666715336
+      ],
+      [
+        543.2640845087855,
+        173.17466666715336
+      ]
+    ],
+    "pixelHoles": [
+      [
+        [
+          613.7640845087855,
+          113.67466666715336
+        ],
+        [
+          658.7640845087855,
+          106.67466666715336
+        ],
+        [
+          661.2640845087855,
+          125.17466666715336
+        ],
+        [
+          614.7640845087855,
+          134.17466666715336
+        ]
+      ]
+    ],
+    "note": "CERRADO · Conjunto de cubiertas al norte de Santander, con patio interior descubierto excluido; se incluye el cuerpo completo cortado por el borde norte. Planta manual con escala verificada, ±3 m. Altura y comercio pendientes en sus acciones.",
+    "sourceScreenPixels": [
+      [
+        389,
+        216
+      ],
+      [
+        640,
+        197
+      ],
+      [
+        649,
+        338
+      ],
+      [
+        405,
+        379
+      ]
+    ],
+    "points": [
+      [
+        -100.208,
+        -174.694
+      ],
+      [
+        -34.77,
+        -179.634
+      ],
+      [
+        -32.423,
+        -142.969
+      ],
+      [
+        -96.037,
+        -132.307
+      ]
+    ],
+    "holes": [
+      [
+        [
+          -59.277,
+          -163.252
+        ],
+        [
+          -35.812,
+          -166.892
+        ],
+        [
+          -34.509,
+          -157.271
+        ],
+        [
+          -58.755,
+          -152.59
+        ]
+      ]
+    ],
+    "uncertaintyMeters": 3,
+    "heightMeters": 6.2,
+    "measuredAt": "2026-10-06T02:10:30.115436+00:00",
+    "source": "Google Maps satellite, manually interpreted visible roof boundary; two screen anchors and scale. Source imagery date unverified.",
+    "calibration": {
+      "a": [
+        550,
+        300,
+        29.076713,
+        -110.955667
+      ],
+      "b": [
+        1000,
+        700,
+        29.074838,
+        -110.953253
+      ],
+      "viewport": [
+        1363,
+        936
+      ],
+      "metersPerPixel": [
+        0.521424,
+        0.520078
+      ]
+    },
+    "mapUrl": "https://www.google.com/maps/@29.0759255,-110.9549615,488m/data=!3m1!1e3"
+  },
+  "current": {
+    "url": "levantamiento/evidence/A2-01/20261006-01-cierre.png",
+    "title": "Acción 1 · planta revisada",
+    "label": "Planta · 01",
+    "capturedAt": "2026-10-06T02:10:30.115436+00:00",
+    "worldSha256": "7d2bea2ba657cf820bc1d7acfaa8328bc67d954a013ef2e0201f6bf1f0d6e0e3",
+    "sheetDataSha256": "45df97a9d25fd68e85087b6e1616abcb5f1daee6da1d74417bf50dcbab33bd65",
+    "sha256": "830e8c0cac9506396fa4097022aa5498a6b1fca83834826027814cc0c28dacaa",
+    "cameraId": "A2-01-review01-20261006-software-v1",
+    "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
+  },
+  "camera": {
+    "id": "A2-01-review01-20261006-software-v1",
+    "direction": [
+      0.25,
+      1,
+      1
+    ],
+    "span": 108.456,
+    "projection": "orthographic",
+    "target": [
+      -66.31550025939941,
+      1,
+      -155.9705047607422
+    ]
+  },
+  "worldSha256": "7d2bea2ba657cf820bc1d7acfaa8328bc67d954a013ef2e0201f6bf1f0d6e0e3",
+  "triangles": 32,
+  "heightMeasured": false,
+  "landSurvey": false,
+  "sequence": 19
+}

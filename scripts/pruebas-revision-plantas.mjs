@@ -1,3 +1,4 @@
+import {removeSheetHook,SHEET_BASE} from './preparar-lamina.mjs';
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import {applyPlanReview,REVIEW_OB01} from '../public/levantamiento/plan-review-refinement.js';
@@ -10,7 +11,7 @@ import {removePlanReviewHook,refinePlanReview,reviewHash,REVIEW_BASE_WORLD,REVIE
 const root='public/levantamiento',source=await readFile(root+'/world.js','utf8'),visor=await readFile(root+'/visor/assets/index-RoPA5goG.js','utf8');
 const runtime=await readFile(root+'/plan-review-refinement.js');
 assert.equal(reviewHash(removePlanReviewHook(source)),REVIEW_BASE_WORLD);assert.equal(reviewHash(removePlanReviewHook(visor,'visor')),REVIEW_BASE_VISOR);
-assert.equal(refinePlanReview(source,'world',reviewHash(runtime)),source);assert.equal(refinePlanReview(visor,'visor',reviewHash(runtime)),visor);
+assert.equal(refinePlanReview(source,'world',reviewHash(runtime)),removeSheetHook(source));assert.equal(refinePlanReview(visor,'visor',reviewHash(runtime)),removeSheetHook(visor,'visor'));
 const raw=removePlanReviewHook(source).replace(/^import[^\n]*\n/gm,'').replace(/\nimport[^\n]*\n/gm,'').replace(/export \{[^\n]+\};/,'').replace('Up(c), c;','c;');
 const R=new Function('applyIsc58Refinement','applyEbSwRefinement','applyPlanRoundRefinement','applyStreetRoundRefinement','applySidewalkRoundRefinement',raw+'\nreturn {createWorld:Fp,Vector3:U,Box3:Zt,optimize:Up};')(applyIsc58,applyEbSw,applyPlanRound,applyStreetRound,applySidewalkRound);
 const oldFetch=globalThis.fetch;let world;try{globalThis.fetch=async url=>({ok:true,json:async()=>JSON.parse(await readFile(root+'/'+url))});world=await R.createWorld('',undefined,'pilot');}finally{globalThis.fetch=oldFetch;}
@@ -26,12 +27,12 @@ const roof=owner.children.find(o=>o.name.startsWith('Lámina acanalada')),roofBo
 assert(neighbor);assert(!roofBox.intersectsBox(new R.Box3().setFromObject(neighbor)),'Revised roof cannot intersect OB-02');
 R.optimize(world);world.updateMatrixWorld(true);assert(new R.Box3().setFromObject(world).getSize(new R.Vector3()).toArray().every(Number.isFinite));
 const tracking=JSON.parse(await readFile('public/seguimiento-3d.json')),buildings=tracking.blocks.flatMap(b=>b.buildings),revision=tracking.activeReview;
-assert.equal(revision.round,1);assert.equal(revision.scope,'full-sheet');assert.equal(revision.readyForNextRound,false);assert.equal(revision.inventoryComplete,false);
-assert.equal(new Set(buildings.map(b=>b.id)).size,buildings.length);assert.equal(buildings.length,14);
-assert.deepEqual(revision.closedBuildings,['OB-01']);assert.equal(revision.nextBuilding,'OB-02');assert.equal(revision.coverageSectors.length,12);
+assert.equal(revision.round,1);assert.equal(revision.scope,'full-sheet');assert.equal(revision.readyForNextRound,true);assert.equal(revision.inventoryComplete,true);
+assert.equal(new Set(buildings.map(b=>b.id)).size,buildings.length);assert.equal(buildings.length,revision.buildingOrder.length);
+assert.equal(revision.closedBuildings.length,buildings.length);assert.equal(revision.nextBuilding,null);assert.equal(revision.coverageSectors.length,12);
 assert(buildings.some(b=>b.id==='SER-SANT'&&b.modelReference.osmWayId===499759073));assert(buildings.some(b=>b.id==='OB-21'));
 const ob=buildings.find(b=>b.id==='OB-01'),progress=ob.visualProgress,record=JSON.parse(await readFile('public/'+progress.manifest));
-assert.equal(record.action,1);assert.equal(record.worldSha256,reviewHash(source));assert.deepEqual(record.measured,{frontMeters:23.42,depthMeters:6.11,uncertaintyMeters:1.5,positionUncertaintyMeters:5});
+assert.equal(record.action,1);assert.equal(record.worldSha256,SHEET_BASE.world);assert.deepEqual(record.measured,{frontMeters:23.42,depthMeters:6.11,uncertaintyMeters:1.5,positionUncertaintyMeters:5});
 for(const im of [record.baseline,record.current]){const bytes=await readFile('public/'+im.url);assert.equal(reviewHash(bytes),im.sha256);assert.equal(bytes.readUInt32BE(16),960);assert.equal(bytes.readUInt32BE(20),600);}
 assert(progress.history.some(p=>p.manifest?.endsWith('03-record-banqueta-a.json')));
-console.log('Revisión 01: cubierta 23.42 × 6.11; 14 colisiones propias; alturas, patio, acceso y vecinos conservados; historial e inventario abierto comprobados.');
+console.log('Revisión 01: cubierta 23.42 × 6.11; 14 colisiones propias; alturas, patio, acceso y vecinos conservados; historial y cierre del inventario comprobados.');

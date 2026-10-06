@@ -1,0 +1,132 @@
+{
+  "id": "C2-09",
+  "action": 1,
+  "status": "closed-visual-approximation",
+  "executedAt": "2026-10-06T02:29:35.254992+00:00",
+  "note": "CERRADO · Cuerpo de esquina al sur de Sufragio Efectivo, sin ocupar la calle ni el patio posterior. Contorno visual ±3 m; imagen del modelo y registro por cuerpo.",
+  "source": {
+    "id": "C2-09",
+    "sector": "C2",
+    "name": "Sufragio–Juan Álvarez · cuerpo sureste",
+    "viewCenter": [
+      29.0755344,
+      -110.9549615
+    ],
+    "zoomMeters": 244,
+    "pixels": [
+      [
+        718.7640845087855,
+        573.9346666672889
+      ],
+      [
+        740.2640845087855,
+        568.4346666672889
+      ],
+      [
+        745.7640845087855,
+        586.9346666672889
+      ],
+      [
+        728.2640845087855,
+        592.4346666672889
+      ]
+    ],
+    "pixelHoles": [],
+    "note": "CERRADO · Cuerpo de esquina al sur de Sufragio Efectivo, sin ocupar la calle ni el patio posterior. Contorno visual ±3 m; imagen del modelo y registro por cuerpo.",
+    "sourceScreenPixels": [
+      [
+        756,
+        513
+      ],
+      [
+        799,
+        502
+      ],
+      [
+        810,
+        539
+      ],
+      [
+        775,
+        550
+      ]
+    ],
+    "points": [
+      [
+        -4.527,
+        76.119
+      ],
+      [
+        6.684,
+        73.259
+      ],
+      [
+        9.551,
+        82.88
+      ],
+      [
+        0.426,
+        85.741
+      ]
+    ],
+    "holes": [],
+    "uncertaintyMeters": 3,
+    "heightMeters": 6.2,
+    "measuredAt": "2026-10-06T02:29:35.254992+00:00",
+    "source": "Google Maps satellite, manually interpreted visible roof boundary; two screen anchors and scale. Source imagery date unverified.",
+    "calibration": {
+      "a": [
+        550,
+        300,
+        29.076713,
+        -110.955667
+      ],
+      "b": [
+        1000,
+        700,
+        29.074838,
+        -110.953253
+      ],
+      "viewport": [
+        1363,
+        936
+      ],
+      "metersPerPixel": [
+        0.521424,
+        0.520078
+      ]
+    },
+    "mapUrl": "https://www.google.com/maps/@29.0759255,-110.9549615,488m/data=!3m1!1e3"
+  },
+  "current": {
+    "url": "levantamiento/evidence/C2-09/20261006-01-cierre.png",
+    "title": "Acción 1 · planta revisada",
+    "label": "Planta · 01",
+    "capturedAt": "2026-10-06T02:29:35.254992+00:00",
+    "worldSha256": "549f0288e920e9b9f7d0e0e4efe92d17e964cb96a1ddc53425794458ab09ef48",
+    "sheetDataSha256": "656a2fcd03945ad6ea14eb2cdcad8bceda5b1512904c53af773fcfa0833d89b4",
+    "sha256": "d038a04382a04a5422459824bc78784ff86d7fe3941d940449ba65cb6e5984ac",
+    "cameraId": "C2-09-review01-20261006-software-v1",
+    "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
+  },
+  "camera": {
+    "id": "C2-09-review01-20261006-software-v1",
+    "direction": [
+      0.25,
+      1,
+      1
+    ],
+    "span": 30,
+    "projection": "orthographic",
+    "target": [
+      2.5119998455047607,
+      1,
+      79.5
+    ]
+  },
+  "worldSha256": "549f0288e920e9b9f7d0e0e4efe92d17e964cb96a1ddc53425794458ab09ef48",
+  "triangles": 12,
+  "heightMeasured": false,
+  "landSurvey": false,
+  "sequence": 71
+}

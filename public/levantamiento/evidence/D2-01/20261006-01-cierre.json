@@ -1,0 +1,156 @@
+{
+  "id": "D2-01",
+  "action": 1,
+  "status": "closed-visual-approximation",
+  "executedAt": "2026-10-06T02:40:11.485707+00:00",
+  "note": "CERRADO · Mina oeste · nave de gran claro. Contorno físico de cubierta interpretado manualmente con escala comprobada, ±3 m. Patios y calles adyacentes excluidos; altura provisional, imagen y registro propios.",
+  "source": {
+    "id": "D2-01",
+    "sector": "D2",
+    "name": "Mina oeste · nave de gran claro",
+    "viewCenter": [
+      29.0747521,
+      -110.9549615
+    ],
+    "zoomMeters": 244,
+    "pixels": [
+      [
+        573.7640845087855,
+        627.82533333339
+      ],
+      [
+        611.2640845087855,
+        631.82533333339
+      ],
+      [
+        612.2640845087855,
+        646.32533333339
+      ],
+      [
+        626.7640845087855,
+        647.32533333339
+      ],
+      [
+        615.7640845087855,
+        699.32533333339
+      ],
+      [
+        565.2640845087855,
+        692.32533333339
+      ]
+    ],
+    "pixelHoles": [],
+    "note": "CERRADO · Mina oeste · nave de gran claro. Contorno físico de cubierta interpretado manualmente con escala comprobada, ±3 m. Patios y calles adyacentes excluidos; altura provisional, imagen y registro propios.",
+    "sourceScreenPixels": [
+      [
+        466,
+        287
+      ],
+      [
+        541,
+        295
+      ],
+      [
+        543,
+        324
+      ],
+      [
+        572,
+        326
+      ],
+      [
+        550,
+        430
+      ],
+      [
+        449,
+        416
+      ]
+    ],
+    "points": [
+      [
+        -80.134,
+        104.147
+      ],
+      [
+        -60.58,
+        106.227
+      ],
+      [
+        -60.059,
+        113.768
+      ],
+      [
+        -52.498,
+        114.288
+      ],
+      [
+        -58.234,
+        141.332
+      ],
+      [
+        -84.566,
+        137.692
+      ]
+    ],
+    "holes": [],
+    "uncertaintyMeters": 3,
+    "heightMeters": 6.2,
+    "measuredAt": "2026-10-06T02:40:11.485707+00:00",
+    "source": "Google Maps satellite, manually interpreted visible roof boundary; two screen anchors and scale. Source imagery date unverified.",
+    "calibration": {
+      "a": [
+        550,
+        300,
+        29.076713,
+        -110.955667
+      ],
+      "b": [
+        1000,
+        700,
+        29.074838,
+        -110.953253
+      ],
+      "viewport": [
+        1363,
+        936
+      ],
+      "metersPerPixel": [
+        0.521424,
+        0.520078
+      ]
+    },
+    "mapUrl": "https://www.google.com/maps/@29.0759255,-110.9549615,488m/data=!3m1!1e3"
+  },
+  "current": {
+    "url": "levantamiento/evidence/D2-01/20261006-01-cierre.png",
+    "title": "Acción 1 · planta revisada",
+    "label": "Planta · 01",
+    "capturedAt": "2026-10-06T02:40:11.485707+00:00",
+    "worldSha256": "549f0288e920e9b9f7d0e0e4efe92d17e964cb96a1ddc53425794458ab09ef48",
+    "sheetDataSha256": "bff13cd1b90a61e1042fbcb3bce5f87595983735c3f7678399424e2815482188",
+    "sha256": "38c1fabec2e88b32d977aba41130d7900132009e4251bc48657a051b9d2cd976",
+    "cameraId": "D2-01-review01-20261006-software-v1",
+    "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
+  },
+  "camera": {
+    "id": "D2-01-review01-20261006-software-v1",
+    "direction": [
+      0.25,
+      1,
+      1
+    ],
+    "span": 59.49599999999998,
+    "projection": "orthographic",
+    "target": [
+      -68.53200149536133,
+      1,
+      122.739501953125
+    ]
+  },
+  "worldSha256": "549f0288e920e9b9f7d0e0e4efe92d17e964cb96a1ddc53425794458ab09ef48",
+  "triangles": 20,
+  "heightMeasured": false,
+  "landSurvey": false,
+  "sequence": 98
+}

@@ -1,0 +1,132 @@
+{
+  "id": "A3-06",
+  "action": 1,
+  "status": "closed-visual-approximation",
+  "executedAt": "2026-10-06T02:14:31.195185+00:00",
+  "note": "CERRADO · Cubierta central con borde frontal inclinado; contorno separado del cuerpo de esquina contiguo. Planta visual ±3 m; extrusión y colisiones propias; altura provisional.",
+  "source": {
+    "id": "A3-06",
+    "sector": "A3",
+    "name": "Serdán–Abasolo · cubierta central",
+    "viewCenter": [
+      29.0770989,
+      -110.9535192
+    ],
+    "zoomMeters": 244,
+    "pixels": [
+      [
+        982.6269676890488,
+        186.67466666715336
+      ],
+      [
+        1022.6269676890488,
+        179.67466666715336
+      ],
+      [
+        1034.6269676890488,
+        245.17466666715336
+      ],
+      [
+        988.1269676890488,
+        251.67466666715336
+      ]
+    ],
+    "note": "CERRADO · Cubierta central con borde frontal inclinado; contorno separado del cuerpo de esquina contiguo. Planta visual ±3 m; extrusión y colisiones propias; altura provisional.",
+    "sourceScreenPixels": [
+      [
+        746,
+        406
+      ],
+      [
+        826,
+        392
+      ],
+      [
+        850,
+        523
+      ],
+      [
+        757,
+        536
+      ]
+    ],
+    "pixelHoles": [],
+    "points": [
+      [
+        133.057,
+        -125.286
+      ],
+      [
+        153.914,
+        -128.927
+      ],
+      [
+        160.171,
+        -94.862
+      ],
+      [
+        135.925,
+        -91.481
+      ]
+    ],
+    "holes": [],
+    "uncertaintyMeters": 3,
+    "heightMeters": 6.2,
+    "measuredAt": "2026-10-06T02:14:31.195185+00:00",
+    "source": "Google Maps satellite, manually interpreted visible roof boundary; two screen anchors and scale. Source imagery date unverified.",
+    "calibration": {
+      "a": [
+        550,
+        300,
+        29.076713,
+        -110.955667
+      ],
+      "b": [
+        1000,
+        700,
+        29.074838,
+        -110.953253
+      ],
+      "viewport": [
+        1363,
+        936
+      ],
+      "metersPerPixel": [
+        0.521424,
+        0.520078
+      ]
+    },
+    "mapUrl": "https://www.google.com/maps/@29.0759255,-110.9549615,488m/data=!3m1!1e3"
+  },
+  "current": {
+    "url": "levantamiento/evidence/A3-06/20261006-01-cierre.png",
+    "title": "Acción 1 · planta revisada",
+    "label": "Planta · 01",
+    "capturedAt": "2026-10-06T02:14:31.195185+00:00",
+    "worldSha256": "7d2bea2ba657cf820bc1d7acfaa8328bc67d954a013ef2e0201f6bf1f0d6e0e3",
+    "sheetDataSha256": "cfed9e14a8fa03e83a003b0c3a7c6f484244e6a604de528300c4623e5f38b6eb",
+    "sha256": "6b15372f6a0e99888defa48c08e13ed0cd5879b4a7b3a9da3668adfc6962a64e",
+    "cameraId": "A3-06-review01-20261006-software-v1",
+    "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
+  },
+  "camera": {
+    "id": "A3-06-review01-20261006-software-v1",
+    "direction": [
+      0.25,
+      1,
+      1
+    ],
+    "span": 59.9136,
+    "projection": "orthographic",
+    "target": [
+      146.61400604248047,
+      1,
+      -110.2040023803711
+    ]
+  },
+  "worldSha256": "7d2bea2ba657cf820bc1d7acfaa8328bc67d954a013ef2e0201f6bf1f0d6e0e3",
+  "triangles": 12,
+  "heightMeasured": false,
+  "landSurvey": false,
+  "sequence": 30
+}
