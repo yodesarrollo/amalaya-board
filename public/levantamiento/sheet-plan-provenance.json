@@ -1,0 +1,27 @@
+{
+  "action": 1,
+  "completedAt": "2026-10-06T02:52:25.825Z",
+  "buildings": 139,
+  "publicSpaces": 1,
+  "sectors": 12,
+  "base": {
+    "world": "24df38e516de43dad7cc6bd1b6d8faf56a50caebc3650cb5efd2fdae1b22c614",
+    "visor": "a293ff5b0562649401b8449301d289042fcd8ed828e49d7dc8a5f86f277f1099"
+  },
+  "hashes": {
+    "world": "ffbcdba9a0ddabf109a81dc53fd10fbbf22f55f9d694da7ef170bcc5a53882d2",
+    "visor": "7596bba89e6cc66feb8e9f50a26ec44cc0418bd115da161efee7a27dabc1d142"
+  },
+  "moduleSha256": "cdf062e9ec410ee1f85484b2e5aa7d511b382185b72e2eb77e838cb0c2f5accd",
+  "dataSha256": "9ae568697dde4a4c780a54b0e76ff3255ecadd9ca6b2605fe0f01b53aacaf30f",
+  "newOrIndividualizedPolygons": 127,
+  "scope": "whole calibrated sheet including intersecting edge bodies",
+  "method": "Per body: visual measurement, actual geometry and colliders, capture, record, next body.",
+  "limits": [
+    "Manual roof-boundary interpretation, typically ±3 m; per-column tolerances retained.",
+    "Not a cadastral survey or verified business inventory.",
+    "New heights 6.2 m are modelling placeholders for action 7.",
+    "Images are renders of actual model vertices; no satellite images published."
+  ],
+  "preserved": "Prior valid completed actions and historical evidence retained; four generic south-front modules replaced by individual roof contours."
+}

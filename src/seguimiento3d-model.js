@@ -10,7 +10,7 @@ export const SHARED = new Set(['plan', 'street', 'sidewalkA', 'sidewalkB', 'corn
 export function columns(data) {
   return data.blocks.flatMap(block => block.buildings.length
     ? block.buildings.map(building => ({ block, building }))
-    : [{ block, building: { id: block.id, name: block.name, tasks: {}, publicSpace: true } }])
+    : [{ block, building: { id: block.id, name: block.name, tasks: {}, publicSpace: true, visualProgress: block.visualProgress, modelReference: block.modelReference } }])
 }
 export function cellInfo(column, task) {
   const { block, building } = column

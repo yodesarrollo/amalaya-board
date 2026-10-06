@@ -1,0 +1,42 @@
+{
+  "id": "CH-YG-BBVA",
+  "action": 1,
+  "status": "closed-visual-approximation",
+  "executedAt": "2026-10-06T02:04:14.241182+00:00",
+  "note": "CERRADO · planta OSM 499759374 de 42,13 × 39,58 m, tolerancia ±3 m, contrastada con la cubierta del banco visible. Colisiones inscritas conservadas; altura 6,2 m provisional.",
+  "source": {
+    "id": "CH-YG-BBVA",
+    "note": "CERRADO · planta OSM 499759374 de 42,13 × 39,58 m, tolerancia ±3 m, contrastada con la cubierta del banco visible. Colisiones inscritas conservadas; altura 6,2 m provisional."
+  },
+  "current": {
+    "url": "levantamiento/evidence/CH-YG-BBVA/20261006-01-cierre.png",
+    "title": "Acción 1 · planta revisada",
+    "label": "Planta · 01",
+    "capturedAt": "2026-10-06T02:04:14.241182+00:00",
+    "worldSha256": "cd0e932a95d99fb60c35c6ca0898450e0d8aa735934da921cbe91c4f516afe8f",
+    "sheetDataSha256": "4e61a8d81dd7895437c61429198c0f3d13b9d87736f5916661c893012d1e47fe",
+    "sha256": "84bccc1156ed3ac888004c997f29eefe50014c31738e636fa9a3201023103d69",
+    "cameraId": "CH-YG-BBVA-review01-20261006-software-v1",
+    "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
+  },
+  "camera": {
+    "id": "CH-YG-BBVA-review01-20261006-software-v1",
+    "direction": [
+      -0.5,
+      1,
+      0.7
+    ],
+    "span": 85,
+    "projection": "orthographic",
+    "target": [
+      -51.19524002075195,
+      1,
+      -66.74752044677734
+    ]
+  },
+  "worldSha256": "cd0e932a95d99fb60c35c6ca0898450e0d8aa735934da921cbe91c4f516afe8f",
+  "triangles": 63519,
+  "heightMeasured": false,
+  "landSurvey": false,
+  "sequence": 8
+}

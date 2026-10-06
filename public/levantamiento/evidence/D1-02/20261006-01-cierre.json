@@ -1,0 +1,168 @@
+{
+  "id": "D1-02",
+  "action": 1,
+  "status": "closed-visual-approximation",
+  "executedAt": "2026-10-06T02:36:20.843944+00:00",
+  "note": "CERRADO · Conjunto de cubierta baja junto a Paliza; se excluye la explanada de acceso. Planta visual ±3 m; no se extruyen superficies abiertas.",
+  "source": {
+    "id": "D1-02",
+    "sector": "D1",
+    "name": "Rosales–Paliza · cuerpo noroccidental",
+    "viewCenter": [
+      29.0747521,
+      -110.9564038
+    ],
+    "zoomMeters": 244,
+    "pixels": [
+      [
+        270.4012013258731,
+        667.32533333339
+      ],
+      [
+        295.9012013258731,
+        660.82533333339
+      ],
+      [
+        299.9012013258731,
+        670.32533333339
+      ],
+      [
+        312.4012013258731,
+        667.32533333339
+      ],
+      [
+        321.9012013258731,
+        660.32533333339
+      ],
+      [
+        330.9012013258731,
+        683.82533333339
+      ],
+      [
+        274.4012013258731,
+        696.82533333339
+      ]
+    ],
+    "note": "CERRADO · Conjunto de cubierta baja junto a Paliza; se excluye la explanada de acceso. Planta visual ±3 m; no se extruyen superficies abiertas.",
+    "sourceScreenPixels": [
+      [
+        397,
+        366
+      ],
+      [
+        448,
+        353
+      ],
+      [
+        456,
+        372
+      ],
+      [
+        481,
+        366
+      ],
+      [
+        500,
+        352
+      ],
+      [
+        518,
+        399
+      ],
+      [
+        405,
+        425
+      ]
+    ],
+    "pixelHoles": [],
+    "points": [
+      [
+        -238.314,
+        124.69
+      ],
+      [
+        -225.018,
+        121.309
+      ],
+      [
+        -222.932,
+        126.25
+      ],
+      [
+        -216.414,
+        124.69
+      ],
+      [
+        -211.461,
+        121.049
+      ],
+      [
+        -206.768,
+        133.271
+      ],
+      [
+        -236.229,
+        140.032
+      ]
+    ],
+    "holes": [],
+    "uncertaintyMeters": 3,
+    "heightMeters": 6.2,
+    "measuredAt": "2026-10-06T02:36:20.843944+00:00",
+    "source": "Google Maps satellite, manually interpreted visible roof boundary; two screen anchors and scale. Source imagery date unverified.",
+    "calibration": {
+      "a": [
+        550,
+        300,
+        29.076713,
+        -110.955667
+      ],
+      "b": [
+        1000,
+        700,
+        29.074838,
+        -110.953253
+      ],
+      "viewport": [
+        1363,
+        936
+      ],
+      "metersPerPixel": [
+        0.521424,
+        0.520078
+      ]
+    },
+    "mapUrl": "https://www.google.com/maps/@29.0759255,-110.9549615,488m/data=!3m1!1e3"
+  },
+  "current": {
+    "url": "levantamiento/evidence/D1-02/20261006-01-cierre.png",
+    "title": "Acción 1 · planta revisada",
+    "label": "Planta · 01",
+    "capturedAt": "2026-10-06T02:36:20.843944+00:00",
+    "worldSha256": "549f0288e920e9b9f7d0e0e4efe92d17e964cb96a1ddc53425794458ab09ef48",
+    "sheetDataSha256": "62f83f39c62771f964eb60f6f913e86978f87f3527565acd8f88b7330c75e3d0",
+    "sha256": "94ec2367925a33296c7202114ad66fcc7a60a3aa5d9bec7b14664c504a46f2d1",
+    "cameraId": "D1-02-review01-20261006-software-v1",
+    "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
+  },
+  "camera": {
+    "id": "D1-02-review01-20261006-software-v1",
+    "direction": [
+      0.25,
+      1,
+      1
+    ],
+    "span": 50.47359999999999,
+    "projection": "orthographic",
+    "target": [
+      -222.54100036621094,
+      1,
+      130.54050064086914
+    ]
+  },
+  "worldSha256": "549f0288e920e9b9f7d0e0e4efe92d17e964cb96a1ddc53425794458ab09ef48",
+  "triangles": 24,
+  "heightMeasured": false,
+  "landSurvey": false,
+  "sequence": 87
+}

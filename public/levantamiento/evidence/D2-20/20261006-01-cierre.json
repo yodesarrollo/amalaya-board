@@ -1,0 +1,278 @@
+{
+  "id": "D2-20",
+  "action": 1,
+  "status": "closed-visual-approximation",
+  "executedAt": "2026-10-06T02:43:21.095664+00:00",
+  "note": "CERRADO · Mina–Bavispe · conjunto conectado del borde sur. Cuerpo completo de cubierta, incluyendo la parte que cruza el borde sur. Planta visual ±3 m; patios visibles excluidos y altura provisional. No se afirma un solo propietario para el conjunto conectado.",
+  "source": {
+    "id": "D2-20",
+    "sector": "D2",
+    "name": "Mina–Bavispe · conjunto conectado del borde sur",
+    "viewCenter": [
+      29.0747521,
+      -110.9549615
+    ],
+    "zoomMeters": 244,
+    "pixels": [
+      [
+        618.7640845087855,
+        802.32533333339
+      ],
+      [
+        665.7640845087855,
+        800.82533333339
+      ],
+      [
+        673.2640845087855,
+        816.82533333339
+      ],
+      [
+        699.7640845087855,
+        817.32533333339
+      ],
+      [
+        718.7640845087855,
+        829.32533333339
+      ],
+      [
+        721.7640845087855,
+        873.32533333339
+      ],
+      [
+        690.2640845087855,
+        883.32533333339
+      ],
+      [
+        664.7640845087855,
+        874.32533333339
+      ],
+      [
+        663.2640845087855,
+        863.32533333339
+      ],
+      [
+        619.7640845087855,
+        855.82533333339
+      ]
+    ],
+    "pixelHoles": [
+      [
+        [
+          637.2640845087855,
+          822.32533333339
+        ],
+        [
+          657.2640845087855,
+          820.32533333339
+        ],
+        [
+          663.7640845087855,
+          839.32533333339
+        ],
+        [
+          639.2640845087855,
+          842.82533333339
+        ]
+      ],
+      [
+        [
+          680.2640845087855,
+          834.82533333339
+        ],
+        [
+          708.7640845087855,
+          837.32533333339
+        ],
+        [
+          709.7640845087855,
+          849.32533333339
+        ],
+        [
+          683.7640845087855,
+          847.32533333339
+        ]
+      ]
+    ],
+    "note": "CERRADO · Mina–Bavispe · conjunto conectado del borde sur. Cuerpo completo de cubierta, incluyendo la parte que cruza el borde sur. Planta visual ±3 m; patios visibles excluidos y altura provisional. No se afirma un solo propietario para el conjunto conectado.",
+    "sourceScreenPixels": [
+      [
+        556,
+        636
+      ],
+      [
+        650,
+        633
+      ],
+      [
+        665,
+        665
+      ],
+      [
+        718,
+        666
+      ],
+      [
+        756,
+        690
+      ],
+      [
+        762,
+        778
+      ],
+      [
+        699,
+        798
+      ],
+      [
+        648,
+        780
+      ],
+      [
+        645,
+        758
+      ],
+      [
+        558,
+        743
+      ]
+    ],
+    "points": [
+      [
+        -56.669,
+        194.9
+      ],
+      [
+        -32.163,
+        194.12
+      ],
+      [
+        -28.252,
+        202.441
+      ],
+      [
+        -14.434,
+        202.701
+      ],
+      [
+        -4.527,
+        208.942
+      ],
+      [
+        -2.963,
+        231.826
+      ],
+      [
+        -19.388,
+        237.027
+      ],
+      [
+        -32.684,
+        232.346
+      ],
+      [
+        -33.466,
+        226.625
+      ],
+      [
+        -56.148,
+        222.724
+      ]
+    ],
+    "holes": [
+      [
+        [
+          -47.023,
+          205.302
+        ],
+        [
+          -36.595,
+          204.262
+        ],
+        [
+          -33.205,
+          214.143
+        ],
+        [
+          -45.98,
+          215.963
+        ]
+      ],
+      [
+        [
+          -24.602,
+          211.803
+        ],
+        [
+          -9.741,
+          213.103
+        ],
+        [
+          -9.22,
+          219.344
+        ],
+        [
+          -22.777,
+          218.304
+        ]
+      ]
+    ],
+    "uncertaintyMeters": 3,
+    "heightMeters": 6.2,
+    "measuredAt": "2026-10-06T02:43:21.095664+00:00",
+    "source": "Google Maps satellite, manually interpreted visible roof boundary; two screen anchors and scale. Source imagery date unverified.",
+    "calibration": {
+      "a": [
+        550,
+        300,
+        29.076713,
+        -110.955667
+      ],
+      "b": [
+        1000,
+        700,
+        29.074838,
+        -110.953253
+      ],
+      "viewport": [
+        1363,
+        936
+      ],
+      "metersPerPixel": [
+        0.521424,
+        0.520078
+      ]
+    },
+    "mapUrl": "https://www.google.com/maps/@29.0759255,-110.9549615,488m/data=!3m1!1e3"
+  },
+  "current": {
+    "url": "levantamiento/evidence/D2-20/20261006-01-cierre.png",
+    "title": "Acción 1 · planta revisada",
+    "label": "Planta · 01",
+    "capturedAt": "2026-10-06T02:43:21.095664+00:00",
+    "worldSha256": "549f0288e920e9b9f7d0e0e4efe92d17e964cb96a1ddc53425794458ab09ef48",
+    "sheetDataSha256": "2994a514234c3bf3dbf9073bd79ad36eac62702ba7b8ad2a5a60a41f9128d913",
+    "sha256": "a50c9b463465399be89de16556e36db6660b7381e1f7e501810a807ae6279722",
+    "cameraId": "D2-20-review01-20261006-software-v1",
+    "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
+  },
+  "camera": {
+    "id": "D2-20-review01-20261006-software-v1",
+    "direction": [
+      0.25,
+      1,
+      1
+    ],
+    "span": 85.9296,
+    "projection": "orthographic",
+    "target": [
+      -29.815999388694763,
+      1,
+      215.57349395751953
+    ]
+  },
+  "worldSha256": "549f0288e920e9b9f7d0e0e4efe92d17e964cb96a1ddc53425794458ab09ef48",
+  "triangles": 76,
+  "heightMeasured": false,
+  "landSurvey": false,
+  "sequence": 117
+}

@@ -1,0 +1,156 @@
+{
+  "id": "C1-06",
+  "action": 1,
+  "status": "closed-visual-approximation",
+  "executedAt": "2026-10-06T02:23:39.350893+00:00",
+  "note": "CERRADO · Cuerpo meridional de planta quebrada del bloque, sin ocupar la explanada del cruce. Planta visual ±3 m; extrusión, colisiones e imagen propias.",
+  "source": {
+    "id": "C1-06",
+    "sector": "C1",
+    "name": "Rosales–Sufragio · cuerpo meridional",
+    "viewCenter": [
+      29.0755344,
+      -110.9564038
+    ],
+    "zoomMeters": 244,
+    "pixels": [
+      [
+        360.4012013258731,
+        593.4346666672889
+      ],
+      [
+        399.4012013258731,
+        586.4346666672889
+      ],
+      [
+        403.4012013258731,
+        610.9346666672889
+      ],
+      [
+        416.4012013258731,
+        608.4346666672889
+      ],
+      [
+        423.4012013258731,
+        645.4346666672889
+      ],
+      [
+        370.9012013258731,
+        657.9346666672889
+      ]
+    ],
+    "note": "CERRADO · Cuerpo meridional de planta quebrada del bloque, sin ocupar la explanada del cruce. Planta visual ±3 m; extrusión, colisiones e imagen propias.",
+    "sourceScreenPixels": [
+      [
+        577,
+        552
+      ],
+      [
+        655,
+        538
+      ],
+      [
+        663,
+        587
+      ],
+      [
+        689,
+        582
+      ],
+      [
+        703,
+        656
+      ],
+      [
+        598,
+        681
+      ]
+    ],
+    "pixelHoles": [],
+    "points": [
+      [
+        -191.386,
+        86.261
+      ],
+      [
+        -171.051,
+        82.62
+      ],
+      [
+        -168.965,
+        95.362
+      ],
+      [
+        -162.186,
+        94.062
+      ],
+      [
+        -158.536,
+        113.305
+      ],
+      [
+        -185.911,
+        119.806
+      ]
+    ],
+    "holes": [],
+    "uncertaintyMeters": 3,
+    "heightMeters": 6.2,
+    "measuredAt": "2026-10-06T02:23:39.350893+00:00",
+    "source": "Google Maps satellite, manually interpreted visible roof boundary; two screen anchors and scale. Source imagery date unverified.",
+    "calibration": {
+      "a": [
+        550,
+        300,
+        29.076713,
+        -110.955667
+      ],
+      "b": [
+        1000,
+        700,
+        29.074838,
+        -110.953253
+      ],
+      "viewport": [
+        1363,
+        936
+      ],
+      "metersPerPixel": [
+        0.521424,
+        0.520078
+      ]
+    },
+    "mapUrl": "https://www.google.com/maps/@29.0759255,-110.9549615,488m/data=!3m1!1e3"
+  },
+  "current": {
+    "url": "levantamiento/evidence/C1-06/20261006-01-cierre.png",
+    "title": "Acción 1 · planta revisada",
+    "label": "Planta · 01",
+    "capturedAt": "2026-10-06T02:23:39.350893+00:00",
+    "worldSha256": "549f0288e920e9b9f7d0e0e4efe92d17e964cb96a1ddc53425794458ab09ef48",
+    "sheetDataSha256": "a3edc6363f0cb7fbea8b795304d64ec0e55f908382717cd38f51cdb22784c8c7",
+    "sha256": "f91f92128e0e553de07713ed15f421d32dd55efd3c0eb3ce072a78c2ba10fc14",
+    "cameraId": "C1-06-review01-20261006-software-v1",
+    "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
+  },
+  "camera": {
+    "id": "C1-06-review01-20261006-software-v1",
+    "direction": [
+      0.25,
+      1,
+      1
+    ],
+    "span": 59.49759999999999,
+    "projection": "orthographic",
+    "target": [
+      -174.96099853515625,
+      1,
+      101.2130012512207
+    ]
+  },
+  "worldSha256": "549f0288e920e9b9f7d0e0e4efe92d17e964cb96a1ddc53425794458ab09ef48",
+  "triangles": 20,
+  "heightMeasured": false,
+  "landSurvey": false,
+  "sequence": 55
+}

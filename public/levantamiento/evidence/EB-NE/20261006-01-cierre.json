@@ -1,0 +1,42 @@
+{
+  "id": "EB-NE",
+  "action": 1,
+  "status": "closed-visual-approximation",
+  "executedAt": "2026-10-06T02:03:56.187054+00:00",
+  "note": "CERRADO · se conserva la huella 24,07 × 16,83 m, tolerancia ±1,5 m. Retranqueo posterior de 0,60 m dentro del margen para mantener separación con EB-SE. Altura y fachadas siguen pendientes.",
+  "source": {
+    "id": "EB-NE",
+    "note": "CERRADO · se conserva la huella 24,07 × 16,83 m, tolerancia ±1,5 m. Retranqueo posterior de 0,60 m dentro del margen para mantener separación con EB-SE. Altura y fachadas siguen pendientes."
+  },
+  "current": {
+    "url": "levantamiento/evidence/EB-NE/20261006-01-cierre.png",
+    "title": "Acción 1 · planta revisada",
+    "label": "Planta · 01",
+    "capturedAt": "2026-10-06T02:03:56.187054+00:00",
+    "worldSha256": "cd0e932a95d99fb60c35c6ca0898450e0d8aa735934da921cbe91c4f516afe8f",
+    "sheetDataSha256": "4e61a8d81dd7895437c61429198c0f3d13b9d87736f5916661c893012d1e47fe",
+    "sha256": "c69faa579e034566db559c1d871594ca00b636e151a34a6c1ea85add940255dd",
+    "cameraId": "EB-NE-review01-20261006-software-v1",
+    "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
+  },
+  "camera": {
+    "id": "EB-NE-review01-20261006-software-v1",
+    "direction": [
+      0.6,
+      1,
+      -1
+    ],
+    "span": 50,
+    "projection": "orthographic",
+    "target": [
+      165.85020089222598,
+      1,
+      -32.75256724967927
+    ]
+  },
+  "worldSha256": "cd0e932a95d99fb60c35c6ca0898450e0d8aa735934da921cbe91c4f516afe8f",
+  "triangles": 28331,
+  "heightMeasured": false,
+  "landSurvey": false,
+  "sequence": 4
+}

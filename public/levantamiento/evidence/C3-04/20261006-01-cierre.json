@@ -1,0 +1,194 @@
+{
+  "id": "C3-04",
+  "action": 1,
+  "status": "closed-visual-approximation",
+  "executedAt": "2026-10-06T02:34:27.858443+00:00",
+  "note": "CERRADO · Cuerpo occidental de planta quebrada junto al cerro, dejando descubierto el vacío interior visible. Planta visual ±3 m; alturas provisionales, independientes de este cierre. Contorno del patio ajustado para quedar dentro del cuerpo sin triángulos degenerados.",
+  "source": {
+    "id": "C3-04",
+    "sector": "C3",
+    "name": "Sufragio sur · cuerpo occidental junto al cerro",
+    "viewCenter": [
+      29.0755344,
+      -110.9535192
+    ],
+    "zoomMeters": 244,
+    "pixels": [
+      [
+        884.1269676890488,
+        528.4346666672889
+      ],
+      [
+        899.6269676890488,
+        524.4346666672889
+      ],
+      [
+        908.6269676890488,
+        550.4346666672889
+      ],
+      [
+        917.1269676890488,
+        548.9346666672889
+      ],
+      [
+        922.6269676890488,
+        567.9346666672889
+      ],
+      [
+        889.6269676890488,
+        584.4346666672889
+      ]
+    ],
+    "pixelHoles": [
+      [
+        [
+          898.1269676890488,
+          549.4346666672889
+        ],
+        [
+          906.6269676890488,
+          548.9346666672889
+        ],
+        [
+          912.1269676890488,
+          560.4346666672889
+        ],
+        [
+          902.1269676890488,
+          564.9346666672889
+        ]
+      ]
+    ],
+    "note": "CERRADO · Cuerpo occidental de planta quebrada junto al cerro, dejando descubierto el vacío interior visible. Planta visual ±3 m; alturas provisionales, independientes de este cierre.",
+    "sourceScreenPixels": [
+      [
+        549,
+        422
+      ],
+      [
+        580,
+        414
+      ],
+      [
+        598,
+        466
+      ],
+      [
+        615,
+        463
+      ],
+      [
+        626,
+        501
+      ],
+      [
+        560,
+        534
+      ]
+    ],
+    "points": [
+      [
+        81.697,
+        52.456
+      ],
+      [
+        89.779,
+        50.375
+      ],
+      [
+        94.472,
+        63.897
+      ],
+      [
+        98.904,
+        63.117
+      ],
+      [
+        101.772,
+        72.999
+      ],
+      [
+        84.565,
+        81.58
+      ]
+    ],
+    "holes": [
+      [
+        [
+          88.997,
+          63.377
+        ],
+        [
+          93.429,
+          63.117
+        ],
+        [
+          96.297,
+          69.098
+        ],
+        [
+          91.083,
+          71.439
+        ]
+      ]
+    ],
+    "uncertaintyMeters": 3,
+    "heightMeters": 6.2,
+    "measuredAt": "2026-10-06T02:32:24.235912+00:00",
+    "source": "Google Maps satellite, manually interpreted visible roof boundary; two screen anchors and scale. Source imagery date unverified.",
+    "calibration": {
+      "a": [
+        550,
+        300,
+        29.076713,
+        -110.955667
+      ],
+      "b": [
+        1000,
+        700,
+        29.074838,
+        -110.953253
+      ],
+      "viewport": [
+        1363,
+        936
+      ],
+      "metersPerPixel": [
+        0.521424,
+        0.520078
+      ]
+    },
+    "mapUrl": "https://www.google.com/maps/@29.0759255,-110.9549615,488m/data=!3m1!1e3"
+  },
+  "current": {
+    "url": "levantamiento/evidence/C3-04/20261006-01-cierre.png",
+    "title": "Acción 1 · planta revisada",
+    "label": "Planta · 01",
+    "capturedAt": "2026-10-06T02:34:27.858443+00:00",
+    "worldSha256": "549f0288e920e9b9f7d0e0e4efe92d17e964cb96a1ddc53425794458ab09ef48",
+    "sheetDataSha256": "c1b6efff4b260c1a649fde2ec0d86dea56fbbdf55eaa42b6500c1dc063995405",
+    "sha256": "215ed2f01dfd72fa84cd32d0c9c920f38102ac9a65ec4dc6bbd57165a5d352bb",
+    "cameraId": "C3-04-review01-20261006-software-v1",
+    "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
+  },
+  "camera": {
+    "id": "C3-04-review01-20261006-software-v1",
+    "direction": [
+      0.25,
+      1,
+      1
+    ],
+    "span": 49.928,
+    "projection": "orthographic",
+    "target": [
+      91.73450088500977,
+      1,
+      65.97750091552734
+    ]
+  },
+  "worldSha256": "549f0288e920e9b9f7d0e0e4efe92d17e964cb96a1ddc53425794458ab09ef48",
+  "triangles": 40,
+  "heightMeasured": false,
+  "landSurvey": false,
+  "sequence": 86
+}

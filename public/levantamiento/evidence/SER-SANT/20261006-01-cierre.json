@@ -1,0 +1,90 @@
+{
+  "id": "SER-SANT",
+  "action": 1,
+  "status": "closed-visual-approximation",
+  "executedAt": "2026-10-06T02:08:21.524016+00:00",
+  "note": "CERRADO · huella OSM 499759073 incorporada como geometría y colisiones propias; cubierta contrastada en vista satelital. Tolerancia de planta ±3 m. Altura 6,2 m provisional, pendiente del paso 7. No se modela el estacionamiento como edificio.",
+  "source": {
+    "id": "SER-SANT",
+    "sector": "A2",
+    "name": "Santander · cuerpo físico de Serdán",
+    "points": [
+      [
+        -94.303,
+        -130.022
+      ],
+      [
+        -54.296,
+        -137.423
+      ],
+      [
+        -48.581,
+        -106.667
+      ],
+      [
+        -88.578,
+        -99.267
+      ]
+    ],
+    "source": "OSM aprobado, way 499759073; contraste visual con cubierta en Google Maps, 2026-10-06. Nombre comercial por confirmar en acción 6.",
+    "note": "CERRADO · huella OSM 499759073 incorporada como geometría y colisiones propias; cubierta contrastada en vista satelital. Tolerancia de planta ±3 m. Altura 6,2 m provisional, pendiente del paso 7. No se modela el estacionamiento como edificio.",
+    "holes": [],
+    "uncertaintyMeters": 3,
+    "heightMeters": 6.2,
+    "measuredAt": "2026-10-06T02:05:02.007646+00:00",
+    "calibration": {
+      "a": [
+        550,
+        300,
+        29.076713,
+        -110.955667
+      ],
+      "b": [
+        1000,
+        700,
+        29.074838,
+        -110.953253
+      ],
+      "viewport": [
+        1363,
+        936
+      ],
+      "metersPerPixel": [
+        0.521424,
+        0.520078
+      ]
+    },
+    "mapUrl": "https://www.google.com/maps/@29.0759255,-110.9549615,488m/data=!3m1!1e3"
+  },
+  "current": {
+    "url": "levantamiento/evidence/SER-SANT/20261006-01-cierre.png",
+    "title": "Acción 1 · planta revisada",
+    "label": "Planta · 01",
+    "capturedAt": "2026-10-06T02:08:21.524016+00:00",
+    "worldSha256": "7d2bea2ba657cf820bc1d7acfaa8328bc67d954a013ef2e0201f6bf1f0d6e0e3",
+    "sheetDataSha256": "4803a87e51fb96bd68b80dbf1a36dc4ffc25bf600602206404b8841715f442d3",
+    "sha256": "f41b960032993a1e29fb03461831e0f52666409a3f4a248e14399f978b932423",
+    "cameraId": "SER-SANT-review01-20261006-software-v1",
+    "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
+  },
+  "camera": {
+    "id": "SER-SANT-review01-20261006-software-v1",
+    "direction": [
+      0.25,
+      1,
+      1
+    ],
+    "span": 73.1552,
+    "projection": "orthographic",
+    "target": [
+      -71.44200134277344,
+      1,
+      -118.34500122070312
+    ]
+  },
+  "worldSha256": "7d2bea2ba657cf820bc1d7acfaa8328bc67d954a013ef2e0201f6bf1f0d6e0e3",
+  "triangles": 12,
+  "heightMeasured": false,
+  "landSurvey": false,
+  "sequence": 16
+}

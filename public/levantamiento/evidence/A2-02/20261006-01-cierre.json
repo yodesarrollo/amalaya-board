@@ -1,0 +1,132 @@
+{
+  "id": "A2-02",
+  "action": 1,
+  "status": "closed-visual-approximation",
+  "executedAt": "2026-10-06T02:10:33.471935+00:00",
+  "note": "CERRADO · Cubierta contigua al este de Santander, con borde frontal oblicuo y sin ocupar el paso lateral. Planta manual con escala verificada, ±3 m. Altura y comercio pendientes en sus acciones.",
+  "source": {
+    "id": "A2-02",
+    "sector": "A2",
+    "name": "Serdán · cuerpo intermedio occidental",
+    "viewCenter": [
+      29.0770989,
+      -110.9549615
+    ],
+    "zoomMeters": 244,
+    "pixels": [
+      [
+        638.2640845087855,
+        162.67466666715336
+      ],
+      [
+        695.2640845087855,
+        153.67466666715336
+      ],
+      [
+        712.7640845087855,
+        211.67466666715336
+      ],
+      [
+        645.7640845087855,
+        224.17466666715336
+      ]
+    ],
+    "pixelHoles": [],
+    "note": "CERRADO · Cubierta contigua al este de Santander, con borde frontal oblicuo y sin ocupar el paso lateral. Planta manual con escala verificada, ±3 m. Altura y comercio pendientes en sus acciones.",
+    "sourceScreenPixels": [
+      [
+        595,
+        358
+      ],
+      [
+        709,
+        340
+      ],
+      [
+        744,
+        456
+      ],
+      [
+        610,
+        481
+      ]
+    ],
+    "points": [
+      [
+        -46.502,
+        -137.768
+      ],
+      [
+        -16.78,
+        -142.449
+      ],
+      [
+        -7.656,
+        -112.284
+      ],
+      [
+        -42.591,
+        -105.783
+      ]
+    ],
+    "holes": [],
+    "uncertaintyMeters": 3,
+    "heightMeters": 6.2,
+    "measuredAt": "2026-10-06T02:10:33.471935+00:00",
+    "source": "Google Maps satellite, manually interpreted visible roof boundary; two screen anchors and scale. Source imagery date unverified.",
+    "calibration": {
+      "a": [
+        550,
+        300,
+        29.076713,
+        -110.955667
+      ],
+      "b": [
+        1000,
+        700,
+        29.074838,
+        -110.953253
+      ],
+      "viewport": [
+        1363,
+        936
+      ],
+      "metersPerPixel": [
+        0.521424,
+        0.520078
+      ]
+    },
+    "mapUrl": "https://www.google.com/maps/@29.0759255,-110.9549615,488m/data=!3m1!1e3"
+  },
+  "current": {
+    "url": "levantamiento/evidence/A2-02/20261006-01-cierre.png",
+    "title": "Acción 1 · planta revisada",
+    "label": "Planta · 01",
+    "capturedAt": "2026-10-06T02:10:33.471935+00:00",
+    "worldSha256": "7d2bea2ba657cf820bc1d7acfaa8328bc67d954a013ef2e0201f6bf1f0d6e0e3",
+    "sheetDataSha256": "9df769add4abd2a599040d32bdb440ed703749f379a27732a1d79f62172889e2",
+    "sha256": "a80a2c5fa36e902dffba9cdf729cd2d2edac1628eca6a8339e2951b16334d0c4",
+    "cameraId": "A2-02-review01-20261006-software-v1",
+    "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
+  },
+  "camera": {
+    "id": "A2-02-review01-20261006-software-v1",
+    "direction": [
+      0.25,
+      1,
+      1
+    ],
+    "span": 62.15360000000001,
+    "projection": "orthographic",
+    "target": [
+      -27.078999519348145,
+      1,
+      -124.11600112915039
+    ]
+  },
+  "worldSha256": "7d2bea2ba657cf820bc1d7acfaa8328bc67d954a013ef2e0201f6bf1f0d6e0e3",
+  "triangles": 12,
+  "heightMeasured": false,
+  "landSurvey": false,
+  "sequence": 20
+}

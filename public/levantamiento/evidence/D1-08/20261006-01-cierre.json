@@ -1,0 +1,144 @@
+{
+  "id": "D1-08",
+  "action": 1,
+  "status": "closed-visual-approximation",
+  "executedAt": "2026-10-06T02:36:58.125324+00:00",
+  "note": "CERRADO · Cuerpo de esquina del frente sur de Sufragio; patio y solar posterior excluidos. Planta visual ±3 m, altura provisional y evidencia individual.",
+  "source": {
+    "id": "D1-08",
+    "sector": "D1",
+    "name": "Sufragio–Yáñez · cuerpo de esquina sur",
+    "viewCenter": [
+      29.0747521,
+      -110.9564038
+    ],
+    "zoomMeters": 244,
+    "pixels": [
+      [
+        467.9012013258731,
+        649.32533333339
+      ],
+      [
+        506.9012013258731,
+        639.82533333339
+      ],
+      [
+        515.4012013258731,
+        668.32533333339
+      ],
+      [
+        495.4012013258731,
+        675.82533333339
+      ],
+      [
+        472.9012013258731,
+        685.32533333339
+      ]
+    ],
+    "note": "CERRADO · Cuerpo de esquina del frente sur de Sufragio; patio y solar posterior excluidos. Planta visual ±3 m, altura provisional y evidencia individual.",
+    "sourceScreenPixels": [
+      [
+        792,
+        330
+      ],
+      [
+        870,
+        311
+      ],
+      [
+        887,
+        368
+      ],
+      [
+        847,
+        383
+      ],
+      [
+        802,
+        402
+      ]
+    ],
+    "pixelHoles": [],
+    "points": [
+      [
+        -135.333,
+        115.328
+      ],
+      [
+        -114.997,
+        110.388
+      ],
+      [
+        -110.565,
+        125.21
+      ],
+      [
+        -120.994,
+        129.11
+      ],
+      [
+        -132.726,
+        134.051
+      ]
+    ],
+    "holes": [],
+    "uncertaintyMeters": 3,
+    "heightMeters": 6.2,
+    "measuredAt": "2026-10-06T02:36:58.125324+00:00",
+    "source": "Google Maps satellite, manually interpreted visible roof boundary; two screen anchors and scale. Source imagery date unverified.",
+    "calibration": {
+      "a": [
+        550,
+        300,
+        29.076713,
+        -110.955667
+      ],
+      "b": [
+        1000,
+        700,
+        29.074838,
+        -110.953253
+      ],
+      "viewport": [
+        1363,
+        936
+      ],
+      "metersPerPixel": [
+        0.521424,
+        0.520078
+      ]
+    },
+    "mapUrl": "https://www.google.com/maps/@29.0759255,-110.9549615,488m/data=!3m1!1e3"
+  },
+  "current": {
+    "url": "levantamiento/evidence/D1-08/20261006-01-cierre.png",
+    "title": "Acción 1 · planta revisada",
+    "label": "Planta · 01",
+    "capturedAt": "2026-10-06T02:36:58.125324+00:00",
+    "worldSha256": "549f0288e920e9b9f7d0e0e4efe92d17e964cb96a1ddc53425794458ab09ef48",
+    "sheetDataSha256": "6d20284cb36f0a31384c527eb042287730e801c3af903e3f2868bad2760760f7",
+    "sha256": "0551419b9024d27ebc8f1d41924e16a1d2bb3c05acfba3bf0563f4ad9d07d1b9",
+    "cameraId": "D1-08-review01-20261006-software-v1",
+    "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
+  },
+  "camera": {
+    "id": "D1-08-review01-20261006-software-v1",
+    "direction": [
+      0.25,
+      1,
+      1
+    ],
+    "span": 39.628800000000005,
+    "projection": "orthographic",
+    "target": [
+      -122.9489974975586,
+      1,
+      122.21949768066406
+    ]
+  },
+  "worldSha256": "549f0288e920e9b9f7d0e0e4efe92d17e964cb96a1ddc53425794458ab09ef48",
+  "triangles": 16,
+  "heightMeasured": false,
+  "landSurvey": false,
+  "sequence": 93
+}

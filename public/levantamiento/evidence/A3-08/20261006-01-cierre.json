@@ -1,0 +1,170 @@
+{
+  "id": "A3-08",
+  "action": 1,
+  "status": "closed-visual-approximation",
+  "executedAt": "2026-10-06T02:14:51.714251+00:00",
+  "note": "CERRADO · Cuerpo norte de Chihuahua, con vacío posterior oriental conservado; el estacionamiento al oeste queda abierto. Lectura visual a escala, ±3 m; altura pendiente del paso 7.",
+  "source": {
+    "id": "A3-08",
+    "sector": "A3",
+    "name": "Chihuahua–Abasolo · cuerpo norte con patio",
+    "viewCenter": [
+      29.0770989,
+      -110.9535192
+    ],
+    "zoomMeters": 244,
+    "pixels": [
+      [
+        1011.1269676890488,
+        263.67466666715336
+      ],
+      [
+        1054.1269676890488,
+        257.67466666715336
+      ],
+      [
+        1066.6269676890488,
+        326.17466666715336
+      ],
+      [
+        1015.6269676890488,
+        331.67466666715336
+      ]
+    ],
+    "pixelHoles": [
+      [
+        [
+          1042.6269676890488,
+          300.67466666715336
+        ],
+        [
+          1059.6269676890488,
+          297.67466666715336
+        ],
+        [
+          1063.1269676890488,
+          323.67466666715336
+        ],
+        [
+          1046.6269676890488,
+          326.67466666715336
+        ]
+      ]
+    ],
+    "note": "CERRADO · Cuerpo norte de Chihuahua, con vacío posterior oriental conservado; el estacionamiento al oeste queda abierto. Lectura visual a escala, ±3 m; altura pendiente del paso 7.",
+    "sourceScreenPixels": [
+      [
+        803,
+        560
+      ],
+      [
+        889,
+        548
+      ],
+      [
+        914,
+        685
+      ],
+      [
+        812,
+        696
+      ]
+    ],
+    "points": [
+      [
+        147.918,
+        -85.24
+      ],
+      [
+        170.339,
+        -88.361
+      ],
+      [
+        176.857,
+        -52.735
+      ],
+      [
+        150.264,
+        -49.875
+      ]
+    ],
+    "holes": [
+      [
+        [
+          164.343,
+          -65.997
+        ],
+        [
+          173.207,
+          -67.557
+        ],
+        [
+          175.032,
+          -54.035
+        ],
+        [
+          166.429,
+          -52.475
+        ]
+      ]
+    ],
+    "uncertaintyMeters": 3,
+    "heightMeters": 6.2,
+    "measuredAt": "2026-10-06T02:14:51.714251+00:00",
+    "source": "Google Maps satellite, manually interpreted visible roof boundary; two screen anchors and scale. Source imagery date unverified.",
+    "calibration": {
+      "a": [
+        550,
+        300,
+        29.076713,
+        -110.955667
+      ],
+      "b": [
+        1000,
+        700,
+        29.074838,
+        -110.953253
+      ],
+      "viewport": [
+        1363,
+        936
+      ],
+      "metersPerPixel": [
+        0.521424,
+        0.520078
+      ]
+    },
+    "mapUrl": "https://www.google.com/maps/@29.0759255,-110.9549615,488m/data=!3m1!1e3"
+  },
+  "current": {
+    "url": "levantamiento/evidence/A3-08/20261006-01-cierre.png",
+    "title": "Acción 1 · planta revisada",
+    "label": "Planta · 01",
+    "capturedAt": "2026-10-06T02:14:51.714251+00:00",
+    "worldSha256": "7d2bea2ba657cf820bc1d7acfaa8328bc67d954a013ef2e0201f6bf1f0d6e0e3",
+    "sheetDataSha256": "fc8f503c74b306b9adb4cac6e7a245bd0bb570ff1f667072fa71528b674c32dd",
+    "sha256": "e8ac018940c196bd2e2e3a8a486c1079d1f5995be117d7e714e70bf5d78e9fc6",
+    "cameraId": "A3-08-review01-20261006-software-v1",
+    "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
+  },
+  "camera": {
+    "id": "A3-08-review01-20261006-software-v1",
+    "direction": [
+      0.25,
+      1,
+      1
+    ],
+    "span": 61.57760000000001,
+    "projection": "orthographic",
+    "target": [
+      162.3874969482422,
+      1,
+      -69.11800003051758
+    ]
+  },
+  "worldSha256": "7d2bea2ba657cf820bc1d7acfaa8328bc67d954a013ef2e0201f6bf1f0d6e0e3",
+  "triangles": 32,
+  "heightMeasured": false,
+  "landSurvey": false,
+  "sequence": 32
+}

@@ -1,0 +1,168 @@
+{
+  "id": "B3-01",
+  "action": 1,
+  "status": "closed-visual-approximation",
+  "executedAt": "2026-10-06T02:20:49.326624+00:00",
+  "note": "CERRADO · Cuerpo intermedio entre la esquina EB-NW y De Ayón; contorno quebrado conserva las separaciones del patio posterior. Trazado manual ±3 m; imagen del cuerpo en el modelo y registro por columna.",
+  "source": {
+    "id": "B3-01",
+    "sector": "B3",
+    "name": "Chihuahua · cuerpo norte intermedio",
+    "viewCenter": [
+      29.0763166,
+      -110.9535192
+    ],
+    "zoomMeters": 244,
+    "pixels": [
+      [
+        888.6269676890488,
+        356.0653333340124
+      ],
+      [
+        944.6269676890488,
+        352.5653333340124
+      ],
+      [
+        947.1269676890488,
+        380.5653333340124
+      ],
+      [
+        921.6269676890488,
+        384.0653333340124
+      ],
+      [
+        921.6269676890488,
+        386.0653333340124
+      ],
+      [
+        902.1269676890488,
+        388.0653333340124
+      ],
+      [
+        888.6269676890488,
+        386.5653333340124
+      ]
+    ],
+    "note": "CERRADO · Cuerpo intermedio entre la esquina EB-NW y De Ayón; contorno quebrado conserva las separaciones del patio posterior. Trazado manual ±3 m; imagen del cuerpo en el modelo y registro por columna.",
+    "sourceScreenPixels": [
+      [
+        558,
+        411
+      ],
+      [
+        670,
+        404
+      ],
+      [
+        675,
+        460
+      ],
+      [
+        624,
+        467
+      ],
+      [
+        624,
+        471
+      ],
+      [
+        585,
+        475
+      ],
+      [
+        558,
+        472
+      ]
+    ],
+    "pixelHoles": [],
+    "points": [
+      [
+        84.044,
+        -37.19
+      ],
+      [
+        113.243,
+        -39.01
+      ],
+      [
+        114.547,
+        -24.448
+      ],
+      [
+        101.251,
+        -22.628
+      ],
+      [
+        101.251,
+        -21.587
+      ],
+      [
+        91.083,
+        -20.547
+      ],
+      [
+        84.044,
+        -21.327
+      ]
+    ],
+    "holes": [],
+    "uncertaintyMeters": 3,
+    "heightMeters": 6.2,
+    "measuredAt": "2026-10-06T02:20:49.326624+00:00",
+    "source": "Google Maps satellite, manually interpreted visible roof boundary; two screen anchors and scale. Source imagery date unverified.",
+    "calibration": {
+      "a": [
+        550,
+        300,
+        29.076713,
+        -110.955667
+      ],
+      "b": [
+        1000,
+        700,
+        29.074838,
+        -110.953253
+      ],
+      "viewport": [
+        1363,
+        936
+      ],
+      "metersPerPixel": [
+        0.521424,
+        0.520078
+      ]
+    },
+    "mapUrl": "https://www.google.com/maps/@29.0759255,-110.9549615,488m/data=!3m1!1e3"
+  },
+  "current": {
+    "url": "levantamiento/evidence/B3-01/20261006-01-cierre.png",
+    "title": "Acción 1 · planta revisada",
+    "label": "Planta · 01",
+    "capturedAt": "2026-10-06T02:20:49.326624+00:00",
+    "worldSha256": "549f0288e920e9b9f7d0e0e4efe92d17e964cb96a1ddc53425794458ab09ef48",
+    "sheetDataSha256": "077db2c29e957d3a6467dc0baf61e8c1b3fa72fd30e01c69e0d3082f951c9a7a",
+    "sha256": "de4f11307c40ec20007360ec1781f310dfb6e8d9846b5ec633c0436fe1b2e24d",
+    "cameraId": "B3-01-review01-20261006-software-v1",
+    "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
+  },
+  "camera": {
+    "id": "B3-01-review01-20261006-software-v1",
+    "direction": [
+      0.25,
+      1,
+      1
+    ],
+    "span": 48.8048,
+    "projection": "orthographic",
+    "target": [
+      99.29549789428711,
+      1,
+      -29.778499603271484
+    ]
+  },
+  "worldSha256": "549f0288e920e9b9f7d0e0e4efe92d17e964cb96a1ddc53425794458ab09ef48",
+  "triangles": 24,
+  "heightMeasured": false,
+  "landSurvey": false,
+  "sequence": 45
+}

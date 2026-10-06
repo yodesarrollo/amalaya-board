@@ -1,0 +1,124 @@
+{
+  "id": "SER-BLEY",
+  "action": 1,
+  "status": "closed-visual-approximation",
+  "executedAt": "2026-10-06T02:08:23.964760+00:00",
+  "note": "CERRADO · se incorpora la cubierta física de Serdán 122-B, situada por la ficha de Mueblerías México (Maps: 29.0772105, -110.9544141) y ampliación satelital a 122 m. Contorno quebrado de la cubierta blanca; patio oscuro posterior excluido. Tolerancia visual ±3 m. La asociación histórica con Bley y el comercio actual siguen pendientes en identidad; no se inventa una partición predial.",
+  "source": {
+    "id": "SER-BLEY",
+    "sector": "A2",
+    "name": "Serdán 122 · columna Bley",
+    "pixels": [
+      [
+        757,
+        166
+      ],
+      [
+        777.5,
+        160.9
+      ],
+      [
+        777.5,
+        158.1
+      ],
+      [
+        796.9,
+        154.6
+      ],
+      [
+        805.2,
+        193.4
+      ],
+      [
+        763.9,
+        201.6
+      ]
+    ],
+    "note": "CERRADO · se incorpora la cubierta física de Serdán 122-B, situada por la ficha de Mueblerías México (Maps: 29.0772105, -110.9544141) y ampliación satelital a 122 m. Contorno quebrado de la cubierta blanca; patio oscuro posterior excluido. Tolerancia visual ±3 m. La asociación histórica con Bley y el comercio actual siguen pendientes en identidad; no se inventa una partición predial.",
+    "points": [
+      [
+        15.41,
+        -136.039
+      ],
+      [
+        26.099,
+        -138.691
+      ],
+      [
+        26.099,
+        -140.147
+      ],
+      [
+        36.215,
+        -141.967
+      ],
+      [
+        40.543,
+        -121.788
+      ],
+      [
+        19.008,
+        -117.524
+      ]
+    ],
+    "holes": [],
+    "uncertaintyMeters": 3,
+    "heightMeters": 6.2,
+    "measuredAt": "2026-10-06T02:05:27.497840+00:00",
+    "source": "Google Maps satellite, manually interpreted visible roof boundary; two screen anchors and scale. Source imagery date unverified.",
+    "calibration": {
+      "a": [
+        550,
+        300,
+        29.076713,
+        -110.955667
+      ],
+      "b": [
+        1000,
+        700,
+        29.074838,
+        -110.953253
+      ],
+      "viewport": [
+        1363,
+        936
+      ],
+      "metersPerPixel": [
+        0.521424,
+        0.520078
+      ]
+    },
+    "mapUrl": "https://www.google.com/maps/@29.0759255,-110.9549615,488m/data=!3m1!1e3"
+  },
+  "current": {
+    "url": "levantamiento/evidence/SER-BLEY/20261006-01-cierre.png",
+    "title": "Acción 1 · planta revisada",
+    "label": "Planta · 01",
+    "capturedAt": "2026-10-06T02:08:23.964760+00:00",
+    "worldSha256": "7d2bea2ba657cf820bc1d7acfaa8328bc67d954a013ef2e0201f6bf1f0d6e0e3",
+    "sheetDataSha256": "4803a87e51fb96bd68b80dbf1a36dc4ffc25bf600602206404b8841715f442d3",
+    "sha256": "36a43cd829b92de6828b286dc583100b00c63c7a26943e97188e66e0fa33ee29",
+    "cameraId": "SER-BLEY-review01-20261006-software-v1",
+    "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
+  },
+  "camera": {
+    "id": "SER-BLEY-review01-20261006-software-v1",
+    "direction": [
+      0.25,
+      1,
+      1
+    ],
+    "span": 40.2128,
+    "projection": "orthographic",
+    "target": [
+      27.976499557495117,
+      1,
+      -129.74549865722656
+    ]
+  },
+  "worldSha256": "7d2bea2ba657cf820bc1d7acfaa8328bc67d954a013ef2e0201f6bf1f0d6e0e3",
+  "triangles": 20,
+  "heightMeasured": false,
+  "landSurvey": false,
+  "sequence": 16
+}

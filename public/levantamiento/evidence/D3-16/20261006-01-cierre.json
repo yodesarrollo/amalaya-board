@@ -1,0 +1,206 @@
+{
+  "id": "D3-16",
+  "action": 1,
+  "status": "closed-visual-approximation",
+  "executedAt": "2026-10-06T02:49:42.591028+00:00",
+  "note": "CERRADO · Contorno físico de cubierta interpretado en vista satelital norte arriba y aplicado al modelo. Planta visual ±3 m; altura provisional pendiente del paso 7. Se conserva completo el cuerpo cuando cruza el borde de la lámina; patios y terreno rocoso se excluyen.",
+  "source": {
+    "id": "D3-16",
+    "sector": "D3",
+    "name": "Garmendia–Felipe Salido · casa de patio",
+    "viewCenter": [
+      29.0747521,
+      -110.9535192
+    ],
+    "zoomMeters": 244,
+    "pixels": [
+      [
+        844.6269676890488,
+        767.32533333339
+      ],
+      [
+        867.1269676890488,
+        771.32533333339
+      ],
+      [
+        865.1269676890488,
+        791.82533333339
+      ],
+      [
+        871.1269676890488,
+        793.32533333339
+      ],
+      [
+        869.1269676890488,
+        804.82533333339
+      ],
+      [
+        835.6269676890488,
+        801.82533333339
+      ],
+      [
+        838.1269676890488,
+        788.32533333339
+      ]
+    ],
+    "pixelHoles": [
+      [
+        [
+          847.1269676890488,
+          773.82533333339
+        ],
+        [
+          854.6269676890488,
+          775.32533333339
+        ],
+        [
+          853.1269676890488,
+          785.82533333339
+        ],
+        [
+          845.1269676890488,
+          784.32533333339
+        ]
+      ]
+    ],
+    "note": "CERRADO · Contorno físico de cubierta interpretado en vista satelital norte arriba y aplicado al modelo. Planta visual ±3 m; altura provisional pendiente del paso 7. Se conserva completo el cuerpo cuando cruza el borde de la lámina; patios y terreno rocoso se excluyen.",
+    "sourceScreenPixels": [
+      [
+        470,
+        566
+      ],
+      [
+        515,
+        574
+      ],
+      [
+        511,
+        615
+      ],
+      [
+        523,
+        618
+      ],
+      [
+        519,
+        641
+      ],
+      [
+        452,
+        635
+      ],
+      [
+        457,
+        608
+      ]
+    ],
+    "points": [
+      [
+        61.101,
+        176.698
+      ],
+      [
+        72.833,
+        178.778
+      ],
+      [
+        71.79,
+        189.439
+      ],
+      [
+        74.919,
+        190.22
+      ],
+      [
+        73.876,
+        196.201
+      ],
+      [
+        56.408,
+        194.64
+      ],
+      [
+        57.712,
+        187.619
+      ]
+    ],
+    "holes": [
+      [
+        [
+          62.404,
+          180.078
+        ],
+        [
+          66.315,
+          180.858
+        ],
+        [
+          65.533,
+          186.319
+        ],
+        [
+          61.362,
+          185.539
+        ]
+      ]
+    ],
+    "uncertaintyMeters": 3,
+    "heightMeters": 6.2,
+    "measuredAt": "2026-10-06T02:49:42.591028+00:00",
+    "source": "Google Maps satellite, manually interpreted visible roof boundary; two screen anchors and scale. Source imagery date unverified.",
+    "calibration": {
+      "a": [
+        550,
+        300,
+        29.076713,
+        -110.955667
+      ],
+      "b": [
+        1000,
+        700,
+        29.074838,
+        -110.953253
+      ],
+      "viewport": [
+        1363,
+        936
+      ],
+      "metersPerPixel": [
+        0.521424,
+        0.520078
+      ]
+    },
+    "mapUrl": "https://www.google.com/maps/@29.0759255,-110.9549615,488m/data=!3m1!1e3"
+  },
+  "current": {
+    "url": "levantamiento/evidence/D3-16/20261006-01-cierre.png",
+    "title": "Acción 1 · planta revisada",
+    "label": "Planta · 01",
+    "capturedAt": "2026-10-06T02:49:42.591028+00:00",
+    "worldSha256": "549f0288e920e9b9f7d0e0e4efe92d17e964cb96a1ddc53425794458ab09ef48",
+    "sheetDataSha256": "7fd9b685b1ff20616cb0425b12fbccf2ee85d1c2013297257e96d73af31362fc",
+    "sha256": "d0230185681410cca53f0b3085c0e07dc5ed9d711e3884c68b10843ff101c9d6",
+    "cameraId": "D3-16-review01-20261006-software-v1",
+    "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
+  },
+  "camera": {
+    "id": "D3-16-review01-20261006-software-v1",
+    "direction": [
+      0.25,
+      1,
+      1
+    ],
+    "span": 31.204799999999977,
+    "projection": "orthographic",
+    "target": [
+      65.66349983215332,
+      1,
+      186.44950103759766
+    ]
+  },
+  "worldSha256": "549f0288e920e9b9f7d0e0e4efe92d17e964cb96a1ddc53425794458ab09ef48",
+  "triangles": 44,
+  "heightMeasured": false,
+  "landSurvey": false,
+  "sequence": 137
+}

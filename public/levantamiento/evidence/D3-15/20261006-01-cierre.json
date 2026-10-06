@@ -1,0 +1,132 @@
+{
+  "id": "D3-15",
+  "action": 1,
+  "status": "closed-visual-approximation",
+  "executedAt": "2026-10-06T02:49:39.956944+00:00",
+  "note": "CERRADO · Contorno físico de cubierta interpretado en vista satelital norte arriba y aplicado al modelo. Planta visual ±3 m; altura provisional pendiente del paso 7. Se conserva completo el cuerpo cuando cruza el borde de la lámina; patios y terreno rocoso se excluyen.",
+  "source": {
+    "id": "D3-15",
+    "sector": "D3",
+    "name": "Felipe Salido · cuerpo que cruza borde sur",
+    "viewCenter": [
+      29.0747521,
+      -110.9535192
+    ],
+    "zoomMeters": 244,
+    "pixels": [
+      [
+        956.6269676890488,
+        799.32533333339
+      ],
+      [
+        967.1269676890488,
+        793.32533333339
+      ],
+      [
+        975.1269676890488,
+        807.32533333339
+      ],
+      [
+        965.1269676890488,
+        813.82533333339
+      ]
+    ],
+    "pixelHoles": [],
+    "note": "CERRADO · Contorno físico de cubierta interpretado en vista satelital norte arriba y aplicado al modelo. Planta visual ±3 m; altura provisional pendiente del paso 7. Se conserva completo el cuerpo cuando cruza el borde de la lámina; patios y terreno rocoso se excluyen.",
+    "sourceScreenPixels": [
+      [
+        694,
+        630
+      ],
+      [
+        715,
+        618
+      ],
+      [
+        731,
+        646
+      ],
+      [
+        711,
+        659
+      ]
+    ],
+    "points": [
+      [
+        119.5,
+        193.34
+      ],
+      [
+        124.975,
+        190.22
+      ],
+      [
+        129.147,
+        197.501
+      ],
+      [
+        123.932,
+        200.881
+      ]
+    ],
+    "holes": [],
+    "uncertaintyMeters": 3,
+    "heightMeters": 6.2,
+    "measuredAt": "2026-10-06T02:49:39.956944+00:00",
+    "source": "Google Maps satellite, manually interpreted visible roof boundary; two screen anchors and scale. Source imagery date unverified.",
+    "calibration": {
+      "a": [
+        550,
+        300,
+        29.076713,
+        -110.955667
+      ],
+      "b": [
+        1000,
+        700,
+        29.074838,
+        -110.953253
+      ],
+      "viewport": [
+        1363,
+        936
+      ],
+      "metersPerPixel": [
+        0.521424,
+        0.520078
+      ]
+    },
+    "mapUrl": "https://www.google.com/maps/@29.0759255,-110.9549615,488m/data=!3m1!1e3"
+  },
+  "current": {
+    "url": "levantamiento/evidence/D3-15/20261006-01-cierre.png",
+    "title": "Acción 1 · planta revisada",
+    "label": "Planta · 01",
+    "capturedAt": "2026-10-06T02:49:39.956944+00:00",
+    "worldSha256": "549f0288e920e9b9f7d0e0e4efe92d17e964cb96a1ddc53425794458ab09ef48",
+    "sheetDataSha256": "9987c57ead75e462e03ff094a0ef791f1962061141ab1f1fccd56cb15aaffc01",
+    "sha256": "d760e68f6f06688ab8c0e632e7acad2a86a9721fcc909b9ec9d65fd8c8b94ae4",
+    "cameraId": "D3-15-review01-20261006-software-v1",
+    "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
+  },
+  "camera": {
+    "id": "D3-15-review01-20261006-software-v1",
+    "direction": [
+      0.25,
+      1,
+      1
+    ],
+    "span": 30,
+    "projection": "orthographic",
+    "target": [
+      124.32350158691406,
+      1,
+      195.55049896240234
+    ]
+  },
+  "worldSha256": "549f0288e920e9b9f7d0e0e4efe92d17e964cb96a1ddc53425794458ab09ef48",
+  "triangles": 12,
+  "heightMeasured": false,
+  "landSurvey": false,
+  "sequence": 136
+}

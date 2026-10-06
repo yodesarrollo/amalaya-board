@@ -1,0 +1,132 @@
+{
+  "id": "C2-11",
+  "action": 1,
+  "status": "closed-visual-approximation",
+  "executedAt": "2026-10-06T02:30:00.276363+00:00",
+  "note": "CERRADO · Cubierta del cuerpo central del frente sur, separada del arbolado interior. Planta visual aproximada ±3 m; no equivale a límites de propiedad ni altura medida.",
+  "source": {
+    "id": "C2-11",
+    "sector": "C2",
+    "name": "Sufragio sur · cuerpo intermedio central",
+    "viewCenter": [
+      29.0755344,
+      -110.9549615
+    ],
+    "zoomMeters": 244,
+    "pixels": [
+      [
+        773.7640845087855,
+        564.9346666672889
+      ],
+      [
+        787.7640845087855,
+        561.4346666672889
+      ],
+      [
+        796.2640845087855,
+        582.9346666672889
+      ],
+      [
+        782.2640845087855,
+        588.9346666672889
+      ]
+    ],
+    "pixelHoles": [],
+    "note": "CERRADO · Cubierta del cuerpo central del frente sur, separada del arbolado interior. Planta visual aproximada ±3 m; no equivale a límites de propiedad ni altura medida.",
+    "sourceScreenPixels": [
+      [
+        866,
+        495
+      ],
+      [
+        894,
+        488
+      ],
+      [
+        911,
+        531
+      ],
+      [
+        883,
+        543
+      ]
+    ],
+    "points": [
+      [
+        24.151,
+        71.439
+      ],
+      [
+        31.451,
+        69.618
+      ],
+      [
+        35.883,
+        80.8
+      ],
+      [
+        28.583,
+        83.92
+      ]
+    ],
+    "holes": [],
+    "uncertaintyMeters": 3,
+    "heightMeters": 6.2,
+    "measuredAt": "2026-10-06T02:30:00.276363+00:00",
+    "source": "Google Maps satellite, manually interpreted visible roof boundary; two screen anchors and scale. Source imagery date unverified.",
+    "calibration": {
+      "a": [
+        550,
+        300,
+        29.076713,
+        -110.955667
+      ],
+      "b": [
+        1000,
+        700,
+        29.074838,
+        -110.953253
+      ],
+      "viewport": [
+        1363,
+        936
+      ],
+      "metersPerPixel": [
+        0.521424,
+        0.520078
+      ]
+    },
+    "mapUrl": "https://www.google.com/maps/@29.0759255,-110.9549615,488m/data=!3m1!1e3"
+  },
+  "current": {
+    "url": "levantamiento/evidence/C2-11/20261006-01-cierre.png",
+    "title": "Acción 1 · planta revisada",
+    "label": "Planta · 01",
+    "capturedAt": "2026-10-06T02:30:00.276363+00:00",
+    "worldSha256": "549f0288e920e9b9f7d0e0e4efe92d17e964cb96a1ddc53425794458ab09ef48",
+    "sheetDataSha256": "915e210a8827ae1ee9ce66cc6e80134dd472ad9d17cc50486a97c7ed4caba21e",
+    "sha256": "e55c8b6565f20e6fb61f18bb80ed228592120585a02814ee4185242041be824d",
+    "cameraId": "C2-11-review01-20261006-software-v1",
+    "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
+  },
+  "camera": {
+    "id": "C2-11-review01-20261006-software-v1",
+    "direction": [
+      0.25,
+      1,
+      1
+    ],
+    "span": 30,
+    "projection": "orthographic",
+    "target": [
+      30.01699924468994,
+      1,
+      76.76899719238281
+    ]
+  },
+  "worldSha256": "549f0288e920e9b9f7d0e0e4efe92d17e964cb96a1ddc53425794458ab09ef48",
+  "triangles": 12,
+  "heightMeasured": false,
+  "landSurvey": false,
+  "sequence": 73
+}

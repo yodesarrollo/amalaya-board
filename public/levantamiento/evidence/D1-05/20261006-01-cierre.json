@@ -1,0 +1,144 @@
+{
+  "id": "D1-05",
+  "action": 1,
+  "status": "closed-visual-approximation",
+  "executedAt": "2026-10-06T02:36:50.698094+00:00",
+  "note": "CERRADO · Cuerpo blanco al sur de Paliza, incluido entero al cruzar el límite oeste. Planta visual ±3 m, altura provisional y evidencia individual.",
+  "source": {
+    "id": "D1-05",
+    "sector": "D1",
+    "name": "Paliza sur · cuerpo blanco de esquina",
+    "viewCenter": [
+      29.0747521,
+      -110.9564038
+    ],
+    "zoomMeters": 244,
+    "pixels": [
+      [
+        272.4012013258731,
+        727.32533333339
+      ],
+      [
+        332.9012013258731,
+        723.32533333339
+      ],
+      [
+        341.4012013258731,
+        768.82533333339
+      ],
+      [
+        298.9012013258731,
+        773.82533333339
+      ],
+      [
+        276.9012013258731,
+        769.82533333339
+      ]
+    ],
+    "note": "CERRADO · Cuerpo blanco al sur de Paliza, incluido entero al cruzar el límite oeste. Planta visual ±3 m, altura provisional y evidencia individual.",
+    "sourceScreenPixels": [
+      [
+        401,
+        486
+      ],
+      [
+        522,
+        478
+      ],
+      [
+        539,
+        569
+      ],
+      [
+        454,
+        579
+      ],
+      [
+        410,
+        571
+      ]
+    ],
+    "pixelHoles": [],
+    "points": [
+      [
+        -237.271,
+        155.894
+      ],
+      [
+        -205.725,
+        153.814
+      ],
+      [
+        -201.293,
+        177.478
+      ],
+      [
+        -223.454,
+        180.078
+      ],
+      [
+        -234.925,
+        177.998
+      ]
+    ],
+    "holes": [],
+    "uncertaintyMeters": 3,
+    "heightMeters": 6.2,
+    "measuredAt": "2026-10-06T02:36:50.698094+00:00",
+    "source": "Google Maps satellite, manually interpreted visible roof boundary; two screen anchors and scale. Source imagery date unverified.",
+    "calibration": {
+      "a": [
+        550,
+        300,
+        29.076713,
+        -110.955667
+      ],
+      "b": [
+        1000,
+        700,
+        29.074838,
+        -110.953253
+      ],
+      "viewport": [
+        1363,
+        936
+      ],
+      "metersPerPixel": [
+        0.521424,
+        0.520078
+      ]
+    },
+    "mapUrl": "https://www.google.com/maps/@29.0759255,-110.9549615,488m/data=!3m1!1e3"
+  },
+  "current": {
+    "url": "levantamiento/evidence/D1-05/20261006-01-cierre.png",
+    "title": "Acción 1 · planta revisada",
+    "label": "Planta · 01",
+    "capturedAt": "2026-10-06T02:36:50.698094+00:00",
+    "worldSha256": "549f0288e920e9b9f7d0e0e4efe92d17e964cb96a1ddc53425794458ab09ef48",
+    "sheetDataSha256": "2d532e8ed2d218c3201a17ced8c982e0c29799ad10c56b4811ec3bfb951a9280",
+    "sha256": "1b00df4ee8ebeb8e7d04d647f72693d827db2e8e4bdc9025caf330f9b290ce01",
+    "cameraId": "D1-05-review01-20261006-software-v1",
+    "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
+  },
+  "camera": {
+    "id": "D1-05-review01-20261006-software-v1",
+    "direction": [
+      0.25,
+      1,
+      1
+    ],
+    "span": 57.56479999999997,
+    "projection": "orthographic",
+    "target": [
+      -219.28199768066406,
+      1,
+      166.9459991455078
+    ]
+  },
+  "worldSha256": "549f0288e920e9b9f7d0e0e4efe92d17e964cb96a1ddc53425794458ab09ef48",
+  "triangles": 16,
+  "heightMeasured": false,
+  "landSurvey": false,
+  "sequence": 90
+}

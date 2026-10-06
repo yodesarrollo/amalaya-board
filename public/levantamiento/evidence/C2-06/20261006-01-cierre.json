@@ -1,0 +1,206 @@
+{
+  "id": "C2-06",
+  "action": 1,
+  "status": "closed-visual-approximation",
+  "executedAt": "2026-10-06T02:28:50.200596+00:00",
+  "note": "CERRADO · Cuerpo central de planta quebrada con patio interior excluido. Su huella sustituye la interpretación genérica de la cuadra. Planta visual ±3 m; altura pendiente del paso 7.",
+  "source": {
+    "id": "C2-06",
+    "sector": "C2",
+    "name": "Obregón sur · cuerpo central con patio",
+    "viewCenter": [
+      29.0755344,
+      -110.9549615
+    ],
+    "zoomMeters": 244,
+    "pixels": [
+      [
+        731.7640845087855,
+        474.93466666728887
+      ],
+      [
+        767.2640845087855,
+        470.93466666728887
+      ],
+      [
+        772.2640845087855,
+        491.93466666728887
+      ],
+      [
+        757.7640845087855,
+        495.43466666728887
+      ],
+      [
+        755.7640845087855,
+        515.4346666672889
+      ],
+      [
+        744.2640845087855,
+        518.9346666672889
+      ],
+      [
+        738.2640845087855,
+        503.93466666728887
+      ]
+    ],
+    "pixelHoles": [
+      [
+        [
+          747.2640845087855,
+          497.43466666728887
+        ],
+        [
+          755.7640845087855,
+          496.93466666728887
+        ],
+        [
+          753.7640845087855,
+          511.43466666728887
+        ],
+        [
+          746.7640845087855,
+          512.9346666672889
+        ]
+      ]
+    ],
+    "note": "CERRADO · Cuerpo central de planta quebrada con patio interior excluido. Su huella sustituye la interpretación genérica de la cuadra. Planta visual ±3 m; altura pendiente del paso 7.",
+    "sourceScreenPixels": [
+      [
+        782,
+        315
+      ],
+      [
+        853,
+        307
+      ],
+      [
+        863,
+        349
+      ],
+      [
+        834,
+        356
+      ],
+      [
+        830,
+        396
+      ],
+      [
+        807,
+        403
+      ],
+      [
+        795,
+        373
+      ]
+    ],
+    "points": [
+      [
+        2.251,
+        24.632
+      ],
+      [
+        20.762,
+        22.551
+      ],
+      [
+        23.369,
+        33.473
+      ],
+      [
+        15.809,
+        35.293
+      ],
+      [
+        14.766,
+        45.695
+      ],
+      [
+        8.769,
+        47.515
+      ],
+      [
+        5.641,
+        39.714
+      ]
+    ],
+    "holes": [
+      [
+        [
+          10.334,
+          36.333
+        ],
+        [
+          14.766,
+          36.073
+        ],
+        [
+          13.723,
+          43.614
+        ],
+        [
+          10.073,
+          44.395
+        ]
+      ]
+    ],
+    "uncertaintyMeters": 3,
+    "heightMeters": 6.2,
+    "measuredAt": "2026-10-06T02:28:50.200596+00:00",
+    "source": "Google Maps satellite, manually interpreted visible roof boundary; two screen anchors and scale. Source imagery date unverified.",
+    "calibration": {
+      "a": [
+        550,
+        300,
+        29.076713,
+        -110.955667
+      ],
+      "b": [
+        1000,
+        700,
+        29.074838,
+        -110.953253
+      ],
+      "viewport": [
+        1363,
+        936
+      ],
+      "metersPerPixel": [
+        0.521424,
+        0.520078
+      ]
+    },
+    "mapUrl": "https://www.google.com/maps/@29.0759255,-110.9549615,488m/data=!3m1!1e3"
+  },
+  "current": {
+    "url": "levantamiento/evidence/C2-06/20261006-01-cierre.png",
+    "title": "Acción 1 · planta revisada",
+    "label": "Planta · 01",
+    "capturedAt": "2026-10-06T02:28:50.200596+00:00",
+    "worldSha256": "549f0288e920e9b9f7d0e0e4efe92d17e964cb96a1ddc53425794458ab09ef48",
+    "sheetDataSha256": "58e47df6860911922f413c2d020fd61d0ad03d8ded56209471050c82ce473a43",
+    "sha256": "e48bdc7a1ef4d4cee3f2a66e197893d6e409c98d19ea777b5804784be6753e32",
+    "cameraId": "C2-06-review01-20261006-software-v1",
+    "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
+  },
+  "camera": {
+    "id": "C2-06-review01-20261006-software-v1",
+    "direction": [
+      0.25,
+      1,
+      1
+    ],
+    "span": 39.942400000000006,
+    "projection": "orthographic",
+    "target": [
+      12.809999704360962,
+      1,
+      35.032999992370605
+    ]
+  },
+  "worldSha256": "549f0288e920e9b9f7d0e0e4efe92d17e964cb96a1ddc53425794458ab09ef48",
+  "triangles": 44,
+  "heightMeasured": false,
+  "landSurvey": false,
+  "sequence": 68
+}

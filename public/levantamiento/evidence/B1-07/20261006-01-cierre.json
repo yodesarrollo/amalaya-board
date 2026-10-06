@@ -1,0 +1,204 @@
+{
+  "id": "B1-07",
+  "action": 1,
+  "status": "closed-visual-approximation",
+  "executedAt": "2026-10-06T02:17:14.062093+00:00",
+  "note": "CERRADO · Cuerpo de gran cubierta con entrantes y pequeños remates en el borde sur; explanada de Obregón excluida. Planta visual ±3 m, sin atribución predial ni altura medida.",
+  "source": {
+    "id": "B1-07",
+    "sector": "B1",
+    "name": "Yáñez–Obregón · cubierta noroeste",
+    "viewCenter": [
+      29.0763166,
+      -110.9564038
+    ],
+    "zoomMeters": 244,
+    "pixels": [
+      [
+        490.9012013258731,
+        401.0653333340124
+      ],
+      [
+        546.9012013258731,
+        388.5653333340124
+      ],
+      [
+        553.9012013258731,
+        427.5653333340124
+      ],
+      [
+        532.4012013258731,
+        433.0653333340124
+      ],
+      [
+        534.4012013258731,
+        445.0653333340124
+      ],
+      [
+        521.9012013258731,
+        448.0653333340124
+      ],
+      [
+        518.9012013258731,
+        439.5653333340124
+      ],
+      [
+        506.9012013258731,
+        442.5653333340124
+      ],
+      [
+        507.9012013258731,
+        450.0653333340124
+      ],
+      [
+        493.9012013258731,
+        453.5653333340124
+      ]
+    ],
+    "note": "CERRADO · Cuerpo de gran cubierta con entrantes y pequeños remates en el borde sur; explanada de Obregón excluida. Planta visual ±3 m, sin atribución predial ni altura medida.",
+    "sourceScreenPixels": [
+      [
+        838,
+        501
+      ],
+      [
+        950,
+        476
+      ],
+      [
+        964,
+        554
+      ],
+      [
+        921,
+        565
+      ],
+      [
+        925,
+        589
+      ],
+      [
+        900,
+        595
+      ],
+      [
+        894,
+        578
+      ],
+      [
+        870,
+        584
+      ],
+      [
+        872,
+        599
+      ],
+      [
+        844,
+        606
+      ]
+    ],
+    "pixelHoles": [],
+    "points": [
+      [
+        -123.34,
+        -13.786
+      ],
+      [
+        -94.14,
+        -20.287
+      ],
+      [
+        -90.49,
+        -0.004
+      ],
+      [
+        -101.701,
+        2.856
+      ],
+      [
+        -100.658,
+        9.097
+      ],
+      [
+        -107.176,
+        10.657
+      ],
+      [
+        -108.74,
+        6.237
+      ],
+      [
+        -114.997,
+        7.797
+      ],
+      [
+        -114.476,
+        11.698
+      ],
+      [
+        -121.776,
+        13.518
+      ]
+    ],
+    "holes": [],
+    "uncertaintyMeters": 3,
+    "heightMeters": 6.2,
+    "measuredAt": "2026-10-06T02:17:14.062093+00:00",
+    "source": "Google Maps satellite, manually interpreted visible roof boundary; two screen anchors and scale. Source imagery date unverified.",
+    "calibration": {
+      "a": [
+        550,
+        300,
+        29.076713,
+        -110.955667
+      ],
+      "b": [
+        1000,
+        700,
+        29.074838,
+        -110.953253
+      ],
+      "viewport": [
+        1363,
+        936
+      ],
+      "metersPerPixel": [
+        0.521424,
+        0.520078
+      ]
+    },
+    "mapUrl": "https://www.google.com/maps/@29.0759255,-110.9549615,488m/data=!3m1!1e3"
+  },
+  "current": {
+    "url": "levantamiento/evidence/B1-07/20261006-01-cierre.png",
+    "title": "Acción 1 · planta revisada",
+    "label": "Planta · 01",
+    "capturedAt": "2026-10-06T02:17:14.062093+00:00",
+    "worldSha256": "549f0288e920e9b9f7d0e0e4efe92d17e964cb96a1ddc53425794458ab09ef48",
+    "sheetDataSha256": "e35ee6d14d05c18cfb8115743ba4e480351ff5bbeb565d9f6d01df2472961d70",
+    "sha256": "0d67c334c06a13188ec163cda6f9e89cc2669c829ed1dcb03779b1a8c56c8732",
+    "cameraId": "B1-07-review01-20261006-software-v1",
+    "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
+  },
+  "camera": {
+    "id": "B1-07-review01-20261006-software-v1",
+    "direction": [
+      0.25,
+      1,
+      1
+    ],
+    "span": 54.088,
+    "projection": "orthographic",
+    "target": [
+      -106.91499710083008,
+      1,
+      -3.384500503540039
+    ]
+  },
+  "worldSha256": "549f0288e920e9b9f7d0e0e4efe92d17e964cb96a1ddc53425794458ab09ef48",
+  "triangles": 36,
+  "heightMeasured": false,
+  "landSurvey": false,
+  "sequence": 40
+}

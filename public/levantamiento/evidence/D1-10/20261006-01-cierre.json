@@ -1,0 +1,194 @@
+{
+  "id": "D1-10",
+  "action": 1,
+  "status": "closed-visual-approximation",
+  "executedAt": "2026-10-06T02:37:17.438425+00:00",
+  "note": "CERRADO · Conjunto de cubiertas del frente norte de Felipe Salido, con vacío interior excluido. Planta visual ±3 m; no certifica particiones prediales ni alturas.",
+  "source": {
+    "id": "D1-10",
+    "sector": "D1",
+    "name": "Felipe Salido · conjunto occidental de patios",
+    "viewCenter": [
+      29.0747521,
+      -110.9564038
+    ],
+    "zoomMeters": 244,
+    "pixels": [
+      [
+        474.9012013258731,
+        734.82533333339
+      ],
+      [
+        513.4012013258731,
+        733.32533333339
+      ],
+      [
+        518.4012013258731,
+        749.82533333339
+      ],
+      [
+        539.4012013258731,
+        744.32533333339
+      ],
+      [
+        540.9012013258731,
+        769.32533333339
+      ],
+      [
+        481.9012013258731,
+        776.32533333339
+      ]
+    ],
+    "pixelHoles": [
+      [
+        [
+          491.4012013258731,
+          743.82533333339
+        ],
+        [
+          504.4012013258731,
+          742.32533333339
+        ],
+        [
+          506.9012013258731,
+          753.32533333339
+        ],
+        [
+          495.4012013258731,
+          756.82533333339
+        ]
+      ]
+    ],
+    "note": "CERRADO · Conjunto de cubiertas del frente norte de Felipe Salido, con vacío interior excluido. Planta visual ±3 m; no certifica particiones prediales ni alturas.",
+    "sourceScreenPixels": [
+      [
+        806,
+        501
+      ],
+      [
+        883,
+        498
+      ],
+      [
+        893,
+        531
+      ],
+      [
+        935,
+        520
+      ],
+      [
+        938,
+        570
+      ],
+      [
+        820,
+        584
+      ]
+    ],
+    "points": [
+      [
+        -131.683,
+        159.795
+      ],
+      [
+        -111.608,
+        159.015
+      ],
+      [
+        -109.001,
+        167.596
+      ],
+      [
+        -98.051,
+        164.736
+      ],
+      [
+        -97.269,
+        177.738
+      ],
+      [
+        -128.033,
+        181.378
+      ]
+    ],
+    "holes": [
+      [
+        [
+          -123.08,
+          164.476
+        ],
+        [
+          -116.301,
+          163.696
+        ],
+        [
+          -114.997,
+          169.416
+        ],
+        [
+          -120.994,
+          171.237
+        ]
+      ]
+    ],
+    "uncertaintyMeters": 3,
+    "heightMeters": 6.2,
+    "measuredAt": "2026-10-06T02:37:17.438425+00:00",
+    "source": "Google Maps satellite, manually interpreted visible roof boundary; two screen anchors and scale. Source imagery date unverified.",
+    "calibration": {
+      "a": [
+        550,
+        300,
+        29.076713,
+        -110.955667
+      ],
+      "b": [
+        1000,
+        700,
+        29.074838,
+        -110.953253
+      ],
+      "viewport": [
+        1363,
+        936
+      ],
+      "metersPerPixel": [
+        0.521424,
+        0.520078
+      ]
+    },
+    "mapUrl": "https://www.google.com/maps/@29.0759255,-110.9549615,488m/data=!3m1!1e3"
+  },
+  "current": {
+    "url": "levantamiento/evidence/D1-10/20261006-01-cierre.png",
+    "title": "Acción 1 · planta revisada",
+    "label": "Planta · 01",
+    "capturedAt": "2026-10-06T02:37:17.438425+00:00",
+    "worldSha256": "549f0288e920e9b9f7d0e0e4efe92d17e964cb96a1ddc53425794458ab09ef48",
+    "sheetDataSha256": "2e9bbfcbd05a3b230158866a3439aec9a11775f8f6c58e7c65ce067dc54ee5be",
+    "sha256": "69e979fe3a036dcba71a35ec7a3210be276bbbeccd0f6f1b3c7d1f45fa118d06",
+    "cameraId": "D1-10-review01-20261006-software-v1",
+    "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
+  },
+  "camera": {
+    "id": "D1-10-review01-20261006-software-v1",
+    "direction": [
+      0.25,
+      1,
+      1
+    ],
+    "span": 55.06239999999998,
+    "projection": "orthographic",
+    "target": [
+      -114.47599792480469,
+      1,
+      170.19650268554688
+    ]
+  },
+  "worldSha256": "549f0288e920e9b9f7d0e0e4efe92d17e964cb96a1ddc53425794458ab09ef48",
+  "triangles": 40,
+  "heightMeasured": false,
+  "landSurvey": false,
+  "sequence": 95
+}

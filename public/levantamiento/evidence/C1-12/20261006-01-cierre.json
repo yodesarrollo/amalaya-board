@@ -1,0 +1,132 @@
+{
+  "id": "C1-12",
+  "action": 1,
+  "status": "closed-visual-approximation",
+  "executedAt": "2026-10-06T02:25:01.470903+00:00",
+  "note": "CERRADO · Cuerpo occidental al sur del callejón, separado del edificio de Obregón. Planta visual ±3 m; imagen del modelo y registro individual.",
+  "source": {
+    "id": "C1-12",
+    "sector": "C1",
+    "name": "Callejón del Centro · cuerpo occidental",
+    "viewCenter": [
+      29.0755344,
+      -110.9564038
+    ],
+    "zoomMeters": 244,
+    "pixels": [
+      [
+        472.4012013258731,
+        581.9346666672889
+      ],
+      [
+        499.4012013258731,
+        575.4346666672889
+      ],
+      [
+        507.9012013258731,
+        608.4346666672889
+      ],
+      [
+        477.9012013258731,
+        614.4346666672889
+      ]
+    ],
+    "note": "CERRADO · Cuerpo occidental al sur del callejón, separado del edificio de Obregón. Planta visual ±3 m; imagen del modelo y registro individual.",
+    "sourceScreenPixels": [
+      [
+        801,
+        529
+      ],
+      [
+        855,
+        516
+      ],
+      [
+        872,
+        582
+      ],
+      [
+        812,
+        594
+      ]
+    ],
+    "pixelHoles": [],
+    "points": [
+      [
+        -132.987,
+        80.28
+      ],
+      [
+        -118.908,
+        76.899
+      ],
+      [
+        -114.476,
+        94.062
+      ],
+      [
+        -130.119,
+        97.182
+      ]
+    ],
+    "holes": [],
+    "uncertaintyMeters": 3,
+    "heightMeters": 6.2,
+    "measuredAt": "2026-10-06T02:25:01.470903+00:00",
+    "source": "Google Maps satellite, manually interpreted visible roof boundary; two screen anchors and scale. Source imagery date unverified.",
+    "calibration": {
+      "a": [
+        550,
+        300,
+        29.076713,
+        -110.955667
+      ],
+      "b": [
+        1000,
+        700,
+        29.074838,
+        -110.953253
+      ],
+      "viewport": [
+        1363,
+        936
+      ],
+      "metersPerPixel": [
+        0.521424,
+        0.520078
+      ]
+    },
+    "mapUrl": "https://www.google.com/maps/@29.0759255,-110.9549615,488m/data=!3m1!1e3"
+  },
+  "current": {
+    "url": "levantamiento/evidence/C1-12/20261006-01-cierre.png",
+    "title": "Acción 1 · planta revisada",
+    "label": "Planta · 01",
+    "capturedAt": "2026-10-06T02:25:01.470903+00:00",
+    "worldSha256": "549f0288e920e9b9f7d0e0e4efe92d17e964cb96a1ddc53425794458ab09ef48",
+    "sheetDataSha256": "d1dc531f6293075706e02b13a05294a78b8ef29231e713aa4f0cbc33e478a6b4",
+    "sha256": "237216af7824cb39d8cf3839a4145da708ca605a896d1ff5dc786a779d4577ce",
+    "cameraId": "C1-12-review01-20261006-software-v1",
+    "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
+  },
+  "camera": {
+    "id": "C1-12-review01-20261006-software-v1",
+    "direction": [
+      0.25,
+      1,
+      1
+    ],
+    "span": 32.4528,
+    "projection": "orthographic",
+    "target": [
+      -123.73149871826172,
+      1,
+      87.04050064086914
+    ]
+  },
+  "worldSha256": "549f0288e920e9b9f7d0e0e4efe92d17e964cb96a1ddc53425794458ab09ef48",
+  "triangles": 12,
+  "heightMeasured": false,
+  "landSurvey": false,
+  "sequence": 61
+}

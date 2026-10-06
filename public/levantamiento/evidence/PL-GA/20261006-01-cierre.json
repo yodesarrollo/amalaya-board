@@ -1,0 +1,35 @@
+{
+  "id": "PL-GA",
+  "action": 1,
+  "status": "closed-visual-approximation",
+  "executedAt": "2026-10-06T02:52:24.684106+00:00",
+  "note": "CERRADO · Planta del espacio público Plaza Hidalgo conservada y revisada en el contexto de la lámina. Se mantienen su perímetro y accesos existentes; no se cuenta como edificio. Revisión visual aproximada, no deslinde ni certificación de accesibilidad.",
+  "current": {
+    "url": "levantamiento/evidence/PL-GA/20261006-01-cierre.png",
+    "title": "Acción 1 · planta del espacio público",
+    "label": "Planta · 01",
+    "capturedAt": "2026-10-06T02:52:24.684106+00:00",
+    "worldSha256": "549f0288e920e9b9f7d0e0e4efe92d17e964cb96a1ddc53425794458ab09ef48",
+    "sha256": "6015fd962b13d2ad913a7fd993b2b5503e8efd08f88083df66fc61fb9e339a6b",
+    "cameraId": "PL-GA-review01-20261006-software-v1",
+    "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
+  },
+  "camera": {
+    "id": "PL-GA-review01-20261006-software-v1",
+    "direction": [
+      0.25,
+      1,
+      1
+    ],
+    "span": 180,
+    "projection": "orthographic",
+    "target": [
+      0,
+      1,
+      -35
+    ]
+  },
+  "triangles": 247252,
+  "landSurvey": false,
+  "source": "Existing Plaza Hidalgo geometry preserved; whole-sheet visual context reviewed."
+}

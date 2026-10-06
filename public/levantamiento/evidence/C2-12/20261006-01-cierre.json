@@ -1,0 +1,254 @@
+{
+  "id": "C2-12",
+  "action": 1,
+  "status": "closed-visual-approximation",
+  "executedAt": "2026-10-06T02:30:02.950555+00:00",
+  "note": "CERRADO · Conjunto de cubiertas conectado alrededor de patios visibles; los vacíos y la explanada sur no se rellenan. Se registra el cuerpo completo aunque cruza el sector. Planta visual aproximada ±3 m; no equivale a límites de propiedad ni altura medida.",
+  "source": {
+    "id": "C2-12",
+    "sector": "C2",
+    "name": "Sufragio–Garmendia · conjunto con patio",
+    "viewCenter": [
+      29.0755344,
+      -110.9549615
+    ],
+    "zoomMeters": 244,
+    "pixels": [
+      [
+        790.2640845087855,
+        561.4346666672889
+      ],
+      [
+        852.7640845087855,
+        552.9346666672889
+      ],
+      [
+        879.7640845087855,
+        596.9346666672889
+      ],
+      [
+        839.7640845087855,
+        610.4346666672889
+      ],
+      [
+        832.2640845087855,
+        618.9346666672889
+      ],
+      [
+        816.7640845087855,
+        616.4346666672889
+      ],
+      [
+        811.7640845087855,
+        600.4346666672889
+      ],
+      [
+        802.2640845087855,
+        604.4346666672889
+      ]
+    ],
+    "pixelHoles": [
+      [
+        [
+          828.7640845087855,
+          574.4346666672889
+        ],
+        [
+          850.2640845087855,
+          567.9346666672889
+        ],
+        [
+          856.7640845087855,
+          585.9346666672889
+        ],
+        [
+          836.2640845087855,
+          592.9346666672889
+        ]
+      ],
+      [
+        [
+          803.7640845087855,
+          580.9346666672889
+        ],
+        [
+          811.2640845087855,
+          579.4346666672889
+        ],
+        [
+          813.7640845087855,
+          591.4346666672889
+        ],
+        [
+          808.2640845087855,
+          594.4346666672889
+        ]
+      ]
+    ],
+    "note": "CERRADO · Conjunto de cubiertas conectado alrededor de patios visibles; los vacíos y la explanada sur no se rellenan. Se registra el cuerpo completo aunque cruza el sector. Planta visual aproximada ±3 m; no equivale a límites de propiedad ni altura medida.",
+    "sourceScreenPixels": [
+      [
+        899,
+        488
+      ],
+      [
+        1024,
+        471
+      ],
+      [
+        1078,
+        559
+      ],
+      [
+        998,
+        586
+      ],
+      [
+        983,
+        603
+      ],
+      [
+        952,
+        598
+      ],
+      [
+        942,
+        566
+      ],
+      [
+        923,
+        574
+      ]
+    ],
+    "points": [
+      [
+        32.755,
+        69.618
+      ],
+      [
+        65.344,
+        65.198
+      ],
+      [
+        79.422,
+        88.081
+      ],
+      [
+        58.565,
+        95.102
+      ],
+      [
+        54.655,
+        99.523
+      ],
+      [
+        46.573,
+        98.223
+      ],
+      [
+        43.965,
+        89.901
+      ],
+      [
+        39.012,
+        91.982
+      ]
+    ],
+    "holes": [
+      [
+        [
+          52.83,
+          76.379
+        ],
+        [
+          64.04,
+          72.999
+        ],
+        [
+          67.429,
+          82.36
+        ],
+        [
+          56.74,
+          86.001
+        ]
+      ],
+      [
+        [
+          39.794,
+          79.76
+        ],
+        [
+          43.705,
+          78.98
+        ],
+        [
+          45.008,
+          85.221
+        ],
+        [
+          42.14,
+          86.781
+        ]
+      ]
+    ],
+    "uncertaintyMeters": 3,
+    "heightMeters": 6.2,
+    "measuredAt": "2026-10-06T02:30:02.950555+00:00",
+    "source": "Google Maps satellite, manually interpreted visible roof boundary; two screen anchors and scale. Source imagery date unverified.",
+    "calibration": {
+      "a": [
+        550,
+        300,
+        29.076713,
+        -110.955667
+      ],
+      "b": [
+        1000,
+        700,
+        29.074838,
+        -110.953253
+      ],
+      "viewport": [
+        1363,
+        936
+      ],
+      "metersPerPixel": [
+        0.521424,
+        0.520078
+      ]
+    },
+    "mapUrl": "https://www.google.com/maps/@29.0759255,-110.9549615,488m/data=!3m1!1e3"
+  },
+  "current": {
+    "url": "levantamiento/evidence/C2-12/20261006-01-cierre.png",
+    "title": "Acción 1 · planta revisada",
+    "label": "Planta · 01",
+    "capturedAt": "2026-10-06T02:30:02.950555+00:00",
+    "worldSha256": "549f0288e920e9b9f7d0e0e4efe92d17e964cb96a1ddc53425794458ab09ef48",
+    "sheetDataSha256": "530705aff2e063180f32f68ab0787052672e1bea0b244dd4d31cb52722ae5802",
+    "sha256": "642ed6fbaf0612188e779982725ad6bc4e61f868827228de416313591ba92266",
+    "cameraId": "C2-12-review01-20261006-software-v1",
+    "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
+  },
+  "camera": {
+    "id": "C2-12-review01-20261006-software-v1",
+    "direction": [
+      0.25,
+      1,
+      1
+    ],
+    "span": 74.6672,
+    "projection": "orthographic",
+    "target": [
+      56.08849906921387,
+      1,
+      82.36050033569336
+    ]
+  },
+  "worldSha256": "549f0288e920e9b9f7d0e0e4efe92d17e964cb96a1ddc53425794458ab09ef48",
+  "triangles": 68,
+  "heightMeasured": false,
+  "landSurvey": false,
+  "sequence": 74
+}

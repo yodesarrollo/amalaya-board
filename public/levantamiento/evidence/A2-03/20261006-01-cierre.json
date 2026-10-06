@@ -1,0 +1,157 @@
+{
+  "id": "A2-03",
+  "action": 1,
+  "status": "closed-visual-approximation",
+  "executedAt": "2026-10-06T02:21:30.371423+00:00",
+  "note": "CERRADO · Cuerpo central entre la cubierta occidental y Serdán 122; se excluye el patio oscuro contiguo al este. Planta manual con escala verificada, ±3 m. Altura y comercio pendientes en sus acciones. Junta con la cubierta contigua revisada para eliminar superposición.",
+  "source": {
+    "id": "A2-03",
+    "sector": "A2",
+    "name": "Serdán · cuerpo intermedio central",
+    "viewCenter": [
+      29.0770989,
+      -110.9549615
+    ],
+    "zoomMeters": 244,
+    "pixels": [
+      [
+        708.7640845087855,
+        146.67466666715336
+      ],
+      [
+        740.7640845087855,
+        146.67466666715336
+      ],
+      [
+        749.2640845087855,
+        156.67466666715336
+      ],
+      [
+        748.2640845087855,
+        173.17466666715336
+      ],
+      [
+        756.2640845087855,
+        204.17466666715336
+      ],
+      [
+        714.2640845087855,
+        211.67466666715336
+      ]
+    ],
+    "pixelHoles": [],
+    "note": "CERRADO · Cuerpo central entre la cubierta occidental y Serdán 122; se excluye el patio oscuro contiguo al este. Planta manual con escala verificada, ±3 m. Altura y comercio pendientes en sus acciones.",
+    "sourceScreenPixels": [
+      [
+        736,
+        326
+      ],
+      [
+        800,
+        326
+      ],
+      [
+        817,
+        346
+      ],
+      [
+        815,
+        379
+      ],
+      [
+        831,
+        441
+      ],
+      [
+        747,
+        456
+      ]
+    ],
+    "points": [
+      [
+        -9.741,
+        -146.089
+      ],
+      [
+        6.944,
+        -146.089
+      ],
+      [
+        11.376,
+        -140.888
+      ],
+      [
+        10.855,
+        -132.307
+      ],
+      [
+        15.026,
+        -116.185
+      ],
+      [
+        -6.873,
+        -112.284
+      ]
+    ],
+    "holes": [],
+    "uncertaintyMeters": 3,
+    "heightMeters": 6.2,
+    "measuredAt": "2026-10-06T02:10:36.370261+00:00",
+    "source": "Google Maps satellite, manually interpreted visible roof boundary; two screen anchors and scale. Source imagery date unverified.",
+    "calibration": {
+      "a": [
+        550,
+        300,
+        29.076713,
+        -110.955667
+      ],
+      "b": [
+        1000,
+        700,
+        29.074838,
+        -110.953253
+      ],
+      "viewport": [
+        1363,
+        936
+      ],
+      "metersPerPixel": [
+        0.521424,
+        0.520078
+      ]
+    },
+    "mapUrl": "https://www.google.com/maps/@29.0759255,-110.9549615,488m/data=!3m1!1e3",
+    "boundaryReview": "Junta entre cubiertas revisada para evitar superposición geométrica."
+  },
+  "current": {
+    "url": "levantamiento/evidence/A2-03/20261006-01-cierre.png",
+    "title": "Acción 1 · planta revisada",
+    "label": "Planta · 01",
+    "capturedAt": "2026-10-06T02:21:30.371423+00:00",
+    "worldSha256": "549f0288e920e9b9f7d0e0e4efe92d17e964cb96a1ddc53425794458ab09ef48",
+    "sheetDataSha256": "ff8877981dbc34651c5f5d9cc3997738ab9d801a63e0a7061644f6c5a58a0025",
+    "sha256": "13287421cb2a5608b054d6d397b38724bab163e3d5c4d84b8358a4b342139868",
+    "cameraId": "A2-03-review01-20261006-software-v1",
+    "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
+  },
+  "camera": {
+    "id": "A2-03-review01-20261006-software-v1",
+    "direction": [
+      0.25,
+      1,
+      1
+    ],
+    "span": 66.15359999999998,
+    "projection": "orthographic",
+    "target": [
+      2.6424999237060547,
+      1,
+      -129.1865005493164
+    ]
+  },
+  "worldSha256": "549f0288e920e9b9f7d0e0e4efe92d17e964cb96a1ddc53425794458ab09ef48",
+  "triangles": 20,
+  "heightMeasured": false,
+  "landSurvey": false,
+  "sequence": 50
+}

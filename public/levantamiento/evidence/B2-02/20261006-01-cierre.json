@@ -1,0 +1,181 @@
+{
+  "id": "B2-02",
+  "action": 1,
+  "status": "closed-visual-approximation",
+  "executedAt": "2026-10-06T02:21:33.060789+00:00",
+  "note": "CERRADO · Cuerpo bajo quebrado del costado de Garmendia. Se conserva el jardín central abierto; pérgolas y mobiliario se reservan para equipamiento. Planta visual ±3 m; captura y registro propios. Junta con la cubierta contigua revisada para eliminar superposición.",
+  "source": {
+    "id": "B2-02",
+    "sector": "B2",
+    "name": "Garmendia · cuerpo bajo del jardín",
+    "viewCenter": [
+      29.0763166,
+      -110.9549615
+    ],
+    "zoomMeters": 244,
+    "pixels": [
+      [
+        776.7640845087855,
+        335.5653333340124
+      ],
+      [
+        805.7640845087855,
+        333.5653333340124
+      ],
+      [
+        812.7640845087855,
+        342.0653333340124
+      ],
+      [
+        830.2640845087855,
+        338.0653333340124
+      ],
+      [
+        832.7640845087855,
+        347.0653333340124
+      ],
+      [
+        812.2640845087855,
+        352.0653333340124
+      ],
+      [
+        804.7640845087855,
+        344.0653333340124
+      ],
+      [
+        776.7640845087855,
+        347.5653333340124
+      ]
+    ],
+    "note": "CERRADO · Cuerpo bajo quebrado del costado de Garmendia. Se conserva el jardín central abierto; pérgolas y mobiliario se reservan para equipamiento. Planta visual ±3 m; captura y registro propios.",
+    "sourceScreenPixels": [
+      [
+        872,
+        370
+      ],
+      [
+        930,
+        366
+      ],
+      [
+        944,
+        383
+      ],
+      [
+        979,
+        375
+      ],
+      [
+        984,
+        393
+      ],
+      [
+        943,
+        403
+      ],
+      [
+        928,
+        387
+      ],
+      [
+        872,
+        394
+      ]
+    ],
+    "pixelHoles": [],
+    "points": [
+      [
+        25.716,
+        -47.851
+      ],
+      [
+        40.837,
+        -48.892
+      ],
+      [
+        44.487,
+        -44.471
+      ],
+      [
+        53.612,
+        -46.551
+      ],
+      [
+        54.915,
+        -41.87
+      ],
+      [
+        44.226,
+        -39.27
+      ],
+      [
+        40.315,
+        -43.431
+      ],
+      [
+        25.716,
+        -41.61
+      ]
+    ],
+    "holes": [],
+    "uncertaintyMeters": 3,
+    "heightMeters": 6.2,
+    "measuredAt": "2026-10-06T02:18:16.235705+00:00",
+    "source": "Google Maps satellite, manually interpreted visible roof boundary; two screen anchors and scale. Source imagery date unverified.",
+    "calibration": {
+      "a": [
+        550,
+        300,
+        29.076713,
+        -110.955667
+      ],
+      "b": [
+        1000,
+        700,
+        29.074838,
+        -110.953253
+      ],
+      "viewport": [
+        1363,
+        936
+      ],
+      "metersPerPixel": [
+        0.521424,
+        0.520078
+      ]
+    },
+    "mapUrl": "https://www.google.com/maps/@29.0759255,-110.9549615,488m/data=!3m1!1e3",
+    "boundaryReview": "Junta entre cubiertas revisada para evitar superposición geométrica."
+  },
+  "current": {
+    "url": "levantamiento/evidence/B2-02/20261006-01-cierre.png",
+    "title": "Acción 1 · planta revisada",
+    "label": "Planta · 01",
+    "capturedAt": "2026-10-06T02:21:33.060789+00:00",
+    "worldSha256": "549f0288e920e9b9f7d0e0e4efe92d17e964cb96a1ddc53425794458ab09ef48",
+    "sheetDataSha256": "e47e2994502ea08e6f39da965755941421fe368fd605ef446b82d4f3cb8b4179",
+    "sha256": "babcaf7f865a3fb82428f7e979746ee87552f477a44f042a995732a9b95e41b2",
+    "cameraId": "B2-02-review01-20261006-software-v1",
+    "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
+  },
+  "camera": {
+    "id": "B2-02-review01-20261006-software-v1",
+    "direction": [
+      0.25,
+      1,
+      1
+    ],
+    "span": 46.7184,
+    "projection": "orthographic",
+    "target": [
+      40.315500259399414,
+      1,
+      -44.08099937438965
+    ]
+  },
+  "worldSha256": "549f0288e920e9b9f7d0e0e4efe92d17e964cb96a1ddc53425794458ab09ef48",
+  "triangles": 28,
+  "heightMeasured": false,
+  "landSurvey": false,
+  "sequence": 50
+}

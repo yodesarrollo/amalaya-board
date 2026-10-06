@@ -1,0 +1,168 @@
+{
+  "id": "B1-04",
+  "action": 1,
+  "status": "closed-visual-approximation",
+  "executedAt": "2026-10-06T02:16:42.321221+00:00",
+  "note": "CERRADO · Cuerpo intermedio con ala angosta del norte y terraza posterior excluida. Planta interpretada a escala ±3 m; altura provisional.",
+  "source": {
+    "id": "B1-04",
+    "sector": "B1",
+    "name": "Yáñez · cuerpo intermedio oeste",
+    "viewCenter": [
+      29.0763166,
+      -110.9564038
+    ],
+    "zoomMeters": 244,
+    "pixels": [
+      [
+        382.9012013258731,
+        399.0653333340124
+      ],
+      [
+        400.4012013258731,
+        402.5653333340124
+      ],
+      [
+        406.9012013258731,
+        411.0653333340124
+      ],
+      [
+        411.9012013258731,
+        413.5653333340124
+      ],
+      [
+        415.9012013258731,
+        437.5653333340124
+      ],
+      [
+        383.9012013258731,
+        444.5653333340124
+      ],
+      [
+        376.4012013258731,
+        433.0653333340124
+      ]
+    ],
+    "note": "CERRADO · Cuerpo intermedio con ala angosta del norte y terraza posterior excluida. Planta interpretada a escala ±3 m; altura provisional.",
+    "sourceScreenPixels": [
+      [
+        622,
+        497
+      ],
+      [
+        657,
+        504
+      ],
+      [
+        670,
+        521
+      ],
+      [
+        680,
+        526
+      ],
+      [
+        688,
+        574
+      ],
+      [
+        624,
+        588
+      ],
+      [
+        609,
+        565
+      ]
+    ],
+    "pixelHoles": [],
+    "points": [
+      [
+        -179.654,
+        -14.826
+      ],
+      [
+        -170.529,
+        -13.006
+      ],
+      [
+        -167.14,
+        -8.585
+      ],
+      [
+        -164.533,
+        -7.285
+      ],
+      [
+        -162.447,
+        5.197
+      ],
+      [
+        -179.133,
+        8.837
+      ],
+      [
+        -183.043,
+        2.856
+      ]
+    ],
+    "holes": [],
+    "uncertaintyMeters": 3,
+    "heightMeters": 6.2,
+    "measuredAt": "2026-10-06T02:16:42.321221+00:00",
+    "source": "Google Maps satellite, manually interpreted visible roof boundary; two screen anchors and scale. Source imagery date unverified.",
+    "calibration": {
+      "a": [
+        550,
+        300,
+        29.076713,
+        -110.955667
+      ],
+      "b": [
+        1000,
+        700,
+        29.074838,
+        -110.953253
+      ],
+      "viewport": [
+        1363,
+        936
+      ],
+      "metersPerPixel": [
+        0.521424,
+        0.520078
+      ]
+    },
+    "mapUrl": "https://www.google.com/maps/@29.0759255,-110.9549615,488m/data=!3m1!1e3"
+  },
+  "current": {
+    "url": "levantamiento/evidence/B1-04/20261006-01-cierre.png",
+    "title": "Acción 1 · planta revisada",
+    "label": "Planta · 01",
+    "capturedAt": "2026-10-06T02:16:42.321221+00:00",
+    "worldSha256": "549f0288e920e9b9f7d0e0e4efe92d17e964cb96a1ddc53425794458ab09ef48",
+    "sheetDataSha256": "4ebaaeb384f0a13ebff8f53ab68f17d5b89243339be1e905d19a8f8c485ab1ac",
+    "sha256": "68711639246e22c8a0ed7d911e1fd8020477bc17152b078de1c6a554df80061e",
+    "cameraId": "B1-04-review01-20261006-software-v1",
+    "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
+  },
+  "camera": {
+    "id": "B1-04-review01-20261006-software-v1",
+    "direction": [
+      0.25,
+      1,
+      1
+    ],
+    "span": 37.860800000000005,
+    "projection": "orthographic",
+    "target": [
+      -172.74500274658203,
+      1,
+      -2.994500160217285
+    ]
+  },
+  "worldSha256": "549f0288e920e9b9f7d0e0e4efe92d17e964cb96a1ddc53425794458ab09ef48",
+  "triangles": 24,
+  "heightMeasured": false,
+  "landSurvey": false,
+  "sequence": 37
+}

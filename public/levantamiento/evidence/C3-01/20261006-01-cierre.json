@@ -1,0 +1,156 @@
+{
+  "id": "C3-01",
+  "action": 1,
+  "status": "closed-visual-approximation",
+  "executedAt": "2026-10-06T02:32:16.934863+00:00",
+  "note": "CERRADO · Cuerpo de cubierta conectado al oeste y sur de OB-21. Se recorta la esquina ya ocupada por OB-21 para conservar su avance y evitar duplicarlo. Planta visual ±3 m; alturas provisionales, independientes de este cierre.",
+  "source": {
+    "id": "C3-01",
+    "sector": "C3",
+    "name": "Obregón sur · cuerpo contiguo a OB-21",
+    "viewCenter": [
+      29.0755344,
+      -110.9535192
+    ],
+    "zoomMeters": 244,
+    "pixels": [
+      [
+        871.1269676890488,
+        467.93466666728887
+      ],
+      [
+        919.1269676890488,
+        461.93466666728887
+      ],
+      [
+        920.1269676890488,
+        473.93466666728887
+      ],
+      [
+        946.6269676890488,
+        472.43466666728887
+      ],
+      [
+        951.1269676890488,
+        494.43466666728887
+      ],
+      [
+        881.6269676890488,
+        505.93466666728887
+      ]
+    ],
+    "pixelHoles": [],
+    "note": "CERRADO · Cuerpo de cubierta conectado al oeste y sur de OB-21. Se recorta la esquina ya ocupada por OB-21 para conservar su avance y evitar duplicarlo. Planta visual ±3 m; alturas provisionales, independientes de este cierre.",
+    "sourceScreenPixels": [
+      [
+        523,
+        301
+      ],
+      [
+        619,
+        289
+      ],
+      [
+        621,
+        313
+      ],
+      [
+        674,
+        310
+      ],
+      [
+        683,
+        354
+      ],
+      [
+        544,
+        377
+      ]
+    ],
+    "points": [
+      [
+        74.919,
+        20.991
+      ],
+      [
+        99.947,
+        17.871
+      ],
+      [
+        100.468,
+        24.112
+      ],
+      [
+        114.286,
+        23.331
+      ],
+      [
+        116.633,
+        34.773
+      ],
+      [
+        80.394,
+        40.754
+      ]
+    ],
+    "holes": [],
+    "uncertaintyMeters": 3,
+    "heightMeters": 6.2,
+    "measuredAt": "2026-10-06T02:32:16.934863+00:00",
+    "source": "Google Maps satellite, manually interpreted visible roof boundary; two screen anchors and scale. Source imagery date unverified.",
+    "calibration": {
+      "a": [
+        550,
+        300,
+        29.076713,
+        -110.955667
+      ],
+      "b": [
+        1000,
+        700,
+        29.074838,
+        -110.953253
+      ],
+      "viewport": [
+        1363,
+        936
+      ],
+      "metersPerPixel": [
+        0.521424,
+        0.520078
+      ]
+    },
+    "mapUrl": "https://www.google.com/maps/@29.0759255,-110.9549615,488m/data=!3m1!1e3"
+  },
+  "current": {
+    "url": "levantamiento/evidence/C3-01/20261006-01-cierre.png",
+    "title": "Acción 1 · planta revisada",
+    "label": "Planta · 01",
+    "capturedAt": "2026-10-06T02:32:16.934863+00:00",
+    "worldSha256": "549f0288e920e9b9f7d0e0e4efe92d17e964cb96a1ddc53425794458ab09ef48",
+    "sheetDataSha256": "892b6b084adc9c4130f43caa43299632a5ca23447f7bf59f72dcb1654c6c3301",
+    "sha256": "d6a905f8381775be73e09a3a30213515426663c0bb2ced926b5b71c15009adcd",
+    "cameraId": "C3-01-review01-20261006-software-v1",
+    "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
+  },
+  "camera": {
+    "id": "C3-01-review01-20261006-software-v1",
+    "direction": [
+      0.25,
+      1,
+      1
+    ],
+    "span": 66.7424,
+    "projection": "orthographic",
+    "target": [
+      95.7760009765625,
+      1,
+      29.312500953674316
+    ]
+  },
+  "worldSha256": "549f0288e920e9b9f7d0e0e4efe92d17e964cb96a1ddc53425794458ab09ef48",
+  "triangles": 20,
+  "heightMeasured": false,
+  "landSurvey": false,
+  "sequence": 75
+}

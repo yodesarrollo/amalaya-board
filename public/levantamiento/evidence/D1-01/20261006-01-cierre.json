@@ -1,0 +1,180 @@
+{
+  "id": "D1-01",
+  "action": 1,
+  "status": "closed-visual-approximation",
+  "executedAt": "2026-10-06T02:36:18.041814+00:00",
+  "note": "CERRADO · Cuerpo de cubiertas conectadas al oeste de Rosales, completando su parte que cruza la franja anterior. Planta visual ±3 m; no se extruyen superficies abiertas.",
+  "source": {
+    "id": "D1-01",
+    "sector": "D1",
+    "name": "Rosales oeste · cuerpo de cubierta quebrada",
+    "viewCenter": [
+      29.0747521,
+      -110.9564038
+    ],
+    "zoomMeters": 244,
+    "pixels": [
+      [
+        281.4012013258731,
+        593.32533333339
+      ],
+      [
+        317.9012013258731,
+        587.32533333339
+      ],
+      [
+        326.9012013258731,
+        624.32533333339
+      ],
+      [
+        304.9012013258731,
+        631.82533333339
+      ],
+      [
+        307.9012013258731,
+        642.82533333339
+      ],
+      [
+        284.9012013258731,
+        653.82533333339
+      ],
+      [
+        266.4012013258731,
+        650.32533333339
+      ],
+      [
+        263.4012013258731,
+        617.82533333339
+      ]
+    ],
+    "note": "CERRADO · Cuerpo de cubiertas conectadas al oeste de Rosales, completando su parte que cruza la franja anterior. Planta visual ±3 m; no se extruyen superficies abiertas.",
+    "sourceScreenPixels": [
+      [
+        419,
+        218
+      ],
+      [
+        492,
+        206
+      ],
+      [
+        510,
+        280
+      ],
+      [
+        466,
+        295
+      ],
+      [
+        472,
+        317
+      ],
+      [
+        426,
+        339
+      ],
+      [
+        389,
+        332
+      ],
+      [
+        383,
+        267
+      ]
+    ],
+    "pixelHoles": [],
+    "points": [
+      [
+        -232.579,
+        86.204
+      ],
+      [
+        -213.547,
+        83.084
+      ],
+      [
+        -208.854,
+        102.326
+      ],
+      [
+        -220.325,
+        106.227
+      ],
+      [
+        -218.761,
+        111.948
+      ],
+      [
+        -230.754,
+        117.669
+      ],
+      [
+        -240.4,
+        115.848
+      ],
+      [
+        -241.964,
+        98.946
+      ]
+    ],
+    "holes": [],
+    "uncertaintyMeters": 3,
+    "heightMeters": 6.2,
+    "measuredAt": "2026-10-06T02:36:18.041814+00:00",
+    "source": "Google Maps satellite, manually interpreted visible roof boundary; two screen anchors and scale. Source imagery date unverified.",
+    "calibration": {
+      "a": [
+        550,
+        300,
+        29.076713,
+        -110.955667
+      ],
+      "b": [
+        1000,
+        700,
+        29.074838,
+        -110.953253
+      ],
+      "viewport": [
+        1363,
+        936
+      ],
+      "metersPerPixel": [
+        0.521424,
+        0.520078
+      ]
+    },
+    "mapUrl": "https://www.google.com/maps/@29.0759255,-110.9549615,488m/data=!3m1!1e3"
+  },
+  "current": {
+    "url": "levantamiento/evidence/D1-01/20261006-01-cierre.png",
+    "title": "Acción 1 · planta revisada",
+    "label": "Planta · 01",
+    "capturedAt": "2026-10-06T02:36:18.041814+00:00",
+    "worldSha256": "549f0288e920e9b9f7d0e0e4efe92d17e964cb96a1ddc53425794458ab09ef48",
+    "sheetDataSha256": "d3aacc412377cd89932ec717cb4d5743fcf38dfe8ee2f4265124e661bcc22091",
+    "sha256": "627921d7c1a9b4ee450c629922e13f700ba34251f096e58ba9bc9ea044c51638",
+    "cameraId": "D1-01-review01-20261006-software-v1",
+    "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
+  },
+  "camera": {
+    "id": "D1-01-review01-20261006-software-v1",
+    "direction": [
+      0.25,
+      1,
+      1
+    ],
+    "span": 55.33599999999999,
+    "projection": "orthographic",
+    "target": [
+      -225.40900421142578,
+      1,
+      100.37649917602539
+    ]
+  },
+  "worldSha256": "549f0288e920e9b9f7d0e0e4efe92d17e964cb96a1ddc53425794458ab09ef48",
+  "triangles": 28,
+  "heightMeasured": false,
+  "landSurvey": false,
+  "sequence": 86
+}

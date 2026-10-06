@@ -1,0 +1,42 @@
+{
+  "id": "SER-HSBC",
+  "action": 1,
+  "status": "closed-visual-approximation",
+  "executedAt": "2026-10-06T02:04:19.191571+00:00",
+  "note": "CERRADO · huella física OSM 499759728 conservada, tolerancia ±3 m; registro vial de 2,88 m dentro del margen. Imagen y registro actualizados. Identidad comercial y altura no se dan por verificadas.",
+  "source": {
+    "id": "SER-HSBC",
+    "note": "CERRADO · huella física OSM 499759728 conservada, tolerancia ±3 m; registro vial de 2,88 m dentro del margen. Imagen y registro actualizados. Identidad comercial y altura no se dan por verificadas."
+  },
+  "current": {
+    "url": "levantamiento/evidence/SER-HSBC/20261006-01-cierre.png",
+    "title": "Acción 1 · planta revisada",
+    "label": "Planta · 01",
+    "capturedAt": "2026-10-06T02:04:19.191571+00:00",
+    "worldSha256": "cd0e932a95d99fb60c35c6ca0898450e0d8aa735934da921cbe91c4f516afe8f",
+    "sheetDataSha256": "4e61a8d81dd7895437c61429198c0f3d13b9d87736f5916661c893012d1e47fe",
+    "sha256": "7cfeb316bada6b292d13ffcd50bedc3dccc1956a19a616db37f3f4c0036e5eef",
+    "cameraId": "SER-HSBC-review01-20261006-software-v1",
+    "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
+  },
+  "camera": {
+    "id": "SER-HSBC-review01-20261006-software-v1",
+    "direction": [
+      -0.4,
+      1,
+      1
+    ],
+    "span": 63,
+    "projection": "orthographic",
+    "target": [
+      67.28183937072754,
+      1,
+      -139.63612365722656
+    ]
+  },
+  "worldSha256": "cd0e932a95d99fb60c35c6ca0898450e0d8aa735934da921cbe91c4f516afe8f",
+  "triangles": 14790,
+  "heightMeasured": false,
+  "landSurvey": false,
+  "sequence": 9
+}

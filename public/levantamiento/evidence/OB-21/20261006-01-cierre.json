@@ -1,0 +1,42 @@
+{
+  "id": "OB-21",
+  "action": 1,
+  "status": "closed-visual-approximation",
+  "executedAt": "2026-10-06T02:07:05.065800+00:00",
+  "note": "CERRADO · cuerpo existente de 21 Av. Obregón incorporado al inventario y comprobado en el modelo: envolvente aproximada 13,47 × 7,92 m, tolerancia de posición y contorno ±5 m. Se conserva su geometría y se registra imagen propia. Altura y fachada continúan pendientes de verificación.",
+  "source": {
+    "id": "OB-21",
+    "note": "CERRADO · cuerpo existente de 21 Av. Obregón incorporado al inventario y comprobado en el modelo: envolvente aproximada 13,47 × 7,92 m, tolerancia de posición y contorno ±5 m. Se conserva su geometría y se registra imagen propia. Altura y fachada continúan pendientes de verificación."
+  },
+  "current": {
+    "url": "levantamiento/evidence/OB-21/20261006-01-cierre.png",
+    "title": "Acción 1 · planta revisada",
+    "label": "Planta · 01",
+    "capturedAt": "2026-10-06T02:07:05.065800+00:00",
+    "worldSha256": "cd0e932a95d99fb60c35c6ca0898450e0d8aa735934da921cbe91c4f516afe8f",
+    "sheetDataSha256": "a32f5ab045dee7bb6e335f5226500b5b0be4fd0e70e3cb9633c6823bd0c1f1b0",
+    "sha256": "e324b889baf5e8ef15992b1bacda0716d1024166443327f1682c329c84ca12da",
+    "cameraId": "OB-21-review01-20261006-software-v1",
+    "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
+  },
+  "camera": {
+    "id": "OB-21-review01-20261006-software-v1",
+    "direction": [
+      0.2,
+      1,
+      1
+    ],
+    "span": 35,
+    "projection": "orthographic",
+    "target": [
+      107.42921796866891,
+      1,
+      19.235496936475442
+    ]
+  },
+  "worldSha256": "cd0e932a95d99fb60c35c6ca0898450e0d8aa735934da921cbe91c4f516afe8f",
+  "triangles": 18035,
+  "heightMeasured": false,
+  "landSurvey": false,
+  "sequence": 14
+}

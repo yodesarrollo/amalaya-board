@@ -1,0 +1,156 @@
+{
+  "id": "A1-01",
+  "action": 1,
+  "status": "closed-visual-approximation",
+  "executedAt": "2026-10-06T02:08:26.292606+00:00",
+  "note": "CERRADO · contorno exterior quebrado de la cubierta blanca entre Rosales y Yáñez, al norte de Serdán, trazado visualmente con escala comprobada. Se excluye el jardín norte y la explanada sur. Aproximación ±3,5 m; no atribuye todos los frentes a un solo comercio.",
+  "source": {
+    "id": "A1-01",
+    "sector": "A1",
+    "name": "Rosales–Serdán · cuerpo blanco oeste",
+    "viewCenter": [
+      29.0770989,
+      -110.9564038
+    ],
+    "zoomMeters": 244,
+    "pixels": [
+      [
+        284.4012013258731,
+        150.67466666715336
+      ],
+      [
+        328.4012013258731,
+        142.67466666715336
+      ],
+      [
+        333.4012013258731,
+        153.67466666715336
+      ],
+      [
+        359.4012013258731,
+        149.17466666715336
+      ],
+      [
+        380.4012013258731,
+        248.17466666715336
+      ],
+      [
+        310.4012013258731,
+        261.17466666715336
+      ]
+    ],
+    "uncertaintyMeters": 3.5,
+    "note": "CERRADO · contorno exterior quebrado de la cubierta blanca entre Rosales y Yáñez, al norte de Serdán, trazado visualmente con escala comprobada. Se excluye el jardín norte y la explanada sur. Aproximación ±3,5 m; no atribuye todos los frentes a un solo comercio.",
+    "sourceScreenPixels": [
+      [
+        425,
+        334
+      ],
+      [
+        513,
+        318
+      ],
+      [
+        523,
+        340
+      ],
+      [
+        575,
+        331
+      ],
+      [
+        617,
+        529
+      ],
+      [
+        477,
+        555
+      ]
+    ],
+    "pixelHoles": [],
+    "points": [
+      [
+        -231.014,
+        -144.009
+      ],
+      [
+        -208.072,
+        -148.17
+      ],
+      [
+        -205.464,
+        -142.449
+      ],
+      [
+        -191.907,
+        -144.789
+      ],
+      [
+        -180.958,
+        -93.301
+      ],
+      [
+        -217.457,
+        -86.54
+      ]
+    ],
+    "holes": [],
+    "heightMeters": 6.2,
+    "measuredAt": "2026-10-06T02:07:28.080630+00:00",
+    "source": "Google Maps satellite, manually interpreted visible roof boundary; two screen anchors and scale. Source imagery date unverified.",
+    "calibration": {
+      "a": [
+        550,
+        300,
+        29.076713,
+        -110.955667
+      ],
+      "b": [
+        1000,
+        700,
+        29.074838,
+        -110.953253
+      ],
+      "viewport": [
+        1363,
+        936
+      ],
+      "metersPerPixel": [
+        0.521424,
+        0.520078
+      ]
+    },
+    "mapUrl": "https://www.google.com/maps/@29.0759255,-110.9549615,488m/data=!3m1!1e3"
+  },
+  "current": {
+    "url": "levantamiento/evidence/A1-01/20261006-01-cierre.png",
+    "title": "Acción 1 · planta revisada",
+    "label": "Planta · 01",
+    "capturedAt": "2026-10-06T02:08:26.292606+00:00",
+    "worldSha256": "7d2bea2ba657cf820bc1d7acfaa8328bc67d954a013ef2e0201f6bf1f0d6e0e3",
+    "sheetDataSha256": "4803a87e51fb96bd68b80dbf1a36dc4ffc25bf600602206404b8841715f442d3",
+    "sha256": "9fb6950c76b22ffe1490749e961eea478458dcd53f1d4f9cc93516e2f1077c50",
+    "cameraId": "A1-01-review01-20261006-software-v1",
+    "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
+  },
+  "camera": {
+    "id": "A1-01-review01-20261006-software-v1",
+    "direction": [
+      0.25,
+      1,
+      1
+    ],
+    "span": 98.60799999999998,
+    "projection": "orthographic",
+    "target": [
+      -205.98600006103516,
+      1,
+      -117.35499954223633
+    ]
+  },
+  "worldSha256": "7d2bea2ba657cf820bc1d7acfaa8328bc67d954a013ef2e0201f6bf1f0d6e0e3",
+  "triangles": 20,
+  "heightMeasured": false,
+  "landSurvey": false,
+  "sequence": 16
+}

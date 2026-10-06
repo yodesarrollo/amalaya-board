@@ -1,0 +1,132 @@
+{
+  "id": "A1-04",
+  "action": 1,
+  "status": "closed-visual-approximation",
+  "executedAt": "2026-10-06T02:09:26.239529+00:00",
+  "note": "CERRADO · cuerpo pequeño al norte de A1-01, separado del patio arbolado. Incluye su parte cortada por el encuadre de trabajo. Trazado visual ±3 m; separación entre cuerpos interpretada, sin afirmar límites de propiedad.",
+  "source": {
+    "id": "A1-04",
+    "sector": "A1",
+    "name": "Rosales · anexo del extremo norte",
+    "viewCenter": [
+      29.0770989,
+      -110.9564038
+    ],
+    "zoomMeters": 244,
+    "pixels": [
+      [
+        331.9012013258731,
+        120.67466666715336
+      ],
+      [
+        350.9012013258731,
+        117.17466666715336
+      ],
+      [
+        357.4012013258731,
+        142.17466666715336
+      ],
+      [
+        337.4012013258731,
+        145.67466666715336
+      ]
+    ],
+    "note": "CERRADO · cuerpo pequeño al norte de A1-01, separado del patio arbolado. Incluye su parte cortada por el encuadre de trabajo. Trazado visual ±3 m; separación entre cuerpos interpretada, sin afirmar límites de propiedad.",
+    "sourceScreenPixels": [
+      [
+        520,
+        274
+      ],
+      [
+        558,
+        267
+      ],
+      [
+        571,
+        317
+      ],
+      [
+        531,
+        324
+      ]
+    ],
+    "pixelHoles": [],
+    "points": [
+      [
+        -206.247,
+        -159.611
+      ],
+      [
+        -196.34,
+        -161.432
+      ],
+      [
+        -192.95,
+        -148.43
+      ],
+      [
+        -203.379,
+        -146.609
+      ]
+    ],
+    "holes": [],
+    "uncertaintyMeters": 3,
+    "heightMeters": 6.2,
+    "measuredAt": "2026-10-06T02:09:26.239529+00:00",
+    "source": "Google Maps satellite, manually interpreted visible roof boundary; two screen anchors and scale. Source imagery date unverified.",
+    "calibration": {
+      "a": [
+        550,
+        300,
+        29.076713,
+        -110.955667
+      ],
+      "b": [
+        1000,
+        700,
+        29.074838,
+        -110.953253
+      ],
+      "viewport": [
+        1363,
+        936
+      ],
+      "metersPerPixel": [
+        0.521424,
+        0.520078
+      ]
+    },
+    "mapUrl": "https://www.google.com/maps/@29.0759255,-110.9549615,488m/data=!3m1!1e3"
+  },
+  "current": {
+    "url": "levantamiento/evidence/A1-04/20261006-01-cierre.png",
+    "title": "Acción 1 · planta revisada",
+    "label": "Planta · 01",
+    "capturedAt": "2026-10-06T02:09:26.239529+00:00",
+    "worldSha256": "7d2bea2ba657cf820bc1d7acfaa8328bc67d954a013ef2e0201f6bf1f0d6e0e3",
+    "sheetDataSha256": "5b3598afcc2997545ce12e8e07327f808c0c531034064621c33e4704f3d83a8c",
+    "sha256": "0f5107609687803b21151e374ffaada380a76ec779e6a0deb81dc77e9108a24f",
+    "cameraId": "A1-04-review01-20261006-software-v1",
+    "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
+  },
+  "camera": {
+    "id": "A1-04-review01-20261006-software-v1",
+    "direction": [
+      0.25,
+      1,
+      1
+    ],
+    "span": 30,
+    "projection": "orthographic",
+    "target": [
+      -199.59849548339844,
+      1,
+      -154.02050018310547
+    ]
+  },
+  "worldSha256": "7d2bea2ba657cf820bc1d7acfaa8328bc67d954a013ef2e0201f6bf1f0d6e0e3",
+  "triangles": 12,
+  "heightMeasured": false,
+  "landSurvey": false,
+  "sequence": 18
+}

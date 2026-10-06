@@ -1,0 +1,182 @@
+{
+  "id": "D2-07",
+  "action": 1,
+  "status": "closed-visual-approximation",
+  "executedAt": "2026-10-06T02:40:49.867251+00:00",
+  "note": "CERRADO · Mina este · cuerpo central con patio. Planta física trazada a escala visual ±3 m. Vacíos interiores visibles excluidos; altura no medida. Geometría, imagen y registro actualizados antes de continuar.",
+  "source": {
+    "id": "D2-07",
+    "sector": "D2",
+    "name": "Mina este · cuerpo central con patio",
+    "viewCenter": [
+      29.0747521,
+      -110.9549615
+    ],
+    "zoomMeters": 244,
+    "pixels": [
+      [
+        630.2640845087855,
+        656.32533333339
+      ],
+      [
+        676.7640845087855,
+        655.32533333339
+      ],
+      [
+        679.7640845087855,
+        680.32533333339
+      ],
+      [
+        671.2640845087855,
+        688.82533333339
+      ],
+      [
+        630.2640845087855,
+        687.32533333339
+      ]
+    ],
+    "pixelHoles": [
+      [
+        [
+          661.7640845087855,
+          665.32533333339
+        ],
+        [
+          672.2640845087855,
+          664.82533333339
+        ],
+        [
+          672.7640845087855,
+          675.32533333339
+        ],
+        [
+          663.2640845087855,
+          676.32533333339
+        ]
+      ]
+    ],
+    "note": "CERRADO · Mina este · cuerpo central con patio. Planta física trazada a escala visual ±3 m. Vacíos interiores visibles excluidos; altura no medida. Geometría, imagen y registro actualizados antes de continuar.",
+    "sourceScreenPixels": [
+      [
+        579,
+        344
+      ],
+      [
+        672,
+        342
+      ],
+      [
+        678,
+        392
+      ],
+      [
+        661,
+        409
+      ],
+      [
+        579,
+        406
+      ]
+    ],
+    "points": [
+      [
+        -50.673,
+        118.969
+      ],
+      [
+        -26.427,
+        118.449
+      ],
+      [
+        -24.863,
+        131.451
+      ],
+      [
+        -29.295,
+        135.871
+      ],
+      [
+        -50.673,
+        135.091
+      ]
+    ],
+    "holes": [
+      [
+        [
+          -34.248,
+          123.65
+        ],
+        [
+          -28.773,
+          123.39
+        ],
+        [
+          -28.513,
+          128.85
+        ],
+        [
+          -33.466,
+          129.37
+        ]
+      ]
+    ],
+    "uncertaintyMeters": 3,
+    "heightMeters": 6.2,
+    "measuredAt": "2026-10-06T02:40:49.867251+00:00",
+    "source": "Google Maps satellite, manually interpreted visible roof boundary; two screen anchors and scale. Source imagery date unverified.",
+    "calibration": {
+      "a": [
+        550,
+        300,
+        29.076713,
+        -110.955667
+      ],
+      "b": [
+        1000,
+        700,
+        29.074838,
+        -110.953253
+      ],
+      "viewport": [
+        1363,
+        936
+      ],
+      "metersPerPixel": [
+        0.521424,
+        0.520078
+      ]
+    },
+    "mapUrl": "https://www.google.com/maps/@29.0759255,-110.9549615,488m/data=!3m1!1e3"
+  },
+  "current": {
+    "url": "levantamiento/evidence/D2-07/20261006-01-cierre.png",
+    "title": "Acción 1 · planta revisada",
+    "label": "Planta · 01",
+    "capturedAt": "2026-10-06T02:40:49.867251+00:00",
+    "worldSha256": "549f0288e920e9b9f7d0e0e4efe92d17e964cb96a1ddc53425794458ab09ef48",
+    "sheetDataSha256": "7c5316b36a250ddf654c9b2961b5de5925e876473f5c92a0e7ccef644f8060e3",
+    "sha256": "942802db76d21014b5f8311aa144ac7cb3f7b855fd9a242648455f7cc0fa1729",
+    "cameraId": "D2-07-review01-20261006-software-v1",
+    "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
+  },
+  "camera": {
+    "id": "D2-07-review01-20261006-software-v1",
+    "direction": [
+      0.25,
+      1,
+      1
+    ],
+    "span": 41.29600000000001,
+    "projection": "orthographic",
+    "target": [
+      -37.76800060272217,
+      1,
+      127.15999984741211
+    ]
+  },
+  "worldSha256": "549f0288e920e9b9f7d0e0e4efe92d17e964cb96a1ddc53425794458ab09ef48",
+  "triangles": 36,
+  "heightMeasured": false,
+  "landSurvey": false,
+  "sequence": 104
+}

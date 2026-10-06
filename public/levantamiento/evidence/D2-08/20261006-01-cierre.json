@@ -1,0 +1,156 @@
+{
+  "id": "D2-08",
+  "action": 1,
+  "status": "closed-visual-approximation",
+  "executedAt": "2026-10-06T02:40:52.459592+00:00",
+  "note": "CERRADO · Mina este · cuerpo interior bajo. Planta física trazada a escala visual ±3 m. Vacíos interiores visibles excluidos; altura no medida. Geometría, imagen y registro actualizados antes de continuar.",
+  "source": {
+    "id": "D2-08",
+    "sector": "D2",
+    "name": "Mina este · cuerpo interior bajo",
+    "viewCenter": [
+      29.0747521,
+      -110.9549615
+    ],
+    "zoomMeters": 244,
+    "pixels": [
+      [
+        630.2640845087855,
+        697.82533333339
+      ],
+      [
+        645.7640845087855,
+        697.82533333339
+      ],
+      [
+        648.7640845087855,
+        709.82533333339
+      ],
+      [
+        638.7640845087855,
+        713.32533333339
+      ],
+      [
+        644.7640845087855,
+        720.32533333339
+      ],
+      [
+        630.2640845087855,
+        721.32533333339
+      ]
+    ],
+    "pixelHoles": [],
+    "note": "CERRADO · Mina este · cuerpo interior bajo. Planta física trazada a escala visual ±3 m. Vacíos interiores visibles excluidos; altura no medida. Geometría, imagen y registro actualizados antes de continuar.",
+    "sourceScreenPixels": [
+      [
+        579,
+        427
+      ],
+      [
+        610,
+        427
+      ],
+      [
+        616,
+        451
+      ],
+      [
+        596,
+        458
+      ],
+      [
+        608,
+        472
+      ],
+      [
+        579,
+        474
+      ]
+    ],
+    "points": [
+      [
+        -50.673,
+        140.552
+      ],
+      [
+        -42.591,
+        140.552
+      ],
+      [
+        -41.027,
+        146.793
+      ],
+      [
+        -46.241,
+        148.613
+      ],
+      [
+        -43.112,
+        152.254
+      ],
+      [
+        -50.673,
+        152.774
+      ]
+    ],
+    "holes": [],
+    "uncertaintyMeters": 3,
+    "heightMeters": 6.2,
+    "measuredAt": "2026-10-06T02:40:52.459592+00:00",
+    "source": "Google Maps satellite, manually interpreted visible roof boundary; two screen anchors and scale. Source imagery date unverified.",
+    "calibration": {
+      "a": [
+        550,
+        300,
+        29.076713,
+        -110.955667
+      ],
+      "b": [
+        1000,
+        700,
+        29.074838,
+        -110.953253
+      ],
+      "viewport": [
+        1363,
+        936
+      ],
+      "metersPerPixel": [
+        0.521424,
+        0.520078
+      ]
+    },
+    "mapUrl": "https://www.google.com/maps/@29.0759255,-110.9549615,488m/data=!3m1!1e3"
+  },
+  "current": {
+    "url": "levantamiento/evidence/D2-08/20261006-01-cierre.png",
+    "title": "Acción 1 · planta revisada",
+    "label": "Planta · 01",
+    "capturedAt": "2026-10-06T02:40:52.459592+00:00",
+    "worldSha256": "549f0288e920e9b9f7d0e0e4efe92d17e964cb96a1ddc53425794458ab09ef48",
+    "sheetDataSha256": "056a505ab9939c6134cd778b7b6be8041de96ebb809fd1a590bbcefce888b86c",
+    "sha256": "d3cf12fe4b8ed9f17d0f3fcd0e20610e303bf64cb177eaf7c3af9a88e50c4d2b",
+    "cameraId": "D2-08-review01-20261006-software-v1",
+    "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
+  },
+  "camera": {
+    "id": "D2-08-review01-20261006-software-v1",
+    "direction": [
+      0.25,
+      1,
+      1
+    ],
+    "span": 30,
+    "projection": "orthographic",
+    "target": [
+      -45.85000038146973,
+      1,
+      146.66300201416016
+    ]
+  },
+  "worldSha256": "549f0288e920e9b9f7d0e0e4efe92d17e964cb96a1ddc53425794458ab09ef48",
+  "triangles": 20,
+  "heightMeasured": false,
+  "landSurvey": false,
+  "sequence": 105
+}

@@ -1,0 +1,132 @@
+{
+  "id": "C2-04",
+  "action": 1,
+  "status": "closed-visual-approximation",
+  "executedAt": "2026-10-06T02:28:44.806111+00:00",
+  "note": "CERRADO · Cubierta física del frente de esquina. Sustituye parte de la antigua masa genérica rectangular; no se eliminan OB-01 ni OB-02. Planta visual ±3 m; altura pendiente del paso 7.",
+  "source": {
+    "id": "C2-04",
+    "sector": "C2",
+    "name": "Juan Álvarez–Obregón · cuerpo de esquina",
+    "viewCenter": [
+      29.0755344,
+      -110.9549615
+    ],
+    "zoomMeters": 244,
+    "pixels": [
+      [
+        701.7640845087855,
+        478.93466666728887
+      ],
+      [
+        729.2640845087855,
+        474.93466666728887
+      ],
+      [
+        735.2640845087855,
+        503.93466666728887
+      ],
+      [
+        714.2640845087855,
+        509.93466666728887
+      ]
+    ],
+    "pixelHoles": [],
+    "note": "CERRADO · Cubierta física del frente de esquina. Sustituye parte de la antigua masa genérica rectangular; no se eliminan OB-01 ni OB-02. Planta visual ±3 m; altura pendiente del paso 7.",
+    "sourceScreenPixels": [
+      [
+        722,
+        323
+      ],
+      [
+        777,
+        315
+      ],
+      [
+        789,
+        373
+      ],
+      [
+        747,
+        385
+      ]
+    ],
+    "points": [
+      [
+        -13.391,
+        26.712
+      ],
+      [
+        0.948,
+        24.632
+      ],
+      [
+        4.076,
+        39.714
+      ],
+      [
+        -6.873,
+        42.834
+      ]
+    ],
+    "holes": [],
+    "uncertaintyMeters": 3,
+    "heightMeters": 6.2,
+    "measuredAt": "2026-10-06T02:28:44.806111+00:00",
+    "source": "Google Maps satellite, manually interpreted visible roof boundary; two screen anchors and scale. Source imagery date unverified.",
+    "calibration": {
+      "a": [
+        550,
+        300,
+        29.076713,
+        -110.955667
+      ],
+      "b": [
+        1000,
+        700,
+        29.074838,
+        -110.953253
+      ],
+      "viewport": [
+        1363,
+        936
+      ],
+      "metersPerPixel": [
+        0.521424,
+        0.520078
+      ]
+    },
+    "mapUrl": "https://www.google.com/maps/@29.0759255,-110.9549615,488m/data=!3m1!1e3"
+  },
+  "current": {
+    "url": "levantamiento/evidence/C2-04/20261006-01-cierre.png",
+    "title": "Acción 1 · planta revisada",
+    "label": "Planta · 01",
+    "capturedAt": "2026-10-06T02:28:44.806111+00:00",
+    "worldSha256": "549f0288e920e9b9f7d0e0e4efe92d17e964cb96a1ddc53425794458ab09ef48",
+    "sheetDataSha256": "cb6d16635f712ea4fcade1f4259294203797aff9687483802813ba23836a472b",
+    "sha256": "8e96bffacdd23d6e66fec78ba70656d1468a053ceaaac5d697816aa94fdeb6da",
+    "cameraId": "C2-04-review01-20261006-software-v1",
+    "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
+  },
+  "camera": {
+    "id": "C2-04-review01-20261006-software-v1",
+    "direction": [
+      0.25,
+      1,
+      1
+    ],
+    "span": 30,
+    "projection": "orthographic",
+    "target": [
+      -4.65749979019165,
+      1,
+      33.73299980163574
+    ]
+  },
+  "worldSha256": "549f0288e920e9b9f7d0e0e4efe92d17e964cb96a1ddc53425794458ab09ef48",
+  "triangles": 12,
+  "heightMeasured": false,
+  "landSurvey": false,
+  "sequence": 66
+}

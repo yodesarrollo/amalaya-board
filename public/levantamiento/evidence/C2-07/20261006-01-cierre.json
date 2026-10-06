@@ -1,0 +1,218 @@
+{
+  "id": "C2-07",
+  "action": 1,
+  "status": "closed-visual-approximation",
+  "executedAt": "2026-10-06T02:29:30.058955+00:00",
+  "note": "CERRADO · Cuerpo oriental de la cuadra, con patio abierto. Reemplaza el bloque genérico de la misma posición por su contorno quebrado. Contorno visual ±3 m; imagen del modelo y registro por cuerpo.",
+  "source": {
+    "id": "C2-07",
+    "sector": "C2",
+    "name": "Obregón sur · cuerpo oriental con patio",
+    "viewCenter": [
+      29.0755344,
+      -110.9549615
+    ],
+    "zoomMeters": 244,
+    "pixels": [
+      [
+        770.2640845087855,
+        470.93466666728887
+      ],
+      [
+        813.7640845087855,
+        467.43466666728887
+      ],
+      [
+        819.7640845087855,
+        492.43466666728887
+      ],
+      [
+        807.7640845087855,
+        495.43466666728887
+      ],
+      [
+        813.7640845087855,
+        514.4346666672889
+      ],
+      [
+        792.7640845087855,
+        524.9346666672889
+      ],
+      [
+        785.2640845087855,
+        507.43466666728887
+      ],
+      [
+        779.7640845087855,
+        507.93466666728887
+      ]
+    ],
+    "pixelHoles": [
+      [
+        [
+          790.2640845087855,
+          497.43466666728887
+        ],
+        [
+          804.7640845087855,
+          495.93466666728887
+        ],
+        [
+          808.2640845087855,
+          510.93466666728887
+        ],
+        [
+          795.7640845087855,
+          515.9346666672889
+        ]
+      ]
+    ],
+    "note": "CERRADO · Cuerpo oriental de la cuadra, con patio abierto. Reemplaza el bloque genérico de la misma posición por su contorno quebrado. Contorno visual ±3 m; imagen del modelo y registro por cuerpo.",
+    "sourceScreenPixels": [
+      [
+        859,
+        307
+      ],
+      [
+        946,
+        300
+      ],
+      [
+        958,
+        350
+      ],
+      [
+        934,
+        356
+      ],
+      [
+        946,
+        394
+      ],
+      [
+        904,
+        415
+      ],
+      [
+        889,
+        380
+      ],
+      [
+        878,
+        381
+      ]
+    ],
+    "points": [
+      [
+        22.326,
+        22.551
+      ],
+      [
+        45.008,
+        20.731
+      ],
+      [
+        48.137,
+        33.733
+      ],
+      [
+        41.88,
+        35.293
+      ],
+      [
+        45.008,
+        45.175
+      ],
+      [
+        34.058,
+        50.635
+      ],
+      [
+        30.148,
+        41.534
+      ],
+      [
+        27.28,
+        41.794
+      ]
+    ],
+    "holes": [
+      [
+        [
+          32.755,
+          36.333
+        ],
+        [
+          40.315,
+          35.553
+        ],
+        [
+          42.14,
+          43.354
+        ],
+        [
+          35.623,
+          45.955
+        ]
+      ]
+    ],
+    "uncertaintyMeters": 3,
+    "heightMeters": 6.2,
+    "measuredAt": "2026-10-06T02:29:30.058955+00:00",
+    "source": "Google Maps satellite, manually interpreted visible roof boundary; two screen anchors and scale. Source imagery date unverified.",
+    "calibration": {
+      "a": [
+        550,
+        300,
+        29.076713,
+        -110.955667
+      ],
+      "b": [
+        1000,
+        700,
+        29.074838,
+        -110.953253
+      ],
+      "viewport": [
+        1363,
+        936
+      ],
+      "metersPerPixel": [
+        0.521424,
+        0.520078
+      ]
+    },
+    "mapUrl": "https://www.google.com/maps/@29.0759255,-110.9549615,488m/data=!3m1!1e3"
+  },
+  "current": {
+    "url": "levantamiento/evidence/C2-07/20261006-01-cierre.png",
+    "title": "Acción 1 · planta revisada",
+    "label": "Planta · 01",
+    "capturedAt": "2026-10-06T02:29:30.058955+00:00",
+    "worldSha256": "549f0288e920e9b9f7d0e0e4efe92d17e964cb96a1ddc53425794458ab09ef48",
+    "sheetDataSha256": "bf847528355aa62f66b105651fd79fa8c7b840ec31c1e1fc98ad8ab68e08bb3c",
+    "sha256": "5f5909645db9b5c14d6a14e0968cb52a0456fcd1f02263b6eedb4fdf271dbcc9",
+    "cameraId": "C2-07-review01-20261006-software-v1",
+    "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
+  },
+  "camera": {
+    "id": "C2-07-review01-20261006-software-v1",
+    "direction": [
+      0.25,
+      1,
+      1
+    ],
+    "span": 47.846399999999996,
+    "projection": "orthographic",
+    "target": [
+      35.23150062561035,
+      1,
+      35.68299961090088
+    ]
+  },
+  "worldSha256": "549f0288e920e9b9f7d0e0e4efe92d17e964cb96a1ddc53425794458ab09ef48",
+  "triangles": 48,
+  "heightMeasured": false,
+  "landSurvey": false,
+  "sequence": 69
+}
