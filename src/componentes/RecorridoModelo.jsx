@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { Box, ChevronLeft, ChevronRight, Footprints, Images, Map } from 'lucide-react'
 import { BASE } from '../config.js'
+import { VERSION_LEVANTAMIENTO } from '../levantamiento-version.js'
 import { mensajeRecorrido, rumboConsulta } from '../recorrido-state.js'
 
 const REFERENCIAS = {
@@ -8,7 +9,7 @@ const REFERENCIAS = {
   'OB-02': { routeId: 'R-001', pointId: 'Apyr0uKeZr_XWmfLfLeBjQ' },
 }
 const PUNTO_INICIAL = REFERENCIAS['OB-02'].pointId
-const URL_CAMINATA = `${BASE}levantamiento/visor/?embed=1&character=sonora&route=R-001&waypoint=3&view=street&movement=walk&clean=1&heading=185`
+const URL_CAMINATA = `${BASE}levantamiento/visor/?embed=1&character=sonora&route=R-001&waypoint=3&view=street&movement=walk&clean=1&heading=185&v=${VERSION_LEVANTAMIENTO}`
 const URL_STREET_VIEW = `${BASE}recorrido/?embed=1&portal=1&r=R-001&p=${PUNTO_INICIAL}`
 
 const MODOS = [
