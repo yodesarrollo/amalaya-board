@@ -163,7 +163,9 @@ function Seguimiento() {
     const timer = setInterval(refresh, Math.max(10, data?.refreshSeconds || 30) * 1000)
     return () => clearInterval(timer)
   }, [data?.refreshSeconds, refresh])
+  const workflow = data?.activeReview || data?.workflow
   const targets = data ? columns(data) : []
+  if (data?.activeReview) targets.sort((a,b) => (workflow.buildingOrder.indexOf(a.building.id) < 0 ? 999 : workflow.buildingOrder.indexOf(a.building.id)) - (workflow.buildingOrder.indexOf(b.building.id) < 0 ? 999 : workflow.buildingOrder.indexOf(b.building.id)))
   return <main className="tracker-page">
     <header className="tracker-toolbar">
       <a href={`${BASE}explorar.html`} aria-label="Volver al recorrido"><ArrowLeft size={20} /></a>
@@ -175,11 +177,17 @@ function Seguimiento() {
       <div className="tracker-legend">{['active', 'done', 'blocked', 'pending', 'partial'].map(value => <span key={value}><i className={`state-${value}`}>{STATES[value].symbol}</i>{STATES[value].label}</span>)}</div>
       <small>{data ? `Actualizado ${new Intl.DateTimeFormat('es-MX', { dateStyle: 'short', timeStyle: 'short', timeZone: 'America/Hermosillo' }).format(new Date(data.updatedAt))}` : 'Cargando…'}</small>
     </div>
-    {data?.workflow?.mode === 'phase-rounds' && <section className="tracker-round" aria-label="Trabajo por etapas">
-      <strong>Paso {data.workflow.round} · {data.workflow.actionLabel || data.taskDefinitions[data.workflow.task]} en todos los edificios</strong>
-      <p>{(data.workflow.reviewedBuildings || data.workflow.closedBuildings).length} de {data.workflow.buildingOrder.length} revisados · {data.workflow.closedBuildings.length} resueltos · Medir → editar → verificar → actualizar imagen y registro antes del siguiente.</p>
-      {data.workflow.unresolvedBuildings.length > 0 && <p>Pendientes de esta ronda: {data.workflow.unresolvedBuildings.join(', ')}.</p>}
-      {data.workflow.previousUnresolvedBuildings?.length > 0 && <p>El paso 1 conserva contornos pendientes: {data.workflow.previousUnresolvedBuildings.join(', ')}. Esta ronda continúa por tu indicación.</p>}
+    {workflow?.mode === 'phase-rounds' && <section className="tracker-round" aria-label="Trabajo por etapas">
+      <strong>Paso {workflow.round} · {workflow.actionLabel || data.taskDefinitions[workflow.task]} en todos los edificios</strong>
+      <p>{(workflow.reviewedBuildings || workflow.closedBuildings).length} de {workflow.buildingOrder.length} revisados · {workflow.closedBuildings.length} resueltos · Medir → editar → verificar → actualizar imagen y registro antes del siguiente.</p>
+      {workflow.unresolvedBuildings.length > 0 && <p>Pendientes de esta ronda: {workflow.unresolvedBuildings.join(', ')}.</p>}
+      {workflow.previousUnresolvedBuildings?.length > 0 && <p>El paso 1 conserva contornos pendientes: {workflow.previousUnresolvedBuildings.join(', ')}. Esta ronda continúa por tu indicación.</p>}
+    </section>}
+    {data?.activeReview && <section className="tracker-round" aria-label="Cobertura del inventario">
+      <strong>Inventario abierto · toda la lámina</strong>
+      <p>{workflow.buildingOrder.length} columnas conocidas. Agregadas: {workflow.addedBuildings.join(', ')}. El total de edificios del polígono todavía está por completar.</p>
+      <p>Siguiente: <b>{workflow.nextBuilding}</b>, paso 1. Las celdas de planta pendientes corresponden a esta nueva revisión; las imágenes anteriores se conservan hasta revisar cada edificio.</p>
+      <details><summary>Recorrido para enumerar los edificios faltantes</summary><p>12 sectores de búsqueda, de norte a sur y de oeste a este. Cada cuerpo confirmado recibe su propia columna; un patio o un predio no equivale automáticamente a un edificio.</p><div className="tracker-coverage">{workflow.coverageSectors.map(sector => <a key={sector.id} href={sector.mapUrl} target="_blank" rel="noreferrer">{sector.id} · Por enumerar</a>)}</div><p><a href={`${BASE}${workflow.mapUrl}`} target="_blank" rel="noreferrer">Ver lámina completa</a> · La ronda no se cierra hasta completar el inventario.</p></details>
     </section>}
     {error && <p className="tracker-error" role="status">{error}</p>}
     {data && <div className="tracker-table-scroll" tabIndex="0" role="region" aria-label="Matriz de acciones por edificio">

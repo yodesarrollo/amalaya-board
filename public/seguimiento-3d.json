@@ -1,14 +1,14 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-04T03:23:53.716663Z",
+  "updatedAt": "2026-10-06T01:31:48.826124Z",
   "refreshSeconds": 30,
   "live": {
-    "status": "blocked",
-    "phase": "Ronda 03 · banqueta A en todos los edificios",
-    "title": "Ronda 03 · banqueta A: 12 columnas revisadas",
-    "detail": "9 resueltas; ISC-58, EB-SW y Bley con asignación de frente pendiente. Imágenes y registros actualizados después de cada acción.",
+    "status": "active",
+    "phase": "Revisión de paso 1 · lámina completa",
+    "title": "OB-01 corregido · inventario ampliado y abierto",
+    "detail": "14 columnas conocidas; OB-21 y SER-SANT agregadas. La enumeración de toda la lámina continúa pendiente, visible en el tablero.",
     "activeBlockId": "OB-YG",
-    "activeBuildingId": "ISC-58",
+    "activeBuildingId": "OB-02",
     "activeBlock": null,
     "activeBuilding": null
   },
@@ -85,7 +85,7 @@
         "max": 33
       },
       "estimateBasis": "3 frentes/estructuras conocidas más revisión compartida de la cuadra; frentes anónimos se agregan cuando se cuenten.",
-      "next": "Ronda 02 revisada · siguiente ronda: banqueta A. Cada acción termina con imagen de cabecera y registro.",
+      "next": "Revisión de paso 1 · medir, ajustar, verificar y registrar una columna antes de pasar a la siguiente.",
       "sharedTasks": {
         "plan": "partial",
         "street": "partial",
@@ -263,7 +263,7 @@
             }
           },
           "visualProgress": {
-            "cameraId": "OB-01-round03-software-v1",
+            "cameraId": "OB-01-review01-20261006-software-v1",
             "baseline": {
               "url": "levantamiento/evidence/OB-01/02-inicio-ronda.png",
               "title": "Modelo al iniciar la ronda 02 · cámara fija",
@@ -275,26 +275,26 @@
               "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
             },
             "comparisonBaseline": {
-              "url": "levantamiento/evidence/OB-01/03-inicio-ronda.png",
-              "title": "Modelo al iniciar la ronda 03 · cámara fija",
-              "label": "Inicio · ronda 03",
-              "capturedAt": "2026-10-04T03:22:17.636739Z",
-              "worldSha256": "cb3fa2b4bfc722f06eddb733b655b6ce264af9489ff2e32e962c21bc4521d41c",
-              "sha256": "b7efa08fde093965687c28f05e47539e89c930543fb1c8f2826200949fb33147",
-              "cameraId": "OB-01-round03-software-v1",
+              "url": "levantamiento/evidence/OB-01/20261006-01-antes.png",
+              "title": "Antes de revisar la cubierta",
+              "label": "Antes · 01",
+              "capturedAt": "2026-10-06T01:31:48.826124Z",
+              "worldSha256": "44217a1f386bb39e746ee5843d7b789f5f337a7a77379125b0a3431557b1b7d0",
+              "sha256": "b169b31e19fbc3da412241bfbbf7fe39a885dcc21d8fa4a6e32ce598d663b7f7",
+              "cameraId": "OB-01-review01-20261006-software-v1",
               "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
             },
             "current": {
-              "url": "levantamiento/evidence/OB-01/03-avance-banqueta-a.png",
-              "title": "Avance 03 · banqueta A · OB-01",
-              "label": "Avance · 03",
-              "capturedAt": "2026-10-04T03:22:23.232645Z",
-              "worldSha256": "44217a1f386bb39e746ee5843d7b789f5f337a7a77379125b0a3431557b1b7d0",
-              "sha256": "56f798860af404a64a363bca8f78db044c8b54e5c01670ffd10a98f2b24ae5fe",
-              "cameraId": "OB-01-round03-software-v1",
+              "url": "levantamiento/evidence/OB-01/20261006-01-planta.png",
+              "title": "Cubierta corregida · paso 1",
+              "label": "Revisión · 01",
+              "capturedAt": "2026-10-06T01:31:48.826124Z",
+              "worldSha256": "24df38e516de43dad7cc6bd1b6d8faf56a50caebc3650cb5efd2fdae1b22c614",
+              "sha256": "8508a83d216305dd5545b4575b0b85dd90d7522267074333ab175e36d7b8f584",
+              "cameraId": "OB-01-review01-20261006-software-v1",
               "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
             },
-            "manifest": "levantamiento/evidence/OB-01/03-record-banqueta-a.json",
+            "manifest": "levantamiento/evidence/OB-01/20261006-01-record.json",
             "history": [
               {
                 "cameraId": "OB-01-round02-software-v1",
@@ -331,6 +331,58 @@
                   "task": "street"
                 },
                 "manifest": "levantamiento/evidence/OB-01/02-record-calzada.json"
+              },
+              {
+                "cameraId": "OB-01-round03-software-v1",
+                "baseline": {
+                  "url": "levantamiento/evidence/OB-01/02-inicio-ronda.png",
+                  "title": "Modelo al iniciar la ronda 02 · cámara fija",
+                  "label": "Inicio · ronda 02",
+                  "capturedAt": "2026-10-03T22:59:32.715147Z",
+                  "worldSha256": "2b84f6601ee387c40122cc2f5b10be71b03e3444de679b23eb341c5fed1b2a70",
+                  "sha256": "2bcf1b2d8656f520f9d0d3e73fd9be1f17f9c4489147b6119325268f65aa6e61",
+                  "cameraId": "OB-01-round02-software-v1",
+                  "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
+                },
+                "comparisonBaseline": {
+                  "url": "levantamiento/evidence/OB-01/03-inicio-ronda.png",
+                  "title": "Modelo al iniciar la ronda 03 · cámara fija",
+                  "label": "Inicio · ronda 03",
+                  "capturedAt": "2026-10-04T03:22:17.636739Z",
+                  "worldSha256": "cb3fa2b4bfc722f06eddb733b655b6ce264af9489ff2e32e962c21bc4521d41c",
+                  "sha256": "b7efa08fde093965687c28f05e47539e89c930543fb1c8f2826200949fb33147",
+                  "cameraId": "OB-01-round03-software-v1",
+                  "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
+                },
+                "current": {
+                  "url": "levantamiento/evidence/OB-01/03-avance-banqueta-a.png",
+                  "title": "Avance 03 · banqueta A · OB-01",
+                  "label": "Avance · 03",
+                  "capturedAt": "2026-10-04T03:22:23.232645Z",
+                  "worldSha256": "44217a1f386bb39e746ee5843d7b789f5f337a7a77379125b0a3431557b1b7d0",
+                  "sha256": "56f798860af404a64a363bca8f78db044c8b54e5c01670ffd10a98f2b24ae5fe",
+                  "cameraId": "OB-01-round03-software-v1",
+                  "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
+                },
+                "manifest": "levantamiento/evidence/OB-01/03-record-banqueta-a.json"
+              }
+            ]
+          },
+          "reviewTasks": {
+            "plan": "done"
+          },
+          "reviewDetails": {
+            "plan": "REVISIÓN 06 OCT · cubierta 23,42 × 6,11 m (±1,50 m), reglas manuales de Maps. Se corrigen cubierta y apoyos; patio y acceso quedan separados. Posición aproximada ±5 m; alturas pendientes. Imagen y registro actualizados."
+          },
+          "reviewEvidence": {
+            "plan": [
+              {
+                "title": "Revisión 01 · modelo corregido",
+                "url": "levantamiento/evidence/OB-01/20261006-01-planta.png"
+              },
+              {
+                "title": "Medidas y registro",
+                "url": "levantamiento/evidence/OB-01/20261006-01-record.json"
               }
             ]
           }
@@ -718,6 +770,12 @@
                 "manifest": "levantamiento/evidence/OB-02/02-record-calzada.json"
               }
             ]
+          },
+          "reviewTasks": {
+            "plan": "pending"
+          },
+          "reviewDetails": {
+            "plan": "Pendiente de la nueva revisión de paso 1. El avance anterior se conserva como antecedente, no como revisión recién ejecutada."
           }
         },
         {
@@ -1027,7 +1085,46 @@
                 "manifest": "levantamiento/evidence/ISC-58/02-record-calzada.json"
               }
             ]
+          },
+          "reviewTasks": {
+            "plan": "pending"
+          },
+          "reviewDetails": {
+            "plan": "Pendiente de la nueva revisión de paso 1. El avance anterior se conserva como antecedente, no como revisión recién ejecutada."
           }
+        },
+        {
+          "id": "OB-21",
+          "name": "Obregón 21 · cuerpo provisional ya presente en el modelo",
+          "confidence": "Cuerpo distinto de EB-SW; identificación tomada del modelo existente, pendiente de contraste visual completo.",
+          "tasks": {
+            "plan": "pending",
+            "street": "pending",
+            "sidewalkA": "pending",
+            "sidewalkB": "pending",
+            "corners": "pending",
+            "identity": "pending",
+            "volume": "pending",
+            "facade": "pending",
+            "finish": "pending",
+            "equipment": "pending",
+            "qa": "pending"
+          },
+          "taskDetails": {
+            "plan": "Cuerpo detectado en el modelo sin columna propia. Medir y revisar su huella cuando llegue su turno en el paso 1."
+          },
+          "modelReference": {
+            "ownerPrefix": "21 Av. Obregón",
+            "source": "Modelo publicado antes de esta revisión"
+          },
+          "inventoryAddedAt": "2026-10-06T01:31:48.826124Z",
+          "reviewTasks": {
+            "plan": "pending"
+          },
+          "reviewDetails": {
+            "plan": "Pendiente de la nueva revisión de paso 1. El avance anterior se conserva como antecedente, no como revisión recién ejecutada."
+          },
+          "estimateHours": null
         }
       ],
       "unnamedFronts": "Por contar; todavía no se crean columnas individuales."
@@ -1043,7 +1140,7 @@
         "max": 42
       },
       "estimateBasis": "Una esquina compleja y tres masas provisionales, más revisión compartida. Un solo dueño de geometría vial para evitar duplicados.",
-      "next": "Ronda 02 revisada · siguiente ronda: banqueta A. Cada acción termina con imagen de cabecera y registro.",
+      "next": "Revisión de paso 1 · medir, ajustar, verificar y registrar una columna antes de pasar a la siguiente.",
       "sharedTasks": {
         "plan": "partial",
         "street": "partial",
@@ -1307,6 +1404,12 @@
               "title": "Planta, bloque y peatón comparados desde R-001 P09 con rumbo de consulta 355.84°, y visor real cargado sin errores",
               "detail": "Planta, bloque y peatón comparados desde R-001 P09 con rumbo de consulta 355.84°, y visor real cargado sin errores. El modelo sigue separado y retranqueado respecto del frente continuo de las fotos; faltan límites y escala para corregirlo. Norte fotográfico, cotas y seguimiento vertical del avatar siguen sin verificar; QA no está cerrado."
             }
+          },
+          "reviewTasks": {
+            "plan": "pending"
+          },
+          "reviewDetails": {
+            "plan": "Pendiente de la nueva revisión de paso 1. El avance anterior se conserva como antecedente, no como revisión recién ejecutada."
           }
         },
         {
@@ -1493,6 +1596,12 @@
                 "manifest": "levantamiento/evidence/EB-NW/02-record-calzada.json"
               }
             ]
+          },
+          "reviewTasks": {
+            "plan": "pending"
+          },
+          "reviewDetails": {
+            "plan": "Pendiente de la nueva revisión de paso 1. El avance anterior se conserva como antecedente, no como revisión recién ejecutada."
           }
         },
         {
@@ -1615,6 +1724,12 @@
                 "manifest": "levantamiento/evidence/EB-NE/02-record-calzada.json"
               }
             ]
+          },
+          "reviewTasks": {
+            "plan": "pending"
+          },
+          "reviewDetails": {
+            "plan": "Pendiente de la nueva revisión de paso 1. El avance anterior se conserva como antecedente, no como revisión recién ejecutada."
           }
         },
         {
@@ -1737,6 +1852,12 @@
                 "manifest": "levantamiento/evidence/EB-SE/02-record-calzada.json"
               }
             ]
+          },
+          "reviewTasks": {
+            "plan": "pending"
+          },
+          "reviewDetails": {
+            "plan": "Pendiente de la nueva revisión de paso 1. El avance anterior se conserva como antecedente, no como revisión recién ejecutada."
           }
         }
       ],
@@ -1776,7 +1897,7 @@
         "max": 15
       },
       "estimateBasis": "Un ancla cartográfica con frente aún por empatar, más revisión compartida; fachadas adicionales por contar.",
-      "next": "Ronda 02 revisada · siguiente ronda: banqueta A. Cada acción termina con imagen de cabecera y registro.",
+      "next": "Revisión de paso 1 · medir, ajustar, verificar y registrar una columna antes de pasar a la siguiente.",
       "sharedTasks": {
         "plan": "partial",
         "street": "partial",
@@ -1899,6 +2020,12 @@
                 "url": "levantamiento/evidence/CH-GA-OXXO/03-avance-banqueta-a.png"
               }
             ]
+          },
+          "reviewTasks": {
+            "plan": "pending"
+          },
+          "reviewDetails": {
+            "plan": "Pendiente de la nueva revisión de paso 1. El avance anterior se conserva como antecedente, no como revisión recién ejecutada."
           }
         }
       ],
@@ -1915,7 +2042,7 @@
         "max": 29
       },
       "estimateBasis": "Biblioteca y BBVA como anclas con huellas/frentes por empatar, más revisión compartida.",
-      "next": "Ronda 02 revisada · siguiente ronda: banqueta A. Cada acción termina con imagen de cabecera y registro.",
+      "next": "Revisión de paso 1 · medir, ajustar, verificar y registrar una columna antes de pasar a la siguiente.",
       "sharedTasks": {
         "plan": "partial",
         "street": "partial",
@@ -2038,6 +2165,12 @@
                 "url": "levantamiento/evidence/CH-YG-BIB/03-avance-banqueta-a.png"
               }
             ]
+          },
+          "reviewTasks": {
+            "plan": "pending"
+          },
+          "reviewDetails": {
+            "plan": "Pendiente de la nueva revisión de paso 1. El avance anterior se conserva como antecedente, no como revisión recién ejecutada."
           }
         },
         {
@@ -2164,6 +2297,12 @@
                 "manifest": "levantamiento/evidence/CH-YG-BBVA/02-record-calzada.json"
               }
             ]
+          },
+          "reviewTasks": {
+            "plan": "pending"
+          },
+          "reviewDetails": {
+            "plan": "Pendiente de la nueva revisión de paso 1. El avance anterior se conserva como antecedente, no como revisión recién ejecutada."
           }
         }
       ],
@@ -2181,7 +2320,7 @@
         "max": 29
       },
       "estimateBasis": "Dos anclas cercanas y revisión de calle; el rango no supone que R-000 quede incorporada como ruta productiva.",
-      "next": "Ronda 02 revisada · siguiente ronda: banqueta A. Cada acción termina con imagen de cabecera y registro.",
+      "next": "Revisión de paso 1 · medir, ajustar, verificar y registrar una columna antes de pasar a la siguiente.",
       "sharedTasks": {
         "plan": "partial",
         "street": "partial",
@@ -2313,6 +2452,12 @@
                 "url": "levantamiento/evidence/SER-BLEY/03-avance-banqueta-a.png"
               }
             ]
+          },
+          "reviewTasks": {
+            "plan": "pending"
+          },
+          "reviewDetails": {
+            "plan": "Pendiente de la nueva revisión de paso 1. El avance anterior se conserva como antecedente, no como revisión recién ejecutada."
           }
         },
         {
@@ -2433,7 +2578,47 @@
                 "url": "levantamiento/evidence/SER-HSBC/03-avance-banqueta-a.png"
               }
             ]
+          },
+          "reviewTasks": {
+            "plan": "pending"
+          },
+          "reviewDetails": {
+            "plan": "Pendiente de la nueva revisión de paso 1. El avance anterior se conserva como antecedente, no como revisión recién ejecutada."
           }
+        },
+        {
+          "id": "SER-SANT",
+          "name": "Serdán · huella OSM 499759073 (referencia Santander)",
+          "confidence": "Huella cartográfica identificada; ocupación comercial actual por verificar en acción 6.",
+          "tasks": {
+            "plan": "pending",
+            "street": "pending",
+            "sidewalkA": "pending",
+            "sidewalkB": "pending",
+            "corners": "pending",
+            "identity": "pending",
+            "volume": "pending",
+            "facade": "pending",
+            "finish": "pending",
+            "equipment": "pending",
+            "qa": "pending"
+          },
+          "taskDetails": {
+            "plan": "Huella OSM 499759073 incluida en la cartografía autorizada, ausente del modelo y del tablero. Nueva columna: pendiente de medir y aplicar en 3D."
+          },
+          "modelReference": {
+            "osmWayId": 499759073,
+            "source": "levantamiento/data/osm-context.json",
+            "modelPresent": false
+          },
+          "inventoryAddedAt": "2026-10-06T01:31:48.826124Z",
+          "reviewTasks": {
+            "plan": "pending"
+          },
+          "reviewDetails": {
+            "plan": "Pendiente de la nueva revisión de paso 1. El avance anterior se conserva como antecedente, no como revisión recién ejecutada."
+          },
+          "estimateHours": null
         }
       ],
       "unnamedFronts": "Por contar después de confirmar si el tramo de prueba entra al alcance; excluidos del rango."
@@ -2503,5 +2688,236 @@
       "SER-HSBC"
     ],
     "state": "incomplete"
+  },
+  "activeReview": {
+    "mode": "phase-rounds",
+    "round": 1,
+    "task": "plan",
+    "actionLabel": "Plantas · revisión de toda la lámina",
+    "scope": "full-sheet",
+    "scopeConfirmedAt": "2026-10-06T01:31:48.826124Z",
+    "scopeSource": "Usuario confirma toda la lámina, incluida la zona sur de Plaza Hidalgo.",
+    "mapUrl": "mapa-poligono.jpg",
+    "scopeBounds": [
+      -110.957125,
+      29.074361,
+      -110.952798,
+      29.07749
+    ],
+    "scopeCaution": "Encuadre de trabajo derivado de la calibración de la lámina; no es lindero catastral. Revisar también cuerpos cortados por el borde.",
+    "inventoryComplete": false,
+    "coverageSectors": [
+      {
+        "id": "A1",
+        "state": "pending",
+        "name": "Franja 1, sector 1",
+        "bounds": [
+          -110.957125,
+          29.07670775,
+          -110.95568266666668,
+          29.07749
+        ],
+        "mapUrl": "https://www.google.com/maps/@29.0770989,-110.9564038,122m/data=!3m1!1e3",
+        "note": "Enumeración de cuerpos físicos pendiente; calles y patios no cuentan como edificios."
+      },
+      {
+        "id": "A2",
+        "state": "pending",
+        "name": "Franja 1, sector 2",
+        "bounds": [
+          -110.95568266666668,
+          29.07670775,
+          -110.95424033333335,
+          29.07749
+        ],
+        "mapUrl": "https://www.google.com/maps/@29.0770989,-110.9549615,122m/data=!3m1!1e3",
+        "note": "Enumeración de cuerpos físicos pendiente; calles y patios no cuentan como edificios."
+      },
+      {
+        "id": "A3",
+        "state": "pending",
+        "name": "Franja 1, sector 3",
+        "bounds": [
+          -110.95424033333333,
+          29.07670775,
+          -110.952798,
+          29.07749
+        ],
+        "mapUrl": "https://www.google.com/maps/@29.0770989,-110.9535192,122m/data=!3m1!1e3",
+        "note": "Enumeración de cuerpos físicos pendiente; calles y patios no cuentan como edificios."
+      },
+      {
+        "id": "B1",
+        "state": "pending",
+        "name": "Franja 2, sector 1",
+        "bounds": [
+          -110.957125,
+          29.0759255,
+          -110.95568266666668,
+          29.07670775
+        ],
+        "mapUrl": "https://www.google.com/maps/@29.0763166,-110.9564038,122m/data=!3m1!1e3",
+        "note": "Enumeración de cuerpos físicos pendiente; calles y patios no cuentan como edificios."
+      },
+      {
+        "id": "B2",
+        "state": "pending",
+        "name": "Franja 2, sector 2",
+        "bounds": [
+          -110.95568266666668,
+          29.0759255,
+          -110.95424033333335,
+          29.07670775
+        ],
+        "mapUrl": "https://www.google.com/maps/@29.0763166,-110.9549615,122m/data=!3m1!1e3",
+        "note": "Enumeración de cuerpos físicos pendiente; calles y patios no cuentan como edificios."
+      },
+      {
+        "id": "B3",
+        "state": "pending",
+        "name": "Franja 2, sector 3",
+        "bounds": [
+          -110.95424033333333,
+          29.0759255,
+          -110.952798,
+          29.07670775
+        ],
+        "mapUrl": "https://www.google.com/maps/@29.0763166,-110.9535192,122m/data=!3m1!1e3",
+        "note": "Enumeración de cuerpos físicos pendiente; calles y patios no cuentan como edificios."
+      },
+      {
+        "id": "C1",
+        "state": "pending",
+        "name": "Franja 3, sector 1",
+        "bounds": [
+          -110.957125,
+          29.07514325,
+          -110.95568266666668,
+          29.0759255
+        ],
+        "mapUrl": "https://www.google.com/maps/@29.0755344,-110.9564038,122m/data=!3m1!1e3",
+        "note": "Enumeración de cuerpos físicos pendiente; calles y patios no cuentan como edificios."
+      },
+      {
+        "id": "C2",
+        "state": "pending",
+        "name": "Franja 3, sector 2",
+        "bounds": [
+          -110.95568266666668,
+          29.07514325,
+          -110.95424033333335,
+          29.0759255
+        ],
+        "mapUrl": "https://www.google.com/maps/@29.0755344,-110.9549615,122m/data=!3m1!1e3",
+        "note": "Enumeración de cuerpos físicos pendiente; calles y patios no cuentan como edificios."
+      },
+      {
+        "id": "C3",
+        "state": "pending",
+        "name": "Franja 3, sector 3",
+        "bounds": [
+          -110.95424033333333,
+          29.07514325,
+          -110.952798,
+          29.0759255
+        ],
+        "mapUrl": "https://www.google.com/maps/@29.0755344,-110.9535192,122m/data=!3m1!1e3",
+        "note": "Enumeración de cuerpos físicos pendiente; calles y patios no cuentan como edificios."
+      },
+      {
+        "id": "D1",
+        "state": "pending",
+        "name": "Franja 4, sector 1",
+        "bounds": [
+          -110.957125,
+          29.074361,
+          -110.95568266666668,
+          29.07514325
+        ],
+        "mapUrl": "https://www.google.com/maps/@29.0747521,-110.9564038,122m/data=!3m1!1e3",
+        "note": "Enumeración de cuerpos físicos pendiente; calles y patios no cuentan como edificios."
+      },
+      {
+        "id": "D2",
+        "state": "pending",
+        "name": "Franja 4, sector 2",
+        "bounds": [
+          -110.95568266666668,
+          29.074361,
+          -110.95424033333335,
+          29.07514325
+        ],
+        "mapUrl": "https://www.google.com/maps/@29.0747521,-110.9549615,122m/data=!3m1!1e3",
+        "note": "Enumeración de cuerpos físicos pendiente; calles y patios no cuentan como edificios."
+      },
+      {
+        "id": "D3",
+        "state": "pending",
+        "name": "Franja 4, sector 3",
+        "bounds": [
+          -110.95424033333333,
+          29.074361,
+          -110.952798,
+          29.07514325
+        ],
+        "mapUrl": "https://www.google.com/maps/@29.0747521,-110.9535192,122m/data=!3m1!1e3",
+        "note": "Enumeración de cuerpos físicos pendiente; calles y patios no cuentan como edificios."
+      }
+    ],
+    "buildingOrder": [
+      "OB-01",
+      "OB-02",
+      "ISC-58",
+      "EB-SW",
+      "EB-NW",
+      "EB-NE",
+      "EB-SE",
+      "CH-GA-OXXO",
+      "CH-YG-BIB",
+      "CH-YG-BBVA",
+      "SER-BLEY",
+      "SER-HSBC",
+      "OB-21",
+      "SER-SANT"
+    ],
+    "reviewedBuildings": [
+      "OB-01"
+    ],
+    "closedBuildings": [
+      "OB-01"
+    ],
+    "unresolvedBuildings": [],
+    "pendingBuildings": [
+      "OB-02",
+      "ISC-58",
+      "EB-SW",
+      "EB-NW",
+      "EB-NE",
+      "EB-SE",
+      "CH-GA-OXXO",
+      "CH-YG-BIB",
+      "CH-YG-BBVA",
+      "SER-BLEY",
+      "SER-HSBC",
+      "OB-21",
+      "SER-SANT"
+    ],
+    "nextBuilding": "OB-02",
+    "readyForNextRound": false,
+    "photoRequiredAfterEveryAction": true,
+    "addedBuildings": [
+      "OB-21",
+      "SER-SANT"
+    ],
+    "criterion": "Completar inventario y paso 1 de todas las columnas antes del paso 2; tolerancias visuales explícitas, sin exigir levantamiento catastral.",
+    "method": [
+      "Identificar el cuerpo físico y descartar duplicados.",
+      "Medir solo el alcance de la acción actual con regla o escala visual.",
+      "Aplicar el ajuste al dueño de geometría y sus colisiones.",
+      "Comprobar vecinos, calle y dimensiones.",
+      "Guardar imagen del modelo y registro antes de avanzar."
+    ],
+    "stageAcceptance": "La identidad comercial pertenece a la acción 6; no bloquea una huella física identificada. Reutilizar secciones viales compartidas documentadas.",
+    "updatedAt": "2026-10-06T01:31:48.826124Z"
   }
 }

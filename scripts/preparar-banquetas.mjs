@@ -1,3 +1,4 @@
+import {removePlanReviewHook} from './preparar-revision-plantas.mjs';
 import {readFile,writeFile} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
 import {resolve} from 'node:path';
@@ -8,6 +9,7 @@ export const walkHash=value=>createHash('sha256').update(value).digest('hex');
 const anchors={world:'Ip(c, n), Up(c), c;',visor:'Ig&&(Ug=new Eg(Ng,$,Hg)'};
 const calls={world:'applySidewalkRoundRefinement(c,f,{BufferGeometry:An,Float32BufferAttribute:J,Mesh:Y,Vector3:U,Box3:Zt}), ',visor:'applySidewalkRoundRefinement(Ng,Hg,{BufferGeometry:Er,Float32BufferAttribute:q,Mesh:J,Vector3:U,Box3:Jn});'};
 export function removeSidewalkRoundHook(source,kind='world'){
+ source=removePlanReviewHook(source,kind);
  if(!source.includes('applySidewalkRoundRefinement'))return source;
  const match=source.match(/\nimport \{ applySidewalkRound as applySidewalkRoundRefinement \} from "(?:\.\/|\.\.\/\.\.\/)banquetas-refinement\.js\?v=[a-f0-9]{12}";\n$/),call=calls[kind],anchor=anchors[kind];
  if(!match||source.split(call+anchor).length!==2)throw Error('Round 03: unknown or duplicate hook');

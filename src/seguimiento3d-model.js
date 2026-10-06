@@ -14,15 +14,16 @@ export function columns(data) {
 }
 export function cellInfo(column, task) {
   const { block, building } = column
+  const review = Object.hasOwn(building.reviewTasks || {}, task)
   const shared = SHARED.has(task) && !Object.hasOwn(building.tasks || {}, task)
   const owner = shared ? block : building
   return {
     blockId: block.id, buildingId: building.id, task,
     key: `${owner.id}:${task}`, shared,
-    state: owner[shared ? 'sharedTasks' : 'tasks']?.[task] || 'pending',
-    issue: owner.issues?.[task] || null,
-    detail: owner.taskDetails?.[task] || '',
-    evidence: owner.evidence?.[task] || [],
+    state: review ? building.reviewTasks[task] : owner[shared ? 'sharedTasks' : 'tasks']?.[task] || 'pending',
+    issue: review ? null : owner.issues?.[task] || null,
+    detail: review ? building.reviewDetails?.[task] || '' : owner.taskDetails?.[task] || '',
+    evidence: review ? building.reviewEvidence?.[task] || owner.evidence?.[task] || [] : owner.evidence?.[task] || [],
   }
 }
 export function report(cell, text, id, url) {

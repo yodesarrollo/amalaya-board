@@ -1,3 +1,4 @@
+import {removePlanReviewHook} from './preparar-revision-plantas.mjs';
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import {applyIsc58} from '../public/levantamiento/isc58-refinement.js';
@@ -6,7 +7,7 @@ import {applyPlanRound} from '../public/levantamiento/plantas-refinement.js';
 import {applyStreetRound} from '../public/levantamiento/calzadas-refinement.js';
 import {applySidewalkRound,WALK_TARGETS,WALK_ADDITIONS} from '../public/levantamiento/banquetas-refinement.js';
 import {removeSidewalkRoundHook,refineWalks,walkHash,WALK_BASE_WORLD,WALK_BASE_VISOR} from './preparar-banquetas.mjs';
-const root='public/levantamiento',source=await readFile(root+'/world.js','utf8'),visor=await readFile(root+'/visor/assets/index-RoPA5goG.js','utf8'),runtime=await readFile(root+'/banquetas-refinement.js','utf8'),provenance=JSON.parse(await readFile(root+'/banquetas-provenance.json'));
+const root='public/levantamiento',source=removePlanReviewHook(await readFile(root+'/world.js','utf8')),visor=removePlanReviewHook(await readFile(root+'/visor/assets/index-RoPA5goG.js','utf8'),'visor'),runtime=await readFile(root+'/banquetas-refinement.js','utf8'),provenance=JSON.parse(await readFile(root+'/banquetas-provenance.json'));
 assert.equal(walkHash(removeSidewalkRoundHook(source)),WALK_BASE_WORLD);assert.equal(walkHash(removeSidewalkRoundHook(visor,'visor')),WALK_BASE_VISOR);
 assert.equal(refineWalks(source,'world',walkHash(runtime)),source);assert.equal(refineWalks(visor,'visor',walkHash(runtime)),visor);
 assert.equal(provenance.worldSha256,walkHash(source));assert.equal(provenance.visorSha256,walkHash(visor));assert.equal(provenance.runtimeModuleSha256,walkHash(runtime));
@@ -66,14 +67,14 @@ for(const b of bodies){let moved=false;for(let o=b.mesh;o;o=o.parent)if(o.userDa
 R.prepare(world,'pilot');R.optimize(world);world.updateMatrixWorld(true);assert(new R.Box3().setFromObject(world).getSize(new R.Vector3()).toArray().every(Number.isFinite),'Production merge accepts paving edits');
 assert(visor.includes('applySidewalkRoundRefinement(Ng,Hg,{BufferGeometry:Er,Float32BufferAttribute:q,Mesh:J,Vector3:U,Box3:Jn})'),'Exact standalone runtime aliases');
 assert(visor.indexOf('applySidewalkRoundRefinement(Ng,Hg')>visor.indexOf('applyStreetRoundRefinement(Ng,Hg'),'Ordered standalone overlays');
-const tracking=JSON.parse(await readFile('public/seguimiento-3d.json')),round=JSON.parse(await readFile(root+'/sidewalk-round.json')),buildings=tracking.blocks.flatMap(b=>b.buildings);
+const tracking=JSON.parse(await readFile('public/seguimiento-3d.json')),round=JSON.parse(await readFile(root+'/sidewalk-round.json')),buildings=round.buildingOrder.map(id=>tracking.blocks.flatMap(b=>b.buildings).find(b=>b.id===id));
 assert.equal(buildings.length,12);assert.equal(tracking.workflow.round,3);assert.equal(tracking.workflow.task,'sidewalkA');assert.equal(tracking.workflow.photoRequiredAfterEveryAction,true);assert.equal(round.results.length,12);
 assert.deepEqual(round.buildingOrder,buildings.map(b=>b.id));assert.deepEqual(round.unresolvedBuildings,['ISC-58','EB-SW','SER-BLEY']);assert.equal(round.readyForNextRound,false);
 for(const b of buildings){
- const progress=b.visualProgress,record=JSON.parse(await readFile('public/'+progress.manifest));assert.equal(record.building,b.id);assert.equal(record.action,3);assert.equal(record.status,b.tasks.sidewalkA);assert.equal(progress.current.url,record.current.url);assert.equal(progress.current.worldSha256,walkHash(source));assert.equal(record.worldSha256,walkHash(source));assert.equal(record.camera.id,progress.cameraId);assert.deepEqual(record.camera.target,record.modelCenter);assert(record.triangles>0);assert(record.measurement);
+ const progress=b.visualProgress.manifest?.endsWith('03-record-banqueta-a.json')?b.visualProgress:b.visualProgress.history.find(p=>p.manifest?.endsWith('03-record-banqueta-a.json')),record=JSON.parse(await readFile('public/'+progress.manifest));assert.equal(record.building,b.id);assert.equal(record.action,3);assert.equal(record.status,b.tasks.sidewalkA);assert.equal(progress.current.url,record.current.url);assert.equal(progress.current.worldSha256,walkHash(source));assert.equal(record.worldSha256,walkHash(source));assert.equal(record.camera.id,progress.cameraId);assert.deepEqual(record.camera.target,record.modelCenter);assert(record.triangles>0);assert(record.measurement);
  assert(record.renderMethod.includes('Software rasterization')&&record.renderMethod.includes('Not WebGL'));assert(/lado A/i.test(record.note)||record.status==='blocked');
  const old=JSON.parse(await readFile('public/levantamiento/evidence/'+b.id+'/02-record-calzada.json'));assert.deepEqual(record.modelCenter,old.modelCenter,'Identical fixed camera target across rounds');
  for(const image of [record.baseline,record.current]){const bytes=await readFile('public/'+image.url);assert.equal(walkHash(bytes),image.sha256);assert.equal(bytes.readUInt32BE(16),960);assert.equal(bytes.readUInt32BE(20),600);assert.equal(image.cameraId,record.camera.id);}
- assert.equal(record.baseline.worldSha256,WALK_BASE_WORLD);assert(progress.history.some(p=>p.manifest?.endsWith('02-record-calzada.json')),'Historical round 02 image preserved');
+ assert.equal(record.baseline.worldSha256,WALK_BASE_WORLD);assert(b.visualProgress.history.some(p=>p.manifest?.endsWith('02-record-calzada.json')),'Historical round 02 image preserved');
 }
 console.log('Round 03: exact widths, road/body separation, inherited heights/materials, inscribed registered collisions, reversible viewers, production merge and 12 current column images checked.');

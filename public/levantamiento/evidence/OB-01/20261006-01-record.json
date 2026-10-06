@@ -1,0 +1,79 @@
+{
+  "building": "OB-01",
+  "action": 1,
+  "status": "done",
+  "updatedAt": "2026-10-06T01:31:48.826124Z",
+  "measured": {
+    "frontMeters": 23.42,
+    "depthMeters": 6.11,
+    "uncertaintyMeters": 1.5,
+    "positionUncertaintyMeters": 5
+  },
+  "before": {
+    "frontMeters": 31.740999117091338,
+    "depthMeters": 8.8
+  },
+  "anchors": [
+    {
+      "lat": 29.075816,
+      "lon": -110.955485
+    },
+    {
+      "lat": 29.075835,
+      "lon": -110.955245
+    },
+    {
+      "lat": 29.075763,
+      "lon": -110.955467
+    }
+  ],
+  "registration": {
+    "westMeters": 4.7,
+    "reason": "Registro dentro de ±5 m heredados para conservar separación con OB-02. No es replanteo topográfico."
+  },
+  "sourceUrl": "https://www.google.com/maps/@29.07579,-110.955425,122m/data=!3m1!1e3",
+  "method": "Dos reglas manuales independientes sobre bordes de cubierta satelital; coordenadas de tres esquinas leídas en Maps.",
+  "scope": "Cubierta y estructura de apoyo; patio, muro, malla y postes de acceso se conservan por separado.",
+  "changedObjects": 99,
+  "updatedSupportColliders": 14,
+  "heightStatus": "Sin medir; valores previos conservados",
+  "worldSha256": "24df38e516de43dad7cc6bd1b6d8faf56a50caebc3650cb5efd2fdae1b22c614",
+  "camera": {
+    "id": "OB-01-review01-20261006-software-v1",
+    "direction": [
+      -0.4,
+      0.85,
+      1
+    ],
+    "span": 54,
+    "projection": "orthographic",
+    "target": [
+      -69.03676049320121,
+      1,
+      36.16158537828247
+    ]
+  },
+  "triangles": 74966,
+  "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography.",
+  "baseline": {
+    "url": "levantamiento/evidence/OB-01/20261006-01-antes.png",
+    "title": "Antes de revisar la cubierta",
+    "label": "Antes · 01",
+    "capturedAt": "2026-10-06T01:31:48.826124Z",
+    "worldSha256": "44217a1f386bb39e746ee5843d7b789f5f337a7a77379125b0a3431557b1b7d0",
+    "sha256": "b169b31e19fbc3da412241bfbbf7fe39a885dcc21d8fa4a6e32ce598d663b7f7",
+    "cameraId": "OB-01-review01-20261006-software-v1",
+    "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
+  },
+  "current": {
+    "url": "levantamiento/evidence/OB-01/20261006-01-planta.png",
+    "title": "Cubierta corregida · paso 1",
+    "label": "Revisión · 01",
+    "capturedAt": "2026-10-06T01:31:48.826124Z",
+    "worldSha256": "24df38e516de43dad7cc6bd1b6d8faf56a50caebc3650cb5efd2fdae1b22c614",
+    "sha256": "8508a83d216305dd5545b4575b0b85dd90d7522267074333ab175e36d7b8f584",
+    "cameraId": "OB-01-review01-20261006-software-v1",
+    "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
+  },
+  "note": "Paso 1 revisado con aproximación visual; no declara cerradas las demás acciones."
+}

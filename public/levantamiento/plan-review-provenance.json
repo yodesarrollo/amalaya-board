@@ -1,0 +1,7 @@
+{
+  "baseWorldSha256": "44217a1f386bb39e746ee5843d7b789f5f337a7a77379125b0a3431557b1b7d0",
+  "baseVisorSha256": "7a4dee5cf39ef5be4737545ad91e2e4e449e12e6f01bd931607be805b6f0c59f",
+  "runtimeModuleSha256": "eb8d22536cb3753ce469ca1eb8406aa0fc9a2b0e95858c7a51613835f0c2c421",
+  "worldSha256": "24df38e516de43dad7cc6bd1b6d8faf56a50caebc3650cb5efd2fdae1b22c614",
+  "source": "Manually interpreted Google Maps roof endpoints; only model geometry is published."
+}

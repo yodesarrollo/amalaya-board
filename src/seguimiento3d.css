@@ -68,3 +68,5 @@
 .tracker-round p { margin:6px 0 0; color:#B7A890; font-size:12px; line-height:1.5; }
 .tracker-page:has(.tracker-round) .tracker-table-scroll { max-height:calc(100dvh - 295px); }
 @media(max-width:650px) { .tracker-page:has(.tracker-round) .tracker-table-scroll { max-height:calc(100dvh - 365px); } }
+
+.tracker-coverage{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.5rem;margin:1rem 0}.tracker-coverage a{padding:.6rem;border:1px solid #b9c7be;border-radius:6px;color:inherit}.tracker-round details summary{cursor:pointer}

@@ -1,0 +1,231 @@
+{
+  "mode": "phase-rounds",
+  "round": 1,
+  "task": "plan",
+  "actionLabel": "Plantas · revisión de toda la lámina",
+  "scope": "full-sheet",
+  "scopeConfirmedAt": "2026-10-06T01:31:48.826124Z",
+  "scopeSource": "Usuario confirma toda la lámina, incluida la zona sur de Plaza Hidalgo.",
+  "mapUrl": "mapa-poligono.jpg",
+  "scopeBounds": [
+    -110.957125,
+    29.074361,
+    -110.952798,
+    29.07749
+  ],
+  "scopeCaution": "Encuadre de trabajo derivado de la calibración de la lámina; no es lindero catastral. Revisar también cuerpos cortados por el borde.",
+  "inventoryComplete": false,
+  "coverageSectors": [
+    {
+      "id": "A1",
+      "state": "pending",
+      "name": "Franja 1, sector 1",
+      "bounds": [
+        -110.957125,
+        29.07670775,
+        -110.95568266666668,
+        29.07749
+      ],
+      "mapUrl": "https://www.google.com/maps/@29.0770989,-110.9564038,122m/data=!3m1!1e3",
+      "note": "Enumeración de cuerpos físicos pendiente; calles y patios no cuentan como edificios."
+    },
+    {
+      "id": "A2",
+      "state": "pending",
+      "name": "Franja 1, sector 2",
+      "bounds": [
+        -110.95568266666668,
+        29.07670775,
+        -110.95424033333335,
+        29.07749
+      ],
+      "mapUrl": "https://www.google.com/maps/@29.0770989,-110.9549615,122m/data=!3m1!1e3",
+      "note": "Enumeración de cuerpos físicos pendiente; calles y patios no cuentan como edificios."
+    },
+    {
+      "id": "A3",
+      "state": "pending",
+      "name": "Franja 1, sector 3",
+      "bounds": [
+        -110.95424033333333,
+        29.07670775,
+        -110.952798,
+        29.07749
+      ],
+      "mapUrl": "https://www.google.com/maps/@29.0770989,-110.9535192,122m/data=!3m1!1e3",
+      "note": "Enumeración de cuerpos físicos pendiente; calles y patios no cuentan como edificios."
+    },
+    {
+      "id": "B1",
+      "state": "pending",
+      "name": "Franja 2, sector 1",
+      "bounds": [
+        -110.957125,
+        29.0759255,
+        -110.95568266666668,
+        29.07670775
+      ],
+      "mapUrl": "https://www.google.com/maps/@29.0763166,-110.9564038,122m/data=!3m1!1e3",
+      "note": "Enumeración de cuerpos físicos pendiente; calles y patios no cuentan como edificios."
+    },
+    {
+      "id": "B2",
+      "state": "pending",
+      "name": "Franja 2, sector 2",
+      "bounds": [
+        -110.95568266666668,
+        29.0759255,
+        -110.95424033333335,
+        29.07670775
+      ],
+      "mapUrl": "https://www.google.com/maps/@29.0763166,-110.9549615,122m/data=!3m1!1e3",
+      "note": "Enumeración de cuerpos físicos pendiente; calles y patios no cuentan como edificios."
+    },
+    {
+      "id": "B3",
+      "state": "pending",
+      "name": "Franja 2, sector 3",
+      "bounds": [
+        -110.95424033333333,
+        29.0759255,
+        -110.952798,
+        29.07670775
+      ],
+      "mapUrl": "https://www.google.com/maps/@29.0763166,-110.9535192,122m/data=!3m1!1e3",
+      "note": "Enumeración de cuerpos físicos pendiente; calles y patios no cuentan como edificios."
+    },
+    {
+      "id": "C1",
+      "state": "pending",
+      "name": "Franja 3, sector 1",
+      "bounds": [
+        -110.957125,
+        29.07514325,
+        -110.95568266666668,
+        29.0759255
+      ],
+      "mapUrl": "https://www.google.com/maps/@29.0755344,-110.9564038,122m/data=!3m1!1e3",
+      "note": "Enumeración de cuerpos físicos pendiente; calles y patios no cuentan como edificios."
+    },
+    {
+      "id": "C2",
+      "state": "pending",
+      "name": "Franja 3, sector 2",
+      "bounds": [
+        -110.95568266666668,
+        29.07514325,
+        -110.95424033333335,
+        29.0759255
+      ],
+      "mapUrl": "https://www.google.com/maps/@29.0755344,-110.9549615,122m/data=!3m1!1e3",
+      "note": "Enumeración de cuerpos físicos pendiente; calles y patios no cuentan como edificios."
+    },
+    {
+      "id": "C3",
+      "state": "pending",
+      "name": "Franja 3, sector 3",
+      "bounds": [
+        -110.95424033333333,
+        29.07514325,
+        -110.952798,
+        29.0759255
+      ],
+      "mapUrl": "https://www.google.com/maps/@29.0755344,-110.9535192,122m/data=!3m1!1e3",
+      "note": "Enumeración de cuerpos físicos pendiente; calles y patios no cuentan como edificios."
+    },
+    {
+      "id": "D1",
+      "state": "pending",
+      "name": "Franja 4, sector 1",
+      "bounds": [
+        -110.957125,
+        29.074361,
+        -110.95568266666668,
+        29.07514325
+      ],
+      "mapUrl": "https://www.google.com/maps/@29.0747521,-110.9564038,122m/data=!3m1!1e3",
+      "note": "Enumeración de cuerpos físicos pendiente; calles y patios no cuentan como edificios."
+    },
+    {
+      "id": "D2",
+      "state": "pending",
+      "name": "Franja 4, sector 2",
+      "bounds": [
+        -110.95568266666668,
+        29.074361,
+        -110.95424033333335,
+        29.07514325
+      ],
+      "mapUrl": "https://www.google.com/maps/@29.0747521,-110.9549615,122m/data=!3m1!1e3",
+      "note": "Enumeración de cuerpos físicos pendiente; calles y patios no cuentan como edificios."
+    },
+    {
+      "id": "D3",
+      "state": "pending",
+      "name": "Franja 4, sector 3",
+      "bounds": [
+        -110.95424033333333,
+        29.074361,
+        -110.952798,
+        29.07514325
+      ],
+      "mapUrl": "https://www.google.com/maps/@29.0747521,-110.9535192,122m/data=!3m1!1e3",
+      "note": "Enumeración de cuerpos físicos pendiente; calles y patios no cuentan como edificios."
+    }
+  ],
+  "buildingOrder": [
+    "OB-01",
+    "OB-02",
+    "ISC-58",
+    "EB-SW",
+    "EB-NW",
+    "EB-NE",
+    "EB-SE",
+    "CH-GA-OXXO",
+    "CH-YG-BIB",
+    "CH-YG-BBVA",
+    "SER-BLEY",
+    "SER-HSBC",
+    "OB-21",
+    "SER-SANT"
+  ],
+  "reviewedBuildings": [
+    "OB-01"
+  ],
+  "closedBuildings": [
+    "OB-01"
+  ],
+  "unresolvedBuildings": [],
+  "pendingBuildings": [
+    "OB-02",
+    "ISC-58",
+    "EB-SW",
+    "EB-NW",
+    "EB-NE",
+    "EB-SE",
+    "CH-GA-OXXO",
+    "CH-YG-BIB",
+    "CH-YG-BBVA",
+    "SER-BLEY",
+    "SER-HSBC",
+    "OB-21",
+    "SER-SANT"
+  ],
+  "nextBuilding": "OB-02",
+  "readyForNextRound": false,
+  "photoRequiredAfterEveryAction": true,
+  "addedBuildings": [
+    "OB-21",
+    "SER-SANT"
+  ],
+  "criterion": "Completar inventario y paso 1 de todas las columnas antes del paso 2; tolerancias visuales explícitas, sin exigir levantamiento catastral.",
+  "method": [
+    "Identificar el cuerpo físico y descartar duplicados.",
+    "Medir solo el alcance de la acción actual con regla o escala visual.",
+    "Aplicar el ajuste al dueño de geometría y sus colisiones.",
+    "Comprobar vecinos, calle y dimensiones.",
+    "Guardar imagen del modelo y registro antes de avanzar."
+  ],
+  "stageAcceptance": "La identidad comercial pertenece a la acción 6; no bloquea una huella física identificada. Reutilizar secciones viales compartidas documentadas.",
+  "updatedAt": "2026-10-06T01:31:48.826124Z"
+}
