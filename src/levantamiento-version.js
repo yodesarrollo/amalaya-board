@@ -1,1 +1,1 @@
-export const VERSION_LEVANTAMIENTO = 'ffbcdba9a0dd'
+export const VERSION_LEVANTAMIENTO = '0abab345f69c'

@@ -43,7 +43,9 @@ export function applySheetPlan(world, colliders, R) {
     geometry.rotateX(-Math.PI/2);
     const materials = (Array.isArray(template.material)?template.material:[template.material]).map(m=>m.clone());
     for (const m of materials) { m.map = null; m.color.set(plan.color || '#c1b7a5'); }
-    const body = new template.constructor(geometry,materials);
+    // One material must be passed as a material, not a one-entry array:
+    // ExtrudeGeometry assigns wall faces to material group 1.
+    const body = new template.constructor(geometry,materials.length===1?materials[0]:materials);
     body.position.y=.05; body.name='Planta física · '+plan.id;
     body.castShadow=body.receiveShadow=true;
     body.userData={sheetPlanId:plan.id,footprintStatus:'visual-approximation',heightStatus:'unmeasured modelling default',heightMeters:height};
