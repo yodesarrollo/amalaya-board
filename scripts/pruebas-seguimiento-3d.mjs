@@ -67,7 +67,8 @@ const payload = report(cell, ' Revisar foto ', 'test-report-id', 'https://exampl
 assert.equal(payload.id, 'test-report-id', 'reintentos usan el mismo ID')
 assert.equal(payload.elemento.valores.building, 'OB-02')
 assert.ok(payload.texto.includes('Falta evidencia') && payload.texto.includes('Revisar foto'))
-assert.ok(app.includes("apiCall('chinche'") && !app.includes("apiCall('getAll'"), 'envía instrucciones sin leer datos privados')
+const dialogApp = await readFile(new URL('../src/seguimiento3d-dialog.jsx', import.meta.url), 'utf8')
+assert.ok(dialogApp.includes("apiCall('chinche'") && !dialogApp.includes("apiCall('getAll'"), 'envía instrucciones sin leer datos privados')
 assert.equal((app.match(/<table /g) || []).length, 1, 'una sola matriz')
 for (const block of data.blocks) for (const owner of [block, ...block.buildings]) {
   for (const [task, state] of Object.entries(owner.tasks || owner.sharedTasks || {}))
