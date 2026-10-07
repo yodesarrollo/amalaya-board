@@ -4,7 +4,7 @@ import { readFileSync } from 'node:fs'
 const source=readFileSync(new URL('../apps-script/Code.gs',import.meta.url),'utf8')
 const id='CHN-DEMO-1',url='https://github.com/yodesarrollo/amalaya-board/issues/123'
 const closed={number:123,html_url:url,body:'# Chinche '+id,state:'closed',state_reason:'completed',closed_at:'2026-09-30T12:00:00Z'}
-function fixture({github=closed,current='tomada',issue=url,historyFail=false,duplicate=false,http=200}={}){
+function fixture({github=closed,current='tomada',issue=url,historyFail=false,duplicate=false,http=200,chincheId=id}={}){
   const state={current,issue,fetches:0,writes:0,log:[]}
   const history={getLastRow:()=>1,getRange:()=>({setValues:rows=>{if(historyFail)throw Error('fake failure');state.log=structuredClone(rows)},getValues:()=>state.log})}
   const sheet={getRange:()=>({getValues:()=>[[state.current,state.issue]],setValues:rows=>{state.writes++;[state.current,state.issue]=rows[0]}})}
@@ -16,11 +16,16 @@ function fixture({github=closed,current='tomada',issue=url,historyFail=false,dup
   vm.runInContext(source,c)
   c.jsonOut=x=>x;c.conCandado=fn=>fn();c.tokenPuenteValido=k=>k==='fixture-secret'
   c.obtenerHoja=name=>name==='Chinches'?sheet:history;c.buscarFila=()=>2
-  c.leerHoja=()=>duplicate?[{id},{id}]:[{id}]
-  const call=(patch={})=>c.accChincheEstado({k:'fixture-secret',id,issue:url,estado_previo:'tomada',estado:'terminada',motivo:'completed',...patch})
+  c.leerHoja=()=>duplicate?[{id:chincheId},{id:chincheId}]:[{id:chincheId}]
+  const call=(patch={})=>c.accChincheEstado({k:'fixture-secret',id:chincheId,issue:url,estado_previo:'tomada',estado:'terminada',motivo:'completed',...patch})
   return {state,call}
 }
 const normal=fixture();assert.equal(normal.call().ok,true);assert.equal(normal.state.current,'terminada');assert.equal(normal.state.log.length,2)
+const legacy='e22cc5ad-5769-429c-9c6d-ddff44c56a7f'
+const legacyClosed={...closed,body:'# Chinche '+legacy}
+const legacyFixture=fixture({chincheId:legacy,github:legacyClosed});assert.equal(legacyFixture.call().ok,true)
+const arbitrary='legacy_id_con_espacios'
+const arbitraryFixture=fixture({chincheId:arbitrary,github:{...closed,body:'# Chinche '+arbitrary}});assert.equal(arbitraryFixture.call().ok,false)
 assert.equal(normal.call().repetida,true);assert.equal(normal.state.writes,1);assert.equal(normal.state.fetches,2)
 const badCases=[
   [{},{k:'wrong'}], [{},{estado:'tomada'}], [{},{motivo:'arbitrary'}],
