@@ -35,7 +35,7 @@ async function check(dir){
     if(path.includes('/evidence/OB-01/'))assert(roundProgressFiles.has(item.name)||ob01EvidenceFiles.has(item.name),`Evidencia fuera del alcance OB-01: ${path}`)
     if(path.includes('/evidence/OB-02/'))assert(roundProgressFiles.has(item.name)||ob02EvidenceFiles.has(item.name),`Evidencia fuera del alcance OB-02: ${path}`)
     assert(!/\.(map|env|csv|zip|bundle)$/i.test(item.name),`Archivo no publicable: ${path}`)
-    if(dir===`${root}/cuadras`){assert(item.name==='C01.svg','Evidencia de cuadra no revisada: '+path);const svg=await readFile(path,'utf8');assert(!/<script|foreignObject|\bon[a-z]+\s*=|(?:href|src)=["']https?:/i.test(svg),'La comparación debe ser autónoma y sin contenido activo')}
+    if(dir===`${root}/cuadras`){assert(/^(?:C01\.svg|C(?:0[1-9]|[12]\d|3[0-3])-inventario\.jpg|asignaciones\.json|manzanas-inegi\.geojson)$/.test(item.name),'Evidencia de cuadra no revisada: '+path);if(item.name.endsWith('.svg')){const svg=await readFile(path,'utf8');assert(!/<script|foreignObject|\bon[a-z]+\s*=|(?:href|src)=["']https?:/i.test(svg),'La comparación debe ser autónoma y sin contenido activo')}}
     if(path.includes('/data/'))assert(approved.has(item.name),`Datos no revisados: ${path}`)
     assert((await stat(path)).size<25000000,`Activo demasiado grande: ${path}`)
     if(/\.(json|html|js)$/.test(path)){
