@@ -10,3 +10,5 @@
 [data-territorio-board]:fullscreen{overflow:auto;background:#141010}[data-territorio-board]:fullscreen .tour-stage{height:65vh}
 
 .tour-workspace,.tour-workspace>*{min-width:0}.tour-space-results p{font-size:12px;color:var(--muted)}
+
+.tour [hidden], .recorrido-unico [hidden] {display:none!important}

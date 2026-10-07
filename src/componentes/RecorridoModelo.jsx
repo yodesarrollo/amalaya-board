@@ -245,7 +245,7 @@ export default function RecorridoModelo() {
   const cambiarModo = modoNuevo => {
     // Volver a tocar la vista en la que ya estás no desmonta su visor: si aquí
     // se olvidara que ya está listo, dejaría de obedecer anterior/siguiente.
-    if (modoNuevo === modo && (modoNuevo === 'caminar' || modoNuevo === 'streetview')) return
+    if (modoNuevo === modo && (modoNuevo === 'caminar' || modoNuevo === 'streetview')) {if(modoNuevo==='caminar' && ['light','failed','timeout'].includes(estadoCaminata))setIntentoCaminata(n=>n+1);return}
     streetViewReady.current = false
     destinoStreetView.current = ''
     if (modoNuevo === 'planta' || modoNuevo === 'modelo') {
@@ -348,7 +348,7 @@ export default function RecorridoModelo() {
         ))}
       </div>
 
-      <div className="recorrido-unico__punto">
+      <div className="recorrido-unico__punto" hidden={modo === 'caminar' && estadoCaminata === 'light'}>
         <button type="button" aria-label="Punto anterior" disabled={!punto || indice <= 0} onClick={() => avanzar(-1)}><ChevronLeft size={17} /></button>
         <label className="recorrido-unico__ruta">
           <span>Recorrido</span>
@@ -390,7 +390,7 @@ export default function RecorridoModelo() {
       </div>
       {(modo === 'caminar' || modo === 'streetview') && (
         <div className={`recorrido-unico__ayuda recorrido-unico__ayuda--${modo}`} role="status">
-          {modo === 'caminar' ? 'WASD / flechas · Shift para correr · clic y ratón para mirar' : `Punto ${indice + 1} de ${ruta?.puntos?.length || 1} · arrastra para mirar`}
+          {modo === 'caminar' && estadoCaminata === 'light' ? 'Vista ligera · elige un edificio, gira o acerca el modelo' : modo === 'caminar' ? 'WASD / flechas · Shift para correr · clic y ratón para mirar' : `Punto ${indice + 1} de ${ruta?.puntos?.length || 1} · arrastra para mirar`}
         </div>
       )}
     </div>
