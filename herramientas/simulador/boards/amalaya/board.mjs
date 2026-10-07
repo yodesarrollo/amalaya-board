@@ -375,23 +375,27 @@ export async function guion({ pagina, foto, clic, base }) {
       const r = m.getCanvas().getBoundingClientRect(); const q = m.project(f.geometry.coordinates)
       return { x: r.left + q.x, y: r.top + q.y }
     }, PUNTO_CON_RENDER)
+    // El círculo abre la pantalla Street View (ya no un pop-up aparte), en ese punto.
     await pagina.mouse.click(p.x, p.y); await pagina.waitForTimeout(5000)
-    const visor = pagina.frameLocator('iframe[title="Recorrido 360"]')
+    const enStreetView = await pagina.locator('.recorrido-unico__modos button.activo:has-text("Street View")').count()
+    console.log(`${enStreetView ? '✓' : '✗'} tocar un círculo del recorrido abre su Street View`)
+    const visor = pagina.frameLocator('iframe[title="Street View 360 del punto seleccionado"]')
     const apagado = await visor.locator('.slider.apagado').count()
     console.log(`${apagado === 0 ? '✓' : '✗ APAGADO'} slider del punto con render: ${apagado === 0 ? 'encendido' : 'apagado'}`)
     await visor.locator('#mezcla').fill('65'); await foto('12-360-render-slider', 800)
-    await visor.locator('canvas').first().click({ position: { x: 5, y: 5 } }).catch(() => {})
-    await pagina.keyboard.press('Shift+ArrowRight')
+    await clic('.recorrido-unico__paso:has-text("Siguiente")')
     await foto('12b-360-render-en-camino', 3000)
+    const sinRender = await visor.locator('.slider.apagado').count()
+    console.log(`${sinRender === 1 ? '✓' : '✗'} Siguiente pasa de punto sin salir del Street View (el que sigue aún no tiene render)`)
     // Regresión: regresar al punto con render (ya en caché) no debe tronar
     const errores360 = []
     const alError = (e) => errores360.push(e.message)
     pagina.on('pageerror', alError)
-    await pagina.keyboard.press('Shift+ArrowLeft'); await pagina.waitForTimeout(2500)
+    await clic('.recorrido-unico__paso:has-text("Anterior")'); await pagina.waitForTimeout(2500)
     pagina.off('pageerror', alError)
     const apagado2 = await visor.locator('.slider.apagado').count()
     console.log(`${errores360.length === 0 && apagado2 === 0 ? '✓' : '✗'} 360: volver al punto con render sin error (${errores360.join('; ') || 'sin errores'})`)
-    await clic('button[aria-label="Cerrar"]')
+    await clic('.recorrido-unico__modos button:has-text("3D")')
   } else console.log('✗ no encontré el punto con render en el mapa')
   // Objetivo 5: biblioteca 3D — recorre los 8 módulos con fachadas y azoteas
   {

@@ -22,6 +22,7 @@ const SECCIONES = [
       'El mapa nace en 2D sobre el satélite, se levanta por capas y vuela al 3D (toca para saltarlo). Las 5 rayitas de cada espacio son su avance.',
       'Toca un espacio para abrir su ficha, o búscalo en «Espacios». Con "Mover espacios" (editor en adelante) arrastras los rótulos a su lugar.',
       'Con "+ Espacio" creas uno nuevo: nace al centro del mapa y lo arrastras a donde va.',
+      'Los círculos de colores son los puntos del recorrido: toca uno y se abre su Street View. Ahí adentro, Anterior y Siguiente (o las flechas ← → del teclado) pasan de punto sin salir de la vista.',
     ],
   },
   {
@@ -71,7 +72,7 @@ const SECCIONES = [
       'La forma más fácil de entrar es «Continuar con Google» con el correo que el admin registró. '+
       'También puedes entrar con tu liga personal (una dirección que abre el board directo) o pedir que te llegue al correo registrado desde la pantalla de entrada. La liga es tan personal como el código; el admin puede revocarla cuando quiera.',
       'Los datos del proyecto viven protegidos en Google (Sheet privado + servidor que valida tu acceso en cada llamada). El sitio público solo lleva la careta.',
-      'La Chinche (📌, abajo a la derecha): señala algo que quieras cambiar, díctalo y se clava. Luego «Mandar a Claude» lo vuelve un issue en GitHub y la revisión diaria lo atiende.',
+      'La Chinche (📌, abajo a la derecha): señala algo que quieras cambiar —también sobre el mapa, la imagen del Street View o la caminata 3D, donde guarda la foto de lo que tocaste—, escríbelo o toca «Dictar» y dilo en voz alta, y se clava. Luego «Mandar a Claude» lo vuelve un issue en GitHub y la revisión diaria lo atiende.',
     ],
   },
 ]

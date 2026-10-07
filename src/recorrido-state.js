@@ -20,6 +20,23 @@ export function mensajeRecorrido(data, routes) {
   const index = ruta?.puntos.findIndex(p => p.id === data.punto)
   return index >= 0 ? { routeId: ruta.id, index } : null
 }
+// Un círculo del mapa trae {ruta, punto}; si la ruta no viene o ya no existe,
+// el punto manda (sus IDs son únicos entre rutas).
+export function buscarPunto(routes, routeId, pointId) {
+  if (!pointId) return null
+  const candidatas = [routes.find(r => r.id === routeId), ...routes].filter(Boolean)
+  for (const ruta of candidatas) {
+    const index = ruta.puntos.findIndex(p => p.id === pointId)
+    if (index >= 0) return { routeId: ruta.id, index }
+  }
+  return null
+}
+// Vecino del punto dentro de su ruta: null en los extremos (no da la vuelta).
+export function vecinoRecorrido(route, index, delta) {
+  const destino = index + delta
+  const punto = route?.puntos?.[destino]
+  return punto && destino >= 0 ? { index: destino, punto, etiqueta: `P${String(destino + 1).padStart(2, '0')}` } : null
+}
 export function urlPanorama(base, route, point) {
   const q = new URLSearchParams({ embed:'1', portal:'1', r:route.id, p:point.id })
   return `${base}recorrido/?${q}`

@@ -13,6 +13,7 @@ import AyudaPantalla from './componentes/AyudaPantalla.jsx'
 import { puedeEditarRol } from './roles.js'
 import { BASE, APPS_SCRIPT_URL } from './config.js'
 import { apiCall } from './api.js'
+import { contextoChinche, repintarParaChinche } from './chinche-contexto.js'
 
 import { BIBLIOTECA_3D } from './modelos3d.js'
 const Biblioteca3D = lazy(() => import('./componentes/Biblioteca3D.jsx'))
@@ -29,7 +30,7 @@ function usarChinche(sesion, modo, seccion) {
     if (!activa || window.YODChinche || document.getElementById('amalaya-chinche')) return
     const s = document.createElement('script')
     s.id = 'amalaya-chinche'
-    s.src = `${BASE}chinche.js?v=f9`
+    s.src = `${BASE}chinche.js?v=f10`
     // Las pantallas sueltas (modelo 3D, recorrido) leen de aquí a qué servidor mandar.
     try { localStorage.setItem('amalaya_exec', APPS_SCRIPT_URL) } catch { /* modo privado */ }
     s.onload = () => window.YODChinche?.init({
@@ -37,6 +38,9 @@ function usarChinche(sesion, modo, seccion) {
       // Envío automático: cada chinche va sola al servidor (sin «Mandar a Claude»).
       enviar: (ch) => apiCall('chinche', { codigo: sesionRef.current?.codigo, chinche: ch }),
       quien: () => sesion?.nombre || '',
+      // Mapa y visores dicen qué había bajo el toque (el DOM solo ve un lienzo).
+      contexto: (toque) => contextoChinche(toque),
+      repintar: (marco) => repintarParaChinche(marco),
       seccion: () => seccionRef.current,
       vista: () => seccionRef.current,
     })

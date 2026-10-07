@@ -71,6 +71,8 @@ jobs:
             f"- **Pantalla / vista:** {c.get('pantalla','')} · {c.get('vista','')}",
             f"- **Elemento:** `{el.get('css','')}`" if el.get('css') else "- **Elemento:** (lienzo / sin selector)",
             f"- **Dice el elemento:** \"{el.get('texto','')}\"" if el.get('texto') else "",
+            ("- **Contexto:** " + " · ".join(f"{k}: {v}" for k, v in (el.get('valores') or {}).items() if str(v).strip())) if isinstance(el.get('valores'), dict) and any(str(v).strip() for v in el['valores'].values()) else "",
+            f"- **Punto exacto:** fracción x={(det.get('ancla') or {}).get('x')} y={(det.get('ancla') or {}).get('y')} del visor" if (det.get('ancla') or {}).get('x') is not None else "",
             f"- **Dónde vive en el código:** {det.get('codigo','')}",
             "",
             "_Llegó sola desde el board (pestaña «Chinches» del Sheet) por el puente .github/workflows/chinches.yml._",

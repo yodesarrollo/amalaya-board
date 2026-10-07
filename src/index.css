@@ -574,6 +574,31 @@ input[type="range"] { accent-color: #C9A45C; }
 .recorrido-unico__version { display: flex; gap: 2px; padding: 2px; border: 1px solid rgba(201,164,92,.25); border-radius: 9px; }
 .recorrido-unico__version button { min-height: 32px; padding: 0 9px; font-size: 9px; }
 .recorrido-unico__ayuda { bottom: 12px; left: 50%; transform: translateX(-50%); max-width: calc(100% - 20px); padding: 8px 12px; border-radius: 999px; text-align: center; font: 600 10px/1.3 'Montserrat', sans-serif; color: #E7D9C3; }
+/* Street View: su pista sube para no tapar el deslizador antes/después del visor. */
+.recorrido-unico__ayuda--streetview { bottom: 74px; }
+/* Pasar de punto sin salir de Street View: dos botones grandes a media altura
+   (fuera de la esfera, así no dependen de hacia dónde estés mirando). */
+.recorrido-unico__pasos { position: absolute; z-index: 40; inset: 50% 10px auto 10px; transform: translateY(-50%); display: flex; align-items: center; justify-content: space-between; gap: 10px; pointer-events: none; }
+.recorrido-unico__paso {
+  display: inline-flex; align-items: center; gap: 8px; min-height: 56px; padding: 0 16px 0 10px; pointer-events: auto; cursor: pointer;
+  color: #141010; background: linear-gradient(180deg,#E8C466,#C9A45C); border: 1px solid rgba(20,16,16,.55); border-radius: 14px;
+  box-shadow: 0 14px 30px -12px #000; font: 800 13px/1.1 'Montserrat', sans-serif; text-align: left; transition: transform .16s ease, filter .16s ease;
+}
+.recorrido-unico__paso:last-child { padding: 0 10px 0 16px; text-align: right; }
+.recorrido-unico__paso > span { display: grid; gap: 3px; }
+.recorrido-unico__paso small { font: 700 10px/1 'Montserrat', sans-serif; letter-spacing: .08em; opacity: .75; }
+.recorrido-unico__paso:hover:not(:disabled) { filter: brightness(1.08); transform: scale(1.04); }
+.recorrido-unico__paso:focus-visible { outline: 3px solid #F2EAD9; outline-offset: 2px; }
+.recorrido-unico__paso:disabled { cursor: default; color: #B7A890; background: rgba(20,16,16,.82); border-color: rgba(201,164,92,.3); box-shadow: none; }
+.recorrido-unico__extras { display: flex; align-items: center; gap: 4px; }
+.recorrido-unico__extras > label, .recorrido-unico__extras > a {
+  display: inline-flex; align-items: center; gap: 5px; min-height: 36px; padding: 0 9px; border: 1px solid rgba(201,164,92,.32); border-radius: 8px;
+  color: #D5C8B4; background: #211b15; font: 700 9px/1 'Montserrat', sans-serif; white-space: nowrap; cursor: pointer; text-decoration: none;
+}
+.recorrido-unico__extras > label:hover, .recorrido-unico__extras > a:hover { color: #fff; border-color: #C9A45C; }
+.recorrido-unico__extras > label:focus-within { outline: 2px solid #C9A45C; outline-offset: 1px; }
+.recorrido-unico__extras > label.ocupado { opacity: .6; pointer-events: none; }
+.recorrido-unico__extras input { position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
 @media (max-width: 760px) {
   .recorrido-unico__modos { top: 58px; width: calc(100% - 16px); justify-content: stretch; gap: 2px; }
   .recorrido-unico__modos button { flex: 1; gap: 4px; min-width: 0; min-height: 38px; padding: 0 5px; font-size: 9px; }
@@ -585,4 +610,13 @@ input[type="range"] { accent-color: #C9A45C; }
   .recorrido-unico__version { grid-column: 1 / -1; justify-content: end; }
   .recorrido-unico__version button { min-height: 30px; }
   .recorrido-unico__ayuda { bottom: 10px; width: max-content; max-width: calc(100% - 20px); font-size: 9px; }
+  .recorrido-unico__ayuda--streetview { bottom: 96px; }
+  /* En el cel, render y pantalla completa comparten renglón con Actual/Amalaya. */
+  .recorrido-unico__punto:has(.recorrido-unico__extras) .recorrido-unico__version { grid-column: 3 / -1; }
+  .recorrido-unico__extras { grid-column: 1 / 3; grid-row: 2; justify-content: start; }
+  .recorrido-unico__extras > label, .recorrido-unico__extras > a { min-height: 32px; padding: 0 8px; }
+  .recorrido-unico__extras > a span { display: none; }
+  .recorrido-unico__pasos { inset: 58% 6px auto 6px; }
+  .recorrido-unico__paso { min-height: 48px; padding: 0 10px 0 4px; font-size: 11px; }
+  .recorrido-unico__paso:last-child { padding: 0 4px 0 10px; }
 }

@@ -14,6 +14,7 @@ import { recuperarCartografia } from '../mapa-recuperacion.js'
 import referenciaSuelo from '../../public/levantamiento/ground-reference.json'
 import { montarLevantamiento } from '../levantamiento-mapa.js'
 import { ZONAS, MODULOS, zonasDeEspacio, centroDeZonas, filasModelos } from '../territorio.js'
+import { registrarContextoChinche, describirToqueMapa } from '../chinche-contexto.js'
 
 // ============================================================
 // Mapa 3D — el corazón de Amalaya sobre la ciudad real.
@@ -268,7 +269,7 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
   // edicion: { modoEdicion, editandoPuntos, rutaSel, onMoverEspacio(id, pctCentroX, pctCentroY), onAgregarPunto(pctX, pctY) }
   const edRef = useRef(edicion)
   useEffect(() => { edRef.current = edicion }, [edicion])
-  const { datos, sesion, modo, editarFila, crearFila, verArchivo, subirArchivo } = usarDatos()
+  const { datos, sesion, modo, editarFila, crearFila } = usarDatos()
   const puedeEditar = modo !== 'demo' && puedeEditarRol(sesion?.rol)
   const geoSheet = useMemo(() => leerGeo(datos?.Config), [datos?.Config])
   const puedeCalibrar = modo !== 'demo' && sesion?.rol === 'admin'
@@ -362,7 +363,6 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
     return () => window.removeEventListener('amalaya:scenario', sync)
   }, [])
   // El monito: soltarlo en una calle abre el Street View de ese punto.
-  const [pop360, setPop360] = useState(null)             // {ruta, punto} → pop-up del recorrido 360
   const [monito, setMonito] = useState(false)          // esperando el clic
   const [punto, setPunto] = useState(null)              // {lng, lat, heading}
   const monitoRef = useRef(null)
@@ -402,7 +402,7 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
       if (inclinada && Number.isFinite(heading)) setCara(Math.round(rumboElegido / 90) % 4)
       m.easeTo({ center: [lng, lat], zoom: 18.55, pitch: inclinada ? 58 : 0, bearing: rumboElegido, duration: 750 })
     }
-    const alCambiarModoRecorrido = () => { setPop360(null); setPunto(null); setMonito(false) }
+    const alCambiarModoRecorrido = () => { setPunto(null); setMonito(false) }
     const alEnfocarModelo = (event) => {
       const estudio = ESTUDIOS_MODELO.find((item) => item.id === event.detail?.id)
       if (!estudio || !m) return
@@ -521,9 +521,12 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
         }
         m.getSource('recorrido')?.setData({ type: 'FeatureCollection', features: feats })
       }).catch(() => {})
+      // Un círculo del recorrido abre su Street View (RecorridoModelo escucha):
+      // la misma pantalla del modo «Street View», ya en ese punto.
       m.on('click', 'recorrido-toque', (ev) => {
+        if (monitoActivo.current || edRef.current.modoEdicion || edRef.current.editandoPuntos) return
         const f = ev.features?.[0]?.properties || {}
-        if (f.id) setPop360({ ruta: f.ruta || '', punto: f.id })
+        if (f.id) window.dispatchEvent(new CustomEvent('amalaya:recorrido-abrir', { detail: { ruta: f.ruta || '', punto: f.id } }))
       })
       m.on('mouseenter', 'recorrido-toque', () => { m.getCanvas().style.cursor = 'pointer' })
       m.on('mouseleave', 'recorrido-toque', () => { m.getCanvas().style.cursor = '' })
@@ -768,58 +771,43 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
     onRecorrer?.(fila.id)
   }
 
-  // --- el visor 360 avisa en qué punto va: lo marcamos en el mapa --------
-  useEffect(() => {
-    const alMensaje = (ev) => {
-      const d = ev.data || {}
-      if (d.tipo !== 'recorrido360' || !mapa.current) return
-      mapa.current.getSource('recorrido-activo')?.setData({ type: 'FeatureCollection', features: [{ type: 'Feature', properties: {}, geometry: { type: 'Point', coordinates: [d.lng, d.lat] } }] })
-      mapa.current.easeTo({ center: [d.lng, d.lat], duration: 600 })
+  // --- la Chinche sobre el mapa: qué había bajo el toque y su foto --------
+  useEffect(() => registrarContextoChinche(({ el, x, y }) => {
+    const m = mapa.current
+    if (!m || el !== m.getCanvas()) return null
+    const caja = el.getBoundingClientRect()
+    const pt = [x - caja.left, y - caja.top]
+    const { lng, lat } = m.unproject(pt)
+    const capasToque = ['recorrido-toque', 'paradas', 'espacios-toque', 'espacios-3d'].filter((id) => m.getLayer(id))
+    const vistos = m.queryRenderedFeatures(pt, { layers: capasToque })
+    const de = (...capas) => vistos.find((f) => capas.includes(f.layer.id))?.properties
+    const escala = el.width / (caja.width || 1)
+    m.redraw() // un lienzo WebGL solo conserva sus píxeles en el cuadro en que se pinta
+    return {
+      ...describirToqueMapa({
+        vista: m.getPitch() > 25 ? '3D' : 'Planta', lat, lng, zoom: m.getZoom(), rumbo: m.getBearing(),
+        espacio: de('espacios-toque', 'espacios-3d'), parada: de('paradas'), punto: de('recorrido-toque'),
+      }),
+      foto: { canvas: el, x: pt[0] * escala, y: pt[1] * escala },
     }
-    window.addEventListener('message', alMensaje)
-    return () => window.removeEventListener('message', alMensaje)
-  }, [])
-  useEffect(() => { if (!pop360 && mapa.current && listo) mapa.current.getSource('recorrido-activo')?.setData({ type: 'FeatureCollection', features: [] }) }, [pop360, listo])
+  }), [])
 
-  // --- render 360 «después» (Drive, privado) ------------------------
-  // Cada punto del recorrido acepta un render: fila de Archivos con
-  // tipo='render360' y espacio_id = id del punto. El visor pregunta por el
-  // punto en que va; aquí se pide al servidor y se le pasa como data URL.
-  const visor360 = useRef(null)
-  const [puntoVisor, setPuntoVisor] = useState(null)
-  const [subiendoRender, setSubiendoRender] = useState(false)
-  const renderDe = (puntoId) => (datos?.Archivos || []).filter((a) => String(a.tipo) === 'render360' && String(a.espacio_id) === String(puntoId)).pop()
+  // --- el punto elegido del recorrido se marca entre los círculos del mapa ---
+  const puntoRecorrido = useRef(null)
   useEffect(() => {
-    const alMensaje = async (ev) => {
-      const d = ev.data || {}
-      if (d.tipo !== 'recorrido360' || !visor360.current || ev.source !== visor360.current.contentWindow) return
-      setPuntoVisor(d.punto)
-      const fila = renderDe(d.punto)
-      const responder = (dataUrl, estado) => visor360.current?.contentWindow?.postMessage({ tipo: 'render360', punto: d.punto, dataUrl, estado }, '*')
-      if (!fila || modo === 'demo') return responder(null, 'en-camino')
-      try {
-        const r = await verArchivo(fila.file_id)
-        responder(`data:${r.mime || 'image/jpeg'};base64,${r.base64}`, 'listo')
-      } catch {
-        responder(null, 'error')
-      }
+    const marcar = () => {
+      const p = puntoRecorrido.current
+      mapa.current?.getSource('recorrido-activo')?.setData({ type: 'FeatureCollection', features: p ? [{ type: 'Feature', properties: {}, geometry: { type: 'Point', coordinates: [p.lng, p.lat] } }] : [] })
     }
-    window.addEventListener('message', alMensaje)
-    return () => window.removeEventListener('message', alMensaje)
-  }, [datos?.Archivos, modo]) // eslint-disable-line react-hooks/exhaustive-deps
-  async function subirRender(file) {
-    if (!file || !puntoVisor) return
-    setSubiendoRender(true)
-    try {
-      await subirArchivo(puntoVisor, file, true, 'render360')
-      // Recargar el visor para que pida el render recién subido.
-      if (visor360.current) visor360.current.src = visor360.current.src
-    } catch (e) {
-      alert(e.message)
-    } finally {
-      setSubiendoRender(false)
+    const alElegir = (ev) => {
+      const { lat, lng } = ev.detail || {}
+      puntoRecorrido.current = Number.isFinite(lat) && Number.isFinite(lng) ? { lat, lng } : null
+      marcar()
     }
-  }
+    marcar() // el recorrido pudo elegir su punto antes de que el mapa cargara
+    window.addEventListener('amalaya:recorrido-punto', alElegir)
+    return () => window.removeEventListener('amalaya:recorrido-punto', alElegir)
+  }, [listo])
 
   // --- visibilidad de capas ---------------------------------------
   useEffect(() => {
@@ -834,7 +822,7 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
     vis('espacios-3d', capas.espacios && !modelosListos); vis('espacios-toque', capas.espacios && modelosListos && etapa >= 1); vis('espacios-borde', capas.espacios && etapa >= 1)
     if (m.getLayer('espacios-3d')) m.setPaintProperty('espacios-3d', 'fill-extrusion-opacity', etapa >= 1 ? TEMAS[tema].espacioOp : 0)
     vis('rutas', capas.rutas && etapa >= 2); vis('rutas-halo', capas.rutas && etapa >= 2); vis('paradas', capas.rutas && etapa >= 3)
-    vis('recorrido-puntos', capas.recorrido); vis('recorrido-linea', capas.recorrido && etapa >= 3); vis('recorrido-toque', capas.recorrido && etapa >= 3)
+    vis('recorrido-puntos', capas.recorrido); vis('recorrido-linea', capas.recorrido && etapa >= 3); vis('recorrido-toque', capas.recorrido && etapa >= 3); vis('recorrido-activo', capas.recorrido && etapa >= 3)
     if (m.getLayer('recorrido-puntos')) {
       m.setPaintProperty('recorrido-puntos', 'circle-opacity', etapa >= 3 ? 0.9 : 0)
       m.setPaintProperty('recorrido-puntos', 'circle-stroke-opacity', etapa >= 3 ? 1 : 0)
@@ -872,7 +860,7 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
     m.easeTo({ pitch: a ? 58 : 0, bearing: a ? cara * 90 : 0, duration: 800 })
   }
   // Chinche #18: encuadra el polígono COMPLETO con margen, siempre igual (al abrir, al tocar ⌖
-  // y al cerrar el 360 o Street View) — ya no un zoom fijo que lo cortaba.
+  // y al cerrar el Street View del monito) — ya no un zoom fijo que lo cortaba.
   function centrar() {
     const m = mapa.current
     if (!m) return
@@ -884,10 +872,10 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
   centrarRef.current = centrar
   const habiaVisor = useRef(false)
   useEffect(() => {
-    const hay = !!(pop360 || punto)
+    const hay = !!punto
     if (habiaVisor.current && !hay) centrarRef.current()
     habiaVisor.current = hay
-  }, [pop360, punto])
+  }, [punto])
 
   // --- calibración del plano (solo admin) ---------------------------
   useEffect(() => {
@@ -1083,7 +1071,7 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
       )}
 
       {/* ── Carril inferior derecho: cámara ──────────────────────── */}
-      <div className={`absolute right-4 bottom-12 z-20 flex-col items-end gap-2 ${pop360 ? 'hidden' : 'flex'}`}>
+      <div className="absolute right-4 bottom-12 z-20 flex flex-col items-end gap-2">
         <div className="grupo-ctrl">
           <button onClick={() => mapa.current?.zoomIn({ duration: 300 })} title="Acercar" aria-label="Acercar">+</button>
           <button onClick={() => mapa.current?.zoomOut({ duration: 300 })} title="Alejar" aria-label="Alejar">−</button>
@@ -1160,28 +1148,6 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
           </div>
         </div>
       )}
-
-      {/* Pop-up del recorrido 360 (misma pantalla; el mapa sigue al visor) */}
-      {pop360 && (
-        <div className="absolute inset-3 sm:inset-x-4 sm:bottom-4 sm:top-auto sm:h-[min(30rem,calc(100%-5rem))] z-30 bg-noche border border-oro rounded-2xl overflow-hidden shadow-2xl flex flex-col">
-          <div className="flex items-center gap-2 px-3 py-1.5 border-b border-linea bg-superficie">
-            <PersonStanding size={14} className="text-oro" />
-            <span className="font-cartel uppercase tracking-wide text-xs">Recorrido 360 · antes / después</span>
-            <span className="flex-1" />
-            {puedeEditar && puntoVisor && (
-              <label className={`text-xs text-arena hover:text-marfil cursor-pointer mr-3 ${subiendoRender ? 'opacity-60 pointer-events-none' : ''}`} title="Sube el render «después» de este punto (se guarda privado en Drive)">
-                {subiendoRender ? 'Subiendo render…' : renderDe(puntoVisor) ? 'Cambiar render' : 'Subir render'}
-                <input type="file" accept="image/*" className="hidden" onChange={(e) => subirRender(e.target.files?.[0])} />
-              </label>
-            )}
-            <a className="text-xs text-arena hover:text-marfil" href={`${BASE}recorrido/?r=${encodeURIComponent(pop360.ruta)}&p=${encodeURIComponent(pop360.punto)}`} target="_blank" rel="noreferrer">Pantalla completa</a>
-            <button className="text-arena hover:text-marfil ml-2" onClick={() => setPop360(null)} aria-label="Cerrar"><X size={16} /></button>
-          </div>
-          <iframe ref={visor360} title="Recorrido 360" src={`${BASE}recorrido/?embed=1&r=${encodeURIComponent(pop360.ruta)}&p=${encodeURIComponent(pop360.punto)}`} className="flex-1 w-full border-0 bg-noche" allow="fullscreen" />
-        </div>
-      )}
-
-      
 
       {/* Calibración */}
       {calibrando && (
