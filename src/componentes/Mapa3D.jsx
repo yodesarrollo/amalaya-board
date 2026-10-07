@@ -10,6 +10,8 @@ import { NOMBRE_TIPO } from './Glifos.jsx'
 import { rayitasHtml, nivelAvance, ETAPAS_DESARROLLO, nombreEstado } from '../avance.js'
 import { COLOR_TIPO, TIPOS, claveTipo } from '../tipos.js'
 import { m2Construidos } from '../calc.js'
+import { recuperarCartografia } from '../mapa-recuperacion.js'
+import referenciaSuelo from '../../public/levantamiento/ground-reference.json'
 import { montarLevantamiento } from '../levantamiento-mapa.js'
 import { ZONAS, MODULOS, zonasDeEspacio, centroDeZonas, filasModelos } from '../territorio.js'
 
@@ -303,6 +305,7 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
   const marcadores = useRef([])
   const esquinas = useRef([])
   const [listo, setListo] = useState(false)
+  const [respaldoMapa, setRespaldoMapa] = useState(false)
   // Entrada por capas: 0 satélite · 1 lámina · 2 rutas · 3 puntos · 4 fin
   const reducido = useMemo(() => { try { return window.matchMedia('(prefers-reduced-motion: reduce)').matches } catch { return false } }, [])
   // La entrada animada corre una vez por sesión; al volver al mapa, directo a la maqueta.
@@ -428,12 +431,12 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
       setFalla3d('El mapa 3D no arrancó en este equipo.')
       return
     }
-    let cargo = false
-    m.once('load', () => { cargo = true })
-    // Sin cartografía el mapa se queda en blanco: a los 15 s se ofrece el plan B.
-    const relojFalla = setTimeout(() => { if (!cargo) setFalla3d('No cargó la cartografía (sin conexión con el servicio de mapas).') }, 15000)
-    m.on('error', (e) => { if (!cargo && /style|fetch|Failed|NetworkError|AJAXError/i.test(String(e?.error?.message || e?.error || ''))) setFalla3d('No cargó la cartografía (sin conexión con el servicio de mapas).') })
-    m.once('remove', () => clearTimeout(relojFalla))
+    const recuperacion = recuperarCartografia(m, {
+      onFallback: () => setRespaldoMapa(true),
+      onReady: () => setFalla3d(null),
+      onFailure: () => setFalla3d('No fue posible iniciar la cartografía de respaldo.'),
+    })
+    m.once('remove', () => recuperacion.dispose())
     m.addControl(new maplibregl.AttributionControl({ compact: true }), 'bottom-left')
     window.__amalayaMapa = m
     m.on('error', (e) => console.warn('mapa3d', e?.error?.message || e))
@@ -449,7 +452,7 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
       clearTimeout(reloj)
       arrancado = true
       // El estilo ya está listo: cargar el nuevo modelo no es un fallo de cartografía.
-      cargo = true; clearTimeout(relojFalla)
+      recuperacion.ready()
       console.info('mapa3d load', m.getStyle().layers.length, Object.keys(m.getStyle().sources))
       vestir(m, TEMAS[temaRef.current])
       // Satélite (apagado por defecto)
@@ -459,12 +462,18 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
 
       // Edificios de la ciudad: PLANOS. El 3D es solo para los espacios del
       // proyecto (plan UX v2): así la maqueta se lee sin competir con la ciudad.
+      if (m.getSource('openmaptiles')) {
       m.addLayer({
         id: 'ciudad-3d', type: 'fill', source: 'openmaptiles', 'source-layer': 'building', minzoom: 14,
         paint: { 'fill-color': '#2C231C', 'fill-opacity': 0.5 },
       }, primeraEtiqueta)
       // Contorno de los edificios de la ciudad a nivel de piso (el "dibujo de línea")
       m.addLayer({ id: 'ciudad-borde', type: 'line', source: 'openmaptiles', 'source-layer': 'building', minzoom: 15, paint: { 'line-color': '#1F1F1F', 'line-width': 0.6, 'line-opacity': 0.55 } }, primeraEtiqueta)
+
+      }
+      const [west, south, east, north] = referenciaSuelo.bounds
+      m.addSource('suelo-respaldo', { type:'image', url:`${BASE}levantamiento/${referenciaSuelo.image}?v=${referenciaSuelo.imageSha256.slice(0,12)}`, coordinates:[[west,north],[east,north],[east,south],[west,south]], attribution:'Esri World Imagery' })
+      m.addLayer({id:'suelo-respaldo',type:'raster',source:'suelo-respaldo',layout:{visibility:'none'},paint:{'raster-opacity':1,'raster-fade-duration':0}},primeraEtiqueta)
 
       // Calco del plano (la imagen del tablero, georreferenciada)
       m.addSource('calco', { type: 'image', url: `${BASE}mapa-poligono.jpg`, coordinates: geoSheet })
@@ -818,7 +827,8 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
     if (!m || !listo) return
     const vis = (id, on) => m.getLayer(id) && m.setLayoutProperty(id, 'visibility', on ? 'visible' : 'none')
     // La entrada por capas va encendiendo lo que el usuario tiene prendido.
-    vis('satelite', capas.satelite)
+    vis('satelite', capas.satelite && !respaldoMapa)
+    vis('suelo-respaldo', respaldoMapa)
     vis('amalaya-levantamiento', capas.modelos && etapa >= 1)
     vis('ciudad-3d', capas.ciudad && etapa >= 1); vis('ciudad-borde', capas.ciudad && etapa >= 1)
     vis('espacios-3d', capas.espacios && !modelosListos); vis('espacios-toque', capas.espacios && modelosListos && etapa >= 1); vis('espacios-borde', capas.espacios && etapa >= 1)
@@ -839,7 +849,7 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
       mk.getElement().style.display = capas.espacios && etapa >= 4 && !oculto ? '' : 'none'
     })
     if (m.getLayer('calco')) m.setPaintProperty('calco', 'raster-opacity', calibrando ? 0.7 : opacidadCalco)
-  }, [listo, capas, opacidadCalco, calibrando, etapa, tema, espacios, tiposOcultos, modelosListos])
+  }, [listo, capas, opacidadCalco, calibrando, etapa, tema, espacios, tiposOcultos, modelosListos, respaldoMapa])
 
   // --- inclinación -------------------------------------------------
   // Una sola maqueta, cuatro caras: el mapa gira 90° por clic y se mira en
@@ -973,6 +983,7 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
         </div>
       )}
 
+      {respaldoMapa && <div role="status" className="absolute bottom-3 left-1/2 -translate-x-1/2 z-10 rounded bg-white/95 px-3 py-1 text-xs text-stone-800 pointer-events-none">Referencia local de respaldo · fecha de foto sin confirmar</div>}
       {/* ── Carril superior izquierdo: capas ─────────────────────── */}
       <div className="absolute left-4 top-4 bottom-4 z-20 flex flex-col gap-2 items-start pointer-events-none">
         <button className={`ctrl-mapa pointer-events-auto ${panel ? 'ctrl-on' : ''}`} onClick={() => setPanel(!panel)}>
