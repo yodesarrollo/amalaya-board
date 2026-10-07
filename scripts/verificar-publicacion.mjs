@@ -26,7 +26,7 @@ async function check(dir){
   for(const item of await readdir(dir,{withFileTypes:true})){
     const path=`${dir}/${item.name}`
     assert(!item.isSymbolicLink(),`No se permiten enlaces: ${path}`)
-    if(item.isDirectory()){const allowed=(dir===root&&['cuadras','calco'].includes(item.name))||['data','visor','assets','fonts','evidence'].includes(item.name)||(dir===`${root}/evidence`&&(['OB-01','OB-02','ISC-58','EB-SW','EB-NW','EB-NE','EB-SE','CH-YG-BBVA','CH-GA-OXXO','CH-YG-BIB','SER-BLEY','SER-HSBC','OB-21','SER-SANT','PL-GA'].includes(item.name)||/^[ABCD][123]-\d{2}$/.test(item.name)));assert(allowed,`Carpeta inesperada: ${path}`);await check(path);continue}
+    if(item.isDirectory()){const allowed=(dir===root&&['cuadras','calco','ajuste-visual'].includes(item.name))||['data','visor','assets','fonts','evidence'].includes(item.name)||(dir===`${root}/evidence`&&(['OB-01','OB-02','ISC-58','EB-SW','EB-NW','EB-NE','EB-SE','CH-YG-BBVA','CH-GA-OXXO','CH-YG-BIB','SER-BLEY','SER-HSBC','OB-21','SER-SANT','PL-GA'].includes(item.name)||/^[ABCD][123]-\d{2}$/.test(item.name)));assert(allowed,`Carpeta inesperada: ${path}`);await check(path);continue}
     if(['/evidence/CH-GA-OXXO/','/evidence/CH-YG-BIB/','/evidence/SER-BLEY/','/evidence/SER-HSBC/'].some(p=>path.includes(p)))assert(roundProgressFiles.has(item.name),'Unexpected round evidence: '+path)
     if(['/evidence/EB-NW/','/evidence/EB-NE/','/evidence/EB-SE/','/evidence/CH-YG-BBVA/'].some(p=>path.includes(p)))assert(roundProgressFiles.has(item.name)||/^(?:sequence\.json|plan-record\.json|01-planta-geometria\.png)$/.test(item.name),'Evidencia fuera del alcance EB-NW: '+path)
     if(/\/evidence\/(?:[ABCD][123]-\d{2}|OB-21|SER-SANT|PL-GA)\//.test(path))assert(roundProgressFiles.has(item.name)||streetBatch50Files.has(path),'Unexpected sheet evidence: '+path)
@@ -35,6 +35,7 @@ async function check(dir){
     if(path.includes('/evidence/OB-01/'))assert(roundProgressFiles.has(item.name)||ob01EvidenceFiles.has(item.name),`Evidencia fuera del alcance OB-01: ${path}`)
     if(path.includes('/evidence/OB-02/'))assert(roundProgressFiles.has(item.name)||ob02EvidenceFiles.has(item.name),`Evidencia fuera del alcance OB-02: ${path}`)
     assert(!/\.(map|env|csv|zip|bundle)$/i.test(item.name),`Archivo no publicable: ${path}`)
+    if(dir===`${root}/ajuste-visual`)assert(/^(?:C(?:0[1-9]|[12]\d|3[0-3])(?:-modelo)?\.jpg|cuadras\.json|superficies\.geojson)$/.test(item.name),'Activo de ajuste visual fuera de alcance: '+path)
     if(dir===`${root}/calco`)assert(['referencia.webp','cuadras-2d.json','cuadras-2d.geojson'].includes(item.name),'Archivo de calco no revisado: '+path)
     if(dir===`${root}/cuadras`){assert(/^(?:C01\.svg|C(?:0[1-9]|[12]\d|3[0-3])-inventario\.jpg|asignaciones\.json|manzanas-inegi\.geojson)$/.test(item.name),'Evidencia de cuadra no revisada: '+path);if(item.name.endsWith('.svg')){const svg=await readFile(path,'utf8');assert(!/<script|foreignObject|\bon[a-z]+\s*=|(?:href|src)=["']https?:/i.test(svg),'La comparación debe ser autónoma y sin contenido activo')}}
     if(path.includes('/data/'))assert(approved.has(item.name),`Datos no revisados: ${path}`)

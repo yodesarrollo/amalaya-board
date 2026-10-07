@@ -11,8 +11,18 @@ import {applySidewalkRound} from '../public/levantamiento/banquetas-refinement.j
 import {applyStreetRound} from '../public/levantamiento/calzadas-refinement.js';
 const root='public/levantamiento',source=await readFile(root+'/world.js','utf8'),runtime=await readFile(root+'/sheet-plan-refinement.js');
 for(const [kind,path] of [['world','world.js'],['visor','visor/assets/index-RoPA5goG.js']]){const s=await readFile(root+'/'+path,'utf8');assert.equal(sheetHash(removeSheetHook(s,kind)),SHEET_BASE[kind]);assert.equal(refineSheet(s,kind,sheetHash(runtime)),s);}
+// Historical envelopes can be re-exported without the later visual fit.
+let sheetForExport=applySheetPlan;
+if(process.argv.includes('--baseline')){
+ const strip=s=>s.replace(/^import[^\n]*\n/gm,'').replace(/\nimport[^\n]*\n/gm,'');
+ const code=strip(await readFile(root+'/sheet-plan-refinement.js','utf8')).replace('export function applySheetPlan','function applySheetPlan').replace('applyVisualFit(world, colliders, R);','');
+ const {footprintColliderCells}=await import('../public/levantamiento/isc58-refinement.js');
+ const {applyStreetBatch50}=await import('../public/levantamiento/street-batch50-refinement.js');
+ const {applyGroundReference}=await import('../public/levantamiento/ground-reference-refinement.js');
+ sheetForExport=new Function('SHEET_PLANS','footprintColliderCells','applyStreetBatch50','applyGroundReference',code+';return applySheetPlan;')(SHEET_PLANS,footprintColliderCells,applyStreetBatch50,applyGroundReference);
+}
 const raw=source.replace(/^import[^\n]*\n/gm,'').replace(/\nimport[^\n]*\n/gm,'').replace(/export \{[^\n]+\};/,'');
-const R=new Function('applyIsc58Refinement','applyEbSwRefinement','applyPlanRoundRefinement','applyStreetRoundRefinement','applySidewalkRoundRefinement','applyPlanReviewRefinement','applySheetPlanRefinement',raw+'\nreturn {createWorld:Fp,Vector3:U,Box3:Zt};')(applyIsc58,applyEbSw,applyPlanRound,applyStreetRound,applySidewalkRound,applyPlanReview,applySheetPlan);
+const R=new Function('applyIsc58Refinement','applyEbSwRefinement','applyPlanRoundRefinement','applyStreetRoundRefinement','applySidewalkRoundRefinement','applyPlanReviewRefinement','applySheetPlanRefinement',raw+'\nreturn {createWorld:Fp,Vector3:U,Box3:Zt};')(applyIsc58,applyEbSw,applyPlanRound,applyStreetRound,applySidewalkRound,applyPlanReview,sheetForExport);
 const originalFetch=globalThis.fetch;let world;try{globalThis.fetch=async url=>({ok:true,json:async()=>JSON.parse(await readFile(root+'/'+url))});world=await R.createWorld('',undefined,'pilot',{overview:true});}finally{globalThis.fetch=originalFetch;}
 
 

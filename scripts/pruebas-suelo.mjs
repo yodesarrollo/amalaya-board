@@ -15,7 +15,7 @@ import {applySidewalkRound} from '../public/levantamiento/banquetas-refinement.j
 import {applyPlanReview} from '../public/levantamiento/plan-review-refinement.js';
 const root='public/levantamiento';
 const strip=s=>s.replace(/^import[^\n]*\n/gm,'').replace(/\nimport[^\n]*\n/gm,'').replace(/export \{[^\n]+\};/,'');
-const sheet=strip(await readFile(root+'/sheet-plan-refinement.js','utf8')).replace('export function applySheetPlan','function applySheetPlan').replace('applyGroundReference(world, colliders, R);','');
+const sheet=strip(await readFile(root+'/sheet-plan-refinement.js','utf8')).replace('export function applySheetPlan','function applySheetPlan').replace('applyGroundReference(world, colliders, R);','').replace('applyVisualFit(world, colliders, R);','');
 const baseSheet=new Function('SHEET_PLANS','footprintColliderCells','applyStreetBatch50',sheet+';return applySheetPlan;')(SHEET_PLANS,footprintColliderCells,applyStreetBatch50);
 const source=await readFile(root+'/world.js','utf8');
 const R=new Function('applyIsc58Refinement','applyEbSwRefinement','applyPlanRoundRefinement','applyStreetRoundRefinement','applySidewalkRoundRefinement','applyPlanReviewRefinement','applySheetPlanRefinement',strip(source)+';return {createWorld:Fp,Vector3:U,Box3:Zt,prepare:Ip,optimize:Up};')(applyIsc58,applyEbSw,applyPlanRound,applyStreetRound,applySidewalkRound,applyPlanReview,baseSheet);

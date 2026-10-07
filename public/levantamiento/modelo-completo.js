@@ -3,8 +3,8 @@ import { GROUND_REFERENCE } from './ground-reference-data.js';
 const $=id=>document.getElementById(id),canvas=$('model'),ctx=canvas.getContext('2d');
 let groundImage=null;
 let yaw=0,tilt=0,span=620,target=[-24,0,20],triangles=[],buildings=[],width=1,height=1,drag,frame=0,loadId=0;
-const params=new URLSearchParams(location.search),requested=params.get('edificio')||'';
-function updateSelection(id){const url=new URL(location.href);if(id)url.searchParams.set('edificio',id);else url.searchParams.delete('edificio');history.replaceState(null,'',url.pathname+url.search)}
+const params=new URLSearchParams(location.search),requested=params.get('edificio')||'',requestedBlock=params.get('cuadra')||'';
+function updateSelection(id){const url=new URL(location.href);if(id)url.searchParams.delete('cuadra');if(id)url.searchParams.set('edificio',id);else url.searchParams.delete('edificio');history.replaceState(null,'',url.pathname+url.search)}
 function schedule(){if(!frame)frame=requestAnimationFrame(()=>{frame=0;render()})}
 function render(){
  if(!ctx)return;const rect=canvas.getBoundingClientRect();width=Math.max(1,rect.width);height=Math.max(1,rect.height);const ratio=Math.min(1.5,devicePixelRatio||1),w=Math.round(width*ratio),h=Math.round(height*ratio);if(canvas.width!==w||canvas.height!==h){canvas.width=w;canvas.height=h}ctx.setTransform(ratio,0,0,ratio,0,0);ctx.fillStyle='#edf0e7';ctx.fillRect(0,0,width,height);
@@ -38,11 +38,12 @@ async function load(){
  try{
   if(!ctx)throw Error('Este navegador no permite mostrar el plano.');
   const get=async(url,type='json')=>{const r=await fetch(url,{signal:control.signal,cache:type==='arrayBuffer'?'force-cache':'no-cache'});if(!r.ok)throw Error('La conexión no completó la descarga.');return r[type]()};
-  const [board,meta]=await Promise.all([get('seguimiento-ligero.json'),get('levantamiento/modelo-ligero.json')]);
+  const [board,meta,registry]=await Promise.all([get('seguimiento-ligero.json'),get('levantamiento/modelo-ligero.json'),requestedBlock?get('levantamiento/cuadras.json'):Promise.resolve(null)]);
   const buffer=await get(meta.url,'arrayBuffer');if(id!==loadId)return;if(buffer.byteLength!==meta.triangles*20)throw Error('La vista llegó incompleta.');
   const view=new DataView(buffer);triangles=[];for(let i=0;i<meta.triangles;i++){const p=[];for(let v=0;v<3;v++)p.push([0,1,2].map(c=>view.getInt16(i*20+(v*3+c)*2,true)*meta.scale));triangles.push([...p,meta.palette[view.getUint16(i*20+18,true)]])}
   buildings=board.buildings;$('count').textContent=buildings.filter(b=>!b.publicSpace).length+' edificios';$('building').replaceChildren(new Option('Todo el conjunto',''));for(const b of buildings)$('building').add(new Option(b.id+' · '+b.name,b.id));
   $('status').textContent='Vista ligera lista · arrastra para mover y usa + / − para acercar.';choose(requested);
+  if(requestedBlock&&registry){const block=registry.blocks.find(b=>b.id===requestedBlock);if(block){const pts=block.boundaryLocal.coordinates.flat(block.boundaryLocal.type==='MultiPolygon'?2:1),xs=pts.map(p=>p[0]),zs=pts.map(p=>p[1]);target=[(Math.min(...xs)+Math.max(...xs))/2,0,(Math.min(...zs)+Math.max(...zs))/2];span=Math.max(45,Math.max(Math.max(...xs)-Math.min(...xs),Math.max(...zs)-Math.min(...zs))*1.35);$('detail').textContent=block.id+' · '+block.name+' · montaje visual aproximado';schedule();}}
  }catch(e){if(id!==loadId)return;$('error').textContent=e.name==='AbortError'?'La conexión está tardando. Reintenta o vuelve al tablero; tus avances están guardados.':e.message;$('status').textContent='No se completó la carga.';$('retry').hidden=false}
  finally{clearTimeout(timeout)}
 }
