@@ -67,6 +67,8 @@ El puente conserva la consulta de chinches nuevas y concilia las tomadas con
 su issue canónico. Solo un cierre `completed` verificado por el servidor con
 GitHub pasa a `terminada`; `not_planned` pasa a `descartada`. La acción
 `chincheEstado` exige el token existente y compara ID, estado previo y URL.
+Acepta los dos formatos de ID que emite el board: `CHN-…` (chinche flotante)
+y UUID en minúsculas (indicaciones del seguimiento 3D); cualquier otro se rechaza.
 El vínculo se valida contra el encabezado del issue. Un cambio ajeno se
 rechaza; un reintento ya aplicado se confirma sin volver a escribir.
 La evidencia se registra en Historial. No borra filas ni toca datos de negocio.
