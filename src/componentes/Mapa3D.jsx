@@ -10,6 +10,8 @@ import { NOMBRE_TIPO } from './Glifos.jsx'
 import { rayitasHtml, nivelAvance, ETAPAS_DESARROLLO, nombreEstado } from '../avance.js'
 import { COLOR_TIPO, TIPOS, claveTipo } from '../tipos.js'
 import { m2Construidos } from '../calc.js'
+import { montarPlano } from '../plano-referencia.js'
+import { recuperarCartografia } from '../mapa-recuperacion.js'
 import { montarLevantamiento } from '../levantamiento-mapa.js'
 import { ZONAS, MODULOS, zonasDeEspacio, centroDeZonas, filasModelos } from '../territorio.js'
 
@@ -206,6 +208,7 @@ export const TEMAS = {
 
 function vestir(m, t) {
   for (const capa of m.getStyle().layers) {
+    if (/^(plano-|referencia-trazado)/.test(capa.id)) continue
     try {
       if (capa.type === 'background') m.setPaintProperty(capa.id, 'background-color', t.fondo)
       else if (capa.type === 'fill') m.setPaintProperty(capa.id, 'fill-color', /water|ocean|river|lake/i.test(capa.id) ? t.agua : (/park|grass|wood|green|garden/i.test(capa.id) ? t.verde : t.tierra))
@@ -260,7 +263,7 @@ function escalaDe(m) {
 }
 const NOMBRE_ETAPA = { idea: 'idea', negociacion: 'negociación', proyecto: 'proyecto', obra: 'obra', operando: 'operando' }
 
-const CAPAS_DEF = { satelite: true, ciudad: false, modelos: true, espacios: true, rutas: true, recorrido: true, calco: false, lamina: false }
+const CAPAS_DEF = { satelite: true, ciudad: false, modelos: true, espacios: true, rutas: true, recorrido: true, calco: false, lamina: false, trazado: false, planoLimpio: false }
 
 export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, onNuevo, edicion = {}, enfocado = null }) {
   // edicion: { modoEdicion, editandoPuntos, rutaSel, onMoverEspacio(id, pctCentroX, pctCentroY), onAgregarPunto(pctX, pctY) }
@@ -369,6 +372,7 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
   // UX-07: si falla el 3D (sin WebGL o sin cartografía) se sigue trabajando
   // con la lista, las fichas, la lámina y las descargas.
   const [falla3d, setFalla3d] = useState(null)
+  const [respaldoMapa, setRespaldoMapa] = useState(false)
 
   // --- crear el mapa una sola vez ------------------------------
   useEffect(() => {
@@ -428,12 +432,12 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
       setFalla3d('El mapa 3D no arrancó en este equipo.')
       return
     }
-    let cargo = false
-    m.once('load', () => { cargo = true })
-    // Sin cartografía el mapa se queda en blanco: a los 15 s se ofrece el plan B.
-    const relojFalla = setTimeout(() => { if (!cargo) setFalla3d('No cargó la cartografía (sin conexión con el servicio de mapas).') }, 15000)
-    m.on('error', (e) => { if (!cargo && /style|fetch|Failed|NetworkError|AJAXError/i.test(String(e?.error?.message || e?.error || ''))) setFalla3d('No cargó la cartografía (sin conexión con el servicio de mapas).') })
-    m.once('remove', () => clearTimeout(relojFalla))
+    const recuperacion = recuperarCartografia(m, {
+      onFallback: () => setRespaldoMapa(true),
+      onReady: () => setFalla3d(null),
+      onFailure: () => setFalla3d('No fue posible iniciar la cartografía de respaldo.'),
+    })
+    m.once('remove', () => recuperacion.dispose())
     m.addControl(new maplibregl.AttributionControl({ compact: true }), 'bottom-left')
     window.__amalayaMapa = m
     m.on('error', (e) => console.warn('mapa3d', e?.error?.message || e))
@@ -449,7 +453,7 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
       clearTimeout(reloj)
       arrancado = true
       // El estilo ya está listo: cargar el nuevo modelo no es un fallo de cartografía.
-      cargo = true; clearTimeout(relojFalla)
+      recuperacion.ready()
       console.info('mapa3d load', m.getStyle().layers.length, Object.keys(m.getStyle().sources))
       vestir(m, TEMAS[temaRef.current])
       // Satélite (apagado por defecto)
@@ -459,12 +463,15 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
 
       // Edificios de la ciudad: PLANOS. El 3D es solo para los espacios del
       // proyecto (plan UX v2): así la maqueta se lee sin competir con la ciudad.
+      if (m.getSource('openmaptiles')) {
       m.addLayer({
         id: 'ciudad-3d', type: 'fill', source: 'openmaptiles', 'source-layer': 'building', minzoom: 14,
         paint: { 'fill-color': '#2C231C', 'fill-opacity': 0.5 },
       }, primeraEtiqueta)
       // Contorno de los edificios de la ciudad a nivel de piso (el "dibujo de línea")
       m.addLayer({ id: 'ciudad-borde', type: 'line', source: 'openmaptiles', 'source-layer': 'building', minzoom: 15, paint: { 'line-color': '#1F1F1F', 'line-width': 0.6, 'line-opacity': 0.55 } }, primeraEtiqueta)
+      }
+      montarPlano(m, BASE, primeraEtiqueta)
 
       // Calco del plano (la imagen del tablero, georreferenciada)
       m.addSource('calco', { type: 'image', url: `${BASE}mapa-poligono.jpg`, coordinates: geoSheet })
@@ -818,7 +825,12 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
     if (!m || !listo) return
     const vis = (id, on) => m.getLayer(id) && m.setLayoutProperty(id, 'visibility', on ? 'visible' : 'none')
     // La entrada por capas va encendiendo lo que el usuario tiene prendido.
-    vis('satelite', capas.satelite)
+    const usaTrazo = capas.trazado || capas.planoLimpio
+    vis('satelite', capas.satelite && !usaTrazo && !respaldoMapa)
+    vis('referencia-trazado', (usaTrazo || respaldoMapa) && !capas.planoLimpio)
+    vis('plano-papel', capas.planoLimpio)
+    vis('plano-trazos', usaTrazo); vis('plano-trazos-halo', usaTrazo)
+    vis('contexto-piso', !usaTrazo); vis('contexto-borde', !usaTrazo)
     vis('amalaya-levantamiento', capas.modelos && etapa >= 1)
     vis('ciudad-3d', capas.ciudad && etapa >= 1); vis('ciudad-borde', capas.ciudad && etapa >= 1)
     vis('espacios-3d', capas.espacios && !modelosListos); vis('espacios-toque', capas.espacios && modelosListos && etapa >= 1); vis('espacios-borde', capas.espacios && etapa >= 1)
@@ -829,7 +841,7 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
       m.setPaintProperty('recorrido-puntos', 'circle-opacity', etapa >= 3 ? 0.9 : 0)
       m.setPaintProperty('recorrido-puntos', 'circle-stroke-opacity', etapa >= 3 ? 1 : 0)
     }
-    vis('calco', capas.calco || calibrando)
+    vis('calco', (capas.calco && !usaTrazo) || calibrando)
     const filtro = tiposOcultos.length ? ['!', ['in', ['get', 'tipo'], ['literal', tiposOcultos]]] : null
     if (m.getLayer('espacios-3d')) m.setFilter('espacios-3d', filtro)
     if (m.getLayer('espacios-borde')) m.setFilter('espacios-borde', filtro)
@@ -839,7 +851,7 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
       mk.getElement().style.display = capas.espacios && etapa >= 4 && !oculto ? '' : 'none'
     })
     if (m.getLayer('calco')) m.setPaintProperty('calco', 'raster-opacity', calibrando ? 0.7 : opacidadCalco)
-  }, [listo, capas, opacidadCalco, calibrando, etapa, tema, espacios, tiposOcultos, modelosListos])
+  }, [listo, capas, opacidadCalco, calibrando, etapa, tema, espacios, tiposOcultos, modelosListos, respaldoMapa])
 
   // --- inclinación -------------------------------------------------
   // Una sola maqueta, cuatro caras: el mapa gira 90° por clic y se mira en
@@ -935,6 +947,8 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
     <div className={`relative w-full h-full mapa3d tema-${tema}`} data-entrada={listo ? etapa : ''}>
       <div ref={cont} className="absolute inset-0" />
 
+      {(respaldoMapa || capas.trazado || capas.planoLimpio) && <div className="absolute bottom-3 left-1/2 -translate-x-1/2 z-10 rounded bg-white/95 px-3 py-1 text-xs text-stone-800 pointer-events-none">{(capas.trazado || capas.planoLimpio) ? 'Calco 2D parcial · bordes por validar · fecha de foto sin confirmar' : 'Referencia local de respaldo · fecha de foto sin confirmar'}</div>}
+
       {/* Tocar en cualquier parte durante la entrada la salta */}
       {listo && etapa < 4 && (
         <button
@@ -1001,6 +1015,8 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
                 ['rutas', 'Rutas peatonales'],
                 ['recorrido', 'Puntos del recorrido 360'],
                 ['satelite', 'Satélite'],
+                ['trazado', 'Calco 2D · bordes por validar'],
+                ['planoLimpio', 'Plano limpio · sin fotografía'],
                 ['calco', 'Calco del plano'],
                 ['lamina', 'Lámina «Zona Núcleo» · referencia, sin escala'],
               ].map(([k, titulo]) => (
@@ -1009,6 +1025,8 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
                   <span className="txt">{titulo}</span>
                 </button>
               ))}
+              {(capas.trazado || capas.planoLimpio) && <p className="panel-nota">Calco parcial: azul calzada · ocre banqueta. Huecos sin verificar. Fecha de la foto no confirmada; no usar como levantamiento medido.</p>}
+              {respaldoMapa && <p className="panel-nota">Cartografía de respaldo local. Fecha de captura no confirmada.</p>}
               {capas.calco && (
                 <div className="px-1 pt-1">
                   <label className="panel-nota" htmlFor="op-calco">Transparencia del calco · {Math.round((1 - opacidadCalco) * 100)}%</label>
