@@ -1,8 +1,11 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
-import { Box, ChevronLeft, ChevronRight, Footprints, Images, Map } from 'lucide-react'
+import { Box, ChevronLeft, ChevronRight, Footprints, Images, Map, Maximize2, Upload } from 'lucide-react'
 import { BASE } from '../config.js'
+import { usarDatos } from '../datos.jsx'
+import { puedeEditarRol } from '../roles.js'
 import { VERSION_LEVANTAMIENTO } from '../levantamiento-version.js'
-import { mensajeRecorrido, rumboConsulta } from '../recorrido-state.js'
+import { buscarPunto, mensajeRecorrido, rumboConsulta, urlPanorama, vecinoRecorrido } from '../recorrido-state.js'
+import { registrarContextoChinche, registrarRepintadoChinche, describirVisorRecorrido } from '../chinche-contexto.js'
 
 const REFERENCIAS = {
   'OB-01': { routeId: 'R-001', pointId: 'XLuGJnj_XmtAuKd4eXeTDw' },
@@ -27,6 +30,8 @@ const focoCoordenada = (point, heading, view) => {
 }
 
 export default function RecorridoModelo() {
+  const { datos, sesion, modo: modoDatos, verArchivo, subirArchivo } = usarDatos()
+  const puedeEditar = modoDatos !== 'demo' && puedeEditarRol(sesion?.rol)
   const [modo, setModo] = useState('modelo')
   const [vistaMapa, setVistaMapa] = useState('modelo')
   const [version, setVersion] = useState('actual')
@@ -40,12 +45,61 @@ export default function RecorridoModelo() {
   const rutasRef = useRef(rutas)
   const puntoInicializado = useRef(false)
   const estado = useRef(null)
+  const [subiendoRender, setSubiendoRender] = useState(false)
+  // El visor 360 nace ya en el punto elegido (no en el inicial para luego saltar).
+  const [urlStreetView, setUrlStreetView] = useState(URL_STREET_VIEW)
   rutasRef.current = rutas
 
   const ruta = rutas.find(item => item.id === rutaId) || rutas[0]
   const punto = ruta?.puntos?.[indice]
   const rumbo = rumboConsulta(ruta, indice)
-  estado.current = { modo, version, ruta, punto, rumbo, vistaMapa }
+  estado.current = { modo, version, ruta, punto, rumbo, vistaMapa, indice }
+
+  // La Chinche dentro de los visores: qué recorrido y punto se estaba viendo.
+  useEffect(() => registrarContextoChinche(({ el }) => {
+    if (!el || (el !== caminata.current && el !== streetView.current)) return null
+    return describirVisorRecorrido(estado.current)
+  }), [])
+  // La caminata solo dibuja cuando algo cambia: repetirle el escenario que ya
+  // tiene la hace pintar un cuadro, y en ese cuadro la Chinche toma su foto.
+  useEffect(() => registrarRepintadoChinche(marco => {
+    if (!marco || marco !== caminata.current) return
+    marco.contentWindow?.postMessage({ type: 'amalaya:version', version: estado.current?.version || 'actual' }, location.origin)
+  }), [])
+
+  // --- render 360 «después» (Drive, privado) ------------------------
+  // Cada punto acepta un render: fila de Archivos con tipo='render360' y
+  // espacio_id = id del punto. Cuando el visor llega a un punto se le pasa
+  // como data URL, únicamente a su ventana y a este mismo origen.
+  const renderDe = puntoId => (datos?.Archivos || [])
+    .filter(a => String(a.tipo) === 'render360' && String(a.espacio_id) === String(puntoId)).pop()
+  const render = punto ? renderDe(punto.id) : null
+  const renderRef = useRef(null)
+  renderRef.current = { renderDe, verArchivo, demo: modoDatos === 'demo' }
+  const mandarRender = useCallback(async puntoId => {
+    const { renderDe: buscar, verArchivo: ver, demo } = renderRef.current
+    const fila = buscar(puntoId)
+    const responder = (dataUrl, situacion) => streetView.current?.contentWindow?.postMessage(
+      { tipo: 'render360', punto: puntoId, dataUrl, estado: situacion }, location.origin)
+    if (!fila || demo) return responder(null, 'en-camino')
+    try {
+      const r = await ver(fila.file_id)
+      responder(`data:${r.mime || 'image/jpeg'};base64,${r.base64}`, 'listo')
+    } catch {
+      responder(null, 'error')
+    }
+  }, [])
+  // Un render recién subido (o cambiado) llega al visor sin recargarlo.
+  useEffect(() => {
+    if (modo === 'streetview' && streetViewReady.current && punto && render) mandarRender(punto.id)
+  }, [render?.file_id]) // eslint-disable-line react-hooks/exhaustive-deps
+  async function subirRender(file) {
+    if (!file || !punto) return
+    setSubiendoRender(true)
+    try { await subirArchivo(punto.id, file, true, 'render360') }
+    catch (error) { alert(error.message) }
+    finally { setSubiendoRender(false) }
+  }
 
   const sincronizarVisor = useCallback(() => {
     const s = estado.current
@@ -110,13 +164,30 @@ export default function RecorridoModelo() {
         setVistaMapa(event.detail.view)
       }
     }
+    // Un círculo del recorrido en el mapa abre su Street View directamente.
+    const abrirPunto = event => {
+      const destino = buscarPunto(rutasRef.current, event.detail?.ruta, event.detail?.punto)
+      if (!destino) return
+      setRutaId(destino.routeId)
+      setIndice(destino.index)
+      if (estado.current?.modo !== 'streetview') {
+        const rutaDestino = rutasRef.current.find(item => item.id === destino.routeId)
+        streetViewReady.current = false
+        destinoStreetView.current = ''
+        setUrlStreetView(urlPanorama(BASE, rutaDestino, rutaDestino.puntos[destino.index]))
+        setModo('streetview')
+        window.dispatchEvent(new CustomEvent('amalaya:recorrido-mode', { detail: { mode: 'streetview' } }))
+      }
+    }
     window.addEventListener('amalaya:study-focused', enfocarEdificio)
     window.addEventListener('amalaya:scenario', sincronizarEscenario)
     window.addEventListener('amalaya:map-view-changed', sincronizarVistaMapa)
+    window.addEventListener('amalaya:recorrido-abrir', abrirPunto)
     return () => {
       window.removeEventListener('amalaya:study-focused', enfocarEdificio)
       window.removeEventListener('amalaya:scenario', sincronizarEscenario)
       window.removeEventListener('amalaya:map-view-changed', sincronizarVistaMapa)
+      window.removeEventListener('amalaya:recorrido-abrir', abrirPunto)
     }
   }, [])
 
@@ -127,6 +198,8 @@ export default function RecorridoModelo() {
 
   useEffect(() => {
     if (!punto) return
+    // El mapa marca cuál de sus círculos es el punto elegido.
+    window.dispatchEvent(new CustomEvent('amalaya:recorrido-punto', { detail: { id: punto.id, lat: punto.lat, lng: punto.lng } }))
     sincronizarVisor()
     // Al cargar el índice se conserva la vista general. Los cambios que hace
     // el usuario sí llevan el mapa al punto seleccionado.
@@ -157,15 +230,19 @@ export default function RecorridoModelo() {
         return
       }
       destinoStreetView.current = ''
+      mandarRender(event.data.punto)
       if (actual?.ruta?.id === siguiente.routeId && actual?.punto?.id === event.data.punto) return
       setRutaId(siguiente.routeId)
       setIndice(siguiente.index)
     }
     window.addEventListener('message', recibir)
     return () => window.removeEventListener('message', recibir)
-  }, [sincronizarVisor])
+  }, [sincronizarVisor, mandarRender])
 
   const cambiarModo = modoNuevo => {
+    // Volver a tocar la vista en la que ya estás no desmonta su visor: si aquí
+    // se olvidara que ya está listo, dejaría de obedecer anterior/siguiente.
+    if (modoNuevo === modo && (modoNuevo === 'caminar' || modoNuevo === 'streetview')) { sincronizarVisor(); return }
     streetViewReady.current = false
     destinoStreetView.current = ''
     if (modoNuevo === 'planta' || modoNuevo === 'modelo') {
@@ -178,6 +255,7 @@ export default function RecorridoModelo() {
       return
     }
     if (!punto) return
+    if (modoNuevo === 'streetview') setUrlStreetView(urlPanorama(BASE, ruta, punto))
     setModo(modoNuevo)
     window.dispatchEvent(new CustomEvent('amalaya:recorrido-mode', { detail: { mode: modoNuevo } }))
     focoCoordenada(punto, rumbo, vistaMapa)
@@ -190,6 +268,24 @@ export default function RecorridoModelo() {
     setIndice(0)
   }
   const avanzar = delta => setIndice(actual => Math.max(0, Math.min((ruta?.puntos?.length || 1) - 1, actual + delta)))
+  const anterior = vecinoRecorrido(ruta, indice, -1)
+  const siguiente = vecinoRecorrido(ruta, indice, 1)
+
+  // En Street View las flechas del teclado pasan de punto (si no se está
+  // escribiendo ni eligiendo en una lista).
+  useEffect(() => {
+    if (modo !== 'streetview') return
+    const tecla = event => {
+      if (event.altKey || event.ctrlKey || event.metaKey) return
+      if (event.target?.closest?.('input, textarea, select, [contenteditable], .chn-velo')) return
+      if (event.key === 'ArrowRight') avanzar(1)
+      else if (event.key === 'ArrowLeft') avanzar(-1)
+      else return
+      event.preventDefault()
+    }
+    window.addEventListener('keydown', tecla)
+    return () => window.removeEventListener('keydown', tecla)
+  }, [modo, ruta?.id]) // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div className="recorrido-unico" aria-label="Controles del mapa y recorrido Amalaya">
@@ -209,10 +305,26 @@ export default function RecorridoModelo() {
           ref={streetView}
           key="street-view-amalaya"
           title="Street View 360 del punto seleccionado"
-          src={URL_STREET_VIEW}
+          src={urlStreetView}
           className="recorrido-unico__visor"
           allow="fullscreen"
         />
+      )}
+      {modo === 'streetview' && punto && (
+        <div className="recorrido-unico__pasos" role="group" aria-label="Pasar de punto en Street View">
+          <button type="button" className="recorrido-unico__paso" disabled={!anterior} onClick={() => avanzar(-1)}
+            title="Punto anterior (también con la flecha ← del teclado)"
+            aria-label={anterior ? `Ir al punto anterior, ${anterior.etiqueta}` : 'No hay punto anterior'}>
+            <ChevronLeft size={22} aria-hidden="true" />
+            <span><b>Anterior</b><small>{anterior ? anterior.etiqueta : 'inicio'}</small></span>
+          </button>
+          <button type="button" className="recorrido-unico__paso" disabled={!siguiente} onClick={() => avanzar(1)}
+            title="Punto siguiente (también con la flecha → del teclado)"
+            aria-label={siguiente ? `Ir al punto siguiente, ${siguiente.etiqueta}` : 'No hay punto siguiente'}>
+            <span><b>Siguiente</b><small>{siguiente ? siguiente.etiqueta : 'fin'}</small></span>
+            <ChevronRight size={22} aria-hidden="true" />
+          </button>
+        </div>
       )}
 
       <div className="recorrido-unico__modos" role="group" aria-label="Vista del territorio">
@@ -253,10 +365,26 @@ export default function RecorridoModelo() {
             <button key={id} type="button" aria-pressed={version === id} className={version === id ? 'activo' : ''} onClick={() => setVersion(id)}>{label}</button>
           ))}
         </div>
+        {modo === 'streetview' && punto && (
+          <div className="recorrido-unico__extras">
+            {puedeEditar && (
+              <label className={subiendoRender ? 'ocupado' : ''} title="Sube el render «después» de este punto (se guarda privado en Drive)">
+                <Upload size={13} aria-hidden="true" />
+                <span>{subiendoRender ? 'Subiendo render…' : render ? 'Cambiar render' : 'Subir render'}</span>
+                <input type="file" accept="image/*" disabled={subiendoRender} onChange={event => { subirRender(event.target.files?.[0]); event.target.value = '' }} />
+              </label>
+            )}
+            <a href={`${BASE}recorrido/?r=${encodeURIComponent(ruta.id)}&p=${encodeURIComponent(punto.id)}`} target="_blank" rel="noreferrer"
+              aria-label="Pantalla completa"
+              title="Abre este punto en el visor completo: girar solo, marcar y copiar acciones">
+              <Maximize2 size={13} aria-hidden="true" /><span>Pantalla completa</span>
+            </a>
+          </div>
+        )}
       </div>
       {(modo === 'caminar' || modo === 'streetview') && (
-        <div className="recorrido-unico__ayuda" role="status">
-          {modo === 'caminar' ? 'WASD / flechas · Shift para correr · clic y ratón para mirar' : 'Arrastra para mirar · elige cualquier punto del recorrido abajo'}
+        <div className={`recorrido-unico__ayuda recorrido-unico__ayuda--${modo}`} role="status">
+          {modo === 'caminar' ? 'WASD / flechas · Shift para correr · clic y ratón para mirar' : `Punto ${indice + 1} de ${ruta?.puntos?.length || 1} · arrastra para mirar`}
         </div>
       )}
     </div>

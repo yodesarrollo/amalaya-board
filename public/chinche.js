@@ -227,6 +227,184 @@ function mini(canvas){
   return m;
 }
 
+/* ═══ FOTO DE CUALQUIER LIENZO · el mapa, el panorama 360, la caminata 3D ═══
+   Señalar un <canvas> o un visor embebido sí puede llevar foto: se recorta
+   alrededor del toque, igual que en el tablero. Un lienzo WebGL ya compuesto
+   se lee en blanco; eso se detecta y entonces NO se finge una foto (se queda
+   la tarjeta de contexto, que sí dice la verdad). */
+function vacia(g, w, h){
+  var a = null;
+  for (var i = 1; i <= 7; i++) for (var j = 1; j <= 5; j++) {
+    var d = g.getImageData(Math.floor(w * i / 8), Math.floor(h * j / 6), 1, 1).data;
+    var k = d[0] + "," + d[1] + "," + d[2] + "," + d[3];
+    if (a === null) a = k; else if (k !== a) return false;
+  }
+  return true;
+}
+function recorteDe(fuente, cx, cy){
+  try {
+    var W = fuente.naturalWidth || fuente.width, H = fuente.naturalHeight || fuente.height;
+    if (!W || !H || isNaN(cx) || isNaN(cy)) return null;
+    var ANCHO = Math.min(860, W), ALTO = Math.min(600, H);
+    var x0 = Math.max(0, Math.min(W - ANCHO, cx - ANCHO / 2));
+    var y0 = Math.max(0, Math.min(H - ALTO,  cy - ALTO / 2));
+    var c = document.createElement("canvas"); c.width = ANCHO; c.height = ALTO;
+    var g = c.getContext("2d");
+    g.drawImage(fuente, x0, y0, ANCHO, ALTO, 0, 0, ANCHO, ALTO);
+    if (vacia(g, ANCHO, ALTO)) return null;
+    flecha(g, cx - x0, cy - y0);
+    return c;
+  } catch (e) { return null; }   /* lienzo de otro origen: no se puede leer */
+}
+/* ═══ EL CONTEXTO QUE DA LA PÁGINA ═══
+   CTX.contexto({el,x,y}) deja que la pantalla diga qué hay bajo el toque cuando
+   el DOM no lo sabe (un mapa o un visor son un solo <canvas>): devuelve
+   {texto, vista, seccion, valores, css, codigo, foto:{canvas,x,y}} o una promesa.
+   Todo se recorta a tamaños fijos: es dato para leer, no un canal abierto. */
+function corto(t, n){ return String(t == null ? "" : t).replace(/\s+/g, " ").trim().slice(0, n); }
+function limpiar(extra){
+  if (!extra || typeof extra !== "object") return null;
+  var o = { valores: {} }, n = 0;
+  ["texto", "vista", "seccion", "css", "codigo"].forEach(function (k) {
+    if (extra[k]) o[k] = corto(extra[k], k === "texto" ? 300 : 160);
+  });
+  var vs = extra.valores && typeof extra.valores === "object" ? extra.valores : {};
+  Object.keys(vs).forEach(function (k) {
+    var t = corto(vs[k], 120);
+    if (t && n < 12) { o.valores[corto(k, 24)] = t; n++; }
+  });
+  ["ax", "ay"].forEach(function (k) { if (typeof extra[k] === "number" && isFinite(extra[k])) o[k] = extra[k]; });
+  var f = extra.foto;
+  if (f && f.lista) o.foto = { lista: f.lista };
+  else if (f && f.canvas) { var c = recorteDe(f.canvas, +f.x, +f.y); if (c) o.foto = { lista: c }; }   /* YA: un lienzo WebGL se borra al terminar el cuadro */
+  else if (f && typeof f.dataUrl === "string" && /^data:image\/(jpeg|png|webp);base64,/.test(f.dataUrl) && f.dataUrl.length < 3000000)
+    o.foto = { dataUrl: f.dataUrl, x: +f.x, y: +f.y };
+  return o;
+}
+function unir(a, b){
+  if (!a || !b) return a || b || null;
+  var o = { valores: {} };
+  ["vista", "seccion", "codigo", "ax", "ay"].forEach(function (k) { if (b[k] != null || a[k] != null) o[k] = b[k] != null ? b[k] : a[k]; });
+  o.css = [a.css, b.css].filter(Boolean).join(" → ");
+  o.texto = corto([a.texto, b.texto].filter(Boolean).join(" · "), 300);
+  [a.valores, b.valores].forEach(function (vs) { Object.keys(vs || {}).forEach(function (k) { o.valores[k] = vs[k]; }); });
+  o.foto = b.foto || a.foto;
+  return o;
+}
+function pedirContexto(el, x, y){
+  if (typeof CTX.contexto !== "function") return Promise.resolve(null);
+  var extra = null;
+  try { extra = CTX.contexto({ el: el, x: x, y: y }); } catch (e) { extra = null; }
+  if (extra && typeof extra.then !== "function") extra = limpiar(extra);   /* dentro del mismo cuadro */
+  return Promise.resolve(extra).then(limpiar, function () { return null; });
+}
+/* la foto del contexto, ya como lienzo (o null si no hay o no cargó) */
+function fotoDeExtra(extra){
+  var f = extra && extra.foto;
+  if (!f) return Promise.resolve(null);
+  if (f.lista) return Promise.resolve(f.lista);
+  return conTope(new Promise(function (ok) {
+    var im = new Image();
+    im.onload = function () {
+      try {
+        var c = document.createElement("canvas"); c.width = im.naturalWidth; c.height = im.naturalHeight;
+        var g = c.getContext("2d"); g.drawImage(im, 0, 0);
+        if (!isNaN(f.x) && !isNaN(f.y)) flecha(g, f.x, f.y);
+        ok(c);
+      } catch (e) { ok(null); }
+    };
+    im.onerror = function () { ok(null); };
+    im.src = f.dataUrl;
+  }), 2500, null);
+}
+/* ═══ DENTRO DE UN VISOR EMBEBIDO (iframe) ═══
+   elementFromPoint no cruza al iframe, así que se le pregunta. Dos caminos, y
+   los dos solo con visores de ESTE mismo origen:
+   1. postMessage {chinche:"contexto?"}: el visor contesta qué hay bajo el
+      toque y manda su propia foto (el recorrido 360 lo hace así).
+   2. Si no contesta, se mira su documento directamente (la caminata 3D).
+   Un iframe de otro origen (Google Street View) no se puede mirar: se guarda
+   cuál era y en qué parte se tocó, sin inventar lo demás. */
+var nPregunta = 0;
+/* Un lienzo WebGL solo conserva sus píxeles durante el cuadro en que se pinta:
+   se intenta de inmediato (lienzos 2D) y luego dentro de los siguientes
+   cuadros, justo después de que la página pinta. A un visor embebido que solo
+   dibuja cuando algo cambia (la caminata 3D) hay que pedirle que repinte: la
+   página sabe cómo y lo ofrece en CTX.repintar(marco). */
+function leerLienzo(w, el, px, py, marco){
+  return new Promise(function (ok) {
+    var hecho = false, vueltas = 0;
+    function fin(c){ if (!hecho) { hecho = true; ok(c); } }
+    function leer(){
+      var c = recorteDe(el, px, py);
+      if (c) return fin(c);
+      if (++vueltas > 6) return fin(null);
+      w.requestAnimationFrame(leer);
+    }
+    setTimeout(function () { fin(null); }, 1200);   /* rAF no corre con la pestaña atrás */
+    if (marco) {
+      try { w.dispatchEvent(new w.Event("resize")); } catch (e) {}
+      try { if (typeof CTX.repintar === "function") CTX.repintar(marco); } catch (e) {}
+    }
+    try { leer(); } catch (e) { fin(null); }
+  });
+}
+function rutaCorta(u){
+  try { var x = new URL(u, location.href); return (x.origin === location.origin ? "" : x.host) + x.pathname + x.search; }
+  catch (e) { return String(u || ""); }
+}
+function preguntarMarco(marco, rx, ry){
+  return new Promise(function (ok) {
+    var w = marco.contentWindow, mismo = false;
+    try { mismo = new URL(marco.src, location.href).origin === location.origin; } catch (e) {}
+    if (!w || !mismo) return ok(null);
+    var id = "p" + (++nPregunta) + "-" + Date.now(), t = null;
+    function fin(r){ removeEventListener("message", oir); clearTimeout(t); ok(r); }
+    function oir(ev){
+      if (ev.source !== w || ev.origin !== location.origin) return;
+      var d = ev.data;
+      if (!d || d.chinche !== "contexto" || d.id !== id) return;
+      fin(limpiar(d.datos));
+    }
+    addEventListener("message", oir);
+    /* el visor comparte hilo con esta página: si tardó en armar su foto, su
+       respuesta y este tope vencen juntos. Una vuelta más deja pasar primero
+       a la respuesta que ya venía en camino. */
+    t = setTimeout(function () { t = setTimeout(function () { fin(null); }, 150); }, 900);
+    try { w.postMessage({ chinche: "contexto?", id: id, x: rx, y: ry }, location.origin); } catch (e) { fin(null); }
+  });
+}
+function mirarMarco(marco, rx, ry){
+  return new Promise(function (ok) {
+    var w, d, el, hecho = false;
+    function fin(r){ if (!hecho) { hecho = true; ok(r); } }
+    try { w = marco.contentWindow; d = w.document; el = d.elementFromPoint(rx, ry); }
+    catch (e) { return fin(null); }                /* otro origen */
+    if (!el) return fin(null);
+    var esLz = el.tagName === "CANVAS";
+    var info = { css: ruta(el), valores: {}, texto: esLz ? "" : legible(el).slice(0, 160) };
+    if (d.title) info.valores.visor = d.title;
+    if (!esLz) return fin(limpiar(info));
+    if (el.getAttribute("aria-label")) info.valores.lienzo = el.getAttribute("aria-label");
+    var r = el.getBoundingClientRect();
+    leerLienzo(w, el, (rx - r.left) * (el.width / (r.width || 1)), (ry - r.top) * (el.height / (r.height || 1)), marco)
+      .then(function (c) { if (c) info.foto = { lista: c }; fin(limpiar(info)); });
+  });
+}
+function contextoDeMarco(marco, x, y){
+  var r = marco.getBoundingClientRect(), rx = x - r.left, ry = y - r.top;
+  var fx = rx / (r.width || 1), fy = ry / (r.height || 1);
+  /* la dirección de AHORA (el visor la va cambiando), no la del atributo src */
+  var donde = marco.src;
+  try { donde = marco.contentWindow.location.href; } catch (e) {}
+  var base = limpiar({ ax: fx, ay: fy, valores: {
+    marco: marco.title || marco.name || "visor embebido", pagina: rutaCorta(donde),
+    toque: Math.round(fx * 100) + "% a lo ancho · " + Math.round(fy * 100) + "% a lo alto" } });
+  return preguntarMarco(marco, rx, ry)
+    .then(function (resp) { return resp || mirarMarco(marco, rx, ry); })
+    .then(function (dentro) { return unir(base, dentro); }, function () { return base; });
+}
+
 /* ═══ DÓNDE VIVE ESO EN EL CÓDIGO · tabla estática. Si no hay entrada se omite;
       nunca se inventa. ═══ */
 var MAPA = {
@@ -286,6 +464,7 @@ function hoja(html, alto){
   return v;
 }
 function cerrar(v){
+  if (v._alCerrar) { try { v._alCerrar(); } catch (e) {} v._alCerrar = null; }
   v.classList.remove("on"); abierta = false;
   (v._urls || []).forEach(function(u){ try { URL.revokeObjectURL(u); } catch(e){} });
   v._urls = [];
@@ -303,6 +482,64 @@ function aviso(t){
   setTimeout(function(){ a.classList.remove("on"); setTimeout(function(){ a.remove(); }, 250); }, 1600);
 }
 
+/* ═══ DICTADO POR VOZ ═══
+   El micrófono del teclado solo existe en el celular; en la computadora no hay
+   y todo se escribía a mano. Donde el navegador trae reconocimiento de voz
+   (Chrome, Edge, Safari) la hoja ofrece «Dictar»: lo dicho se va escribiendo
+   en el mismo cuadro y se puede corregir a mano. Donde no lo trae (Firefox) el
+   botón no aparece: no se promete lo que no hay. */
+function Reconocedor(){ return window.SpeechRecognition || window.webkitSpeechRecognition || null; }
+function pegar(base, dicho){
+  dicho = String(dicho || "").replace(/\s+/g, " ").trim();
+  if (!dicho) return base;
+  return base && !/\s$/.test(base) ? base + " " + dicho : base + dicho;
+}
+function dictado(ta, boton, estado){
+  var R = Reconocedor(), rec = null, base = "", desde = 0, vistos = 0, escribiendo = false;
+  function pintar(on, nota){
+    boton.classList.toggle("on", on);
+    boton.setAttribute("aria-pressed", on ? "true" : "false");
+    boton.textContent = on ? "■ Terminar dictado" : "🎙 Dictar";
+    estado.textContent = nota || (on ? "Escuchando… habla con calma; lo que digas se escribe aquí arriba." : "");
+  }
+  function parar(){
+    var r = rec; rec = null;
+    if (r) { try { r.onresult = r.onerror = r.onend = null; r.stop(); } catch (e) {} }
+  }
+  function empezar(){
+    try { rec = new R(); } catch (e) { rec = null; return pintar(false, "Este navegador no deja dictar aquí; escríbelo."); }
+    var mio = rec;
+    base = ta.value; desde = 0; vistos = 0;
+    rec.lang = "es-MX"; rec.continuous = true; rec.interimResults = true;
+    rec.onresult = function (ev) {
+      if (rec !== mio) return;
+      var dicho = "";
+      for (var i = desde; i < ev.results.length; i++) dicho += ev.results[i][0].transcript + " ";
+      vistos = ev.results.length;
+      escribiendo = true; ta.value = pegar(base, dicho); escribiendo = false;
+    };
+    rec.onerror = function (ev) {
+      if (rec !== mio) return;
+      var e = ev && ev.error;
+      if (e === "no-speech" || e === "aborted") return;        /* silencio: no es falla */
+      parar();
+      pintar(false, e === "not-allowed" || e === "service-not-allowed"
+        ? "El navegador no dio permiso al micrófono. Actívalo en el candado de la barra de direcciones."
+        : e === "audio-capture" ? "No encontré un micrófono en este equipo."
+        : e === "network" ? "El dictado necesita internet y ahorita no responde; escríbelo."
+        : "El dictado se detuvo (" + (e || "error") + "); puedes volver a tocar Dictar.");
+    };
+    /* el navegador lo corta solo tras un silencio largo: el texto ya quedó */
+    rec.onend = function () { if (rec !== mio) return; rec = null; pintar(false, ta.value.trim() ? "Dictado en pausa · revisa el texto o toca Dictar para seguir." : ""); };
+    try { rec.start(); pintar(true); } catch (e) { rec = null; pintar(false, "No se pudo abrir el micrófono; escríbelo."); }
+  }
+  /* si corrige a mano a media frase, lo escrito manda: lo ya dicho no se vuelve a pegar encima */
+  ta.addEventListener("input", function () { if (!escribiendo && rec) { base = ta.value; desde = vistos; } });
+  boton.onclick = function () { if (rec) { parar(); pintar(false, "Dictado terminado · revisa el texto antes de clavar."); } else empezar(); ta.focus(); };
+  pintar(false);
+  return parar;
+}
+
 /* anotar() lo llama el tablero cuando picas "Pedir cambio aquí", o la pastilla
    en cualquier otra pantalla. */
 async function anotar(op){
@@ -310,10 +547,15 @@ async function anotar(op){
   var d = new Date();
   var esLienzo = !!(CTX.canvas && op.x != null && op.y != null);
   var cap = esLienzo ? capturarLienzo(op.x, op.y) : null;
-  var lienzo = cap ? cap.canvas : tarjetaContexto({
-    pantalla: PANT, seccion: op.seccion || (CTX.seccion ? CTX.seccion() : ""),
-    css: op.css || "", texto: op.texto || "", valores: op.valores || (CTX.valores ? CTX.valores() : {})
-  });
+  function tarjeta(){
+    return tarjetaContexto({
+      pantalla: PANT, seccion: op.seccion || (CTX.seccion ? CTX.seccion() : ""),
+      css: op.css || "", texto: op.texto || "", valores: op.valores || (CTX.valores ? CTX.valores() : {})
+    });
+  }
+  var lienzo = cap ? cap.canvas : tarjeta();
+  var captura = false;   /* true: hay foto real de lo señalado (mapa o visor), no la tarjeta */
+  var puedeDictar = !!Reconocedor();
 
   /* la hoja se pinta y el foco se pide DENTRO del gesto: si hubiera un await
      antes, iOS ya no sube el teclado (ni el micrófono que promete el texto).
@@ -324,24 +566,49 @@ async function anotar(op){
     '<div class="chn-chips">' +
       ['Cambiar','Quitar','Agregar','Está mal'].map(function(t){
         return '<button type="button" class="chn-chip" data-v="' + t + '">' + t + '</button>'; }).join("") +
+      (puedeDictar ? '<button type="button" class="chn-mic" data-mic aria-pressed="false">🎙 Dictar</button>' : "") +
     '</div>' +
-    '<textarea class="chn-txt" placeholder="Dilo como lo dirías en voz alta. Usa el micrófono del teclado si quieres."></textarea>' +
+    '<textarea class="chn-txt" placeholder="' + (puedeDictar
+      ? "Escríbelo, o toca «Dictar» y dilo como lo dirías en voz alta."
+      : "Dilo como lo dirías en voz alta. Usa el micrófono del teclado si quieres.") + '"></textarea>' +
+    (puedeDictar ? '<div class="chn-voz" data-voz role="status" aria-live="polite"></div>' : "") +
     '<div class="chn-pie"><button type="button" class="chn-btn2" data-x>Cancelar</button>' +
     '<button type="button" class="chn-btn" data-ok>Clavar</button></div>', "86vh");
 
   var ta = v.querySelector(".chn-txt"), tipo = "";
   try { ta.focus(); } catch(e){}
-  aBlob(lienzo, 0.72).then(function (b) {
-    if (!b) { v.querySelector(".chn-foto").remove(); return; }   /* toBlob puede dar null */
-    var u = URL.createObjectURL(b);
-    v._urls.push(u);
-    var im = v.querySelector(".chn-foto"); if (im) im.src = u;
-  });
+  var callar = puedeDictar ? dictado(ta, v.querySelector("[data-mic]"), v.querySelector("[data-voz]")) : function(){};
+  v._alCerrar = callar;   /* cerrar la hoja apaga el micrófono */
+  function pintarFoto(){
+    var actual = lienzo;
+    aBlob(actual, 0.72).then(function (b) {
+      var im = v.querySelector(".chn-foto");
+      if (!im || actual !== lienzo) return;         /* llegó una foto mejor mientras tanto */
+      if (!b) { im.remove(); return; }              /* toBlob puede dar null */
+      var u = URL.createObjectURL(b);
+      v._urls.push(u); im.src = u;
+    });
+  }
+  pintarFoto();
+  /* lo que la página o el visor embebido saben del toque llega un instante
+     después de abrir la hoja (abrirla no puede esperar: ver nota de iOS arriba) */
+  var listo = !esLienzo && op.espera ? Promise.resolve(op.espera).then(function (extra) {
+    if (!extra) return;
+    if (extra.css && String(op.css || "").indexOf(extra.css) < 0) op.css = op.css ? op.css + " → " + extra.css : extra.css;
+    if (extra.texto) op.texto = extra.texto;
+    ["seccion", "vista", "codigo", "ax", "ay"].forEach(function (k) { if (extra[k] != null) op[k] = extra[k]; });
+    var vs = {}; [op.valores, extra.valores].forEach(function (o) { Object.keys(o || {}).forEach(function (k) { vs[k] = o[k]; }); });
+    op.valores = vs;
+    return fotoDeExtra(extra).then(function (c) {
+      if (c) { lienzo = c; captura = true; } else lienzo = tarjeta();
+      pintarFoto();
+    });
+  }).catch(function () {}) : null;
   v.querySelectorAll(".chn-chip").forEach(function (b) {
     b.onclick = function () {
       v.querySelectorAll(".chn-chip").forEach(function(o){ o.classList.remove("on"); });
       b.classList.add("on"); tipo = b.dataset.v.toLowerCase();
-      if (!ta.value.trim()) { ta.value = b.dataset.v + " "; }
+      if (!ta.value.trim()) { ta.value = b.dataset.v + " "; ta.dispatchEvent(new Event("input")); }   /* el dictado sigue después de la palabra */
       ta.focus();
     };
   });
@@ -350,24 +617,28 @@ async function anotar(op){
     var texto = ta.value.trim();
     if (!texto) { ta.focus(); ta.placeholder = "Escribe qué quieres que cambie…"; return; }
     var btn = this;
+    callar();
     btn.disabled = true; btn.textContent = "Clavando…";
+    if (listo) await conTope(listo, 2500, null);   /* el contexto del visor casi siempre ya llegó */
     var ch = {
       id: nuevoId(d), creado: d.toISOString(), sello: sello(d), quien: quien(),
       texto: texto, tipo: tipo, estado: "nueva",
       pantalla: PANT, repo: repoActual(), url: location.href.split("#")[0], aparato: aparato(),
       vista: op.vista || (CTX.vista ? CTX.vista() : ""),
       modo: esLienzo ? "lienzo" : "contexto",
+      captura: captura,
       ancla: esLienzo
         ? { x: +(op.x / CTX.canvas.width).toFixed(4), y: +(op.y / CTX.canvas.height).toFixed(4),
             clase: op.clase || "", css: "" }
-        : { x: null, y: null, clase: op.clase || "", css: op.css || "" },
+        : { x: op.ax != null ? +(+op.ax).toFixed(4) : null, y: op.ay != null ? +(+op.ay).toFixed(4) : null,
+            clase: op.clase || "", css: op.css || "" },
       objeto: op.objeto || null,
       elemento: esLienzo ? null : {
         css: op.css || "", texto: op.texto || "",
         seccion: op.seccion || (CTX.seccion ? CTX.seccion() : ""),
         valores: op.valores || (CTX.valores ? CTX.valores() : {})
       },
-      codigo: dondeVive(PANT, op.clase || "")
+      codigo: op.codigo || dondeVive(PANT, op.clase || "")
     };
     try {
       var full = await aBlob(lienzo, 0.7), chica = full ? await aBlob(mini(lienzo), 0.6) : null;
@@ -471,12 +742,42 @@ function modoSenalar(){
   pista.textContent = "Toca lo que quieres cambiar · aquí para salir";
   document.body.appendChild(marco); document.body.appendChild(pista);
 
-  function bajo(ev){
+  /* Un iframe se traga el clic: el documento de afuera ni se entera y la
+     chinche no caía «sobre la imagen». Mientras se señala, cada visor
+     embebido lleva encima un escudo transparente que recibe el toque aquí. */
+  var escudos = [];
+  function cubrir(){
+    var marcos = [].filter.call(document.querySelectorAll("iframe"), function (f) {
+      var r = f.getBoundingClientRect();
+      return r.width > 8 && r.height > 8 && r.bottom > 0 && r.right > 0 && r.top < innerHeight && r.left < innerWidth;
+    });
+    while (escudos.length > marcos.length) escudos.pop().remove();
+    marcos.forEach(function (f, i) {
+      var e = escudos[i];
+      if (!e) { e = document.createElement("div"); e.className = "chn-escudo"; document.body.appendChild(e); escudos.push(e); }
+      var r = f.getBoundingClientRect();
+      e.style.cssText = "top:" + r.top + "px;left:" + r.left + "px;width:" + r.width + "px;height:" + r.height + "px";
+    });
+  }
+  cubrir();
+  var reloj = setInterval(cubrir, 350);
+
+  function punto(ev){
     /* en touchend el dedo ya se levantó: lo que queda vive en changedTouches */
     var t = (ev.changedTouches && ev.changedTouches[0]) || (ev.touches && ev.touches[0]);
     var x = t ? t.clientX : ev.clientX, y = t ? t.clientY : ev.clientY;
     if (x == null || y == null || isNaN(x)) return null;
-    return document.elementFromPoint(x, y);
+    return { x: x, y: y };
+  }
+  function bajo(ev){
+    var p = punto(ev);
+    if (!p) return null;
+    /* el escudo no cuenta: debajo puede haber un botón de la página encima
+       del visor (ese gana) o el visor mismo */
+    var pila = document.elementsFromPoint ? document.elementsFromPoint(p.x, p.y) : [document.elementFromPoint(p.x, p.y)];
+    for (var i = 0; i < pila.length; i++)
+      if (pila[i] && !(pila[i].classList && pila[i].classList.contains("chn-escudo"))) return pila[i];
+    return null;
   }
   /* la propia Chinche nunca es señalable: sin esto, la pastilla —el único
      control visible— se clavaba a sí misma al buscar la salida */
@@ -507,16 +808,28 @@ function modoSenalar(){
     if (!el) return;                              /* barra de scroll: no adivinar */
     if (el.closest && el.closest(".chn-pista")) { ev.preventDefault(); salir(); return; }
     if (mio(el)) return;
-    if (el.tagName === "IFRAME") {
-      /* elementFromPoint no cruza al tablero embebido: adentro se pica la canica */
-      ev.preventDefault(); ev.stopPropagation(); salir();
-      aviso("Dentro del tablero pica la canica y usa ✎ Pedir cambio aquí");
-      return;
-    }
+    var p = punto(ev);
     ev.preventDefault(); ev.stopPropagation();   /* que no dispare lo de la página */
     salir();
-    anotar({ css: ruta(el), texto: legible(el).slice(0, 160),
-             seccion: seccionDe(el), valores: valoresDe(el), clase: el.tagName.toLowerCase() });
+    if (el.tagName === "IFRAME") {
+      /* dentro del visor: él (o su documento) dice qué hay bajo el toque */
+      var deMarco = contextoDeMarco(el, p.x, p.y), dePagina = pedirContexto(el, p.x, p.y);
+      anotar({ css: ruta(el), texto: el.title || "", seccion: seccionDe(el), valores: {}, clase: "iframe",
+               espera: Promise.all([deMarco, dePagina]).then(function (r) { return unir(r[0], r[1]); }) });
+      return;
+    }
+    var es = el.tagName === "CANVAS", dePag = pedirContexto(el, p.x, p.y), deLz = null;
+    if (es) {
+      /* un lienzo (mapa, modelo 3D): la página dice qué es si sabe; si no trae
+         foto propia se lee el lienzo tal cual */
+      var r = el.getBoundingClientRect(), fx = (p.x - r.left) / (r.width || 1), fy = (p.y - r.top) / (r.height || 1);
+      deLz = leerLienzo(window, el, fx * el.width, fy * el.height, null)
+        .then(function (c) { return limpiar({ ax: fx, ay: fy, valores: {}, foto: c ? { lista: c } : null }); });
+    }
+    anotar({ css: ruta(el), texto: es ? (el.getAttribute("aria-label") || "") : legible(el).slice(0, 160),
+             seccion: seccionDe(el), valores: es ? {} : valoresDe(el), clase: el.tagName.toLowerCase(),
+             espera: es || typeof CTX.contexto === "function"
+               ? Promise.all([deLz, dePag]).then(function (r) { return unir(r[0], r[1]); }) : null });
   }
   function tecla(ev){ if (ev.key === "Escape") salir(); }
   function salir(){
@@ -527,6 +840,8 @@ function modoSenalar(){
     document.removeEventListener("click", tomar, true);
     document.removeEventListener("touchend", tomar, true);
     document.removeEventListener("keydown", tecla, true);
+    clearInterval(reloj);
+    escudos.forEach(function (e) { e.remove(); }); escudos = [];
     marco.remove(); pista.remove();
   }
   senalando = salir;
@@ -664,7 +979,7 @@ async function armarTexto(ids, amarre){
      soltó su .jpg grande; queda la miniatura y el texto lo dice. */
   var fotos = {}, nf0 = 0;
   for (var i = 0; i < list.length; i++) {
-    if (list[i].modo !== "lienzo") continue;
+    if (list[i].modo !== "lienzo" && !list[i].captura) continue;
     var f = await foto(list[i].id);
     var b = f && (f.full || f.mini);
     nf0++;
@@ -710,8 +1025,11 @@ async function armarTexto(ids, amarre){
       if (e.css)     L.push("- **Elemento:** `" + e.css + "`");
       if (e.texto)   L.push('- **Dice el elemento:** "' + e.texto + '"');
       var vs = e.valores || {}, ks = Object.keys(vs).filter(function(k){ return String(vs[k]||"").trim(); });
-      if (ks.length) L.push("- **Lo que estaba escrito:** " + ks.map(function(k){ return k + "=" + JSON.stringify(vs[k]); }).join(" · "));
-      L.push("- **Sin captura de píxeles** (esta pantalla no es lienzo; el contexto de arriba es el dato real)");
+      if (ks.length) L.push("- **" + (c.captura ? "Contexto" : "Lo que estaba escrito") + ":** " + ks.map(function(k){ return k + "=" + JSON.stringify(vs[k]); }).join(" · "));
+      if (c.ancla && c.ancla.x != null) L.push("- **Punto exacto:** fracción x=" + c.ancla.x + " y=" + c.ancla.y + " del visor");
+      var fc = fotos[c.id];
+      if (fc) L.push("- **Captura:** " + fc.nombre + (fc.esMini ? " (miniatura: la grande se soltó al mandarla antes)" : "") + " · la flecha roja marca lo que tocó");
+      else L.push("- **Sin captura de píxeles** (" + (c.captura ? "la foto se soltó al mandarla antes" : "esta pantalla no es lienzo") + "; el contexto de arriba es el dato real)");
     }
     if (c.codigo) L.push("- **Dónde vive eso en el código:** " + c.codigo);
     L.push("- Clavado el " + c.sello + " · desde " + c.aparato + " · id " + c.id);
@@ -988,13 +1306,20 @@ function estilo(){
 ".chn-senalar:hover{background:#E7DCC2}",
 ".chn-tit{font:700 19px/1.25 'Helvetica Neue',Arial;margin:0 0 12px}",
 ".chn-nota{font-size:14px;color:#6B6151;margin:0 0 12px}",
-".chn-foto{width:100%;border-radius:8px;border:1px solid rgba(90,76,48,.4);display:block;margin-bottom:12px}",
+".chn-foto{width:100%;max-height:min(44vh,460px);object-fit:contain;background:#E3DAC4;border-radius:8px;",
+" border:1px solid rgba(90,76,48,.4);display:block;margin-bottom:12px}",
 ".chn-chips{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:10px}",
 ".chn-chip{padding:9px 14px;border-radius:18px;border:1px solid rgba(90,76,48,.45);background:#EFE7D5;",
 " font:700 14px 'Helvetica Neue',Arial;color:#2E2A22;cursor:pointer}",
 ".chn-chip.on{background:#2E2A22;color:#F6F1E4;border-color:#2E2A22}",
 ".chn-txt{width:100%;min-height:96px;padding:12px;border-radius:10px;border:1px solid rgba(90,76,48,.45);",
 " background:#FCF8EE;font:400 16px/1.45 'Helvetica Neue',Arial;color:#2E2A22;resize:vertical}",
+".chn-escudo{position:fixed;z-index:437;background:transparent;cursor:crosshair}",
+".chn-mic{margin-left:auto;padding:9px 16px;border-radius:18px;border:1px solid #2E2A22;background:#2E2A22;",
+" font:700 14px 'Helvetica Neue',Arial;color:#F6F1E4;cursor:pointer}",
+".chn-mic.on{background:#D93A34;border-color:#D93A34;color:#fff}",
+".chn-voz{font:500 13px/1.35 'Helvetica Neue',Arial;color:#6B6151;margin-top:6px}",
+".chn-voz:empty{display:none}",
 ".chn-pie{display:flex;gap:10px;margin-top:14px}",
 ".chn-btn{flex:1;padding:15px;border:none;border-radius:11px;background:#2E2A22;color:#F6F1E4;",
 " font:800 16px 'Helvetica Neue',Arial;cursor:pointer}",

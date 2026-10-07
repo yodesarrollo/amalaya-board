@@ -93,10 +93,10 @@ function flechaHacia(az,texto,dist,alClic){ const g=new THREE.Group();
   const chev=new THREE.Mesh(new THREE.ShapeGeometry((()=>{const s=new THREE.Shape(); s.moveTo(0,2.2); s.lineTo(1.5,0); s.lineTo(0.6,0); s.lineTo(0.6,-1.6); s.lineTo(-0.6,-1.6); s.lineTo(-0.6,0); s.lineTo(-1.5,0); s.closePath(); return s})()),new THREE.MeshBasicMaterial({color:'#141010',transparent:true,opacity:.9,depthTest:false})); chev.rotation.x=-Math.PI/2; chev.position.y=0.02;
   g.add(disco,chev); g.position.copy(enEsfera(az,-0.32,32)); g.rotation.set(0,-az,0); // el chevron apunta hacia el azimut
   const et=spriteTexto([texto,`${dist} m`],{ancho:220}); et.position.copy(enEsfera(az,-0.19,32));
-  grupoUI.add(g); grupoUI.add(et); [disco,chev,et].forEach(o=>{o.userData.clic=alClic; clicables.push(o)}); return g }
+  grupoUI.add(g); grupoUI.add(et); [disco,chev,et].forEach(o=>{o.userData.clic=alClic; o.userData.rotulo='la flecha «'+texto+'»'; clicables.push(o)}); return g }
 function pinAccion(a){ const az=a.yaw, el=a.pitch||0; const s=spriteTexto([a.texto,(a.tipo||'')+(a.origen==='local'?' · sin subir':'')],{borde:'#8FA382',ancho:260}); s.position.copy(enEsfera(az,el,30));
   const guia=new THREE.Mesh(new THREE.SphereGeometry(0.5,12,10),new THREE.MeshBasicMaterial({color:'#8FA382',depthTest:false})); guia.position.copy(enEsfera(az,el-0.05,30)); grupoUI.add(s,guia);
-  s.userData.clic=()=>{ if(a.origen==='local'&&confirm('¿Borrar esta acción?')){ ACCIONES=ACCIONES.filter(x=>x!==a); guardarLocal(); pintarUI() } }; clicables.push(s) }
+  s.userData.clic=()=>{ if(a.origen==='local'&&confirm('¿Borrar esta acción?')){ ACCIONES=ACCIONES.filter(x=>x!==a); guardarLocal(); pintarUI() } }; s.userData.rotulo='la acción «'+a.texto+'»'; clicables.push(s) }
 function pintarUI(){ while(grupoUI.children.length) grupoUI.remove(grupoUI.children[0]); clicables=[]; const p=DATA.puntos[idx];
   [[idx-1,'Anterior'],[idx+1,'Siguiente']].forEach(([j,txt])=>{ if(j<0||j>=DATA.puntos.length) return; const q=DATA.puntos[j]; flechaHacia(rumbo(p,q),txt,metros(p,q),()=>irA(j)) });
   ACCIONES.filter(a=>a.punto===p.id).forEach(pinAccion) }
@@ -149,6 +149,28 @@ addEventListener('keydown',e=>{ if(e.key==='ArrowRight'&&e.shiftKey) irA(idx+1);
 addEventListener('message',e=>{if(e.origin!==location.origin||e.source!==parent||e.data?.tipo!=='version360')return;if(Number.isFinite(e.data.heading))yaw=e.data.heading*Math.PI/180;});
 const sel=document.getElementById('selRuta'); sel.onchange=()=>{ DATA=RUTAS.rutas.find(r=>r.id===sel.value); irA(0) };
 addEventListener('message',(e)=>{ const d=e.data||{}; if(e.origin===location.origin&&e.source===window.parent&&d.tipo==='ir360'&&RUTAS){ const R=RUTAS.rutas.find(r=>r.id===d.ruta)||RUTAS.rutas.find(r=>r.puntos.some(p=>p.id===d.punto)); if(!R) return; DATA=R; sel.value=R.id; irA(Math.max(0,R.puntos.findIndex(p=>p.id===d.punto))) } });
+// --- la Chinche señalando DENTRO del panorama ---
+// El tablero (o esta misma página a pantalla completa) pregunta qué hay bajo un
+// toque. Se contesta con el punto del recorrido, hacia dónde apunta el toque y
+// un recorte de lo que se estaba viendo; la flecha roja la pone la Chinche.
+const CARDINAL=['N','NE','E','SE','S','SO','O','NO'];
+function contextoChinche(x,y){ if(!DATA||!isFinite(x)||!isFinite(y)) return null; const p=DATA.puntos[idx], P='P'+String(idx+1).padStart(2,'0');
+  const v=new THREE.Vector2((x/innerWidth)*2-1,-(y/innerHeight)*2+1), f=cam.fov*Math.PI/180;
+  const az=yaw+Math.atan(v.x*Math.tan(f/2)*cam.aspect), el=Math.round((PITCH+Math.atan(v.y*Math.tan(f/2)))*180/Math.PI);
+  const g=Math.round(((az*180/Math.PI)%360+360)%360)%360;
+  ray.setFromCamera(v,cam); const tocado=ray.intersectObjects(clicables,false)[0], sobre=tocado&&tocado.object.userData.rotulo;
+  const mezcla=+document.getElementById('mezcla').value, escena=matB.map&&mezcla>0?`render Amalaya al ${mezcla}%`:'foto actual';
+  let foto=null;
+  try{ ren.render(esc,cam); // un lienzo WebGL solo conserva sus píxeles en el cuadro en que se pinta
+    const k=canvas.width/innerWidth, W=Math.min(860,canvas.width), H=Math.min(600,canvas.height), cx=x*k, cy=y*k;
+    const x0=Math.max(0,Math.min(canvas.width-W,cx-W/2)), y0=Math.max(0,Math.min(canvas.height-H,cy-H/2));
+    const c=document.createElement('canvas'); c.width=W; c.height=H; c.getContext('2d').drawImage(canvas,x0,y0,W,H,0,0,W,H);
+    foto={dataUrl:c.toDataURL('image/jpeg',0.72),x:cx-x0,y:cy-y0} }catch(e){ foto=null }
+  return { css:'canvas#c', codigo:'public/recorrido/index.html (visor 360 antes/después)', vista:`Street View · ${DATA.id} ${P}`,
+    texto:`Street View 360 · ${DATA.nombre} · ${P} «${p.nombre}» · tocó hacia ${g}° (${CARDINAL[Math.round(g/45)%8]}), ${el===0?'a la altura del horizonte':Math.abs(el)+'° '+(el>0?'arriba':'abajo')+' del horizonte'}${sobre?' · sobre '+sobre:''}`,
+    valores:{ ruta:`${DATA.id} · ${DATA.nombre}`, punto:`${P} · ${p.nombre}`, punto_id:p.id, rumbo:g+'°', elevacion:el+'°', escena, coordenadas:`${p.lat}, ${p.lng}`, ...(sobre?{sobre}:{}) }, foto } }
+addEventListener('message',e=>{ const d=e.data||{}; if(e.origin!==location.origin||window.parent===window||e.source!==window.parent||d.chinche!=='contexto?') return;
+  window.parent.postMessage({chinche:'contexto',id:d.id,datos:contextoChinche(+d.x,+d.y)},location.origin) });
 function ajustar(){ ren.setSize(innerWidth,innerHeight,false); cam.aspect=innerWidth/innerHeight; cam.updateProjectionMatrix() } addEventListener('resize',ajustar); ajustar();
 function frame(){ if(auto) yaw+=0.002; cam.rotation.set(0,0,0,'YXZ'); cam.rotation.y=-yaw; cam.rotation.x=PITCH; ren.render(esc,cam); document.getElementById('aguja').style.transform=`rotate(${-yaw*180/Math.PI}deg)`; requestAnimationFrame(frame) }
 fetch('rutas.json').then(r=>r.json()).then(async d=>{ RUTAS=d; ROLL=await fetch('roll.json').then(r=>r.ok?r.json():{}).catch(()=>({})); await cargarAcciones(); sel.innerHTML=d.rutas.map(r=>`<option value="${r.id}">${r.nombre} · ${r.puntos.length} pts</option>`).join('');
@@ -165,7 +187,7 @@ fetch('rutas.json').then(r=>r.json()).then(async d=>{ RUTAS=d; ROLL=await fetch(
     var s = JSON.parse(localStorage.getItem('amalaya_sesion') || 'null');
     if (!s || !s.codigo || ['admin', 'master', 'editor', 'visor'].indexOf(s.rol) === -1) return;
     var el = document.createElement('script');
-    el.src = '../chinche.js?v=f9';
+    el.src = '../chinche.js?v=f10';
     el.onload = function () {
       if (window.YODChinche) YODChinche.init({ pantalla: 'amalaya-recorrido', repo: 'amalaya-board',
         quien: function () { return s.nombre || ''; },
@@ -178,6 +200,8 @@ fetch('rutas.json').then(r=>r.json()).then(async d=>{ RUTAS=d; ROLL=await fetch(
             .then(function (r) { return r.json(); })
             .then(function (j) { if (!j || j.ok !== true) throw new Error((j && j.error) || 'error'); return j; });
         },
+        // Señalar la imagen: el punto, el rumbo del toque y la foto de lo que se veía.
+        contexto: function (o) { return o.el === document.getElementById('c') && window.contextoChinche ? window.contextoChinche(o.x, o.y) : null; },
         seccion: function () { return 'recorrido'; }, vista: function () { return 'recorrido'; } });
     };
     document.body.appendChild(el);
