@@ -34,16 +34,17 @@ for(const b of targets){
  const prefixes=b.id==='OB-01'?['OB-01 · cubierta']:b.id==='EB-SW'?['La Barra Hidalgo','Club Obregón']:[b.modelReference.owner];
  const owners=prefixes.map(prefix=>{let found;world.traverse(o=>{if(!found&&o.name.startsWith(prefix))found=o});return found}).filter(Boolean);
  if(owners.length!==prefixes.length)throw Error('Ambiguous model owners '+b.id);
- const triangles=[];
- for(const owner of owners)owner.traverse(m=>{
+ const triangles=[],parts=[];
+ for(const owner of owners){const ownTriangles=[];owner.traverse(m=>{
   if(!m.isMesh||m.isInstancedMesh||!m.geometry?.attributes.position)return;
   const p=m.geometry.attributes.position,idx=m.geometry.index?.array||Array.from({length:p.count},(_,i)=>i);
   for(let i=0;i<idx.length;i+=3){const vs=[0,1,2].map(j=>new R.Vector3().fromBufferAttribute(p,idx[i+j]).applyMatrix4(m.matrixWorld));
    const area=Math.abs((vs[1].x-vs[0].x)*(vs[2].z-vs[0].z)-(vs[1].z-vs[0].z)*(vs[2].x-vs[0].x));
-   if(area>1e-7)triangles.push(vs.map(v=>[v.x,v.z]));
+   if(area>1e-7)ownTriangles.push(vs.map(v=>[v.x,v.z]));
   }
- });
- entries.push({id:b.id,owners:owners.map(o=>o.name),triangles});
+ });triangles.push(...ownTriangles);parts.push({owner:owner.name,triangles:ownTriangles});}
+ entries.push({id:b.id,owners:owners.map(o=>o.name),triangles,parts});
 }
-await writeFile(process.argv[2]||'/tmp/amalaya-inventory-envelopes.json',JSON.stringify({worldSha256:sheetHash(source),plans:SHEET_PLANS,entries}));
+const plans=SHEET_PLANS.map(p=>{const owner=world.getObjectByName('Planta física · '+p.id),fit=owner.userData.fittedPlan;return {...p,points:fit?.points||p.points,holes:fit?.holes||p.holes,owner:owner.name};});
+await writeFile(process.argv[2]||'/tmp/amalaya-inventory-envelopes.json',JSON.stringify({worldSha256:sheetHash(source),plans,entries}));
 console.log('Exported '+entries.length+' legacy building envelopes');

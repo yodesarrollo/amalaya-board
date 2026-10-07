@@ -30,9 +30,10 @@ for(const p of SHEET_PLANS){
  mesh.geometry.computeBoundingBox();
  assert(Math.abs(mesh.geometry.boundingBox.min.y+mesh.position.y-.05)<.001,p.id+' base sobre el mapa');
  assert(Math.abs(mesh.geometry.boundingBox.max.y-mesh.geometry.boundingBox.min.y-p.heightMeters)<.001,p.id+' conserva altura existente');
+ const fitted=mesh.userData.fittedPlan||p;
  const pos=mesh.geometry.attributes.position;let roof=0;
  for(let i=0;i<pos.count;i+=3){const v=[i,i+1,i+2].map(k=>new R.Vector3().fromBufferAttribute(pos,k).applyMatrix4(mesh.matrixWorld));if(v.every(q=>Math.abs(q.y-(p.heightMeters+.05))<.001))roof+=area(v.map(q=>[q.x,q.z]));}
- assert(Math.abs(roof-(area(p.points)-(p.holes||[]).reduce((s,h)=>s+area(h),0)))<.1,p.id+' área de cubierta real');
+ assert(Math.abs(roof-(area(fitted.points)-(fitted.holes||[]).reduce((s,h)=>s+area(h),0)))<.1,p.id+' área de cubierta real');
  const b=buildings.find(b=>b.id===p.id);assert(b);const rec=JSON.parse(await readFile('public/'+b.visualProgress.manifest));assert.deepEqual(rec.source.points,p.points);assert.deepEqual(rec.source.holes,p.holes);assert.equal(rec.heightMeasured,false);assert(rec.triangles>0);
 }
 for(const b of buildings){assert.equal(b.tasks.plan,'done',b.id);assert.equal(b.reviewTasks?.plan||'done','done');assert(b.visualProgress?.manifest);const p=b.visualProgress.current,bytes=await readFile('public/'+p.url);assert.equal(sheetHash(bytes),p.sha256,b.id+' imagen actual');assert.equal(bytes.readUInt32BE(16),960);assert.equal(bytes.readUInt32BE(20),600);assert(b.modelReference?.modelUrl?.includes('modelo-completo.html'));}
