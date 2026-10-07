@@ -15,4 +15,18 @@ let resultado; const pintarDespues=x=>{resultado=x}; ${cuerpo}; irA(0).then(()=>
 const r = await vm.runInNewContext(guion, {}, { timeout: 1000 })
 assert.equal(r?.tipo, 'render-simulado')
 console.log('  ✓ irA usa el render guardado sin error')
+
+const mapa = fs.readFileSync('src/componentes/Mapa3D.jsx', 'utf8')
+const chinche = fs.readFileSync('public/chinche.js', 'utf8')
+assert.match(html, /amalaya:chinche-armar/)
+assert.match(html, /amalaya:chinche-recorrido/)
+assert.match(mapa, /recorrido-toque[\\s\\S]*setPunto/)
+assert.match(mapa, /← Anterior/)
+assert.match(mapa, /Siguiente →/)
+assert.match(mapa, /YODChinche\?\.anotar/)
+assert.match(mapa, /data-chinche-context/)
+assert.match(chinche, /SpeechRecognition \|\| window\.webkitSpeechRecognition/)
+assert.match(chinche, /Toca ahora el punto exacto dentro del recorrido/)
+console.log('  ✓ puntos → Street View, anterior/siguiente, puente de chinche y dictado están cableados')
+
 console.log('\nEl visor 360 pasa su prueba.')
