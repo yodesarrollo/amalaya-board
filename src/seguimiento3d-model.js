@@ -27,10 +27,11 @@ export function cellInfo(column, task) {
   }
 }
 export function report(cell, text, id, url) {
+  const isBlock = cell.scope === 'block'
   return {
     id, creado: new Date().toISOString(), pantalla: 'seguimiento-3d',
     vista: cell.buildingId, url, tipo: 'instruccion',
-    texto: `${cell.buildingId} · ${cell.task}${cell.shared ? ' (tarea compartida de cuadra)' : ''}\nProblema: ${cell.issue?.detail || 'Sin problema registrado'}\nIndicación: ${text.trim()}`,
-    elemento: { seccion: 'levantamiento-3d', valores: { block: cell.blockId, building: cell.buildingId, task: cell.task } },
+    texto: `${isBlock ? 'Cuadra ' : ''}${cell.buildingId} · ${cell.task}${cell.shared ? ' (tarea compartida de cuadra)' : ''}\nProblema: ${cell.issue?.detail || 'Sin problema registrado'}\nIndicación: ${text.trim()}`,
+    elemento: { seccion: 'levantamiento-3d', valores: { block: cell.blockId, building: isBlock ? null : cell.buildingId, task: cell.task, ...(isBlock ? { scope: 'block', buildings: cell.memberIds } : {}) } },
   }
 }
