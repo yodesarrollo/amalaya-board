@@ -1,0 +1,278 @@
+{
+  "version": "ground-reference-20261007",
+  "provider": "Esri World Imagery",
+  "attribution": "Esri World Imagery",
+  "retrievedAt": "2026-10-07",
+  "captureDate": "not verified",
+  "tileZoom": 18,
+  "tileBounds": [
+    50274,
+    108924,
+    50281,
+    108931
+  ],
+  "bounds": [
+    -110.95916748046875,
+    29.07177442521921,
+    -110.94955444335938,
+    29.0801759896232
+  ],
+  "origin": {
+    "lat": 29.076115,
+    "lon": -110.9547151
+  },
+  "metersPerDegree": {
+    "x": 97200,
+    "z": 110950
+  },
+  "image": "ground-reference.jpg",
+  "imageSha256": "b5047ad684e6188a781e3e4226db33574aeabf70613e12bacb3177eb9219e28f",
+  "tiles": [
+    {
+      "x": 50274,
+      "y": 108924,
+      "sha256": "a40c366dc7acf1395632d3b03107b3d81c82eb9ddcf761590aa9590f937cce83"
+    },
+    {
+      "x": 50275,
+      "y": 108924,
+      "sha256": "fadc11fd5ab84801a11f809710e242e0c760c54546eaa8776a47637fb3732693"
+    },
+    {
+      "x": 50276,
+      "y": 108924,
+      "sha256": "5a7b97f8acb46baabe55b71a8eb8347122a63246c139221eb9b340c27c36f993"
+    },
+    {
+      "x": 50277,
+      "y": 108924,
+      "sha256": "2c1495a6896b7669d26dfd91a490f9778fd39ef4379ac1aad54491cb79e57d11"
+    },
+    {
+      "x": 50278,
+      "y": 108924,
+      "sha256": "4ec76879c86c737b3fc938ff979af8c33dee3d484b353b6785c227814b12ff3a"
+    },
+    {
+      "x": 50279,
+      "y": 108924,
+      "sha256": "96a6275b175a692094f4cf296d323f9e1f00863e0df010c9120562b155b2b40d"
+    },
+    {
+      "x": 50280,
+      "y": 108924,
+      "sha256": "649716e5c35049769608f3a60af0bf2937d1cfcbccba72952e352183287778ef"
+    },
+    {
+      "x": 50274,
+      "y": 108925,
+      "sha256": "5bea9880bce64a681d90952997b70e282e50f6aa6678b561b35f37b2d15cb9a9"
+    },
+    {
+      "x": 50275,
+      "y": 108925,
+      "sha256": "7a9f91172c3decb2854f4f4f1596ff53065497a4b1235fb32d943f0578f2d550"
+    },
+    {
+      "x": 50276,
+      "y": 108925,
+      "sha256": "0659d319db24cb07fc0771ab911044767e5081efc48d7c4b1929af881cd74c93"
+    },
+    {
+      "x": 50277,
+      "y": 108925,
+      "sha256": "f8eb056407cbd673905c8f18b6a98e33b2ae025a64206e6fb6817f001224b7de"
+    },
+    {
+      "x": 50278,
+      "y": 108925,
+      "sha256": "1eb2a5a577c40f7a62fac1ea3e2f8bbb34226b078f12664ade187e1dc767ba92"
+    },
+    {
+      "x": 50279,
+      "y": 108925,
+      "sha256": "257d7f5eb56657ee684d71d5fcb2dbbbb6c87a69fdbcc4c4a22b62e714573df6"
+    },
+    {
+      "x": 50280,
+      "y": 108925,
+      "sha256": "1f2b5ee75ac37209ddeb6ad980ebdbbb48df6b5db5277d9c26ed64b600c80304"
+    },
+    {
+      "x": 50274,
+      "y": 108926,
+      "sha256": "a57b866c32c717c0894eb61891a7d40b1a097306892fc91a9a16dfb8dfaf72a5"
+    },
+    {
+      "x": 50275,
+      "y": 108926,
+      "sha256": "d8d87f64ae64c07913ca0d87d4729cf6023fc3c9f4e901ac38f20fc0b3969328"
+    },
+    {
+      "x": 50276,
+      "y": 108926,
+      "sha256": "ce52073bed5fc0d4d9e33c850c24c98fb8419f812545b143e8e7ff1dda016293"
+    },
+    {
+      "x": 50277,
+      "y": 108926,
+      "sha256": "8b6826061231d99ba65fd3fff56f5afe15610902c2980745b5be21468d545b42"
+    },
+    {
+      "x": 50278,
+      "y": 108926,
+      "sha256": "da78423707ea9cbd30202be49bdb590fd0a26bef8edd24c3e959a6e86d75f351"
+    },
+    {
+      "x": 50279,
+      "y": 108926,
+      "sha256": "5084d8373431f2e19c770b986e4eb56b9fc49aadcd735aba6ff6e6cc63c37b8b"
+    },
+    {
+      "x": 50280,
+      "y": 108926,
+      "sha256": "e09e946c2928a1c8a6d26282dc98208faf4fc56f2ef1c35466ef5b2ef8893742"
+    },
+    {
+      "x": 50274,
+      "y": 108927,
+      "sha256": "58d0a5abc30928dbed9e7b4fe2be863bdc679e3640a094f4eaa5be40ad833e0f"
+    },
+    {
+      "x": 50275,
+      "y": 108927,
+      "sha256": "bb56167277452c5a7ea00526bd35fc445af31b59021a50e15b84d9636527620b"
+    },
+    {
+      "x": 50276,
+      "y": 108927,
+      "sha256": "5a540060d78f913fa57bc3cc699c65f0c9dfae8ab2b6a52bf9f657081ec3e9cb"
+    },
+    {
+      "x": 50277,
+      "y": 108927,
+      "sha256": "ae3e1cd0a97832174b5e90a242962432fb9c8a60e1ad52d494abedb433dc74ff"
+    },
+    {
+      "x": 50278,
+      "y": 108927,
+      "sha256": "ba566460430b84479715df641dd0b8622052ce019a0ac3271da9c393e1ddf3c6"
+    },
+    {
+      "x": 50279,
+      "y": 108927,
+      "sha256": "64b7bad76419475ca2a325472b01ebff26dec8c3a7a3ca06810e9a945ab9a98a"
+    },
+    {
+      "x": 50280,
+      "y": 108927,
+      "sha256": "406e1cf3c6ff9b4f4fe2f4470957ad96d248ccfb18619df9375c790b6ec2c8bc"
+    },
+    {
+      "x": 50274,
+      "y": 108928,
+      "sha256": "f87d2ecb0b85ded568b12250257b29d3ffc46d86e25d57c901df8e2b3a91f945"
+    },
+    {
+      "x": 50275,
+      "y": 108928,
+      "sha256": "dae20f22e20068f5f3bfd654ec058baadf58afc36f195ed1fa8621485b1d76bc"
+    },
+    {
+      "x": 50276,
+      "y": 108928,
+      "sha256": "8d67a3b1d2baebb63e228a6f1073b830b9aaaeafc2911f44f57d1a564e87bac0"
+    },
+    {
+      "x": 50277,
+      "y": 108928,
+      "sha256": "c89685a851a49a988a149f69e1805ca1af941fd1f9dd11476c1a13fdc6d7cc6a"
+    },
+    {
+      "x": 50278,
+      "y": 108928,
+      "sha256": "59621f2e732e61c5062d4a46bc7c2c599fb9ab1bd8901cd805c511aac89af580"
+    },
+    {
+      "x": 50279,
+      "y": 108928,
+      "sha256": "a51930c74abf2e91ae0063f0349f440aab2dc94133f4fdc727f2372fd2497773"
+    },
+    {
+      "x": 50280,
+      "y": 108928,
+      "sha256": "b5b2e3f053b4049f2765ce941929a8f77bb0645a0d5aaad4af4fc83d27b331ec"
+    },
+    {
+      "x": 50274,
+      "y": 108929,
+      "sha256": "33d57a2ec65d98b9e336b3978a5b076cc87a38e3249926743a45261c800ef869"
+    },
+    {
+      "x": 50275,
+      "y": 108929,
+      "sha256": "98a0a64e40236ead410065a0956e32fdc99a07c8d2a7a25e933faecd0d9a0ef5"
+    },
+    {
+      "x": 50276,
+      "y": 108929,
+      "sha256": "6089823b8a92e891c07efb16a286b8fc7b93145905aba85bb93d2113a5d883ea"
+    },
+    {
+      "x": 50277,
+      "y": 108929,
+      "sha256": "110cc7a6ab068a9d5d9a073b696c569c9470a3e752057a5a4a9975c9bd496727"
+    },
+    {
+      "x": 50278,
+      "y": 108929,
+      "sha256": "799d5d1b3ebb9eed76aedf24f5a7d631df70eb8b6810b9bee5e9567fdbbc2ac8"
+    },
+    {
+      "x": 50279,
+      "y": 108929,
+      "sha256": "4338dd2ff13303e87245710f54613d2a284ba8f3290d826430c85468e8ac8b88"
+    },
+    {
+      "x": 50280,
+      "y": 108929,
+      "sha256": "80220c3dc0e0ac798e7fb859f40a404d1eebb863f624fa100ab129ca8faa58e9"
+    },
+    {
+      "x": 50274,
+      "y": 108930,
+      "sha256": "7f817890c918ea3140de96d2391c0d6e7f8276b3fe75d0deeca0fca92503b28b"
+    },
+    {
+      "x": 50275,
+      "y": 108930,
+      "sha256": "992a5c6ed9754557f73dcda02056e1ce4abf17f3b11452f258c01c1059e7ad17"
+    },
+    {
+      "x": 50276,
+      "y": 108930,
+      "sha256": "09e9252c9316d8ebc1ea89644e4cc57f500316912a3a3367d314b841a71a3778"
+    },
+    {
+      "x": 50277,
+      "y": 108930,
+      "sha256": "afed830081de28b4768428fd44dcef44c964bc6ffbb6cfc9d551d7575f5d6d73"
+    },
+    {
+      "x": 50278,
+      "y": 108930,
+      "sha256": "429e00d9516396db7e16724d639244de8722f54caa3c54a55e0039d0efbc37af"
+    },
+    {
+      "x": 50279,
+      "y": 108930,
+      "sha256": "4b1f70bf79919adf3ee2681383e43aa880ff21e46ae2b71dc514831876c78c03"
+    },
+    {
+      "x": 50280,
+      "y": 108930,
+      "sha256": "d4a320d7f56a4f188386a0122ac9ae24d6b0e89b5d718abbcb9e04737daf2983"
+    }
+  ],
+  "limits": "Photographic ground reference, not measured sidewalk or curb geometry. Building heights and footprints retain their existing uncertainty."
+}

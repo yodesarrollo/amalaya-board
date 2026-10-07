@@ -1,0 +1,970 @@
+{
+  "version": "ground-reference-20261007",
+  "previousWorldSha256": "b589e6acf74ad7ebc55658df314d14b3ee6ecd7527e5261db0ae427cd8134386",
+  "worldSha256": "fae0236c194ad42fc7e9d17c5d45669ae169de65d86c2ec79339a5d597352056",
+  "reference": "ground-reference.json",
+  "source": "Esri World Imagery — same tile provider as the main board",
+  "scope": "All public-ground generators in the assembled board model; historic hypotheses retained in source, not drawn as surveyed boundaries",
+  "roadSegments": [
+    {
+      "id": "G01",
+      "owner": "Calle Obregón · perfil aéreo PH-01 6.71 m · eje corregido vs OSM 28788558",
+      "bounds": {
+        "min": [
+          -104.7494125366211,
+          0.03200000151991844,
+          9.200111389160156
+        ],
+        "max": [
+          69.03449249267578,
+          0.03200000151991844,
+          33.71492004394531
+        ]
+      },
+      "source": {
+        "method": "Inherited procedural strip, road centerline and assumed width; no independent pavement boundary"
+      },
+      "discrepancy": "No independently traced boundary registered against the board imagery",
+      "action": "Retired model overlay; use the existing map ground"
+    },
+    {
+      "id": "CH-E",
+      "owner": "Chihuahua · perfil R-002, estimación aérea ≈5.1 m, lados independientes · calzada en tramo OSM del bloque oriental",
+      "bounds": {
+        "min": [
+          58.19431686401367,
+          0.035999998450279236,
+          -51.057003021240234
+        ],
+        "max": [
+          181.4134063720703,
+          0.035999998450279236,
+          -36.793209075927734
+        ]
+      },
+      "source": {
+        "id": "CH-E",
+        "widthMeters": 5.21,
+        "uncertaintyMeters": 0.5,
+        "method": "Google Maps manual ruler: 5.21 m between visible asphalt edges; previously recorded for EB-NW. No intersection radii.",
+        "sidewalkStagesUnchanged": true
+      },
+      "discrepancy": "No independently traced boundary registered against the board imagery",
+      "action": "Retired model overlay; use the existing map ground"
+    },
+    {
+      "id": "AB-E",
+      "owner": "Abasolo · calzada en tramo OSM del bloque oriental",
+      "bounds": {
+        "min": [
+          178.12261962890625,
+          0.035999998450279236,
+          -48.24361038208008
+        ],
+        "max": [
+          189.16690063476562,
+          0.035999998450279236,
+          5.828638076782227
+        ]
+      },
+      "source": {
+        "id": "AB-E",
+        "widthMeters": 6.6,
+        "uncertaintyMeters": 0.7,
+        "method": "Google Maps manual ruler on 2026-10-03: 6.98 ±0.70 m between visible edges; west sample 29.076411,-110.952868. Model uses 6.60 m within that range to keep the inherited sidewalk edges clear until their own stages. Intersection radii excluded.",
+        "sidewalkStagesUnchanged": true
+      },
+      "discrepancy": "No independently traced boundary registered against the board imagery",
+      "action": "Retired model overlay; use the existing map ground"
+    },
+    {
+      "id": "G04",
+      "owner": "Calle Obregón · perfil R-001 P10, asfalto ≈5.61 m y sección asimétrica · calzada en tramo OSM del bloque oriental",
+      "bounds": {
+        "min": [
+          68.38134765625,
+          0.035999998450279236,
+          2.455660343170166
+        ],
+        "max": [
+          186.30445861816406,
+          0.035999998450279236,
+          16.284162521362305
+        ]
+      },
+      "source": {
+        "method": "Inherited procedural strip, road centerline and assumed width; no independent pavement boundary"
+      },
+      "discrepancy": "No independently traced boundary registered against the board imagery",
+      "action": "Retired model overlay; use the existing map ground"
+    },
+    {
+      "id": "G05",
+      "owner": "Garmendia · calzada en tramo OSM del bloque oriental",
+      "bounds": {
+        "min": [
+          55.3546142578125,
+          0.035999998450279236,
+          -40.477508544921875
+        ],
+        "max": [
+          71.9190673828125,
+          0.035999998450279236,
+          14.659444808959961
+        ]
+      },
+      "source": {
+        "method": "Inherited procedural strip, road centerline and assumed width; no independent pavement boundary"
+      },
+      "discrepancy": "No independently traced boundary registered against the board imagery",
+      "action": "Retired model overlay; use the existing map ground"
+    },
+    {
+      "id": "G06",
+      "owner": "Calle Obregón · calzada de continuidad Amalaya",
+      "bounds": {
+        "min": [
+          185.99806213378906,
+          0.03200000151991844,
+          2.295261859893799
+        ],
+        "max": [
+          191.98269653320312,
+          0.03200000151991844,
+          8.646425247192383
+        ]
+      },
+      "source": {
+        "method": "Inherited procedural strip, road centerline and assumed width; no independent pavement boundary"
+      },
+      "discrepancy": "No independently traced boundary registered against the board imagery",
+      "action": "Retired model overlay; use the existing map ground"
+    },
+    {
+      "id": "G07",
+      "owner": "Garmendia · calzada de continuidad Amalaya",
+      "bounds": {
+        "min": [
+          36.1140251159668,
+          0.03200000151991844,
+          -155.5845489501953
+        ],
+        "max": [
+          61.45950698852539,
+          0.03200000151991844,
+          -39.401039123535156
+        ]
+      },
+      "source": {
+        "method": "Inherited procedural strip, road centerline and assumed width; no independent pavement boundary"
+      },
+      "discrepancy": "No independently traced boundary registered against the board imagery",
+      "action": "Retired model overlay; use the existing map ground"
+    },
+    {
+      "id": "G08",
+      "owner": "Serdán · calzada de continuidad Amalaya",
+      "bounds": {
+        "min": [
+          45.51652908325195,
+          0.03200000151991844,
+          -142.97625732421875
+        ],
+        "max": [
+          159.6450653076172,
+          0.03200000151991844,
+          -110.9596939086914
+        ]
+      },
+      "source": {
+        "method": "Inherited procedural strip, road centerline and assumed width; no independent pavement boundary"
+      },
+      "discrepancy": "No independently traced boundary registered against the board imagery",
+      "action": "Retired model overlay; use the existing map ground"
+    },
+    {
+      "id": "SE-W",
+      "owner": "Ronda 02 · Serdán · Yáñez–Garmendia · calzada faltante sobre eje OSM",
+      "bounds": {
+        "min": [
+          -92.92737579345703,
+          0.03200000151991844,
+          -121.15762329101562
+        ],
+        "max": [
+          47.34171676635742,
+          0.03200000151991844,
+          -81.9275131225586
+        ]
+      },
+      "source": {
+        "id": "SE-W",
+        "widthMeters": 11,
+        "uncertaintyMeters": 1.5,
+        "source": "Google Maps manual ruler 2026-10-03: 11.00 ±1.50 m, north edge 29.077116,-110.954595. Centreline from approved OSM 25757083; 8 m blend to inherited 12 m east segment. No sidewalks added."
+      },
+      "discrepancy": "No independently traced boundary registered against the board imagery",
+      "action": "Retired model overlay; use the existing map ground"
+    },
+    {
+      "id": "YA-M",
+      "owner": "Ronda 02 · Yáñez · Serdán–Chihuahua · calzada faltante sobre eje OSM",
+      "bounds": {
+        "min": [
+          -97.0616226196289,
+          0.03200000151991844,
+          -87.8078842163086
+        ],
+        "max": [
+          -81.60554504394531,
+          0.03200000151991844,
+          -34.38634490966797
+        ]
+      },
+      "source": {
+        "id": "YA-M",
+        "widthMeters": 10.5,
+        "uncertaintyMeters": 1.3,
+        "source": "Google Maps manual ruler on 2026-10-03: 10.67 m after moving both markers onto visible curb edges; approximate ±1.30 m, model rounded to 10.50 m. Approved OSM centreline 1295021909. Initial marker reading discarded. No sidewalk width certified."
+      },
+      "discrepancy": "No independently traced boundary registered against the board imagery",
+      "action": "Retired model overlay; use the existing map ground"
+    },
+    {
+      "id": "G11",
+      "owner": "Lote 50 · RO · Rosales · Plutarco–sur del lote",
+      "bounds": {
+        "min": [
+          -253.20242309570312,
+          0.03200000151991844,
+          -161.54771423339844
+        ],
+        "max": [
+          -190.4361572265625,
+          0.03200000151991844,
+          143.55148315429688
+        ]
+      },
+      "source": {
+        "id": "RO",
+        "widthMeters": 14,
+        "uncertaintyMeters": 1.5,
+        "reference": "A1/C1",
+        "samplePixels": [
+          [
+            366,
+            420
+          ],
+          [
+            421,
+            410
+          ]
+        ],
+        "method": "Approximate visual road widths; OSM centre lines; old road/paving owners retained except documented B3-04 corner repair, new junctions partitioned without duplicate asphalt."
+      },
+      "discrepancy": "No independently traced boundary registered against the board imagery",
+      "action": "Retired model overlay; use the existing map ground"
+    },
+    {
+      "id": "G12",
+      "owner": "Lote 50 · PS-N · Pino Suárez · Plutarco–Obregón",
+      "bounds": {
+        "min": [
+          -185.13169860839844,
+          0.03200000151991844,
+          -172.4456024169922
+        ],
+        "max": [
+          -142.8121337890625,
+          0.03200000151991844,
+          34.76430892944336
+        ]
+      },
+      "source": {
+        "id": "PS-N",
+        "widthMeters": 12.5,
+        "uncertaintyMeters": 1.5,
+        "reference": "A1",
+        "samplePixels": [
+          [
+            640,
+            443
+          ],
+          [
+            689,
+            435
+          ]
+        ],
+        "method": "Approximate visual road widths; OSM centre lines; old road/paving owners retained except documented B3-04 corner repair, new junctions partitioned without duplicate asphalt."
+      },
+      "discrepancy": "No independently traced boundary registered against the board imagery",
+      "action": "Retired model overlay; use the existing map ground"
+    },
+    {
+      "id": "G13",
+      "owner": "Lote 50 · PS-S · Pino Suárez · Obregón–Sufragio",
+      "bounds": {
+        "min": [
+          -154.2303009033203,
+          0.03200000151991844,
+          33.47011184692383
+        ],
+        "max": [
+          -137.0702362060547,
+          0.03200000151991844,
+          111.95719909667969
+        ]
+      },
+      "source": {
+        "id": "PS-S",
+        "widthMeters": 10.5,
+        "uncertaintyMeters": 1.5,
+        "reference": "C1",
+        "samplePixels": [
+          [
+            727,
+            443
+          ],
+          [
+            769,
+            439
+          ]
+        ],
+        "method": "Approximate visual road widths; OSM centre lines; old road/paving owners retained except documented B3-04 corner repair, new junctions partitioned without duplicate asphalt."
+      },
+      "discrepancy": "No independently traced boundary registered against the board imagery",
+      "action": "Retired model overlay; use the existing map ground"
+    },
+    {
+      "id": "G14",
+      "owner": "Lote 50 · SE-O · Serdán · Rosales–Yáñez",
+      "bounds": {
+        "min": [
+          -220.59988403320312,
+          0.03200000151991844,
+          -91.97569274902344
+        ],
+        "max": [
+          -91.83455657958984,
+          0.03200000151991844,
+          -59.90497970581055
+        ]
+      },
+      "source": {
+        "id": "SE-O",
+        "widthMeters": 9.5,
+        "uncertaintyMeters": 1.5,
+        "reference": "A1",
+        "samplePixels": [
+          [
+            805,
+            573
+          ],
+          [
+            812,
+            611
+          ]
+        ],
+        "method": "Approximate visual road widths; OSM centre lines; old road/paving owners retained except documented B3-04 corner repair, new junctions partitioned without duplicate asphalt."
+      },
+      "discrepancy": "No independently traced boundary registered against the board imagery",
+      "action": "Retired model overlay; use the existing map ground"
+    },
+    {
+      "id": "G15",
+      "owner": "Lote 50 · OB-O · Obregón · Rosales–Pino Suárez",
+      "bounds": {
+        "min": [
+          -203.8596954345703,
+          0.03200000151991844,
+          29.889230728149414
+        ],
+        "max": [
+          -153.74911499023438,
+          0.03200000151991844,
+          44.05582046508789
+        ]
+      },
+      "source": {
+        "id": "OB-O",
+        "widthMeters": 9.5,
+        "uncertaintyMeters": 1.5,
+        "reference": "C1",
+        "samplePixels": [
+          [
+            620,
+            345
+          ],
+          [
+            624,
+            382
+          ]
+        ],
+        "method": "Approximate visual road widths; OSM centre lines; old road/paving owners retained except documented B3-04 corner repair, new junctions partitioned without duplicate asphalt."
+      },
+      "discrepancy": "No independently traced boundary registered against the board imagery",
+      "action": "Retired model overlay; use the existing map ground"
+    },
+    {
+      "id": "G16",
+      "owner": "Lote 50 · OB-C · Obregón · Pino Suárez–Yáñez",
+      "bounds": {
+        "min": [
+          -149.01731872558594,
+          0.03200000151991844,
+          23.396089553833008
+        ],
+        "max": [
+          -76.72781372070312,
+          0.03200000151991844,
+          37.10028839111328
+        ]
+      },
+      "source": {
+        "id": "OB-C",
+        "widthMeters": 7,
+        "uncertaintyMeters": 1.3,
+        "reference": "C1",
+        "samplePixels": [
+          [
+            842,
+            334
+          ],
+          [
+            845,
+            362
+          ]
+        ],
+        "method": "Approximate visual road widths; OSM centre lines; old road/paving owners retained except documented B3-04 corner repair, new junctions partitioned without duplicate asphalt."
+      },
+      "discrepancy": "No independently traced boundary registered against the board imagery",
+      "action": "Retired model overlay; use the existing map ground"
+    },
+    {
+      "id": "G17",
+      "owner": "Lote 50 · YA-N · Yáñez · Plutarco–Serdán",
+      "bounds": {
+        "min": [
+          -112.29869079589844,
+          0.03200000151991844,
+          -182.40341186523438
+        ],
+        "max": [
+          -88.86190032958984,
+          0.03200000151991844,
+          -91.33674621582031
+        ]
+      },
+      "source": {
+        "id": "YA-N",
+        "widthMeters": 8,
+        "uncertaintyMeters": 1.5,
+        "reference": "A1",
+        "samplePixels": [
+          [
+            939,
+            419
+          ],
+          [
+            971,
+            416
+          ]
+        ],
+        "method": "Approximate visual road widths; OSM centre lines; old road/paving owners retained except documented B3-04 corner repair, new junctions partitioned without duplicate asphalt."
+      },
+      "discrepancy": "No independently traced boundary registered against the board imagery",
+      "action": "Retired model overlay; use the existing map ground"
+    },
+    {
+      "id": "G18",
+      "owner": "Lote 50 · YA-C · Yáñez · Chihuahua–Obregón",
+      "bounds": {
+        "min": [
+          -92.8963394165039,
+          0.03200000151991844,
+          -35.1556396484375
+        ],
+        "max": [
+          -80.46710205078125,
+          0.03200000151991844,
+          26.206480026245117
+        ]
+      },
+      "source": {
+        "id": "YA-C",
+        "widthMeters": 7.5,
+        "uncertaintyMeters": 1.5,
+        "reference": "C1",
+        "samplePixels": [
+          [
+            977,
+            183
+          ],
+          [
+            1006,
+            179
+          ]
+        ],
+        "method": "Approximate visual road widths; OSM centre lines; old road/paving owners retained except documented B3-04 corner repair, new junctions partitioned without duplicate asphalt."
+      },
+      "discrepancy": "No independently traced boundary registered against the board imagery",
+      "action": "Retired model overlay; use the existing map ground"
+    },
+    {
+      "id": "G19",
+      "owner": "Lote 50 · YA-S · Yáñez · Obregón–Sufragio",
+      "bounds": {
+        "min": [
+          -100.91847229003906,
+          0.03200000151991844,
+          32.648658752441406
+        ],
+        "max": [
+          -88.39981079101562,
+          0.03200000151991844,
+          98.75103759765625
+        ]
+      },
+      "source": {
+        "id": "YA-S",
+        "widthMeters": 7,
+        "uncertaintyMeters": 1.5,
+        "reference": "C1",
+        "samplePixels": [
+          [
+            946,
+            437
+          ],
+          [
+            973,
+            434
+          ]
+        ],
+        "method": "Approximate visual road widths; OSM centre lines; old road/paving owners retained except documented B3-04 corner repair, new junctions partitioned without duplicate asphalt."
+      },
+      "discrepancy": "No independently traced boundary registered against the board imagery",
+      "action": "Retired model overlay; use the existing map ground"
+    },
+    {
+      "id": "G20",
+      "owner": "Lote 50 · CE · Callejón del Centro",
+      "bounds": {
+        "min": [
+          -139.4495391845703,
+          0.03200000151991844,
+          64.56938934326172
+        ],
+        "max": [
+          -100.62274169921875,
+          0.03200000151991844,
+          80.50668334960938
+        ]
+      },
+      "source": {
+        "id": "CE",
+        "widthMeters": 5.5,
+        "uncertaintyMeters": 1,
+        "reference": "C1",
+        "samplePixels": [
+          [
+            832,
+            506
+          ],
+          [
+            837,
+            527
+          ]
+        ],
+        "method": "Approximate visual road widths; OSM centre lines; old road/paving owners retained except documented B3-04 corner repair, new junctions partitioned without duplicate asphalt."
+      },
+      "discrepancy": "No independently traced boundary registered against the board imagery",
+      "action": "Retired model overlay; use the existing map ground"
+    },
+    {
+      "id": "G21",
+      "owner": "Lote 50 · SU · Sufragio Efectivo · Pino Suárez–Yáñez",
+      "bounds": {
+        "min": [
+          -142.31051635742188,
+          0.03200000151991844,
+          95.35401916503906
+        ],
+        "max": [
+          -91.0020980834961,
+          0.03200000151991844,
+          115.3137435913086
+        ]
+      },
+      "source": {
+        "id": "SU",
+        "widthMeters": 8,
+        "uncertaintyMeters": 1.5,
+        "reference": "C1",
+        "samplePixels": [
+          [
+            953,
+            585
+          ],
+          [
+            961,
+            616
+          ]
+        ],
+        "method": "Approximate visual road widths; OSM centre lines; old road/paving owners retained except documented B3-04 corner repair, new junctions partitioned without duplicate asphalt."
+      },
+      "discrepancy": "No independently traced boundary registered against the board imagery",
+      "action": "Retired model overlay; use the existing map ground"
+    },
+    {
+      "id": "G22",
+      "owner": "Lote 50 · PL · Plutarco Elías Calles · Rosales–Garmendia",
+      "bounds": {
+        "min": [
+          -247.10838317871094,
+          0.03200000151991844,
+          -200.49343872070312
+        ],
+        "max": [
+          32.42243957519531,
+          0.03200000151991844,
+          -156.8153076171875
+        ]
+      },
+      "source": {
+        "id": "PL",
+        "widthMeters": 9,
+        "uncertaintyMeters": 1.5,
+        "reference": "A3",
+        "samplePixels": [
+          [
+            591,
+            97
+          ],
+          [
+            595,
+            132
+          ]
+        ],
+        "method": "Approximate visual road widths; OSM centre lines; old road/paving owners retained except documented B3-04 corner repair, new junctions partitioned without duplicate asphalt."
+      },
+      "discrepancy": "No independently traced boundary registered against the board imagery",
+      "action": "Retired model overlay; use the existing map ground"
+    },
+    {
+      "id": "G23",
+      "owner": "Lote 50 · GA-N50 · Garmendia · Plutarco–tramo existente",
+      "bounds": {
+        "min": [
+          29.764949798583984,
+          0.03200000151991844,
+          -196.5338592529297
+        ],
+        "max": [
+          42.122230529785156,
+          0.03200000151991844,
+          -154.5302734375
+        ]
+      },
+      "source": {
+        "id": "GA-N50",
+        "widthMeters": 6,
+        "uncertaintyMeters": 1.5,
+        "reference": "A3",
+        "samplePixels": [
+          [
+            361,
+            261
+          ],
+          [
+            385,
+            258
+          ]
+        ],
+        "method": "Approximate visual road widths; OSM centre lines; old road/paving owners retained except documented B3-04 corner repair, new junctions partitioned without duplicate asphalt."
+      },
+      "discrepancy": "No independently traced boundary registered against the board imagery",
+      "action": "Retired model overlay; use the existing map ground"
+    },
+    {
+      "id": "G24",
+      "owner": "Lote 50 · AB-N · Abasolo · Serdán–Chihuahua",
+      "bounds": {
+        "min": [
+          172.57908630371094,
+          0.03200000151991844,
+          -141.3394317626953
+        ],
+        "max": [
+          184.33384704589844,
+          0.03200000151991844,
+          -47.96369171142578
+        ]
+      },
+      "source": {
+        "id": "AB-N",
+        "widthMeters": 6.6,
+        "uncertaintyMeters": 1,
+        "reference": "A3",
+        "samplePixels": [
+          [
+            903,
+            440
+          ],
+          [
+            929,
+            438
+          ]
+        ],
+        "method": "Approximate visual road widths; OSM centre lines; old road/paving owners retained except documented B3-04 corner repair, new junctions partitioned without duplicate asphalt."
+      },
+      "discrepancy": "No independently traced boundary registered against the board imagery",
+      "action": "Retired model overlay; use the existing map ground"
+    },
+    {
+      "id": "G25",
+      "owner": "Lote 50 · SE-E50 · Serdán · Guerrero–borde oriental",
+      "bounds": {
+        "min": [
+          158.28318786621094,
+          0.03200000151991844,
+          -159.30709838867188
+        ],
+        "max": [
+          238.14772033691406,
+          0.03200000151991844,
+          -133.66575622558594
+        ]
+      },
+      "source": {
+        "id": "SE-E50",
+        "widthMeters": 10,
+        "uncertaintyMeters": 1.5,
+        "reference": "A3",
+        "samplePixels": [
+          [
+            1021,
+            322
+          ],
+          [
+            1030,
+            360
+          ]
+        ],
+        "method": "Approximate visual road widths; OSM centre lines; old road/paving owners retained except documented B3-04 corner repair, new junctions partitioned without duplicate asphalt."
+      },
+      "discrepancy": "No independently traced boundary registered against the board imagery",
+      "action": "Retired model overlay; use the existing map ground"
+    },
+    {
+      "id": "G26",
+      "owner": "Lote 50 · CH-E50 · Chihuahua · Abasolo–borde del lote",
+      "bounds": {
+        "min": [
+          193.1200408935547,
+          0.03200000151991844,
+          -51.60416030883789
+        ],
+        "max": [
+          222.066162109375,
+          0.03200000151991844,
+          -45.66318130493164
+        ]
+      },
+      "source": {
+        "id": "CH-E50",
+        "widthMeters": 5.21,
+        "uncertaintyMeters": 0.7,
+        "reference": "A3",
+        "samplePixels": [
+          [
+            1040,
+            698
+          ],
+          [
+            1041,
+            719
+          ]
+        ],
+        "method": "Approximate visual road widths; OSM centre lines; old road/paving owners retained except documented B3-04 corner repair, new junctions partitioned without duplicate asphalt."
+      },
+      "discrepancy": "No independently traced boundary registered against the board imagery",
+      "action": "Retired model overlay; use the existing map ground"
+    },
+    {
+      "id": "G27",
+      "owner": "Lote 50 · OB-E50 · Obregón · Abasolo–borde del lote",
+      "bounds": {
+        "min": [
+          191.8272247314453,
+          0.03200000151991844,
+          1.90024995803833
+        ],
+        "max": [
+          218.17120361328125,
+          0.03200000151991844,
+          8.198209762573242
+        ]
+      },
+      "source": {
+        "id": "OB-E50",
+        "widthMeters": 5.61,
+        "uncertaintyMeters": 0.8,
+        "reference": "A3",
+        "samplePixels": null,
+        "method": "Approximate visual road widths; OSM centre lines; old road/paving owners retained except documented B3-04 corner repair, new junctions partitioned without duplicate asphalt."
+      },
+      "discrepancy": "No independently traced boundary registered against the board imagery",
+      "action": "Retired model overlay; use the existing map ground"
+    },
+    {
+      "id": "G28",
+      "owner": "Lote 50 · PM · Pedro Moreno / Ignacio Allende · borde occidental",
+      "bounds": {
+        "min": [
+          -273.6411437988281,
+          0.03200000151991844,
+          -26.53264045715332
+        ],
+        "max": [
+          -239.7204132080078,
+          0.03200000151991844,
+          135.34518432617188
+        ]
+      },
+      "source": {
+        "id": "PM",
+        "widthMeters": 7.5,
+        "uncertaintyMeters": 1.5,
+        "reference": "C1",
+        "samplePixels": [
+          [
+            371,
+            499
+          ],
+          [
+            401,
+            496
+          ]
+        ],
+        "method": "Approximate visual road widths; OSM centre lines; old road/paving owners retained except documented B3-04 corner repair, new junctions partitioned without duplicate asphalt."
+      },
+      "discrepancy": "No independently traced boundary registered against the board imagery",
+      "action": "Retired model overlay; use the existing map ground"
+    },
+    {
+      "id": "G29",
+      "owner": "Lote 50 · OB-RO · Obregón–Hidalgo · borde occidental–Rosales",
+      "bounds": {
+        "min": [
+          -252.18275451660156,
+          0.03200000151991844,
+          36.00407028198242
+        ],
+        "max": [
+          -216.4915771484375,
+          0.03200000151991844,
+          48.4594612121582
+        ]
+      },
+      "source": {
+        "id": "OB-RO",
+        "widthMeters": 9.5,
+        "uncertaintyMeters": 1.5,
+        "reference": "C1",
+        "samplePixels": [
+          [
+            427,
+            365
+          ],
+          [
+            431,
+            402
+          ]
+        ],
+        "method": "Approximate visual road widths; OSM centre lines; old road/paving owners retained except documented B3-04 corner repair, new junctions partitioned without duplicate asphalt."
+      },
+      "discrepancy": "No independently traced boundary registered against the board imagery",
+      "action": "Retired model overlay; use the existing map ground"
+    },
+    {
+      "id": "G30",
+      "owner": "Lote 50 · SE-RO · Serdán · Rosales–Pedro Moreno",
+      "bounds": {
+        "min": [
+          -272.9288024902344,
+          0.03200000151991844,
+          -62.1086311340332
+        ],
+        "max": [
+          -231.84024047851562,
+          0.03200000151991844,
+          -23.97760009765625
+        ]
+      },
+      "source": {
+        "id": "SE-RO",
+        "widthMeters": 8.5,
+        "uncertaintyMeters": 1.5,
+        "reference": "A1",
+        "samplePixels": null,
+        "method": "Approximate visual road widths; OSM centre lines; old road/paving owners retained except documented B3-04 corner repair, new junctions partitioned without duplicate asphalt."
+      },
+      "discrepancy": "No independently traced boundary registered against the board imagery",
+      "action": "Retired model overlay; use the existing map ground"
+    },
+    {
+      "id": "G31",
+      "owner": "Chihuahua · calzada de continuidad Amalaya",
+      "bounds": {
+        "min": [
+          181.13882446289062,
+          0.03200000151991844,
+          -51.173919677734375
+        ],
+        "max": [
+          193.2403106689453,
+          0.03200000151991844,
+          -44.864498138427734
+        ]
+      },
+      "source": {
+        "method": "Approximate visual road widths; OSM centre lines; old road/paving owners retained except documented B3-04 corner repair, new junctions partitioned without duplicate asphalt."
+      },
+      "discrepancy": "No independently traced boundary registered against the board imagery",
+      "action": "Retired model overlay; use the existing map ground"
+    }
+  ],
+  "beforeMeshes": 3324,
+  "afterMeshes": 1996,
+  "beforeInstances": 13959,
+  "afterInstances": 2241,
+  "removedColliders": 17,
+  "buildingsPreserved": 139,
+  "retiredGroups": [
+    {
+      "reason": "Plaza ground and objects use interpreted dimensions/positions",
+      "objects": 27,
+      "meshes": 32
+    },
+    {
+      "reason": "Unverified procedural street/sidewalk widths or hypothetical furniture",
+      "objects": 4,
+      "meshes": 401
+    },
+    {
+      "reason": "Generated eastern-block street, sidewalk or furniture lacks a traced ground boundary",
+      "objects": 785,
+      "meshes": 819
+    },
+    {
+      "reason": "Legacy pavement patch derived from provisional road/sidewalk geometry",
+      "objects": 76,
+      "meshes": 76
+    }
+  ],
+  "limits": [
+    "No ground survey or independent curb-height measurements.",
+    "Retiring unsupported model strips is not confirmation of old measured-width claims.",
+    "Building geometry remains unchanged, including its previously declared uncertainty."
+  ]
+}

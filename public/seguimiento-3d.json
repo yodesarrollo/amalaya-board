@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-06T23:55:14.733122+00:00",
+  "updatedAt": "2026-10-07",
   "refreshSeconds": 30,
   "live": {
     "status": "done",
@@ -256,6 +256,18 @@
             "equipment": {
               "title": "Falta ubicar poste eléctrico y cables",
               "detail": "Los postes azul/amarillo y la malla del acceso están modelados. Falta posición medible del poste eléctrico y cables; no se añadieron en una posición supuesta."
+            },
+            "street": {
+              "title": "Superficie aproximada retirada del mapa",
+              "detail": "Se conserva la imagen real georreferenciada. Los bordes y desniveles 3D quedan por medir; el cierre anterior es histórico."
+            },
+            "sidewalkA": {
+              "title": "Superficie aproximada retirada del mapa",
+              "detail": "Se conserva la imagen real georreferenciada. Los bordes y desniveles 3D quedan por medir; el cierre anterior es histórico."
+            },
+            "sidewalkB": {
+              "title": "Superficie aproximada retirada del mapa",
+              "detail": "Se conserva la imagen real georreferenciada. Los bordes y desniveles 3D quedan por medir; el cierre anterior es histórico."
             }
           },
           "visualProgress": {
@@ -384,6 +396,11 @@
           },
           "modelReference": {
             "modelUrl": "modelo-completo.html?edificio=OB-01"
+          },
+          "reviewTasks": {
+            "street": "partial",
+            "sidewalkA": "partial",
+            "sidewalkB": "partial"
           }
         },
         {
@@ -684,6 +701,18 @@
             "equipment": {
               "title": "Faltan anclas y medidas del mobiliario",
               "detail": "El tipo visible de un bolardo ya está representado sobre su ubicación previa aproximada. P03/P04 muestran bancas, papeleras, farolas verdes y árboles, pero no aportan estaciones/cotas identificadas para ubicarlos con exactitud; OSM no incluye nodos de esos elementos. Para cerrar: croquis o levantamiento que vincule cada pieza/tronco a la planta, estaciones de bolardos, dimensiones, método, fecha y error. El inventario señala qué bases están parcialmente ocultas. Indica aquí la fuente disponible; no se colocaron piezas por simetría."
+            },
+            "street": {
+              "title": "Superficie aproximada retirada del mapa",
+              "detail": "Se conserva la imagen real georreferenciada. Los bordes y desniveles 3D quedan por medir; el cierre anterior es histórico."
+            },
+            "sidewalkA": {
+              "title": "Superficie aproximada retirada del mapa",
+              "detail": "Se conserva la imagen real georreferenciada. Los bordes y desniveles 3D quedan por medir; el cierre anterior es histórico."
+            },
+            "sidewalkB": {
+              "title": "Superficie aproximada retirada del mapa",
+              "detail": "Se conserva la imagen real georreferenciada. Los bordes y desniveles 3D quedan por medir; el cierre anterior es histórico."
             }
           },
           "visualProgress": {
@@ -802,6 +831,11 @@
             "issue": null,
             "detail": "HECHO · corregido el extremo oriental 1.46 m para alinear el frente con OB-01 y el eje OB-W, conservando estación, colindancia y P03/P04. Extremos/centro y collider comprobados. Revisión del modelo bajo posición ±5 m; fondo y límites catastrales siguen provisionales.",
             "source": "Preserved tracker checkpoint before whole-sheet action 1, 2026-10-06."
+          },
+          "reviewTasks": {
+            "street": "partial",
+            "sidewalkA": "partial",
+            "sidewalkB": "partial"
           }
         },
         {
@@ -1022,6 +1056,10 @@
             "sidewalkB": {
               "title": "Falta delimitar y verificar el paseo del lado norte",
               "detail": "Problema: se corrigieron la base y el solape de pavimento sobre asfalto del modelo, pero faltan límites del tramo, cotas físicas, obstáculos y continuidad al vecino. Impacto: 04 continúa incompleto y no certifica una banqueta ISC uniforme de19.181m. Para resolver: sección o croquis ubicado del lado norte, con límites, cotas, obstáculos, fuente, fecha y margen de error; después ajustar el perfil propio y verificar recorrido y encuentros sin copiar el sur. La reparación tiene una captura y checkpoint distintos de03."
+            },
+            "street": {
+              "title": "Superficie aproximada retirada del mapa",
+              "detail": "Se conserva la imagen real georreferenciada. Los bordes y desniveles 3D quedan por medir; el cierre anterior es histórico."
             }
           },
           "visualProgress": {
@@ -1143,6 +1181,9 @@
             },
             "detail": "RONDA 01 REVISADA · La huella OSM del conjunto está modelada, pero falta separar el contorno físico que corresponde al frente beige #58 de las masas contiguas. Las medidas aproximadas son válidas; el impedimento es asignar el contorno correcto, no disponer de un plano catastral.",
             "source": "Preserved tracker checkpoint before whole-sheet action 1, 2026-10-06."
+          },
+          "reviewTasks": {
+            "street": "partial"
           }
         },
         {
@@ -1175,7 +1216,12 @@
           "inventoryAddedAt": "2026-10-06T01:31:48.826124Z",
           "estimateHours": null,
           "planReviewStatus": "closed-visual-approximation",
-          "issues": {},
+          "issues": {
+            "street": {
+              "title": "Superficie aproximada retirada del mapa",
+              "detail": "Se conserva la imagen real georreferenciada. Los bordes y desniveles 3D quedan por medir; el cierre anterior es histórico."
+            }
+          },
           "evidence": {
             "plan": [
               {
@@ -1260,6 +1306,9 @@
                 "manifest": "levantamiento/evidence/OB-21/20261006-01-cierre.json"
               }
             ]
+          },
+          "reviewTasks": {
+            "street": "partial"
           }
         }
       ],
@@ -1557,6 +1606,10 @@
             "qa": {
               "title": "Planta, bloque y peatón comparados desde R-001 P09 con rumbo de consulta 355.84°, y visor real cargado sin errores",
               "detail": "Planta, bloque y peatón comparados desde R-001 P09 con rumbo de consulta 355.84°, y visor real cargado sin errores. El modelo sigue separado y retranqueado respecto del frente continuo de las fotos; faltan límites y escala para corregirlo. Norte fotográfico, cotas y seguimiento vertical del avatar siguen sin verificar; QA no está cerrado."
+            },
+            "street": {
+              "title": "Superficie aproximada retirada del mapa",
+              "detail": "Se conserva la imagen real georreferenciada. Los bordes y desniveles 3D quedan por medir; el cierre anterior es histórico."
             }
           },
           "planReviewStatus": "closed-visual-approximation",
@@ -1572,6 +1625,9 @@
             },
             "detail": "RONDA 01 REVISADA · Los frentes azul y rojo están identificados. Sus cuerpos posteriores y cubiertas contiguas aún no se pueden asignar de forma única a Barra Hidalgo y Club Obregón; hace falta resolver esa división para modificar sus plantas.",
             "source": "Preserved tracker checkpoint before whole-sheet action 1, 2026-10-06."
+          },
+          "reviewTasks": {
+            "street": "partial"
           }
         },
         {
@@ -1632,6 +1688,14 @@
             "qa": {
               "title": "No fue posible cargar el 3D en esta sesión",
               "detail": "El visor público mostró que WebGL2 es requerido y no cargó el modelo en este navegador. Esto solo describe la limitación de esta sesión. Para cerrar QA, recuperar la fuente 3D vigente y producir vistas de planta, bloque y peatón desde el mismo punto y rumbo R-002."
+            },
+            "street": {
+              "title": "Superficie aproximada retirada del mapa",
+              "detail": "Se conserva la imagen real georreferenciada. Los bordes y desniveles 3D quedan por medir; el cierre anterior es histórico."
+            },
+            "sidewalkA": {
+              "title": "Superficie aproximada retirada del mapa",
+              "detail": "Se conserva la imagen real georreferenciada. Los bordes y desniveles 3D quedan por medir; el cierre anterior es histórico."
             }
           },
           "manualMeasurements": {
@@ -1794,6 +1858,10 @@
             "issue": null,
             "detail": "PLANTA APLICADA · 15.20 × 15.06 m, margen ±1 m. Ubicación y orientación incorporadas al modelo vigente; colisiones adaptadas y vecinos comprobados. Envolvente aproximada del cuerpo visible; anexos, patios y contorno en suelo siguen por precisar en el levantamiento completo.",
             "source": "Preserved tracker checkpoint before whole-sheet action 1, 2026-10-06."
+          },
+          "reviewTasks": {
+            "street": "partial",
+            "sidewalkA": "partial"
           }
         },
         {
@@ -1820,7 +1888,16 @@
             "street": "HECHO · comparte Chihuahua 5,21 ±0,50 m con EB-NW. Abasolo: regla manual 6,98 ±0,70 m; modelo ajustado de 6,20 a 6,60 m dentro del rango, preservando el paso peatonal heredado. Transiciones de 8 m y un único constructor por calle. Imagen y registro de acción 2 actualizados; radios y dimensiones de banqueta siguen en sus etapas.",
             "sidewalkA": "APLICADO 03 · lado A sur de Chihuahua, frente recto antes del retorno de Abasolo. Regla manual: franja aparente 1,43 ±0,50 m. Se conserva paño de 1,10 m más guarnición heredada de 0,26 m dentro del rango; base bajo juntas a 2 mm de las losas actuales y borde registrado a la calzada vigente. El retorno mantiene la acción 5. Una sola franja, sin duplicar losas ni afectar el lado B; secciones reales verificadas. Línea aparente de cubierta, obstáculos y ancho libre conservan incertidumbre; imagen y registro actualizados antes de EB-SE."
           },
-          "issues": {},
+          "issues": {
+            "street": {
+              "title": "Superficie aproximada retirada del mapa",
+              "detail": "Se conserva la imagen real georreferenciada. Los bordes y desniveles 3D quedan por medir; el cierre anterior es histórico."
+            },
+            "sidewalkA": {
+              "title": "Superficie aproximada retirada del mapa",
+              "detail": "Se conserva la imagen real georreferenciada. Los bordes y desniveles 3D quedan por medir; el cierre anterior es histórico."
+            }
+          },
           "evidence": {
             "plan": [
               {
@@ -1952,6 +2029,10 @@
             "issue": null,
             "detail": "PLANTA APLICADA · 24.07 × 16.83 m, margen ±1.5 m. Ubicación y orientación incorporadas al modelo vigente; colisiones adaptadas y vecinos comprobados. Envolvente aproximada del cuerpo visible; anexos, patios y contorno en suelo siguen por precisar en el levantamiento completo. Fondo ajustado 0,60 m dentro del margen visual para separar EB-NE y EB-SE.",
             "source": "Preserved tracker checkpoint before whole-sheet action 1, 2026-10-06."
+          },
+          "reviewTasks": {
+            "street": "partial",
+            "sidewalkA": "partial"
           }
         },
         {
@@ -1978,7 +2059,16 @@
             "street": "HECHO · Abasolo ajustada a 6,60 m dentro de la lectura manual 6,98 ±0,70 m compartida con EB-NE. Obregón conserva el tramo calibrado de 5,61 ±0,56 m ya publicado. La corrección utiliza la calzada existente y transiciones, sin duplicarla. Imagen y registro de acción 2 actualizados; radios y banquetas conservan sus etapas.",
             "sidewalkA": "APLICADO 03 · lado A sur de Obregón, franja física compartida del tramo Garmendia–Abasolo. Se utiliza la revisión visual de aproximadamente 1,0 ±0,5 m con escala de Maps realizada en EB-SW; no se presenta como medición independiente de EB-SE. Perfil de 1,10 m más guarnición heredada de 0,26 m conservado dentro del rango. Base continua bajo juntas añadida a la cota heredada de las losas en este frente, sin duplicarlas, y sin tocar la calzada o el lado B. El retorno de Abasolo queda en acción 5. Secciones reales, imagen y registro verificados antes de OXXO."
           },
-          "issues": {},
+          "issues": {
+            "street": {
+              "title": "Superficie aproximada retirada del mapa",
+              "detail": "Se conserva la imagen real georreferenciada. Los bordes y desniveles 3D quedan por medir; el cierre anterior es histórico."
+            },
+            "sidewalkA": {
+              "title": "Superficie aproximada retirada del mapa",
+              "detail": "Se conserva la imagen real georreferenciada. Los bordes y desniveles 3D quedan por medir; el cierre anterior es histórico."
+            }
+          },
           "evidence": {
             "plan": [
               {
@@ -2110,6 +2200,10 @@
             "issue": null,
             "detail": "PLANTA APLICADA · 27.33 × 25.71 m, margen ±1.5 m. Ubicación y orientación incorporadas al modelo vigente; colisiones adaptadas y vecinos comprobados. Envolvente aproximada del cuerpo visible; anexos, patios y contorno en suelo siguen por precisar en el levantamiento completo.",
             "source": "Preserved tracker checkpoint before whole-sheet action 1, 2026-10-06."
+          },
+          "reviewTasks": {
+            "street": "partial",
+            "sidewalkA": "partial"
           }
         }
       ],
@@ -2311,7 +2405,16 @@
               }
             ]
           },
-          "issues": {},
+          "issues": {
+            "street": {
+              "title": "Superficie aproximada retirada del mapa",
+              "detail": "Se conserva la imagen real georreferenciada. Los bordes y desniveles 3D quedan por medir; el cierre anterior es histórico."
+            },
+            "sidewalkA": {
+              "title": "Superficie aproximada retirada del mapa",
+              "detail": "Se conserva la imagen real georreferenciada. Los bordes y desniveles 3D quedan por medir; el cierre anterior es histórico."
+            }
+          },
           "evidence": {
             "street": [
               {
@@ -2342,6 +2445,10 @@
             "issue": null,
             "detail": "PLANTA CARTOGRÁFICA REVISADA · huella OSM 499760720 ya presente en el modelo, cotejada con el contexto aéreo. Se conserva como aproximación visual (±3 m); la correspondencia comercial, fachadas, alturas y entradas mantienen sus estados propios.",
             "source": "Preserved tracker checkpoint before whole-sheet action 1, 2026-10-06."
+          },
+          "reviewTasks": {
+            "street": "partial",
+            "sidewalkA": "partial"
           }
         }
       ],
@@ -2488,7 +2595,16 @@
               }
             ]
           },
-          "issues": {},
+          "issues": {
+            "street": {
+              "title": "Superficie aproximada retirada del mapa",
+              "detail": "Se conserva la imagen real georreferenciada. Los bordes y desniveles 3D quedan por medir; el cierre anterior es histórico."
+            },
+            "sidewalkA": {
+              "title": "Superficie aproximada retirada del mapa",
+              "detail": "Se conserva la imagen real georreferenciada. Los bordes y desniveles 3D quedan por medir; el cierre anterior es histórico."
+            }
+          },
           "evidence": {
             "street": [
               {
@@ -2519,6 +2635,10 @@
             "issue": null,
             "detail": "PLANTA CARTOGRÁFICA REVISADA · huella OSM 1533334038 ya presente en el modelo, cotejada con el contexto aéreo. Se conserva como aproximación visual (±3 m); la correspondencia comercial, fachadas, alturas y entradas mantienen sus estados propios.",
             "source": "Preserved tracker checkpoint before whole-sheet action 1, 2026-10-06."
+          },
+          "reviewTasks": {
+            "street": "partial",
+            "sidewalkA": "partial"
           }
         },
         {
@@ -2545,7 +2665,16 @@
             "street": "HECHO · frentes de calzada confirmados: Yáñez añadido a 10,50 m dentro de lectura 10,67 ±1,30 m; Serdán comparte el tramo 11,00 ±1,50 m incorporado para biblioteca. Imagen y registro actualizados. El pavimento sur dio 5,63 ±0,70 m, pero no se certifica como calle pública ni se prolonga a Garmendia: esa unión atravesaría la huella ISC 664499024. La asociación de ese acceso y los contornos quedan documentados para revisión independiente.",
             "sidewalkA": "Lado A = Yáñez oriente. Regla manual: 5,21 ±0,90 m desde el borde de calle hasta el borde interior aparente del pavimento, excluyendo el espacio hasta la cubierta. Franja continua añadida junto a la calzada de ronda 02: 4,85 m pavimentados más 0,36 m de guarnición heredada. Se conserva la huella, altura y colisiones del edificio. Comprobada fuera del cuerpo; retornos, jardineras, accesos y niveles tienen revisión en sus acciones posteriores. El pavimento al sur de BBVA sigue sin certificarse como calle pública."
           },
-          "issues": {},
+          "issues": {
+            "street": {
+              "title": "Superficie aproximada retirada del mapa",
+              "detail": "Se conserva la imagen real georreferenciada. Los bordes y desniveles 3D quedan por medir; el cierre anterior es histórico."
+            },
+            "sidewalkA": {
+              "title": "Superficie aproximada retirada del mapa",
+              "detail": "Se conserva la imagen real georreferenciada. Los bordes y desniveles 3D quedan por medir; el cierre anterior es histórico."
+            }
+          },
           "evidence": {
             "plan": [
               {
@@ -2677,6 +2806,10 @@
             "issue": null,
             "detail": "PLANTA APLICADA · 42.13 × 39.58 m, margen ±3 m. Ubicación y orientación incorporadas al modelo vigente; colisiones adaptadas y vecinos comprobados. Huella OSM conservada; ocupación comercial y altura sin confirmar.",
             "source": "Preserved tracker checkpoint before whole-sheet action 1, 2026-10-06."
+          },
+          "reviewTasks": {
+            "street": "partial",
+            "sidewalkA": "partial"
           }
         }
       ],
@@ -2731,6 +2864,10 @@
             "sidewalkA": {
               "title": "Cierre de banqueta A pendiente",
               "detail": "Acción 03 revisada en su turno. La franja física de Serdán/Garmendia está documentada en CH-GA-OXXO (muestra 1,30 ±0,50 m), sin duplicar geometría ni presentarla como medición independiente de Bley. Falta vincular Bley a un cuerpo individual del modelo para asignar su lado A. Imagen de contexto actualizada con identificación pendiente; no se marca la banqueta individual como terminada."
+            },
+            "street": {
+              "title": "Superficie aproximada retirada del mapa",
+              "detail": "Se conserva la imagen real georreferenciada. Los bordes y desniveles 3D quedan por medir; el cierre anterior es histórico."
             }
           },
           "visualProgress": {
@@ -2863,6 +3000,9 @@
             },
             "detail": "RONDA 01 REVISADA · La referencia patrimonial ubica el edificio en Serdán/Garmendia, pero falta vincular el contorno visible a un cuerpo concreto del modelo actual. No hay una huella individual de Bley identificada en los datos aprobados.",
             "source": "Preserved tracker checkpoint before whole-sheet action 1, 2026-10-06."
+          },
+          "reviewTasks": {
+            "street": "partial"
           }
         },
         {
@@ -2986,7 +3126,16 @@
               }
             ]
           },
-          "issues": {},
+          "issues": {
+            "street": {
+              "title": "Superficie aproximada retirada del mapa",
+              "detail": "Se conserva la imagen real georreferenciada. Los bordes y desniveles 3D quedan por medir; el cierre anterior es histórico."
+            },
+            "sidewalkA": {
+              "title": "Superficie aproximada retirada del mapa",
+              "detail": "Se conserva la imagen real georreferenciada. Los bordes y desniveles 3D quedan por medir; el cierre anterior es histórico."
+            }
+          },
           "evidence": {
             "street": [
               {
@@ -3017,6 +3166,10 @@
             "issue": null,
             "detail": "PLANTA CARTOGRÁFICA REVISADA · huella OSM 499759728 ya presente en el modelo, cotejada con el contexto aéreo. Se conserva como aproximación visual (±3 m); la correspondencia comercial, fachadas, alturas y entradas mantienen sus estados propios.",
             "source": "Preserved tracker checkpoint before whole-sheet action 1, 2026-10-06."
+          },
+          "reviewTasks": {
+            "street": "partial",
+            "sidewalkA": "partial"
           }
         },
         {
@@ -3050,7 +3203,12 @@
           "inventoryAddedAt": "2026-10-06T01:31:48.826124Z",
           "estimateHours": null,
           "planReviewStatus": "closed-visual-approximation",
-          "issues": {},
+          "issues": {
+            "street": {
+              "title": "Superficie aproximada retirada del mapa",
+              "detail": "Se conserva la imagen real georreferenciada. Los bordes y desniveles 3D quedan por medir; el cierre anterior es histórico."
+            }
+          },
           "evidence": {
             "plan": [
               {
@@ -3135,6 +3293,9 @@
                 "manifest": "levantamiento/evidence/SER-SANT/20261006-01-cierre.json"
               }
             ]
+          },
+          "reviewTasks": {
+            "street": "partial"
           }
         }
       ],
@@ -3195,7 +3356,12 @@
               }
             ]
           },
-          "issues": {},
+          "issues": {
+            "street": {
+              "title": "Superficie aproximada retirada del mapa",
+              "detail": "Se conserva la imagen real georreferenciada. Los bordes y desniveles 3D quedan por medir; el cierre anterior es histórico."
+            }
+          },
           "planReviewStatus": "closed-visual-approximation",
           "visualProgress": {
             "cameraId": "A1-01-street50-20261006",
@@ -3263,6 +3429,9 @@
           "modelReference": {
             "owner": "Planta física · A1-01",
             "modelUrl": "modelo-completo.html?edificio=A1-01"
+          },
+          "reviewTasks": {
+            "street": "partial"
           }
         },
         {
@@ -3309,7 +3478,12 @@
               }
             ]
           },
-          "issues": {},
+          "issues": {
+            "street": {
+              "title": "Superficie aproximada retirada del mapa",
+              "detail": "Se conserva la imagen real georreferenciada. Los bordes y desniveles 3D quedan por medir; el cierre anterior es histórico."
+            }
+          },
           "planReviewStatus": "closed-visual-approximation",
           "visualProgress": {
             "cameraId": "A1-02-street50-20261006",
@@ -3377,6 +3551,9 @@
           "modelReference": {
             "owner": "Planta física · A1-02",
             "modelUrl": "modelo-completo.html?edificio=A1-02"
+          },
+          "reviewTasks": {
+            "street": "partial"
           }
         },
         {
@@ -3423,7 +3600,12 @@
               }
             ]
           },
-          "issues": {},
+          "issues": {
+            "street": {
+              "title": "Superficie aproximada retirada del mapa",
+              "detail": "Se conserva la imagen real georreferenciada. Los bordes y desniveles 3D quedan por medir; el cierre anterior es histórico."
+            }
+          },
           "planReviewStatus": "closed-visual-approximation",
           "visualProgress": {
             "cameraId": "A1-03-street50-20261006",
@@ -3491,6 +3673,9 @@
           "modelReference": {
             "owner": "Planta física · A1-03",
             "modelUrl": "modelo-completo.html?edificio=A1-03"
+          },
+          "reviewTasks": {
+            "street": "partial"
           }
         },
         {
@@ -3537,7 +3722,12 @@
               }
             ]
           },
-          "issues": {},
+          "issues": {
+            "street": {
+              "title": "Superficie aproximada retirada del mapa",
+              "detail": "Se conserva la imagen real georreferenciada. Los bordes y desniveles 3D quedan por medir; el cierre anterior es histórico."
+            }
+          },
           "planReviewStatus": "closed-visual-approximation",
           "visualProgress": {
             "cameraId": "A1-04-street50-20261006",
@@ -3605,6 +3795,9 @@
           "modelReference": {
             "owner": "Planta física · A1-04",
             "modelUrl": "modelo-completo.html?edificio=A1-04"
+          },
+          "reviewTasks": {
+            "street": "partial"
           }
         }
       ],
@@ -3665,7 +3858,12 @@
               }
             ]
           },
-          "issues": {},
+          "issues": {
+            "street": {
+              "title": "Superficie aproximada retirada del mapa",
+              "detail": "Se conserva la imagen real georreferenciada. Los bordes y desniveles 3D quedan por medir; el cierre anterior es histórico."
+            }
+          },
           "planReviewStatus": "closed-visual-approximation",
           "visualProgress": {
             "cameraId": "A2-01-street50-20261006",
@@ -3733,6 +3931,9 @@
           "modelReference": {
             "owner": "Planta física · A2-01",
             "modelUrl": "modelo-completo.html?edificio=A2-01"
+          },
+          "reviewTasks": {
+            "street": "partial"
           }
         },
         {
@@ -3779,7 +3980,12 @@
               }
             ]
           },
-          "issues": {},
+          "issues": {
+            "street": {
+              "title": "Superficie aproximada retirada del mapa",
+              "detail": "Se conserva la imagen real georreferenciada. Los bordes y desniveles 3D quedan por medir; el cierre anterior es histórico."
+            }
+          },
           "planReviewStatus": "closed-visual-approximation",
           "visualProgress": {
             "cameraId": "A2-02-street50-20261006",
@@ -3847,6 +4053,9 @@
           "modelReference": {
             "owner": "Planta física · A2-02",
             "modelUrl": "modelo-completo.html?edificio=A2-02"
+          },
+          "reviewTasks": {
+            "street": "partial"
           }
         },
         {
@@ -3893,7 +4102,12 @@
               }
             ]
           },
-          "issues": {},
+          "issues": {
+            "street": {
+              "title": "Superficie aproximada retirada del mapa",
+              "detail": "Se conserva la imagen real georreferenciada. Los bordes y desniveles 3D quedan por medir; el cierre anterior es histórico."
+            }
+          },
           "planReviewStatus": "closed-visual-approximation",
           "visualProgress": {
             "cameraId": "A2-03-street50-20261006",
@@ -3961,6 +4175,9 @@
           "modelReference": {
             "owner": "Planta física · A2-03",
             "modelUrl": "modelo-completo.html?edificio=A2-03"
+          },
+          "reviewTasks": {
+            "street": "partial"
           }
         },
         {
@@ -4007,7 +4224,12 @@
               }
             ]
           },
-          "issues": {},
+          "issues": {
+            "street": {
+              "title": "Superficie aproximada retirada del mapa",
+              "detail": "Se conserva la imagen real georreferenciada. Los bordes y desniveles 3D quedan por medir; el cierre anterior es histórico."
+            }
+          },
           "planReviewStatus": "closed-visual-approximation",
           "visualProgress": {
             "cameraId": "A2-04-street50-20261006",
@@ -4075,6 +4297,9 @@
           "modelReference": {
             "owner": "Planta física · A2-04",
             "modelUrl": "modelo-completo.html?edificio=A2-04"
+          },
+          "reviewTasks": {
+            "street": "partial"
           }
         },
         {
@@ -4121,7 +4346,12 @@
               }
             ]
           },
-          "issues": {},
+          "issues": {
+            "street": {
+              "title": "Superficie aproximada retirada del mapa",
+              "detail": "Se conserva la imagen real georreferenciada. Los bordes y desniveles 3D quedan por medir; el cierre anterior es histórico."
+            }
+          },
           "planReviewStatus": "closed-visual-approximation",
           "visualProgress": {
             "cameraId": "A2-05-street50-20261006",
@@ -4189,6 +4419,9 @@
           "modelReference": {
             "owner": "Planta física · A2-05",
             "modelUrl": "modelo-completo.html?edificio=A2-05"
+          },
+          "reviewTasks": {
+            "street": "partial"
           }
         },
         {
@@ -4235,7 +4468,12 @@
               }
             ]
           },
-          "issues": {},
+          "issues": {
+            "street": {
+              "title": "Superficie aproximada retirada del mapa",
+              "detail": "Se conserva la imagen real georreferenciada. Los bordes y desniveles 3D quedan por medir; el cierre anterior es histórico."
+            }
+          },
           "planReviewStatus": "closed-visual-approximation",
           "visualProgress": {
             "cameraId": "A2-06-street50-20261006",
@@ -4303,6 +4541,9 @@
           "modelReference": {
             "owner": "Planta física · A2-06",
             "modelUrl": "modelo-completo.html?edificio=A2-06"
+          },
+          "reviewTasks": {
+            "street": "partial"
           }
         }
       ],
@@ -4363,7 +4604,12 @@
               }
             ]
           },
-          "issues": {},
+          "issues": {
+            "street": {
+              "title": "Superficie aproximada retirada del mapa",
+              "detail": "Se conserva la imagen real georreferenciada. Los bordes y desniveles 3D quedan por medir; el cierre anterior es histórico."
+            }
+          },
           "planReviewStatus": "closed-visual-approximation",
           "visualProgress": {
             "cameraId": "A3-01-street50-20261006",
@@ -4431,6 +4677,9 @@
           "modelReference": {
             "owner": "Planta física · A3-01",
             "modelUrl": "modelo-completo.html?edificio=A3-01"
+          },
+          "reviewTasks": {
+            "street": "partial"
           }
         },
         {
@@ -4477,7 +4726,12 @@
               }
             ]
           },
-          "issues": {},
+          "issues": {
+            "street": {
+              "title": "Superficie aproximada retirada del mapa",
+              "detail": "Se conserva la imagen real georreferenciada. Los bordes y desniveles 3D quedan por medir; el cierre anterior es histórico."
+            }
+          },
           "planReviewStatus": "closed-visual-approximation",
           "visualProgress": {
             "cameraId": "A3-02-street50-20261006",
@@ -4545,6 +4799,9 @@
           "modelReference": {
             "owner": "Planta física · A3-02",
             "modelUrl": "modelo-completo.html?edificio=A3-02"
+          },
+          "reviewTasks": {
+            "street": "partial"
           }
         },
         {
@@ -4591,7 +4848,12 @@
               }
             ]
           },
-          "issues": {},
+          "issues": {
+            "street": {
+              "title": "Superficie aproximada retirada del mapa",
+              "detail": "Se conserva la imagen real georreferenciada. Los bordes y desniveles 3D quedan por medir; el cierre anterior es histórico."
+            }
+          },
           "planReviewStatus": "closed-visual-approximation",
           "visualProgress": {
             "cameraId": "A3-03-street50-20261006",
@@ -4659,6 +4921,9 @@
           "modelReference": {
             "owner": "Planta física · A3-03",
             "modelUrl": "modelo-completo.html?edificio=A3-03"
+          },
+          "reviewTasks": {
+            "street": "partial"
           }
         },
         {
@@ -4705,7 +4970,12 @@
               }
             ]
           },
-          "issues": {},
+          "issues": {
+            "street": {
+              "title": "Superficie aproximada retirada del mapa",
+              "detail": "Se conserva la imagen real georreferenciada. Los bordes y desniveles 3D quedan por medir; el cierre anterior es histórico."
+            }
+          },
           "planReviewStatus": "closed-visual-approximation",
           "visualProgress": {
             "cameraId": "A3-04-street50-20261006",
@@ -4773,6 +5043,9 @@
           "modelReference": {
             "owner": "Planta física · A3-04",
             "modelUrl": "modelo-completo.html?edificio=A3-04"
+          },
+          "reviewTasks": {
+            "street": "partial"
           }
         },
         {
@@ -4819,7 +5092,12 @@
               }
             ]
           },
-          "issues": {},
+          "issues": {
+            "street": {
+              "title": "Superficie aproximada retirada del mapa",
+              "detail": "Se conserva la imagen real georreferenciada. Los bordes y desniveles 3D quedan por medir; el cierre anterior es histórico."
+            }
+          },
           "planReviewStatus": "closed-visual-approximation",
           "visualProgress": {
             "cameraId": "A3-05-street50-20261006",
@@ -4887,6 +5165,9 @@
           "modelReference": {
             "owner": "Planta física · A3-05",
             "modelUrl": "modelo-completo.html?edificio=A3-05"
+          },
+          "reviewTasks": {
+            "street": "partial"
           }
         },
         {
@@ -4933,7 +5214,12 @@
               }
             ]
           },
-          "issues": {},
+          "issues": {
+            "street": {
+              "title": "Superficie aproximada retirada del mapa",
+              "detail": "Se conserva la imagen real georreferenciada. Los bordes y desniveles 3D quedan por medir; el cierre anterior es histórico."
+            }
+          },
           "planReviewStatus": "closed-visual-approximation",
           "visualProgress": {
             "cameraId": "A3-06-street50-20261006",
@@ -5001,6 +5287,9 @@
           "modelReference": {
             "owner": "Planta física · A3-06",
             "modelUrl": "modelo-completo.html?edificio=A3-06"
+          },
+          "reviewTasks": {
+            "street": "partial"
           }
         },
         {
@@ -5047,7 +5336,12 @@
               }
             ]
           },
-          "issues": {},
+          "issues": {
+            "street": {
+              "title": "Superficie aproximada retirada del mapa",
+              "detail": "Se conserva la imagen real georreferenciada. Los bordes y desniveles 3D quedan por medir; el cierre anterior es histórico."
+            }
+          },
           "planReviewStatus": "closed-visual-approximation",
           "visualProgress": {
             "cameraId": "A3-07-street50-20261006",
@@ -5115,6 +5409,9 @@
           "modelReference": {
             "owner": "Planta física · A3-07",
             "modelUrl": "modelo-completo.html?edificio=A3-07"
+          },
+          "reviewTasks": {
+            "street": "partial"
           }
         },
         {
@@ -5161,7 +5458,12 @@
               }
             ]
           },
-          "issues": {},
+          "issues": {
+            "street": {
+              "title": "Superficie aproximada retirada del mapa",
+              "detail": "Se conserva la imagen real georreferenciada. Los bordes y desniveles 3D quedan por medir; el cierre anterior es histórico."
+            }
+          },
           "planReviewStatus": "closed-visual-approximation",
           "visualProgress": {
             "cameraId": "A3-08-street50-20261006",
@@ -5229,6 +5531,9 @@
           "modelReference": {
             "owner": "Planta física · A3-08",
             "modelUrl": "modelo-completo.html?edificio=A3-08"
+          },
+          "reviewTasks": {
+            "street": "partial"
           }
         },
         {
@@ -5275,7 +5580,12 @@
               }
             ]
           },
-          "issues": {},
+          "issues": {
+            "street": {
+              "title": "Superficie aproximada retirada del mapa",
+              "detail": "Se conserva la imagen real georreferenciada. Los bordes y desniveles 3D quedan por medir; el cierre anterior es histórico."
+            }
+          },
           "planReviewStatus": "closed-visual-approximation",
           "visualProgress": {
             "cameraId": "A3-09-street50-20261006",
@@ -5343,6 +5653,9 @@
           "modelReference": {
             "owner": "Planta física · A3-09",
             "modelUrl": "modelo-completo.html?edificio=A3-09"
+          },
+          "reviewTasks": {
+            "street": "partial"
           }
         }
       ],
@@ -5403,7 +5716,12 @@
               }
             ]
           },
-          "issues": {},
+          "issues": {
+            "street": {
+              "title": "Superficie aproximada retirada del mapa",
+              "detail": "Se conserva la imagen real georreferenciada. Los bordes y desniveles 3D quedan por medir; el cierre anterior es histórico."
+            }
+          },
           "planReviewStatus": "closed-visual-approximation",
           "visualProgress": {
             "cameraId": "B1-01-street50-20261006",
@@ -5471,6 +5789,9 @@
           "modelReference": {
             "owner": "Planta física · B1-01",
             "modelUrl": "modelo-completo.html?edificio=B1-01"
+          },
+          "reviewTasks": {
+            "street": "partial"
           }
         },
         {
@@ -5517,7 +5838,12 @@
               }
             ]
           },
-          "issues": {},
+          "issues": {
+            "street": {
+              "title": "Superficie aproximada retirada del mapa",
+              "detail": "Se conserva la imagen real georreferenciada. Los bordes y desniveles 3D quedan por medir; el cierre anterior es histórico."
+            }
+          },
           "planReviewStatus": "closed-visual-approximation",
           "visualProgress": {
             "cameraId": "B1-02-street50-20261006",
@@ -5585,6 +5911,9 @@
           "modelReference": {
             "owner": "Planta física · B1-02",
             "modelUrl": "modelo-completo.html?edificio=B1-02"
+          },
+          "reviewTasks": {
+            "street": "partial"
           }
         },
         {
@@ -5631,7 +5960,12 @@
               }
             ]
           },
-          "issues": {},
+          "issues": {
+            "street": {
+              "title": "Superficie aproximada retirada del mapa",
+              "detail": "Se conserva la imagen real georreferenciada. Los bordes y desniveles 3D quedan por medir; el cierre anterior es histórico."
+            }
+          },
           "planReviewStatus": "closed-visual-approximation",
           "visualProgress": {
             "cameraId": "B1-03-street50-20261006",
@@ -5699,6 +6033,9 @@
           "modelReference": {
             "owner": "Planta física · B1-03",
             "modelUrl": "modelo-completo.html?edificio=B1-03"
+          },
+          "reviewTasks": {
+            "street": "partial"
           }
         },
         {
@@ -5745,7 +6082,12 @@
               }
             ]
           },
-          "issues": {},
+          "issues": {
+            "street": {
+              "title": "Superficie aproximada retirada del mapa",
+              "detail": "Se conserva la imagen real georreferenciada. Los bordes y desniveles 3D quedan por medir; el cierre anterior es histórico."
+            }
+          },
           "planReviewStatus": "closed-visual-approximation",
           "visualProgress": {
             "cameraId": "B1-04-street50-20261006",
@@ -5813,6 +6155,9 @@
           "modelReference": {
             "owner": "Planta física · B1-04",
             "modelUrl": "modelo-completo.html?edificio=B1-04"
+          },
+          "reviewTasks": {
+            "street": "partial"
           }
         },
         {
@@ -5859,7 +6204,12 @@
               }
             ]
           },
-          "issues": {},
+          "issues": {
+            "street": {
+              "title": "Superficie aproximada retirada del mapa",
+              "detail": "Se conserva la imagen real georreferenciada. Los bordes y desniveles 3D quedan por medir; el cierre anterior es histórico."
+            }
+          },
           "planReviewStatus": "closed-visual-approximation",
           "visualProgress": {
             "cameraId": "B1-05-street50-20261006",
@@ -5927,6 +6277,9 @@
           "modelReference": {
             "owner": "Planta física · B1-05",
             "modelUrl": "modelo-completo.html?edificio=B1-05"
+          },
+          "reviewTasks": {
+            "street": "partial"
           }
         },
         {
@@ -5973,7 +6326,12 @@
               }
             ]
           },
-          "issues": {},
+          "issues": {
+            "street": {
+              "title": "Superficie aproximada retirada del mapa",
+              "detail": "Se conserva la imagen real georreferenciada. Los bordes y desniveles 3D quedan por medir; el cierre anterior es histórico."
+            }
+          },
           "planReviewStatus": "closed-visual-approximation",
           "visualProgress": {
             "cameraId": "B1-06-street50-20261006",
@@ -6041,6 +6399,9 @@
           "modelReference": {
             "owner": "Planta física · B1-06",
             "modelUrl": "modelo-completo.html?edificio=B1-06"
+          },
+          "reviewTasks": {
+            "street": "partial"
           }
         },
         {
@@ -6087,7 +6448,12 @@
               }
             ]
           },
-          "issues": {},
+          "issues": {
+            "street": {
+              "title": "Superficie aproximada retirada del mapa",
+              "detail": "Se conserva la imagen real georreferenciada. Los bordes y desniveles 3D quedan por medir; el cierre anterior es histórico."
+            }
+          },
           "planReviewStatus": "closed-visual-approximation",
           "visualProgress": {
             "cameraId": "B1-07-street50-20261006",
@@ -6155,6 +6521,9 @@
           "modelReference": {
             "owner": "Planta física · B1-07",
             "modelUrl": "modelo-completo.html?edificio=B1-07"
+          },
+          "reviewTasks": {
+            "street": "partial"
           }
         },
         {
@@ -6201,7 +6570,12 @@
               }
             ]
           },
-          "issues": {},
+          "issues": {
+            "street": {
+              "title": "Superficie aproximada retirada del mapa",
+              "detail": "Se conserva la imagen real georreferenciada. Los bordes y desniveles 3D quedan por medir; el cierre anterior es histórico."
+            }
+          },
           "planReviewStatus": "closed-visual-approximation",
           "visualProgress": {
             "cameraId": "B1-08-street50-20261006",
@@ -6269,6 +6643,9 @@
           "modelReference": {
             "owner": "Planta física · B1-08",
             "modelUrl": "modelo-completo.html?edificio=B1-08"
+          },
+          "reviewTasks": {
+            "street": "partial"
           }
         },
         {
@@ -6315,7 +6692,12 @@
               }
             ]
           },
-          "issues": {},
+          "issues": {
+            "street": {
+              "title": "Superficie aproximada retirada del mapa",
+              "detail": "Se conserva la imagen real georreferenciada. Los bordes y desniveles 3D quedan por medir; el cierre anterior es histórico."
+            }
+          },
           "planReviewStatus": "closed-visual-approximation",
           "visualProgress": {
             "cameraId": "B1-09-street50-20261006",
@@ -6383,6 +6765,9 @@
           "modelReference": {
             "owner": "Planta física · B1-09",
             "modelUrl": "modelo-completo.html?edificio=B1-09"
+          },
+          "reviewTasks": {
+            "street": "partial"
           }
         }
       ],
@@ -6443,7 +6828,12 @@
               }
             ]
           },
-          "issues": {},
+          "issues": {
+            "street": {
+              "title": "Superficie aproximada retirada del mapa",
+              "detail": "Se conserva la imagen real georreferenciada. Los bordes y desniveles 3D quedan por medir; el cierre anterior es histórico."
+            }
+          },
           "planReviewStatus": "closed-visual-approximation",
           "visualProgress": {
             "cameraId": "B2-01-street50-20261006",
@@ -6511,6 +6901,9 @@
           "modelReference": {
             "owner": "Planta física · B2-01",
             "modelUrl": "modelo-completo.html?edificio=B2-01"
+          },
+          "reviewTasks": {
+            "street": "partial"
           }
         },
         {
@@ -6557,7 +6950,12 @@
               }
             ]
           },
-          "issues": {},
+          "issues": {
+            "street": {
+              "title": "Superficie aproximada retirada del mapa",
+              "detail": "Se conserva la imagen real georreferenciada. Los bordes y desniveles 3D quedan por medir; el cierre anterior es histórico."
+            }
+          },
           "planReviewStatus": "closed-visual-approximation",
           "visualProgress": {
             "cameraId": "B2-02-street50-20261006",
@@ -6625,6 +7023,9 @@
           "modelReference": {
             "owner": "Planta física · B2-02",
             "modelUrl": "modelo-completo.html?edificio=B2-02"
+          },
+          "reviewTasks": {
+            "street": "partial"
           }
         }
       ],
@@ -6685,7 +7086,12 @@
               }
             ]
           },
-          "issues": {},
+          "issues": {
+            "street": {
+              "title": "Superficie aproximada retirada del mapa",
+              "detail": "Se conserva la imagen real georreferenciada. Los bordes y desniveles 3D quedan por medir; el cierre anterior es histórico."
+            }
+          },
           "planReviewStatus": "closed-visual-approximation",
           "visualProgress": {
             "cameraId": "B3-01-street50-20261006",
@@ -6753,6 +7159,9 @@
           "modelReference": {
             "owner": "Planta física · B3-01",
             "modelUrl": "modelo-completo.html?edificio=B3-01"
+          },
+          "reviewTasks": {
+            "street": "partial"
           }
         },
         {
@@ -6799,7 +7208,12 @@
               }
             ]
           },
-          "issues": {},
+          "issues": {
+            "street": {
+              "title": "Superficie aproximada retirada del mapa",
+              "detail": "Se conserva la imagen real georreferenciada. Los bordes y desniveles 3D quedan por medir; el cierre anterior es histórico."
+            }
+          },
           "planReviewStatus": "closed-visual-approximation",
           "visualProgress": {
             "cameraId": "B3-02-street50-20261006",
@@ -6867,6 +7281,9 @@
           "modelReference": {
             "owner": "Planta física · B3-02",
             "modelUrl": "modelo-completo.html?edificio=B3-02"
+          },
+          "reviewTasks": {
+            "street": "partial"
           }
         },
         {
@@ -6913,7 +7330,12 @@
               }
             ]
           },
-          "issues": {},
+          "issues": {
+            "street": {
+              "title": "Superficie aproximada retirada del mapa",
+              "detail": "Se conserva la imagen real georreferenciada. Los bordes y desniveles 3D quedan por medir; el cierre anterior es histórico."
+            }
+          },
           "planReviewStatus": "closed-visual-approximation",
           "visualProgress": {
             "cameraId": "B3-03-street50-20261006",
@@ -6981,6 +7403,9 @@
           "modelReference": {
             "owner": "Planta física · B3-03",
             "modelUrl": "modelo-completo.html?edificio=B3-03"
+          },
+          "reviewTasks": {
+            "street": "partial"
           }
         },
         {
@@ -7027,7 +7452,12 @@
               }
             ]
           },
-          "issues": {},
+          "issues": {
+            "street": {
+              "title": "Superficie aproximada retirada del mapa",
+              "detail": "Se conserva la imagen real georreferenciada. Los bordes y desniveles 3D quedan por medir; el cierre anterior es histórico."
+            }
+          },
           "planReviewStatus": "closed-visual-approximation",
           "visualProgress": {
             "cameraId": "B3-04-street50-20261006",
@@ -7095,6 +7525,9 @@
           "modelReference": {
             "owner": "Planta física · B3-04",
             "modelUrl": "modelo-completo.html?edificio=B3-04"
+          },
+          "reviewTasks": {
+            "street": "partial"
           }
         },
         {
@@ -7141,7 +7574,12 @@
               }
             ]
           },
-          "issues": {},
+          "issues": {
+            "street": {
+              "title": "Superficie aproximada retirada del mapa",
+              "detail": "Se conserva la imagen real georreferenciada. Los bordes y desniveles 3D quedan por medir; el cierre anterior es histórico."
+            }
+          },
           "planReviewStatus": "closed-visual-approximation",
           "visualProgress": {
             "cameraId": "B3-05-street50-20261006",
@@ -7209,6 +7647,9 @@
           "modelReference": {
             "owner": "Planta física · B3-05",
             "modelUrl": "modelo-completo.html?edificio=B3-05"
+          },
+          "reviewTasks": {
+            "street": "partial"
           }
         }
       ],
@@ -7269,7 +7710,12 @@
               }
             ]
           },
-          "issues": {},
+          "issues": {
+            "street": {
+              "title": "Superficie aproximada retirada del mapa",
+              "detail": "Se conserva la imagen real georreferenciada. Los bordes y desniveles 3D quedan por medir; el cierre anterior es histórico."
+            }
+          },
           "planReviewStatus": "closed-visual-approximation",
           "visualProgress": {
             "cameraId": "C1-01-street50-20261006",
@@ -7337,6 +7783,9 @@
           "modelReference": {
             "owner": "Planta física · C1-01",
             "modelUrl": "modelo-completo.html?edificio=C1-01"
+          },
+          "reviewTasks": {
+            "street": "partial"
           }
         },
         {
@@ -7383,7 +7832,12 @@
               }
             ]
           },
-          "issues": {},
+          "issues": {
+            "street": {
+              "title": "Superficie aproximada retirada del mapa",
+              "detail": "Se conserva la imagen real georreferenciada. Los bordes y desniveles 3D quedan por medir; el cierre anterior es histórico."
+            }
+          },
           "planReviewStatus": "closed-visual-approximation",
           "visualProgress": {
             "cameraId": "C1-02-street50-20261006",
@@ -7451,6 +7905,9 @@
           "modelReference": {
             "owner": "Planta física · C1-02",
             "modelUrl": "modelo-completo.html?edificio=C1-02"
+          },
+          "reviewTasks": {
+            "street": "partial"
           }
         },
         {
@@ -7497,7 +7954,12 @@
               }
             ]
           },
-          "issues": {},
+          "issues": {
+            "street": {
+              "title": "Superficie aproximada retirada del mapa",
+              "detail": "Se conserva la imagen real georreferenciada. Los bordes y desniveles 3D quedan por medir; el cierre anterior es histórico."
+            }
+          },
           "planReviewStatus": "closed-visual-approximation",
           "visualProgress": {
             "cameraId": "C1-03-street50-20261006",
@@ -7565,6 +8027,9 @@
           "modelReference": {
             "owner": "Planta física · C1-03",
             "modelUrl": "modelo-completo.html?edificio=C1-03"
+          },
+          "reviewTasks": {
+            "street": "partial"
           }
         },
         {
@@ -7611,7 +8076,12 @@
               }
             ]
           },
-          "issues": {},
+          "issues": {
+            "street": {
+              "title": "Superficie aproximada retirada del mapa",
+              "detail": "Se conserva la imagen real georreferenciada. Los bordes y desniveles 3D quedan por medir; el cierre anterior es histórico."
+            }
+          },
           "planReviewStatus": "closed-visual-approximation",
           "visualProgress": {
             "cameraId": "C1-04-street50-20261006",
@@ -7679,6 +8149,9 @@
           "modelReference": {
             "owner": "Planta física · C1-04",
             "modelUrl": "modelo-completo.html?edificio=C1-04"
+          },
+          "reviewTasks": {
+            "street": "partial"
           }
         },
         {
@@ -7725,7 +8198,12 @@
               }
             ]
           },
-          "issues": {},
+          "issues": {
+            "street": {
+              "title": "Superficie aproximada retirada del mapa",
+              "detail": "Se conserva la imagen real georreferenciada. Los bordes y desniveles 3D quedan por medir; el cierre anterior es histórico."
+            }
+          },
           "planReviewStatus": "closed-visual-approximation",
           "visualProgress": {
             "cameraId": "C1-05-street50-20261006",
@@ -7793,6 +8271,9 @@
           "modelReference": {
             "owner": "Planta física · C1-05",
             "modelUrl": "modelo-completo.html?edificio=C1-05"
+          },
+          "reviewTasks": {
+            "street": "partial"
           }
         },
         {
@@ -7839,7 +8320,12 @@
               }
             ]
           },
-          "issues": {},
+          "issues": {
+            "street": {
+              "title": "Superficie aproximada retirada del mapa",
+              "detail": "Se conserva la imagen real georreferenciada. Los bordes y desniveles 3D quedan por medir; el cierre anterior es histórico."
+            }
+          },
           "planReviewStatus": "closed-visual-approximation",
           "visualProgress": {
             "cameraId": "C1-06-street50-20261006",
@@ -7907,6 +8393,9 @@
           "modelReference": {
             "owner": "Planta física · C1-06",
             "modelUrl": "modelo-completo.html?edificio=C1-06"
+          },
+          "reviewTasks": {
+            "street": "partial"
           }
         },
         {
@@ -7953,7 +8442,12 @@
               }
             ]
           },
-          "issues": {},
+          "issues": {
+            "street": {
+              "title": "Superficie aproximada retirada del mapa",
+              "detail": "Se conserva la imagen real georreferenciada. Los bordes y desniveles 3D quedan por medir; el cierre anterior es histórico."
+            }
+          },
           "planReviewStatus": "closed-visual-approximation",
           "visualProgress": {
             "cameraId": "C1-07-street50-20261006",
@@ -8021,6 +8515,9 @@
           "modelReference": {
             "owner": "Planta física · C1-07",
             "modelUrl": "modelo-completo.html?edificio=C1-07"
+          },
+          "reviewTasks": {
+            "street": "partial"
           }
         },
         {
@@ -8067,7 +8564,12 @@
               }
             ]
           },
-          "issues": {},
+          "issues": {
+            "street": {
+              "title": "Superficie aproximada retirada del mapa",
+              "detail": "Se conserva la imagen real georreferenciada. Los bordes y desniveles 3D quedan por medir; el cierre anterior es histórico."
+            }
+          },
           "planReviewStatus": "closed-visual-approximation",
           "visualProgress": {
             "cameraId": "C1-08-street50-20261006",
@@ -8135,6 +8637,9 @@
           "modelReference": {
             "owner": "Planta física · C1-08",
             "modelUrl": "modelo-completo.html?edificio=C1-08"
+          },
+          "reviewTasks": {
+            "street": "partial"
           }
         },
         {
@@ -8181,7 +8686,12 @@
               }
             ]
           },
-          "issues": {},
+          "issues": {
+            "street": {
+              "title": "Superficie aproximada retirada del mapa",
+              "detail": "Se conserva la imagen real georreferenciada. Los bordes y desniveles 3D quedan por medir; el cierre anterior es histórico."
+            }
+          },
           "planReviewStatus": "closed-visual-approximation",
           "visualProgress": {
             "cameraId": "C1-09-street50-20261006",
@@ -8249,6 +8759,9 @@
           "modelReference": {
             "owner": "Planta física · C1-09",
             "modelUrl": "modelo-completo.html?edificio=C1-09"
+          },
+          "reviewTasks": {
+            "street": "partial"
           }
         },
         {
@@ -8295,7 +8808,12 @@
               }
             ]
           },
-          "issues": {},
+          "issues": {
+            "street": {
+              "title": "Superficie aproximada retirada del mapa",
+              "detail": "Se conserva la imagen real georreferenciada. Los bordes y desniveles 3D quedan por medir; el cierre anterior es histórico."
+            }
+          },
           "planReviewStatus": "closed-visual-approximation",
           "visualProgress": {
             "cameraId": "C1-10-street50-20261006",
@@ -8363,6 +8881,9 @@
           "modelReference": {
             "owner": "Planta física · C1-10",
             "modelUrl": "modelo-completo.html?edificio=C1-10"
+          },
+          "reviewTasks": {
+            "street": "partial"
           }
         },
         {
@@ -8409,7 +8930,12 @@
               }
             ]
           },
-          "issues": {},
+          "issues": {
+            "street": {
+              "title": "Superficie aproximada retirada del mapa",
+              "detail": "Se conserva la imagen real georreferenciada. Los bordes y desniveles 3D quedan por medir; el cierre anterior es histórico."
+            }
+          },
           "planReviewStatus": "closed-visual-approximation",
           "visualProgress": {
             "cameraId": "C1-11-street50-20261006",
@@ -8477,6 +9003,9 @@
           "modelReference": {
             "owner": "Planta física · C1-11",
             "modelUrl": "modelo-completo.html?edificio=C1-11"
+          },
+          "reviewTasks": {
+            "street": "partial"
           }
         },
         {
@@ -8523,7 +9052,12 @@
               }
             ]
           },
-          "issues": {},
+          "issues": {
+            "street": {
+              "title": "Superficie aproximada retirada del mapa",
+              "detail": "Se conserva la imagen real georreferenciada. Los bordes y desniveles 3D quedan por medir; el cierre anterior es histórico."
+            }
+          },
           "planReviewStatus": "closed-visual-approximation",
           "visualProgress": {
             "cameraId": "C1-12-street50-20261006",
@@ -8591,6 +9125,9 @@
           "modelReference": {
             "owner": "Planta física · C1-12",
             "modelUrl": "modelo-completo.html?edificio=C1-12"
+          },
+          "reviewTasks": {
+            "street": "partial"
           }
         },
         {
@@ -8637,7 +9174,12 @@
               }
             ]
           },
-          "issues": {},
+          "issues": {
+            "street": {
+              "title": "Superficie aproximada retirada del mapa",
+              "detail": "Se conserva la imagen real georreferenciada. Los bordes y desniveles 3D quedan por medir; el cierre anterior es histórico."
+            }
+          },
           "planReviewStatus": "closed-visual-approximation",
           "visualProgress": {
             "cameraId": "C1-13-street50-20261006",
@@ -8705,6 +9247,9 @@
           "modelReference": {
             "owner": "Planta física · C1-13",
             "modelUrl": "modelo-completo.html?edificio=C1-13"
+          },
+          "reviewTasks": {
+            "street": "partial"
           }
         }
       ],
@@ -15657,5 +16202,10 @@
       }
     ],
     "geometryReport": "levantamiento/street-batch50-geometry-report.json"
+  },
+  "groundReview": {
+    "status": "unsupported-overlays-retired",
+    "audit": "levantamiento/ground-audit.json",
+    "detail": "El suelo público usa la imagen georreferenciada del mapa. Las calzadas y banquetas aproximadas anteriores se retiraron; sus anchos y alturas no se consideran comprobados."
   }
 }

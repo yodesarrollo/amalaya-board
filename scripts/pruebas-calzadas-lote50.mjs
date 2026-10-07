@@ -12,7 +12,7 @@ import {applySidewalkRound} from '../public/levantamiento/banquetas-refinement.j
 import {applyPlanReview} from '../public/levantamiento/plan-review-refinement.js';
 const root='public/levantamiento',source=await readFile(root+'/world.js','utf8');
 const stripped=s=>s.replace(/^import[^\n]*\n/gm,'').replace(/\nimport[^\n]*\n/gm,'').replace(/export \{[^\n]+\};/,'');
-const sheet=stripped(await readFile(root+'/sheet-plan-refinement.js','utf8')).replace('export function applySheetPlan','function applySheetPlan').replace('applyStreetBatch50(world);','');
+const sheet=stripped(await readFile(root+'/sheet-plan-refinement.js','utf8')).replace('export function applySheetPlan','function applySheetPlan').replace('applyStreetBatch50(world);','').replace('applyGroundReference(world, colliders, R);','');
 const baseSheet=new Function('SHEET_PLANS','footprintColliderCells',sheet+';return applySheetPlan;')(SHEET_PLANS,footprintColliderCells);
 const R=new Function('applyIsc58Refinement','applyEbSwRefinement','applyPlanRoundRefinement','applyStreetRoundRefinement','applySidewalkRoundRefinement','applyPlanReviewRefinement','applySheetPlanRefinement',stripped(source)+';return {createWorld:Fp,Vector3:U,Box3:Zt,prepare:Ip,optimize:Up};')(applyIsc58,applyEbSw,applyPlanRound,applyStreetRound,applySidewalkRound,applyPlanReview,baseSheet);
 let world;const oldFetch=globalThis.fetch;try{globalThis.fetch=async url=>({ok:true,json:async()=>JSON.parse(await readFile(root+'/'+url))});world=await R.createWorld('',undefined,'pilot',{overview:true});}finally{globalThis.fetch=oldFetch;}
@@ -34,7 +34,7 @@ for(const tri of all){const mid=[tri.reduce((s,p)=>s+p[0],0)/3,tri.reduce((s,p)=
 const tracking=JSON.parse(await readFile('public/seguimiento-3d.json')),batch=JSON.parse(await readFile(root+'/street-batch50-provenance.json')),buildings=tracking.blocks.flatMap(b=>b.buildings);
 const original12=new Set(tracking.workflowHistory.find(w=>w.task==='sidewalkA').buildingOrder);
 assert.deepEqual(batch.results.map(e=>e.id),tracking.activeReview.buildingOrder.filter(id=>!original12.has(id)).slice(0,50));
-assert.equal(batch.results.length,50);assert.equal(new Set(batch.results.map(e=>e.id)).size,50);assert.equal(batch.worldSha256,sheetHash(source));
+assert.equal(batch.results.length,50);assert.equal(new Set(batch.results.map(e=>e.id)).size,50);assert.equal(batch.worldSha256,JSON.parse(await readFile(root+'/ground-audit.json')).previousWorldSha256,'Lote 50 preserves its historical world checkpoint');
 for(const [i,e] of batch.results.entries()){
  const b=buildings.find(b=>b.id===e.id);assert.equal(e.order,i+1);assert.equal(b.tasks.street,'done');const rec=JSON.parse(await readFile('public/'+e.manifest));assert.equal(rec.camera.id,rec.baseline.cameraId);assert.equal(rec.current.cameraId,rec.camera.id);assert(rec.streetSegments.length);assert.equal(rec.action,2);assert.equal(rec.heightMeasured,false);
  for(const pic of [rec.baseline,rec.current]){const bytes=await readFile('public/'+pic.url);assert.equal(sheetHash(bytes),pic.sha256);assert.equal(bytes.readUInt32BE(16),960);assert.equal(bytes.readUInt32BE(20),600);}
