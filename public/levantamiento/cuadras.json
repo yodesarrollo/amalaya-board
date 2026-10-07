@@ -1,0 +1,48 @@
+{
+  "version": 1,
+  "totalPhysicalBlocks": null,
+  "note": "Inventario de cuadras físicas en construcción. Los sectores de lámina y tramos históricos no equivalen a cuadras.",
+  "blocks": [
+    {
+      "id": "C01",
+      "name": "Banco y estacionamiento · sector B1",
+      "buildingIds": [
+        "B1-05",
+        "B1-06",
+        "B1-07"
+      ],
+      "membershipComplete": false,
+      "source": "Revisión C01, commit ac48c75: cuatro lados inspeccionados; perímetro parcial por oclusiones.",
+      "evidence": "levantamiento/cuadras/C01.svg",
+      "taskStates": {
+        "plan": "partial",
+        "street": "partial",
+        "sidewalkA": "pending",
+        "sidewalkB": "pending",
+        "corners": "pending"
+      },
+      "sides": [
+        {
+          "side": "norte",
+          "status": "pendiente",
+          "reason": "La sombra y el vuelo de la cubierta impiden identificar de forma independiente la guarnición. T02 se retira: no usar la cubierta como borde."
+        },
+        {
+          "side": "este",
+          "status": "parcial",
+          "reason": "Se sustituye el trazado sobre cubiertas y estacionamiento (T04 y T08); se conserva el hueco del encuentro lateral."
+        },
+        {
+          "side": "sur",
+          "status": "pendiente",
+          "reason": "Copas de árboles y sombras ocultan el borde; no cerrar el perímetro por interpolación."
+        },
+        {
+          "side": "oeste",
+          "status": "parcial",
+          "reason": "Tramos visibles sobre el borde de calzada; se omiten autobús, vehículos y árboles."
+        }
+      ]
+    }
+  ]
+}
