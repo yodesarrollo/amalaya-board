@@ -3,6 +3,7 @@ import {createRoot} from 'react-dom/client'
 import {STATES,columns,cellInfo} from './seguimiento3d-model'
 import {blockIndex,blockSelection} from './seguimiento3d-cuadras'
 import './seguimiento3d.css'
+const Calco=lazy(()=>import('./seguimiento3d-calco'))
 const CellDialog=lazy(()=>import('./seguimiento3d-dialog'))
 const BASE=import.meta.env.BASE_URL
 const NAMES={plan:'Plantas',street:'Calles',sidewalkA:'Banqueta A',sidewalkB:'Banqueta B',corners:'Esquinas',identity:'Identidad',volume:'Volumen',facade:'Fachadas',finish:'Acabados',equipment:'Equipamiento',qa:'Revisión final'}
@@ -23,14 +24,16 @@ function BuildingDialog({building:b,task,tasks,onClose,onAction}){
  </dialog>
 }
 function BlockDialog({block:b,task,tasks,onClose,onTask,onBuilding}){
- const ref=useRef(null)
+ const ref=useRef(null),[showTrace,setShowTrace]=useState(false)
  useEffect(()=>{ref.current.showModal()},[])
  const sides={norte:'Norte',este:'Este',sur:'Sur',oeste:'Oeste'}
  return <dialog ref={ref} className="building-dialog block-dialog" onCancel={onClose} onClick={e=>{if(e.target===ref.current)onClose()}} aria-labelledby="block-title">
   <button className="simple-close" onClick={onClose} aria-label="Cerrar cuadra">×</button>
   <span className="eyebrow">CUADRA {b.id}</span><h2 id="block-title">{b.name}</h2>
-  {b.inventoryEvidence&&<img className="focus-photo" src={BASE+b.inventoryEvidence} alt={`${b.id}: límite de manzana en verde y huellas del modelo superpuestas`}/>}
-  {b.inventoryEvidence&&<p className="focus-caption">Límite de inventario INEGI, diciembre de 2025. Huellas en amarillo; las señaladas para revisión, en naranja. Referencia de ubicación, no aprobación de banquetas.</p>}
+  {b.tracing&&<button className="quiet calco-open" aria-expanded={showTrace} onClick={()=>setShowTrace(!showTrace)}>{showTrace?'Cerrar calco 2D':'Ver calco 2D · calles y banquetas'}</button>}
+  {showTrace&&<Suspense fallback={<p role="status">Abriendo calco…</p>}><Calco block={b}/></Suspense>}
+  {!showTrace&&b.inventoryEvidence&&<img className="focus-photo" src={BASE+b.inventoryEvidence} alt={`${b.id}: límite de manzana en verde y huellas del modelo superpuestas`}/>}
+  {!showTrace&&b.inventoryEvidence&&<p className="focus-caption">Límite de inventario INEGI, diciembre de 2025. Huellas en amarillo; las señaladas para revisión, en naranja. Referencia de ubicación, no aprobación de banquetas.</p>}
   {b.nearbyStreets?.length>0&&<p><strong>Calles de referencia:</strong> {b.nearbyStreets.join(' · ')}</p>}
   {b.geometryReviewIds?.length>0&&<p className="inventory-warning">Revisar huellas: {b.geometryReviewIds.join(', ')}. Su pertenencia está registrada; su geometría sigue pendiente.</p>}
   {b.evidence&&<details className="history"><summary>Comparación anterior conservada</summary><a href={BASE+b.evidence} target="_blank" rel="noreferrer"><img className="focus-photo" src={BASE+b.evidence} alt={`Comparación de la cuadra ${b.id}: fotografía, trazado anterior y retrazado parcial`}/><span className="secondary-link">Ampliar comparación ↗</span></a></details>}
@@ -76,6 +79,7 @@ function Seguimiento(){
   <header className="flow-header"><a href={`${BASE}explorar.html`} className="brand">Amalaya<span>Revisión por cuadras</span></a><nav><a className="model-link" href={`${BASE}modelo-completo.html`}>Ver conjunto ↗</a><button className="quiet" onClick={refresh} disabled={refreshing} aria-label="Actualizar estados">{refreshing?'Actualizando…':'↻ Actualizar'}</button></nav></header>
   <section className="flow-hero"><div><span className="eyebrow">UNA CUADRA A LA VEZ</span><h1>Revisamos el conjunto.<br/><span>Cuadra por cuadra.</span></h1><p>Calles, banquetas y esquinas en una misma revisión. Los edificios y su historial permanecen dentro de cada cuadra.</p><button className="primary" onClick={()=>{setTask('street');setFilter('pending');setQuery('');document.getElementById('work-area')?.scrollIntoView({behavior:'smooth'})}}>Continuar con calles →</button></div><a className="overview-card" href={`${BASE}modelo-completo.html`}><span className="overview-icon" aria-hidden="true">▦</span><strong>Todo Amalaya</strong><span>{data?`${total} cuadra${total===1?'':'s'} identificada${total===1?'':'s'}`:'Vista del conjunto'}</span><b>Abrir vista ligera ↗</b></a></section>
   {data&&<aside className="block-inventory" aria-label="Estado del inventario"><strong>{index.totalPhysicalBlocks===null?'Total de cuadras por confirmar':`${index.totalPhysicalBlocks} cuadras · inventario completo`}</strong><p>{blocks.reduce((n,b)=>n+b.members.length,0)} edificios vinculados · {unassigned.length} edificios pendientes de asignación · {publicSpaces.length} espacio{publicSpaces.length===1?'':'s'} público{publicSpaces.length===1?'':'s'}. Alcance: edificios del modelo actual. Calles y banquetas conservan sus pendientes.</p></aside>}
+  {registry?.tracingSummary&&<aside className="block-inventory calco-summary" aria-label="Avance del calco 2D"><strong>Paso 2 · calco parcial</strong><p>{registry.tracingSummary.reviewedBlocks} cuadras revisadas · {registry.tracingSummary.roadEdges+registry.tracingSummary.pedestrianEdges} fragmentos en {registry.tracingSummary.blocksWithTraces} cuadras. Faltan bordes ocultos por sombras, árboles y vehículos.</p><p>Abre una cuadra y selecciona «Ver calco 2D» para comparar foto y líneas.</p></aside>}
   {registry?.inventoryComplete&&<InventoryMap registry={registry} onSelect={id=>setBlockFocus(blocks.find(b=>b.id===id))}/> }
   <section id="work-area" className="work-area" aria-label="Cuadras por etapa">
    <div className="stage-heading"><div><label htmlFor="stage">¿Qué estamos trabajando?</label><select id="stage" value={task} onChange={e=>{setTask(e.target.value);setFilter('all')}}>{Object.entries(data?.taskDefinitions||NAMES).map(([key],i)=><option key={key} value={key}>{i+1}. {NAMES[key]||key}</option>)}</select></div><div className="stage-count"><strong>{done}<span> / {total}</span></strong><span>cuadras identificadas listas en esta etapa</span><progress max={total||1} value={done} aria-label="Avance de las cuadras identificadas"/></div></div>
