@@ -286,6 +286,8 @@ function hoja(html, alto){
   return v;
 }
 function cerrar(v){
+  try { if (v._speech) v._speech.stop(); } catch(e){}
+  v._speech = null;
   v.classList.remove("on"); abierta = false;
   (v._urls || []).forEach(function(u){ try { URL.revokeObjectURL(u); } catch(e){} });
   v._urls = [];
@@ -325,11 +327,44 @@ async function anotar(op){
       ['Cambiar','Quitar','Agregar','Está mal'].map(function(t){
         return '<button type="button" class="chn-chip" data-v="' + t + '">' + t + '</button>'; }).join("") +
     '</div>' +
-    '<textarea class="chn-txt" placeholder="Dilo como lo dirías en voz alta. Usa el micrófono del teclado si quieres."></textarea>' +
+    '<textarea class="chn-txt" placeholder="Dilo como lo dirías en voz alta."></textarea>' +
+    '<div class="chn-chips"><button type="button" class="chn-chip" data-voz>🎙 Dictar</button><span class="chn-voz-estado" data-voz-estado></span></div>' +
     '<div class="chn-pie"><button type="button" class="chn-btn2" data-x>Cancelar</button>' +
     '<button type="button" class="chn-btn" data-ok>Clavar</button></div>', "86vh");
 
   var ta = v.querySelector(".chn-txt"), tipo = "";
+  var vozBtn = v.querySelector("[data-voz]"), vozEstado = v.querySelector("[data-voz-estado]");
+  var SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (!SR) {
+    if (vozBtn) vozBtn.style.display = "none";
+    if (vozEstado) vozEstado.textContent = "Dictado no disponible en este navegador";
+  } else if (vozBtn) {
+    vozBtn.onclick = function () {
+      if (v._speech) { try { v._speech.stop(); } catch(e){} return; }
+      var rec = new SR(), base = ta.value.trim();
+      rec.lang = "es-MX"; rec.interimResults = true; rec.continuous = true;
+      v._speech = rec; vozBtn.classList.add("on"); vozBtn.textContent = "■ Detener";
+      if (vozEstado) vozEstado.textContent = "Escuchando…";
+      rec.onresult = function (ev) {
+        var final = "", parcial = "";
+        for (var i = ev.resultIndex; i < ev.results.length; i++) {
+          var t = ev.results[i][0].transcript;
+          if (ev.results[i].isFinal) final += t; else parcial += t;
+        }
+        if (final) base = (base ? base + " " : "") + final.trim();
+        ta.value = (base + (parcial ? " " + parcial.trim() : "")).trim();
+      };
+      rec.onerror = function (ev) {
+        if (vozEstado) vozEstado.textContent = ev.error === "not-allowed" ? "Permiso de micrófono denegado" : "No se pudo dictar";
+      };
+      rec.onend = function () {
+        v._speech = null; vozBtn.classList.remove("on"); vozBtn.textContent = "🎙 Dictar";
+        if (vozEstado && !/denegado|No se pudo/.test(vozEstado.textContent || "")) vozEstado.textContent = "";
+        try { ta.focus(); } catch(e){}
+      };
+      try { rec.start(); } catch(e) { rec.onend(); }
+    };
+  }
   try { ta.focus(); } catch(e){}
   aBlob(lienzo, 0.72).then(function (b) {
     if (!b) { v.querySelector(".chn-foto").remove(); return; }   /* toBlob puede dar null */
@@ -508,9 +543,26 @@ function modoSenalar(){
     if (el.closest && el.closest(".chn-pista")) { ev.preventDefault(); salir(); return; }
     if (mio(el)) return;
     if (el.tagName === "IFRAME") {
-      /* elementFromPoint no cruza al tablero embebido: adentro se pica la canica */
-      ev.preventDefault(); ev.stopPropagation(); salir();
-      aviso("Dentro del tablero pica la canica y usa ✎ Pedir cambio aquí");
+      ev.preventDefault(); ev.stopPropagation();
+      var ctx = el.getAttribute("data-chinche-context");
+      if (ctx) {
+        var valores = {}; try { valores = JSON.parse(ctx); } catch(e){}
+        salir();
+        anotar({ css: ruta(el), texto: el.title || "Street View", seccion: valores.seccion || "street-view",
+                 vista: valores.punto || valores.vista || "", valores: valores, clase: "iframe" });
+        return;
+      }
+      try {
+        var origen = new URL(el.src, location.href).origin;
+        if (origen === location.origin && el.contentWindow) {
+          el.contentWindow.postMessage({ tipo: "amalaya:chinche-armar" }, location.origin);
+          salir(); aviso("Toca ahora el punto exacto dentro del recorrido");
+          return;
+        }
+      } catch(e){}
+      salir();
+      anotar({ css: ruta(el), texto: el.title || "Contenido embebido", seccion: seccionDe(el),
+               valores: { iframe: el.src || "" }, clase: "iframe" });
       return;
     }
     ev.preventDefault(); ev.stopPropagation();   /* que no dispare lo de la página */
