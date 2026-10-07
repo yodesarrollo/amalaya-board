@@ -363,8 +363,9 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
   }, [])
   // El monito: soltarlo en una calle abre el Street View de ese punto.
   const [pop360, setPop360] = useState(null)             // {ruta, punto} → pop-up del recorrido 360
+  const [recorridoRutas, setRecorridoRutas] = useState([])
   const [monito, setMonito] = useState(false)          // esperando el clic
-  const [punto, setPunto] = useState(null)              // {lng, lat, heading}
+  const [punto, setPunto] = useState(null)              // {lng, lat, heading, ruta?, recorridoPunto?}
   const monitoRef = useRef(null)
   const monitoActivo = useRef(false)
   useEffect(() => { monitoActivo.current = monito }, [monito])
@@ -513,6 +514,7 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
       m.addSource('recorrido-activo', { type: 'geojson', data: { type: 'FeatureCollection', features: [] } })
       m.addLayer({ id: 'recorrido-activo', type: 'circle', source: 'recorrido-activo', paint: { 'circle-radius': 11, 'circle-color': '#FFB84D', 'circle-opacity': 0.35, 'circle-stroke-color': '#FFB84D', 'circle-stroke-width': 3 } })
       fetch(`${BASE}recorrido/rutas.json`).then((r) => r.json()).then((d) => {
+        setRecorridoRutas(d.rutas || [])
         const feats = []
         for (const R of d.rutas || []) {
           const pts = R.puntos || []
@@ -522,8 +524,12 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
         m.getSource('recorrido')?.setData({ type: 'FeatureCollection', features: feats })
       }).catch(() => {})
       m.on('click', 'recorrido-toque', (ev) => {
-        const f = ev.features?.[0]?.properties || {}
-        if (f.id) setPop360({ ruta: f.ruta || '', punto: f.id })
+        const feature = ev.features?.[0], f = feature?.properties || {}
+        const coords = feature?.geometry?.coordinates || [ev.lngLat.lng, ev.lngLat.lat]
+        if (f.id) {
+          setPop360(null)
+          setPunto({ lng: Number(coords[0]), lat: Number(coords[1]), heading: Math.round(m.getBearing()), ruta: f.ruta || '', recorridoPunto: f.id, nombre: f.nombre || '' })
+        }
       })
       m.on('mouseenter', 'recorrido-toque', () => { m.getCanvas().style.cursor = 'pointer' })
       m.on('mouseleave', 'recorrido-toque', () => { m.getCanvas().style.cursor = '' })
@@ -788,6 +794,20 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
   const visor360 = useRef(null)
   const [puntoVisor, setPuntoVisor] = useState(null)
   const [subiendoRender, setSubiendoRender] = useState(false)
+  useEffect(() => {
+    const alChincheRecorrido = (ev) => {
+      const d = ev.data || {}
+      if (d.tipo !== 'amalaya:chinche-recorrido' || !visor360.current || ev.source !== visor360.current.contentWindow || ev.origin !== location.origin) return
+      window.YODChinche?.anotar({
+        seccion: 'recorrido-360', vista: d.punto,
+        texto: `Recorrido 360 · ${d.ruta} · ${d.punto}`,
+        valores: { ruta: d.ruta, punto: d.punto, yaw: d.yaw, pitch: d.pitch, x: d.x, y: d.y },
+        objeto: { tipo: 'recorrido360', ruta: d.ruta, punto: d.punto, yaw: d.yaw, pitch: d.pitch },
+      })
+    }
+    window.addEventListener('message', alChincheRecorrido)
+    return () => window.removeEventListener('message', alChincheRecorrido)
+  }, [])
   const renderDe = (puntoId) => (datos?.Archivos || []).filter((a) => String(a.tipo) === 'render360' && String(a.espacio_id) === String(puntoId)).pop()
   useEffect(() => {
     const alMensaje = async (ev) => {
@@ -1076,8 +1096,10 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
           punto={punto}
           setPunto={setPunto}
           rutas={rutas}
+          recorridos={recorridoRutas}
           puedeEditar={puedeEditar}
           onGuardar={guardarParada}
+          onAbrir360={punto.ruta && punto.recorridoPunto ? () => { setPop360({ ruta: punto.ruta, punto: punto.recorridoPunto }); setPunto(null) } : null}
           onCerrar={() => setPunto(null)}
         />
       )}
@@ -1219,12 +1241,29 @@ function urlEmbed(p) {
   return `https://maps.google.com/maps?layer=c&cbll=${p.lat},${p.lng}&cbp=12,${p.heading || 0},0,0,0&output=svembed&hl=es`
 }
 
-function PanelStreetView({ punto, setPunto, rutas, puedeEditar, onGuardar, onCerrar }) {
+function rumboGeo(a, b) {
+  if (!a || !b) return 0
+  const rad = Math.PI / 180, lat1 = a.lat * rad, lat2 = b.lat * rad, dLng = (b.lng - a.lng) * rad
+  const y = Math.sin(dLng) * Math.cos(lat2)
+  const x = Math.cos(lat1) * Math.sin(lat2) - Math.sin(lat1) * Math.cos(lat2) * Math.cos(dLng)
+  return Math.round((Math.atan2(y, x) / rad + 360) % 360)
+}
+
+function PanelStreetView({ punto, setPunto, rutas, recorridos = [], puedeEditar, onGuardar, onAbrir360, onCerrar }) {
   const [rutaId, setRutaId] = useState(rutas[0]?.id || '')
   const [nombre, setNombre] = useState('')
   const [ocupado, setOcupado] = useState(false)
   const [error, setError] = useState(null)
   const girar = (d) => setPunto({ ...punto, heading: ((punto.heading || 0) + d + 360) % 360 })
+  const recorrido = recorridos.find((r) => String(r.id) === String(punto.ruta))
+  const indice = recorrido?.puntos?.findIndex((q) => String(q.id) === String(punto.recorridoPunto)) ?? -1
+  const irRecorrido = (delta) => {
+    if (!recorrido || indice < 0) return
+    const j = indice + delta, q = recorrido.puntos[j]
+    if (!q) return
+    const sig = recorrido.puntos[j + 1] || recorrido.puntos[j - 1]
+    setPunto({ ...punto, lng: Number(q.lng), lat: Number(q.lat), heading: rumboGeo(q, sig), ruta: recorrido.id, recorridoPunto: q.id, nombre: q.nombre || '' })
+  }
 
   async function guardar(ev) {
     ev.preventDefault()
@@ -1250,12 +1289,16 @@ function PanelStreetView({ punto, setPunto, rutas, puedeEditar, onGuardar, onCer
           allowFullScreen
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade"
+          data-chinche-context={JSON.stringify({ seccion: 'street-view', ruta: punto.ruta || '', punto: punto.recorridoPunto || '', lat: punto.lat, lng: punto.lng, heading: punto.heading || 0 })}
         />
       </div>
-      <div className="flex items-center gap-2 px-3 py-2 border-b border-linea text-xs text-terciario">
+      <div className="flex items-center gap-2 px-3 py-2 border-b border-linea text-xs text-terciario flex-wrap">
+        {indice >= 0 && <button className="boton-secundario !px-2 !py-1" disabled={indice <= 0} onClick={() => irRecorrido(-1)}>← Anterior</button>}
+        {indice >= 0 && <button className="boton-secundario !px-2 !py-1" disabled={indice >= recorrido.puntos.length - 1} onClick={() => irRecorrido(1)}>Siguiente →</button>}
         <button className="boton-secundario !px-2 !py-1" onClick={() => girar(-45)} title="Girar a la izquierda">↺ 45°</button>
         <button className="boton-secundario !px-2 !py-1" onClick={() => girar(45)} title="Girar a la derecha">↻ 45°</button>
-        <span className="cifra">{punto.lat}, {punto.lng} · {punto.heading || 0}°</span>
+        {onAbrir360 && <button className="boton-secundario !px-2 !py-1" onClick={onAbrir360}>Recorrido 360</button>}
+        <span className="cifra">{punto.nombre ? `${punto.nombre} · ` : ''}{punto.lat}, {punto.lng} · {punto.heading || 0}°</span>
         <span className="flex-1" />
         <a className="inline-flex items-center gap-1 text-oro hover:text-ambar" href={urlStreetView(punto)} target="_blank" rel="noreferrer">
           Abrir en Google Maps <ExternalLink size={12} />
