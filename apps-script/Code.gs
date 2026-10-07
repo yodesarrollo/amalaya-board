@@ -1309,6 +1309,11 @@ function verificarCierreGitHub(id, issue, estado, motivo, githubToken) {
   return { motivo: data.state_reason, fecha: data.closed_at, issue: data.html_url };
 }
 
+function idChincheValido(id) {
+  return /^CHN-[A-Za-z0-9-]{1,56}$/.test(id) ||
+    /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(id);
+}
+
 function accChincheEstado(body) {
   if (!tokenPuenteValido(body.k)) return jsonOut({ ok: false, error: 'No autorizado.' });
   const id = String(body.id || '');
@@ -1316,7 +1321,7 @@ function accChincheEstado(body) {
   const estado = String(body.estado || '');
   const previo = String(body.estado_previo || '');
   const motivo = String(body.motivo || '');
-  if (!/^CHN-[A-Za-z0-9-]{1,56}$/.test(id) || previo !== 'tomada' ||
+  if (!idChincheValido(id) || previo !== 'tomada' ||
       !Object.prototype.hasOwnProperty.call({ terminada: 1, descartada: 1 }, estado)) {
     return jsonOut({ ok: false, error: 'Transición no válida.' });
   }
