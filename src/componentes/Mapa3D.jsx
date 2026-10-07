@@ -10,7 +10,7 @@ import { NOMBRE_TIPO } from './Glifos.jsx'
 import { rayitasHtml, nivelAvance, ETAPAS_DESARROLLO, nombreEstado } from '../avance.js'
 import { COLOR_TIPO, TIPOS, claveTipo } from '../tipos.js'
 import { m2Construidos } from '../calc.js'
-import { montarPlano } from '../plano-referencia.js'
+import { montarPlano, plano, encuadreCuadra } from '../plano-referencia.js'
 import { recuperarCartografia } from '../mapa-recuperacion.js'
 import { montarLevantamiento } from '../levantamiento-mapa.js'
 import { ZONAS, MODULOS, zonasDeEspacio, centroDeZonas, filasModelos } from '../territorio.js'
@@ -263,7 +263,7 @@ function escalaDe(m) {
 }
 const NOMBRE_ETAPA = { idea: 'idea', negociacion: 'negociación', proyecto: 'proyecto', obra: 'obra', operando: 'operando' }
 
-const CAPAS_DEF = { satelite: true, ciudad: false, modelos: true, espacios: true, rutas: true, recorrido: true, calco: false, lamina: false, trazado: false, planoLimpio: false }
+const CAPAS_DEF = { satelite: true, ciudad: false, modelos: true, espacios: true, rutas: true, recorrido: true, calco: false, lamina: false, trazado: false, planoLimpio: false, trazoAnterior: false }
 
 export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, onNuevo, edicion = {}, enfocado = null }) {
   // edicion: { modoEdicion, editandoPuntos, rutaSel, onMoverEspacio(id, pctCentroX, pctCentroY), onAgregarPunto(pctX, pctY) }
@@ -830,6 +830,7 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
     vis('referencia-trazado', (usaTrazo || respaldoMapa) && !capas.planoLimpio)
     vis('plano-papel', capas.planoLimpio)
     vis('plano-trazos', usaTrazo); vis('plano-trazos-halo', usaTrazo)
+    vis('plano-anterior', usaTrazo && capas.trazoAnterior)
     vis('contexto-piso', !usaTrazo); vis('contexto-borde', !usaTrazo)
     vis('amalaya-levantamiento', capas.modelos && etapa >= 1)
     vis('ciudad-3d', capas.ciudad && etapa >= 1); vis('ciudad-borde', capas.ciudad && etapa >= 1)
@@ -1015,7 +1016,7 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
                 ['rutas', 'Rutas peatonales'],
                 ['recorrido', 'Puntos del recorrido 360'],
                 ['satelite', 'Satélite'],
-                ['trazado', 'Calco 2D · bordes por validar'],
+                ['trazado', 'Calco 2D · revisión por cuadra'],
                 ['planoLimpio', 'Plano limpio · sin fotografía'],
                 ['calco', 'Calco del plano'],
                 ['lamina', 'Lámina «Zona Núcleo» · referencia, sin escala'],
@@ -1025,7 +1026,18 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
                   <span className="txt">{titulo}</span>
                 </button>
               ))}
-              {(capas.trazado || capas.planoLimpio) && <p className="panel-nota">Calco parcial: azul calzada · ocre banqueta. Huecos sin verificar. Fecha de la foto no confirmada; no usar como levantamiento medido.</p>}
+              {(capas.trazado || capas.planoLimpio) && <div className="space-y-2">
+                <p className="panel-nota">Azul: bordes retrazados · magenta discontinuo: trazado anterior. Huecos pendientes; fotografía de fecha no confirmada.</p>
+                <button type="button" className="fila-capa" role="switch" aria-checked={capas.trazoAnterior} onClick={() => setCapas({...capas,trazoAnterior:!capas.trazoAnterior})}>
+                  <span className="sw" data-on={capas.trazoAnterior}><i /></span><span>Superponer trazado anterior</span>
+                </button>
+                {plano.blocks.map(b => <div key={b.id} className="rounded border border-stone-300/30 p-2">
+                  <button type="button" className="ctrl-mapa w-full justify-center" onClick={() => { const bounds=encuadreCuadra(b.id); if(bounds){setInclinado(false);mapa.current?.fitBounds(bounds,{padding:64,pitch:0,bearing:0,duration:600})} }} >{b.name} · ver cuadra completa</button>
+                  <p className="panel-nota">{b.sides.filter(l=>l.status==='parcial').length} lados con trazos parciales · {b.sides.filter(l=>l.status==='pendiente').length} pendientes.</p>
+                  {b.sides.map(l => <p key={l.side} className="panel-nota"><b>{l.side}:</b> {l.reason}</p>)}
+                  <p className="panel-nota">Resolución aproximada: 0.52 m/píxel. Revisión visual, sin validación topográfica.</p>
+                </div>)}
+              </div>}
               {respaldoMapa && <p className="panel-nota">Cartografía de respaldo local. Fecha de captura no confirmada.</p>}
               {capas.calco && (
                 <div className="px-1 pt-1">

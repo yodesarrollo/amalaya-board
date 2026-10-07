@@ -1,5 +1,5 @@
 {
-  "version": "20261007-calco-piloto-1",
+  "version": "20261007-cuadra-C01-1",
   "status": "parcial-pendiente-de-contraste",
   "reference": {
     "provider": "Esri World Imagery",
@@ -21,14 +21,155 @@
     "image": "ground-reference.jpg",
     "imageSha256": "b5047ad684e6188a781e3e4226db33574aeabf70613e12bacb3177eb9219e28f"
   },
-  "scope": "Piloto de bordes visibles en la zona central: no completa calles ni banquetas del conjunto.",
+  "scope": "Revisión por cuadra: C01 (B1-05, B1-06 y B1-07). Cuatro lados inspeccionados; bordes visibles trazados, ocultos pendientes.",
   "limits": [
     "Fecha de captura no verificada.",
     "Calco visual preliminar, no levantamiento métrico ni referencia actual certificada.",
     "No se cierran polígonos ni se inventan anchos bajo sombras, árboles o vehículos.",
-    "No modifica estados de avance de edificios ni genera superficies 3D."
+    "No modifica estados de avance de edificios ni genera superficies 3D.",
+    "No se fuerza una línea interior de banqueta donde la foto solo muestra cubierta, estacionamiento o sombra; banqueta completa pendiente."
   ],
   "traces": [
+    {
+      "id": "C01-E1",
+      "type": "borde-calzada",
+      "block": "C01",
+      "side": "este",
+      "status": "interpretacion-visual-por-validar",
+      "pixels": [
+        [
+          656,
+          730
+        ],
+        [
+          658,
+          745
+        ],
+        [
+          661,
+          760
+        ]
+      ],
+      "note": "Borde visible junto a cubierta; no extender hacia la esquina norte sombreada.",
+      "precision": "Lectura visual sobre fotografía ~0.52 m/píxel; sin exactitud topográfica comprobada."
+    },
+    {
+      "id": "C01-E2",
+      "type": "borde-calzada",
+      "block": "C01",
+      "side": "este",
+      "status": "interpretacion-visual-por-validar",
+      "pixels": [
+        [
+          657,
+          782
+        ],
+        [
+          659,
+          800
+        ],
+        [
+          662,
+          817
+        ]
+      ],
+      "note": "Límite visible al oeste del arroyo; corte antes del acceso.",
+      "precision": "Lectura visual sobre fotografía ~0.52 m/píxel; sin exactitud topográfica comprobada."
+    },
+    {
+      "id": "C01-E3",
+      "type": "borde-calzada",
+      "block": "C01",
+      "side": "este",
+      "status": "interpretacion-visual-por-validar",
+      "pixels": [
+        [
+          664,
+          830
+        ],
+        [
+          664,
+          852
+        ],
+        [
+          664,
+          870
+        ],
+        [
+          663,
+          879
+        ]
+      ],
+      "note": "Borde junto al estacionamiento; extremo sur termina antes de perderse la guarnición.",
+      "precision": "Lectura visual sobre fotografía ~0.52 m/píxel; sin exactitud topográfica comprobada."
+    },
+    {
+      "id": "C01-W1",
+      "type": "borde-calzada",
+      "block": "C01",
+      "side": "oeste",
+      "status": "interpretacion-visual-por-validar",
+      "pixels": [
+        [
+          541,
+          766
+        ],
+        [
+          543,
+          778
+        ],
+        [
+          545,
+          786
+        ]
+      ],
+      "note": "Segmento visible; interrupción antes del autobús.",
+      "precision": "Lectura visual sobre fotografía ~0.52 m/píxel; sin exactitud topográfica comprobada."
+    },
+    {
+      "id": "C01-W2",
+      "type": "borde-calzada",
+      "block": "C01",
+      "side": "oeste",
+      "status": "interpretacion-visual-por-validar",
+      "pixels": [
+        [
+          551,
+          839
+        ],
+        [
+          552,
+          851
+        ],
+        [
+          552,
+          858
+        ]
+      ],
+      "note": "Borde visible al sur del autobús; no atravesar vehículos.",
+      "precision": "Lectura visual sobre fotografía ~0.52 m/píxel; sin exactitud topográfica comprobada."
+    },
+    {
+      "id": "C01-W3",
+      "type": "borde-calzada",
+      "block": "C01",
+      "side": "oeste",
+      "status": "interpretacion-visual-por-validar",
+      "pixels": [
+        [
+          555,
+          872
+        ],
+        [
+          556,
+          882
+        ]
+      ],
+      "note": "Borde antes de la sombra de la esquina sur.",
+      "precision": "Lectura visual sobre fotografía ~0.52 m/píxel; sin exactitud topográfica comprobada."
+    }
+  ],
+  "previousTraces": [
     {
       "id": "T01",
       "type": "borde-calzada",
@@ -334,6 +475,63 @@
           794
         ]
       ]
+    }
+  ],
+  "blocks": [
+    {
+      "id": "C01",
+      "name": "Cuadra B1 · banco y estacionamiento",
+      "buildings": [
+        "B1-05",
+        "B1-06",
+        "B1-07"
+      ],
+      "reviewBoundsPixels": [
+        515,
+        690,
+        690,
+        940
+      ],
+      "status": "parcial-con-oclusiones",
+      "sides": [
+        {
+          "side": "norte",
+          "status": "pendiente",
+          "reason": "La sombra y el vuelo de la cubierta impiden identificar de forma independiente la guarnición. T02 se retira: no usar la cubierta como borde."
+        },
+        {
+          "side": "este",
+          "status": "parcial",
+          "reason": "Se sustituye el trazado sobre cubiertas y estacionamiento (T04 y T08); se conserva el hueco del encuentro lateral."
+        },
+        {
+          "side": "sur",
+          "status": "pendiente",
+          "reason": "Copas de árboles y sombras ocultan el borde; no cerrar el perímetro por interpolación."
+        },
+        {
+          "side": "oeste",
+          "status": "parcial",
+          "reason": "Tramos visibles sobre el borde de calzada; se omiten autobús, vehículos y árboles."
+        }
+      ]
+    }
+  ],
+  "retiredTraces": [
+    {
+      "id": "T02",
+      "block": "C01",
+      "reason": "Línea confundida con borde de cubierta bajo sombra; guarnición no resoluble."
+    },
+    {
+      "id": "T04",
+      "block": "C01",
+      "reason": "Pasa sobre cubierta; sustituida por lectura del borde visible C01-E1."
+    },
+    {
+      "id": "T08",
+      "block": "C01",
+      "reason": "Cruza cubierta y estacionamiento; sustituida por C01-E2/C01-E3."
     }
   ]
 }

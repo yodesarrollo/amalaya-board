@@ -6,16 +6,32 @@ y superficies duplicadas.
 
 ## Estado de este cambio
 
-**Borrador, no levantamiento terminado ni referencia actual certificada.**
-Se incorpora un piloto de 14 segmentos: 10 bordes de calzada y 4 bordes de
-banqueta interpretados visualmente. No se cierran polígonos, no se generan
-superficies 3D ni se cambia el avance de los edificios. Ambos controles están
-apagados por defecto. No reemplazar la base de producción con este borrador.
+**Borrador por cuadras, no levantamiento terminado.** La primera revisión es
+C01, la cuadra que contiene B1-05, B1-06 y B1-07. Se inspeccionaron sus cuatro
+lados en conjunto. Este y oeste tienen seis segmentos parciales retrazados;
+norte y sur quedan pendientes por sombras y vegetación. No hay una banqueta
+completa validada ni un perímetro cerrado.
 
-La inspección visual del primer intento detectó líneas que seguían cubiertas
-en lugar de guarniciones; se descartó ese intento y se redujo el piloto al
-sector legible. Esto confirma que no basta la coincidencia matemática: cada
-borde necesita contraste visual independiente.
+El piloto anterior se conserva para comparación, pero deja de ser la capa
+activa: T02 seguía una cubierta bajo sombra, T04 pasaba sobre una cubierta y
+T08 atravesaba una cubierta y el estacionamiento. T09 también se ajusta al
+borde visible; sus extremos tapados no se prolongan. Las líneas del piloto
+fuera de C01 permanecen históricas, pendientes de revisar por su propia cuadra.
+
+En Capas, activar «Calco 2D · revisión por cuadra» y «Superponer trazado
+anterior». El botón de la cuadra encuadra sus cuatro lados en vista cenital.
+Azul corresponde al retrazado; magenta discontinuo al anterior. Ambos son
+interpretaciones visuales, no exactitud topográfica certificada.
+
+Evidencia reproducible: [comparación C01](calco-cuadras/C01.svg),
+[registro C01](calco-cuadras/C01.json). Regenerar con
+`python scripts/evidencia-cuadra.py` (Pillow).
+
+La separación entre dibujos se calcula únicamente en las porciones que
+comparten intervalo de revisión. No se usa como error respecto a terreno real
+ni se divide por un ancho supuesto. La referencia ofrece aproximadamente
+0.52 m/píxel: no permite validar una tolerancia de 10 cm. La precisión absoluta
+y la fecha de captura siguen sin comprobarse.
 
 ## Referencia y transformación
 
@@ -36,7 +52,7 @@ sobre su foto; «Plano limpio · sin fotografía» lo presenta sobre papel. Ambo
 usan la misma fuente geográfica, también con el mapa inclinado. El calco antiguo
 y los rellenos conceptuales se ocultan mientras se inspecciona este piloto.
 
-Si falla el estilo vectorial remoto antes de iniciar el mapa, se activa una
+La reparación de carga se separó en el PR #66. Si falla el estilo vectorial remoto antes de iniciar el mapa, se activa una
 sola vez un estilo local y la referencia fotográfica guardada. No se requieren
 credenciales nuevas. Un error de red aislado deja de activar inmediatamente la
 pantalla que desmontaba el lienzo; la recuperación cancela sus temporizadores.

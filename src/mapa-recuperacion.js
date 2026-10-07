@@ -1,4 +1,6 @@
-import { estiloRespaldo } from './plano-referencia.js'
+export function estiloRespaldo() {
+  return { version:8, sources:{}, layers:[{id:'fondo-respaldo',type:'background',paint:{'background-color':'#f6f4ee'}}] }
+}
 export function recuperarCartografia(map, { onFallback = () => {}, onReady = () => {}, onFailure = () => {}, schedule = setTimeout, cancel = clearTimeout } = {}) {
   let ready = false, fallback = false, disposed = false, timer
   const recover = () => {

@@ -1,0 +1,74 @@
+{
+  "block": "C01",
+  "imageSha256": "b5047ad684e6188a781e3e4226db33574aeabf70613e12bacb3177eb9219e28f",
+  "approxMetersPerPixel": 0.522,
+  "closedSidewalkPolygons": 0,
+  "completedBlocks": 0,
+  "sides": [
+    {
+      "side": "norte",
+      "status": "pendiente",
+      "reason": "La sombra y el vuelo de la cubierta impiden identificar de forma independiente la guarnición. T02 se retira: no usar la cubierta como borde."
+    },
+    {
+      "side": "este",
+      "status": "parcial",
+      "reason": "Se sustituye el trazado sobre cubiertas y estacionamiento (T04 y T08); se conserva el hueco del encuentro lateral."
+    },
+    {
+      "side": "sur",
+      "status": "pendiente",
+      "reason": "Copas de árboles y sombras ocultan el borde; no cerrar el perímetro por interpolación."
+    },
+    {
+      "side": "oeste",
+      "status": "parcial",
+      "reason": "Tramos visibles sobre el borde de calzada; se omiten autobús, vehículos y árboles."
+    }
+  ],
+  "comparisons": [
+    {
+      "previous": "T04",
+      "new": [
+        "C01-E1"
+      ],
+      "metric": "Distancia entre dibujos en zona de solape; no error topográfico",
+      "medianPixels": 9.4,
+      "maxPixels": 10.3,
+      "medianMetersApprox": 4.9,
+      "maxMetersApprox": 5.4,
+      "differencePercent": null,
+      "reasonNoPercentage": "No hay ancho local medido de forma independiente."
+    },
+    {
+      "previous": "T08",
+      "new": [
+        "C01-E2",
+        "C01-E3"
+      ],
+      "metric": "Distancia entre dibujos en zona de solape; no error topográfico",
+      "medianPixels": 30.0,
+      "maxPixels": 31.1,
+      "medianMetersApprox": 15.6,
+      "maxMetersApprox": 16.2,
+      "differencePercent": null,
+      "reasonNoPercentage": "No hay ancho local medido de forma independiente."
+    },
+    {
+      "previous": "T09",
+      "new": [
+        "C01-W1",
+        "C01-W2",
+        "C01-W3"
+      ],
+      "metric": "Distancia entre dibujos en zona de solape; no error topográfico",
+      "medianPixels": 6.6,
+      "maxPixels": 9.4,
+      "medianMetersApprox": 3.4,
+      "maxMetersApprox": 4.9,
+      "differencePercent": null,
+      "reasonNoPercentage": "No hay ancho local medido de forma independiente."
+    }
+  ],
+  "status": "parcial-con-oclusiones"
+}

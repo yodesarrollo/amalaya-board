@@ -33,3 +33,16 @@ const g=fixture();g.tick();assert.equal(g.counts().fallback,1);g.api.dispose();a
 const h=fixture();h.api.ready();h.error();assert.equal(h.counts().styles,0)
 const k=fixture();k.tick();k.tick();assert.equal(k.counts().failure,1);k.api.dispose()
 console.log('OK: georreferencia exacta de imagen, trazos sin cierre inventado y recuperación sin bucles.')
+// A block review never silently promotes legacy lines or closes an occluded side.
+assert.equal(new Set(plano.traces.map(t=>t.id)).size,plano.traces.length)
+for (const b of plano.blocks) {
+  assert.deepEqual(b.sides.map(s=>s.side).sort(),['este','norte','oeste','sur'])
+  const [left,top,right,bottom]=b.reviewBoundsPixels
+  for(const t of plano.traces.filter(t=>t.block===b.id)) {
+    assert(b.sides.some(s=>s.side===t.side && s.status!=='pendiente'))
+    assert(t.pixels.every(([x,y])=>x>=left&&x<=right&&y>=top&&y<=bottom))
+  }
+}
+assert(!plano.retiredTraces.some(t=>plano.traces.some(n=>n.id===t.id)))
+assert(plano.retiredTraces.every(t=>plano.previousTraces.some(n=>n.id===t.id)))
+assert(plano.traces.every(t=>plano.blocks.some(b=>b.id===t.block)))
