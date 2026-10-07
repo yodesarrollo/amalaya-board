@@ -18,8 +18,10 @@ const buildingOwners=data.blocks.flatMap(b=>b.buildings).filter(b=>!b.publicSpac
 world.updateMatrixWorld(true);const faces=[],palette=[],colors=new Map();let originalTriangles=0;
 world.traverse(m=>{
  if(!m.isMesh||!m.geometry?.attributes.position||/Icosahedron|Sphere|Torus|Tube|Cylinder/.test(m.geometry.type))return;
- let buildingFace=false;
- for(let p=m;p;p=p.parent){if(!p.visible)return;if(buildingOwners.some(name=>p.name.startsWith(name)))buildingFace=true;}
+ let buildingFace=false,reviewedFrontage=false;
+ for(let p=m;p;p=p.parent){if(!p.visible)return;if(p.userData.frontageId)reviewedFrontage=true;if(buildingOwners.some(name=>p.name.startsWith(name)))buildingFace=true;}
+ // Structural surfaces keep every triangle; grilles and trim may simplify in the overview.
+ if(reviewedFrontage)buildingFace=/^Paramento · (muro|cubierta|base|cierre)/.test(m.name);
  buildingFace=buildingFace&&!m.isInstancedMesh;
  const p=m.geometry.attributes.position;if(p.count>15000)return;
  const idx=m.geometry.index?.array||Array.from({length:p.count},(_,i)=>i),mats=Array.isArray(m.material)?m.material:[m.material],mat=m.matrixWorld.clone(),instance=mat.clone();

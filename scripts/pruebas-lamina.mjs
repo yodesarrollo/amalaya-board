@@ -23,16 +23,18 @@ const data=JSON.parse(await readFile('public/seguimiento-3d.json')),buildings=da
 assert(data.activeReview.inventoryComplete&&data.activeReview.readyForNextRound);assert.equal(data.activeReview.coverageSectors.filter(s=>s.state==='done').length,12);assert.deepEqual(data.activeReview.pendingBuildings,[]);
 for(const p of SHEET_PLANS){
  assert(p.points.flat().every(Number.isFinite));assert(area(p.points)>1);for(const h of p.holes||[])assert(h.every(pt=>inside(pt,p.points)),p.id+' patio contenido');
- const mesh=world.getObjectByName('Planta física · '+p.id);assert(mesh?.isMesh&&!mesh.isInstancedMesh);
+ const mesh=world.getObjectByName('Planta física · '+p.id);assert(mesh&&(mesh.isMesh||mesh.userData.frontageId)&&!mesh.isInstancedMesh);
+ const expectedHeight=mesh.userData.heightMeters||p.heightMeters;
+ if(mesh.userData.frontageId){const roof=mesh.children.find(m=>m.name.startsWith('Paramento · cubierta'));assert(roof?.isMesh,'La sustitución mantiene cubierta física');const box=new R.Box3().setFromObject(mesh);assert(Math.abs(box.min.y-.05)<.001);assert(Math.abs(box.max.y-(expectedHeight+.05))<.001);continue;}
  // ExtrudeGeometry uses group 0 for caps and group 1 for vertical walls.
  // A one-entry material array silently drops every wall at render time.
  for(const group of mesh.geometry.groups){const material=Array.isArray(mesh.material)?mesh.material[group.materialIndex]:mesh.material;assert(material?.visible!==false&&material,p.id+' material visible en cada cara (incluidos muros)');}
  mesh.geometry.computeBoundingBox();
  assert(Math.abs(mesh.geometry.boundingBox.min.y+mesh.position.y-.05)<.001,p.id+' base sobre el mapa');
- assert(Math.abs(mesh.geometry.boundingBox.max.y-mesh.geometry.boundingBox.min.y-p.heightMeters)<.001,p.id+' conserva altura existente');
+ assert(Math.abs(mesh.geometry.boundingBox.max.y-mesh.geometry.boundingBox.min.y-expectedHeight)<.001,p.id+' conserva altura existente');
  const fitted=mesh.userData.fittedPlan||p;
  const pos=mesh.geometry.attributes.position;let roof=0;
- for(let i=0;i<pos.count;i+=3){const v=[i,i+1,i+2].map(k=>new R.Vector3().fromBufferAttribute(pos,k).applyMatrix4(mesh.matrixWorld));if(v.every(q=>Math.abs(q.y-(p.heightMeters+.05))<.001))roof+=area(v.map(q=>[q.x,q.z]));}
+ for(let i=0;i<pos.count;i+=3){const v=[i,i+1,i+2].map(k=>new R.Vector3().fromBufferAttribute(pos,k).applyMatrix4(mesh.matrixWorld));if(v.every(q=>Math.abs(q.y-(expectedHeight+.05))<.001))roof+=area(v.map(q=>[q.x,q.z]));}
  assert(Math.abs(roof-(area(fitted.points)-(fitted.holes||[]).reduce((s,h)=>s+area(h),0)))<.1,p.id+' área de cubierta real');
  const b=buildings.find(b=>b.id===p.id);assert(b);const rec=JSON.parse(await readFile('public/'+b.visualProgress.manifest));assert.deepEqual(rec.source.points,p.points);assert.deepEqual(rec.source.holes,p.holes);assert.equal(rec.heightMeasured,false);assert(rec.triangles>0);
 }
