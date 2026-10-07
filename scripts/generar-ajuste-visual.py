@@ -4,7 +4,7 @@ Mantiene las fuentes y los estados históricos; produce una capa reversible.
 """
 import json, math, hashlib, sys
 from pathlib import Path
-from shapely.geometry import Polygon, LineString, shape, mapping
+from shapely.geometry import Polygon, LineString, shape, mapping, box
 from shapely.ops import unary_union, transform
 from shapely.affinity import affine_transform
 from shapely import constrained_delaunay_triangles, make_valid
@@ -31,25 +31,23 @@ def triangles(g):
   if (pts[1][0]-pts[0][0])*(pts[2][1]-pts[0][1])-(pts[1][1]-pts[0][1])*(pts[2][0]-pts[0][0])>0:pts.reverse()
   result.extend(round(v,5) for q in pts for v in q)
  return result
-foot={p['id']:Polygon(p['points'],p.get('holes',[])) for p in source['plans']}
-foot.update({e['id']:unary_union([Polygon(t) for t in e['triangles']]) for e in source['entries']})
-# Visual comparison C21: the eastern facade exceeded the visible block edge.
-# Compress X about the west edge; retain materials, details, height and courtyard.
-east=foot['EB-SW'];anchor=east.bounds[0];sx=.88;affine=[sx,0,0,1,anchor*(1-sx),0]
-foot['EB-SW']=affine_transform(east,affine)
-legacy=next(e for e in source['entries'] if e['id']=='EB-SW')
-adjustments=[{'id':'EB-SW','owners':legacy['owners'],'affine':affine,'before':packed(east),'after':packed(foot['EB-SW']),'maxDisplacementMeters':round((east.bounds[2]-east.bounds[0])*(1-sx),2),'reason':'C21: ajustar el frente oriental al borde visible de calle; se conserva el detalle del edificio. Corrección del modelo previo, no tolerancia de medición.'}]
+# Reference curb edges are independent from the model being checked.
+from importlib.util import spec_from_file_location, module_from_spec
+spec=spec_from_file_location('encaje',root/'scripts/encaje-edificios.py');encaje=module_from_spec(spec);spec.loader.exec_module(encaje)
+foot,blocks,adjustments,plan_corrections,building_audit,fit_reference=encaje.fit_buildings(source,reg,dest)
 protected=unary_union(list(foot.values())).buffer(.12,join_style=2)
-# Inventory boundary is only a seed. Roof overhangs/mismatched cadastral edges
-# must not create asphalt through an existing building (C12/C18 in particular).
-blocks={}
-for b in reg['blocks']:
- base=shape(b['boundaryLocal']); members=unary_union([foot[i] for i in b['buildingIds']])
- blocks[b['id']]=clean(unary_union([base,members.buffer(.3,join_style=2)]).buffer(.35,join_style=2).buffer(-.35,join_style=2))
+collision_repairs=[]
+for repair in fit_reference.get('collisionRepairs',[]):
+ a=repair['before']['min'];b=repair['before']['max'];geometry=box(a[0],a[2],b[0],b[2])
+ kept=geometry.intersection(blocks[repair['blockId']].buffer(-.15,join_style=2)) if repair['action']=='clip' else Polygon()
+ collision_repairs.append({**repair,'polygons':packed(kept)})
 # Surrounding, unmodelled blocks remain protected too: do not pave their roofs.
 keys={b['cvegeo'] for b in reg['blocks']}
 neighbors=[transform(local,shape(f['geometry'])) for f in read(dest/'cuadras/manzanas-inegi.geojson')['features'] if f['properties']['cvegeo'] not in keys]
 block_union=unary_union([*blocks.values(),*neighbors]); scope=unary_union(list(blocks.values())).buffer(16,join_style=2)
+assert unary_union(list(foot.values())).difference(block_union).area<.001
+# The clearance buffer is private-ground only; it never deforms the curb or road.
+protected=protected.intersection(block_union)
 ways={}
 for name in ['osm-context.json','osm-plaza-hidalgo.json']:
  for e in read(dest/'data'/name)['elements']:
@@ -71,7 +69,7 @@ for ident,e in sorted(ways.items()):
  else:road_candidates.append(g)
  used.append({'osmId':ident,'name':name,'kind':kind,'searchWidthMeters':width})
 road_mask=unary_union(road_candidates)
-road=clean(road_mask.difference(block_union).difference(protected)).difference(protected)
+road=clean(road_mask.difference(block_union)).difference(block_union)
 walks={}; used_walk=Polygon()
 for b in reg['blocks']:
  poly=blocks[b['id']]
@@ -83,7 +81,7 @@ path=clean(unary_union(paths).intersection(scope).difference(block_union).differ
 path=path.difference(protected).difference(road.buffer(.02)).difference(used_walk.buffer(.02))
 # The street mesh owns intersections once. Sidewalk polygons never own asphalt.
 assert road.intersection(used_walk).area<1e-6
-assert protected.intersection(unary_union([road,used_walk,path])).area<1e-6
+assert protected.intersection(unary_union([road,used_walk,path])).area<1e-6, [(i,round(g.buffer(.12,join_style=2).intersection(road).area,6)) for i,g in foot.items() if g.buffer(.12,join_style=2).intersection(road).area>1e-6]
 surfaces=[]
 for id,kind,g,y in [('vial','road',road,.025),('pasos','path',path,.045)]+[(k,'sidewalk',v,.09) for k,v in walks.items()]:
  if g.area<.06:continue
@@ -100,12 +98,12 @@ for b in reg['blocks']:
  reviews.append(review)
  b['visualFit']={'status':'ajuste-visual','steps':[2,3],'taskStates':dict.fromkeys(['plan','street','sidewalkA','sidewalkB','corners'],'done'),'data':'levantamiento/ajuste-visual/cuadras.json','evidence':f'levantamiento/ajuste-visual/{bid}.jpg','sidewalkArea':review['sidewalkArea']}
 checks={'roadBuildingOverlap':round(road.intersection(protected).area,8),'sidewalkBuildingOverlap':round(used_walk.intersection(protected).area,8),'roadSidewalkOverlap':round(road.intersection(used_walk).area,8),'buildingPairs':[{'a':a,'b':b,'area':round(foot[a].intersection(foot[b]).area,5)} for i,a in enumerate(foot) for b in list(foot)[i+1:] if foot[a].intersection(foot[b]).area>.01]}
-summary={'blocks':len(reviews),'buildings':len(foot),'roadArea':round(road.area,2),'sidewalkArea':round(used_walk.area,2),'pathArea':round(path.area,2),'adjustedBuildings':len(adjustments),'checks':checks}
-version='cuadras-visual-20261007';data={'version':version,'status':'ajuste-visual','landSurvey':False,'targetToleranceMeters':[.5,1],'toleranceMeaning':'Objetivo visual de ajuste, no exactitud cartográfica comprobada. Las huellas y el relieve conservan incertidumbre heredada.','reference':ref,'summary':summary,'traces':traces,'reviews':reviews,'adjustments':adjustments,'surfaces':surfaces,'sources':{'inventory':reg['source'],'osmWays':used,'baselineWorldSha256':source['worldSha256'],'footprintsSha256':hashlib.sha256(Path(sys.argv[1]).read_bytes()).hexdigest()},'limits':['Representación aproximada de planta y suelo, sin levantamiento.','Ancho peatonal nominal de 1.1 m limitado por el espacio disponible; no medición ni verificación normativa.','Relieve, alturas de edificios y fachadas siguen en sus etapas originales.','La cubierta OB-01 y fachada OB-02 comparten 0.11 m² en su encuentro histórico, no es una calle atravesando un edificio.']}
+summary={'blocks':len(reviews),'buildings':len(foot),'roadArea':round(road.area,2),'sidewalkArea':round(used_walk.area,2),'pathArea':round(path.area,2),'adjustedBuildings':len({a['id'] for a in adjustments}|{p['id'] for p in plan_corrections}),'checks':checks}
+version='encaje-edificios-20261007b';data={'version':version,'status':'ajuste-visual','landSurvey':False,'targetToleranceMeters':[.5,1],'toleranceMeaning':'Objetivo visual de ajuste, no exactitud cartográfica comprobada. Las huellas y el relieve conservan incertidumbre heredada.','reference':ref,'summary':summary,'traces':traces,'reviews':reviews,'adjustments':adjustments,'planCorrections':plan_corrections,'collisionRepairs':collision_repairs,'buildingAudit':building_audit,'independentBlockBoundaries':{k:packed(v) for k,v in blocks.items()},'surfaces':surfaces,'sources':{'inventory':reg['source'],'osmWays':used,'baselineWorldSha256':source['worldSha256'],'footprintsSha256':hashlib.sha256(Path(sys.argv[1]).read_bytes()).hexdigest()},'limits':['Representación aproximada de planta y suelo, sin levantamiento.','Ancho peatonal nominal de 1.1 m limitado por el espacio disponible; no medición ni verificación normativa.','Relieve, alturas de edificios y fachadas siguen en sus etapas originales.','La cubierta OB-01 y fachada OB-02 comparten 0.11 m² en su encuentro histórico, no es una calle atravesando un edificio.']}
 write(out/'cuadras.json',data)
 write(out/'superficies.geojson',{'type':'FeatureCollection','features':[{'type':'Feature','properties':{'id':s['id'],'kind':s['kind'],'status':'estimado-visual'},'geometry':mapping(transform(lambda x,y:(-110.9547151+x/97200,29.076115-y/110950),unary_union([Polygon(p['points'],p['holes']) for p in s['polygons']])))} for s in surfaces]})
 # Compact runtime module excludes imagery metadata, historical descriptions and polygons.
-runtime={'version':version,'summary':summary,'adjustments':adjustments,'surfaces':[{k:s[k] for k in ['id','kind','elevation','triangles']} for s in surfaces]}
+runtime={'version':version,'summary':summary,'adjustments':adjustments,'planCorrections':plan_corrections,'collisionRepairs':collision_repairs,'surfaces':[{k:s[k] for k in ['id','kind','elevation','triangles']} for s in surfaces]}
 (dest/'ajuste-visual-data.js').write_text('export const VISUAL_FIT = '+json.dumps(runtime,ensure_ascii=False,separators=(',',':'))+';\n')
 reg['visualFitSummary']={**summary,'status':'ajuste-visual','steps':[2,3]};write(dest/'cuadras.json',reg)
 print(json.dumps(summary,ensure_ascii=False))

@@ -1,4 +1,4 @@
-import { applyVisualFit } from './ajuste-visual-refinement.js?v=e4ceef5e2765';
+import { applyVisualFit } from './ajuste-visual-refinement.js?v=378fd2d3003f';
 import { applyGroundReference } from './ground-reference-refinement.js?v=46dad659fe0a';
 import { applyStreetBatch50 } from './street-batch50-refinement.js?v=9300d223f642';
 import { SHEET_PLANS } from './sheet-plan-data.js?v=9ae568697dde';
@@ -65,7 +65,7 @@ export function applySheetPlan(world, colliders, R) {
         return parts;
       });
     }
-    for(const c of safe) colliders.push(new R.Box3(new R.Vector3(c.minX,.05,c.minZ),new R.Vector3(c.maxX,height+.05,c.maxZ)));
+    for(const c of safe) {const box=new R.Box3(new R.Vector3(c.minX,.05,c.minZ),new R.Vector3(c.maxX,height+.05,c.maxZ));box.buildingId=plan.id;colliders.push(box);}
     entries.push({id:plan.id,points:pts,holes:plan.holes||[],heightMeters:height,heightStatus:'unmeasured modelling default',uncertaintyMeters:plan.uncertaintyMeters,colliderCells:safe.length});
   }
   world.add(group); world.updateMatrixWorld(true);
