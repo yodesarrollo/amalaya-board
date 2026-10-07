@@ -5,6 +5,10 @@ import assert from 'node:assert/strict'
 import { createHash } from 'node:crypto'
 import { BASE_WORLD_SHA256, BASE_VISOR_SHA256, removeIsc58Hook, removeIsc58VisorHook, regionHashes, sha256 } from './preparar-isc58.mjs'
 const root='public/levantamiento'
+const streetBatch50=JSON.parse(await readFile(`${root}/street-batch50-provenance.json`,'utf8'))
+assert.equal(streetBatch50.count,50)
+const streetBatch50Files=new Set(streetBatch50.results.flatMap(e=>['20261006-02-antes.png','20261006-02-calzada.png','20261006-02-registro.json'].map(name=>`${root}/evidence/${e.id}/${name}`)))
+assert.equal(streetBatch50Files.size,150,'El lote tiene exactamente 100 imágenes y 50 registros')
 const approved=new Set(['amalaya-observations.json','amalaya-routes.json','cerro-elevation.json','osm-context.json','osm-plaza-hidalgo.json','sector-survey.json'])
 const roundProgressFiles=new Set(['20261006-01-cierre.png','20261006-01-cierre.json','02-inicio-ronda.png','02-avance-calzada.png','02-record-calzada.json','03-inicio-ronda.png','03-avance-banqueta-a.png','03-record-banqueta-a.json','20261006-01-antes.png','20261006-01-planta.png','20261006-01-record.json']);
 function historicalOwner(building,cameraId){const progress=building.visualProgress?.cameraId===cameraId?building.visualProgress:building.visualProgress?.history?.find(p=>p.cameraId===cameraId);assert(progress,'Missing preserved progress checkpoint '+building.id+' '+cameraId);const previous=building.action1PreviousState;return {...building,tasks:{...building.tasks,...(previous?{plan:previous.state}:{})},issues:{...building.issues,...(previous?.issue?{plan:previous.issue}:{})},visualProgress:progress};}
@@ -25,7 +29,7 @@ async function check(dir){
     if(item.isDirectory()){const allowed=['data','visor','assets','fonts','evidence'].includes(item.name)||(dir===`${root}/evidence`&&(['OB-01','OB-02','ISC-58','EB-SW','EB-NW','EB-NE','EB-SE','CH-YG-BBVA','CH-GA-OXXO','CH-YG-BIB','SER-BLEY','SER-HSBC','OB-21','SER-SANT','PL-GA'].includes(item.name)||/^[ABCD][123]-\d{2}$/.test(item.name)));assert(allowed,`Carpeta inesperada: ${path}`);await check(path);continue}
     if(['/evidence/CH-GA-OXXO/','/evidence/CH-YG-BIB/','/evidence/SER-BLEY/','/evidence/SER-HSBC/'].some(p=>path.includes(p)))assert(roundProgressFiles.has(item.name),'Unexpected round evidence: '+path)
     if(['/evidence/EB-NW/','/evidence/EB-NE/','/evidence/EB-SE/','/evidence/CH-YG-BBVA/'].some(p=>path.includes(p)))assert(roundProgressFiles.has(item.name)||/^(?:sequence\.json|plan-record\.json|01-planta-geometria\.png)$/.test(item.name),'Evidencia fuera del alcance EB-NW: '+path)
-    if(/\/evidence\/(?:[ABCD][123]-\d{2}|OB-21|SER-SANT|PL-GA)\//.test(path))assert(roundProgressFiles.has(item.name),'Unexpected sheet evidence: '+path)
+    if(/\/evidence\/(?:[ABCD][123]-\d{2}|OB-21|SER-SANT|PL-GA)\//.test(path))assert(roundProgressFiles.has(item.name)||streetBatch50Files.has(path),'Unexpected sheet evidence: '+path)
     if(path.includes('/evidence/EB-SW/'))assert(roundProgressFiles.has(item.name)||/^(?:\d{2}-(?:general|plan|block|pedestrian|south|north)\.png|manifest\.json|sequence\.json|survey\.json)$/.test(item.name),`Evidencia fuera del alcance EB-SW: ${path}`)
     if(path.includes('/evidence/ISC-58/'))assert(roundProgressFiles.has(item.name)||isc58EvidenceFiles.has(item.name),`Evidencia fuera del alcance ISC-58: ${path}`)
     if(path.includes('/evidence/OB-01/'))assert(roundProgressFiles.has(item.name)||ob01EvidenceFiles.has(item.name),`Evidencia fuera del alcance OB-01: ${path}`)
