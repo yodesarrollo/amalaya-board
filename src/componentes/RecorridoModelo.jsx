@@ -1,9 +1,10 @@
+import {VERSION_CAMINATA} from '../caminata-version.js'
+import {usarEstadoCaminata} from '../usarEstadoCaminata.js'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { Box, ChevronLeft, ChevronRight, Footprints, Images, Map, Maximize2, Upload } from 'lucide-react'
 import { BASE } from '../config.js'
 import { usarDatos } from '../datos.jsx'
 import { puedeEditarRol } from '../roles.js'
-import { VERSION_LEVANTAMIENTO } from '../levantamiento-version.js'
 import { buscarPunto, mensajeRecorrido, rumboConsulta, urlPanorama, vecinoRecorrido } from '../recorrido-state.js'
 import { registrarContextoChinche, registrarRepintadoChinche, describirVisorRecorrido } from '../chinche-contexto.js'
 
@@ -12,7 +13,7 @@ const REFERENCIAS = {
   'OB-02': { routeId: 'R-001', pointId: 'Apyr0uKeZr_XWmfLfLeBjQ' },
 }
 const PUNTO_INICIAL = REFERENCIAS['OB-02'].pointId
-const URL_CAMINATA = `${BASE}levantamiento/visor/?embed=1&character=sonora&route=R-001&waypoint=3&view=street&movement=walk&clean=1&heading=185&v=${VERSION_LEVANTAMIENTO}`
+const URL_CAMINATA = `${BASE}levantamiento/visor/?embed=1&character=sonora&route=R-001&waypoint=3&view=street&movement=walk&clean=1&heading=185&v=${VERSION_CAMINATA}`
 const URL_STREET_VIEW = `${BASE}recorrido/?embed=1&portal=1&r=R-001&p=${PUNTO_INICIAL}`
 
 const MODOS = [
@@ -39,6 +40,8 @@ export default function RecorridoModelo() {
   const [rutaId, setRutaId] = useState('R-001')
   const [indice, setIndice] = useState(2)
   const caminata = useRef(null)
+  const [intentoCaminata,setIntentoCaminata] = useState(0)
+  const estadoCaminata = usarEstadoCaminata(caminata,modo === 'caminar',intentoCaminata)
   const streetView = useRef(null)
   const streetViewReady = useRef(false)
   const destinoStreetView = useRef('')
@@ -101,12 +104,12 @@ export default function RecorridoModelo() {
     finally { setSubiendoRender(false) }
   }
 
-  const sincronizarVisor = useCallback(() => {
+  const sincronizarVisor = useCallback(({versionOnly=false} = {}) => {
     const s = estado.current
     if (!s?.punto) return
     if (s.modo === 'caminar') {
       caminata.current?.contentWindow?.postMessage({
-        type: 'amalaya:navigate', lat: s.punto.lat, lng: s.punto.lng,
+        type: versionOnly ? 'amalaya:version' : 'amalaya:navigate', lat: s.punto.lat, lng: s.punto.lng,
         heading: s.rumbo, version: s.version,
       }, location.origin)
     }
@@ -193,7 +196,7 @@ export default function RecorridoModelo() {
 
   useEffect(() => {
     window.dispatchEvent(new CustomEvent('amalaya:scenario', { detail: { version } }))
-    sincronizarVisor()
+    sincronizarVisor({versionOnly:true})
   }, [version, sincronizarVisor])
 
   useEffect(() => {
@@ -211,7 +214,7 @@ export default function RecorridoModelo() {
     const recibir = event => {
       if (event.origin !== location.origin) return
       if (event.source === caminata.current?.contentWindow &&
-        ['amalaya:ready', 'amalaya:character-ready'].includes(event.data?.type)) {
+        event.data?.type === 'amalaya:scene-ready') {
         sincronizarVisor()
         return
       }
@@ -242,7 +245,7 @@ export default function RecorridoModelo() {
   const cambiarModo = modoNuevo => {
     // Volver a tocar la vista en la que ya estás no desmonta su visor: si aquí
     // se olvidara que ya está listo, dejaría de obedecer anterior/siguiente.
-    if (modoNuevo === modo && (modoNuevo === 'caminar' || modoNuevo === 'streetview')) { sincronizarVisor(); return }
+    if (modoNuevo === modo && (modoNuevo === 'caminar' || modoNuevo === 'streetview')) return
     streetViewReady.current = false
     destinoStreetView.current = ''
     if (modoNuevo === 'planta' || modoNuevo === 'modelo') {
@@ -292,14 +295,17 @@ export default function RecorridoModelo() {
       {modo === 'caminar' && (
         <iframe
           ref={caminata}
-          key="caminata-amalaya"
+          key={`caminata-amalaya-${intentoCaminata}`}
           title="Caminar por Amalaya en 3D con vaquero sonorense"
           src={URL_CAMINATA}
           className="recorrido-unico__visor"
           allow="fullscreen; pointer-lock"
-          onLoad={sincronizarVisor}
         />
       )}
+      {modo === 'caminar' && ['loading','timeout'].includes(estadoCaminata) && <div className="recorrido-carga" role={estadoCaminata==='timeout'?'alert':'status'}>
+        <p>{estadoCaminata==='timeout'?'El recorrido tardó demasiado en responder.':'Preparando tu recorrido…'}</p>
+        {estadoCaminata==='timeout' && <button onClick={()=>setIntentoCaminata(n=>n+1)}>Reintentar</button>}
+      </div>}
       {modo === 'streetview' && (
         <iframe
           ref={streetView}

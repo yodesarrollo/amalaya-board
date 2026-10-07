@@ -1,3 +1,5 @@
+import {VERSION_CAMINATA} from '../caminata-version.js'
+import {usarEstadoCaminata} from '../usarEstadoCaminata.js'
 import { useEffect, useRef, useState } from 'react'
 import maplibregl from 'maplibre-gl'
 import 'maplibre-gl/dist/maplibre-gl.css'
@@ -22,6 +24,7 @@ export default function RecorridoPortal({ board = false, espacios = EMPTY_SPACES
   const [notice,setNotice] = useState(''), [frameReady,setFrameReady] = useState(false)
   const cameraState = useRef(null), pins = useRef([]), focusedPoint = useRef('')
   const root = useRef(), container = useRef(), map = useRef(), layer = useRef(), frame = useRef(), latest = useRef()
+  const walkState = usarEstadoCaminata(frame,mode === 'walk')
   const route = routes.find(r => r.id === routeId) || routes[0]
   const obs = observations.find(p => p.id === observationId)
   const point = obs || route?.puntos[index]
@@ -135,7 +138,7 @@ export default function RecorridoPortal({ board = false, espacios = EMPTY_SPACES
   useEffect(()=>{
     const listener=e=>{
       if(e.origin!==location.origin || e.source!==frame.current?.contentWindow)return
-      if(e.data?.type==='amalaya:ready'){setFrameReady(true);send();return}
+      if(e.data?.type==='amalaya:scene-ready'){setFrameReady(true);send();return}
       const p=mensajeRecorrido(e.data,latest.current.routes)
       if(p){setRouteId(p.routeId);setIndex(p.index);setObservationId('');if(e.data.punto===latest.current.point?.id)send()}
     }
@@ -169,11 +172,12 @@ export default function RecorridoPortal({ board = false, espacios = EMPTY_SPACES
     </div>
     <div className="tour-stage">
       <div ref={container} className="tour-map" style={{visibility:mode==='map'?'visible':'hidden'}}/>
-      {mode==='walk' && <iframe ref={frame} title="Caminar por Amalaya en 3D" className="tour-frame" src={`${BASE}levantamiento/visor/?embed=1&route=R-001&waypoint=05&clean=1&v=${VERSION_LEVANTAMIENTO}`} allow="fullscreen" onLoad={()=>{setFrameReady(true);send()}}/>}
+      {mode==='walk' && <iframe ref={frame} title="Caminar por Amalaya en 3D" className="tour-frame" src={`${BASE}levantamiento/visor/?embed=1&character=sonora&route=R-001&waypoint=05&clean=1&v=${VERSION_CAMINATA}`} allow="fullscreen; pointer-lock"/>}
       {mode==='360' && point && !obs && <iframe ref={frame} title="Puntos 360 del recorrido Amalaya" className="tour-frame" src={urlPanorama(BASE,route,point)} allow="fullscreen" onLoad={()=>{setFrameReady(true);send()}}/>}
       {mode==='360' && obs && <div className="tour-empty"><Scan size={36}/><h2>{obs.id} · {obs.name}</h2><p>Esta observación conserva su ubicación y rumbo. Su referencia se consulta en Google Maps.</p><a href={streetUrl} target="_blank" rel="noreferrer">Abrir referencia 360 <ArrowUpRight size={16}/></a></div>}
       <div className="tour-stage-top"><span className="tour-chip"><span className="tour-live"/>{mode==='map'?'Vista de conjunto':mode==='walk'?'A la altura de tus ojos':'La calle en 360°'}</span><div className="tour-tools">{mode==='map' && <button className="tour-square" aria-label="Volver al punto seleccionado" onClick={()=>map.current?.easeTo({center:point?[point.lng,point.lat]:HOME,zoom:18,pitch:58,bearing:heading,duration:600})}><LocateFixed size={17}/></button>}<button className="tour-square" aria-label="Pantalla completa" onClick={()=>document.fullscreenElement?document.exitFullscreen():(board?root.current.closest('[data-territorio-board]'):root.current).requestFullscreen?.().catch(()=>{})}><Maximize2 size={17}/></button></div></div>
-      {!frameReady && mode!=='map' && !obs && <div className="tour-loading" role="status"><Compass size={32}/><p>{mode==='walk'?'Entrando al modelo 3D…':'Abriendo el panorama…'}</p></div>}
+      {((mode==='walk' && walkState==='loading') || (mode==='360' && !frameReady)) && !obs && <div className="tour-loading" role="status"><Compass size={32}/><p>{mode==='walk'?'Entrando al modelo 3D…':'Abriendo el panorama…'}</p></div>}
+      {mode==='walk' && walkState==='timeout' && <div className="tour-error" role="alert">El recorrido tardó demasiado. <button onClick={()=>{setMode('map')}}>Volver al territorio</button></div>}
       {error && mode!=='360' && <div role="alert" className="tour-error">{error} <button onClick={()=>setMode('360')}>Ver puntos 360</button></div>}
       {!mapReady && !error && mode==='map' && <div className="tour-loading" role="status"><Compass size={32}/><p>{status}</p></div>}
       <div className="tour-caption" hidden={mode==='360'}>{version==='amalaya' ? (mode==='360'?'Los puntos sin render Amalaya conservan la vista actual.':'Propuesta de estudio: dos estancias con sombra en Plaza Hidalgo.') : 'Geometría provisional · escala calibrada en dos tramos.'}</div>
