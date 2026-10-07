@@ -15,6 +15,7 @@ const lines = [
   '# Amalaya · Matriz de levantamiento 3D', '',
   `Actualizado: ${data.updatedAt}. La web consulta estados cada ${data.refreshSeconds} segundos; los cambios aparecen al publicar avances.`, '',
   ...(data.activeReview ? [`Acción 1 · ${data.activeReview.closedBuildings.length} de ${data.activeReview.buildingOrder.length} columnas revisadas. ${data.activeReview.inventoryComplete ? "Inventario visual de toda la lámina completado." : "Inventario en revisión."} Los cierres anteriores válidos se conservan.`, '', `Columnas agregadas: ${data.activeReview.addedBuildings.join(', ')}. Medir → editar → verificar → imagen y registro antes de avanzar.`, ''] : []),
+  ...(data.currentBatch ? [`Acción 2 · lote de ${data.currentBatch.buildingOrder.length}: ${data.currentBatch.closedBuildings.length} revisados, con comparación y registro. Quedan ${data.currentBatch.remainingBuildings.length} calzadas pendientes en toda la lámina. Alturas y fachadas conservan su etapa.`, ''] : []),
   `[Abrir modelo completo](${publicRoot}modelo-completo.html)`, '',
   'Naranja: en proceso · Verde: terminado · Rojo: problema · Gris: pendiente o provisional.', '',
   `| Acciones / Edificios | ${targets.map(c => heading(c.building)).join(' | ')} |`,

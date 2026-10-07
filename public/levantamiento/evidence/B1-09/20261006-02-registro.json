@@ -1,0 +1,290 @@
+{
+  "id": "B1-09",
+  "building": "B1-09",
+  "order": 30,
+  "action": 2,
+  "task": "street",
+  "status": "done",
+  "executedAt": "2026-10-06T23:55:14.733122+00:00",
+  "note": "REVISADO · Calzada añadida o conectada: Pedro Moreno / Ignacio Allende · borde occidental, Serdán · Rosales–Pedro Moreno. Anchos visuales aproximados con margen; cruces compartidos sin duplicar asfalto. No certifica accesos privados, radios, banquetas, alturas ni fachadas.",
+  "source": {
+    "id": "B1-09",
+    "sector": "B1",
+    "name": "Rosales oeste · anexo del borde",
+    "viewCenter": [
+      29.0763166,
+      -110.9564038
+    ],
+    "zoomMeters": 244,
+    "pixels": [
+      [
+        255.9012013258731,
+        405.5653333340124
+      ],
+      [
+        277.4012013258731,
+        400.5653333340124
+      ],
+      [
+        283.9012013258731,
+        433.0653333340124
+      ],
+      [
+        265.4012013258731,
+        439.0653333340124
+      ]
+    ],
+    "note": "CERRADO · Anexo al oeste de Rosales que cruza el borde de la lámina; separado del cuerpo B1-08 por su quiebre visible. Planta visual ±3 m, sin atribución predial ni altura medida.",
+    "sourceScreenPixels": [
+      [
+        368,
+        510
+      ],
+      [
+        411,
+        500
+      ],
+      [
+        424,
+        565
+      ],
+      [
+        387,
+        577
+      ]
+    ],
+    "pixelHoles": [],
+    "points": [
+      [
+        -245.875,
+        -11.446
+      ],
+      [
+        -234.664,
+        -14.046
+      ],
+      [
+        -231.275,
+        2.856
+      ],
+      [
+        -240.921,
+        5.977
+      ]
+    ],
+    "holes": [],
+    "uncertaintyMeters": 3,
+    "heightMeters": 6.2,
+    "measuredAt": "2026-10-06T02:17:19.766193+00:00",
+    "source": "Google Maps satellite, manually interpreted visible roof boundary; two screen anchors and scale. Source imagery date unverified.",
+    "calibration": {
+      "a": [
+        550,
+        300,
+        29.076713,
+        -110.955667
+      ],
+      "b": [
+        1000,
+        700,
+        29.074838,
+        -110.953253
+      ],
+      "viewport": [
+        1363,
+        936
+      ],
+      "metersPerPixel": [
+        0.521424,
+        0.520078
+      ]
+    },
+    "mapUrl": "https://www.google.com/maps/@29.0759255,-110.9549615,488m/data=!3m1!1e3"
+  },
+  "heightMeasured": false,
+  "baseline": {
+    "url": "levantamiento/evidence/B1-09/20261006-02-antes.png",
+    "title": "Acción 2 · antes",
+    "label": "Calzada · 02",
+    "capturedAt": "2026-10-06T23:55:14.733122+00:00",
+    "worldSha256": "0abab345f69cc7db494dffebff8228d222348d8a1648541b5ac6318b7408b6a3",
+    "sha256": "a0fe98920a790e1b24081a8a6384336cb640171ae8a110d876fd41c47db65531",
+    "cameraId": "B1-09-street50-20261006",
+    "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
+  },
+  "current": {
+    "url": "levantamiento/evidence/B1-09/20261006-02-calzada.png",
+    "title": "Acción 2 · calzada revisada",
+    "label": "Calzada · 02",
+    "capturedAt": "2026-10-06T23:55:14.733122+00:00",
+    "worldSha256": "b589e6acf74ad7ebc55658df314d14b3ee6ecd7527e5261db0ae427cd8134386",
+    "sha256": "bdc27445417bb6b1b5fd7ef37fe17f989444d0289a910f79679223604d684571",
+    "cameraId": "B1-09-street50-20261006",
+    "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
+  },
+  "camera": {
+    "id": "B1-09-street50-20261006",
+    "direction": [
+      0.2,
+      1,
+      1
+    ],
+    "span": 70,
+    "projection": "orthographic",
+    "target": [
+      -238.5749969482422,
+      1,
+      -4.034499645233154
+    ]
+  },
+  "worldSha256": "b589e6acf74ad7ebc55658df314d14b3ee6ecd7527e5261db0ae427cd8134386",
+  "baselineWorldSha256": "0abab345f69cc7db494dffebff8228d222348d8a1648541b5ac6318b7408b6a3",
+  "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography.",
+  "triangles": 162,
+  "streetSegments": [
+    {
+      "id": "PM",
+      "name": "Pedro Moreno / Ignacio Allende · borde occidental",
+      "points": [
+        [
+          -269.95356,
+          -25.85135
+        ],
+        [
+          -262.15812,
+          16.34294
+        ],
+        [
+          -260.5446,
+          29.76789
+        ],
+        [
+          -258.93108,
+          36.20299
+        ],
+        [
+          -255.86928,
+          40.06405
+        ],
+        [
+          -254.178,
+          44.11372
+        ],
+        [
+          -252.60336,
+          52.61249
+        ],
+        [
+          -248.12244,
+          97.15892
+        ],
+        [
+          -246.71304,
+          110.32868
+        ],
+        [
+          -243.4374,
+          134.84863
+        ]
+      ],
+      "widthMeters": 7.5,
+      "uncertaintyMeters": 1.5,
+      "reference": "C1",
+      "samplePixels": [
+        [
+          371,
+          499
+        ],
+        [
+          401,
+          496
+        ]
+      ],
+      "areaMeters2": 1228.3348152589895,
+      "trimmedBuildingAreaMeters2": 0.0,
+      "operation": "added"
+    },
+    {
+      "id": "SE-RO",
+      "name": "Serdán · Rosales–Pedro Moreno",
+      "points": [
+        [
+          -226.29132,
+          -62.26514
+        ],
+        [
+          -234.63108,
+          -55.76347
+        ],
+        [
+          -253.66284,
+          -40.28594
+        ],
+        [
+          -262.65384,
+          -33.00762
+        ],
+        [
+          -269.95356,
+          -25.85135
+        ]
+      ],
+      "widthMeters": 8.5,
+      "uncertaintyMeters": 1.5,
+      "reference": "A1",
+      "samplePixels": null,
+      "areaMeters2": 407.19633721823885,
+      "trimmedBuildingAreaMeters2": 0.0,
+      "operation": "added"
+    }
+  ],
+  "references": [
+    {
+      "id": "A1",
+      "url": "https://www.google.com/maps/@29.0770989,-110.9564038,244m/data=!3m1!1e3",
+      "observedAt": "2026-10-06T23:55:14.733122+00:00",
+      "scaleBarMeters": 20,
+      "scaleBarPixels": 79,
+      "viewport": [
+        1363,
+        936
+      ],
+      "imageryDateVerified": false
+    },
+    {
+      "id": "C1",
+      "url": "https://www.google.com/maps/@29.0755344,-110.9564038,244m/data=!3m1!1e3",
+      "observedAt": "2026-10-06T23:55:14.733122+00:00",
+      "scaleBarMeters": 20,
+      "scaleBarPixels": 79,
+      "viewport": [
+        1363,
+        936
+      ],
+      "imageryDateVerified": false
+    },
+    {
+      "id": "A3",
+      "url": "https://www.google.com/maps/@29.0770989,-110.9535192,244m/data=!3m1!1e3",
+      "observedAt": "2026-10-06T23:55:14.733122+00:00",
+      "scaleBarMeters": 20,
+      "scaleBarPixels": 79,
+      "viewport": [
+        1363,
+        936
+      ],
+      "imageryDateVerified": false
+    }
+  ],
+  "checks": {
+    "unchangedBuildingAndColliderGeometry": true,
+    "uniqueRoadOwners": true,
+    "noNewRoadOverlapWithFootprints": true,
+    "sameComparisonCamera": true
+  },
+  "limits": [
+    "Anchos y ejes aproximados; no es levantamiento topográfico.",
+    "Las franjas se recortan en el límite de plantas aproximadas para no invadirlas; el ancho nominal puede estrecharse localmente.",
+    "Las vistas son renders del modelo, no capturas WebGL ni fotografías."
+  ]
+}

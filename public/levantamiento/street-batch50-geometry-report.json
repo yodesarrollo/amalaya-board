@@ -1,0 +1,790 @@
+{
+  "newAreaMeters2": 17950.761518397743,
+  "buildingOverlapMeters2": 1.5765771558170666e-14,
+  "existingSurfaceOverlapMeters2": 0.0,
+  "replacements": [
+    {
+      "id": "CH-JOIN",
+      "owner": "Chihuahua · calzada de continuidad Amalaya",
+      "name": "Chihuahua · encuentro existente junto a B3-04",
+      "removedAreaMeters2": 9.331575878412096,
+      "reason": "Remove old roadway overlap with B3-04 roof footprint; building and collisions are unchanged."
+    }
+  ],
+  "segments": [
+    {
+      "id": "RO",
+      "name": "Rosales · Plutarco–sur del lote",
+      "points": [
+        [
+          -246.36312,
+          -160.05647
+        ],
+        [
+          -242.57232,
+          -142.6706
+        ],
+        [
+          -236.196,
+          -110.63934
+        ],
+        [
+          -226.29132,
+          -62.26514
+        ],
+        [
+          -210.08808,
+          40.06405
+        ],
+        [
+          -204.38244,
+          87.28437
+        ],
+        [
+          -199.82376,
+          127.20418
+        ],
+        [
+          -197.34516,
+          142.42652
+        ]
+      ],
+      "widthMeters": 14,
+      "uncertaintyMeters": 1.5,
+      "reference": "A1/C1",
+      "samplePixels": [
+        [
+          366,
+          420
+        ],
+        [
+          421,
+          410
+        ]
+      ],
+      "areaMeters2": 4288.215945327943,
+      "trimmedBuildingAreaMeters2": 4.209498800741561
+    },
+    {
+      "id": "PS-N",
+      "name": "Pino Suárez · Plutarco–Obregón",
+      "points": [
+        [
+          -178.97436,
+          -171.37337
+        ],
+        [
+          -162.28512,
+          -75.53476
+        ],
+        [
+          -156.99744,
+          -33.34047
+        ],
+        [
+          -152.35128,
+          6.32415
+        ],
+        [
+          -149.01732,
+          34.01727
+        ]
+      ],
+      "widthMeters": 12.5,
+      "uncertaintyMeters": 1.5,
+      "reference": "A1",
+      "samplePixels": [
+        [
+          640,
+          443
+        ],
+        [
+          689,
+          435
+        ]
+      ],
+      "areaMeters2": 2595.4261804015796,
+      "trimmedBuildingAreaMeters2": 0.0
+    },
+    {
+      "id": "PS-S",
+      "name": "Pino Suárez · Obregón–Sufragio",
+      "points": [
+        [
+          -149.01732,
+          34.01727
+        ],
+        [
+          -144.2934,
+          79.09625
+        ],
+        [
+          -142.31052,
+          111.63789
+        ]
+      ],
+      "widthMeters": 10.5,
+      "uncertaintyMeters": 1.5,
+      "reference": "C1",
+      "samplePixels": [
+        [
+          727,
+          443
+        ],
+        [
+          769,
+          439
+        ]
+      ],
+      "areaMeters2": 818.0297834303135,
+      "trimmedBuildingAreaMeters2": 0.0
+    },
+    {
+      "id": "SE-O",
+      "name": "Serdán · Rosales–Yáñez",
+      "points": [
+        [
+          -91.83456,
+          -87.31765
+        ],
+        [
+          -162.28512,
+          -75.53476
+        ],
+        [
+          -207.77472,
+          -67.99016
+        ],
+        [
+          -216.9018,
+          -65.64911
+        ],
+        [
+          -226.29132,
+          -62.26514
+        ]
+      ],
+      "widthMeters": 9.5,
+      "uncertaintyMeters": 1.5,
+      "reference": "A1",
+      "samplePixels": [
+        [
+          805,
+          573
+        ],
+        [
+          812,
+          611
+        ]
+      ],
+      "areaMeters2": 1088.0621578992636,
+      "trimmedBuildingAreaMeters2": 0.0
+    },
+    {
+      "id": "OB-O",
+      "name": "Obregón · Rosales–Pino Suárez",
+      "points": [
+        [
+          -210.08808,
+          40.06405
+        ],
+        [
+          -181.93896,
+          37.13496
+        ],
+        [
+          -149.01732,
+          34.01727
+        ]
+      ],
+      "widthMeters": 9.5,
+      "uncertaintyMeters": 1.5,
+      "reference": "C1",
+      "samplePixels": [
+        [
+          620,
+          345
+        ],
+        [
+          624,
+          382
+        ]
+      ],
+      "areaMeters2": 461.9244140980856,
+      "trimmedBuildingAreaMeters2": 0.0
+    },
+    {
+      "id": "OB-C",
+      "name": "Obregón · Pino Suárez–Yáñez",
+      "points": [
+        [
+          -149.01732,
+          34.01727
+        ],
+        [
+          -90.66816,
+          29.56818
+        ],
+        [
+          -77.4198,
+          26.61691
+        ]
+      ],
+      "widthMeters": 7,
+      "uncertaintyMeters": 1.3,
+      "reference": "C1",
+      "samplePixels": [
+        [
+          842,
+          334
+        ],
+        [
+          845,
+          362
+        ]
+      ],
+      "areaMeters2": 295.03988692745537,
+      "trimmedBuildingAreaMeters2": 0.0
+    },
+    {
+      "id": "YA-N",
+      "name": "Yáñez · Plutarco–Serdán",
+      "points": [
+        [
+          -108.35856,
+          -181.71391
+        ],
+        [
+          -100.64088,
+          -137.61128
+        ],
+        [
+          -91.83456,
+          -87.31765
+        ]
+      ],
+      "widthMeters": 8,
+      "uncertaintyMeters": 1.5,
+      "reference": "A1",
+      "samplePixels": [
+        [
+          939,
+          419
+        ],
+        [
+          971,
+          416
+        ]
+      ],
+      "areaMeters2": 723.3201731502232,
+      "trimmedBuildingAreaMeters2": 1.9464611234973432
+    },
+    {
+      "id": "YA-C",
+      "name": "Yáñez · Chihuahua–Obregón",
+      "points": [
+        [
+          -86.82876,
+          -34.91596
+        ],
+        [
+          -84.2238,
+          5.75831
+        ],
+        [
+          -84.87504,
+          17.41915
+        ],
+        [
+          -90.66816,
+          29.56818
+        ]
+      ],
+      "widthMeters": 7.5,
+      "uncertaintyMeters": 1.5,
+      "reference": "C1",
+      "samplePixels": [
+        [
+          977,
+          183
+        ],
+        [
+          1006,
+          179
+        ]
+      ],
+      "areaMeters2": 451.8108965340889,
+      "trimmedBuildingAreaMeters2": 0.0
+    },
+    {
+      "id": "YA-S",
+      "name": "Yáñez · Obregón–Sufragio",
+      "points": [
+        [
+          -90.66816,
+          29.56818
+        ],
+        [
+          -92.91348,
+          33.48471
+        ],
+        [
+          -95.05188,
+          38.96564
+        ],
+        [
+          -96.06276,
+          45.41184
+        ],
+        [
+          -97.04448,
+          55.11996
+        ],
+        [
+          -97.41384,
+          66.49234
+        ],
+        [
+          -96.63624,
+          76.02294
+        ],
+        [
+          -95.03244,
+          84.69923
+        ],
+        [
+          -92.41776,
+          98.0798
+        ]
+      ],
+      "widthMeters": 7,
+      "uncertaintyMeters": 1.5,
+      "reference": "C1",
+      "samplePixels": [
+        [
+          946,
+          437
+        ],
+        [
+          973,
+          434
+        ]
+      ],
+      "areaMeters2": 421.0116331873295,
+      "trimmedBuildingAreaMeters2": 21.012783163641682
+    },
+    {
+      "id": "CE",
+      "name": "Callejón del Centro",
+      "points": [
+        [
+          -97.41384,
+          66.49234
+        ],
+        [
+          -144.2934,
+          79.09625
+        ]
+      ],
+      "widthMeters": 5.5,
+      "uncertaintyMeters": 1,
+      "reference": "C1",
+      "samplePixels": [
+        [
+          832,
+          506
+        ],
+        [
+          837,
+          527
+        ]
+      ],
+      "areaMeters2": 218.47988849295888,
+      "trimmedBuildingAreaMeters2": 0.0
+    },
+    {
+      "id": "SU",
+      "name": "Sufragio Efectivo · Pino Suárez–Yáñez",
+      "points": [
+        [
+          -142.31052,
+          111.63789
+        ],
+        [
+          -138.43224,
+          109.97364
+        ],
+        [
+          -134.48592,
+          108.57567
+        ],
+        [
+          -129.62592,
+          107.31084
+        ],
+        [
+          -121.9374,
+          106.60076
+        ],
+        [
+          -115.02648,
+          106.26791
+        ],
+        [
+          -109.42776,
+          105.03637
+        ],
+        [
+          -102.18636,
+          102.37357
+        ],
+        [
+          -97.75404,
+          100.09909
+        ],
+        [
+          -92.41776,
+          98.0798
+        ]
+      ],
+      "widthMeters": 8,
+      "uncertaintyMeters": 1.5,
+      "reference": "C1",
+      "samplePixels": [
+        [
+          953,
+          585
+        ],
+        [
+          961,
+          616
+        ]
+      ],
+      "areaMeters2": 375.9303422079229,
+      "trimmedBuildingAreaMeters2": 0.008986457074814299
+    },
+    {
+      "id": "PL",
+      "name": "Plutarco Elías Calles · Rosales–Garmendia",
+      "points": [
+        [
+          -246.36312,
+          -160.05647
+        ],
+        [
+          -178.97436,
+          -171.37337
+        ],
+        [
+          -108.35856,
+          -181.71391
+        ],
+        [
+          -43.02072,
+          -188.58171
+        ],
+        [
+          -27.2646,
+          -190.14611
+        ],
+        [
+          31.9788,
+          -196.01536
+        ]
+      ],
+      "widthMeters": 9,
+      "uncertaintyMeters": 1.5,
+      "reference": "A3",
+      "samplePixels": [
+        [
+          591,
+          97
+        ],
+        [
+          595,
+          132
+        ]
+      ],
+      "areaMeters2": 2400.6373186214064,
+      "trimmedBuildingAreaMeters2": 0.0
+    },
+    {
+      "id": "GA-N50",
+      "name": "Garmendia · Plutarco–tramo existente",
+      "points": [
+        [
+          31.9788,
+          -196.01536
+        ],
+        [
+          39.852,
+          -151.14719
+        ],
+        [
+          46.15056,
+          -115.27705
+        ]
+      ],
+      "widthMeters": 6,
+      "uncertaintyMeters": 1.5,
+      "reference": "A3",
+      "samplePixels": [
+        [
+          361,
+          261
+        ],
+        [
+          385,
+          258
+        ]
+      ],
+      "areaMeters2": 237.11541088726312,
+      "trimmedBuildingAreaMeters2": 0.0
+    },
+    {
+      "id": "AB-N",
+      "name": "Abasolo · Serdán–Chihuahua",
+      "points": [
+        [
+          175.87368,
+          -141.15059
+        ],
+        [
+          178.77996,
+          -90.44644
+        ],
+        [
+          179.5284,
+          -77.35434
+        ],
+        [
+          181.20996,
+          -47.96368
+        ]
+      ],
+      "widthMeters": 6.6,
+      "uncertaintyMeters": 1,
+      "reference": "A3",
+      "samplePixels": [
+        [
+          903,
+          440
+        ],
+        [
+          929,
+          438
+        ]
+      ],
+      "areaMeters2": 579.5769234884112,
+      "trimmedBuildingAreaMeters2": 0.0
+    },
+    {
+      "id": "SE-E50",
+      "name": "Serdán · Guerrero–borde oriental",
+      "points": [
+        [
+          159.02892,
+          -138.60983
+        ],
+        [
+          175.87368,
+          -141.15059
+        ],
+        [
+          226.83564,
+          -152.20121
+        ],
+        [
+          237.09024,
+          -154.42021
+        ]
+      ],
+      "widthMeters": 10,
+      "uncertaintyMeters": 1.5,
+      "reference": "A3",
+      "samplePixels": [
+        [
+          1021,
+          322
+        ],
+        [
+          1030,
+          360
+        ]
+      ],
+      "areaMeters2": 744.9863984312337,
+      "trimmedBuildingAreaMeters2": 18.59648870001117
+    },
+    {
+      "id": "CH-E50",
+      "name": "Chihuahua · Abasolo–borde del lote",
+      "points": [
+        [
+          181.20996,
+          -47.96368
+        ],
+        [
+          222,
+          -49.0
+        ]
+      ],
+      "widthMeters": 5.21,
+      "uncertaintyMeters": 0.7,
+      "reference": "A3",
+      "samplePixels": [
+        [
+          1040,
+          698
+        ],
+        [
+          1041,
+          719
+        ]
+      ],
+      "areaMeters2": 149.0286682260269,
+      "trimmedBuildingAreaMeters2": 7.190452890835899
+    },
+    {
+      "id": "OB-E50",
+      "name": "Obregón · Abasolo–borde del lote",
+      "points": [
+        [
+          186.07968,
+          5.5475
+        ],
+        [
+          218.09736,
+          4.70428
+        ]
+      ],
+      "widthMeters": 5.61,
+      "uncertaintyMeters": 0.8,
+      "reference": "A3",
+      "samplePixels": null,
+      "areaMeters2": 147.0121015982603,
+      "trimmedBuildingAreaMeters2": 0.0
+    },
+    {
+      "id": "PM",
+      "name": "Pedro Moreno / Ignacio Allende · borde occidental",
+      "points": [
+        [
+          -269.95356,
+          -25.85135
+        ],
+        [
+          -262.15812,
+          16.34294
+        ],
+        [
+          -260.5446,
+          29.76789
+        ],
+        [
+          -258.93108,
+          36.20299
+        ],
+        [
+          -255.86928,
+          40.06405
+        ],
+        [
+          -254.178,
+          44.11372
+        ],
+        [
+          -252.60336,
+          52.61249
+        ],
+        [
+          -248.12244,
+          97.15892
+        ],
+        [
+          -246.71304,
+          110.32868
+        ],
+        [
+          -243.4374,
+          134.84863
+        ]
+      ],
+      "widthMeters": 7.5,
+      "uncertaintyMeters": 1.5,
+      "reference": "C1",
+      "samplePixels": [
+        [
+          371,
+          499
+        ],
+        [
+          401,
+          496
+        ]
+      ],
+      "areaMeters2": 1228.3348152589895,
+      "trimmedBuildingAreaMeters2": 0.0
+    },
+    {
+      "id": "OB-RO",
+      "name": "Obregón–Hidalgo · borde occidental–Rosales",
+      "points": [
+        [
+          -254.178,
+          44.11372
+        ],
+        [
+          -210.08808,
+          40.06405
+        ]
+      ],
+      "widthMeters": 9.5,
+      "uncertaintyMeters": 1.5,
+      "reference": "C1",
+      "samplePixels": [
+        [
+          427,
+          365
+        ],
+        [
+          431,
+          402
+        ]
+      ],
+      "areaMeters2": 319.6222430107622,
+      "trimmedBuildingAreaMeters2": 0.0
+    },
+    {
+      "id": "SE-RO",
+      "name": "Serdán · Rosales–Pedro Moreno",
+      "points": [
+        [
+          -226.29132,
+          -62.26514
+        ],
+        [
+          -234.63108,
+          -55.76347
+        ],
+        [
+          -253.66284,
+          -40.28594
+        ],
+        [
+          -262.65384,
+          -33.00762
+        ],
+        [
+          -269.95356,
+          -25.85135
+        ]
+      ],
+      "widthMeters": 8.5,
+      "uncertaintyMeters": 1.5,
+      "reference": "A1",
+      "samplePixels": null,
+      "areaMeters2": 407.19633721823885,
+      "trimmedBuildingAreaMeters2": 0.0
+    }
+  ]
+}

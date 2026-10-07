@@ -1,0 +1,279 @@
+{
+  "id": "B1-05",
+  "building": "B1-05",
+  "order": 26,
+  "action": 2,
+  "task": "street",
+  "status": "done",
+  "executedAt": "2026-10-06T23:55:14.733122+00:00",
+  "note": "REVISADO · Calzada añadida o conectada: Pino Suárez · Plutarco–Obregón, Serdán · Rosales–Yáñez. Anchos visuales aproximados con margen; cruces compartidos sin duplicar asfalto. No certifica accesos privados, radios, banquetas, alturas ni fachadas.",
+  "source": {
+    "id": "B1-05",
+    "sector": "B1",
+    "name": "Serdán–Yáñez · cubierta bancaria occidental",
+    "viewCenter": [
+      29.0763166,
+      -110.9564038
+    ],
+    "zoomMeters": 244,
+    "pixels": [
+      [
+        456.9012013258731,
+        294.0653333340124
+      ],
+      [
+        494.4012013258731,
+        288.5653333340124
+      ],
+      [
+        500.9012013258731,
+        332.5653333340124
+      ],
+      [
+        461.9012013258731,
+        340.0653333340124
+      ]
+    ],
+    "note": "CERRADO · Cubierta occidental del conjunto bancario al sur de Serdán; estacionamiento posterior excluido. Planta interpretada a escala ±3 m; altura provisional.",
+    "sourceScreenPixels": [
+      [
+        770,
+        287
+      ],
+      [
+        845,
+        276
+      ],
+      [
+        858,
+        364
+      ],
+      [
+        780,
+        379
+      ]
+    ],
+    "pixelHoles": [],
+    "points": [
+      [
+        -141.069,
+        -69.435
+      ],
+      [
+        -121.515,
+        -72.295
+      ],
+      [
+        -118.126,
+        -49.412
+      ],
+      [
+        -138.462,
+        -45.511
+      ]
+    ],
+    "holes": [],
+    "uncertaintyMeters": 3,
+    "heightMeters": 6.2,
+    "measuredAt": "2026-10-06T02:16:45.037007+00:00",
+    "source": "Google Maps satellite, manually interpreted visible roof boundary; two screen anchors and scale. Source imagery date unverified.",
+    "calibration": {
+      "a": [
+        550,
+        300,
+        29.076713,
+        -110.955667
+      ],
+      "b": [
+        1000,
+        700,
+        29.074838,
+        -110.953253
+      ],
+      "viewport": [
+        1363,
+        936
+      ],
+      "metersPerPixel": [
+        0.521424,
+        0.520078
+      ]
+    },
+    "mapUrl": "https://www.google.com/maps/@29.0759255,-110.9549615,488m/data=!3m1!1e3"
+  },
+  "heightMeasured": false,
+  "baseline": {
+    "url": "levantamiento/evidence/B1-05/20261006-02-antes.png",
+    "title": "Acción 2 · antes",
+    "label": "Calzada · 02",
+    "capturedAt": "2026-10-06T23:55:14.733122+00:00",
+    "worldSha256": "0abab345f69cc7db494dffebff8228d222348d8a1648541b5ac6318b7408b6a3",
+    "sha256": "3404321917c597846fef60b91f68ea222b1816663e64bd53fde018dd7e1d4f0c",
+    "cameraId": "B1-05-street50-20261006",
+    "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
+  },
+  "current": {
+    "url": "levantamiento/evidence/B1-05/20261006-02-calzada.png",
+    "title": "Acción 2 · calzada revisada",
+    "label": "Calzada · 02",
+    "capturedAt": "2026-10-06T23:55:14.733122+00:00",
+    "worldSha256": "b589e6acf74ad7ebc55658df314d14b3ee6ecd7527e5261db0ae427cd8134386",
+    "sha256": "8acfd585b7273ef9cfebc86cb42f1291d38eb6e217728f211fae34150c84cb3e",
+    "cameraId": "B1-05-street50-20261006",
+    "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
+  },
+  "camera": {
+    "id": "B1-05-street50-20261006",
+    "direction": [
+      0.2,
+      1,
+      1
+    ],
+    "span": 70,
+    "projection": "orthographic",
+    "target": [
+      -129.5974998474121,
+      1,
+      -58.90299987792969
+    ]
+  },
+  "worldSha256": "b589e6acf74ad7ebc55658df314d14b3ee6ecd7527e5261db0ae427cd8134386",
+  "baselineWorldSha256": "0abab345f69cc7db494dffebff8228d222348d8a1648541b5ac6318b7408b6a3",
+  "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography.",
+  "triangles": 1103,
+  "streetSegments": [
+    {
+      "id": "PS-N",
+      "name": "Pino Suárez · Plutarco–Obregón",
+      "points": [
+        [
+          -178.97436,
+          -171.37337
+        ],
+        [
+          -162.28512,
+          -75.53476
+        ],
+        [
+          -156.99744,
+          -33.34047
+        ],
+        [
+          -152.35128,
+          6.32415
+        ],
+        [
+          -149.01732,
+          34.01727
+        ]
+      ],
+      "widthMeters": 12.5,
+      "uncertaintyMeters": 1.5,
+      "reference": "A1",
+      "samplePixels": [
+        [
+          640,
+          443
+        ],
+        [
+          689,
+          435
+        ]
+      ],
+      "areaMeters2": 2595.4261804015796,
+      "trimmedBuildingAreaMeters2": 0.0,
+      "operation": "added"
+    },
+    {
+      "id": "SE-O",
+      "name": "Serdán · Rosales–Yáñez",
+      "points": [
+        [
+          -91.83456,
+          -87.31765
+        ],
+        [
+          -162.28512,
+          -75.53476
+        ],
+        [
+          -207.77472,
+          -67.99016
+        ],
+        [
+          -216.9018,
+          -65.64911
+        ],
+        [
+          -226.29132,
+          -62.26514
+        ]
+      ],
+      "widthMeters": 9.5,
+      "uncertaintyMeters": 1.5,
+      "reference": "A1",
+      "samplePixels": [
+        [
+          805,
+          573
+        ],
+        [
+          812,
+          611
+        ]
+      ],
+      "areaMeters2": 1088.0621578992636,
+      "trimmedBuildingAreaMeters2": 0.0,
+      "operation": "added"
+    }
+  ],
+  "references": [
+    {
+      "id": "A1",
+      "url": "https://www.google.com/maps/@29.0770989,-110.9564038,244m/data=!3m1!1e3",
+      "observedAt": "2026-10-06T23:55:14.733122+00:00",
+      "scaleBarMeters": 20,
+      "scaleBarPixels": 79,
+      "viewport": [
+        1363,
+        936
+      ],
+      "imageryDateVerified": false
+    },
+    {
+      "id": "C1",
+      "url": "https://www.google.com/maps/@29.0755344,-110.9564038,244m/data=!3m1!1e3",
+      "observedAt": "2026-10-06T23:55:14.733122+00:00",
+      "scaleBarMeters": 20,
+      "scaleBarPixels": 79,
+      "viewport": [
+        1363,
+        936
+      ],
+      "imageryDateVerified": false
+    },
+    {
+      "id": "A3",
+      "url": "https://www.google.com/maps/@29.0770989,-110.9535192,244m/data=!3m1!1e3",
+      "observedAt": "2026-10-06T23:55:14.733122+00:00",
+      "scaleBarMeters": 20,
+      "scaleBarPixels": 79,
+      "viewport": [
+        1363,
+        936
+      ],
+      "imageryDateVerified": false
+    }
+  ],
+  "checks": {
+    "unchangedBuildingAndColliderGeometry": true,
+    "uniqueRoadOwners": true,
+    "noNewRoadOverlapWithFootprints": true,
+    "sameComparisonCamera": true
+  },
+  "limits": [
+    "Anchos y ejes aproximados; no es levantamiento topográfico.",
+    "Las franjas se recortan en el límite de plantas aproximadas para no invadirlas; el ancho nominal puede estrecharse localmente.",
+    "Las vistas son renders del modelo, no capturas WebGL ni fotografías."
+  ]
+}

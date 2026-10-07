@@ -1,0 +1,309 @@
+{
+  "id": "A3-09",
+  "building": "A3-09",
+  "order": 21,
+  "action": 2,
+  "task": "street",
+  "status": "done",
+  "executedAt": "2026-10-06T23:55:14.733122+00:00",
+  "note": "REVISADO · Calzada añadida o conectada: Serdán · Guerrero–borde oriental, Abasolo · Serdán–Chihuahua. Anchos visuales aproximados con margen; cruces compartidos sin duplicar asfalto. No certifica accesos privados, radios, banquetas, alturas ni fachadas.",
+  "source": {
+    "id": "A3-09",
+    "sector": "A3",
+    "name": "Serdán–Abasolo · cuerpo del borde este",
+    "viewCenter": [
+      29.0770989,
+      -110.9535192
+    ],
+    "zoomMeters": 244,
+    "pixels": [
+      [
+        1077.6269676890488,
+        160.17466666715336
+      ],
+      [
+        1158.1269676890488,
+        149.17466666715336
+      ],
+      [
+        1176.6269676890488,
+        221.67466666715336
+      ],
+      [
+        1089.6269676890488,
+        233.67466666715336
+      ]
+    ],
+    "pixelHoles": [
+      [
+        [
+          1097.1269676890488,
+          203.17466666715336
+        ],
+        [
+          1119.1269676890488,
+          200.17466666715336
+        ],
+        [
+          1122.1269676890488,
+          222.17466666715336
+        ],
+        [
+          1100.1269676890488,
+          225.67466666715336
+        ]
+      ]
+    ],
+    "note": "CERRADO · Cuerpo de cubierta al este de Abasolo que cruza el borde de la lámina. Se modela entero y se excluye el patio visible. Lectura visual a escala, ±3 m; altura pendiente del paso 7.",
+    "sourceScreenPixels": [
+      [
+        936,
+        353
+      ],
+      [
+        1097,
+        331
+      ],
+      [
+        1134,
+        476
+      ],
+      [
+        960,
+        500
+      ]
+    ],
+    "points": [
+      [
+        182.593,
+        -139.068
+      ],
+      [
+        224.567,
+        -144.789
+      ],
+      [
+        234.214,
+        -107.083
+      ],
+      [
+        188.85,
+        -100.842
+      ]
+    ],
+    "holes": [
+      [
+        [
+          192.76,
+          -116.705
+        ],
+        [
+          204.232,
+          -118.265
+        ],
+        [
+          205.796,
+          -106.823
+        ],
+        [
+          194.325,
+          -105.003
+        ]
+      ]
+    ],
+    "uncertaintyMeters": 3,
+    "heightMeters": 6.2,
+    "measuredAt": "2026-10-06T02:14:54.736887+00:00",
+    "source": "Google Maps satellite, manually interpreted visible roof boundary; two screen anchors and scale. Source imagery date unverified.",
+    "calibration": {
+      "a": [
+        550,
+        300,
+        29.076713,
+        -110.955667
+      ],
+      "b": [
+        1000,
+        700,
+        29.074838,
+        -110.953253
+      ],
+      "viewport": [
+        1363,
+        936
+      ],
+      "metersPerPixel": [
+        0.521424,
+        0.520078
+      ]
+    },
+    "mapUrl": "https://www.google.com/maps/@29.0759255,-110.9549615,488m/data=!3m1!1e3"
+  },
+  "heightMeasured": false,
+  "baseline": {
+    "url": "levantamiento/evidence/A3-09/20261006-02-antes.png",
+    "title": "Acción 2 · antes",
+    "label": "Calzada · 02",
+    "capturedAt": "2026-10-06T23:55:14.733122+00:00",
+    "worldSha256": "0abab345f69cc7db494dffebff8228d222348d8a1648541b5ac6318b7408b6a3",
+    "sha256": "806ad392217d13c3c9dd6ace8885c2b971268ee1af00f695b6da466c5217386f",
+    "cameraId": "A3-09-street50-20261006",
+    "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
+  },
+  "current": {
+    "url": "levantamiento/evidence/A3-09/20261006-02-calzada.png",
+    "title": "Acción 2 · calzada revisada",
+    "label": "Calzada · 02",
+    "capturedAt": "2026-10-06T23:55:14.733122+00:00",
+    "worldSha256": "b589e6acf74ad7ebc55658df314d14b3ee6ecd7527e5261db0ae427cd8134386",
+    "sha256": "76500e091835b48dc71b68678bfd83ed0d22ecb8701efd7eda9de724d96c3a98",
+    "cameraId": "A3-09-street50-20261006",
+    "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
+  },
+  "camera": {
+    "id": "A3-09-street50-20261006",
+    "direction": [
+      0.2,
+      1,
+      1
+    ],
+    "span": 107.37168000000004,
+    "projection": "orthographic",
+    "target": [
+      208.40350341796875,
+      1,
+      -122.81550216674805
+    ]
+  },
+  "worldSha256": "b589e6acf74ad7ebc55658df314d14b3ee6ecd7527e5261db0ae427cd8134386",
+  "baselineWorldSha256": "0abab345f69cc7db494dffebff8228d222348d8a1648541b5ac6318b7408b6a3",
+  "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography.",
+  "triangles": 10028,
+  "streetSegments": [
+    {
+      "id": "SE-E50",
+      "name": "Serdán · Guerrero–borde oriental",
+      "points": [
+        [
+          159.02892,
+          -138.60983
+        ],
+        [
+          175.87368,
+          -141.15059
+        ],
+        [
+          226.83564,
+          -152.20121
+        ],
+        [
+          237.09024,
+          -154.42021
+        ]
+      ],
+      "widthMeters": 10,
+      "uncertaintyMeters": 1.5,
+      "reference": "A3",
+      "samplePixels": [
+        [
+          1021,
+          322
+        ],
+        [
+          1030,
+          360
+        ]
+      ],
+      "areaMeters2": 744.9863984312337,
+      "trimmedBuildingAreaMeters2": 18.59648870001117,
+      "operation": "added"
+    },
+    {
+      "id": "AB-N",
+      "name": "Abasolo · Serdán–Chihuahua",
+      "points": [
+        [
+          175.87368,
+          -141.15059
+        ],
+        [
+          178.77996,
+          -90.44644
+        ],
+        [
+          179.5284,
+          -77.35434
+        ],
+        [
+          181.20996,
+          -47.96368
+        ]
+      ],
+      "widthMeters": 6.6,
+      "uncertaintyMeters": 1,
+      "reference": "A3",
+      "samplePixels": [
+        [
+          903,
+          440
+        ],
+        [
+          929,
+          438
+        ]
+      ],
+      "areaMeters2": 579.5769234884112,
+      "trimmedBuildingAreaMeters2": 0.0,
+      "operation": "added"
+    }
+  ],
+  "references": [
+    {
+      "id": "A1",
+      "url": "https://www.google.com/maps/@29.0770989,-110.9564038,244m/data=!3m1!1e3",
+      "observedAt": "2026-10-06T23:55:14.733122+00:00",
+      "scaleBarMeters": 20,
+      "scaleBarPixels": 79,
+      "viewport": [
+        1363,
+        936
+      ],
+      "imageryDateVerified": false
+    },
+    {
+      "id": "C1",
+      "url": "https://www.google.com/maps/@29.0755344,-110.9564038,244m/data=!3m1!1e3",
+      "observedAt": "2026-10-06T23:55:14.733122+00:00",
+      "scaleBarMeters": 20,
+      "scaleBarPixels": 79,
+      "viewport": [
+        1363,
+        936
+      ],
+      "imageryDateVerified": false
+    },
+    {
+      "id": "A3",
+      "url": "https://www.google.com/maps/@29.0770989,-110.9535192,244m/data=!3m1!1e3",
+      "observedAt": "2026-10-06T23:55:14.733122+00:00",
+      "scaleBarMeters": 20,
+      "scaleBarPixels": 79,
+      "viewport": [
+        1363,
+        936
+      ],
+      "imageryDateVerified": false
+    }
+  ],
+  "checks": {
+    "unchangedBuildingAndColliderGeometry": true,
+    "uniqueRoadOwners": true,
+    "noNewRoadOverlapWithFootprints": true,
+    "sameComparisonCamera": true
+  },
+  "limits": [
+    "Anchos y ejes aproximados; no es levantamiento topográfico.",
+    "Las franjas se recortan en el límite de plantas aproximadas para no invadirlas; el ancho nominal puede estrecharse localmente.",
+    "Las vistas son renders del modelo, no capturas WebGL ni fotografías."
+  ]
+}

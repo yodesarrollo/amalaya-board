@@ -1,0 +1,203 @@
+{
+  "id": "B3-03",
+  "building": "B3-03",
+  "order": 35,
+  "action": 2,
+  "task": "street",
+  "status": "done",
+  "executedAt": "2026-10-06T23:55:14.733122+00:00",
+  "note": "REVISADO · Calzada contrastada y conservada: Obregón · Garmendia–Abasolo. Anchos visuales aproximados con margen; cruces compartidos sin duplicar asfalto. No certifica accesos privados, radios, banquetas, alturas ni fachadas.",
+  "source": {
+    "id": "B3-03",
+    "sector": "B3",
+    "name": "Obregón · ala baja norte del Colegio",
+    "viewCenter": [
+      29.0763166,
+      -110.9535192
+    ],
+    "zoomMeters": 244,
+    "pixels": [
+      [
+        972.6269676890488,
+        421.5653333340124
+      ],
+      [
+        1016.6269676890488,
+        419.5653333340124
+      ],
+      [
+        1018.1269676890488,
+        429.0653333340124
+      ],
+      [
+        975.1269676890488,
+        432.0653333340124
+      ]
+    ],
+    "note": "CERRADO · Ala baja de cubierta del frente norte de Obregón, separada del volumen principal por el retranqueo visible. Trazado manual ±3 m; imagen del cuerpo en el modelo y registro por columna.",
+    "sourceScreenPixels": [
+      [
+        726,
+        542
+      ],
+      [
+        814,
+        538
+      ],
+      [
+        817,
+        557
+      ],
+      [
+        731,
+        563
+      ]
+    ],
+    "pixelHoles": [],
+    "points": [
+      [
+        127.843,
+        -3.125
+      ],
+      [
+        150.786,
+        -4.165
+      ],
+      [
+        151.568,
+        0.776
+      ],
+      [
+        129.147,
+        2.336
+      ]
+    ],
+    "holes": [],
+    "uncertaintyMeters": 3,
+    "heightMeters": 6.2,
+    "measuredAt": "2026-10-06T02:20:54.604298+00:00",
+    "source": "Google Maps satellite, manually interpreted visible roof boundary; two screen anchors and scale. Source imagery date unverified.",
+    "calibration": {
+      "a": [
+        550,
+        300,
+        29.076713,
+        -110.955667
+      ],
+      "b": [
+        1000,
+        700,
+        29.074838,
+        -110.953253
+      ],
+      "viewport": [
+        1363,
+        936
+      ],
+      "metersPerPixel": [
+        0.521424,
+        0.520078
+      ]
+    },
+    "mapUrl": "https://www.google.com/maps/@29.0759255,-110.9549615,488m/data=!3m1!1e3"
+  },
+  "heightMeasured": false,
+  "baseline": {
+    "url": "levantamiento/evidence/B3-03/20261006-02-antes.png",
+    "title": "Acción 2 · antes",
+    "label": "Calzada · 02",
+    "capturedAt": "2026-10-06T23:55:14.733122+00:00",
+    "worldSha256": "0abab345f69cc7db494dffebff8228d222348d8a1648541b5ac6318b7408b6a3",
+    "sha256": "67414242ed9dc6b5707c17ee64539ddb4d8cfcfa369f8c3ea60af7c659277567",
+    "cameraId": "B3-03-street50-20261006",
+    "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
+  },
+  "current": {
+    "url": "levantamiento/evidence/B3-03/20261006-02-calzada.png",
+    "title": "Acción 2 · calzada revisada",
+    "label": "Calzada · 02",
+    "capturedAt": "2026-10-06T23:55:14.733122+00:00",
+    "worldSha256": "b589e6acf74ad7ebc55658df314d14b3ee6ecd7527e5261db0ae427cd8134386",
+    "sha256": "5f5f6dec6e3dcdda426474af0e3651e3f5a94627e841374b3b1dc1af0a3f75f3",
+    "cameraId": "B3-03-street50-20261006",
+    "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography."
+  },
+  "camera": {
+    "id": "B3-03-street50-20261006",
+    "direction": [
+      0.2,
+      1,
+      1
+    ],
+    "span": 70,
+    "projection": "orthographic",
+    "target": [
+      139.70549774169922,
+      1,
+      -0.9144999980926514
+    ]
+  },
+  "worldSha256": "b589e6acf74ad7ebc55658df314d14b3ee6ecd7527e5261db0ae427cd8134386",
+  "baselineWorldSha256": "0abab345f69cc7db494dffebff8228d222348d8a1648541b5ac6318b7408b6a3",
+  "renderMethod": "Software rasterization of actual compiled Three.js world vertices, flat material colours; procedural texture maps omitted. Not WebGL or site photography.",
+  "triangles": 25987,
+  "streetSegments": [
+    {
+      "id": "OB-E",
+      "name": "Obregón · Garmendia–Abasolo",
+      "widthMeters": 5.61,
+      "uncertaintyMeters": 0.56,
+      "operation": "retained-verified",
+      "source": "street-round.json; existing geometry owner retained"
+    }
+  ],
+  "references": [
+    {
+      "id": "A1",
+      "url": "https://www.google.com/maps/@29.0770989,-110.9564038,244m/data=!3m1!1e3",
+      "observedAt": "2026-10-06T23:55:14.733122+00:00",
+      "scaleBarMeters": 20,
+      "scaleBarPixels": 79,
+      "viewport": [
+        1363,
+        936
+      ],
+      "imageryDateVerified": false
+    },
+    {
+      "id": "C1",
+      "url": "https://www.google.com/maps/@29.0755344,-110.9564038,244m/data=!3m1!1e3",
+      "observedAt": "2026-10-06T23:55:14.733122+00:00",
+      "scaleBarMeters": 20,
+      "scaleBarPixels": 79,
+      "viewport": [
+        1363,
+        936
+      ],
+      "imageryDateVerified": false
+    },
+    {
+      "id": "A3",
+      "url": "https://www.google.com/maps/@29.0770989,-110.9535192,244m/data=!3m1!1e3",
+      "observedAt": "2026-10-06T23:55:14.733122+00:00",
+      "scaleBarMeters": 20,
+      "scaleBarPixels": 79,
+      "viewport": [
+        1363,
+        936
+      ],
+      "imageryDateVerified": false
+    }
+  ],
+  "checks": {
+    "unchangedBuildingAndColliderGeometry": true,
+    "uniqueRoadOwners": true,
+    "noNewRoadOverlapWithFootprints": true,
+    "sameComparisonCamera": true
+  },
+  "limits": [
+    "Anchos y ejes aproximados; no es levantamiento topográfico.",
+    "Las franjas se recortan en el límite de plantas aproximadas para no invadirlas; el ancho nominal puede estrecharse localmente.",
+    "Las vistas son renders del modelo, no capturas WebGL ni fotografías."
+  ]
+}
