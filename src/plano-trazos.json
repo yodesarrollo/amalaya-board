@@ -1,0 +1,339 @@
+{
+  "version": "20261007-calco-piloto-1",
+  "status": "parcial-pendiente-de-contraste",
+  "reference": {
+    "provider": "Esri World Imagery",
+    "retrievedAt": "2026-10-07",
+    "captureDate": "not verified",
+    "tileZoom": 18,
+    "tileBounds": [
+      50274,
+      108924,
+      50281,
+      108931
+    ],
+    "bounds": [
+      -110.95916748046875,
+      29.07177442521921,
+      -110.94955444335938,
+      29.0801759896232
+    ],
+    "image": "ground-reference.jpg",
+    "imageSha256": "b5047ad684e6188a781e3e4226db33574aeabf70613e12bacb3177eb9219e28f"
+  },
+  "scope": "Piloto de bordes visibles en la zona central: no completa calles ni banquetas del conjunto.",
+  "limits": [
+    "Fecha de captura no verificada.",
+    "Calco visual preliminar, no levantamiento métrico ni referencia actual certificada.",
+    "No se cierran polígonos ni se inventan anchos bajo sombras, árboles o vehículos.",
+    "No modifica estados de avance de edificios ni genera superficies 3D."
+  ],
+  "traces": [
+    {
+      "id": "T01",
+      "type": "borde-calzada",
+      "status": "interpretacion-visual-por-validar",
+      "pixels": [
+        [
+          543,
+          708
+        ],
+        [
+          570,
+          702
+        ],
+        [
+          598,
+          696
+        ],
+        [
+          620,
+          691
+        ]
+      ]
+    },
+    {
+      "id": "T02",
+      "type": "borde-calzada",
+      "status": "interpretacion-visual-por-validar",
+      "pixels": [
+        [
+          557,
+          733
+        ],
+        [
+          580,
+          729
+        ],
+        [
+          600,
+          724
+        ],
+        [
+          619,
+          719
+        ]
+      ]
+    },
+    {
+      "id": "T03",
+      "type": "borde-calzada",
+      "status": "interpretacion-visual-por-validar",
+      "pixels": [
+        [
+          674,
+          708
+        ],
+        [
+          680,
+          734
+        ],
+        [
+          686,
+          759
+        ],
+        [
+          691,
+          779
+        ]
+      ]
+    },
+    {
+      "id": "T04",
+      "type": "borde-calzada",
+      "status": "interpretacion-visual-por-validar",
+      "pixels": [
+        [
+          644,
+          723
+        ],
+        [
+          649,
+          747
+        ],
+        [
+          654,
+          774
+        ]
+      ]
+    },
+    {
+      "id": "T05",
+      "type": "borde-calzada",
+      "status": "interpretacion-visual-por-validar",
+      "pixels": [
+        [
+          694,
+          782
+        ],
+        [
+          723,
+          775
+        ],
+        [
+          752,
+          769
+        ],
+        [
+          781,
+          762
+        ]
+      ]
+    },
+    {
+      "id": "T06",
+      "type": "borde-calzada",
+      "status": "interpretacion-visual-por-validar",
+      "pixels": [
+        [
+          680,
+          803
+        ],
+        [
+          708,
+          796
+        ],
+        [
+          738,
+          789
+        ]
+      ]
+    },
+    {
+      "id": "T07",
+      "type": "borde-calzada",
+      "status": "interpretacion-visual-por-validar",
+      "pixels": [
+        [
+          673,
+          809
+        ],
+        [
+          677,
+          831
+        ],
+        [
+          681,
+          850
+        ]
+      ]
+    },
+    {
+      "id": "T08",
+      "type": "borde-calzada",
+      "status": "interpretacion-visual-por-validar",
+      "pixels": [
+        [
+          627,
+          795
+        ],
+        [
+          631,
+          820
+        ],
+        [
+          635,
+          845
+        ],
+        [
+          639,
+          869
+        ]
+      ]
+    },
+    {
+      "id": "T09",
+      "type": "borde-calzada",
+      "status": "interpretacion-visual-por-validar",
+      "pixels": [
+        [
+          531,
+          759
+        ],
+        [
+          536,
+          789
+        ],
+        [
+          541,
+          821
+        ],
+        [
+          546,
+          850
+        ],
+        [
+          551,
+          877
+        ]
+      ]
+    },
+    {
+      "id": "T10",
+      "type": "borde-calzada",
+      "status": "interpretacion-visual-por-validar",
+      "pixels": [
+        [
+          824,
+          913
+        ],
+        [
+          860,
+          908
+        ],
+        [
+          899,
+          904
+        ],
+        [
+          927,
+          900
+        ]
+      ]
+    },
+    {
+      "id": "T11",
+      "type": "borde-banqueta",
+      "status": "interpretacion-visual-por-validar",
+      "pixels": [
+        [
+          544,
+          702
+        ],
+        [
+          570,
+          696
+        ],
+        [
+          598,
+          690
+        ],
+        [
+          620,
+          685
+        ]
+      ]
+    },
+    {
+      "id": "T12",
+      "type": "borde-banqueta",
+      "status": "interpretacion-visual-por-validar",
+      "pixels": [
+        [
+          682,
+          711
+        ],
+        [
+          688,
+          735
+        ],
+        [
+          694,
+          757
+        ],
+        [
+          699,
+          777
+        ]
+      ]
+    },
+    {
+      "id": "T13",
+      "type": "borde-banqueta",
+      "status": "interpretacion-visual-por-validar",
+      "pixels": [
+        [
+          680,
+          812
+        ],
+        [
+          684,
+          835
+        ],
+        [
+          688,
+          850
+        ]
+      ]
+    },
+    {
+      "id": "T14",
+      "type": "borde-banqueta",
+      "status": "interpretacion-visual-por-validar",
+      "pixels": [
+        [
+          685,
+          808
+        ],
+        [
+          710,
+          801
+        ],
+        [
+          738,
+          794
+        ]
+      ]
+    }
+  ]
+}
