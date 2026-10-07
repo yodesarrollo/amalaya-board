@@ -620,3 +620,6 @@ input[type="range"] { accent-color: #C9A45C; }
   .recorrido-unico__paso { min-height: 48px; padding: 0 10px 0 4px; font-size: 11px; }
   .recorrido-unico__paso:last-child { padding: 0 4px 0 10px; }
 }
+
+.recorrido-carga {position:absolute;inset:0;z-index:12;display:grid;place-content:center;text-align:center;background:#171c1d;color:#f3eee3;font-size:16px;pointer-events:auto;}
+.recorrido-carga button {margin:auto;padding:10px 20px;border-radius:8px;background:#c4a35b;color:#171c1d;}
