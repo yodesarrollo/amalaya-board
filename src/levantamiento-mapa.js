@@ -17,7 +17,8 @@ export function montarLevantamiento({ map, mercator, base, onReady, onError, loa
       api = await load()
       if (!active) return
       world = await api.createWorld(base, abort.signal)
-      if (!active) { api.disposeWorld(world); return }
+      if (world.userData?.groundReference) world.userData.groundReference.mapOwnsGround = true
+      if (!active) { if (world.userData?.groundReference) world.userData.groundReference.disposed = true; api.disposeWorld(world); return }
       layer = api.createMapLayer({ mercator, world })
       layer.setScenario(scenario)
       map.addLayer(layer, 'rutas-halo')
@@ -33,6 +34,7 @@ export function montarLevantamiento({ map, mercator, base, onReady, onError, loa
     active = false
     events?.removeEventListener('amalaya:scenario', alCambiarEscenario)
     abort.abort()
+    if (world?.userData?.groundReference) world.userData.groundReference.disposed = true
     if (attached && map.getLayer('amalaya-levantamiento')) map.removeLayer('amalaya-levantamiento')
   }
 }

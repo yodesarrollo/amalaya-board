@@ -1,0 +1,10 @@
+import {readFile,writeFile} from 'node:fs/promises';
+import {sheetHash} from './preparar-lamina.mjs';
+const root='public/levantamiento';
+let module=await readFile(root+'/ground-reference-refinement.js','utf8');
+module=module.replace(/ground-reference-data\.js(?:\?v=[a-f0-9]{12})?/, 'ground-reference-data.js?v='+sheetHash(await readFile(root+'/ground-reference-data.js')).slice(0,12));
+await writeFile(root+'/ground-reference-refinement.js',module);
+let sheet=await readFile(root+'/sheet-plan-refinement.js','utf8');
+sheet=sheet.replace(/ground-reference-refinement\.js(?:\?v=[a-f0-9]{12})?/,'ground-reference-refinement.js?v='+sheetHash(module).slice(0,12));
+await writeFile(root+'/sheet-plan-refinement.js',sheet);
+await import('./preparar-lote50.mjs');
