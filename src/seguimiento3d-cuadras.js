@@ -33,6 +33,6 @@ export function blockSelection(block, task, label) {
     label,
     column: { block: { id: block.id }, building: { id: block.id, name: block.name } },
     cell: { key: `cuadra:${block.id}:${task}`, blockId: block.id, buildingId: block.id, scope: 'block', memberIds: block.members.map(b => b.id), task, shared: false,
-      state: block.states[task], issue: null, detail: `Revisión de cuadra completa. ${block.members.length} edificios vinculados; ${block.membershipComplete ? 'inventario delimitado' : 'asignación aún incompleta'}. Los avances anteriores se conservan en cada edificio.`, evidence: block.evidence ? [{url: block.evidence, title: `${block.id} · fotografía, trazado anterior y retrazado parcial`}] : [] },
+      state: block.states[task], issue: null, detail: `Revisión de cuadra completa. ${block.members.length} edificios vinculados; ${block.membershipComplete ? 'inventario delimitado' : 'asignación aún incompleta'}. Los avances anteriores se conservan en cada edificio.`, evidence: [...(block.inventoryEvidence ? [{url:block.inventoryEvidence,title:`${block.id} · límite de inventario y huellas del modelo`}] : []), ...(block.evidence ? [{url: block.evidence, title: `${block.id} · fotografía, trazado anterior y retrazado parcial`}] : [])] },
   }
 }
