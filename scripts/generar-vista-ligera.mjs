@@ -25,7 +25,7 @@ world.traverse(m=>{
   for(let i=0;i<idx.length;i+=3){const vs=[pts[idx[i]],pts[idx[i+1]],pts[idx[i+2]]];if(vs.some(v=>!v.toArray().every(Number.isFinite))||vs.every(v=>v.y>35)||vs.every(v=>v.y<-.2))continue;
    const n=vs[1].clone().sub(vs[0]).cross(vs[2].clone().sub(vs[0])),size=n.length();if(size<.005)continue;originalTriangles++;
    // Keep every face of the surveyed footprints, including courtyard edges. Omit only small decorative faces elsewhere.
-   if(!m.name.startsWith('Planta física · ')&&size<1)continue;
+   if(!m.name.startsWith('Planta física · ')&&!m.userData.visualFit&&size<1)continue;
    const group=m.geometry.groups.find(g=>i>=g.start&&i<g.start+g.count),material=mats[group?.materialIndex||0];if(material?.visible===false)continue;
    const c=material?.color?.getHex()??0xc3bcab,shade=.68+.32*Math.abs((n.x*-.3+n.y+n.z*.25)/(size*1.074));
    const hex='#'+[((c>>16)&255),(c>>8)&255,c&255].map(v=>Math.round(v*shade).toString(16).padStart(2,'0')).join('');

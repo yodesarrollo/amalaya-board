@@ -6,7 +6,7 @@ const full=JSON.parse(await readFile('public/seguimiento-3d.json')),small=JSON.p
 assert.equal(small.buildings.length,columns(full).length);
 for(const c of columns(full)){const b=small.buildings.find(b=>b.id===c.building.id);assert(b);for(const task of Object.keys(full.taskDefinitions))assert.equal(b.states[task],cellInfo(c,task).state,c.building.id+':'+task);if(b.camera?.target)assert(b.camera.target.length===3&&b.camera.target.every(Number.isFinite));}
 const meta=JSON.parse(await readFile('public/levantamiento/modelo-ligero.json')),bytes=await readFile('public/levantamiento/modelo-ligero.bin');
-assert.equal(bytes.length,meta.triangles*20);assert(meta.triangles>0&&meta.triangles<meta.originalTriangles&&bytes.length<100000,'la vista inicial sin suelo inventado debe simplificar la escena y pesar menos de 100 KB');
+assert.equal(bytes.length,meta.triangles*20);assert(meta.triangles>0&&meta.triangles<meta.originalTriangles&&bytes.length<200000,'la vista con 33 cuadras y superficies visuales debe simplificar la escena y pesar menos de 200 KB');
 assert.equal(createHash('sha256').update(bytes).digest('hex').slice(0,12),meta.version);
 for(let i=0;i<meta.triangles;i++)assert(bytes.readUInt16LE(i*20+18)<meta.palette.length);
 assert.equal(meta.worldSha256,createHash('sha256').update(await readFile('public/levantamiento/world.js')).digest('hex'));
