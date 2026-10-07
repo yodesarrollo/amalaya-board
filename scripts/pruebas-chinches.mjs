@@ -4,7 +4,7 @@ import { readFileSync } from 'node:fs'
 const source=readFileSync(new URL('../apps-script/Code.gs',import.meta.url),'utf8')
 const id='CHN-DEMO-1',url='https://github.com/yodesarrollo/amalaya-board/issues/123'
 const closed={number:123,html_url:url,body:'# Chinche '+id,state:'closed',state_reason:'completed',closed_at:'2026-09-30T12:00:00Z'}
-function fixture({github=closed,current='tomada',issue=url,historyFail=false,duplicate=false,http=200}={}){
+function fixture({github=closed,current='tomada',issue=url,historyFail=false,duplicate=false,http=200,id:rowId=id}={}){
   const state={current,issue,fetches:0,writes:0,log:[]}
   const history={getLastRow:()=>1,getRange:()=>({setValues:rows=>{if(historyFail)throw Error('fake failure');state.log=structuredClone(rows)},getValues:()=>state.log})}
   const sheet={getRange:()=>({getValues:()=>[[state.current,state.issue]],setValues:rows=>{state.writes++;[state.current,state.issue]=rows[0]}})}
@@ -16,8 +16,8 @@ function fixture({github=closed,current='tomada',issue=url,historyFail=false,dup
   vm.runInContext(source,c)
   c.jsonOut=x=>x;c.conCandado=fn=>fn();c.tokenPuenteValido=k=>k==='fixture-secret'
   c.obtenerHoja=name=>name==='Chinches'?sheet:history;c.buscarFila=()=>2
-  c.leerHoja=()=>duplicate?[{id},{id}]:[{id}]
-  const call=(patch={})=>c.accChincheEstado({k:'fixture-secret',id,issue:url,estado_previo:'tomada',estado:'terminada',motivo:'completed',...patch})
+  c.leerHoja=()=>duplicate?[{id:rowId},{id:rowId}]:[{id:rowId}]
+  const call=(patch={})=>c.accChincheEstado({k:'fixture-secret',id:rowId,issue:url,estado_previo:'tomada',estado:'terminada',motivo:'completed',...patch})
   return {state,call}
 }
 const normal=fixture();assert.equal(normal.call().ok,true);assert.equal(normal.state.current,'terminada');assert.equal(normal.state.log.length,2)
@@ -41,4 +41,15 @@ const authenticated=fixture();assert.equal(authenticated.call({github_token:'fix
 assert.equal(authenticated.state.headers.Authorization,'Bearer fixture-read-only-token-for-GitHub')
 assert.equal(JSON.stringify(authenticated.state.log).includes('fixture-read-only-token-for-GitHub'),false)
 const rate=fixture({http:403});assert.equal(rate.call().codigo,'GITHUB_HTTP_403')
-console.log('Chinches: token, CAS ID/estado/issue, GitHub autoritativo, motivo, cross-repo, idempotencia, reapertura y fallo de historial verificados sin red ni Sheets reales.')
+// Seguimiento 3D clava con crypto.randomUUID(): su cierre debe conciliar igual que un «CHN-…» (issue #47).
+const uuid='e22cc5ad-5769-429c-9c6d-ddff44c56a7f'
+const fromUuid=fixture({id:uuid,github:{...closed,body:'# Chinche '+uuid}})
+assert.equal(fromUuid.call().ok,true);assert.equal(fromUuid.state.current,'terminada');assert.equal(fromUuid.state.log[0][3],uuid)
+assert.equal(fromUuid.call().repetida,true);assert.equal(fromUuid.state.writes,1)
+const crossed=fixture({id:uuid});assert.equal(crossed.call().ok,false);assert.equal(crossed.state.writes,0)
+// La lista de formatos es cerrada: nada fuera de «CHN-…» o UUID en minúsculas llega a GitHub ni al Sheet.
+for(const bad of ['','CHN-','chn-demo-1','e22cc5ad','E22CC5AD-5769-429C-9C6D-DDFF44C56A7F',uuid+'-x',' '+uuid,uuid+'\n','=HYPERLINK("x")','CHN-DEMO 1','CHN-'+'a'.repeat(57)]){
+  const f=fixture({id:bad,github:{...closed,body:'# Chinche '+bad}})
+  assert.equal(f.call().ok,false,JSON.stringify(bad));assert.equal(f.state.fetches,0);assert.equal(f.state.writes,0)
+}
+console.log('Chinches: token, formato de ID (CHN y UUID), CAS ID/estado/issue, GitHub autoritativo, motivo, cross-repo, idempotencia, reapertura y fallo de historial verificados sin red ni Sheets reales.')

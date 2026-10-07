@@ -31,4 +31,11 @@ class BridgeTests(unittest.TestCase):
         for bad in [{**closed,'state_reason':None},{**closed,'body':'# Chinche CHN-DEMO-other'},{**closed,'pull_request':{'url':'fake'}}]:
             with self.assertRaises(ValueError):list(m.candidates([pin],lambda _:bad))
         with self.assertRaises(ValueError):list(m.candidates([{**pin,'issue':'https://github.com/other/repo/issues/123'}],lambda _:closed))
+    def test_uuid_pin_from_seguimiento_3d(self):
+        url='https://github.com/yodesarrollo/amalaya-board/issues/123';uuid='e22cc5ad-5769-429c-9c6d-ddff44c56a7f'
+        pin={'id':uuid,'estado':'tomada','issue':url}
+        closed={'number':123,'html_url':url,'body':'# Chinche '+uuid,'state':'closed','state_reason':'completed'}
+        plan=list(m.candidates([pin],lambda _:closed))
+        self.assertEqual(plan,[{'action':'chincheEstado','id':uuid,'issue':url,'estado_previo':'tomada','estado':'terminada','motivo':'completed'}])
+        with self.assertRaises(ValueError):list(m.candidates([pin],lambda _:{**closed,'body':'# Chinche CHN-DEMO-1'}))
 if __name__=='__main__':unittest.main()
