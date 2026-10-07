@@ -55,6 +55,7 @@ body.portal .brujula{bottom:90px;right:12px}
 // - ?embed=1: modo pop-up dentro del tablero (avisa al padre el punto).
 // ============================================================
 const params=new URLSearchParams(location.search); const EMBED=params.get('embed')==='1'; if(EMBED) document.body.classList.add('embed'); if(params.get('portal')==='1')document.body.classList.add('portal');
+if(EMBED) document.getElementById('bAccion').textContent='Poner chinche';
 let RUTAS=null, DATA=null, idx=0, yaw=0, auto=false, modoAccion=false, ACCIONES=[], pendiente=null;
 let PITCH=-0.16; // se ajusta por punto: la calle y la fachada mandan, no el cielo
 function encuadrar(id){ const r=ROLL[id]||{}; const alto=r.alto||0;
@@ -132,6 +133,10 @@ function pintarMini(){ const s=document.getElementById('minisvg'); const P=DATA.
 function cargarAcciones(){ let loc=[]; try{ loc=JSON.parse(localStorage.getItem('amalaya_acciones360')||'[]') }catch{} return fetch('acciones.json').then(r=>r.ok?r.json():[]).catch(()=>[]).then(rep=>{ ACCIONES=[...rep.map(a=>({...a,origen:'repo'})),...loc.map(a=>({...a,origen:'local'}))] }) }
 function guardarLocal(){ try{ localStorage.setItem('amalaya_acciones360',JSON.stringify(ACCIONES.filter(a=>a.origen==='local').map(({origen,...a})=>a))) }catch{} }
 document.getElementById('bAccion').onclick=function(){ modoAccion=!modoAccion; this.classList.toggle('on',modoAccion); canvas.style.cursor=modoAccion?'crosshair':'grab' };
+addEventListener('message',e=>{
+  if(e.origin!==location.origin||e.source!==parent||e.data?.tipo!=='amalaya:chinche-armar')return;
+  modoAccion=true; document.getElementById('bAccion').classList.add('on'); canvas.style.cursor='crosshair';
+});
 document.getElementById('bExportar').onclick=async function(){ const txt=JSON.stringify(ACCIONES.map(({origen,...a})=>a),null,1); try{ await navigator.clipboard.writeText(txt); this.textContent='Copiado ✓'; setTimeout(()=>this.textContent='Copiar acciones',1500) }catch{ prompt('Copia este JSON:',txt) } };
 document.getElementById('okAccion').onclick=()=>{ const t=document.getElementById('txtAccion').value.trim(); if(!t||!pendiente) return; ACCIONES.push({...pendiente,texto:t,tipo:document.getElementById('tipoAccion').value,origen:'local'}); guardarLocal(); pendiente=null; document.getElementById('formAccion').style.display='none'; pintarUI() };
 document.getElementById('noAccion').onclick=()=>{ pendiente=null; document.getElementById('formAccion').style.display='none' };
@@ -142,7 +147,9 @@ canvas.addEventListener('pointermove',e=>{ if(!arr) return; if(Math.abs(e.client
 canvas.addEventListener('pointerup',e=>{ const mov=arr&&arr.mov; arr=null; if(mov) return;
   const v=new THREE.Vector2((e.clientX/innerWidth)*2-1,-(e.clientY/innerHeight)*2+1); ray.setFromCamera(v,cam);
   const h=ray.intersectObjects(clicables,false)[0]; if(h&&h.object.userData.clic){ h.object.userData.clic(); return }
-  if(modoAccion&&DATA){ const f=cam.fov*Math.PI/180; const dy=Math.atan(v.x*Math.tan(f/2)*cam.aspect), dp=Math.atan(v.y*Math.tan(f/2)); pendiente={punto:DATA.puntos[idx].id,ruta:DATA.id,yaw:yaw+dy,pitch:PITCH+dp}; document.getElementById('formAccion').style.display='flex'; document.getElementById('txtAccion').value=''; document.getElementById('txtAccion').focus() } });
+  if(modoAccion&&DATA){ const f=cam.fov*Math.PI/180; const dy=Math.atan(v.x*Math.tan(f/2)*cam.aspect), dp=Math.atan(v.y*Math.tan(f/2)); const ref={punto:DATA.puntos[idx].id,ruta:DATA.id,yaw:yaw+dy,pitch:PITCH+dp,x:+(e.clientX/innerWidth).toFixed(4),y:+(e.clientY/innerHeight).toFixed(4)};
+    if(EMBED&&parent!==window){ parent.postMessage({tipo:'amalaya:chinche-recorrido',...ref},location.origin); modoAccion=false; document.getElementById('bAccion').classList.remove('on'); canvas.style.cursor='grab'; return }
+    pendiente=ref; document.getElementById('formAccion').style.display='flex'; document.getElementById('txtAccion').value=''; document.getElementById('txtAccion').focus() } });
 canvas.addEventListener('wheel',e=>{ cam.fov=Math.max(55,Math.min(110,cam.fov+e.deltaY*0.03)); cam.updateProjectionMatrix() },{passive:true});
 document.getElementById('bAuto').onclick=function(){ auto=!auto; this.classList.toggle('on',auto) };
 addEventListener('keydown',e=>{ if(e.key==='ArrowRight'&&e.shiftKey) irA(idx+1); if(e.key==='ArrowLeft'&&e.shiftKey) irA(idx-1) });
@@ -165,7 +172,7 @@ fetch('rutas.json').then(r=>r.json()).then(async d=>{ RUTAS=d; ROLL=await fetch(
     var s = JSON.parse(localStorage.getItem('amalaya_sesion') || 'null');
     if (!s || !s.codigo || ['admin', 'master', 'editor', 'visor'].indexOf(s.rol) === -1) return;
     var el = document.createElement('script');
-    el.src = '../chinche.js?v=f9';
+    el.src = '../chinche.js?v=f10';
     el.onload = function () {
       if (window.YODChinche) YODChinche.init({ pantalla: 'amalaya-recorrido', repo: 'amalaya-board',
         quien: function () { return s.nombre || ''; },
