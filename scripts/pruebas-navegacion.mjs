@@ -62,3 +62,5 @@ const failed=loadFixture(true);await new Promise(resolve=>setImmediate(resolve))
 const timeout=loadFixture();timeout.tasks[0]();assert.equal(timeout.messages[0].reason,'timeout');
 const html=await readFile('public/levantamiento/visor/index.html','utf8');const entry=html.match(/data-walk-entry="([^"]+)"/)[1];assert(new URL(entry,'https://example.test/amalaya-board/levantamiento/visor-loader.js').pathname.endsWith('/levantamiento/visor/assets/index-RoPA5goG.js'));
 console.log('Carga: espera escena real, fallo WebGL, pérdida de contexto, timeout y llegada tardía verificados.');
+
+failed.body.children[0].children[2].children[1].onclick();assert.equal(failed.messages.at(-1).type,'amalaya:light-view','la vista ligera avisa al tablero para retirar controles de caminar');

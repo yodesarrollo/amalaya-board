@@ -12,7 +12,7 @@ function fail(reason='load'){
  const text=document.createElement('p');text.textContent=reason==='webgl'?'Puedes seguir revisando los edificios en la vista ligera.':'Reintenta la carga o continúa con la vista ligera.';
  const actions=document.createElement('div');actions.style.cssText='display:flex;gap:12px;justify-content:center;flex-wrap:wrap';
  const retry=document.createElement('button');retry.textContent='Reintentar';retry.onclick=()=>location.reload();
- const light=document.createElement('a');light.textContent='Ver edificios';light.href='../../modelo-completo.html?embed=1&vista=volumen';
+ const light=document.createElement('a');light.textContent='Ver edificios';light.href='../../modelo-completo.html?embed=1&vista=volumen';light.onclick=()=>report('amalaya:light-view');
  for(const el of [retry,light])el.style.cssText='border:1px solid #bd9b57;border-radius:9px;padding:12px 18px;color:#171c1d;background:#d1b36d;text-decoration:none;font:inherit;cursor:pointer';
  actions.append(retry,light);panel.append(title,text,actions);
 }
