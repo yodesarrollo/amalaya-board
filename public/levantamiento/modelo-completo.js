@@ -1,13 +1,15 @@
+import {createDepthFrame,drawDepthFrame} from './depth-raster.js?v=20261007a';
 import { GROUND_REFERENCE } from './ground-reference-data.js';
 // Lightweight, precomputed geometry. The detailed world is only loaded through its explicit link.
 const $=id=>document.getElementById(id),canvas=$('model'),ctx=canvas.getContext('2d');
-let groundImage=null;
+let groundImage=null,depthFrame=null,depthImage=null;
+const faceCanvas=document.createElement('canvas'),faceContext=faceCanvas.getContext('2d');
 let yaw=0,tilt=0,span=620,target=[-24,0,20],triangles=[],buildings=[],width=1,height=1,drag,frame=0,loadId=0;
 const params=new URLSearchParams(location.search),requested=params.get('edificio')||'',requestedBlock=params.get('cuadra')||'';
 function updateSelection(id){const url=new URL(location.href);if(id)url.searchParams.delete('cuadra');if(id)url.searchParams.set('edificio',id);else url.searchParams.delete('edificio');history.replaceState(null,'',url.pathname+url.search)}
 function schedule(){if(!frame)frame=requestAnimationFrame(()=>{frame=0;render()})}
 function render(){
- if(!ctx)return;const rect=canvas.getBoundingClientRect();width=Math.max(1,rect.width);height=Math.max(1,rect.height);const ratio=Math.min(1.5,devicePixelRatio||1),w=Math.round(width*ratio),h=Math.round(height*ratio);if(canvas.width!==w||canvas.height!==h){canvas.width=w;canvas.height=h}ctx.setTransform(ratio,0,0,ratio,0,0);ctx.fillStyle='#edf0e7';ctx.fillRect(0,0,width,height);
+ if(!ctx)return;const rect=canvas.getBoundingClientRect();width=Math.max(1,rect.width);height=Math.max(1,rect.height);const ratio=Math.min(1.5,devicePixelRatio||1,Math.sqrt(1200000/(width*height))),w=Math.round(width*ratio),h=Math.round(height*ratio);if(canvas.width!==w||canvas.height!==h){canvas.width=w;canvas.height=h}ctx.setTransform(ratio,0,0,ratio,0,0);ctx.fillStyle='#edf0e7';ctx.fillRect(0,0,width,height);
  const scale=Math.min(width,height)/span,cs=Math.cos(yaw),sn=Math.sin(yaw),ct=Math.cos(tilt),st=Math.sin(tilt);
  const project=p=>{const x=p[0]-target[0],y=p[1]-target[1],z=p[2]-target[2],r=sn*x+cs*z;return[(cs*x-sn*z)*scale+width/2,(ct*r-st*y)*scale+height/2,st*r+ct*y]};
  if(groundImage){
@@ -15,8 +17,9 @@ function render(){
   const a=project(local(west,north)),b=project(local(east,north)),c=project(local(west,south));
   ctx.save();ctx.transform((b[0]-a[0])/groundImage.width,(b[1]-a[1])/groundImage.width,(c[0]-a[0])/groundImage.height,(c[1]-a[1])/groundImage.height,a[0],a[1]);ctx.drawImage(groundImage,0,0);ctx.restore();
  }
- const visible=[];for(const t of triangles){const a=project(t[0]),b=project(t[1]),c=project(t[2]);if(Math.max(a[0],b[0],c[0])<0||Math.min(a[0],b[0],c[0])>width||Math.max(a[1],b[1],c[1])<0||Math.min(a[1],b[1],c[1])>height)continue;visible.push([a,b,c,t[3],(a[2]+b[2]+c[2])/3])}visible.sort((a,b)=>a[4]-b[4]);
- for(const[a,b,c,fill]of visible){ctx.fillStyle=fill;ctx.beginPath();ctx.moveTo(a[0],a[1]);ctx.lineTo(b[0],b[1]);ctx.lineTo(c[0],c[1]);ctx.closePath();ctx.fill()}
+ if(!depthFrame||depthFrame.width!==w||depthFrame.height!==h){depthFrame=createDepthFrame(w,h);depthImage=new ImageData(depthFrame.pixels,w,h);faceCanvas.width=w;faceCanvas.height=h;}
+ drawDepthFrame(depthFrame,triangles,p=>{const v=project(p);return[v[0]*ratio,v[1]*ratio,v[2]]});
+ faceContext.putImageData(depthImage,0,0);ctx.drawImage(faceCanvas,0,0,w,h,0,0,width,height);
  ctx.fillStyle='#3c5b48';ctx.font='11px system-ui';ctx.fillText(`Esri World Imagery · Vista simplificada · ${Math.round(100/scale)} m por 100 px`,16,24);
 }
 function choose(id){

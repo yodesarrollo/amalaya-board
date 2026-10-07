@@ -13,19 +13,24 @@ const root='public/levantamiento',source=await readFile(root+'/world.js','utf8')
 const raw=source.replace(/^import[^\n]*\n/gm,'').replace(/\nimport[^\n]*\n/gm,'').replace(/export \{[^\n]+\};/,'').replace('Up(c), c;','c;');
 const R=new Function('applyIsc58Refinement','applyEbSwRefinement','applyPlanRoundRefinement','applyStreetRoundRefinement','applySidewalkRoundRefinement','applyPlanReviewRefinement','applySheetPlanRefinement',raw+'\nreturn {createWorld:Fp,Vector3:U};')(applyIsc58,applyEbSw,applyPlanRound,applyStreetRound,applySidewalkRound,applyPlanReview,applySheetPlan);
 const originalFetch=globalThis.fetch;let world;try{globalThis.fetch=async url=>({ok:true,json:async()=>JSON.parse(await readFile(root+'/'+url))});world=await R.createWorld('',undefined,'pilot');}finally{globalThis.fetch=originalFetch;}
+const data=JSON.parse(await readFile('public/seguimiento-3d.json','utf8'));
+const buildingOwners=data.blocks.flatMap(b=>b.buildings).filter(b=>!b.publicSpace).map(b=>b.modelReference?.owner).filter(Boolean).concat(['OB-01 · cubierta','La Barra Hidalgo']);
 world.updateMatrixWorld(true);const faces=[],palette=[],colors=new Map();let originalTriangles=0;
 world.traverse(m=>{
  if(!m.isMesh||!m.geometry?.attributes.position||/Icosahedron|Sphere|Torus|Tube|Cylinder/.test(m.geometry.type))return;
- for(let p=m;p;p=p.parent)if(!p.visible)return;
+ let buildingFace=false;
+ for(let p=m;p;p=p.parent){if(!p.visible)return;if(buildingOwners.some(name=>p.name.startsWith(name)))buildingFace=true;}
+ buildingFace=buildingFace&&!m.isInstancedMesh;
  const p=m.geometry.attributes.position;if(p.count>15000)return;
  const idx=m.geometry.index?.array||Array.from({length:p.count},(_,i)=>i),mats=Array.isArray(m.material)?m.material:[m.material],mat=m.matrixWorld.clone(),instance=mat.clone();
  for(let k=0;k<(m.isInstancedMesh?m.count:1);k++){
   if(m.isInstancedMesh){m.getMatrixAt(k,instance);mat.multiplyMatrices(m.matrixWorld,instance);}else mat.copy(m.matrixWorld);
   const pts=[];for(let i=0;i<p.count;i++)pts.push(new R.Vector3().fromBufferAttribute(p,i).applyMatrix4(mat));
-  for(let i=0;i<idx.length;i+=3){const vs=[pts[idx[i]],pts[idx[i+1]],pts[idx[i+2]]];if(vs.some(v=>!v.toArray().every(Number.isFinite))||vs.every(v=>v.y>35)||vs.every(v=>v.y<-.2))continue;
+  for(let i=0;i<idx.length;i+=3){const vs=[pts[idx[i]],pts[idx[i+1]],pts[idx[i+2]]];if(vs.some(v=>!v.toArray().every(Number.isFinite))||(!buildingFace&&vs.every(v=>v.y>35))||vs.every(v=>v.y<-.2))continue;
    const n=vs[1].clone().sub(vs[0]).cross(vs[2].clone().sub(vs[0])),size=n.length();if(size<.005)continue;originalTriangles++;
-   // Keep every face of the surveyed footprints, including courtyard edges. Omit only small decorative faces elsewhere.
-   if(!m.name.startsWith('Planta física · ')&&!m.userData.visualFit&&size<1)continue;
+   // Keep building wall/roof faces even when small: dropping these opens holes.
+   // Only unrelated/instanced decoration may use the area simplification.
+   if(!buildingFace&&!m.name.startsWith('Planta física · ')&&!m.userData.visualFit&&size<1)continue;
    const group=m.geometry.groups.find(g=>i>=g.start&&i<g.start+g.count),material=mats[group?.materialIndex||0];if(material?.visible===false)continue;
    const c=material?.color?.getHex()??0xc3bcab,shade=.68+.32*Math.abs((n.x*-.3+n.y+n.z*.25)/(size*1.074));
    const hex='#'+[((c>>16)&255),(c>>8)&255,c&255].map(v=>Math.round(v*shade).toString(16).padStart(2,'0')).join('');
@@ -39,7 +44,6 @@ const bytes=Buffer.alloc(faces.length*20);for(let i=0;i<faces.length;i++){for(le
 const version=createHash('sha256').update(bytes).digest('hex').slice(0,12);
 await writeFile(root+'/modelo-ligero.bin',bytes);
 await writeFile(root+'/modelo-ligero.json',JSON.stringify({version,scale:.05,triangles:faces.length,originalTriangles,palette,url:'levantamiento/modelo-ligero.bin?v='+version,worldSha256:createHash('sha256').update(source).digest('hex'),limits:'Vista simplificada; las plantas y sus patios se conservan. El detalle permanece en el recorrido 3D.'}));
-const data=JSON.parse(await readFile('public/seguimiento-3d.json','utf8'));
 const buildings=[];for(const col of columns(data)){
  const b=col.building,progress=b.visualProgress;let camera=null;
  if(progress?.manifest){const rec=JSON.parse(await readFile('public/'+progress.manifest));const cam=rec.camera||rec.current?.camera;camera=cam?{target:cam.target||cam.center,span:cam.span}:null;}
