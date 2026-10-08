@@ -12,6 +12,18 @@ import { BASE } from '../config.js'
 // ============================================================
 
 export const AYUDA_PANTALLA = {
+  recintos: {
+    titulo: 'Recintos y negocios',
+    lineas: [
+      'Selecciona un recinto y abre sus unidades de negocio. Todas las cifras de esta vista son supuestos de trabajo.',
+      'Prudente, Base e Impulso recalculan demanda, precio y costos sin cambiar el escenario base guardado.',
+      'Editar supuestos y las decisiones guarda el borrador privado con los permisos de tu sesión; revisa el indicador de guardado.',
+      'El valor por acción suma los recintos después de deuda. El valor de unidad es una asignación del modelo, no una acción adicional.',
+      'Las cinco etapas dependen de cada negocio. Escribir una decisión no equivale a aprobarla.',
+      'Este borrador no sustituye el Reporte congelado del inversionista. Las caras son referencias musicales propuestas.'
+    ],
+    gifs: [],
+  },
   mapa: {
     titulo: 'El mapa',
     lineas: [
