@@ -13,6 +13,8 @@ const paramentoEvidenceDir=`${root}/evidence/paramento-20261007`
 const paramentoEvidenceFiles=new Set(['index.html','revision.json',...['P09','H01','W02'].flatMap(id=>['foto','before','after'].map(state=>`${id}-${state}.jpg`))])
 const paramentoRound2Dir=`${root}/evidence/paramento-ronda2-20261008`
 const paramentoRound2Files=new Set(['index.html','revision.json',...['H01-torre','H02','H03','W02'].flatMap(id=>['foto','before','after'].map(state=>`${id}-${state}.jpg`)),'H04-foto.jpg','H04-after.jpg','Patios-before.jpg','Patios-after.jpg'])
+const c08EvidenceDir=`${root}/evidence/c08-punto1-20261008`
+const c08EvidenceFiles=new Set(['index.html','registro.json','antes.jpg','referencia.jpg','despues.jpg'])
 const approved=new Set(['amalaya-observations.json','amalaya-routes.json','cerro-elevation.json','osm-context.json','osm-plaza-hidalgo.json','sector-survey.json'])
 const roundProgressFiles=new Set(['20261006-01-cierre.png','20261006-01-cierre.json','02-inicio-ronda.png','02-avance-calzada.png','02-record-calzada.json','03-inicio-ronda.png','03-avance-banqueta-a.png','03-record-banqueta-a.json','20261006-01-antes.png','20261006-01-planta.png','20261006-01-record.json']);
 function historicalOwner(building,cameraId){const progress=building.visualProgress?.cameraId===cameraId?building.visualProgress:building.visualProgress?.history?.find(p=>p.cameraId===cameraId);assert(progress,'Missing preserved progress checkpoint '+building.id+' '+cameraId);const previous=building.action1PreviousState;return {...building,tasks:{...building.tasks,...(previous?{plan:previous.state}:{})},issues:{...building.issues,...(previous?.issue?{plan:previous.issue}:{})},visualProgress:progress};}
@@ -30,7 +32,11 @@ async function check(dir){
   for(const item of await readdir(dir,{withFileTypes:true})){
     const path=`${dir}/${item.name}`
     assert(!item.isSymbolicLink(),`No se permiten enlaces: ${path}`)
-    if(item.isDirectory()){const allowed=(dir===root&&['cuadras','calco','ajuste-visual'].includes(item.name))||['data','visor','assets','fonts','evidence'].includes(item.name)||(dir===`${root}/evidence`&&(['paramento-20261007','paramento-ronda2-20261008','OB-01','OB-02','ISC-58','EB-SW','EB-NW','EB-NE','EB-SE','CH-YG-BBVA','CH-GA-OXXO','CH-YG-BIB','SER-BLEY','SER-HSBC','OB-21','SER-SANT','PL-GA'].includes(item.name)||/^[ABCD][123]-\d{2}$/.test(item.name)));assert(allowed,`Carpeta inesperada: ${path}`);await check(path);continue}
+    if(item.isDirectory()){const allowed=(dir===root&&['cuadras','calco','ajuste-visual'].includes(item.name))||['data','visor','assets','fonts','evidence'].includes(item.name)||(dir===`${root}/evidence`&&(['c08-punto1-20261008','paramento-20261007','paramento-ronda2-20261008','OB-01','OB-02','ISC-58','EB-SW','EB-NW','EB-NE','EB-SE','CH-YG-BBVA','CH-GA-OXXO','CH-YG-BIB','SER-BLEY','SER-HSBC','OB-21','SER-SANT','PL-GA'].includes(item.name)||/^[ABCD][123]-\d{2}$/.test(item.name)));assert(allowed,`Carpeta inesperada: ${path}`);await check(path);continue}
+    if(dir===c08EvidenceDir){
+      assert(c08EvidenceFiles.has(item.name),'Evidencia de C08 no revisada: '+path)
+      if(item.name==='index.html')assert(!/<script|<iframe|\bon[a-z]+\s*=|(?:src|href)=[\"']https?:/i.test(await readFile(path,'utf8')),'Comparación de cuadra estática y autónoma')
+    }
     if(dir===paramentoEvidenceDir||dir===paramentoRound2Dir){
       assert((dir===paramentoRound2Dir?paramentoRound2Files:paramentoEvidenceFiles).has(item.name),'Evidencia de paramento no revisada: '+path)
       if(item.name==='index.html'){const html=await readFile(path,'utf8');assert(!/<script|<iframe|\bon[a-z]+\s*=|(?:src|href)=[\"']https?:/i.test(html),'La comparación debe ser estática y autónoma')}
