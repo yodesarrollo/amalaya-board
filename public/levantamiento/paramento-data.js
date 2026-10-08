@@ -2,7 +2,7 @@
 // Shared frontage constrained by P08/P09 Street View rays and checked against the aerial roof edge.
 // P08: heading 65 / FOV 90, blue-red x=705, red-yellow x=753 (1363px viewport).
 // P09: heading 355 / FOV 80, corresponding x=475 and x=1232. Approximate camera model.
-export const PARAMENTO_VERSION='paramento-obregon-hidalgo-20261007';
+export const PARAMENTO_VERSION='paramento-obregon-hidalgo-ronda2-20261008';
 export const frontZ=x=>5.901-(x-85.258)*.133417;
 const pt=x=>[x,frontZ(x)];
 export const FRONT_BUILDINGS=[
@@ -55,4 +55,45 @@ export const JOIN_REVIEWS=[
  {id:'C2-04',vertices:[{index:2,point:[1.5995,24.632]}],reason:'P05-P06: encuentro del frente gris con el local blanco.'},
  {id:'C2-06',vertices:[{index:0,point:[1.5995,24.632]},{index:1,point:[21.544,22.551]}],reason:'P05-P07: conservar la continuidad entre frentes, sin vacíos arbitrarios.'},
  {id:'C2-07',vertices:[{index:0,point:[21.544,22.551]}],reason:'P06-P07: encuentro compartido de las fachadas contiguas.'}
+];
+
+// Round 2: only Hidalgo/Obregon. Pixel controls are approximate, not surveying.
+// H01 south: white E/W=493/685 px, blue E/W=685/914 px, heading170 FOV90.
+// H03: same fronts from pano GHjVsKhk1o70QiqooiuTMw, heading220 FOV60.
+// The two views distinguish small street-front buildings from the larger old roof envelopes.
+const whiteEast=[-227.4,50.8],whiteWest=[-231.5,51.5],blueEast=[-231.7,50.2],blueWest=[-236.9,52.3];
+const splitFront=[-168.3,43.613],splitBack=[-165.95,55.637];
+export const ROUND2_BUILDINGS=[
+ {id:'B1-08',part:'hidalgo-portones',owner:'Planta física · B1-08',replace:'Planta física · B1-08',height:4.2,color:'#d9d4c6',
+  points:[[-241.8,26],[-231.2,23.9],[-233.5,12.5],[-244.1,14.6]],
+  facades:[{edge:0,plain:true,bands:[{y:4.12,h:.16,d:.28,color:'#ae4743'}],bays:[
+   {x:4.05,w:2.55,h:3.32,b:0,rect:true,noBars:true,fillColor:'#969b98',frameColor:'#b94441',shutter:true},
+   {x:7.05,w:2.55,h:3.32,b:0,rect:true,noBars:true,fillColor:'#969b98',frameColor:'#b94441',shutter:true},
+   {x:1.05,w:.72,h:1.55,b:0,rect:true,frameColor:'#b94441'},
+   {x:2.05,w:.6,h:.73,b:.7,rect:true,frameColor:'#b94441'},
+   {x:9.15,w:.6,h:.73,b:.7,rect:true,frameColor:'#b94441'},
+   {x:10.1,w:.66,h:1.55,b:0,rect:true,frameColor:'#b94441'}]}],evidence:['H01-norte-2023-12']},
+ {id:'B1-09',part:'hidalgo-torre',owner:'Planta física · B1-09',replace:'Planta física · B1-09',height:22,color:'#c9c7b8',
+  // The former narrow tower was too far behind the low garage. Refit to its visible front,
+  // keeping the tower behind the portones; plan and height remain visual estimates.
+  points:[[-245.3,17.6],[-231.3,14.8],[-234.7,-2.1],[-248.7,.7]],
+  facades:[{edge:0,plain:true,bays:[7.6,10.3,13,15.7,18.4].map(b=>({x:7.1,w:10.2,h:1.75,b,rect:true,noBars:true,fillColor:'#333b3a'})),
+   fins:Array.from({length:9},(_,i)=>({x:2+i*1.275,b:6.8,h:14.1,w:.085,d:.38,color:'#aa604e'})),
+   bands:[7.6,10.3,13,15.7,18.4].flatMap(y=>[-.62,-.15,1.94].map(dy=>({x:7.1,w:10.5,y:y+dy,h:.11,d:.38,color:'#b9b59d'})))}],evidence:['H01-norte-2023-12','H01-torre-pitch25','H04-norte-2023-12']},
+ {id:'C1-08',part:'hidalgo-local-azul',owner:'Planta física · C1-08',replace:'Planta física · C1-08',height:3.8,color:'#2e68b1',
+  points:[blueEast,blueWest,[-235.9,59.1],[-230.8,58.2]],
+  facades:[{edge:0,plain:true,bays:[{x:.92,w:1.03,h:2.72,b:.18,rect:true,noBars:true,door:true},{x:3.68,w:2.38,h:1.4,b:1.1,rect:true,noBars:true,frameColor:'#c5b493'}],
+   bands:[{y:.38,h:.58,d:.1,color:'#b29375'},{y:1.08,x:3.68,w:2.65,h:.13,d:.35,color:'#cfba96'}],canopy:{y:3.18,depth:1.05,color:'#99564d'}}],evidence:['H01-sur-2023-12','H03-sur-2023-12']},
+ {id:'C1-09',part:'hidalgo-local-blanco',owner:'Planta física · C1-09',replace:'Planta física · C1-09',height:3.3,color:'#dedbd0',
+  points:[whiteEast,whiteWest,[-230.4,59.4],[-226.1,58.6]],
+  facades:[{edge:0,plain:true,bays:[{x:1,w:.82,h:1.32,b:1.03,rect:true},{x:3.06,w:.82,h:1.32,b:1.03,rect:true}]}],
+  lowWalls:[{a:whiteWest,b:blueEast,height:1.65,color:'#dedbd0'}],evidence:['H01-sur-2023-12','H03-sur-2023-12']},
+ {id:'C1-02',part:'obregon-dos-alturas',owner:'Planta física · C1-02',replace:'Planta física · C1-02',height:7.2,color:'#b8ae9b',
+  points:[[-157.233,42.314],[-174.961,44.395],[-172.615,57.397],[-154.886,52.716]],
+  sections:[
+   {part:'oeste-dos-niveles',height:7.2,color:'#666a68',points:[splitFront,[-174.961,44.395],[-172.615,57.397],splitBack],
+    facades:[{edge:0,plain:true,bays:[... [1.2,3.34,5.5].map(x=>({x,w:1.65,h:2.68,b:.04,rect:true,noBars:true,frameColor:'#96968a'})),{x:3.35,w:5.55,h:1.65,b:4.45,rect:true,noBars:true,fillColor:'#596467',frameColor:'#adb0a9'}],
+     fins:[1.5,2.42,3.35,4.28,5.2].map(x=>({x,b:4.45,h:1.65,w:.045,d:.04,color:'#bcc0b9'})),bands:[{y:3.15,h:.12,d:.17,color:'#535852'}]}]},
+   {part:'este-un-nivel',height:4.3,color:'#b9aa94',points:[[-157.233,42.314],splitFront,splitBack,[-154.886,52.716]],facades:[]}
+  ],evidence:['W02-sur-2023-12','W01-oeste-2025-03']}
 ];

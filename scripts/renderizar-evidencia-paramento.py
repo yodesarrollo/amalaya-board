@@ -16,12 +16,13 @@ def clip(poly):
         if ina:out.append(a)
         if ina!=inb:out.append(a+(.15-a[2])/(b[2]-a[2])*(b-a))
     return out
-def render(name,lat,lon,heading,fov):
-    camera=np.array([(lon+110.9547151)*97200,2.5,(29.076115-lat)*110950])
-    h=math.radians(heading);forward=np.array([math.sin(h),0,-math.cos(h)])
-    right=np.array([math.cos(h),0,math.sin(h)]);up=np.array([0,1,0])
+def render(name,lat,lon,heading,fov,pitch=0,eye=2.5):
+    camera=np.array([(lon+110.9547151)*97200,eye,(29.076115-lat)*110950])
+    h=math.radians(heading);p=math.radians(pitch);forward=np.array([math.sin(h)*math.cos(p),math.sin(p),-math.cos(h)*math.cos(p)])
+    right=np.array([math.cos(h),0,math.sin(h)]);up=np.cross(right,forward)
     basis=np.stack([right,up,forward],axis=1);f=W/(2*math.tan(math.radians(fov)/2))
     pixels=np.zeros((H,W,3),dtype=np.uint8);pixels[:H//2]=[189,213,225];pixels[H//2:]=[186,180,164]
+    if pitch < -60:pixels[:]=[186,180,164]
     depth=np.full((H,W),np.inf)
     for row in data['triangles']:
         verts=np.array(row[:9]).reshape(3,3)
@@ -51,4 +52,6 @@ def render(name,lat,lon,heading,fov):
             sub[mask]=z[mask];pixels[y0:y1+1,x0:x1+1][mask]=color
     Image.fromarray(pixels).save(OUT/f'{name}-3d.jpg',quality=94)
     print(name,camera.tolist(),flush=True)
-for args in [('P08',29.0759921,-110.9540252,350,90),('P09',29.075998,-110.9538125,355,80),('P10',29.0760107,-110.9536147,355,90),('H01',29.075781,-110.957122,350,90),('W02',29.07583,-110.9565574,170,90)]:render(*args)
+cameras=[('P08',29.0759921,-110.9540252,350,90),('P09',29.075998,-110.9538125,355,80),('P10',29.0760107,-110.9536147,355,90),('H01',29.075781,-110.957122,350,90),('W02',29.07583,-110.9565574,170,90)]
+if len(sys.argv)>3:cameras=json.load(open(sys.argv[3]))
+for args in cameras:render(*args)

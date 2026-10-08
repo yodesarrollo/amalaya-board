@@ -1,7 +1,7 @@
 {
   "version": "ground-reference-20261007",
   "previousWorldSha256": "b589e6acf74ad7ebc55658df314d14b3ee6ecd7527e5261db0ae427cd8134386",
-  "worldSha256": "2a999fff3f739e07abaf1f51e53f6dabc96fc65a50d92f678cd8d4cadd06d0c9",
+  "worldSha256": "84e9382b2622c5538d2f9872f47b23d0802527d8b62a1ca7522200efbeb71fd3",
   "reference": "ground-reference.json",
   "source": "Esri World Imagery — same tile provider as the main board",
   "scope": "All public-ground generators in the assembled board model; historic hypotheses retained in source, not drawn as surveyed boundaries",
