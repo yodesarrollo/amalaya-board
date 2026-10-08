@@ -1,3 +1,4 @@
+import {BLOCK_SECTIONS} from './seguimiento3d-secciones.js'
 // A sheet sector is not a physical block. Only explicit memberships enter this index.
 export const BLOCK_TASKS = new Set(['plan', 'street', 'sidewalkA', 'sidewalkB', 'corners', 'qa'])
 export function aggregateState(states) {
@@ -20,7 +21,9 @@ export function blockIndex(data, registry) {
     })
     const states = Object.fromEntries(Object.keys(data.taskDefinitions).map(task => {
       // Existing building approvals never certify the perimeter or all of a block.
-      const explicit = def.visualFit?.taskStates?.[task] || def.taskStates?.[task]
+      const section=BLOCK_SECTIONS.find(s=>s.tasks.includes(task)),review=def.sectionReviews?.[section?.id]
+      const reviewed=review?.state==='done'&&review.record&&review.evidence?.before&&review.evidence?.after&&review.evidence?.reference
+      const explicit = reviewed?'done':def.visualFit?.taskStates?.[task] || def.taskStates?.[task]
       const aggregate = aggregateState(members.map(b => b.states[task] || 'pending'))
       return [task, explicit || (BLOCK_TASKS.has(task) ? 'pending' : aggregate === 'done' && !def.membershipComplete ? 'partial' : aggregate)]
     }))

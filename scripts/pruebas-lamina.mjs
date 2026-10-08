@@ -25,7 +25,7 @@ for(const p of SHEET_PLANS){
  assert(p.points.flat().every(Number.isFinite));assert(area(p.points)>1);for(const h of p.holes||[])assert(h.every(pt=>inside(pt,p.points)),p.id+' patio contenido');
  const mesh=world.getObjectByName('Planta física · '+p.id);assert(mesh&&(mesh.isMesh||mesh.userData.frontageId)&&!mesh.isInstancedMesh);
  const expectedHeight=mesh.userData.heightMeters||p.heightMeters;
- if(mesh.userData.frontageId){const roof=mesh.children.find(m=>m.name.startsWith('Paramento · cubierta'));assert(roof?.isMesh,'La sustitución mantiene cubierta física');const box=new R.Box3().setFromObject(mesh);assert(Math.abs(box.min.y-.05)<.001);assert(Math.abs(box.max.y-(expectedHeight+.05))<.001);continue;}
+ if(mesh.userData.frontageId){let roofArea=0;mesh.traverse(m=>{if(!m.isMesh)return;const p=m.geometry.attributes.position,ix=m.geometry.index?.array||Array.from({length:p.count},(_,i)=>i);for(let i=0;i<ix.length;i+=3){const v=[0,1,2].map(j=>new R.Vector3().fromBufferAttribute(p,ix[i+j]).applyMatrix4(m.matrixWorld));if(v.every(q=>Math.abs(q.y-(expectedHeight+.05))<.001))roofArea+=area(v.map(q=>[q.x,q.z]));}});assert(roofArea>1,'La sustitución mantiene triángulos de cubierta física, incluso agrupados por material');const box=new R.Box3().setFromObject(mesh);assert(Math.abs(box.min.y-.05)<.001);assert(Math.abs(box.max.y-(expectedHeight+.05))<.001);continue;}
  // ExtrudeGeometry uses group 0 for caps and group 1 for vertical walls.
  // A one-entry material array silently drops every wall at render time.
  for(const group of mesh.geometry.groups){const material=Array.isArray(mesh.material)?mesh.material[group.materialIndex]:mesh.material;assert(material?.visible!==false&&material,p.id+' material visible en cada cara (incluidos muros)');}

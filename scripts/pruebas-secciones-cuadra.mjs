@@ -11,7 +11,7 @@ assert.deepEqual(BLOCK_SECTIONS.flatMap(s=>s.tasks),Object.keys(data.taskDefinit
 assert.equal(sections.length,5)
 assert.equal(sections[0].state,'done')
 assert.equal(sections[1].state,'done','Punto 2 tiene su propio cierre por cuadra')
-assert(sections.slice(2).every(s=>s.state==='pending'),'Cerrar suelo no aprueba volúmenes, fachadas ni equipamiento')
+assert(sections.every(s=>s.state==='done'),'C08 tiene evidencia propia de las cinco etapas')
 assert.equal(sections[1].inherited,3,'El avance previo de banquetas y esquinas se conserva')
 assert(blockSections({...b,sectionReviews:{}}).every(s=>s.state==='pending'),'Un agregado sin evidencia no certifica una sección')
 const r=await read('public/'+b.sectionReviews['1'].record)
@@ -37,7 +37,7 @@ assert.equal(r2.checks.roadSidewalkOverlap,0)
 assert.equal(r2.checks.buildingSidewalkOverlap,0)
 assert.equal(r2.checks.parkingSamplesFree,true)
 assert.equal(r2.next.section,3)
-assert.equal(registry.workPlan.nextSection,3)
+assert.equal(registry.workPlan.nextSection,1);assert.equal(registry.workPlan.activeBlock,'C20');assert.equal(registry.workPlan.activeNumber,9)
 const evidenceBase='public/levantamiento/evidence/c08-punto2-20261008/'
 for(const [file,hash] of Object.entries(r2.files))assert.equal(createHash('sha256').update(await readFile(evidenceBase+file)).digest('hex'),hash)
 for(const id of ['C08','C08-peatonal','C08-rampa']){
@@ -49,4 +49,17 @@ assert.equal(ramp.elevations.length,ramp.triangles.length/2)
 assert(Math.max(...ramp.elevations)-Math.min(...ramp.elevations)>.20,'La rampa tiene pendiente, no una losa plana')
 assert(VISUAL_FIT.surfaces.find(s=>s.id==='C08').curbEdges.length>4,'Guarniciones con retorno y sin barrera oriental')
 assert.equal(r2.streetView.length,7)
-console.log('C08: puntos 1 y 2 con evidencia íntegra; 139 edificios y colisiones conservados; punto 3 pendiente.')
+const currentWorld=createHash('sha256').update(await readFile('public/levantamiento/world.js')).digest('hex');
+for(const [id,num,first] of [['C08',1,3],['C30',8,1]]){
+ const block=index.blocks.find(b=>b.id===id);assert.equal(block.displayNumber,num);assert(blockSections(block).every(s=>s.state==='done'));
+ for(let n=first;n<=5;n++){
+  const record=await read('public/'+block.sectionReviews[n].record);assert.equal(record.section,n);assert.deepEqual(record.members,block.buildingIds);assert.equal(record.worldSha256,currentWorld);assert.equal(record.approval,'visual-approximate');
+  const base='public/'+block.sectionReviews[n].record.replace(/[^/]+$/,'');
+  for(const [file,hash] of Object.entries(record.files))assert.equal(createHash('sha256').update(await readFile(base+file)).digest('hex'),hash);
+  assert.equal(record.checks.streetIntrusions,0);assert.equal(record.checks.streetColliderIntrusions,0);assert.equal(record.checks.sheetFootprintsUnchanged,true);
+ }
+}
+assert.deepEqual(registry.workPlan.sequence.map(s=>s.block),['C08','C30','C20','C21','C22','C23','C28','C29']);
+assert.equal(new Set(registry.blocks.map(b=>b.displayNumber)).size,33);
+assert(index.blocks.filter(b=>!['C08','C30'].includes(b.id)).every(b=>blockSections(b).every(s=>s.state==='pending')),'Ninguna cuadra futura se cierra por herencia');
+console.log('Cuadras 1 y 8: cinco etapas con evidencia íntegra; historial preservado; siguiente cuadra 9.');

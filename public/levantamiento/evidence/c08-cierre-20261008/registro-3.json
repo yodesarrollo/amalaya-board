@@ -1,0 +1,363 @@
+{
+  "schemaVersion": 1,
+  "scope": "block",
+  "block": "C08",
+  "number": 1,
+  "status": "done",
+  "approval": "visual-approximate",
+  "reviewedAt": "2026-10-08",
+  "members": [
+    "OB-01",
+    "OB-02",
+    "C2-01",
+    "C2-02",
+    "C2-03"
+  ],
+  "baselineCommit": "bcda8473763c2e1c11902c6325ebebe9f4899d12",
+  "baselineNote": "C08: modelo publicado anterior. C30: captura de trabajo previa a su tanda, con los cambios de C08 ya aplicados.",
+  "beforeWorldSha256": "95ed55a7d790cc2f09b3586d1940c10a5906365a4800627f135d806d0cfd801b",
+  "worldSha256": "af0cc341f7715a173ce3cac6ea31e5a961e9c92c4ee103ff1fd82d9a2b37b34b",
+  "streetView": [
+    {
+      "id": "Oeste",
+      "url": "https://www.google.com/maps/@29.0754319,-110.9557143,207a,90y,35h,75t/data=!3m7!1e1!3m5!1sxS_VZi4fAsXhqjIOPLuFhQ!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D15%26panoid%3DxS_VZi4fAsXhqjIOPLuFhQ%26yaw%3D35!7i16384!8i8192?entry=ttu&g_ep=EgoyMDI2MTAwNS4wIKXMDSoASAFQAw%3D%3D",
+      "date": "dic 2023",
+      "file": "levantamiento/evidence/c08-cierre-20261008/c08-oeste-foto.jpg",
+      "sha256": "250f1fbab0ff492b51771d6735ce51469ccf55ce8ba48d57075b603deb2d3e8b"
+    },
+    {
+      "id": "SW",
+      "url": "https://www.google.com/maps/@29.0752321,-110.9556696,207a,90y,40h,70t/data=!3m7!1e1!3m5!1sSv0V687GKU56Ki6n8totCA!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D20%26panoid%3DSv0V687GKU56Ki6n8totCA%26yaw%3D40!7i16384!8i8192?entry=ttu&g_ep=EgoyMDI2MTAwNS4wIKXMDSoASAFQAw%3D%3D",
+      "date": "dic 2023",
+      "file": "levantamiento/evidence/c08-cierre-20261008/c08-sw-foto.jpg",
+      "sha256": "49d9478693d85289b7ba422a91d3d2b7d04f964234d4497af1d1821fd1dbcc07"
+    },
+    {
+      "id": "SE",
+      "url": "https://www.google.com/maps/@29.0754386,-110.954791,208a,90y,320h,70t/data=!3m7!1e1!3m5!1s10vVb5duCSp4TEIFsAcdgg!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D20%26panoid%3D10vVb5duCSp4TEIFsAcdgg%26yaw%3D320!7i16384!8i8192?entry=ttu&g_ep=EgoyMDI2MTAwNS4wIKXMDSoASAFQAw%3D%3D",
+      "date": "dic 2023",
+      "file": "levantamiento/evidence/c08-cierre-20261008/c08-se-foto.jpg",
+      "sha256": "3043da70089e35707cb9690021cac76099ddcf0fdf43693ee66d0e592b73b8de"
+    },
+    {
+      "id": "NE",
+      "url": "https://www.google.com/maps/@29.0759358,-110.9548665,208a,90y,225h,70t/data=!3m7!1e1!3m5!1sGwyn9QzT3ifpdHZeNySlvg!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D20%26panoid%3DGwyn9QzT3ifpdHZeNySlvg%26yaw%3D225!7i16384!8i8192?entry=ttu&g_ep=EgoyMDI2MTAwNS4wIKXMDSoASAFQAw%3D%3D",
+      "date": "dic 2023",
+      "file": "levantamiento/evidence/c08-cierre-20261008/c08-ne-foto.jpg",
+      "sha256": "332dd5da61ab1c62b9e33c5c52d89d48f3c97568dddb4e1bcf1cf9153012e3e6"
+    },
+    {
+      "id": "NW",
+      "url": "https://www.google.com/maps/@29.0758589,-110.955756,207a,90y,130h,70t/data=!3m7!1e1!3m5!1sOC_KyexKn9EWvhCZIG4Q6g!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D20%26panoid%3DOC_KyexKn9EWvhCZIG4Q6g%26yaw%3D130!7i16384!8i8192?entry=ttu&g_ep=EgoyMDI2MTAwNS4wIKXMDSoASAFQAw%3D%3D",
+      "date": "dic 2023",
+      "file": "levantamiento/evidence/c08-cierre-20261008/c08-nw-foto.jpg",
+      "sha256": "8f7249ad1fbb6ee60b042b94620adeff967354b37d2428e8ae81c6ad7dd43693"
+    },
+    {
+      "id": "Acceso",
+      "url": "https://www.google.com/maps/@29.0757903,-110.9556967,207a,90y,85h,70t/data=!3m7!1e1!3m5!1sfe1J6q7yVXC1imWB94LHJQ!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D20%26panoid%3Dfe1J6q7yVXC1imWB94LHJQ%26yaw%3D85!7i16384!8i8192?entry=ttu&g_ep=EgoyMDI2MTAwNS4wIKXMDSoASAFQAw%3D%3D",
+      "date": "dic 2023",
+      "file": "levantamiento/evidence/c08-cierre-20261008/c08-acceso-foto.jpg",
+      "sha256": "c0766feb77abbc19a5006fc476612e94485601d21e3d54267a9d4d57af82512b"
+    },
+    {
+      "id": "Porton",
+      "url": "https://www.google.com/maps/@29.0756221,-110.9557269,207a,90y,85h,70t/data=!3m7!1e1!3m5!1slJtTRT9fOJzDC6qk-Mgbgg!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D20%26panoid%3DlJtTRT9fOJzDC6qk-Mgbgg%26yaw%3D85!7i16384!8i8192?entry=ttu&g_ep=EgoyMDI2MTAwNS4wIKXMDSoASAFQAw%3D%3D",
+      "date": "dic 2023",
+      "file": "levantamiento/evidence/c08-cierre-20261008/c08-porton-foto.jpg",
+      "sha256": "3003650ffd70b08e7ff85128e505686aec2994418ac159774122b5707fc56401"
+    },
+    {
+      "id": "sur-cerramiento",
+      "file": "levantamiento/evidence/c08-cierre-20261008/c08-sur-cerramiento-20261008.jpg",
+      "date": "dic 2023",
+      "url": "https://www.google.com/maps/@29.0753114,-110.9553652,207a,75y,70t/data=!3m7!1e1!3m5!1s1vmV-2oXawxaQFLv2LCpuw!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D20%26panoid%3D1vmV-2oXawxaQFLv2LCpuw%26yaw%3D0!7i16384!8i8192?entry=ttu",
+      "sha256": "05f17403250af224ff9fb944afb020364d80b66eb11b3be13165fda7127dbc82"
+    }
+  ],
+  "checks": {
+    "sheetFootprintsUnchanged": true,
+    "retainedSheetFootprints": 127,
+    "streetIntrusions": 0,
+    "streetColliderIntrusions": 0,
+    "finiteGeometry": true,
+    "groundSurfacesRetained": true,
+    "pairedCameras": true,
+    "reviewedMembers": [
+      "OB-01",
+      "OB-02",
+      "C2-01",
+      "C2-02",
+      "C2-03"
+    ],
+    "parkingAndGatewayFree": true,
+    "parkingProbes": [
+      [
+        -77,
+        57
+      ],
+      [
+        -74,
+        74
+      ],
+      [
+        -51,
+        72
+      ],
+      [
+        -62.94,
+        85
+      ]
+    ]
+  },
+  "buildings": [
+    {
+      "id": "OB-01",
+      "missing": true
+    },
+    {
+      "id": "OB-02",
+      "owner": "OB-02 · fachada gris con arcos y rejas · exterior interpretado",
+      "min": [
+        -54.013004350108545,
+        0.1499999940395355,
+        27.9369536409702
+      ],
+      "max": [
+        -36.19358190328058,
+        5.510000000745058,
+        39.03429200666349
+      ],
+      "height": 5.360000006705523
+    },
+    {
+      "id": "C2-01",
+      "owner": "Planta física · C2-01",
+      "min": [
+        -36.89909362792969,
+        0.05000000074505806,
+        27.08715057373047
+      ],
+      "max": [
+        -18.463626861572266,
+        4.650000095367432,
+        41.013999938964844
+      ],
+      "height": 4.600000094622374
+    },
+    {
+      "id": "C2-02",
+      "owner": "Planta física · C2-02",
+      "min": [
+        -32.683998107910156,
+        0.04999995231628418,
+        44.88145065307617
+      ],
+      "max": [
+        -11.941800117492676,
+        5.350000381469727,
+        71.32389068603516
+      ],
+      "height": 5.300000429153442
+    },
+    {
+      "id": "C2-03",
+      "owner": "Planta física · C2-03",
+      "min": [
+        -59.95505905151367,
+        0.05000000074505806,
+        37.0877685546875
+      ],
+      "max": [
+        -33.62327575683594,
+        4.25,
+        56.0742073059082
+      ],
+      "height": 4.199999999254942
+    }
+  ],
+  "modelDetails": {
+    "block": "C08",
+    "buildings": [
+      {
+        "id": "C2-01",
+        "height": 4.6,
+        "uncertainty": 0.8,
+        "sources": [
+          "c08-ne-foto.jpg"
+        ],
+        "note": "Un nivel, paños grises y marcos pardos; norte y corredor oriental visibles. Reversos sin vanos supuestos."
+      },
+      {
+        "id": "C2-02",
+        "height": 5.3,
+        "uncertainty": 1,
+        "sources": [
+          "c08-se-foto.jpg",
+          "c08-ne-foto.jpg"
+        ],
+        "note": "Frente azul claro en Sufragio y retorno al corredor; puerta central de madera y ventanas enrejadas. Proporciones aproximadas."
+      },
+      {
+        "id": "C2-03",
+        "height": 4.2,
+        "uncertainty": 1.2,
+        "sources": [
+          "c08-porton-foto.jpg",
+          "c08-oeste-foto.jpg"
+        ],
+        "note": "Cuerpo interior de servicio detrás del estacionamiento. Cubierta y paños neutros; sin reproducir ventanas ocultas ni asignarle la fachada de la esquina suroeste."
+      }
+    ],
+    "equipment": [
+      {
+        "id": "barandal-rampa",
+        "a": [
+          -19.92845660071013,
+          28.142855935557773
+        ],
+        "b": [
+          -18.36365660071013,
+          35.00805593555777
+        ],
+        "source": "c08-ne-foto.jpg",
+        "lowerEndOpen": true
+      },
+      {
+        "id": "C08-cerramiento-oeste",
+        "sources": [
+          "c08-nw-foto.jpg",
+          "c08-porton-foto.jpg"
+        ]
+      },
+      {
+        "id": "sur",
+        "sources": [
+          "c08-sw-foto.jpg",
+          "c08-sur-cerramiento-20261008.jpg"
+        ],
+        "openings": 1
+      },
+      {
+        "id": "oeste-sur",
+        "sources": [
+          "c08-oeste-foto.jpg"
+        ],
+        "openings": 0
+      }
+    ],
+    "batches": [
+      {
+        "id": "C2-01",
+        "before": 92,
+        "after": 8
+      },
+      {
+        "id": "C2-02",
+        "before": 131,
+        "after": 11
+      },
+      {
+        "id": "C2-03",
+        "before": 10,
+        "after": 2
+      },
+      {
+        "id": "equipamiento",
+        "before": 316,
+        "after": 14
+      }
+    ]
+  },
+  "files": {
+    "referencia-aerea.jpg": "6676646c99f548a378c06a8e53b7173696f79c9f5e614d8e9e34dfa6c382371a",
+    "antes-cuadra.jpg": "feedfd6f0ab4932d284c84dda1c9598cad781a6b7b0e185d7b093e0388a09500",
+    "c08-sur-cerramiento-20261008.jpg": "05f17403250af224ff9fb944afb020364d80b66eb11b3be13165fda7127dbc82",
+    "despues-sur.jpg": "95f51c58e24b3a405eea22d838ad153b3dad1f379b3d79c05e38740a83c3dee1",
+    "c08-nw-foto.jpg": "8f7249ad1fbb6ee60b042b94620adeff967354b37d2428e8ae81c6ad7dd43693",
+    "c08-se-foto.jpg": "3043da70089e35707cb9690021cac76099ddcf0fdf43693ee66d0e592b73b8de",
+    "c08-sw-foto.jpg": "49d9478693d85289b7ba422a91d3d2b7d04f964234d4497af1d1821fd1dbcc07",
+    "c08-ne-foto.jpg": "332dd5da61ab1c62b9e33c5c52d89d48f3c97568dddb4e1bcf1cf9153012e3e6",
+    "c08-porton-foto.jpg": "3003650ffd70b08e7ff85128e505686aec2994418ac159774122b5707fc56401",
+    "antes-SE.jpg": "c3f53f5a99f3131d3af00ed7c407ed7266c9123bbaf2d2d7748f6d3625ce7881",
+    "antes-sur.jpg": "4a196c458ccc506e36e3cf66580b7f7e296086504ffb12b2a63465fbdbc0c34d",
+    "antes-NE.jpg": "b78cc816724920126e4c9c7040bcf0884eccc4fc2936bebd3cf58be6aa599545",
+    "despues-SE.jpg": "5fb53b4d47e80c4f4f079c2434297339b32fdba53eb986d99fb566fe5e3a2037",
+    "despues-NE.jpg": "d672a850abcf39a5e308660206987fbe6f4da3a999fda7ed5a27bc5d1e7cbc0f",
+    "despues-cuadra.jpg": "6ef556de09812bc9a8af83a0c41b8e18b793105680161791b8ebf77cab299df6",
+    "c08-oeste-foto.jpg": "250f1fbab0ff492b51771d6735ce51469ccf55ce8ba48d57075b603deb2d3e8b",
+    "c08-acceso-foto.jpg": "c0766feb77abbc19a5006fc476612e94485601d21e3d54267a9d4d57af82512b"
+  },
+  "limits": [
+    "Cierre visual aproximado, no levantamiento topográfico ni restitución métrica.",
+    "Street View: diciembre de 2023; no acredita cambios posteriores.",
+    "Cotas y ejes de vanos se interpretan visualmente. Cámaras de contraste aproximadas, no calibración fotogramétrica.",
+    "Fachadas ocultas, interiores, anuncios, instalaciones y detalles ornamentales finos no se restituyen.",
+    "Los nombres heredados del inventario no certifican ocupante, propiedad ni uso actual."
+  ],
+  "cameras": [
+    [
+      "cuadra",
+      29.0752,
+      -110.95445,
+      310,
+      65,
+      -48,
+      90
+    ],
+    [
+      "NE",
+      29.0759358,
+      -110.9548665,
+      225,
+      111.04,
+      -20,
+      2.5
+    ],
+    [
+      "SE",
+      29.0754386,
+      -110.954791,
+      320,
+      111.04,
+      -20,
+      2.5
+    ],
+    [
+      "sur",
+      29.0753114,
+      -110.9553652,
+      0,
+      96.35,
+      -20,
+      2.5
+    ]
+  ],
+  "next": {
+    "block": "C30",
+    "number": 8,
+    "section": 1
+  },
+  "building": null,
+  "section": 3,
+  "tasks": [
+    "identity",
+    "volume"
+  ],
+  "summary": "Se conservan las cinco plantas. C2-01 mantiene un nivel; C2-02 y el cuerpo interior C2-03 reciben alturas visuales diferenciadas. OB-01 y OB-02 conservan su reconstrucción anterior.",
+  "images": {
+    "before": {
+      "url": "levantamiento/evidence/c08-cierre-20261008/antes-cuadra.jpg",
+      "sha256": "feedfd6f0ab4932d284c84dda1c9598cad781a6b7b0e185d7b093e0388a09500"
+    },
+    "reference": {
+      "url": "levantamiento/evidence/c08-cierre-20261008/referencia-aerea.jpg",
+      "sha256": "6676646c99f548a378c06a8e53b7173696f79c9f5e614d8e9e34dfa6c382371a"
+    },
+    "after": {
+      "url": "levantamiento/evidence/c08-cierre-20261008/despues-cuadra.jpg",
+      "sha256": "6ef556de09812bc9a8af83a0c41b8e18b793105680161791b8ebf77cab299df6"
+    }
+  },
+  "batchRecord": "levantamiento/evidence/c08-cierre-20261008/registro.json"
+}

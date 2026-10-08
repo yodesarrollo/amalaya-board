@@ -1,0 +1,408 @@
+{
+  "schemaVersion": 1,
+  "scope": "block",
+  "block": "C30",
+  "number": 8,
+  "status": "done",
+  "approval": "visual-approximate",
+  "reviewedAt": "2026-10-08",
+  "members": [
+    "ISC-58",
+    "CH-YG-BIB",
+    "CH-YG-BBVA",
+    "A2-05",
+    "A2-06",
+    "B2-01",
+    "B2-02"
+  ],
+  "baselineCommit": "bcda8473763c2e1c11902c6325ebebe9f4899d12",
+  "baselineNote": "C08: modelo publicado anterior. C30: captura de trabajo previa a su tanda, con los cambios de C08 ya aplicados.",
+  "beforeWorldSha256": "657b48cff96816a9221cef5d474d45c43da2e3a01a66618587ebcfa357a91b8d",
+  "worldSha256": "af0cc341f7715a173ce3cac6ea31e5a961e9c92c4ee103ff1fd82d9a2b37b34b",
+  "streetView": [
+    {
+      "id": "serdan-centro",
+      "file": "levantamiento/evidence/c30-cierre-20261008/c30-serdan-centro-20261008.jpg",
+      "url": "https://www.google.com/maps/@29.07709,-110.9545626,208a,90y,180h,119.32t/data=!3m7!1e1!3m5!1s4mBuuOlk5H2iTI0wntImOQ!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D-29.323200016235674%26panoid%3D4mBuuOlk5H2iTI0wntImOQ%26yaw%3D180!7i16384!8i8192?entry=ttu&g_ep=EgoyMDI2MTAwNS4wIKXMDSoASAFQAw%3D%3D",
+      "date": "dic 2023",
+      "sha256": "58116bff4a9378413cf6cc16e9d4ec7b864f0ea02bebee6d2f121c3da4db5e48"
+    },
+    {
+      "id": "garmendia-medio",
+      "file": "levantamiento/evidence/c30-cierre-20261008/c30-garmendia-medio-20261008.jpg",
+      "url": "https://www.google.com/maps/@29.0766636,-110.9541441,208a,90y,270h,90t/data=!3m7!1e1!3m5!1sIo_SPFymRXGaYeN3dHbdlg!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D0%26panoid%3DIo_SPFymRXGaYeN3dHbdlg%26yaw%3D270!7i16384!8i8192?entry=ttu&g_ep=EgoyMDI2MTAwNS4wIKXMDSoASAFQAw%3D%3D",
+      "date": "dic 2023",
+      "sha256": "7d7542d959dc355fce11f8e38dc7a3097eb89f679339e416797048e156a2cd22"
+    },
+    {
+      "id": "garmendia-norte",
+      "file": "levantamiento/evidence/c30-cierre-20261008/c30-garmendia-norte-20261008.jpg",
+      "url": "https://www.google.com/maps/@29.076931,-110.9542097,208a,90y,270h,90t/data=!3m7!1e1!3m5!1sMRytS_xq5CoXCsOT5hEbPw!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D0%26panoid%3DMRytS_xq5CoXCsOT5hEbPw%26yaw%3D270!7i16384!8i8192?entry=ttu&g_ep=EgoyMDI2MTAwNS4wIKXMDSoASAFQAw%3D%3D",
+      "date": "dic 2023",
+      "sha256": "4cbe0b75ad1f0a4bd8f7be5f0ec7aecec3dd78d6a1d911fd042ecafe8d2a0083"
+    },
+    {
+      "id": "garmendia-sur",
+      "file": "levantamiento/evidence/c30-cierre-20261008/c30-garmendia-sur-20261008.jpg",
+      "url": "https://www.google.com/maps/@29.0764803,-110.9540915,208a,90y,270h,90t/data=!3m7!1e1!3m5!1scjTHuFQqgbHlqPDeYtUDaQ!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D0%26panoid%3DcjTHuFQqgbHlqPDeYtUDaQ%26yaw%3D270!7i16384!8i8192?entry=ttu&g_ep=EgoyMDI2MTAwNS4wIKXMDSoASAFQAw%3D%3D",
+      "date": "dic 2023",
+      "sha256": "b8535391190084801b403f515277266528d0c2f46764236e20040fbae68831ac"
+    },
+    {
+      "id": "yanez-banco",
+      "file": "levantamiento/evidence/c30-cierre-20261008/c30-yanez-banco-20261008.jpg",
+      "url": "https://www.google.com/maps/@29.0769064,-110.955589,208a,90y,100h,90t/data=!3m7!1e1!3m5!1s1cLfSvu8Ppmo1u0-_TjagA!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D0%26panoid%3D1cLfSvu8Ppmo1u0-_TjagA%26yaw%3D100!7i16384!8i8192?entry=ttu&g_ep=EgoyMDI2MTAwNS4wIKXMDSoASAFQAw%3D%3D",
+      "date": "dic 2023",
+      "sha256": "68373d85a8265abfac2a98c3c0f051fb3331ec979ff0fb2f8f9a69bd51b80f94"
+    },
+    {
+      "id": "serdan-biblioteca",
+      "file": "levantamiento/evidence/c30-cierre-20261008/c30-serdan-biblioteca-20261008.jpg",
+      "url": "https://www.google.com/maps/@29.0770509,-110.9547656,208a,90y,180h,100t/data=!3m7!1e1!3m5!1sJvxmhVlSwGsc_l41xIPcQA!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D-10%26panoid%3DJvxmhVlSwGsc_l41xIPcQA%26yaw%3D180!7i16384!8i8192?entry=ttu&g_ep=EgoyMDI2MTAwNS4wIKXMDSoASAFQAw%3D%3D",
+      "date": "dic 2023",
+      "sha256": "96acc58bb301a02cc6eaad543ddb96bb100eeaf556decba0beefd8be9035c41d"
+    },
+    {
+      "id": "obregon-isc",
+      "file": "levantamiento/evidence/c30-cierre-20261008/c30-obregon-isc-20261008.jpg",
+      "url": "https://www.google.com/maps/@29.0759358,-110.9548665,208a,90y,350h,90t/data=!3m7!1e1!3m5!1sGwyn9QzT3ifpdHZeNySlvg!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D0%26panoid%3DGwyn9QzT3ifpdHZeNySlvg%26yaw%3D350!7i16384!8i8192?entry=ttu&g_ep=EgoyMDI2MTAwNS4wIKXMDSoASAFQAw%3D%3D",
+      "date": "dic 2023",
+      "sha256": "0a50236a7c6d2923e6cc87637b0bcf907c691eb19fc02e45c507eb35198589a8"
+    }
+  ],
+  "checks": {
+    "sheetFootprintsUnchanged": true,
+    "retainedSheetFootprints": 127,
+    "streetIntrusions": 0,
+    "streetColliderIntrusions": 0,
+    "finiteGeometry": true,
+    "groundSurfacesRetained": true,
+    "pairedCameras": true,
+    "reviewedMembers": [
+      "ISC-58",
+      "CH-YG-BIB",
+      "CH-YG-BBVA",
+      "A2-05",
+      "A2-06",
+      "B2-01",
+      "B2-02"
+    ]
+  },
+  "buildings": [
+    {
+      "id": "ISC-58",
+      "owner": "Huella del Instituto Sonorense de Cultura · OpenStreetMap",
+      "min": [
+        -62.810638427734375,
+        0.08000000000000002,
+        -61.59944152832031
+      ],
+      "max": [
+        34.54487991333008,
+        7.529999809265137,
+        -0.16642500460147858
+      ],
+      "height": 7.449999809265137
+    },
+    {
+      "id": "CH-YG-BIB",
+      "owner": "Huella OSM 1533334038 · altura provisional, sin fachada restituida",
+      "min": [
+        -3.718933343887329,
+        0.05000000074505806,
+        -99.23689270019531
+      ],
+      "max": [
+        17.534879684448242,
+        9.65000057220459,
+        -59.31386947631836
+      ],
+      "height": 9.600000571459532
+    },
+    {
+      "id": "CH-YG-BBVA",
+      "owner": "Huella OSM 499759374 · altura provisional, sin fachada restituida",
+      "min": [
+        -75.4952392578125,
+        0.05000000074505806,
+        -90.00263977050781
+      ],
+      "max": [
+        -26.895240783691406,
+        6.25,
+        -43.492401123046875
+      ],
+      "height": 6.199999999254942
+    },
+    {
+      "id": "A2-05",
+      "owner": "Planta física · A2-05",
+      "min": [
+        12.637186050415039,
+        0.05000000074505806,
+        -103.34751892089844
+      ],
+      "max": [
+        30.66900062561035,
+        7.25,
+        -67.81700134277344
+      ],
+      "height": 7.199999999254942
+    },
+    {
+      "id": "A2-06",
+      "owner": "Planta física · A2-06",
+      "min": [
+        26.757999420166016,
+        0.05000000074505806,
+        -106.05064392089844
+      ],
+      "max": [
+        46.351261138916016,
+        6.25,
+        -67.81700134277344
+      ],
+      "height": 6.199999999254942
+    },
+    {
+      "id": "B2-01",
+      "owner": "Planta física · B2-01",
+      "min": [
+        36.14400100708008,
+        0.04999997466802597,
+        -65.58409118652344
+      ],
+      "max": [
+        53.32982635498047,
+        4.650000095367432,
+        -49.93199920654297
+      ],
+      "height": 4.600000120699406
+    },
+    {
+      "id": "B2-02",
+      "owner": "Planta física · B2-02",
+      "min": [
+        25.688770294189453,
+        0.04999997466802597,
+        -48.891998291015625
+      ],
+      "max": [
+        55.001705169677734,
+        3.6500000953674316,
+        -39.27000045776367
+      ],
+      "height": 3.6000001206994057
+    }
+  ],
+  "modelDetails": {
+    "block": "C30",
+    "buildings": [
+      {
+        "id": "CH-YG-BIB",
+        "height": 9.6,
+        "uncertainty": 1.5,
+        "sources": [
+          "c30-serdan-biblioteca-20261008.jpg",
+          "c30-serdan-centro-20261008.jpg"
+        ],
+        "note": "Estructura abierta visible en la foto de 2023. Se conserva el código histórico; el nombre Biblioteca no atribuye ese uso al frente fotografiado."
+      },
+      {
+        "id": "CH-YG-BBVA",
+        "height": 6.2,
+        "uncertainty": 1.2,
+        "sources": [
+          "c30-yanez-banco-20261008.jpg",
+          "c30-serdan-biblioteca-20261008.jpg"
+        ],
+        "note": "Volumen y huella conservados; frente blanco, acceso retranqueado y paños verticales. No se reproducen marcas ni anuncios como texturas."
+      },
+      {
+        "id": "A2-05",
+        "height": 7.2,
+        "uncertainty": 1.2,
+        "sources": [
+          "c30-serdan-centro-20261008.jpg"
+        ],
+        "note": "Frente de dos niveles con paño superior ciego y acceso amplio; cota visual aproximada."
+      },
+      {
+        "id": "A2-06",
+        "height": 6.2,
+        "uncertainty": 1.2,
+        "sources": [
+          "c30-garmendia-norte-20261008.jpg",
+          "c30-serdan-centro-20261008.jpg"
+        ],
+        "note": "Paño lateral pardo continuo observado en Garmendia; sin añadir ventanas donde la fotografía muestra muro."
+      },
+      {
+        "id": "B2-01",
+        "height": 4.6,
+        "uncertainty": 0.9,
+        "sources": [
+          "c30-garmendia-medio-20261008.jpg"
+        ],
+        "note": "Cuerpo turquesa bajo, cortina, ventana y puerta diferenciadas; pequeño vano alto observado."
+      },
+      {
+        "id": "B2-02",
+        "height": 3.6,
+        "uncertainty": 0.8,
+        "sources": [
+          "c30-garmendia-sur-20261008.jpg"
+        ],
+        "note": "Frente azul bajo con dos ventanas y puerta; no se reproduce el mural ni se llena el patio lateral."
+      },
+      {
+        "id": "ISC-58",
+        "sources": [
+          "c30-obregon-isc-20261008.jpg"
+        ],
+        "frontHeights": [
+          10.2,
+          7.45,
+          7.45
+        ],
+        "note": "Tres frentes distintos: poniente de dos niveles, pórtico central de cinco arcos y paño rojo oriental. El ala este previa se conserva."
+      }
+    ],
+    "equipment": [
+      {
+        "id": "acceso-banco",
+        "steps": 3,
+        "source": "c30-yanez-banco-20261008.jpg",
+        "dimensions": "visual estimate"
+      }
+    ],
+    "batches": [
+      {
+        "id": "CH-YG-BIB",
+        "before": 8,
+        "after": 3
+      },
+      {
+        "id": "CH-YG-BBVA",
+        "before": 15,
+        "after": 5
+      },
+      {
+        "id": "A2-05",
+        "before": 9,
+        "after": 5
+      },
+      {
+        "id": "A2-06",
+        "before": 10,
+        "after": 3
+      },
+      {
+        "id": "B2-01",
+        "before": 61,
+        "after": 12
+      },
+      {
+        "id": "B2-02",
+        "before": 38,
+        "after": 7
+      },
+      {
+        "id": "equipamiento",
+        "before": 279,
+        "after": 11
+      }
+    ]
+  },
+  "files": {
+    "referencia-aerea.jpg": "bbdf4055b6db082487fdbe3f289278f432cd71c97bac943ea2b3cc1cf8c27330",
+    "antes-cuadra.jpg": "5e70b664d83ab195777bb09a90cf084b1d033365a03636b940003233dfa9b93d",
+    "c30-garmendia-sur-20261008.jpg": "b8535391190084801b403f515277266528d0c2f46764236e20040fbae68831ac",
+    "c30-obregon-isc-20261008.jpg": "0a50236a7c6d2923e6cc87637b0bcf907c691eb19fc02e45c507eb35198589a8",
+    "c30-yanez-banco-20261008.jpg": "68373d85a8265abfac2a98c3c0f051fb3331ec979ff0fb2f8f9a69bd51b80f94",
+    "c30-serdan-biblioteca-20261008.jpg": "96acc58bb301a02cc6eaad543ddb96bb100eeaf556decba0beefd8be9035c41d",
+    "despues-serdan.jpg": "3c759d92824a2f6f1f853595c6c18c3cf54a81fa5f7a5979dec220a992941f82",
+    "despues-garmendia.jpg": "6caac127e6849ca428938bb2d4f2bc67d372ac08a6e32cddfbc294f3718bb290",
+    "antes-serdan.jpg": "ce0a79df43355fbe43644cfb5549b5a2a0b401d8ead114b856f05df9041e242a",
+    "antes-obregon.jpg": "80d1796de9c658858200e0a404f9805e49a09cfa49ff96fba87f743efca1b7c5",
+    "antes-garmendia.jpg": "d8b3efb796437163e9d7c8608b8c6b38cc3792e7c46e268ea57544723b3c4a3d",
+    "c30-garmendia-medio-20261008.jpg": "7d7542d959dc355fce11f8e38dc7a3097eb89f679339e416797048e156a2cd22",
+    "despues-obregon.jpg": "27cf6e56b652a76f7e9974f29a82f17c2c7183dc764c982bc771480921866ff1",
+    "despues-cuadra.jpg": "5a4a4b2d7a82e01dc589eb72b699e0d7e45a15dd89cc82e812605884607db01b",
+    "c30-garmendia-norte-20261008.jpg": "4cbe0b75ad1f0a4bd8f7be5f0ec7aecec3dd78d6a1d911fd042ecafe8d2a0083",
+    "c30-serdan-centro-20261008.jpg": "58116bff4a9378413cf6cc16e9d4ec7b864f0ea02bebee6d2f121c3da4db5e48"
+  },
+  "limits": [
+    "Cierre visual aproximado, no levantamiento topográfico ni restitución métrica.",
+    "Street View: diciembre de 2023; no acredita cambios posteriores.",
+    "Cotas y ejes de vanos se interpretan visualmente. Cámaras de contraste aproximadas, no calibración fotogramétrica.",
+    "Fachadas ocultas, interiores, anuncios, instalaciones y detalles ornamentales finos no se restituyen.",
+    "Los nombres heredados del inventario no certifican ocupante, propiedad ni uso actual."
+  ],
+  "cameras": [
+    [
+      "cuadra",
+      29.0757,
+      -110.95345,
+      315,
+      65,
+      -47,
+      125
+    ],
+    [
+      "obregon",
+      29.0759358,
+      -110.9548665,
+      350,
+      111,
+      0,
+      2.5
+    ],
+    [
+      "serdan",
+      29.07709,
+      -110.9545626,
+      180,
+      111,
+      29.3232,
+      2.5
+    ],
+    [
+      "garmendia",
+      29.0766636,
+      -110.9541441,
+      270,
+      111,
+      0,
+      2.5
+    ]
+  ],
+  "next": {
+    "block": "C20",
+    "number": 9,
+    "section": 1
+  },
+  "building": null,
+  "section": 2,
+  "tasks": [
+    "sidewalkA",
+    "sidewalkB",
+    "corners"
+  ],
+  "summary": "Se revisan los encuentros visibles de Serdán, Garmendia, Yáñez y Obregón. Se conserva el suelo anterior; no se añaden banquetas ni rebajes donde no existe respaldo visual.",
+  "images": {
+    "before": {
+      "url": "levantamiento/evidence/c30-cierre-20261008/antes-cuadra.jpg",
+      "sha256": "5e70b664d83ab195777bb09a90cf084b1d033365a03636b940003233dfa9b93d"
+    },
+    "reference": {
+      "url": "levantamiento/evidence/c30-cierre-20261008/referencia-aerea.jpg",
+      "sha256": "bbdf4055b6db082487fdbe3f289278f432cd71c97bac943ea2b3cc1cf8c27330"
+    },
+    "after": {
+      "url": "levantamiento/evidence/c30-cierre-20261008/despues-cuadra.jpg",
+      "sha256": "5a4a4b2d7a82e01dc589eb72b699e0d7e45a15dd89cc82e812605884607db01b"
+    }
+  },
+  "batchRecord": "levantamiento/evidence/c30-cierre-20261008/registro.json"
+}

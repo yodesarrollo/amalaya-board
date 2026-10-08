@@ -28,7 +28,7 @@ def render(name,lat,lon,heading,fov,pitch=0,eye=2.5):
     depth=np.full((H,W),np.inf)
     for row in data['triangles']:
         verts=np.array(row[:9]).reshape(3,3)
-        if np.linalg.norm(verts.mean(0)[[0,2]]-camera[[0,2]])>170:continue
+        if np.linalg.norm(verts.mean(0)[[0,2]]-camera[[0,2]])>350:continue
         v=(verts-camera)@basis
         if v[:,2].max()<.15:continue
         poly=clip(list(v))

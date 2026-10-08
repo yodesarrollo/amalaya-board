@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
-import {readFile} from 'node:fs/promises';
+import {readFile,writeFile} from 'node:fs/promises';
+import {createHash} from 'node:crypto';
 import {removeSheetHook,refineSheet,sheetHash,SHEET_BASE} from './preparar-lamina.mjs';
 import {SHEET_PLANS} from '../public/levantamiento/sheet-plan-data.js';
 import {applySheetPlan} from '../public/levantamiento/sheet-plan-refinement.js';
@@ -49,5 +50,9 @@ const extraStations=[{lat:29.075781,lng:-110.957122},{lat:29.0757998,lng:-110.95
 for(const p of [...points,...extraStations]){const v=new R.Vector3((p.lng+110.9547151)*97200,1.6,(29.076115-p.lat)*110950);assert(!colliders.some(c=>c.containsPoint(v)),'The inspected street station stays walkable: '+p.id);}
 world.traverse(m=>{if(!m.isMesh||!m.geometry?.attributes.position)return;assert(Array.from(m.geometry.attributes.position.array).every(Number.isFinite),'No broken/non-finite model faces');});
 const roads=VISUAL_FIT.surfaces.filter(s=>s.kind==='road').map(s=>({triangles:Array.from({length:s.triangles.length/6},(_,i)=>Array.from({length:3},(_,j)=>s.triangles.slice(i*6+j*2,i*6+j*2+2)))}));
-console.log('Paramento:',verifyRoadClearance(world,colliders,R,roads));
+const clearance=verifyRoadClearance(world,colliders,R,roads);
+for(const [x,z] of [[-77,57],[-74,74],[-51,72],[-62.94,85]])assert(!colliders.some(c=>c.containsPoint(new R.Vector3(x,1.6,z))),'C08 parking and entrance remain open');
+const report={worldSha256:createHash('sha256').update(source).digest('hex'),finiteGeometry:true,parkingAndGatewayFree:true,streetStations:points.length+extraStations.length,...clearance};
+if(process.argv[2])await writeFile(process.argv[2],JSON.stringify(report,null,2)+'\n');
+console.log('Paramento:',report);
 console.log(JSON.stringify({frontages:result.frontages.length,heightReviews:result.heightReviews.length,courtyards:result.courtyards.length,joins:result.joins.length,streetStations:points.length+extraStations.length}));
