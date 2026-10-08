@@ -15,7 +15,7 @@ for(const [kind,path] of [['world','world.js'],['visor','visor/assets/index-RoPA
 let sheetForExport=applySheetPlan;
 if(process.argv.includes('--baseline')){
  const strip=s=>s.replace(/^import[^\n]*\n/gm,'').replace(/\nimport[^\n]*\n/gm,'');
- const code=strip(await readFile(root+'/sheet-plan-refinement.js','utf8')).replace('export function applySheetPlan','function applySheetPlan').replace('applyVisualFit(world, colliders, R);','');
+ const code=strip(await readFile(root+'/sheet-plan-refinement.js','utf8')).replace('export function applySheetPlan','function applySheetPlan').replace('applyVisualFit(world, colliders, R);','').replace('applyParamento(world, colliders, R);','');
  const {footprintColliderCells}=await import('../public/levantamiento/isc58-refinement.js');
  const {applyStreetBatch50}=await import('../public/levantamiento/street-batch50-refinement.js');
  const {applyGroundReference}=await import('../public/levantamiento/ground-reference-refinement.js');
@@ -31,7 +31,8 @@ const tracking=JSON.parse(await readFile('public/seguimiento-3d.json'));
 const targets=tracking.blocks.flatMap(b=>b.buildings).filter(b=>!b.publicSpace&&!SHEET_PLANS.some(p=>p.id===b.id));
 const entries=[];world.updateMatrixWorld(true);
 for(const b of targets){
- const prefixes=b.id==='OB-01'?['OB-01 · cubierta']:b.id==='EB-SW'?['La Barra Hidalgo','Club Obregón']:[b.modelReference.owner];
+ const prefixes=b.id==='OB-01'?['OB-01 · cubierta']:b.id==='EB-SW'?['La Barra Hidalgo','Club Obregón',...(world.userData.paramento?['El Colegio · remate','El Colegio · acceso']:[])]:[b.modelReference.owner];
+ if(b.id==='ISC-58'&&world.userData.paramento)prefixes.push('ISC-58 · ala este del frente');
  const owners=prefixes.map(prefix=>{let found;world.traverse(o=>{if(!found&&o.name.startsWith(prefix))found=o});return found}).filter(Boolean);
  if(owners.length!==prefixes.length)throw Error('Ambiguous model owners '+b.id);
  const triangles=[],parts=[];

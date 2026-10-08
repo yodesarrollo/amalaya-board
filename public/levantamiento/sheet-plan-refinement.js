@@ -1,4 +1,5 @@
 import { applyVisualFit } from './ajuste-visual-refinement.js?v=378fd2d3003f';
+import { applyParamento } from './paramento-refinement.js?v=ca16020929f1';
 import { applyGroundReference } from './ground-reference-refinement.js?v=46dad659fe0a';
 import { applyStreetBatch50 } from './street-batch50-refinement.js?v=9300d223f642';
 import { SHEET_PLANS } from './sheet-plan-data.js?v=9ae568697dde';
@@ -73,5 +74,6 @@ export function applySheetPlan(world, colliders, R) {
   applyStreetBatch50(world);
   applyGroundReference(world, colliders, R);
   applyVisualFit(world, colliders, R);
+  applyParamento(world, colliders, R);
   world.userData.sheetPlan=result; return result;
 }

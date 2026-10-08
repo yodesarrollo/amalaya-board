@@ -1,0 +1,56 @@
+{
+  "date": "2026-10-07",
+  "version": "paramento-obregon-hidalgo-20261007",
+  "baselineCommit": "b54fbc0ec6dbc222b317f8d49df9033a9865c430",
+  "method": "Street View both fronts + aerial roof/yard controls; visual approximate reconstruction, no field measurements",
+  "coverage": "Obregon within existing board; eastern end of Hidalgo adjacent to Rosales, not the whole boulevard",
+  "stations": [
+    {
+      "id": "P09",
+      "pano": "lKsrvsfkAzaSnxEQUwrxfA",
+      "lat": 29.075998,
+      "lon": -110.9538125,
+      "heading": 355,
+      "approximateFov": 80,
+      "photoDate": "2023-12"
+    },
+    {
+      "id": "H01",
+      "pano": "By9Hdn14C8gv6qrbKjKEVQ",
+      "lat": 29.075781,
+      "lon": -110.957122,
+      "heading": 350,
+      "approximateFov": 90,
+      "photoDate": "2023-12"
+    },
+    {
+      "id": "W02",
+      "pano": "I5bbtMy7Upn4ssy1j_ax_Q",
+      "lat": 29.07583,
+      "lon": -110.9565574,
+      "heading": 170,
+      "approximateFov": 90,
+      "photoDate": "2023-12"
+    },
+    {
+      "id": "W01",
+      "pano": "3cKCXJj4nSnQBj052piFlQ",
+      "lat": 29.0757712,
+      "lon": -110.9562256,
+      "headings": [
+        80,
+        260,
+        355
+      ],
+      "photoDate": "2025-03"
+    }
+  ],
+  "additionalStations": "public/recorrido/rutas.json route R-001, all 14 panoramas reviewed on both sides",
+  "aerial": "public/levantamiento/ground-reference.jpg; acquisition date not verified",
+  "uncertainties": [
+    "Unmeasured heights and back depths",
+    "Street View captures predate revision date",
+    "Not all facade ornament or lightweight structures reproduced",
+    "No cadastral or survey accuracy certification"
+  ]
+}
