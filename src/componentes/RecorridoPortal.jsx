@@ -1,3 +1,4 @@
+import {webglDisponible} from '../webgl-disponible.js'
 import {VERSION_CAMINATA} from '../caminata-version.js'
 import {usarEstadoCaminata} from '../usarEstadoCaminata.js'
 import { useEffect, useRef, useState } from 'react'
@@ -26,7 +27,9 @@ export default function RecorridoPortal({ board = false, espacios = EMPTY_SPACES
   const root = useRef(), container = useRef(), map = useRef(), layer = useRef(), frame = useRef(), latest = useRef()
   const [walkAttempt,setWalkAttempt] = useState(0)
   const walkState = usarEstadoCaminata(frame,mode === 'walk',walkAttempt)
-  const lightView = mode === 'walk' && walkState === 'light'
+  const [mapFallback,setMapFallback] = useState(INITIAL.get('ligero')==='1')
+  const mapLight = mode==='map' && mapFallback
+  const lightView = mapLight || (mode === 'walk' && walkState === 'light')
   const route = routes.find(r => r.id === routeId) || routes[0]
   const obs = observations.find(p => p.id === observationId)
   const point = obs || route?.puntos[index]
@@ -50,19 +53,24 @@ export default function RecorridoPortal({ board = false, espacios = EMPTY_SPACES
     setMapReady(false)
     setError('')
     setStatus('Preparando el territorio…')
-    if(mode!=='map')return
-    let alive = true, world, api, m
+    if(mode!=='map'||mapFallback)return
+    let alive = true, failed = false, world, api, m
+    let timer
+    const fallback=()=>{if(!alive||failed)return;failed=true;clearTimeout(timer);abort.abort();setMapReady(false);setError('');setMapFallback(true)}
     const abort = new AbortController()
     const base = `${BASE}levantamiento/`
+    timer=setTimeout(fallback,15000)
     ;(async()=>{
       try {
+        if(!webglDisponible()){fallback();return}
         api = await import(/* @vite-ignore */ `${base}world.js?v=${VERSION_LEVANTAMIENTO}`)
         world = await api.createWorld(base, abort.signal)
-        if (!alive) { api.disposeWorld(world); return }
+        if (!alive || failed) { api.disposeWorld(world);world=null;return }
         // Bundled OSM vector context keeps the map usable without a remote tile service.
         const response = await fetch(`${base}data/osm-context.json`,{signal:abort.signal})
         if(!response.ok) throw Error('No se pudo abrir el mapa de contexto.')
         const osm = await response.json()
+        if(!alive||failed)return
         const features = osm.elements.filter(e=>e.tags?.highway && e.geometry?.length>1).map(e=>({type:'Feature',properties:{name:e.tags.name||''},geometry:{type:'LineString',coordinates:e.geometry.map(p=>[p.lon,p.lat])}}))
         m = new maplibregl.Map({container:container.current,center:HOME,zoom:17.5,pitch:58,bearing:-24,maxZoom:21,minZoom:15,
           ...(cameraState.current || {}),
@@ -76,18 +84,20 @@ export default function RecorridoPortal({ board = false, espacios = EMPTY_SPACES
         m.addControl(new maplibregl.NavigationControl({visualizePitch:true}),'bottom-right')
         m.addControl(new maplibregl.ScaleControl(),'bottom-left')
         m.on('style.load',()=>{
-          if(!alive)return
+          if(!alive||failed)return
+          try {
           const l = api.createMapLayer({mercator:maplibregl.MercatorCoordinate,world})
           layer.current=l; m.addLayer(l); l.setScenario(latest.current.version)
           const active=latest.current.routes.find(r=>r.puntos.some(p=>p.id===latest.current.point?.id));
           if(active){m.addSource('route',{type:'geojson',data:{type:'Feature',geometry:{type:'LineString',coordinates:active.puntos.map(p=>[p.lng,p.lat])}}});m.addLayer({id:'route-line',type:'line',source:'route',paint:{'line-color':'#b36735','line-width':4,'line-opacity':.8}})}
-          setMapReady(true);setStatus('Levantamiento conectado')
+          clearTimeout(timer);setMapReady(true);setStatus('Levantamiento conectado')
+          } catch { fallback() }
         })
-        m.on('error',()=>{ if(alive)setError('No se pudo dibujar el mapa. Puedes abrir los puntos 360.') })
-      } catch(e) { if(alive && e.name!=='AbortError'){ setError('El modelo no pudo cargarse en este dispositivo. Los recorridos 360 siguen accesibles.');setStatus('3D no disponible') } }
+        m.on('error',fallback);m.on('webglcontextlost',fallback)
+      } catch(e) { if(alive && e.name!=='AbortError')fallback() }
     })()
-    return ()=>{ alive=false;abort.abort();if(m){cameraState.current={center:m.getCenter().toArray(),zoom:m.getZoom(),pitch:m.getPitch(),bearing:m.getBearing()};m.remove()}else if(world)api.disposeWorld(world);map.current=null;layer.current=null }
-  },[mode])
+    return ()=>{ alive=false;clearTimeout(timer);abort.abort();if(m){cameraState.current={center:m.getCenter().toArray(),zoom:m.getZoom(),pitch:m.getPitch(),bearing:m.getBearing()};m.remove()}else if(world)api.disposeWorld(world);map.current=null;layer.current=null }
+  },[mode,mapFallback])
   useEffect(()=>{
     if(!mapReady || !map.current || !board || !showSpaces)return
     const m=map.current
@@ -133,14 +143,14 @@ export default function RecorridoPortal({ board = false, espacios = EMPTY_SPACES
   useEffect(()=>{if(!notice)return;const timer=setTimeout(()=>setNotice(''),5000);return()=>clearTimeout(timer)},[notice])
   const share=async()=>{
     const url=new URL(`${BASE}explorar.html`,location.origin)
-    url.search=new URLSearchParams({ruta:route?.id||'R-001',punto:point?.id||'',vista:mode,version,...(obs?{observacion:obs.id}:{})})
+    url.search=new URLSearchParams({ruta:route?.id||'R-001',punto:point?.id||'',vista:mode,version,...(mapLight?{ligero:'1'}:{}),...(obs?{observacion:obs.id}:{})})
     try{await navigator.clipboard.writeText(url.href);setNotice('Enlace copiado. Abre este mismo punto y versión.')}catch{setNotice(`Enlace para compartir: ${url.href}`)}
   }
   useEffect(()=>{layer.current?.setScenario(version);map.current?.triggerRepaint();send(true)},[version])
   useEffect(()=>{
     const listener=e=>{
       if(e.origin!==location.origin || e.source!==frame.current?.contentWindow)return
-      if(e.data?.type==='amalaya:scene-ready'){setFrameReady(true);send();return}
+      if(e.data?.type==='amalaya:scene-ready'||e.data?.tipo==='amalaya:360-ready'){setFrameReady(true);send();return}
       const p=mensajeRecorrido(e.data,latest.current.routes)
       if(p){setRouteId(p.routeId);setIndex(p.index);setObservationId('');if(e.data.punto===latest.current.point?.id)send()}
     }
@@ -169,19 +179,21 @@ export default function RecorridoPortal({ board = false, espacios = EMPTY_SPACES
     {board && <div className="tour-workspace"><label className="tour-space-search">Buscar un espacio<input value={spaceSearch} onChange={e=>setSpaceSearch(e.target.value)} placeholder="Nombre del espacio…"/></label><div className="tour-space-results" aria-label="Espacios del tablero">{espacios.filter(s=>s.nombre.toLocaleLowerCase('es').includes(spaceSearch.toLocaleLowerCase('es'))).map(s=><button key={s.id} aria-pressed={s.id===espacioAbierto} onClick={()=>onAbrirEspacio?.(s.id)}>{s.nombre}</button>)}{espacios.length===0 && <p>No hay espacios disponibles para esta sesión.</p>}</div><div className="tour-layer-toggles"><label><input type="checkbox" checked={showSpaces} onChange={e=>setShowSpaces(e.target.checked)}/>Espacios</label><label><input type="checkbox" checked={showRoutes} onChange={e=>setShowRoutes(e.target.checked)}/>Puntos de recorrido</label><button className="tour-outline" onClick={share}>Compartir recorrido público <Share2 size={14}/></button></div></div>}
     <div className="tour-toolbar">
       <div className="tour-segment" hidden={lightView} aria-label="Versión del entorno">{[['actual','Actual'],['amalaya','Amalaya']].map(([v,t])=><button key={v} aria-pressed={version===v} onClick={()=>setVersion(v)}>{t}</button>)}</div>
+      {mapLight && <span className="tour-version">Vista ligera activa · gira y acerca el modelo</span>}
       <span className="tour-version" hidden={lightView}>{version==='actual'?'Levantamiento en desarrollo':'Ensayo conceptual · no aprobado'}</span>
       <div className="tour-segment tour-modes" aria-label="Forma de recorrer">{[['map','Territorio',Map],['walk','Caminar 3D',PersonStanding],['360','Puntos 360',Scan]].map(([v,t,Icon])=><button key={v} aria-pressed={mode===v} onClick={()=>{if(v==='walk'&&mode===v&&['failed','light','timeout'].includes(walkState))setWalkAttempt(n=>n+1);setMode(v);if(v!=='map')setShowRoutes(true)}}><Icon size={15}/>{t}</button>)}</div>
     </div>
     <div className="tour-stage">
-      <div ref={container} className="tour-map" style={{visibility:mode==='map'?'visible':'hidden'}}/>
+      <div ref={container} className="tour-map" style={{visibility:mode==='map'&&!mapLight?'visible':'hidden'}}/>
+      {mapLight && <iframe title="Modelo 3D ligero de Amalaya" className="tour-frame" src={`${BASE}modelo-completo.html?embed=1&vista=volumen`} allow="fullscreen"/>}
       {mode==='walk' && <iframe key={walkAttempt} ref={frame} title="Caminar por Amalaya en 3D" className="tour-frame" src={`${BASE}levantamiento/visor/?embed=1&character=sonora&route=R-001&waypoint=05&clean=1&v=${VERSION_CAMINATA}`} allow="fullscreen; pointer-lock"/>}
       {mode==='360' && point && !obs && <iframe ref={frame} title="Puntos 360 del recorrido Amalaya" className="tour-frame" src={urlPanorama(BASE,route,point)} allow="fullscreen" onLoad={()=>{setFrameReady(true);send()}}/>}
       {mode==='360' && obs && <div className="tour-empty"><Scan size={36}/><h2>{obs.id} · {obs.name}</h2><p>Esta observación conserva su ubicación y rumbo. Su referencia se consulta en Google Maps.</p><a href={streetUrl} target="_blank" rel="noreferrer">Abrir referencia 360 <ArrowUpRight size={16}/></a></div>}
-      <div className="tour-stage-top" style={lightView?{left:'auto',right:16}:undefined}><span className="tour-chip"><span className="tour-live"/>{mode==='map'?'Vista de conjunto':mode==='walk'?(lightView?'Vista ligera del conjunto':'A la altura de tus ojos'):'La calle en 360°'}</span><div className="tour-tools">{mode==='map' && <button className="tour-square" aria-label="Volver al punto seleccionado" onClick={()=>map.current?.easeTo({center:point?[point.lng,point.lat]:HOME,zoom:18,pitch:58,bearing:heading,duration:600})}><LocateFixed size={17}/></button>}<button className="tour-square" aria-label="Pantalla completa" onClick={()=>document.fullscreenElement?document.exitFullscreen():(board?root.current.closest('[data-territorio-board]'):root.current).requestFullscreen?.().catch(()=>{})}><Maximize2 size={17}/></button></div></div>
+      <div className="tour-stage-top" style={lightView?{left:'auto',right:16}:undefined}><span className="tour-chip"><span className="tour-live"/>{mapLight?'Vista ligera del conjunto':mode==='map'?'Vista de conjunto':mode==='walk'?(lightView?'Vista ligera del conjunto':'A la altura de tus ojos'):'La calle en 360°'}</span><div className="tour-tools">{mode==='map'&&!mapLight && <button className="tour-square" aria-label="Volver al punto seleccionado" onClick={()=>map.current?.easeTo({center:point?[point.lng,point.lat]:HOME,zoom:18,pitch:58,bearing:heading,duration:600})}><LocateFixed size={17}/></button>}<button className="tour-square" aria-label="Pantalla completa" onClick={()=>document.fullscreenElement?document.exitFullscreen():(board?root.current.closest('[data-territorio-board]'):root.current).requestFullscreen?.().catch(()=>{})}><Maximize2 size={17}/></button></div></div>
       {((mode==='walk' && walkState==='loading') || (mode==='360' && !frameReady)) && !obs && <div className="tour-loading" role="status"><Compass size={32}/><p>{mode==='walk'?'Entrando al modelo 3D…':'Abriendo el panorama…'}</p></div>}
-      {mode==='walk' && walkState==='timeout' && <div className="tour-error" role="alert">El recorrido tardó demasiado. <button onClick={()=>{setMode('map')}}>Volver al territorio</button></div>}
+      {mode==='walk' && walkState==='timeout' && <div className="tour-error" role="alert">El recorrido tardó demasiado. <button onClick={()=>{setMapFallback(true);setMode('map')}}>Abrir vista ligera</button></div>}
       {error && mode!=='360' && <div role="alert" className="tour-error">{error} <button onClick={()=>setMode('360')}>Ver puntos 360</button></div>}
-      {!mapReady && !error && mode==='map' && <div className="tour-loading" role="status"><Compass size={32}/><p>{status}</p></div>}
+      {!mapReady && !mapLight && !error && mode==='map' && <div className="tour-loading" role="status"><Compass size={32}/><p>{status}</p></div>}
       <div className="tour-caption" hidden={mode==='360'||lightView}>{version==='amalaya' ? (mode==='360'?'Los puntos sin render Amalaya conservan la vista actual.':'Propuesta de estudio: dos estancias con sombra en Plaza Hidalgo.') : 'Geometría provisional · escala calibrada en dos tramos.'}</div>
     </div>
     <div className="tour-progress" hidden={lightView} aria-hidden="true"><i style={{width:`${((index+1)/(route?.puntos.length||1))*100}%`}}/></div>
