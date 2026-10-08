@@ -18,7 +18,7 @@ export function RecintosVista({datos,sesion,modo,editarFila,guardados={},reinten
   const editable=modo!=='demo'&&puedeEditarRol(sesion?.rol)
   const planes=validos.map(x=>cambios[x.fila.id]||x.plan)
   const acciones=configNum(mapaConfig(datos?.Config),'acciones_emitidas',0)
-  const total=consolidarRecintos(planes,acciones,escenario)
+  const total=errores.length ? {errores:['Hay borradores ilegibles: no se consolida un total parcial.']} : consolidarRecintos(planes,acciones,escenario)
   const indice=validos.findIndex(x=>x.fila.espacio_id===seleccion)
   const idx=indice<0?0:indice, actual=validos[idx], plan=planes[idx]
   const espacio=datos?.Espacios?.find(e=>e.id===actual?.fila.espacio_id)
