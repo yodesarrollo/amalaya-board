@@ -1,5 +1,7 @@
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
+import {createHash} from 'node:crypto';
+import {VERSION_CAMINATA} from '../src/caminata-version.js';
 import {createCollisionIndex,blocked,safeSpawn,clipCamera,moveSafely,installWalkingNavigation} from '../public/levantamiento/walk-navigation.js';
 import {removeNavigationHook} from './preparar-navegacion.mjs';
 const box=(x,z,w,d,y=6)=>({min:{x,y:0,z},max:{x:x+w,y,z:z+d}});
@@ -49,6 +51,7 @@ console.log(JSON.stringify({points,colliders:colliders.length,adjusted,maxAdjust
 // Loader lifecycle: HTML load/boot isn't readiness; failed contexts never report ready.
 const {runInNewContext}=await import('node:vm');
 const loader=await readFile('public/levantamiento/visor-loader.js','utf8');
+assert.equal(VERSION_CAMINATA,createHash('sha256').update(source+loader).digest('hex').slice(0,12),'The walking iframe cache key must identify its current compiled model and loader');
 function loadFixture(reject=false){
  const make=()=>({style:{},children:[],events:{},setAttribute(){},append(...n){this.children.push(...n)},replaceChildren(){this.children=[]},addEventListener(k,fn){this.events[k]=fn}});
  const canvas=make(),body=make(),listeners={},messages=[],tasks=[];
