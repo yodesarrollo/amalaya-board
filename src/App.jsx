@@ -16,6 +16,7 @@ import { apiCall } from './api.js'
 import { contextoChinche, repintarParaChinche } from './chinche-contexto.js'
 
 import { BIBLIOTECA_3D } from './modelos3d.js'
+const Recintos = lazy(() => import('./componentes/Recintos.jsx'))
 const Biblioteca3D = lazy(() => import('./componentes/Biblioteca3D.jsx'))
 
 // La Chinche de Amalaya (pila propia, public/chinche.js): se carga solo con
@@ -60,7 +61,7 @@ function usarChinche(sesion, modo, seccion) {
 function Principal() {
   const { sesion, datos, modo } = usarDatos()
   const esInversionista = sesion?.rol === 'inversionista'
-  const [seccion, setSeccion] = useState('mapa')
+  const [seccion, setSeccion] = useState(new URLSearchParams(location.search).get('seccion') === 'recintos' ? 'recintos' : 'mapa')
   usarChinche(sesion, modo, seccion)
   const hayFinanzas = Array.isArray(datos?.Finanzas_Lineas)
 
@@ -74,6 +75,7 @@ function Principal() {
 
   const secciones = [
     ['mapa', 'Mapa', MapIcon],
+    ...(Array.isArray(datos?.Conocimientos) ? [['recintos', 'Recintos', ListChecks]] : []),
     ...(BIBLIOTECA_3D ? [['modelos', 'Modelos 3D', Box]] : []),
     ...(hayFinanzas ? [['finanzas', 'Finanzas', BarChart3]] : []),
     ['reporte', 'Reporte', FileText],
@@ -102,6 +104,7 @@ function Principal() {
       <div className="no-imprimir sm:hidden flex justify-end px-3 pt-2 -mb-2"><AyudaPantalla seccion={seccion} /></div>
 
       {seccion === 'mapa' && <Mapa />}
+      {seccion === 'recintos' && <Suspense fallback={<p className="p-4">Cargando recintos…</p>}><Recintos /></Suspense>}
       {seccion === 'modelos' && BIBLIOTECA_3D && <Suspense fallback={<p className="p-4">Cargando biblioteca…</p>}><Biblioteca3D /></Suspense>}
       {seccion === 'finanzas' && <Financiero />}
       {seccion === 'reporte' && <Reporte />}

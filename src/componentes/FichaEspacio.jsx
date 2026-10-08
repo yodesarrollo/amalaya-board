@@ -1,5 +1,6 @@
 import { useState, useRef, lazy, Suspense } from 'react'
 import { X, Upload, FileText, Download, Plus, Check, Share2, ChevronLeft, ChevronRight, History, ArrowRight } from 'lucide-react'
+import { ARTISTAS_SONORA, FUENTE_RECINTO } from '../recintos.js'
 import { usarDatos } from '../datos.jsx'
 import { puedeEditarRol } from '../roles.js'
 import { nombreTipo } from '../tipos.js'
@@ -21,9 +22,11 @@ import { compartirCard } from '../compartir.js'
 
 import { BIBLIOTECA_3D, moduloDeEspacio } from '../modelos3d.js'
 import { MODULOS, zonasDeEspacio } from '../territorio.js'
+const Recintos = lazy(() => import('./Recintos.jsx'))
 const Biblioteca3D = lazy(() => import('./Biblioteca3D.jsx'))
 
 const PESTANAS = [
+  { clave: 'negocio', titulo: 'Negocio', requiere: 'Conocimientos' },
   { clave: 'factores', titulo: 'Factores', requiere: 'Factores' },
   { clave: 'fotos', titulo: 'Fotos', requiere: 'Archivos' },
   { clave: 'documentos', titulo: 'Documentos', requiere: 'Archivos' },
@@ -41,31 +44,8 @@ const PESTANAS = [
 
 // Candidatos iniciales (regional mexicano con raíz sonorense).
 // Es solo el arranque de la lista: se puede escribir cualquier otro.
-export const ARTISTAS_SEMILLA = [
-  'Carin León',
-  'Christian Nodal',
-  'Natanael Cano',
-  'Alfredo Olivas',
-  'Luis R Conriquez',
-  'Grupo Firme',
-  'Banda MS',
-  'Julión Álvarez',
-  'Alfonso Ortiz Tirado (homenaje)',
-]
-
-// Caras recortadas ya empacadas con la careta (fotos libres de
-// Wikimedia Commons; créditos en public/caras/CREDITOS.md). Al
-// elegir uno de estos artistas su cara sale de inmediato; subir
-// una foto propia desde la ficha la reemplaza.
-export const CARAS_SEMILLA = {
-  'Carin León': 'local:carin-leon.jpg',
-  'Christian Nodal': 'local:christian-nodal.jpg',
-  'Natanael Cano': 'local:natanael-cano.jpg',
-  'Alfredo Olivas': 'local:alfredo-olivas.jpg',
-  'Luis R Conriquez': 'local:luis-r-conriquez.jpg',
-  'Grupo Firme': 'local:grupo-firme.jpg',
-  'Julión Álvarez': 'local:julion-alvarez.jpg',
-}
+export const ARTISTAS_SEMILLA = ARTISTAS_SONORA.map(a => a.nombre)
+export const CARAS_SEMILLA = Object.fromEntries(ARTISTAS_SONORA.map(a => [a.nombre, `local:${a.foto}`]))
 
 // La cara vigente de un espacio: la última fila tipo='cara'.
 export function caraDeEspacio(datos, espacioId) {
@@ -88,7 +68,7 @@ export function inicialesDe(nombre) {
 export default function FichaEspacio({ espacio, onCerrar, onAnterior, onSiguiente, posicion }) {
   const { sesion, datos, modo, editarFila } = usarDatos()
   const editable = modo !== 'demo' && puedeEditarRol(sesion?.rol)
-  const [pestana, setPestana] = useState('factores')
+  const [pestana, setPestana] = useState((datos?.Conocimientos || []).some(c => c.espacio_id === espacio.id && c.fuente === FUENTE_RECINTO) ? 'negocio' : 'factores')
 
   // Modelo 3D: el vínculo validado del Sheet manda; si no hay, el de la lámina puesta en su sitio.
   const zonasE = zonasDeEspacio(espacio)
@@ -205,6 +185,7 @@ export default function FichaEspacio({ espacio, onCerrar, onAnterior, onSiguient
         {activa === 'factores' && <Factores espacio={espacio} />}
         {activa === 'fotos' && <Fotos espacio={espacio} editable={editable} />}
         {activa === 'documentos' && <Documentos espacio={espacio} editable={editable} />}
+        {activa === 'negocio' && <Suspense fallback={<p>Cargando negocio…</p>}><Recintos espacioId={espacio.id}/></Suspense>}
         {activa === 'conocimientos' && <Conocimientos espacio={espacio} editable={editable} />}
         {activa === 'tareas' && <Tareas espacio={espacio} editable={editable} />}
         {activa === 'historial' && <Historial espacio={espacio} />}
@@ -364,7 +345,7 @@ function Representante({ espacio, editable }) {
 
   return (
     <div className="tarjeta p-3 mt-3">
-      <div className="text-xs uppercase tracking-wide text-terciario">Representante · música regional</div>
+      <div className="text-xs uppercase tracking-wide text-terciario">Identidad propuesta · música sonorense</div>
       <div className="flex items-center gap-3 mt-2">
         {/* El medallón: cara recortada (con la insignia del tipo de
             espacio encima), o iniciales mientras no hay foto */}
@@ -401,7 +382,7 @@ function Representante({ espacio, editable }) {
             >
               <option value="">— sin representante todavía —</option>
               {opciones.map((n) => <option key={n} value={n}>{n}</option>)}
-              <option value="__otro">Otro artista…</option>
+              <option value="__otro">Otro artista sonorense…</option>
             </select>
           ) : (
             <form
@@ -412,7 +393,7 @@ function Representante({ espacio, editable }) {
                 className="campo !py-2 flex-1"
                 value={nombreOtro}
                 onChange={(e) => setNombreOtro(e.target.value)}
-                placeholder="Nombre del artista…"
+                placeholder="Nombre del artista sonorense…"
                 autoFocus
               />
               <button type="submit" className="boton-primario !px-3 !py-2" disabled={!nombreOtro.trim()} aria-label="Asignar">
@@ -437,7 +418,7 @@ function Representante({ espacio, editable }) {
         </div>
       </div>
       <p className="text-terciario text-[11px] mt-2 leading-snug">
-        La cara recortada del artista se vuelve el ícono de este espacio en el mapa.
+        Referencia creativa propuesta, sin participación ni respaldo confirmado. La cara del artista identifica el espacio en el mapa.
       </p>
       {error && <p className="text-ladrillo text-xs mt-1" role="alert">{error}</p>}
     </div>
@@ -616,7 +597,7 @@ function Conocimientos({ espacio, editable }) {
   const [error, setError] = useState(null)
 
   const filas = (datos?.Conocimientos || []).filter(
-    (c) => String(c.espacio_id) === String(espacio.id)
+    (c) => String(c.espacio_id) === String(espacio.id) && c.fuente !== FUENTE_RECINTO
   )
 
   async function agregar(ev) {
