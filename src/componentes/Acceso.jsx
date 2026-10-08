@@ -160,6 +160,9 @@ export default function Acceso() {
           Los números de Amalaya viven protegidos en Google y solo se entregan
           a quien tiene acceso. Tu liga y tu código son personales: no los compartas.
         </p>
+        <a href="./explorar.html?ligero=1" className="boton-secundario mt-5 w-full justify-center">
+          Explorar Amalaya en 3D <ArrowUpRight size={16} />
+        </a>
         <a href="./seguimiento-3d.html" className="mt-5 mx-auto w-fit flex items-center gap-1.5 text-xs text-oro hover:text-marfil transition-colors duration-micro ease-casa">
           Seguimiento público del levantamiento 3D <ArrowUpRight size={13} />
         </a>

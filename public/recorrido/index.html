@@ -56,10 +56,14 @@ body.portal .brujula{bottom:90px;right:12px}
 // ============================================================
 const params=new URLSearchParams(location.search); const EMBED=params.get('embed')==='1'; if(EMBED) document.body.classList.add('embed'); if(params.get('portal')==='1')document.body.classList.add('portal');
 let RUTAS=null, DATA=null, idx=0, yaw=0, auto=false, modoAccion=false, ACCIONES=[], pendiente=null;
+let ROLL={};
 let PITCH=-0.16; // se ajusta por punto: la calle y la fachada mandan, no el cielo
 function encuadrar(id){ const r=ROLL[id]||{}; const alto=r.alto||0;
   PITCH=Math.max(-0.38,Math.min(0.02,alto-0.31)) } // deja el remate de las fachadas en el tercio alto
-const canvas=document.getElementById('c'); const ren=new THREE.WebGLRenderer({canvas,antialias:true}); ren.setPixelRatio(Math.min(devicePixelRatio,2)); ren.outputColorSpace=THREE.SRGBColorSpace;
+const canvas=document.getElementById('c'); let ren;
+try { ren=new THREE.WebGLRenderer({canvas,antialias:true}); }
+catch { import('./panorama-ligero.js').then(m=>m.iniciarPanoramaLigero()).catch(()=>{document.getElementById('estado').textContent='No se pudo abrir el panorama. Recarga para reintentar.';}); }
+if(ren){ ren.setPixelRatio(Math.min(devicePixelRatio,2)); ren.outputColorSpace=THREE.SRGBColorSpace;
 const esc=new THREE.Scene(); const cam=new THREE.PerspectiveCamera(100,1,0.1,100);
 const geo=new THREE.SphereGeometry(50,64,48); geo.scale(-1,1,1);
 const matA=new THREE.MeshBasicMaterial({color:'#222'}); const matB=new THREE.MeshBasicMaterial({transparent:true,opacity:0,color:'#fff'});
@@ -68,7 +72,6 @@ const esfA=new THREE.Mesh(geo,matA); const esfB=new THREE.Mesh(geo.clone(),matB)
 // con el horizonte torcido (mediana 6.7°, hasta 16°): por cada punto medimos
 // la inclinación y enderezamos la esfera para que el horizonte quede a nivel.
 const Q_BASE=new THREE.Quaternion().setFromEuler(new THREE.Euler(0,-Math.PI/2,0));
-let ROLL={};
 function nivelar(id){ const r=ROLL[id]||{roll:0,eje:0};
   const azEje=(Math.PI/2-r.eje)-Math.PI+Math.PI/2;
   const e=new THREE.Vector3(Math.sin(azEje),0,-Math.cos(azEje));
@@ -171,6 +174,7 @@ function contextoChinche(x,y){ if(!DATA||!isFinite(x)||!isFinite(y)) return null
     valores:{ ruta:`${DATA.id} · ${DATA.nombre}`, punto:`${P} · ${p.nombre}`, punto_id:p.id, rumbo:g+'°', elevacion:el+'°', escena, coordenadas:`${p.lat}, ${p.lng}`, ...(sobre?{sobre}:{}) }, foto } }
 addEventListener('message',e=>{ const d=e.data||{}; if(e.origin!==location.origin||window.parent===window||e.source!==window.parent||d.chinche!=='contexto?') return;
   window.parent.postMessage({chinche:'contexto',id:d.id,datos:contextoChinche(+d.x,+d.y)},location.origin) });
+window.contextoChinche=contextoChinche;
 function ajustar(){ ren.setSize(innerWidth,innerHeight,false); cam.aspect=innerWidth/innerHeight; cam.updateProjectionMatrix() } addEventListener('resize',ajustar); ajustar();
 function frame(){ if(auto) yaw+=0.002; cam.rotation.set(0,0,0,'YXZ'); cam.rotation.y=-yaw; cam.rotation.x=PITCH; ren.render(esc,cam); document.getElementById('aguja').style.transform=`rotate(${-yaw*180/Math.PI}deg)`; requestAnimationFrame(frame) }
 fetch('rutas.json').then(r=>r.json()).then(async d=>{ RUTAS=d; ROLL=await fetch('roll.json').then(r=>r.ok?r.json():{}).catch(()=>({})); await cargarAcciones(); sel.innerHTML=d.rutas.map(r=>`<option value="${r.id}">${r.nombre} · ${r.puntos.length} pts</option>`).join('');
@@ -178,6 +182,7 @@ fetch('rutas.json').then(r=>r.json()).then(async d=>{ RUTAS=d; ROLL=await fetch(
   irA(Math.max(0,DATA.puntos.findIndex(p=>p.id===q)));
   if(EMBED&&window.parent!==window) window.parent.postMessage({tipo:'amalaya:360-ready'},location.origin);
   requestAnimationFrame(frame) });
+}
 </script><!-- La Chinche de Amalaya: también aquí, para dar retroalimentación de esta pantalla.
      Solo con sesión de Amalaya (misma pila que el board: public/chinche.js). -->
 <script>
