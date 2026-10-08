@@ -8,3 +8,7 @@ let sheet=await readFile(root+'/sheet-plan-refinement.js','utf8');
 sheet=sheet.replace(/paramento-refinement\.js(?:\?v=[a-f0-9]{12})?/,'paramento-refinement.js?v='+sheetHash(runtime).slice(0,12));
 await writeFile(root+'/sheet-plan-refinement.js',sheet);
 await import('./preparar-ajuste-visual.mjs');
+
+// Invalidate the iframe HTML as well as its nested model modules.
+const {prepareNavigation}=await import('./preparar-navegacion.mjs');
+await prepareNavigation();
