@@ -1,0 +1,16 @@
+import {blockSections} from './seguimiento3d-secciones.js'
+const BASE=import.meta.env.BASE_URL
+export default function BlockSections({block}) {
+ const sections=blockSections(block),first=sections.find(s=>s.review?.state==='done')
+ return <section className="block-sections" aria-label={`Cinco secciones de ${block.id}`}>
+  <h3>Plan de esta cuadra</h3>
+  <p>Verde: sección cerrada con evidencia. Rojo: pendiente de cierre por cuadra; los avances anteriores se conservan.</p>
+  <ol>{sections.map(s=><li key={s.id} className={s.state==='done'?'section-done':'section-pending'}><span aria-hidden="true">{s.state==='done'?'●':'○'}</span><strong>{s.id}. {s.name}</strong><small>{s.label}</small></li>)}</ol>
+  {first&&<div className="section-proof">
+   <p>{first.review.summary}</p>
+   <div className="section-photos">{[['before','Antes'],['reference','Referencia real'],['after','Después']].map(([key,label])=><a key={key} href={BASE+first.review.evidence[key]} target="_blank" rel="noreferrer"><img src={BASE+first.review.evidence[key]} alt={`${block.id} · ${label} · planta y calle`} loading="lazy"/><span>{label}</span></a>)}</div>
+   <a className="secondary-link" href={BASE+first.review.comparison} target="_blank" rel="noreferrer">Abrir comparación y registro del punto {first.id} ↗</a>
+   <p className="focus-caption">Cierre visual aproximado. Alturas y partes ocultas conservan sus limitaciones.</p>
+  </div>}
+ </section>
+}

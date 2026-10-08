@@ -1,5 +1,5 @@
 import { footprintColliderCells } from './isc58-refinement.js?v=76eca0365d35';
-import { VISUAL_FIT } from './ajuste-visual-data.js?v=c9808f862b63';
+import { VISUAL_FIT } from './ajuste-visual-data.js?v=4326fda722f4';
 
 // Same native constructors as the assembled world; no second Three runtime.
 export function applyVisualFit(world, colliders, R) {

@@ -1,6 +1,7 @@
 import { mkdir, readFile, writeFile } from 'node:fs/promises'
 import { columns, cellInfo, STATES } from '../src/seguimiento3d-model.js'
 const data = JSON.parse(await readFile(new URL('../public/seguimiento-3d.json', import.meta.url), 'utf8'))
+const registry = JSON.parse(await readFile(new URL('../public/levantamiento/cuadras.json', import.meta.url), 'utf8'))
 const targets = columns(data)
 if(data.activeReview)targets.sort((a,b)=>(data.activeReview.buildingOrder.indexOf(a.building.id)<0?999:data.activeReview.buildingOrder.indexOf(a.building.id))-(data.activeReview.buildingOrder.indexOf(b.building.id)<0?999:data.activeReview.buildingOrder.indexOf(b.building.id)))
 const publicRoot = 'https://yodesarrollo.github.io/amalaya-board/'
@@ -13,6 +14,7 @@ function heading(building) {
 }
 const lines = [
   '# Amalaya · Matriz de levantamiento 3D', '',
+  ...(registry.workPlan ? [`**Trabajo vigente por cuadras:** ${registry.workPlan.title}. ${registry.workPlan.detail}`, '', `[Abrir ficha de ${registry.workPlan.activeBlock} y sus cinco secciones](${publicRoot}seguimiento-3d.html?cuadra=${registry.workPlan.activeBlock})`, '', 'La matriz de once acciones que sigue es histórica. Sus pendientes anteriores se conservan y no sustituyen el cierre vigente por cuadra.', ''] : []),
   `Actualizado: ${data.updatedAt}. La web consulta estados cada ${data.refreshSeconds} segundos; los cambios aparecen al publicar avances.`, '',
   ...(data.activeReview ? [`Acción 1 · ${data.activeReview.closedBuildings.length} de ${data.activeReview.buildingOrder.length} columnas revisadas. ${data.activeReview.inventoryComplete ? "Inventario visual de toda la lámina completado." : "Inventario en revisión."} Los cierres anteriores válidos se conservan.`, '', `Columnas agregadas: ${data.activeReview.addedBuildings.join(', ')}. Medir → editar → verificar → imagen y registro antes de avanzar.`, ''] : []),
   ...(data.groundReview ? [data.groundReview.detail, '', '[Auditoría del suelo]('+publicRoot+data.groundReview.audit+')', ''] : []),

@@ -12,6 +12,7 @@ def px(x,z):
  lng=-110.9547151+x/97200;lat=29.076115-z/110950;n=2**ref['tileZoom'];return (((lng+180)/360*n-ref['tileBounds'][0])*256,((1-math.asinh(math.tan(math.radians(lat)))/math.pi)/2*n-ref['tileBounds'][1])*256)
 def polys(g):return [g] if g.geom_type=='Polygon' else [p for p in g.geoms if p.geom_type=='Polygon']
 for b in reg['blocks']:
+ if len(sys.argv)>3 and b['id']!=sys.argv[3]:continue
  block=unary_union([Polygon(p['points'],p['holes']) for p in fit['independentBlockBoundaries'][b['id']]]);panels=[]
  for footprints,color in [(before,(255,149,56,255)),(after,(10,231,176,255))]:
   layer=Image.new('RGBA',im.size);dr=ImageDraw.Draw(layer)
@@ -27,4 +28,4 @@ for b in reg['blocks']:
   panels.append(Image.alpha_composite(im,layer).convert('RGB').crop(box).resize((598,598)))
  result=Image.new('RGB',(1200,635),'#172830');result.paste(panels[0],(0,35));result.paste(panels[1],(602,35));dr=ImageDraw.Draw(result)
  dr.text((12,9),b['id']+' · Antes · rojo: fuera del límite vial',font=font,fill='white');dr.text((614,9),'Después · encaje visual de edificios',font=font,fill='white');result.save(d/'ajuste-visual'/f'{b["id"]}-modelo.jpg',quality=85,optimize=True)
-print('33 comparaciones de edificios en el mismo encuadre georreferenciado.')
+print('Comparación de '+sys.argv[3] if len(sys.argv)>3 else '33 comparaciones de edificios en el mismo encuadre georreferenciado.')
