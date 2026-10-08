@@ -21,7 +21,9 @@ def render(name,lat,lon,heading,fov,pitch=0,eye=2.5):
     h=math.radians(heading);p=math.radians(pitch);forward=np.array([math.sin(h)*math.cos(p),math.sin(p),-math.cos(h)*math.cos(p)])
     right=np.array([math.cos(h),0,math.sin(h)]);up=np.cross(right,forward)
     basis=np.stack([right,up,forward],axis=1);f=W/(2*math.tan(math.radians(fov)/2))
-    pixels=np.zeros((H,W,3),dtype=np.uint8);pixels[:H//2]=[189,213,225];pixels[H//2:]=[186,180,164]
+    pixels=np.zeros((H,W,3),dtype=np.uint8)
+    horizon=max(0,min(H,round(H/2+f*math.tan(p))))
+    pixels[:horizon]=[189,213,225];pixels[horizon:]=[186,180,164]
     if pitch < -60:pixels[:]=[186,180,164]
     depth=np.full((H,W),np.inf)
     for row in data['triangles']:
