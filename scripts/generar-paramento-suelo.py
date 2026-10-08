@@ -6,9 +6,10 @@ from pathlib import Path
 from shapely.geometry import Polygon
 from shapely.ops import unary_union,triangulate
 root=Path(__file__).resolve().parents[1]
-raw=subprocess.check_output(['node','--input-type=module','-e',"import {FRONT_BUILDINGS,JOIN_REVIEWS} from './public/levantamiento/paramento-data.js';import {SHEET_PLANS} from './public/levantamiento/sheet-plan-data.js';import {VISUAL_FIT} from './public/levantamiento/ajuste-visual-data.js';console.log(JSON.stringify({front:FRONT_BUILDINGS,joins:JOIN_REVIEWS,plans:SHEET_PLANS,fit:VISUAL_FIT}));"],cwd=root)
+raw=subprocess.check_output(['node','--input-type=module','-e',"import {FRONT_BUILDINGS,ROUND2_BUILDINGS,JOIN_REVIEWS} from './public/levantamiento/paramento-data.js';import {SHEET_PLANS} from './public/levantamiento/sheet-plan-data.js';import {VISUAL_FIT} from './public/levantamiento/ajuste-visual-data.js';console.log(JSON.stringify({front:[...FRONT_BUILDINGS,...ROUND2_BUILDINGS],joins:JOIN_REVIEWS,plans:SHEET_PLANS,fit:VISUAL_FIT}));"],cwd=root)
 d=json.loads(raw);polys=[Polygon(b['points']) for b in d['front']]
 for change in d['joins']:
+ if any(p['id']==change['id'] for p in d['front']):continue
  p=next((x for x in d['fit']['planCorrections'] if x['id']==change['id']),None) or next(x for x in d['plans'] if x['id']==change['id'])
  points=[list(p) for p in p['points']]
  for v in change['vertices']:points[v['index']]=v['point']

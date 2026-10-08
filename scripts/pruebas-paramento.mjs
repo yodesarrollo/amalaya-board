@@ -32,8 +32,20 @@ assert(!colliders.some(c=>c.containsPoint(new R.Vector3(135,1.6,-16))),'The visi
 assert(!colliders.some(c=>c.containsPoint(new R.Vector3(-178,1.6,53))),'W02 open front yard stays clear of the former C1-03 mass');
 const parking=world.getObjectByName('Planta física · B3-02');assert.equal(parking.geometry.parameters.shapes.holes.length,1);
 assert(world.getObjectByName('Planta física · B1-09').userData.heightMeters>world.getObjectByName('Planta física · B1-08').userData.heightMeters*3,'Tower and low garage are distinct masses');
+// A facade adjustment must never close a courtyard in roof geometry or navigation.
+const onTriangle=(x,z,v)=>{const signs=v.map((a,i)=>{const b=v[(i+1)%3];return (b.x-a.x)*(z-a.z)-(b.z-a.z)*(x-a.x)});return signs.every(s=>s>=-1e-6)||signs.every(s=>s<=1e-6);};
+for(const [id,x,z] of [['C2-06',12,40],['C2-07',37,40]]){
+ const m=world.getObjectByName('Planta física · '+id),expected=SHEET_PLANS.find(p=>p.id===id).holes;
+ assert.deepEqual(m.userData.fittedPlan.holes,expected,id+' preserves the original courtyard boundary');
+ assert(!colliders.some(c=>c.containsPoint(new R.Vector3(x,1.6,z))),id+' courtyard has no invisible collision solid');
+ const pos=m.geometry.attributes.position,idx=m.geometry.index?.array||Array.from({length:pos.count},(_,i)=>i);
+ for(let i=0;i<idx.length;i+=3){const v=[0,1,2].map(j=>new R.Vector3().fromBufferAttribute(pos,idx[i+j]).applyMatrix4(m.matrixWorld));if(v.every(p=>p.y>m.userData.heightMeters))assert(!onTriangle(x,z,v),id+' has no roof face over the open courtyard');}
+}
+for(const [x,z] of [[-240,55],[-222,55]])assert(!colliders.some(c=>c.containsPoint(new R.Vector3(x,1.6,z))),'Hidalgo open side yards stay clear');
+assert(colliders.some(c=>c.buildingId==='C1-02'&&c.containsPoint(new R.Vector3(-172,5.5,50))),'Obregon western body has the observed second level');
+assert(!colliders.some(c=>c.buildingId==='C1-02'&&c.containsPoint(new R.Vector3(-161,5.5,47))),'Obregon one-storey neighbour is not extruded to the same height');
 const points=JSON.parse(await readFile('public/recorrido/rutas.json')).rutas.find(r=>r.id==='R-001').puntos;
-const extraStations=[{lat:29.075781,lng:-110.957122},{lat:29.07583,lng:-110.9565574},{lat:29.0757712,lng:-110.9562256}];
+const extraStations=[{lat:29.075781,lng:-110.957122},{lat:29.0757998,lng:-110.9569305},{lat:29.07583,lng:-110.9565574},{lat:29.0757712,lng:-110.9562256}];
 for(const p of [...points,...extraStations]){const v=new R.Vector3((p.lng+110.9547151)*97200,1.6,(29.076115-p.lat)*110950);assert(!colliders.some(c=>c.containsPoint(v)),'The inspected street station stays walkable: '+p.id);}
 world.traverse(m=>{if(!m.isMesh||!m.geometry?.attributes.position)return;assert(Array.from(m.geometry.attributes.position.array).every(Number.isFinite),'No broken/non-finite model faces');});
 const roads=VISUAL_FIT.surfaces.filter(s=>s.kind==='road').map(s=>({triangles:Array.from({length:s.triangles.length/6},(_,i)=>Array.from({length:3},(_,j)=>s.triangles.slice(i*6+j*2,i*6+j*2+2)))}));

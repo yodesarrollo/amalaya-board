@@ -1,0 +1,129 @@
+{
+  "date": "2026-10-08",
+  "version": "paramento-obregon-hidalgo-ronda2-20261008",
+  "baselineCommit": "eebbaff34054ae0822c4b73c484f01915ce93152",
+  "ids": [
+    "B1-08",
+    "B1-09",
+    "C1-08",
+    "C1-09",
+    "C1-02",
+    "C2-06",
+    "C2-07"
+  ],
+  "streets": {
+    "Hidalgo": [
+      "B1-08",
+      "B1-09",
+      "C1-08",
+      "C1-09"
+    ],
+    "Obregon": [
+      "C1-02",
+      "C2-06",
+      "C2-07"
+    ]
+  },
+  "restoredCourtyards": [
+    "C2-06",
+    "C2-07"
+  ],
+  "photoDate": "2023-12",
+  "panoramas": {
+    "H01-torre": "By9Hdn14C8gv6qrbKjKEVQ",
+    "H02": "By9Hdn14C8gv6qrbKjKEVQ",
+    "H03": "GHjVsKhk1o70QiqooiuTMw",
+    "H04": "GHjVsKhk1o70QiqooiuTMw",
+    "W02": "I5bbtMy7Upn4ssy1j_ax_Q"
+  },
+  "cameras": [
+    [
+      "H01",
+      29.075781,
+      -110.957122,
+      350,
+      90
+    ],
+    [
+      "H01-torre",
+      29.075781,
+      -110.957122,
+      350,
+      90,
+      25
+    ],
+    [
+      "H02",
+      29.075781,
+      -110.957122,
+      170,
+      90
+    ],
+    [
+      "H03",
+      29.0757998,
+      -110.9569305,
+      220,
+      60
+    ],
+    [
+      "W02",
+      29.07583,
+      -110.9565574,
+      170,
+      90
+    ],
+    [
+      "Patios",
+      29.07576349031095,
+      -110.9544784744856,
+      0,
+      55,
+      -90,
+      60
+    ],
+    [
+      "H04",
+      29.0757998,
+      -110.9569305,
+      290,
+      90
+    ]
+  ],
+  "cameraSchema": [
+    "id",
+    "lat",
+    "lon",
+    "heading",
+    "fov",
+    "pitch default0",
+    "eyeHeight default2.5"
+  ],
+  "worldSha256": "84e9382b2622c5538d2f9872f47b23d0802527d8b62a1ca7522200efbeb71fd3",
+  "renderer": "Actual scene triangles; perspective projection and depth buffer; simplified lighting, not WebGL screenshot",
+  "limits": [
+    "Unmeasured heights and depths",
+    "Approximate camera registration",
+    "Street View photos predate the review",
+    "Courtyard outlines restored from original inventory",
+    "No metric or cadastral certification"
+  ],
+  "assets": {
+    "H02-after.jpg": "80dd3ee14d416910f9524b2a2f074e8afc4f401b81e315549f3fc255b80ac7ae",
+    "H02-foto.jpg": "0cd333a0770461d83516c1cd3ee3be1fad6a2830c84288064cde4f63a0d887cd",
+    "Patios-before.jpg": "f405e6dc2b2b67ed599df1e588ad56f7c9bcc3c6bb707ac45b1d07c4dd33f4df",
+    "H01-torre-before.jpg": "0c8293939f3007dc5a8637c2bd4990a75e6c3ed7e7f246963570252db5066495",
+    "H01-torre-after.jpg": "e66c7187499e7c82126bf8864629d747fd288bf65783ba38186eb2b5620c3c79",
+    "W02-before.jpg": "f16fdeee47a46c3011ed1ab97eac33db22c72925b8628b546c2d1a5e9b11ba35",
+    "H01-torre-foto.jpg": "a1e7e12ff5ebed9de71e529465590ea998486e02eddedea524cad8d7773189d7",
+    "H04-foto.jpg": "cb7cf06de162ce8218d6463e0a99f23e610868b1047a8e24c9f0f024fd873cfe",
+    "H03-foto.jpg": "cf9775a7f9da17958dca544a8ee90338be469a478ddc9f8c7915aa53033c052b",
+    "W02-after.jpg": "689448251a36c605f91606bc3e401939ab1fd50963c9c1ce72d37fec27c536d7",
+    "H02-before.jpg": "0097aa02928599847bdef011d3accab93dee02d5111e94e73f3b27f113b39de6",
+    "H03-before.jpg": "7089888615eb9744ca3890a1fe1ffcd0e9a0899dabfe6240b7abeffbabd5c043",
+    "W02-foto.jpg": "0a8f2d2a53512b434ed61f672dc2e3932d97c05f325bb128009be5c2a01d3700",
+    "Patios-after.jpg": "078527ae3fcdb1a66a8e2cd52aee74d898cd37139dc76a662a485cd2066eb073",
+    "H03-after.jpg": "5667c07d89137377873ed2203e78d99b16598a461de8aff48cf4791c6fbb4f3a",
+    "H04-after.jpg": "3edccf8456291cae42a7ffd83f041b74f8f48b180f02572ca42b800edeeb4ca2"
+  }
+}
