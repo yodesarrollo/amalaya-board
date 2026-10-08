@@ -1,5 +1,5 @@
 import { footprintColliderCells } from './isc58-refinement.js?v=76eca0365d35';
-import { VISUAL_FIT } from './ajuste-visual-data.js?v=4326fda722f4';
+import { VISUAL_FIT } from './ajuste-visual-data.js?v=c3c433261b27';
 
 // Same native constructors as the assembled world; no second Three runtime.
 export function applyVisualFit(world, colliders, R) {
@@ -77,14 +77,25 @@ export function applyVisualFit(world, colliders, R) {
   group.name='Cuadras · calles y banquetas · ajuste visual';
   for(const entry of VISUAL_FIT.surfaces){
     const positions=[];
-    for(let i=0;i<entry.triangles.length;i+=2)positions.push(entry.triangles[i],entry.elevation,entry.triangles[i+1]);
+    for(let i=0;i<entry.triangles.length;i+=2)positions.push(entry.triangles[i],entry.elevations?.[i/2]??entry.elevation,entry.triangles[i+1]);
     const geometry=new Geometry();geometry.setAttribute('position',new Attr(positions,3));geometry.computeVertexNormals();
     const material=template.material.clone();
     for(const key of Object.keys(material))if(material[key]?.isTexture)material[key]=null;
-    material.color.set(entry.kind==='road'?'#656867':entry.kind==='sidewalk'?'#cbc3ae':'#ada58e');
+    material.color.set(entry.color||(entry.kind==='road'?'#656867':entry.kind==='sidewalk'?'#cbc3ae':'#ada58e'));
     material.emissive?.set('#000000');material.transparent=false;material.opacity=1;material.depthWrite=true;
     const mesh=new template.constructor(geometry,material);mesh.name='Ajuste visual · '+entry.kind+' · '+entry.id;mesh.receiveShadow=true;
     mesh.userData.visualFit={id:entry.id,kind:entry.kind,approximate:true};group.add(mesh);
+    // A slab edge has a visible face; no raised curb is drawn across a flush
+    // pedestrian connection. Ramp end heights are stored per vertex.
+    if(entry.curbEdges?.length){
+      const walls=[];
+      for(const [a,b,base,topA,endTop] of entry.curbEdges){const topB=endTop??topA;
+        walls.push(a[0],base,a[1],b[0],base,b[1],b[0],topB,b[1],a[0],base,a[1],b[0],topB,b[1],a[0],topA,a[1]);
+      }
+      const edgeGeometry=new Geometry();edgeGeometry.setAttribute('position',new Attr(walls,3));edgeGeometry.computeVertexNormals();
+      const edgeMaterial=material.clone();edgeMaterial.color.set('#a9a59b');edgeMaterial.side=2;
+      const edge=new template.constructor(edgeGeometry,edgeMaterial);edge.name='Guarnición revisada · '+entry.id;edge.receiveShadow=true;mesh.add(edge);
+    }
   }
   world.add(group);world.updateMatrixWorld(true);
   const result={version:VISUAL_FIT.version,landSurvey:false,summary:VISUAL_FIT.summary,corrections,contourCorrections,collisionCorrections,surfaces:group.children.length};

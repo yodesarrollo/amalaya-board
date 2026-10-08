@@ -43,7 +43,7 @@ for(const entry of VISUAL_FIT.surfaces){
  assert(mesh?.isMesh&&mesh.visible&&mesh.material.visible);assert.equal(mesh.material.opacity,1);assert.equal(p.count,entry.triangles.length/2);
  const tris=[];
  for(let i=0;i<p.count;i+=3){const pts=[0,1,2].map(j=>[p.getX(i+j),p.getZ(i+j)]);assert(pts.flat().every(Number.isFinite));
-  assert.equal(p.getY(i),Math.fround(entry.elevation));
+  assert.equal(p.getY(i),Math.fround(entry.elevations?.[i]??entry.elevation));
   const key=pts.map(v=>v.map(n=>n.toFixed(4)).join(',')).sort().join(';');assert(!hashes.has(key),'No duplicate surfaces');hashes.add(key);tris.push(pts);
  }
  actual.push({id:entry.id,kind:entry.kind,triangles:tris});

@@ -1,6 +1,6 @@
 # Amalaya · Matriz de levantamiento 3D
 
-**Trabajo vigente por cuadras:** C08 · punto 1 cerrado: planta y calle. Cinco edificios revisados; C2-03 corregido. Siguiente: punto 2, banquetas y esquinas de esta misma cuadra. Los avances previos se conservan.
+**Trabajo vigente por cuadras:** C08 · puntos 1 y 2 cerrados visualmente. Planta, calle, banquetas y esquinas con evidencia por cuadra. Siguiente: punto 3, edificios y volúmenes de C08. Se conserva lo ya corregido.
 
 [Abrir ficha de C08 y sus cinco secciones](https://yodesarrollo.github.io/amalaya-board/seguimiento-3d.html?cuadra=C08)
 
