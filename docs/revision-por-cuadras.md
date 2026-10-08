@@ -64,3 +64,31 @@ node scripts/pruebas-cuadras.mjs
 Validación de publicación: pruebas existentes, verificación de activos y build.
 El generador lee el modelo; no modifica edificios, calles ni banquetas. El mapa
 se carga al abrirlo y las tarjetas usan JPEG pequeños con carga diferida.
+
+
+## Continuación aprobada · 8 de octubre de 2026
+
+Los números visibles del diagrama son números de cuadra, no etapas. Se conserva
+el ID cartográfico Cxx en enlaces y archivos; `displayNumber` es su número visible.
+Orden aprobado: **1 (C08) → 8 (C30) → 9 (C20) → 10 (C21) → 11 (C22) →
+12 (C23) → 13 (C28) → 14 (C29)**.
+
+Cuadras 1 y 8: cinco etapas cerradas visualmente; siguiente cuadra 9/C20, todas
+sus etapas pendientes. C08 conserva sin reescribir los cierres previos de las
+etapas 1 y 2. La tanda nueva registra 3–5 para C08 y 1–5 para C30. La evidencia
+comparte fotografías y renders antes/después, sin duplicar el modelo por etapa.
+
+Ejecutar una cuadra completa por tanda: contrastar planta/calle, banquetas,
+volúmenes, fachadas y equipamiento; comprobar accesos y publicar un solo cierre.
+No reiniciar ni profundizar indefinidamente las cuadras cerradas salvo discrepancia
+concreta. Mantener alturas como estimaciones visuales y partes ocultas sin inventar.
+
+`node scripts/trabajar-cuadra.mjs C20 carpeta` exporta y renderiza una vez las
+cámaras de `carpeta/camaras.json`. Reutiliza los resultados si las entradas y
+archivos siguen íntegros. No aprueba etapas automáticamente. Las cámaras del
+antes y después deben ser iguales; guardar capturas del antes antes de modelar.
+
+Los paquetes `c08-cierre-20261008` y `c30-cierre-20261008` conservan fotografías de
+Street View de diciembre de 2023, sus URL, hashes, límites de interpretación y
+verificaciones geométricas. El cierre es visual aproximado, no métrico; el nombre
+histórico de CH-YG-BIB no certifica el uso observado del inmueble.

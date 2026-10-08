@@ -9,7 +9,11 @@ for(const c of columns(full)){const b=small.buildings.find(b=>b.id===c.building.
 const meta=JSON.parse(await readFile('public/levantamiento/modelo-ligero.json')),bytes=await readFile('public/levantamiento/modelo-ligero.bin');
 assert.equal(bytes.length,meta.triangles*20);assert(meta.triangles>0&&meta.triangles<meta.originalTriangles,'la vista debe simplificar la escena sin eliminar caras estructurales');
 assert.equal(createHash('sha256').update(bytes).digest('hex').slice(0,12),meta.version);
-for(let i=0;i<meta.triangles;i++)assert(bytes.readUInt16LE(i*20+18)<meta.palette.length);
+for(let i=0;i<meta.triangles;i++){
+ assert(bytes.readUInt16LE(i*20+18)<meta.palette.length);
+ const v=Array.from({length:9},(_,j)=>bytes.readInt16LE(i*20+j*2)),a=[0,1,2].map(j=>v[3+j]-v[j]),b=[0,1,2].map(j=>v[6+j]-v[j]);
+ assert(a[1]*b[2]!==a[2]*b[1]||a[2]*b[0]!==a[0]*b[2]||a[0]*b[1]!==a[1]*b[0],'No zero-area faces after quantization');
+}
 assert.equal(meta.worldSha256,createHash('sha256').update(await readFile('public/levantamiento/world.js')).digest('hex'));
 assert((await readFile('public/seguimiento-ligero.json')).length<100000,'resumen bajo 100 KB');
 // Retaining small wall/roof faces needs a larger raw budget; compression stays bounded.
