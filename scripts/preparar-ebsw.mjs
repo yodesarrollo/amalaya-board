@@ -29,12 +29,12 @@ export function refineEbSw(source,kind,moduleHash,stage){
 }
 if(process.argv[1]&&resolve(process.argv[1])===fileURLToPath(import.meta.url)){
  const stage=Number(process.argv[2]||9),root='public/levantamiento'
- const editable=await readFile(resolve(process.env.EBSW_SOURCE||'../amalaya-3d-continuation/src/ebsw-refinement.js'),'utf8')
+ const editable=await readFile(resolve(process.env.EBSW_SOURCE||'src/levantamiento/ebsw-refinement.js'),'utf8')
  const {code}=await transform(editable,{minify:true,format:'esm',target:'es2022',legalComments:'none'})
  const moduleHash=sha256(code),world=refineEbSw(await readFile(`${root}/world.js`,'utf8'),'world',moduleHash,stage),visor=refineEbSw(await readFile(`${root}/visor/assets/index-RoPA5goG.js`,'utf8'),'visor',moduleHash,stage)
  await writeFile(`${root}/ebsw-refinement.js`,code);await writeFile(`${root}/world.js`,world);await writeFile(`${root}/visor/assets/index-RoPA5goG.js`,visor)
  const html=await readFile(`${root}/visor/index.html`,'utf8');await writeFile(`${root}/visor/index.html`,html.replace(/index-RoPA5goG\.js(?:\?v=[a-f0-9]{12})?/g,`index-RoPA5goG.js?v=${sha256(visor).slice(0,12)}`))
  await writeFile('src/levantamiento-version.js',`// Generated from the preserved visual bundle and ordered refinements.\nexport const VERSION_LEVANTAMIENTO = '${sha256(world).slice(0,12)}'\n`)
- await writeFile(`${root}/ebsw-provenance.json`,JSON.stringify({building:'EB-SW',stage,baseWorldSha256:EB_BASE_WORLD,baseVisorSha256:EB_BASE_VISOR,worldSha256:sha256(world),visorSha256:sha256(visor),runtimeModuleSha256:moduleHash,editableSourceSha256:sha256(editable),generatedFrom:'Private editable extension; compiled ESM without source maps',sourceStatus:'Prior compiled world preserved; full Hidalgo3D source not recovered'},null,2)+'\n')
+ await writeFile(`${root}/ebsw-provenance.json`,JSON.stringify({building:'EB-SW',stage,baseWorldSha256:EB_BASE_WORLD,baseVisorSha256:EB_BASE_VISOR,worldSha256:sha256(world),visorSha256:sha256(visor),runtimeModuleSha256:moduleHash,editableSourceSha256:sha256(editable),generatedFrom:'src/levantamiento/ebsw-refinement.js; compiled ESM without source maps',sourceStatus:'EB-SW editable extension recovered byte-for-byte from 2026-10-03 continuation backup; preserved full world remains compiled'},null,2)+'\n')
  console.log(`EB-SW etapa ${stage}: ${sha256(world).slice(0,12)}`)
 }

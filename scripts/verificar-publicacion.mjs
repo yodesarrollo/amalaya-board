@@ -5,6 +5,21 @@ import assert from 'node:assert/strict'
 import { createHash } from 'node:crypto'
 import { BASE_WORLD_SHA256, BASE_VISOR_SHA256, removeIsc58Hook, removeIsc58VisorHook, regionHashes, sha256 } from './preparar-isc58.mjs'
 const root='public/levantamiento'
+const pilotDir=`${root}/jev-pilot-v1`
+const pilot=JSON.parse(await readFile(`${pilotDir}/study.json`,'utf8'))
+assert.equal(pilot.study_id,'amalaya-ebsw-visual-v1')
+assert.equal(pilot.cases.length,20)
+const pilotFiles=new Set(['study.json'])
+for(const c of pilot.cases)for(const role of ['reference','candidate']){
+ const asset=c[role]
+ assert(/^images\/(?:cal|test)-\d{2}-(?:reference|candidate)\.png$/.test(asset.path),'Piloto: ruta fuera de alcance')
+ const bytes=await readFile(`${pilotDir}/${asset.path}`)
+ assert.equal(sha256(bytes),asset.sha256,'Piloto: hash de imagen modificado')
+ assert(bytes.subarray(0,8).equals(Buffer.from([137,80,78,71,13,10,26,10])))
+ assert.equal(bytes.readUInt32BE(16),960);assert.equal(bytes.readUInt32BE(20),600)
+ pilotFiles.add(asset.path)
+}
+assert.equal(pilotFiles.size,41)
 const streetBatch50=JSON.parse(await readFile(`${root}/street-batch50-provenance.json`,'utf8'))
 assert.equal(streetBatch50.count,50)
 const streetBatch50Files=new Set(streetBatch50.results.flatMap(e=>['20261006-02-antes.png','20261006-02-calzada.png','20261006-02-registro.json'].map(name=>`${root}/evidence/${e.id}/${name}`)))
@@ -36,7 +51,8 @@ async function check(dir){
   for(const item of await readdir(dir,{withFileTypes:true})){
     const path=`${dir}/${item.name}`
     assert(!item.isSymbolicLink(),`No se permiten enlaces: ${path}`)
-    if(item.isDirectory()){const allowed=(dir===root&&['cuadras','calco','ajuste-visual'].includes(item.name))||['data','visor','assets','fonts','evidence'].includes(item.name)||(dir===`${root}/evidence`&&(['c08-cierre-20261008','c30-cierre-20261008','c08-punto1-20261008','c08-punto2-20261008','paramento-20261007','paramento-ronda2-20261008','OB-01','OB-02','ISC-58','EB-SW','EB-NW','EB-NE','EB-SE','CH-YG-BBVA','CH-GA-OXXO','CH-YG-BIB','SER-BLEY','SER-HSBC','OB-21','SER-SANT','PL-GA'].includes(item.name)||/^[ABCD][123]-\d{2}$/.test(item.name)));assert(allowed,`Carpeta inesperada: ${path}`);await check(path);continue}
+    if(item.isDirectory()){const allowed=(dir===root&&['cuadras','calco','ajuste-visual','jev-pilot-v1'].includes(item.name))||(dir===pilotDir&&item.name==='images')||['data','visor','assets','fonts','evidence'].includes(item.name)||(dir===`${root}/evidence`&&(['c08-cierre-20261008','c30-cierre-20261008','c08-punto1-20261008','c08-punto2-20261008','paramento-20261007','paramento-ronda2-20261008','OB-01','OB-02','ISC-58','EB-SW','EB-NW','EB-NE','EB-SE','CH-YG-BBVA','CH-GA-OXXO','CH-YG-BIB','SER-BLEY','SER-HSBC','OB-21','SER-SANT','PL-GA'].includes(item.name)||/^[ABCD][123]-\d{2}$/.test(item.name)));assert(allowed,`Carpeta inesperada: ${path}`);await check(path);continue}
+    if(dir===pilotDir||dir===pilotDir+'/images')assert(pilotFiles.has(path.slice(pilotDir.length+1)),'Piloto: archivo fuera de manifiesto')
     if(batchDirs.has(dir)){assert(batchDirs.get(dir).has(item.name),'Evidencia de tanda no revisada: '+path);if(item.name==='index.html')assert(!/<script|<iframe|\bon[a-z]+\s*=|(?:src|href)=["']https?:/i.test(await readFile(path,'utf8')),'Comparación estática y autónoma');}
     if(dir===c08EvidenceDir||dir===c08Point2Dir){
       assert((dir===c08Point2Dir?c08Point2Files:c08EvidenceFiles).has(item.name),'Evidencia de C08 no revisada: '+path)

@@ -1,0 +1,279 @@
+{
+  "study_id": "amalaya-ebsw-visual-v1",
+  "schema_version": 1,
+  "openai_model": "gpt-5.4",
+  "criteria": {
+    "context": "Compare the reference and candidate rendered images of the same EB-SW building microzone. Reference is the approved model checkpoint for this controlled test. Look only for a visible geometric or architectural feature defect in the candidate relative to reference. The neutral ground, software rendering style, unmeasured real-world dimensions and defects already shared by both images are outside scope. Images with a mismatched view or the target hidden do not provide sufficient evidence. Do not infer hidden geometry.",
+    "presence": "A defect exists only when candidate visibly removes, displaces or changes scale of a building or architectural feature relative to the reference at a comparable camera. Identical geometry means no defect. Set presence null and abstain true if comparison cannot establish this.",
+    "abstain": "Abstain when the candidate does not show the same target facade or obscures it so a reliable comparison is impossible; do not treat camera mismatch or occlusion as a confirmed building defect.",
+    "categories": {
+      "none": "No new visible building defect.",
+      "missing_feature": "An architectural element visible in reference is absent from candidate.",
+      "displacement": "An element or building has moved relative to reference.",
+      "scale": "An element or building has changed size or proportion relative to reference.",
+      "insufficient_evidence": "The target cannot reliably be compared because the view is mismatched or hidden."
+    },
+    "box": "If a defect is present, return the smallest axis-aligned normalized 0..1 box in the candidate covering the affected region (including its original location when it moved). Do not return a useful defect box when presence is false or null."
+  },
+  "cases": [
+    {
+      "case_id": "cal-01",
+      "split": "calibration",
+      "reference": {
+        "path": "images/cal-01-reference.png",
+        "sha256": "a8687473925fd2bb829f80e03833f0d949233830b4148df24d7b0639e7c4d0b7"
+      },
+      "candidate": {
+        "path": "images/cal-01-candidate.png",
+        "sha256": "a8687473925fd2bb829f80e03833f0d949233830b4148df24d7b0639e7c4d0b7"
+      }
+    },
+    {
+      "case_id": "cal-02",
+      "split": "calibration",
+      "reference": {
+        "path": "images/cal-02-reference.png",
+        "sha256": "a8687473925fd2bb829f80e03833f0d949233830b4148df24d7b0639e7c4d0b7"
+      },
+      "candidate": {
+        "path": "images/cal-02-candidate.png",
+        "sha256": "5a50942f8848db1081448d250aa21c9ffc3a6ccf1d7b43b62fdd069f01b2f45d"
+      }
+    },
+    {
+      "case_id": "cal-03",
+      "split": "calibration",
+      "reference": {
+        "path": "images/cal-03-reference.png",
+        "sha256": "addd0ee006cf536dc63c012af24bfb0206aa9f48a3cbc7cd747985a7be54af8d"
+      },
+      "candidate": {
+        "path": "images/cal-03-candidate.png",
+        "sha256": "c2ae28d58403a175330f930a217ad42f4458723e0f43d3ed371f037755265634"
+      }
+    },
+    {
+      "case_id": "cal-04",
+      "split": "calibration",
+      "reference": {
+        "path": "images/cal-04-reference.png",
+        "sha256": "b4f1c807f2957ffc3d236e7941d1f770b1bcf85f82604f2179d76deb121c36b5"
+      },
+      "candidate": {
+        "path": "images/cal-04-candidate.png",
+        "sha256": "c727eacf25d4ca4cd19e348f0539293d52080276bfd7d290c45a554744038a9a"
+      }
+    },
+    {
+      "case_id": "cal-05",
+      "split": "calibration",
+      "reference": {
+        "path": "images/cal-05-reference.png",
+        "sha256": "45825184373c61c6cf006f567dcae98ea3af925b5fce8a175932ec6918ca8ff8"
+      },
+      "candidate": {
+        "path": "images/cal-05-candidate.png",
+        "sha256": "45825184373c61c6cf006f567dcae98ea3af925b5fce8a175932ec6918ca8ff8"
+      }
+    },
+    {
+      "case_id": "cal-06",
+      "split": "calibration",
+      "reference": {
+        "path": "images/cal-06-reference.png",
+        "sha256": "a8687473925fd2bb829f80e03833f0d949233830b4148df24d7b0639e7c4d0b7"
+      },
+      "candidate": {
+        "path": "images/cal-06-candidate.png",
+        "sha256": "20f71bc62c0e616b68c8ef4f49101b48a18f9a2ff1281f248950a01487cebeb5"
+      }
+    },
+    {
+      "case_id": "test-01",
+      "split": "test",
+      "reference": {
+        "path": "images/test-01-reference.png",
+        "sha256": "a8687473925fd2bb829f80e03833f0d949233830b4148df24d7b0639e7c4d0b7"
+      },
+      "candidate": {
+        "path": "images/test-01-candidate.png",
+        "sha256": "a8687473925fd2bb829f80e03833f0d949233830b4148df24d7b0639e7c4d0b7"
+      }
+    },
+    {
+      "case_id": "test-02",
+      "split": "test",
+      "reference": {
+        "path": "images/test-02-reference.png",
+        "sha256": "addd0ee006cf536dc63c012af24bfb0206aa9f48a3cbc7cd747985a7be54af8d"
+      },
+      "candidate": {
+        "path": "images/test-02-candidate.png",
+        "sha256": "addd0ee006cf536dc63c012af24bfb0206aa9f48a3cbc7cd747985a7be54af8d"
+      }
+    },
+    {
+      "case_id": "test-03",
+      "split": "test",
+      "reference": {
+        "path": "images/test-03-reference.png",
+        "sha256": "b4f1c807f2957ffc3d236e7941d1f770b1bcf85f82604f2179d76deb121c36b5"
+      },
+      "candidate": {
+        "path": "images/test-03-candidate.png",
+        "sha256": "b4f1c807f2957ffc3d236e7941d1f770b1bcf85f82604f2179d76deb121c36b5"
+      }
+    },
+    {
+      "case_id": "test-04",
+      "split": "test",
+      "reference": {
+        "path": "images/test-04-reference.png",
+        "sha256": "45825184373c61c6cf006f567dcae98ea3af925b5fce8a175932ec6918ca8ff8"
+      },
+      "candidate": {
+        "path": "images/test-04-candidate.png",
+        "sha256": "45825184373c61c6cf006f567dcae98ea3af925b5fce8a175932ec6918ca8ff8"
+      }
+    },
+    {
+      "case_id": "test-05",
+      "split": "test",
+      "reference": {
+        "path": "images/test-05-reference.png",
+        "sha256": "a8687473925fd2bb829f80e03833f0d949233830b4148df24d7b0639e7c4d0b7"
+      },
+      "candidate": {
+        "path": "images/test-05-candidate.png",
+        "sha256": "0c89fd37487de556b8a0b63dd7f10d72f0398467fdfe51b7378ca9c9ed7a00f4"
+      }
+    },
+    {
+      "case_id": "test-06",
+      "split": "test",
+      "reference": {
+        "path": "images/test-06-reference.png",
+        "sha256": "addd0ee006cf536dc63c012af24bfb0206aa9f48a3cbc7cd747985a7be54af8d"
+      },
+      "candidate": {
+        "path": "images/test-06-candidate.png",
+        "sha256": "c24adb78badd890ca3837eb5c6370cbb5c6676029b53e93ba102d54c68ad69f9"
+      }
+    },
+    {
+      "case_id": "test-07",
+      "split": "test",
+      "reference": {
+        "path": "images/test-07-reference.png",
+        "sha256": "b4f1c807f2957ffc3d236e7941d1f770b1bcf85f82604f2179d76deb121c36b5"
+      },
+      "candidate": {
+        "path": "images/test-07-candidate.png",
+        "sha256": "534ef9c31afd6d6148f12a8260fa37d27156434adbf83dd3dbdc3b13cf282297"
+      }
+    },
+    {
+      "case_id": "test-08",
+      "split": "test",
+      "reference": {
+        "path": "images/test-08-reference.png",
+        "sha256": "45825184373c61c6cf006f567dcae98ea3af925b5fce8a175932ec6918ca8ff8"
+      },
+      "candidate": {
+        "path": "images/test-08-candidate.png",
+        "sha256": "5eee168739ee10ced2022551cb8afcdc9f29fbcfc3375bebe5c2689ed03c2d64"
+      }
+    },
+    {
+      "case_id": "test-09",
+      "split": "test",
+      "reference": {
+        "path": "images/test-09-reference.png",
+        "sha256": "a8687473925fd2bb829f80e03833f0d949233830b4148df24d7b0639e7c4d0b7"
+      },
+      "candidate": {
+        "path": "images/test-09-candidate.png",
+        "sha256": "c5b0cc67e3e8c9f725805582995714ac2e5692d3d04b3a3d99ed4e9f6661fb80"
+      }
+    },
+    {
+      "case_id": "test-10",
+      "split": "test",
+      "reference": {
+        "path": "images/test-10-reference.png",
+        "sha256": "addd0ee006cf536dc63c012af24bfb0206aa9f48a3cbc7cd747985a7be54af8d"
+      },
+      "candidate": {
+        "path": "images/test-10-candidate.png",
+        "sha256": "0b1a7c36b69e3d7e8398e70d0510e13052731ef1a9c478c47823f784ab5a85c8"
+      }
+    },
+    {
+      "case_id": "test-11",
+      "split": "test",
+      "reference": {
+        "path": "images/test-11-reference.png",
+        "sha256": "b4f1c807f2957ffc3d236e7941d1f770b1bcf85f82604f2179d76deb121c36b5"
+      },
+      "candidate": {
+        "path": "images/test-11-candidate.png",
+        "sha256": "d93f532f868c677ce48dc72da514c30dcda45dedb1b0226c1eb92bb46dc88453"
+      }
+    },
+    {
+      "case_id": "test-12",
+      "split": "test",
+      "reference": {
+        "path": "images/test-12-reference.png",
+        "sha256": "45825184373c61c6cf006f567dcae98ea3af925b5fce8a175932ec6918ca8ff8"
+      },
+      "candidate": {
+        "path": "images/test-12-candidate.png",
+        "sha256": "9f6fa3a9d04e4261c1dc68d26fafc20f4067c6e888c8e2ffa4c2d9b48505b19b"
+      }
+    },
+    {
+      "case_id": "test-13",
+      "split": "test",
+      "reference": {
+        "path": "images/test-13-reference.png",
+        "sha256": "a8687473925fd2bb829f80e03833f0d949233830b4148df24d7b0639e7c4d0b7"
+      },
+      "candidate": {
+        "path": "images/test-13-candidate.png",
+        "sha256": "20f71bc62c0e616b68c8ef4f49101b48a18f9a2ff1281f248950a01487cebeb5"
+      }
+    },
+    {
+      "case_id": "test-14",
+      "split": "test",
+      "reference": {
+        "path": "images/test-14-reference.png",
+        "sha256": "addd0ee006cf536dc63c012af24bfb0206aa9f48a3cbc7cd747985a7be54af8d"
+      },
+      "candidate": {
+        "path": "images/test-14-candidate.png",
+        "sha256": "f35ee4ebd621bdaefd50d481faf17269033be536b906573dc2fcfc7a89ae8b6b"
+      }
+    }
+  ],
+  "provenance": {
+    "seed": 20261020,
+    "width": 960,
+    "height": 600,
+    "renderer": "Deterministic software perspective renderer with depth buffer; real THREE buildEast + applyEbSw stage 9 triangles; neutral ground; no WebGL, textures or shadows",
+    "scope": "Isolated La Barra Hidalgo and Club Obregon EB-SW model geometry; controlled synthetic defects in real geometry, not site-truth validation",
+    "source": {
+      "base_commit": "5809816629f2bca74ebcdf53b3b70bb686aa6543",
+      "world_sha256": "af0cc341f7715a173ce3cac6ea31e5a961e9c92c4ee103ff1fd82d9a2b37b34b",
+      "ebsw_module_sha256": "765e5fd4f8693ffdd610a16632e5848f73ce70525ea1e17503cc74799e2de057",
+      "context_sha256": "b9b907611f5d458b0398f0db7d2c14a431f0f6d23c5268ee76e26d486f41ccfe",
+      "osm_sha256": "a38c4d09a4cf3a01f5a5e30f3632791e287f5bd760ad4a969430bc95ba16568c"
+    }
+  },
+  "limitations": [
+    "Controlled changes to actual model geometry; no claim of measured site fidelity.",
+    "Software depth rendering omits production textures/shadows.",
+    "Cases are variations of one microzone and are not independent buildings."
+  ]
+}
