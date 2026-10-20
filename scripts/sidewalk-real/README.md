@@ -1,5 +1,9 @@
 # Real sidewalk replay — 20 October 2026
 
+Para aplicar este aprendizaje a un trabajo nuevo, leer primero la
+[guía operativa](../../docs/JEV-REVISION-OPERATIVA.md). El estudio y sus recibos
+son históricos e inmutables; no reutilizar sus slots para otro caso.
+
 Photo P10, south side of Obregón, number-21 frontage, Garmendia–Abasolo.
 The actual current scene is reconstructed with its complete ordered refinements.
 This is a different study and durable store from `amalaya-ebsw-visual-v1`.

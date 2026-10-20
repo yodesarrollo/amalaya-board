@@ -1,5 +1,7 @@
 # Amalaya 3D · relevo eficiente para otros modelos
 
+Aplicar [Jev y revisión convencional](JEV-REVISION-OPERATIVA.md) en cada revisión de evidencia. Preparar criterios específicos antes de evaluar; separar observación visual, suficiencia y aplicación. El orden, la matriz y los cierres existentes conservan su autoridad. No convertir una puntuación en medición ni en etapa terminada.
+
 Usar junto con la [guía maestra](https://drive.google.com/file/d/1n563KsI5gP3n6s-rLtqgQJEhRfTno1D7/view). La matriz vigente es `public/seguimiento-3d.json`; el Markdown se genera desde ella. El usuario seleccionó EB-SW después de ISC-58. Los pendientes de ISC-58 se conservan.
 
 ## Ciclo de trabajo
