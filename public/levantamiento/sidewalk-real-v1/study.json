@@ -1,0 +1,150 @@
+{
+  "schema_version": 1,
+  "study_id": "amalaya-sidewalk-real-v1",
+  "openai_model": "gpt-5.4-2026-03-05",
+  "criteria": {
+    "context": "Revisión REAL de la banqueta A, lado sur de Obregón, frente a número 21, tramo Garmendia–Abasolo, Amalaya. reference es una reproyección del panorama P10 existente, no una imagen generada. candidate es el modelo 3D ACTUAL del mismo frente; no hay alteraciones artificiales. Coincidencia semántica de tramo, no cámara topográfica: perspectiva, textura, vanos y oclusiones difieren. Evalúa SOLO el criterio específico. No confundas el lado norte/El Colegio. Vehículos temporales y arquitectura de fachadas quedan fuera.",
+    "presence": "Responde verdadero sólo si el criterio de este caso presenta una discrepancia OBSERVABLE entre fotografía y modelo. Falso si ambos coinciden en ese criterio. No evalúes otras diferencias.",
+    "abstain": "Responde verdadero si falta evidencia para responder al criterio. Fotografías no calibradas no permiten certificar anchos métricos, altura de guarnición, pendientes reglamentarias ni posición 3D exacta. No confundir límite de evidencia con ausencia de banqueta.",
+    "box": "Si hay diferencia observable, delimita su zona en el modelo; no dar caja si no hay discrepancia o no hay evidencia. No se puntuará IoU entre foto y modelo porque la pose no está calibrada.",
+    "categories": {
+      "none": "El criterio coincide sin discrepancia observable.",
+      "missing_feature": "Falta en el modelo un elemento de banqueta presente en foto, o falta el pavimento observado.",
+      "displacement": "Posición o continuidad del borde diverge de manera demostrable.",
+      "scale": "La escala o ancho difiere de manera demostrable con calibración suficiente.",
+      "insufficient_evidence": "Falta información para decidir este criterio."
+    }
+  },
+  "cases": [
+    {
+      "case_id": "surface",
+      "split": "test",
+      "question": "¿Existe pavimento de banqueta visible entre la fachada y la calle en ambos? La discrepancia sería que faltara por completo esa franja en candidate.",
+      "reference": {
+        "path": "images/photo-P10-south.jpg",
+        "sha256": "1c1b2568f3bf46b0386c30993794b8dab17a37b3f602a035f1cf7b9e3ed0b4c3"
+      },
+      "candidate": {
+        "path": "images/model-before.png",
+        "sha256": "39e7e7962579ac5b6ac539a6ceff262ccffda768f14bbfe5aa4bc00281c49708"
+      }
+    },
+    {
+      "case_id": "bollard",
+      "split": "test",
+      "question": "¿Falta en candidate el bolardo NEGRO corto, con cabeza ensanchada, que se ve en primer plano de reference? No confundirlo con el poste esbelto junto a la protección amarilla.",
+      "reference": {
+        "path": "images/photo-P10-south.jpg",
+        "sha256": "1c1b2568f3bf46b0386c30993794b8dab17a37b3f602a035f1cf7b9e3ed0b4c3"
+      },
+      "candidate": {
+        "path": "images/model-before.png",
+        "sha256": "39e7e7962579ac5b6ac539a6ceff262ccffda768f14bbfe5aa4bc00281c49708"
+      }
+    },
+    {
+      "case_id": "rail",
+      "split": "test",
+      "question": "¿Falta en candidate la protección tubular AMARILLA baja con forma de U invertida junto al acceso en reference? Evalúa presencia, no dimensiones ni ubicación métrica.",
+      "reference": {
+        "path": "images/photo-P10-south.jpg",
+        "sha256": "1c1b2568f3bf46b0386c30993794b8dab17a37b3f602a035f1cf7b9e3ed0b4c3"
+      },
+      "candidate": {
+        "path": "images/model-before.png",
+        "sha256": "39e7e7962579ac5b6ac539a6ceff262ccffda768f14bbfe5aa4bc00281c49708"
+      }
+    },
+    {
+      "case_id": "paving",
+      "split": "test",
+      "question": "¿Falta en candidate la diferenciación de pavimento: paño rojizo/oscuro frente a número 21, rodeado por banqueta gris, visible en reference? No exigir textura fotográfica exacta.",
+      "reference": {
+        "path": "images/photo-P10-south.jpg",
+        "sha256": "1c1b2568f3bf46b0386c30993794b8dab17a37b3f602a035f1cf7b9e3ed0b4c3"
+      },
+      "candidate": {
+        "path": "images/model-before.png",
+        "sha256": "39e7e7962579ac5b6ac539a6ceff262ccffda768f14bbfe5aa4bc00281c49708"
+      }
+    },
+    {
+      "case_id": "curb",
+      "split": "test",
+      "question": "¿Se reconoce en ambos una separación visual entre el borde de la banqueta y la calzada? La discrepancia sería ausencia completa de borde reconocible en candidate; no evaluar altura.",
+      "reference": {
+        "path": "images/photo-P10-south.jpg",
+        "sha256": "1c1b2568f3bf46b0386c30993794b8dab17a37b3f602a035f1cf7b9e3ed0b4c3"
+      },
+      "candidate": {
+        "path": "images/model-before.png",
+        "sha256": "39e7e7962579ac5b6ac539a6ceff262ccffda768f14bbfe5aa4bc00281c49708"
+      }
+    },
+    {
+      "case_id": "width",
+      "split": "test",
+      "question": "¿El ancho REAL de esta banqueta está mal en candidate por más de 20 centímetros? No hay escala de campo, centro óptico medido ni cámara calibrada en estos insumos.",
+      "reference": {
+        "path": "images/photo-P10-south.jpg",
+        "sha256": "1c1b2568f3bf46b0386c30993794b8dab17a37b3f602a035f1cf7b9e3ed0b4c3"
+      },
+      "candidate": {
+        "path": "images/model-before.png",
+        "sha256": "39e7e7962579ac5b6ac539a6ceff262ccffda768f14bbfe5aa4bc00281c49708"
+      }
+    },
+    {
+      "case_id": "height",
+      "split": "test",
+      "question": "¿La altura real de la guarnición difiere del modelo por más de 5 centímetros? No hay cotas medidas ni calibración óptica.",
+      "reference": {
+        "path": "images/photo-P10-south.jpg",
+        "sha256": "1c1b2568f3bf46b0386c30993794b8dab17a37b3f602a035f1cf7b9e3ed0b4c3"
+      },
+      "candidate": {
+        "path": "images/model-before.png",
+        "sha256": "39e7e7962579ac5b6ac539a6ceff262ccffda768f14bbfe5aa4bc00281c49708"
+      }
+    },
+    {
+      "case_id": "ramp",
+      "split": "test",
+      "question": "¿Cumple o incumple la pendiente y el paso libre para accesibilidad este tramo? Sólo estas dos imágenes, sin pendientes ni cotas medidas.",
+      "reference": {
+        "path": "images/photo-P10-south.jpg",
+        "sha256": "1c1b2568f3bf46b0386c30993794b8dab17a37b3f602a035f1cf7b9e3ed0b4c3"
+      },
+      "candidate": {
+        "path": "images/model-before.png",
+        "sha256": "39e7e7962579ac5b6ac539a6ceff262ccffda768f14bbfe5aa4bc00281c49708"
+      }
+    },
+    {
+      "case_id": "ends",
+      "split": "test",
+      "question": "¿Está comprobada la continuidad de TODA la banqueta A entre Garmendia y Abasolo, incluyendo ambas esquinas y sus rampas? Este par sólo muestra el frente21.",
+      "reference": {
+        "path": "images/photo-P10-south.jpg",
+        "sha256": "1c1b2568f3bf46b0386c30993794b8dab17a37b3f602a035f1cf7b9e3ed0b4c3"
+      },
+      "candidate": {
+        "path": "images/model-before.png",
+        "sha256": "39e7e7962579ac5b6ac539a6ceff262ccffda768f14bbfe5aa4bc00281c49708"
+      }
+    }
+  ],
+  "provenance": {
+    "photo": "recorrido/lYkbkN5HLT-6YQS4vIsd2g.jpg",
+    "photo_sha256": "fd5c259b6ad5771a699f4eb3f5dfaef288d499024519e5654bcb5580d2416d67",
+    "world_sha256": "af0cc341f7715a173ce3cac6ea31e5a961e9c92c4ee103ff1fd82d9a2b37b34b",
+    "renderer": "actual THREE triangles with depth buffer; texture maps omitted",
+    "synthetic_defects": false,
+    "registration": "same semantic front; optical pose not calibrated; no cross-image IoU/metric claims"
+  },
+  "limitations": [
+    "One microzone and 9 correlated criteria, not 9 independent sites.",
+    "Ground truth from direct visual inspection by ChatGPT and current scene graph, not independent survey.",
+    "Thresholds uncalibrated; reported confidence is not verified accuracy."
+  ]
+}

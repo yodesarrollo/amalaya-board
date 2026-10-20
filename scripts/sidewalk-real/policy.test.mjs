@@ -1,0 +1,9 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {guardReview,canApplyGeometry,planReview} from '../../public/levantamiento/sidewalk-real-v1/evidence-policy.mjs';
+const positive={presence:true,abstain:false,confidence:.999};
+test('very high confidence never certifies accessibility without measured clear width and slope',()=>{const r=guardReview({criterion:'ramp',result:positive,evidence:{photo:true,sameFront:true}});assert.equal(r.state,'needs_evidence');assert.equal(r.decision,null);assert.deepEqual(r.missing,['measuredSlope','measuredClearWidth']);assert.equal(r.modelResult,positive)});
+test('visible discrepancy does not authorize an unanchored geometric placement',()=>{const r=guardReview({criterion:'bollard',result:positive,evidence:{photo:true,sameFront:true}});assert.equal(r.state,'observed_discrepancy');assert.equal(canApplyGeometry({review:r,placement:{verifiedAnchor:false,verifiedDimensions:false}}),false);assert.equal(canApplyGeometry({review:r,placement:{verifiedAnchor:true,verifiedDimensions:true}}),true)});
+test('one frontage cannot certify continuity between both corners',()=>{const r=guardReview({criterion:'ends',result:{presence:false,abstain:false},evidence:{photo:true,sameFront:true}});assert.equal(r.decision,null);assert.equal(r.state,'needs_evidence')});
+test('missing evidence is not a negative detection and malformed criteria fail closed',()=>{assert.equal(guardReview({criterion:'surface',result:{presence:false,abstain:false}}).decision,null);assert.throws(()=>guardReview({criterion:'other',result:positive}),/Unknown/)});
+test('review planning omits questions whose required evidence is absent without paying a model to guess',()=>{const p=planReview({evidence:{photo:true,sameFront:true}});assert.deepEqual(p.ready,['surface','bollard','rail','paving','curb']);assert.deepEqual(p.deferred.map(x=>x.criterion),['width','height','ramp','ends'])});

@@ -3,9 +3,39 @@ import {removeEbSwHook,refineEbSw,EB_BASE_WORLD,EB_BASE_VISOR} from './preparar-
 import { readdir, readFile, stat } from 'node:fs/promises'
 import assert from 'node:assert/strict'
 import { createHash } from 'node:crypto'
+import {gunzipSync} from 'node:zlib'
 import { BASE_WORLD_SHA256, BASE_VISOR_SHA256, removeIsc58Hook, removeIsc58VisorHook, regionHashes, sha256 } from './preparar-isc58.mjs'
 const root='public/levantamiento'
 const pilotDir=`${root}/jev-pilot-v1`
+const realDir=`${root}/sidewalk-real-v1`
+const realFiles=new Set(['index.html','study.json','truth.json','freeze.json','workflow-freeze.json','results.json','workflow-results.json','review.json','reprojection.json','criterion-audit.json','evidence-policy.mjs','criterion-receipts.jsonl.gz','workflow-receipts.jsonl.gz','transport-ledger.jsonl.gz','images/photo-P10-south.jpg','images/model-before.png'])
+const real=JSON.parse(await readFile(realDir+'/study.json','utf8'))
+const realFreeze=JSON.parse(await readFile(realDir+'/freeze.json','utf8'))
+assert.equal(real.study_id,'amalaya-sidewalk-real-v1');assert.equal(real.cases.length,9)
+assert.equal(sha256(await readFile(realDir+'/study.json')),realFreeze.manifest_sha256)
+assert.equal(sha256(await readFile(realDir+'/truth.json')),realFreeze.truth_sha256)
+for(const entry of real.cases)for(const role of ['reference','candidate']){
+ assert(realFiles.has(entry[role].path),'Banqueta real: activo no revisado')
+ assert.equal(sha256(await readFile(realDir+'/'+entry[role].path)),entry[role].sha256,'Banqueta real: hash alterado')
+}
+const secretPattern=/(?:gh[pousr]_[A-Za-z0-9]{30,}|github_pat_[A-Za-z0-9_]{50,}|-----BEGIN .*PRIVATE KEY-----|\bsk-(?:proj-)?[A-Za-z0-9_-]{40,})/
+for(const name of realFiles){
+ const bytes=await readFile(realDir+'/'+name)
+ if(name.endsWith('.jsonl.gz')){
+  const text=gunzipSync(bytes,{maxOutputLength:25*1024*1024}).toString('utf8')
+  assert(!secretPattern.test(text),'Banqueta real: credencial en archivo de recibos')
+  const rows=text.trim().split('\n').map(s=>JSON.parse(s))
+  if(name==='criterion-receipts.jsonl.gz')assert.equal(rows.length,72)
+  if(name==='workflow-receipts.jsonl.gz'){
+   assert.equal(rows.length,6)
+   const hashes=[]
+   for(const r of rows){assert.equal(r.record.data.status,'complete');assert.equal(r.record.data.values.length,9);for(const stage of r.record.data.stages)if(stage.receipt.provider==='openai')hashes.push(stage.request_sha256)}
+   assert.equal(hashes.length,6);assert.equal(new Set(hashes).size,1,'Las solicitudes GPT deben reproducir el mismo trabajo')
+  }
+ }else if(/\.(json|html|mjs)$/.test(name))assert(!secretPattern.test(bytes.toString('utf8')),'Banqueta real: texto con credencial')
+}
+const realPage=await readFile(realDir+'/index.html','utf8')
+assert(!/<iframe|\bon[a-z]+\s*=|(?:src|href)=["']https?:/i.test(realPage),'Banqueta real: vista local sin embebidos externos')
 const pilot=JSON.parse(await readFile(`${pilotDir}/study.json`,'utf8'))
 assert.equal(pilot.study_id,'amalaya-ebsw-visual-v1')
 assert.equal(pilot.cases.length,20)
@@ -51,8 +81,9 @@ async function check(dir){
   for(const item of await readdir(dir,{withFileTypes:true})){
     const path=`${dir}/${item.name}`
     assert(!item.isSymbolicLink(),`No se permiten enlaces: ${path}`)
-    if(item.isDirectory()){const allowed=(dir===root&&['cuadras','calco','ajuste-visual','jev-pilot-v1'].includes(item.name))||(dir===pilotDir&&item.name==='images')||['data','visor','assets','fonts','evidence'].includes(item.name)||(dir===`${root}/evidence`&&(['c08-cierre-20261008','c30-cierre-20261008','c08-punto1-20261008','c08-punto2-20261008','paramento-20261007','paramento-ronda2-20261008','OB-01','OB-02','ISC-58','EB-SW','EB-NW','EB-NE','EB-SE','CH-YG-BBVA','CH-GA-OXXO','CH-YG-BIB','SER-BLEY','SER-HSBC','OB-21','SER-SANT','PL-GA'].includes(item.name)||/^[ABCD][123]-\d{2}$/.test(item.name)));assert(allowed,`Carpeta inesperada: ${path}`);await check(path);continue}
+    if(item.isDirectory()){const allowed=(dir===root&&['cuadras','calco','ajuste-visual','jev-pilot-v1','sidewalk-real-v1'].includes(item.name))||([pilotDir,realDir].includes(dir)&&item.name==='images')||['data','visor','assets','fonts','evidence'].includes(item.name)||(dir===`${root}/evidence`&&(['c08-cierre-20261008','c30-cierre-20261008','c08-punto1-20261008','c08-punto2-20261008','paramento-20261007','paramento-ronda2-20261008','OB-01','OB-02','ISC-58','EB-SW','EB-NW','EB-NE','EB-SE','CH-GA-OXXO','CH-YG-BBVA','CH-YG-BIB','SER-BLEY','SER-HSBC','OB-21','SER-SANT','PL-GA'].includes(item.name)||/^[ABCD][123]-\d{2}$/.test(item.name)));assert(allowed,`Carpeta inesperada: ${path}`);await check(path);continue}
     if(dir===pilotDir||dir===pilotDir+'/images')assert(pilotFiles.has(path.slice(pilotDir.length+1)),'Piloto: archivo fuera de manifiesto')
+    if(dir===realDir||dir===realDir+'/images')assert(realFiles.has(path.slice(realDir.length+1)),'Banqueta real: archivo fuera de inventario')
     if(batchDirs.has(dir)){assert(batchDirs.get(dir).has(item.name),'Evidencia de tanda no revisada: '+path);if(item.name==='index.html')assert(!/<script|<iframe|\bon[a-z]+\s*=|(?:src|href)=["']https?:/i.test(await readFile(path,'utf8')),'Comparación estática y autónoma');}
     if(dir===c08EvidenceDir||dir===c08Point2Dir){
       assert((dir===c08Point2Dir?c08Point2Files:c08EvidenceFiles).has(item.name),'Evidencia de C08 no revisada: '+path)

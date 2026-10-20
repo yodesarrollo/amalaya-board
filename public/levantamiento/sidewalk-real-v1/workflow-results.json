@@ -1,0 +1,753 @@
+{
+  "study_id": "amalaya-sidewalk-workflow-v1",
+  "summary": {
+    "A": {
+      "correct": 18,
+      "total": 18,
+      "automatic": 0,
+      "fallback": 0,
+      "median_client_ms": 29483.33305399865,
+      "runs_client_ms": [
+        26740.735872997902,
+        32225.930234999396
+      ],
+      "provider_calls": 2
+    },
+    "B90": {
+      "correct": 18,
+      "total": 18,
+      "automatic": 0,
+      "fallback": 18,
+      "median_client_ms": 24479.97889399994,
+      "runs_client_ms": [
+        22731.57589499897,
+        26228.381893000915
+      ],
+      "provider_calls": 4,
+      "paired_time_change_pct": -16.80182281606333
+    },
+    "B95": {
+      "correct": 18,
+      "total": 18,
+      "automatic": 0,
+      "fallback": 18,
+      "median_client_ms": 34427.77918700085,
+      "runs_client_ms": [
+        39532.036715001595,
+        29323.521659000107
+      ],
+      "provider_calls": 4,
+      "paired_time_change_pct": 19.414037388779892
+    }
+  },
+  "runs": [
+    {
+      "arm": "A",
+      "repeat": 0,
+      "correct": 9,
+      "client_ms": 26740.735872997902,
+      "server_ms": 23538,
+      "automatic": 0,
+      "fallback": 0,
+      "provider_calls": 1,
+      "values": [
+        {
+          "criterion_id": "surface",
+          "evidence": "En reference se ve una franja continua de banqueta entre la fachada y la calle. En candidate también se aprecia una franja de pavimento/banqueta clara frente a la fachada y separada visualmente de la calzada.",
+          "action": "Sin defecto observable en este criterio.",
+          "presence": false,
+          "abstain": false,
+          "category": "none",
+          "box": null,
+          "source": "GPT"
+        },
+        {
+          "criterion_id": "bollard",
+          "evidence": "En reference hay un bolardo negro corto con cabeza ensanchada en primer plano, frente al acceso. En candidate no aparece ningún elemento equivalente en esa zona del borde de banqueta.",
+          "action": "Marcar bolardo faltante en el modelo.",
+          "presence": true,
+          "abstain": false,
+          "category": "missing_feature",
+          "box": {
+            "top": 0.63,
+            "bottom": 0.85,
+            "left": 0.47,
+            "right": 0.54
+          },
+          "source": "GPT"
+        },
+        {
+          "criterion_id": "rail",
+          "evidence": "En reference se observa una protección tubular amarilla baja en forma de U invertida junto al acceso. En candidate no se ve esa protección en la zona correspondiente frente al acceso.",
+          "action": "Marcar protección tubular amarilla faltante en el modelo.",
+          "presence": true,
+          "abstain": false,
+          "category": "missing_feature",
+          "box": {
+            "top": 0.63,
+            "bottom": 0.77,
+            "left": 0.42,
+            "right": 0.6
+          },
+          "source": "GPT"
+        },
+        {
+          "criterion_id": "paving",
+          "evidence": "En reference se distingue un paño de pavimento rojizo/oscuro frente al número 21, rodeado por banqueta gris. En candidate la banqueta se representa de forma uniforme y no se reconoce ese paño diferenciado frente al acceso.",
+          "action": "Marcar ausencia de la diferenciación de pavimento frente al 21.",
+          "presence": true,
+          "abstain": false,
+          "category": "missing_feature",
+          "box": {
+            "top": 0.67,
+            "bottom": 0.84,
+            "left": 0.34,
+            "right": 0.82
+          },
+          "source": "GPT"
+        },
+        {
+          "criterion_id": "curb",
+          "evidence": "En reference se reconoce el borde entre banqueta y calzada. En candidate también se aprecia una separación visual clara entre la franja clara de banqueta y la calzada gris.",
+          "action": "Sin defecto observable en este criterio.",
+          "presence": false,
+          "abstain": false,
+          "category": "none",
+          "box": null,
+          "source": "GPT"
+        },
+        {
+          "criterion_id": "width",
+          "evidence": "Con estas imágenes no calibradas no es posible certificar si el ancho real de la banqueta en candidate difiere del real por más de 20 cm.",
+          "action": "Se requiere escala de campo o calibración/cotas para evaluar ancho real.",
+          "presence": null,
+          "abstain": true,
+          "category": "insufficient_evidence",
+          "box": null,
+          "source": "GPT"
+        },
+        {
+          "criterion_id": "height",
+          "evidence": "Las imágenes no aportan cotas ni calibración suficiente para determinar si la altura real de la guarnición difiere por más de 5 cm.",
+          "action": "Se requieren mediciones de campo o insumos calibrados para evaluar altura de guarnición.",
+          "presence": null,
+          "abstain": true,
+          "category": "insufficient_evidence",
+          "box": null,
+          "source": "GPT"
+        },
+        {
+          "criterion_id": "ramp",
+          "evidence": "Con solo estas dos vistas no se puede verificar pendiente ni paso libre reglamentario de accesibilidad; no hay mediciones ni geometría suficiente.",
+          "action": "Se requieren pendientes, cotas y mediciones de paso libre para evaluar accesibilidad.",
+          "presence": null,
+          "abstain": true,
+          "category": "insufficient_evidence",
+          "box": null,
+          "source": "GPT"
+        },
+        {
+          "criterion_id": "ends",
+          "evidence": "Este par de imágenes muestra solo el frente del número 21 y no documenta toda la continuidad de la banqueta A hasta ambas esquinas y sus rampas.",
+          "action": "Se necesita cobertura del tramo completo Garmendia–Abasolo para evaluar continuidad total.",
+          "presence": null,
+          "abstain": true,
+          "category": "insufficient_evidence",
+          "box": null,
+          "source": "GPT"
+        }
+      ]
+    },
+    {
+      "arm": "B95",
+      "repeat": 0,
+      "correct": 9,
+      "client_ms": 39532.036715001595,
+      "server_ms": 35434,
+      "automatic": 0,
+      "fallback": 9,
+      "provider_calls": 2,
+      "values": [
+        {
+          "criterion_id": "surface",
+          "evidence": "En reference se ve una franja de banqueta pavimentada entre la fachada y la calle a lo largo del frente. En candidate también se observa una franja continua de banqueta clara entre el muro y la calzada.",
+          "action": "Sin discrepancia observable en este criterio; mantener como coincide.",
+          "presence": false,
+          "abstain": false,
+          "category": "none",
+          "box": null,
+          "source": "GPT"
+        },
+        {
+          "criterion_id": "bollard",
+          "evidence": "En reference hay un bolardo negro corto con cabeza ensanchada en primer plano, cerca del borde de la banqueta. En candidate no aparece ningún bolardo en esa zona visible.",
+          "action": "Marcar discrepancia por elemento faltante: falta el bolardo negro corto observado en la foto.",
+          "presence": true,
+          "abstain": false,
+          "category": "missing_feature",
+          "box": {
+            "top": 0.64,
+            "bottom": 0.93,
+            "left": 0.4,
+            "right": 0.54
+          },
+          "source": "GPT"
+        },
+        {
+          "criterion_id": "rail",
+          "evidence": "En reference se ve una protección tubular amarilla baja, en forma de U invertida, junto al acceso. En candidate no se observa esa protección amarilla en el área visible frente al acceso.",
+          "action": "Marcar discrepancia por elemento faltante: falta la protección tubular amarilla baja.",
+          "presence": true,
+          "abstain": false,
+          "category": "missing_feature",
+          "box": {
+            "top": 0.63,
+            "bottom": 0.78,
+            "left": 0.16,
+            "right": 0.38
+          },
+          "source": "GPT"
+        },
+        {
+          "criterion_id": "paving",
+          "evidence": "En reference se distingue un paño de pavimento rojizo/oscuro frente al número 21, rodeado por banqueta gris. En candidate la banqueta se ve uniforme, sin ese paño diferenciado.",
+          "action": "Marcar discrepancia por pavimento faltante/diferenciación ausente en el modelo.",
+          "presence": true,
+          "abstain": false,
+          "category": "missing_feature",
+          "box": {
+            "top": 0.58,
+            "bottom": 0.87,
+            "left": 0.18,
+            "right": 0.9
+          },
+          "source": "GPT"
+        },
+        {
+          "criterion_id": "curb",
+          "evidence": "En reference y en candidate se reconoce visualmente un límite entre banqueta y calzada; en candidate se aprecia la transición entre la franja clara de banqueta y la calle gris oscura.",
+          "action": "Sin discrepancia observable en este criterio; el borde es reconocible en ambos.",
+          "presence": false,
+          "abstain": false,
+          "category": "none",
+          "box": null,
+          "source": "GPT"
+        },
+        {
+          "criterion_id": "width",
+          "evidence": "Con estas dos imágenes no hay calibración de cámara, escala de campo ni cotas medidas para demostrar una diferencia real de ancho mayor a 20 cm.",
+          "action": "Abstenerse: falta evidencia métrica suficiente para evaluar ancho real.",
+          "presence": null,
+          "abstain": true,
+          "category": "insufficient_evidence",
+          "box": null,
+          "source": "GPT"
+        },
+        {
+          "criterion_id": "height",
+          "evidence": "No hay cotas, escala ni calibración óptica que permitan comprobar una diferencia real de altura de guarnición mayor a 5 cm.",
+          "action": "Abstenerse: falta evidencia métrica suficiente para evaluar altura real de la guarnición.",
+          "presence": null,
+          "abstain": true,
+          "category": "insufficient_evidence",
+          "box": null,
+          "source": "GPT"
+        },
+        {
+          "criterion_id": "ramp",
+          "evidence": "La pendiente y el paso libre para accesibilidad no pueden certificarse con este par de imágenes sin mediciones, perfil ni cotas.",
+          "action": "Abstenerse: falta evidencia técnica para evaluar cumplimiento de rampa/accesibilidad.",
+          "presence": null,
+          "abstain": true,
+          "category": "insufficient_evidence",
+          "box": null,
+          "source": "GPT"
+        },
+        {
+          "criterion_id": "ends",
+          "evidence": "Este par de imágenes sólo muestra el frente del número 21; no se ven ambas esquinas ni toda la continuidad del tramo entre Garmendia y Abasolo.",
+          "action": "Abstenerse: falta cobertura visual del tramo completo para evaluar continuidad total.",
+          "presence": null,
+          "abstain": true,
+          "category": "insufficient_evidence",
+          "box": null,
+          "source": "GPT"
+        }
+      ]
+    },
+    {
+      "arm": "B90",
+      "repeat": 0,
+      "correct": 9,
+      "client_ms": 22731.57589499897,
+      "server_ms": 18868,
+      "automatic": 0,
+      "fallback": 9,
+      "provider_calls": 2,
+      "values": [
+        {
+          "criterion_id": "surface",
+          "evidence": "En reference sí hay una franja continua de banqueta visible entre la fachada y la calle; en candidate también se ve esa franja clara a lo largo del frente.",
+          "action": "No marcar defecto: el pavimento de banqueta está presente en ambos.",
+          "presence": false,
+          "abstain": false,
+          "category": "none",
+          "box": null,
+          "source": "GPT"
+        },
+        {
+          "criterion_id": "bollard",
+          "evidence": "En reference aparece un bolardo negro corto con cabeza ensanchada en primer plano, cerca del centro inferior. En candidate no se observa ningún bolardo equivalente en esa zona.",
+          "action": "Marcar elemento faltante en candidate.",
+          "presence": true,
+          "abstain": false,
+          "category": "missing_feature",
+          "box": {
+            "top": 0.66,
+            "bottom": 0.86,
+            "left": 0.46,
+            "right": 0.53
+          },
+          "source": "GPT"
+        },
+        {
+          "criterion_id": "rail",
+          "evidence": "En reference se ve una protección tubular amarilla baja en forma de U invertida junto al acceso. En candidate no aparece esa protección amarilla.",
+          "action": "Marcar elemento faltante en candidate.",
+          "presence": true,
+          "abstain": false,
+          "category": "missing_feature",
+          "box": {
+            "top": 0.57,
+            "bottom": 0.71,
+            "left": 0.27,
+            "right": 0.45
+          },
+          "source": "GPT"
+        },
+        {
+          "criterion_id": "paving",
+          "evidence": "En reference se distingue un paño de pavimento rojizo/oscuro frente al número 21, rodeado por banqueta gris. En candidate la banqueta se ve uniforme, sin esa diferenciación visible.",
+          "action": "Marcar falta de diferenciación de pavimento en candidate.",
+          "presence": true,
+          "abstain": false,
+          "category": "missing_feature",
+          "box": {
+            "top": 0.54,
+            "bottom": 0.89,
+            "left": 0.34,
+            "right": 0.94
+          },
+          "source": "GPT"
+        },
+        {
+          "criterion_id": "curb",
+          "evidence": "En reference se reconoce el borde entre banqueta y calzada; en candidate también se aprecia una separación visual clara entre la franja de banqueta y la calle.",
+          "action": "No marcar defecto: hay borde reconocible en ambos.",
+          "presence": false,
+          "abstain": false,
+          "category": "none",
+          "box": null,
+          "source": "GPT"
+        },
+        {
+          "criterion_id": "width",
+          "evidence": "Con estas imágenes no calibradas no se puede certificar un error de ancho real mayor a 20 cm; la perspectiva no permite medir el ancho físico de la banqueta con fiabilidad.",
+          "action": "Abstenerse por falta de calibración y escala métrica.",
+          "presence": null,
+          "abstain": true,
+          "category": "insufficient_evidence",
+          "box": null,
+          "source": "GPT"
+        },
+        {
+          "criterion_id": "height",
+          "evidence": "No hay cotas ni calibración óptica para comparar la altura real de la guarnición con precisión de 5 cm.",
+          "action": "Abstenerse por falta de medición confiable de altura.",
+          "presence": null,
+          "abstain": true,
+          "category": "insufficient_evidence",
+          "box": null,
+          "source": "GPT"
+        },
+        {
+          "criterion_id": "ramp",
+          "evidence": "La pendiente y el paso libre para accesibilidad no pueden verificarse con este par de imágenes sin medidas de pendiente, anchos libres y cotas.",
+          "action": "Abstenerse por evidencia insuficiente para accesibilidad.",
+          "presence": null,
+          "abstain": true,
+          "category": "insufficient_evidence",
+          "box": null,
+          "source": "GPT"
+        },
+        {
+          "criterion_id": "ends",
+          "evidence": "Este par de vistas sólo muestra el frente del número 21 y no permite comprobar la continuidad completa de toda la banqueta entre Garmendia y Abasolo ni ambas esquinas.",
+          "action": "Abstenerse: falta cobertura del tramo completo.",
+          "presence": null,
+          "abstain": true,
+          "category": "insufficient_evidence",
+          "box": null,
+          "source": "GPT"
+        }
+      ]
+    },
+    {
+      "arm": "B90",
+      "repeat": 1,
+      "correct": 9,
+      "client_ms": 26228.381893000915,
+      "server_ms": 22948,
+      "automatic": 0,
+      "fallback": 9,
+      "provider_calls": 2,
+      "values": [
+        {
+          "criterion_id": "surface",
+          "evidence": "En ambas imágenes se aprecia una franja de banqueta entre la fachada y la calle. En candidate existe un plano continuo de banqueta visible frente al predio; no falta por completo esa franja.",
+          "action": "Sin acción: el criterio coincide.",
+          "presence": false,
+          "abstain": false,
+          "category": "none",
+          "box": null,
+          "source": "GPT"
+        },
+        {
+          "criterion_id": "bollard",
+          "evidence": "En reference se ve un bolardo negro corto con cabeza ensanchada en primer plano, cerca del centro inferior. En candidate no aparece ningún bolardo equivalente en esa zona del frente.",
+          "action": "Marcar discrepancia: falta el bolardo negro corto observado en la foto.",
+          "presence": true,
+          "abstain": false,
+          "category": "missing_feature",
+          "box": {
+            "top": 0.73,
+            "bottom": 0.93,
+            "left": 0.45,
+            "right": 0.53
+          },
+          "source": "GPT"
+        },
+        {
+          "criterion_id": "rail",
+          "evidence": "En reference se observa una protección tubular amarilla baja en forma de U invertida junto al acceso. En candidate no se aprecia esa protección en el área correspondiente del acceso.",
+          "action": "Marcar discrepancia: falta la protección tubular amarilla baja junto al acceso.",
+          "presence": true,
+          "abstain": false,
+          "category": "missing_feature",
+          "box": {
+            "top": 0.68,
+            "bottom": 0.82,
+            "left": 0.76,
+            "right": 0.94
+          },
+          "source": "GPT"
+        },
+        {
+          "criterion_id": "paving",
+          "evidence": "En reference se distingue un paño de pavimento rojizo/oscuro frente al número 21, rodeado por banqueta gris. En candidate la banqueta aparece uniforme, sin esa diferenciación visible.",
+          "action": "Marcar discrepancia: falta la diferenciación de pavimento visible en la foto.",
+          "presence": true,
+          "abstain": false,
+          "category": "missing_feature",
+          "box": {
+            "top": 0.66,
+            "bottom": 0.91,
+            "left": 0.39,
+            "right": 0.92
+          },
+          "source": "GPT"
+        },
+        {
+          "criterion_id": "curb",
+          "evidence": "En ambas imágenes se reconoce visualmente un límite entre la banqueta y la calzada: en reference por la guarnición/borde y en candidate por la separación tonal y geométrica entre el plano claro de banqueta y la calle gris.",
+          "action": "Sin acción: el criterio coincide.",
+          "presence": false,
+          "abstain": false,
+          "category": "none",
+          "box": null,
+          "source": "GPT"
+        },
+        {
+          "criterion_id": "width",
+          "evidence": "Las imágenes no están calibradas ni aportan escala de campo suficiente para certificar una diferencia de ancho real mayor a 20 cm.",
+          "action": "Abstenerse: falta calibración/escala para evaluar ancho real.",
+          "presence": null,
+          "abstain": true,
+          "category": "insufficient_evidence",
+          "box": null,
+          "source": "GPT"
+        },
+        {
+          "criterion_id": "height",
+          "evidence": "No hay cotas medidas ni calibración óptica para determinar si la altura real de la guarnición difiere por más de 5 cm.",
+          "action": "Abstenerse: falta información métrica para evaluar altura real de guarnición.",
+          "presence": null,
+          "abstain": true,
+          "category": "insufficient_evidence",
+          "box": null,
+          "source": "GPT"
+        },
+        {
+          "criterion_id": "ramp",
+          "evidence": "Con solo estas dos vistas no es posible verificar pendientes ni paso libre reglamentario de accesibilidad; no hay mediciones ni geometría suficiente.",
+          "action": "Abstenerse: evidencia insuficiente para evaluar accesibilidad del tramo.",
+          "presence": null,
+          "abstain": true,
+          "category": "insufficient_evidence",
+          "box": null,
+          "source": "GPT"
+        },
+        {
+          "criterion_id": "ends",
+          "evidence": "Este par de imágenes muestra solo el frente del número 21 y no documenta toda la continuidad de la banqueta A entre Garmendia y Abasolo ni ambas esquinas y sus rampas.",
+          "action": "Abstenerse: el alcance visual no cubre todo el tramo requerido.",
+          "presence": null,
+          "abstain": true,
+          "category": "insufficient_evidence",
+          "box": null,
+          "source": "GPT"
+        }
+      ]
+    },
+    {
+      "arm": "A",
+      "repeat": 1,
+      "correct": 9,
+      "client_ms": 32225.930234999396,
+      "server_ms": 28892,
+      "automatic": 0,
+      "fallback": 0,
+      "provider_calls": 1,
+      "values": [
+        {
+          "criterion_id": "surface",
+          "evidence": "En reference sí se ve una franja continua de banqueta entre la fachada y la calle. En candidate también se aprecia esa franja peatonal clara a lo largo del frente, entre el muro y la calzada gris; no falta por completo.",
+          "action": "no_defect",
+          "presence": false,
+          "abstain": false,
+          "category": "none",
+          "box": null,
+          "source": "GPT"
+        },
+        {
+          "criterion_id": "bollard",
+          "evidence": "En reference aparece un bolardo negro corto con cabeza ensanchada en primer plano, cerca del borde de la banqueta. En candidate no se observa ese bolardo en la zona frontal equivalente.",
+          "action": "mark_missing_feature",
+          "presence": true,
+          "abstain": false,
+          "category": "missing_feature",
+          "box": {
+            "top": 0.66,
+            "bottom": 0.94,
+            "left": 0.46,
+            "right": 0.54
+          },
+          "source": "GPT"
+        },
+        {
+          "criterion_id": "rail",
+          "evidence": "En reference se ve una protección tubular amarilla baja en forma de U invertida junto al acceso. En candidate no se aprecia esa protección amarilla en la zona del acceso visible.",
+          "action": "mark_missing_feature",
+          "presence": true,
+          "abstain": false,
+          "category": "missing_feature",
+          "box": {
+            "top": 0.6,
+            "bottom": 0.74,
+            "left": 0.7,
+            "right": 0.9
+          },
+          "source": "GPT"
+        },
+        {
+          "criterion_id": "paving",
+          "evidence": "En reference se distingue un paño de pavimento rojizo/oscuro frente al número 21, rodeado por banqueta más gris. En candidate la banqueta visible es uniforme y no se reconoce ese paño diferenciado.",
+          "action": "mark_missing_feature",
+          "presence": true,
+          "abstain": false,
+          "category": "missing_feature",
+          "box": {
+            "top": 0.6,
+            "bottom": 0.82,
+            "left": 0.18,
+            "right": 0.93
+          },
+          "source": "GPT"
+        },
+        {
+          "criterion_id": "curb",
+          "evidence": "En reference y en candidate se reconoce visualmente un borde entre la banqueta y la calzada; en candidate la franja clara de banqueta termina contra la calle gris, por lo que sí hay separación visible.",
+          "action": "no_defect",
+          "presence": false,
+          "abstain": false,
+          "category": "none",
+          "box": null,
+          "source": "GPT"
+        },
+        {
+          "criterion_id": "width",
+          "evidence": "No hay escala de campo, cámara calibrada ni cotas métricas confiables para demostrar un error de ancho real mayor a 20 cm usando solo estas imágenes.",
+          "action": "abstain_insufficient_evidence",
+          "presence": null,
+          "abstain": true,
+          "category": "insufficient_evidence",
+          "box": null,
+          "source": "GPT"
+        },
+        {
+          "criterion_id": "height",
+          "evidence": "No hay mediciones ni calibración óptica para comprobar una diferencia de altura real de guarnición mayor a 5 cm entre foto y modelo.",
+          "action": "abstain_insufficient_evidence",
+          "presence": null,
+          "abstain": true,
+          "category": "insufficient_evidence",
+          "box": null,
+          "source": "GPT"
+        },
+        {
+          "criterion_id": "ramp",
+          "evidence": "Con este par de imágenes no se pueden certificar pendiente ni paso libre reglamentario de accesibilidad; faltan cotas y medición del tramo.",
+          "action": "abstain_insufficient_evidence",
+          "presence": null,
+          "abstain": true,
+          "category": "insufficient_evidence",
+          "box": null,
+          "source": "GPT"
+        },
+        {
+          "criterion_id": "ends",
+          "evidence": "Este par solo muestra el frente del número 21 y no documenta toda la continuidad de la banqueta entre Garmendia y Abasolo ni ambas esquinas y sus rampas.",
+          "action": "abstain_insufficient_evidence",
+          "presence": null,
+          "abstain": true,
+          "category": "insufficient_evidence",
+          "box": null,
+          "source": "GPT"
+        }
+      ]
+    },
+    {
+      "arm": "B95",
+      "repeat": 1,
+      "correct": 9,
+      "client_ms": 29323.521659000107,
+      "server_ms": 26165,
+      "automatic": 0,
+      "fallback": 9,
+      "provider_calls": 2,
+      "values": [
+        {
+          "criterion_id": "surface",
+          "evidence": "En reference se ve una franja de banqueta pavimentada entre la fachada y la calle; en candidate también se aprecia esa franja continua junto a la fachada.",
+          "action": "No marcar defecto; el pavimento de banqueta está presente en ambos.",
+          "presence": false,
+          "abstain": false,
+          "category": "none",
+          "box": null,
+          "source": "GPT"
+        },
+        {
+          "criterion_id": "bollard",
+          "evidence": "En reference aparece un bolardo negro corto con cabeza ensanchada en primer plano, cerca del centro inferior. En candidate no se observa un elemento equivalente en esa zona de la banqueta.",
+          "action": "Marcar discrepancia: falta el bolardo en el modelo.",
+          "presence": true,
+          "abstain": false,
+          "category": "missing_feature",
+          "box": {
+            "top": 0.66,
+            "bottom": 0.91,
+            "left": 0.45,
+            "right": 0.53
+          },
+          "source": "GPT"
+        },
+        {
+          "criterion_id": "rail",
+          "evidence": "En reference se observa una protección tubular amarilla baja en forma de U invertida junto al acceso. En candidate no aparece esa protección en la zona correspondiente frente al acceso.",
+          "action": "Marcar discrepancia: falta la protección tubular amarilla.",
+          "presence": true,
+          "abstain": false,
+          "category": "missing_feature",
+          "box": {
+            "top": 0.6,
+            "bottom": 0.72,
+            "left": 0.23,
+            "right": 0.37
+          },
+          "source": "GPT"
+        },
+        {
+          "criterion_id": "paving",
+          "evidence": "En reference se distingue un paño de pavimento rojizo/oscuro frente al número 21, rodeado por banqueta gris. En candidate la superficie de la banqueta se ve uniforme y no muestra ese paño diferenciado.",
+          "action": "Marcar discrepancia: falta la diferenciación de pavimento.",
+          "presence": true,
+          "abstain": false,
+          "category": "missing_feature",
+          "box": {
+            "top": 0.58,
+            "bottom": 0.86,
+            "left": 0.27,
+            "right": 0.76
+          },
+          "source": "GPT"
+        },
+        {
+          "criterion_id": "curb",
+          "evidence": "En reference se reconoce el borde entre banqueta y calzada; en candidate también se distingue visualmente la separación entre la franja clara de banqueta y la calle gris oscura.",
+          "action": "No marcar defecto; hay borde reconocible en ambos.",
+          "presence": false,
+          "abstain": false,
+          "category": "none",
+          "box": null,
+          "source": "GPT"
+        },
+        {
+          "criterion_id": "width",
+          "evidence": "No hay escala de campo, cámara calibrada ni medición directa para demostrar que el ancho real difiera por más de 20 cm.",
+          "action": "Abstenerse: este insumo no permite evaluar ancho real con certeza métrica.",
+          "presence": null,
+          "abstain": true,
+          "category": "insufficient_evidence",
+          "box": null,
+          "source": "GPT"
+        },
+        {
+          "criterion_id": "height",
+          "evidence": "Las imágenes no aportan cotas ni calibración óptica suficientes para certificar una diferencia real de altura de guarnición mayor a 5 cm.",
+          "action": "Abstenerse: no evaluable métricamente con estas vistas.",
+          "presence": null,
+          "abstain": true,
+          "category": "insufficient_evidence",
+          "box": null,
+          "source": "GPT"
+        },
+        {
+          "criterion_id": "ramp",
+          "evidence": "Con solo estas dos imágenes no calibradas no se pueden verificar pendiente ni paso libre reglamentario de accesibilidad.",
+          "action": "Abstenerse: faltan mediciones y alcance para evaluar accesibilidad.",
+          "presence": null,
+          "abstain": true,
+          "category": "insufficient_evidence",
+          "box": null,
+          "source": "GPT"
+        },
+        {
+          "criterion_id": "ends",
+          "evidence": "Este par de imágenes solo muestra el frente del número 21; no documenta toda la continuidad del tramo entre Garmendia y Abasolo ni ambas esquinas y sus rampas.",
+          "action": "Abstenerse: falta cobertura del tramo completo.",
+          "presence": null,
+          "abstain": true,
+          "category": "insufficient_evidence",
+          "box": null,
+          "source": "GPT"
+        }
+      ]
+    }
+  ],
+  "time_definition": "Observed client wall time through all nine diagnostic decisions in one workflow, including image retrieval, Jev routing and grouped GPT fallback. Excludes one-off development/deployment and unperformed geometric placement.",
+  "limitations": [
+    "One microzone and 9 correlated criteria, not 9 independent sites.",
+    "Ground truth from direct visual inspection by ChatGPT and current scene graph, not independent survey.",
+    "Thresholds uncalibrated; reported confidence is not verified accuracy."
+  ]
+}
