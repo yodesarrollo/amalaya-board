@@ -10,5 +10,6 @@
   "tests": [
     "npm run build && npm run pruebas"
   ],
-  "rollback": "Revertir código por PR; conservar archivos privados, IDs y registros originales."
+  "rollback": "Revertir código por PR; conservar archivos privados, IDs y registros originales.",
+  "model_commit": "b8f70c6828ac1ede9a931c012f882f2390680bce"
 }
