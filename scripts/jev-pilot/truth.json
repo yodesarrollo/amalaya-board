@@ -1,0 +1,897 @@
+{
+  "cal-01": {
+    "family": "EB-SW",
+    "expected": {
+      "presence": false,
+      "sufficient_evidence": true,
+      "category": "none",
+      "box": null,
+      "critical": false
+    },
+    "planted_transform": {
+      "action": null,
+      "value": null
+    },
+    "camera": {
+      "position": [
+        95,
+        7,
+        34
+      ],
+      "target": [
+        95,
+        3,
+        -6
+      ],
+      "fov": 72
+    },
+    "candidate_camera": {
+      "position": [
+        95,
+        7,
+        34
+      ],
+      "target": [
+        95,
+        3,
+        -6
+      ],
+      "fov": 72
+    },
+    "changed_pixels": 0,
+    "ground_truth_method": "deterministic geometry intervention; box is visible RGB difference extent at the matched camera, not a parcel measurement"
+  },
+  "cal-02": {
+    "family": "EB-SW",
+    "expected": {
+      "presence": true,
+      "sufficient_evidence": true,
+      "category": "missing_feature",
+      "box": {
+        "left": 0.5625,
+        "top": 0.4116666666666667,
+        "right": 0.928125,
+        "bottom": 0.42
+      },
+      "critical": false
+    },
+    "planted_transform": {
+      "action": "cornice",
+      "value": null
+    },
+    "camera": {
+      "position": [
+        95,
+        7,
+        34
+      ],
+      "target": [
+        95,
+        3,
+        -6
+      ],
+      "fov": 72
+    },
+    "candidate_camera": {
+      "position": [
+        95,
+        7,
+        34
+      ],
+      "target": [
+        95,
+        3,
+        -6
+      ],
+      "fov": 72
+    },
+    "changed_pixels": 1612,
+    "ground_truth_method": "deterministic geometry intervention; box is visible RGB difference extent at the matched camera, not a parcel measurement"
+  },
+  "cal-03": {
+    "family": "EB-SW",
+    "expected": {
+      "presence": true,
+      "sufficient_evidence": true,
+      "category": "displacement",
+      "box": {
+        "left": 0.5375,
+        "top": 0.415,
+        "right": 0.93125,
+        "bottom": 0.6216666666666667
+      },
+      "critical": false
+    },
+    "planted_transform": {
+      "action": "front-x",
+      "value": 1.3
+    },
+    "camera": {
+      "position": [
+        96,
+        8,
+        31
+      ],
+      "target": [
+        96,
+        3,
+        -6
+      ],
+      "fov": 76
+    },
+    "candidate_camera": {
+      "position": [
+        96,
+        8,
+        31
+      ],
+      "target": [
+        96,
+        3,
+        -6
+      ],
+      "fov": 76
+    },
+    "changed_pixels": 11665,
+    "ground_truth_method": "deterministic geometry intervention; box is visible RGB difference extent at the matched camera, not a parcel measurement"
+  },
+  "cal-04": {
+    "family": "EB-SW",
+    "expected": {
+      "presence": true,
+      "sufficient_evidence": true,
+      "category": "scale",
+      "box": {
+        "left": 0.0,
+        "top": 0.37833333333333335,
+        "right": 0.30416666666666664,
+        "bottom": 0.6033333333333334
+      },
+      "critical": false
+    },
+    "planted_transform": {
+      "action": "barra-y",
+      "value": 1.24
+    },
+    "camera": {
+      "position": [
+        94,
+        6,
+        32
+      ],
+      "target": [
+        95,
+        3,
+        -6
+      ],
+      "fov": 73
+    },
+    "candidate_camera": {
+      "position": [
+        94,
+        6,
+        32
+      ],
+      "target": [
+        95,
+        3,
+        -6
+      ],
+      "fov": 73
+    },
+    "changed_pixels": 16696,
+    "ground_truth_method": "deterministic geometry intervention; box is visible RGB difference extent at the matched camera, not a parcel measurement"
+  },
+  "cal-05": {
+    "family": "EB-SW",
+    "expected": {
+      "presence": false,
+      "sufficient_evidence": true,
+      "category": "none",
+      "box": null,
+      "critical": false
+    },
+    "planted_transform": {
+      "action": null,
+      "value": null
+    },
+    "camera": {
+      "position": [
+        96,
+        10,
+        35
+      ],
+      "target": [
+        96,
+        3,
+        -6
+      ],
+      "fov": 72
+    },
+    "candidate_camera": {
+      "position": [
+        96,
+        10,
+        35
+      ],
+      "target": [
+        96,
+        3,
+        -6
+      ],
+      "fov": 72
+    },
+    "changed_pixels": 0,
+    "ground_truth_method": "deterministic geometry intervention; box is visible RGB difference extent at the matched camera, not a parcel measurement"
+  },
+  "cal-06": {
+    "family": "EB-SW",
+    "expected": {
+      "presence": null,
+      "sufficient_evidence": false,
+      "category": "insufficient_evidence",
+      "box": null,
+      "critical": false
+    },
+    "planted_transform": {
+      "action": "reverse-camera",
+      "value": null
+    },
+    "camera": {
+      "position": [
+        95,
+        7,
+        34
+      ],
+      "target": [
+        95,
+        3,
+        -6
+      ],
+      "fov": 72
+    },
+    "candidate_camera": {
+      "position": [
+        95,
+        6,
+        -35
+      ],
+      "target": [
+        95,
+        3,
+        -60
+      ],
+      "fov": 72
+    },
+    "changed_pixels": 100157,
+    "ground_truth_method": "deterministic geometry intervention; box is visible RGB difference extent at the matched camera, not a parcel measurement"
+  },
+  "test-01": {
+    "family": "EB-SW",
+    "expected": {
+      "presence": false,
+      "sufficient_evidence": true,
+      "category": "none",
+      "box": null,
+      "critical": false
+    },
+    "planted_transform": {
+      "action": null,
+      "value": null
+    },
+    "camera": {
+      "position": [
+        95,
+        7,
+        34
+      ],
+      "target": [
+        95,
+        3,
+        -6
+      ],
+      "fov": 72
+    },
+    "candidate_camera": {
+      "position": [
+        95,
+        7,
+        34
+      ],
+      "target": [
+        95,
+        3,
+        -6
+      ],
+      "fov": 72
+    },
+    "changed_pixels": 0,
+    "ground_truth_method": "deterministic geometry intervention; box is visible RGB difference extent at the matched camera, not a parcel measurement"
+  },
+  "test-02": {
+    "family": "EB-SW",
+    "expected": {
+      "presence": false,
+      "sufficient_evidence": true,
+      "category": "none",
+      "box": null,
+      "critical": false
+    },
+    "planted_transform": {
+      "action": null,
+      "value": null
+    },
+    "camera": {
+      "position": [
+        96,
+        8,
+        31
+      ],
+      "target": [
+        96,
+        3,
+        -6
+      ],
+      "fov": 76
+    },
+    "candidate_camera": {
+      "position": [
+        96,
+        8,
+        31
+      ],
+      "target": [
+        96,
+        3,
+        -6
+      ],
+      "fov": 76
+    },
+    "changed_pixels": 0,
+    "ground_truth_method": "deterministic geometry intervention; box is visible RGB difference extent at the matched camera, not a parcel measurement"
+  },
+  "test-03": {
+    "family": "EB-SW",
+    "expected": {
+      "presence": false,
+      "sufficient_evidence": true,
+      "category": "none",
+      "box": null,
+      "critical": false
+    },
+    "planted_transform": {
+      "action": null,
+      "value": null
+    },
+    "camera": {
+      "position": [
+        94,
+        6,
+        32
+      ],
+      "target": [
+        95,
+        3,
+        -6
+      ],
+      "fov": 73
+    },
+    "candidate_camera": {
+      "position": [
+        94,
+        6,
+        32
+      ],
+      "target": [
+        95,
+        3,
+        -6
+      ],
+      "fov": 73
+    },
+    "changed_pixels": 0,
+    "ground_truth_method": "deterministic geometry intervention; box is visible RGB difference extent at the matched camera, not a parcel measurement"
+  },
+  "test-04": {
+    "family": "EB-SW",
+    "expected": {
+      "presence": false,
+      "sufficient_evidence": true,
+      "category": "none",
+      "box": null,
+      "critical": false
+    },
+    "planted_transform": {
+      "action": null,
+      "value": null
+    },
+    "camera": {
+      "position": [
+        96,
+        10,
+        35
+      ],
+      "target": [
+        96,
+        3,
+        -6
+      ],
+      "fov": 72
+    },
+    "candidate_camera": {
+      "position": [
+        96,
+        10,
+        35
+      ],
+      "target": [
+        96,
+        3,
+        -6
+      ],
+      "fov": 72
+    },
+    "changed_pixels": 0,
+    "ground_truth_method": "deterministic geometry intervention; box is visible RGB difference extent at the matched camera, not a parcel measurement"
+  },
+  "test-05": {
+    "family": "EB-SW",
+    "expected": {
+      "presence": true,
+      "sufficient_evidence": true,
+      "category": "missing_feature",
+      "box": {
+        "left": 0.63125,
+        "top": 0.46166666666666667,
+        "right": 0.85,
+        "bottom": 0.615
+      },
+      "critical": false
+    },
+    "planted_transform": {
+      "action": "moldings",
+      "value": null
+    },
+    "camera": {
+      "position": [
+        95,
+        7,
+        34
+      ],
+      "target": [
+        95,
+        3,
+        -6
+      ],
+      "fov": 72
+    },
+    "candidate_camera": {
+      "position": [
+        95,
+        7,
+        34
+      ],
+      "target": [
+        95,
+        3,
+        -6
+      ],
+      "fov": 72
+    },
+    "changed_pixels": 1528,
+    "ground_truth_method": "deterministic geometry intervention; box is visible RGB difference extent at the matched camera, not a parcel measurement"
+  },
+  "test-06": {
+    "family": "EB-SW",
+    "expected": {
+      "presence": true,
+      "sufficient_evidence": true,
+      "category": "missing_feature",
+      "box": {
+        "left": 0.6166666666666667,
+        "top": 0.4766666666666667,
+        "right": 0.671875,
+        "bottom": 0.6183333333333333
+      },
+      "critical": false
+    },
+    "planted_transform": {
+      "action": "portal",
+      "value": null
+    },
+    "camera": {
+      "position": [
+        96,
+        8,
+        31
+      ],
+      "target": [
+        96,
+        3,
+        -6
+      ],
+      "fov": 76
+    },
+    "candidate_camera": {
+      "position": [
+        96,
+        8,
+        31
+      ],
+      "target": [
+        96,
+        3,
+        -6
+      ],
+      "fov": 76
+    },
+    "changed_pixels": 4127,
+    "ground_truth_method": "deterministic geometry intervention; box is visible RGB difference extent at the matched camera, not a parcel measurement"
+  },
+  "test-07": {
+    "family": "EB-SW",
+    "expected": {
+      "presence": true,
+      "sufficient_evidence": true,
+      "category": "missing_feature",
+      "box": {
+        "left": 0.825,
+        "top": 0.5166666666666667,
+        "right": 0.8520833333333333,
+        "bottom": 0.58
+      },
+      "critical": false
+    },
+    "planted_transform": {
+      "action": "bars",
+      "value": null
+    },
+    "camera": {
+      "position": [
+        94,
+        6,
+        32
+      ],
+      "target": [
+        95,
+        3,
+        -6
+      ],
+      "fov": 73
+    },
+    "candidate_camera": {
+      "position": [
+        94,
+        6,
+        32
+      ],
+      "target": [
+        95,
+        3,
+        -6
+      ],
+      "fov": 73
+    },
+    "changed_pixels": 171,
+    "ground_truth_method": "deterministic geometry intervention; box is visible RGB difference extent at the matched camera, not a parcel measurement"
+  },
+  "test-08": {
+    "family": "EB-SW",
+    "expected": {
+      "presence": true,
+      "sufficient_evidence": true,
+      "category": "missing_feature",
+      "box": {
+        "left": 0.540625,
+        "top": 0.4266666666666667,
+        "right": 0.8947916666666667,
+        "bottom": 0.43833333333333335
+      },
+      "critical": false
+    },
+    "planted_transform": {
+      "action": "cornice",
+      "value": null
+    },
+    "camera": {
+      "position": [
+        96,
+        10,
+        35
+      ],
+      "target": [
+        96,
+        3,
+        -6
+      ],
+      "fov": 72
+    },
+    "candidate_camera": {
+      "position": [
+        96,
+        10,
+        35
+      ],
+      "target": [
+        96,
+        3,
+        -6
+      ],
+      "fov": 72
+    },
+    "changed_pixels": 1513,
+    "ground_truth_method": "deterministic geometry intervention; box is visible RGB difference extent at the matched camera, not a parcel measurement"
+  },
+  "test-09": {
+    "family": "EB-SW",
+    "expected": {
+      "presence": true,
+      "sufficient_evidence": true,
+      "category": "displacement",
+      "box": {
+        "left": 0.5572916666666666,
+        "top": 0.41,
+        "right": 0.928125,
+        "bottom": 0.615
+      },
+      "critical": false
+    },
+    "planted_transform": {
+      "action": "front-x",
+      "value": -1.1
+    },
+    "camera": {
+      "position": [
+        95,
+        7,
+        34
+      ],
+      "target": [
+        95,
+        3,
+        -6
+      ],
+      "fov": 72
+    },
+    "candidate_camera": {
+      "position": [
+        95,
+        7,
+        34
+      ],
+      "target": [
+        95,
+        3,
+        -6
+      ],
+      "fov": 72
+    },
+    "changed_pixels": 10474,
+    "ground_truth_method": "deterministic geometry intervention; box is visible RGB difference extent at the matched camera, not a parcel measurement"
+  },
+  "test-10": {
+    "family": "EB-SW",
+    "expected": {
+      "presence": true,
+      "sufficient_evidence": true,
+      "category": "displacement",
+      "box": {
+        "left": 0.0,
+        "top": 0.41333333333333333,
+        "right": 0.30104166666666665,
+        "bottom": 0.6016666666666667
+      },
+      "critical": false
+    },
+    "planted_transform": {
+      "action": "barra-x",
+      "value": -1.5
+    },
+    "camera": {
+      "position": [
+        96,
+        8,
+        31
+      ],
+      "target": [
+        96,
+        3,
+        -6
+      ],
+      "fov": 76
+    },
+    "candidate_camera": {
+      "position": [
+        96,
+        8,
+        31
+      ],
+      "target": [
+        96,
+        3,
+        -6
+      ],
+      "fov": 76
+    },
+    "changed_pixels": 16595,
+    "ground_truth_method": "deterministic geometry intervention; box is visible RGB difference extent at the matched camera, not a parcel measurement"
+  },
+  "test-11": {
+    "family": "EB-SW",
+    "expected": {
+      "presence": true,
+      "sufficient_evidence": true,
+      "category": "scale",
+      "box": {
+        "left": 0.5635416666666667,
+        "top": 0.33666666666666667,
+        "right": 0.946875,
+        "bottom": 0.615
+      },
+      "critical": false
+    },
+    "planted_transform": {
+      "action": "front-y",
+      "value": 1.3
+    },
+    "camera": {
+      "position": [
+        94,
+        6,
+        32
+      ],
+      "target": [
+        95,
+        3,
+        -6
+      ],
+      "fov": 73
+    },
+    "candidate_camera": {
+      "position": [
+        94,
+        6,
+        32
+      ],
+      "target": [
+        95,
+        3,
+        -6
+      ],
+      "fov": 73
+    },
+    "changed_pixels": 18941,
+    "ground_truth_method": "deterministic geometry intervention; box is visible RGB difference extent at the matched camera, not a parcel measurement"
+  },
+  "test-12": {
+    "family": "EB-SW",
+    "expected": {
+      "presence": true,
+      "sufficient_evidence": true,
+      "category": "scale",
+      "box": {
+        "left": 0.00625,
+        "top": 0.4083333333333333,
+        "right": 0.3020833333333333,
+        "bottom": 0.6016666666666667
+      },
+      "critical": false
+    },
+    "planted_transform": {
+      "action": "barra-y",
+      "value": 0.73
+    },
+    "camera": {
+      "position": [
+        96,
+        10,
+        35
+      ],
+      "target": [
+        96,
+        3,
+        -6
+      ],
+      "fov": 72
+    },
+    "candidate_camera": {
+      "position": [
+        96,
+        10,
+        35
+      ],
+      "target": [
+        96,
+        3,
+        -6
+      ],
+      "fov": 72
+    },
+    "changed_pixels": 17420,
+    "ground_truth_method": "deterministic geometry intervention; box is visible RGB difference extent at the matched camera, not a parcel measurement"
+  },
+  "test-13": {
+    "family": "EB-SW",
+    "expected": {
+      "presence": null,
+      "sufficient_evidence": false,
+      "category": "insufficient_evidence",
+      "box": null,
+      "critical": false
+    },
+    "planted_transform": {
+      "action": "reverse-camera",
+      "value": null
+    },
+    "camera": {
+      "position": [
+        95,
+        7,
+        34
+      ],
+      "target": [
+        95,
+        3,
+        -6
+      ],
+      "fov": 72
+    },
+    "candidate_camera": {
+      "position": [
+        95,
+        6,
+        -35
+      ],
+      "target": [
+        95,
+        3,
+        -60
+      ],
+      "fov": 72
+    },
+    "changed_pixels": 100157,
+    "ground_truth_method": "deterministic geometry intervention; box is visible RGB difference extent at the matched camera, not a parcel measurement"
+  },
+  "test-14": {
+    "family": "EB-SW",
+    "expected": {
+      "presence": null,
+      "sufficient_evidence": false,
+      "category": "insufficient_evidence",
+      "box": null,
+      "critical": false
+    },
+    "planted_transform": {
+      "action": "occluded-camera",
+      "value": null
+    },
+    "camera": {
+      "position": [
+        96,
+        8,
+        31
+      ],
+      "target": [
+        96,
+        3,
+        -6
+      ],
+      "fov": 76
+    },
+    "candidate_camera": {
+      "position": [
+        95,
+        1.3,
+        -10
+      ],
+      "target": [
+        95,
+        1.3,
+        -30
+      ],
+      "fov": 76
+    },
+    "changed_pixels": 571761,
+    "ground_truth_method": "deterministic geometry intervention; box is visible RGB difference extent at the matched camera, not a parcel measurement"
+  }
+}

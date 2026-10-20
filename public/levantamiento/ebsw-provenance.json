@@ -7,6 +7,11 @@
   "visorSha256": "7b2db314cd7b1f361be2a741bd664786bf0f1ad569fc4e5eff7bd20b0e8139a4",
   "runtimeModuleSha256": "765e5fd4f8693ffdd610a16632e5848f73ce70525ea1e17503cc74799e2de057",
   "editableSourceSha256": "f08fe2242f7dabd4a937f3407e4bb8d5bda12e831d5a940590752246092ba90a",
-  "generatedFrom": "Private editable extension; compiled ESM without source maps",
-  "sourceStatus": "Prior compiled world preserved; full Hidalgo3D source not recovered"
+  "generatedFrom": "src/levantamiento/ebsw-refinement.js; compiled ESM without source maps",
+  "sourceStatus": "EB-SW editable extension recovered byte-for-byte from 2026-10-03 continuation backup; preserved full world remains compiled",
+  "sourceRecovery": {
+    "archiveSha256": "191f97067475062113e065be3b36adec04a5e3dbefded61d998b168d1b451c80",
+    "sourceCommit": "7f0a7c6",
+    "recoveryDate": "2026-10-20"
+  }
 }
