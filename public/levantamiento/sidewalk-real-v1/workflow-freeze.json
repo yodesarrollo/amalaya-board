@@ -1,0 +1,48 @@
+{
+  "study_id": "amalaya-sidewalk-workflow-v1",
+  "scope": "One real south Obregon frontage, all nine frozen criteria in a single review",
+  "manifest_sha256": "c7b5122135024ced7d95a0e16670e328124fc895835affc3adeb65c281e0f0f0",
+  "schedule": [
+    [
+      "A",
+      0
+    ],
+    [
+      "B95",
+      0
+    ],
+    [
+      "B90",
+      0
+    ],
+    [
+      "B90",
+      1
+    ],
+    [
+      "A",
+      1
+    ],
+    [
+      "B95",
+      1
+    ]
+  ],
+  "arms": {
+    "A": "One GPT review of all9criteria",
+    "B90": "One fresh Jev batch27 atomic scores, then one GPT batch containing only unresolved criteria at90%",
+    "B95": "Same independent workflow at95%"
+  },
+  "models": {
+    "Jev": "jev-1.14.0",
+    "GPT": "gpt-5.4-2026-03-05",
+    "GPT_effort": "medium"
+  },
+  "primary_outcome": "Correctness of all9decisions and observed client time until all9decisions; no claim of geometric correction completion",
+  "automatic_rule": "evidence>=threshold, presence>=threshold or<=1-threshold, category coherent; otherwise GPT",
+  "truth_sha256": "f8ff10d5ab619c856812cd05ce5cd49dccdf37b2f647aa8f9815c2defba9c1a6",
+  "runner_sha256": "dc9435306701365f082dee1b48c44329be1d45be98022696866a891ff109ad73",
+  "backend_sha256": "9800cf562081cbb39f02f78a3e7470057a9babe5e26bdce0549afd4a240dd4f6",
+  "frozen_before_provider_calls": true,
+  "statistics": "Two paired timing observations per method on one site; descriptive only; repetitions and criteria are not independent sites."
+}

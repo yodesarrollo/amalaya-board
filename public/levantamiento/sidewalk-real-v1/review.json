@@ -1,0 +1,55 @@
+{
+  "id": "BANQUETA-A-FRENTE21-20261020",
+  "scope": "Obregón sur, frente21; microzona, no toda la cuadra",
+  "status": "observed-discrepancies; geometric placement pending",
+  "photo": {
+    "path": "images/photo-P10-south.jpg",
+    "source": "recorrido/lYkbkN5HLT-6YQS4vIsd2g.jpg",
+    "point": "P10",
+    "captureDate": null
+  },
+  "model": {
+    "worldSha256": "af0cc341f7715a173ce3cac6ea31e5a961e9c92c4ee103ff1fd82d9a2b37b34b",
+    "path": "images/model-before.png",
+    "sidewalkOwner": "Ajuste visual · sidewalk · C22",
+    "geometryApproximate": true
+  },
+  "observed": [
+    {
+      "id": "bollard",
+      "detail": "Bolardo negro corto visible, con base y cabeza ensanchada; no representado en escena",
+      "photoRegionNormalized": {
+        "left": 0.43,
+        "top": 0.71,
+        "right": 0.49,
+        "bottom": 0.96
+      },
+      "next": "Anclar pie al plano de banqueta y verificar dimensiones antes de generar sólido/colisión"
+    },
+    {
+      "id": "rail",
+      "detail": "Protección tubular amarilla baja junto al acceso; no representada en escena",
+      "photoRegionNormalized": {
+        "left": 0.2,
+        "top": 0.53,
+        "right": 0.29,
+        "bottom": 0.62
+      },
+      "next": "Verificar ambos apoyos y paso libre; no deducir un ancho métrico de la foto"
+    },
+    {
+      "id": "paving",
+      "detail": "Paño oscuro/rojizo frente21; acabado actual uniforme",
+      "next": "Anclar perímetro del paño a superficie C22 antes de aplicar material por región"
+    }
+  ],
+  "unknown": [
+    "ancho real",
+    "cotas/alturas",
+    "pendientes",
+    "continuidad entre ambas esquinas",
+    "posición y permanencia actual de los objetos de una foto sin fecha conocida"
+  ],
+  "closure": "No cierre de continuidad ni accesibilidad; registro visual corregido sin modificar dimensiones 3D",
+  "audit": "Truth manual por ChatGPT + inspección de grafo de escena, sin verificación independiente de campo"
+}
