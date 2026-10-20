@@ -3,6 +3,10 @@
 Board de control de **Amalaya**, polígono de actuación concertada en el centro de
 Hermosillo, Sonora. Interfaz en `https://yodesarrollo.github.io/amalaya-board/`.
 
+## Instrucciones de revisión con Jev
+
+Aplicar [AGENTS.md](AGENTS.md) y [Jev: revisión operativa](docs/JEV-REVISION-OPERATIVA.md) al localizar evidencia, comparar foto/modelo o revisar un cierre. La guía integra criterios por caso, rutas textuales/visuales/voz, requisitos de evidencia y lo aprendido en la prueba real de banqueta. Priorizar tiempo total y calidad; usar el método convencional cuando Jev no evite trabajo posterior.
+
 ## Mapa principal
 
 Se restaura la interfaz anterior: mapa, fichas, lista, capas, herramientas y recorrido original. Únicamente se sustituye la representación de cubos por el levantamiento 3D georreferenciado, sobre el mismo mapa y con la misma cámara. Si el modelo no carga, se conserva la maqueta básica como respaldo. Los permisos y módulos del tablero no cambian.

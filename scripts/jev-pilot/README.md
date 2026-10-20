@@ -1,5 +1,10 @@
 # Piloto visual EB-SW / Jev
 
+Para revisiones reales y nuevas instrucciones, seguir
+[Jev: revisión operativa](../../docs/JEV-REVISION-OPERATIVA.md).
+Este piloto sintético conserva su protocolo y resultados históricos;
+no demuestra calidad ni aceleración en una revisión real de banquetas.
+
 La fuente editable recuperada de EB-SW vive en `src/levantamiento/ebsw-refinement.js`. Su compilación con esbuild 0.21.5 coincide byte a byte con el módulo publicado antes del piloto. `npm run preparar:ebsw` ya usa esa fuente por defecto. El mundo general conservado sigue siendo un bundle compilado.
 
 ## Qué mide

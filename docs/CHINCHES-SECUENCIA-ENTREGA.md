@@ -1,5 +1,9 @@
 # Chinches con audio y secuencia · entrega técnica
 
+## Uso de Jev en la revisión
+
+Seguir [revisión operativa](JEV-REVISION-OPERATIVA.md) para convertir segmentos transcritos en peticiones, restricciones y pendientes, vinculados a sus tiempos, trazos y capturas. Jev no transcribe ni escucha audio. Mantener el paquete privado original, ID/huella y recibo; una clasificación no prueba recepción ni cierre. Los checkpoints técnicos siguientes conservan sus fechas y no acreditan nuevas activaciones por añadir esta instrucción.
+
 Estado: implementación en rama, pendiente de activación y verificación en producción. No es un recibo de despliegue.
 
 Mecánica compartida: audio MediaRecorder, lápiz/marcador/formas, tiempo por punto, deshacer, capturas intermedias y reproducción sincronizada. Se conserva contexto y archivo local; la entrega sólo se confirma por ID y SHA256. No se sustituye un audio fallido por texto ni se publica contenido privado en issues.
