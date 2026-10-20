@@ -1,0 +1,19 @@
+{
+  "source": "public/recorrido/lYkbkN5HLT-6YQS4vIsd2g.jpg",
+  "panoramaCenterPixel": 1800,
+  "pitchDegrees": -10,
+  "horizontalFovDegrees": 90,
+  "output": [
+    1120,
+    800
+  ],
+  "poseStatus": "manual semantic registration, not measured optical centre; no metric conclusions",
+  "modelCamera": {
+    "lat": 29.0760107,
+    "lon": -110.9536147,
+    "heading": 175,
+    "fov": 95,
+    "pitch": -10,
+    "eye": 2.5
+  }
+}

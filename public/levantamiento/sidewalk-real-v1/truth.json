@@ -1,0 +1,47 @@
+{
+  "surface": {
+    "presence": false,
+    "category": "none",
+    "reason": "Franja visible en ambos; modelo C22 geometría real."
+  },
+  "bollard": {
+    "presence": true,
+    "category": "missing_feature",
+    "reason": "Bolardo con base y cabeza visible; no existe geometría correspondiente en escena."
+  },
+  "rail": {
+    "presence": true,
+    "category": "missing_feature",
+    "reason": "Protección amarilla presente en referencia; ausente de escena."
+  },
+  "paving": {
+    "presence": true,
+    "category": "missing_feature",
+    "reason": "Paño de color distinto con borde visible en foto; superficie de modelo uniforme."
+  },
+  "curb": {
+    "presence": false,
+    "category": "none",
+    "reason": "Borde de superficie C22 y cambio de color reconocibles en ambos."
+  },
+  "width": {
+    "presence": null,
+    "category": "insufficient_evidence",
+    "reason": "No puede medirse error métrico de 20cm con estas imágenes."
+  },
+  "height": {
+    "presence": null,
+    "category": "insufficient_evidence",
+    "reason": "No hay referencia vertical métrica."
+  },
+  "ramp": {
+    "presence": null,
+    "category": "insufficient_evidence",
+    "reason": "No certificar normativa con evidencia incompleta."
+  },
+  "ends": {
+    "presence": null,
+    "category": "insufficient_evidence",
+    "reason": "Microzona no acredita extremos ni cuadra completa."
+  }
+}

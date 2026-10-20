@@ -1,0 +1,21 @@
+{
+  "study_id": "amalaya-sidewalk-real-v1",
+  "criteria_count": 9,
+  "repetitions": 2,
+  "thresholds": [
+    0.9,
+    0.95
+  ],
+  "automatic_rule": "evidence confidence >=threshold AND presence>=threshold or <=1-threshold; category coherent. Otherwise new GPT fallback same medium model/prompt, no shared baseline response.",
+  "model": "gpt-5.4-2026-03-05",
+  "effort": "medium",
+  "manifest_sha256": "c7b5122135024ced7d95a0e16670e328124fc895835affc3adeb65c281e0f0f0",
+  "truth_sha256": "f8ff10d5ab619c856812cd05ce5cd49dccdf37b2f647aa8f9815c2defba9c1a6",
+  "statistics": "paired per criterion; 2 repetitions test stability, not sample size; report raw counts and medians, no population efficacy claim",
+  "correction_scope": "review record and image annotations; do not manufacture surveyed 3D dimensions from uncalibrated photo",
+  "frozen_before_provider_calls": true,
+  "fallback_slots": {
+    "90": "C0/C1",
+    "95": "D0/D1"
+  }
+}
