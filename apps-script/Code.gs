@@ -361,6 +361,7 @@ function doPost(e) {
       return accLigaPorCorreo(body);
     }
     // - chincheTomada: el puente avisa qué issue abrió (con el token del puente).
+    if(action==='chincheSecuenciaPuente'){if(!tokenPuenteValido(body.k))return jsonOut({ok:false,error:'No autorizado.'});return accSecuenciaLeer(null,body);}
     if (action === 'chincheTomada') {
       return accChincheTomada(body);
     }
@@ -415,6 +416,7 @@ function doPost(e) {
         return accRespaldoAhora(usuario);
       case 'instalarRespaldo':
         return accInstalarRespaldo(usuario);
+      case 'chincheSecuencia': return accSecuenciaLeer(usuario,body);
       case 'chinche':
         return accChinche(usuario, body);
       case 'congelarReporte':
@@ -1234,17 +1236,22 @@ function accChinche(usuario, body) {
   return conCandado(function () {
     const conf = TABS.Chinches;
     const hoja = obtenerHoja('Chinches');
-    if (buscarFila(hoja, conf, id) > 0) return { ok: true, id: id, repetida: true }; // ya estaba: no duplicar
-    const detalle = JSON.stringify({ tipo: c.tipo, aparato: c.aparato, elemento: c.elemento, ancla: c.ancla, codigo: c.codigo }).slice(0, 4000);
+    if (buscarFila(hoja, conf, id) > 0) {if(c.secuencia){var prior=leerHoja('Chinches').find(function(r){return r.id===id;}),meta=JSON.parse(prior.detalle||'{}').secuencia;if(!meta||meta.owner!==usuario.id||meta.hash!==c.secuenciaHash)throw Error('Conflicto de secuencia.');nativeSequenceRead_(PropertiesService.getScriptProperties().getProperty('CARPETA_ID'),id,meta.hash);return {ok:true,id:id,hash:meta.hash,repetida:true};}return { ok: true, id: id, repetida: true };} // ya estaba: no duplicar
+    if(String(c.texto).length>3000)throw Error('La nota supera 3000 caracteres.');
+    const media=c.secuencia?nativeSequenceSave_(PropertiesService.getScriptProperties().getProperty('CARPETA_ID'),id,usuario.id,c.secuencia,c.secuenciaHash):null;
+    const detalle = JSON.stringify({ tipo: c.tipo, aparato: c.aparato, elemento: c.elemento, ancla: c.ancla, codigo: c.codigo, secuencia:media });
+    if(detalle.length>45000)throw Error('Contexto demasiado grande.');
     const fila = {
       id: id, fecha: String(c.creado || new Date().toISOString()), quien: usuario.nombre || c.quien || '',
       pantalla: String(c.pantalla || ''), vista: String(c.vista || ''), url: String(c.url || '').slice(0, 300),
       texto: String(c.texto).slice(0, 3000), detalle: detalle, estado: 'nueva', issue: '',
     };
     hoja.appendRow(conf.headers.map(function (h) { return sanitizarValor(fila[h]); }));
-    return { ok: true, id: id };
+    return { ok: true, id: id, hash:media?media.hash:null };
   });
 }
+
+function accSecuenciaLeer(usuario,body){var row=leerHoja('Chinches').find(function(r){return r.id===body.id;});if(!row)throw Error('Chinche no encontrada.');var m=JSON.parse(row.detalle||'{}').secuencia;if(!m||usuario&&m.owner!==usuario.id&&['admin','master'].indexOf(usuario.rol)<0)throw Error('No autorizado.');return jsonOut({ok:true,data:nativeSequenceRead_(PropertiesService.getScriptProperties().getProperty('CARPETA_ID'),row.id,m.hash)});}
 
 function tokenPuenteValido(k) {
   const t = PropertiesService.getScriptProperties().getProperty('CHINCHES_TOKEN') || '';
