@@ -1,15 +1,15 @@
 {
-  "model_revision": "2026-10-20.chinches-secuencia.1",
-  "proposal_id": "CHG-CHINCHES-SECUENCIA-20261020",
-  "summary": "Voz, trazos y capturas con secuencia temporal; conservar identidad y bandeja nativas.",
+  "model_revision": "2026-10-20.chinches-audio-ipad.1",
+  "proposal_id": "CHG-CHINCHES-AUDIO-IPAD-20261020",
+  "summary": "Reparar audio Safari y conservar originales/borradores sin alterar identidad, datos ni permisos",
   "components": [
-    "SYS-AMALAYA",
-    "GAS-AMALAYA",
-    "SHEET-AMALAYA"
+    "SYS-AMALAYA"
   ],
   "tests": [
-    "npm run build && npm run pruebas"
+    "npm run build",
+    "npm run pruebas",
+    "Paquete1.1.0 y hashes del bloque administrado"
   ],
-  "rollback": "Revertir código por PR; conservar archivos privados, IDs y registros originales.",
-  "model_commit": "b8f70c6828ac1ede9a931c012f882f2390680bce"
+  "rollback": "Revertir código por PR conservando originales, borradores, IDs, recibos y permisos",
+  "model_commit": "7796d27f8f68eda5785e4f173accdbe4fbdc13fe"
 }
