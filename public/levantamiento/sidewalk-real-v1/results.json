@@ -1,0 +1,2888 @@
+{
+  "study_id": "amalaya-sidewalk-real-v1",
+  "manifest_sha256": "c7b5122135024ced7d95a0e16670e328124fc895835affc3adeb65c281e0f0f0",
+  "summary": {
+    "GPT": {
+      "correct": 16,
+      "total": 18,
+      "true_positive": 6,
+      "positive_total": 6,
+      "precision": 0.75,
+      "automatic": 0,
+      "automatic_correct": 0,
+      "fallback": 0,
+      "median_client_ms": 12246.180783498858,
+      "total_client_ms": 251945.27857198773,
+      "median_server_ms": 8775.5,
+      "provider_calls": 18,
+      "unambiguous_sensitivity": {
+        "correct": 16,
+        "total": 16,
+        "excluded_case": "ramp",
+        "status": "posthoc sensitivity; original frozen score retained"
+      }
+    },
+    "Jev90": {
+      "correct": 16,
+      "total": 18,
+      "true_positive": 6,
+      "positive_total": 6,
+      "precision": 0.75,
+      "automatic": 0,
+      "automatic_correct": 0,
+      "fallback": 18,
+      "median_client_ms": 13855.715184001383,
+      "total_client_ms": 283970.79793300875,
+      "median_server_ms": 6755.5,
+      "provider_calls": 36,
+      "median_paired_time_change_pct": 24.88658737689271,
+      "unambiguous_sensitivity": {
+        "correct": 16,
+        "total": 16,
+        "excluded_case": "ramp",
+        "status": "posthoc sensitivity; original frozen score retained"
+      }
+    },
+    "Jev95": {
+      "correct": 16,
+      "total": 18,
+      "true_positive": 6,
+      "positive_total": 6,
+      "precision": 0.75,
+      "automatic": 0,
+      "automatic_correct": 0,
+      "fallback": 18,
+      "median_client_ms": 15539.271011501114,
+      "total_client_ms": 295329.9854360048,
+      "median_server_ms": 8429.0,
+      "provider_calls": 36,
+      "median_paired_time_change_pct": 36.188592106576166,
+      "unambiguous_sensitivity": {
+        "correct": 16,
+        "total": 16,
+        "excluded_case": "ramp",
+        "status": "posthoc sensitivity; original frozen score retained"
+      }
+    }
+  },
+  "rows": [
+    {
+      "case": "surface",
+      "repeat": 0,
+      "expected": false,
+      "truth_reason": "Franja visible en ambos; modelo C22 geometría real.",
+      "GPT": {
+        "evidence": "En la referencia se observa una franja de pavimento de banqueta entre la fachada y la calle. En el modelo candidate también es visible esa franja continua de banqueta frente a la fachada; no falta por completo.",
+        "action": "No se requiere corrección para este criterio.",
+        "presence": false,
+        "abstain": false,
+        "category": "none",
+        "box": null
+      },
+      "jev_raw": {
+        "presence": {
+          "type": "noul",
+          "noul": 0.46
+        },
+        "abstain": {
+          "type": "noul",
+          "noul": 0.5
+        },
+        "category": {
+          "type": "choice",
+          "choice": "none",
+          "confidence": 0.34,
+          "probabilities": {
+            "none": 0.47,
+            "missing_feature": 0.42,
+            "displacement": 0.01,
+            "scale": 0.01,
+            "insufficient_evidence": 0.09
+          }
+        },
+        "box": {
+          "type": "box",
+          "box": {
+            "top": 0.69,
+            "bottom": 0.79,
+            "left": 0.02,
+            "right": 0.99
+          },
+          "confidence": 0.2
+        }
+      },
+      "Jev_ms": 3480.943518999993,
+      "Jev90": {
+        "case": "surface",
+        "repeat": 0,
+        "expected": false,
+        "truth_reason": "Franja visible en ambos; modelo C22 geometría real.",
+        "result": {
+          "evidence": "En la referencia se observa una franja de pavimento de banqueta entre la fachada y la calle. En el candidate también es visible esa franja continua de banqueta frente a la fachada; no falta por completo.",
+          "action": "No se requiere corrección para este criterio.",
+          "presence": false,
+          "abstain": false,
+          "category": "none",
+          "box": null
+        },
+        "correct": true,
+        "automatic": false,
+        "client_ms": 10640.471187998628,
+        "server_ms": 4022,
+        "calls": 2
+      },
+      "Jev95": {
+        "case": "surface",
+        "repeat": 0,
+        "expected": false,
+        "truth_reason": "Franja visible en ambos; modelo C22 geometría real.",
+        "result": {
+          "evidence": "En la referencia se observa una franja de pavimento de banqueta entre la fachada y la calle. En el candidate también se ve una franja continua de pavimento/banqueta visible al pie de la fachada, separando el edificio de la calzada.",
+          "action": "Sin corrección: el modelo sí muestra pavimento de banqueta visible entre fachada y calle, consistente con el criterio evaluado.",
+          "presence": false,
+          "abstain": false,
+          "category": "none",
+          "box": null
+        },
+        "correct": true,
+        "automatic": false,
+        "client_ms": 10757.377619996987,
+        "server_ms": 4650,
+        "calls": 2
+      }
+    },
+    {
+      "case": "surface",
+      "repeat": 1,
+      "expected": false,
+      "truth_reason": "Franja visible en ambos; modelo C22 geometría real.",
+      "GPT": {
+        "evidence": "En la foto de referencia se observa una franja de pavimento de banqueta visible entre la fachada y la calle. En el modelo candidate también se aprecia esa franja continua de banqueta frente a la fachada, separando el edificio de la calzada.",
+        "action": "No se requiere corrección para este criterio; el modelo sí incluye pavimento de banqueta visible entre la fachada y la calle.",
+        "presence": false,
+        "abstain": false,
+        "category": "none",
+        "box": null
+      },
+      "jev_raw": {
+        "presence": {
+          "type": "noul",
+          "noul": 0.41
+        },
+        "abstain": {
+          "type": "noul",
+          "noul": 0.46
+        },
+        "category": {
+          "type": "choice",
+          "choice": "none",
+          "confidence": 0.4,
+          "probabilities": {
+            "none": 0.52,
+            "missing_feature": 0.37,
+            "displacement": 0.01,
+            "scale": 0.01,
+            "insufficient_evidence": 0.09
+          }
+        },
+        "box": {
+          "type": "box",
+          "box": {
+            "top": 0.69,
+            "bottom": 0.88,
+            "left": 0.02,
+            "right": 0.99
+          },
+          "confidence": 0.25
+        }
+      },
+      "Jev_ms": 3225.8580710004026,
+      "Jev90": {
+        "case": "surface",
+        "repeat": 1,
+        "expected": false,
+        "truth_reason": "Franja visible en ambos; modelo C22 geometría real.",
+        "result": {
+          "evidence": "En la referencia se observa una franja de pavimento de banqueta entre la fachada y la calle. En la candidata también se aprecia una franja continua de banqueta/pavimento visible al pie de la fachada, separada de la calzada más oscura. No falta por completo esa franja en el modelo.",
+          "action": "No se requiere corrección para este criterio; el modelo sí muestra pavimento de banqueta visible entre fachada y calle.",
+          "presence": false,
+          "abstain": false,
+          "category": "none",
+          "box": null
+        },
+        "correct": true,
+        "automatic": false,
+        "client_ms": 10496.907394997834,
+        "server_ms": 4767,
+        "calls": 2
+      },
+      "Jev95": {
+        "case": "surface",
+        "repeat": 1,
+        "expected": false,
+        "truth_reason": "Franja visible en ambos; modelo C22 geometría real.",
+        "result": {
+          "evidence": "En la referencia se observa una franja de pavimento de banqueta entre la fachada y la calle. En la candidata también se aprecia esa franja visible a lo largo del frente, separando la fachada del arroyo vehicular.",
+          "action": "No se requiere corrección para este criterio; el modelo sí muestra pavimento de banqueta visible entre fachada y calle.",
+          "presence": false,
+          "abstain": false,
+          "category": "none",
+          "box": null
+        },
+        "correct": true,
+        "automatic": false,
+        "client_ms": 9682.25774199891,
+        "server_ms": 3949,
+        "calls": 2
+      }
+    },
+    {
+      "case": "bollard",
+      "repeat": 0,
+      "expected": true,
+      "truth_reason": "Bolardo con base y cabeza visible; no existe geometría correspondiente en escena.",
+      "GPT": {
+        "evidence": "En la reference sí se observa un bolardo negro corto con cabeza ensanchada en primer plano sobre la banqueta. En la candidate no se aprecia un elemento equivalente en la zona visible del frente; la banqueta aparece libre allí. No se está confundiendo con el poste esbelto junto a la protección amarilla.",
+        "action": "Agregar/restituir en el modelo el bolardo negro corto con cabeza ensanchada en la banqueta, en la zona frontal correspondiente al primer plano del frente.",
+        "presence": true,
+        "abstain": false,
+        "category": "missing_feature",
+        "box": {
+          "top": 0.76,
+          "bottom": 0.98,
+          "left": 0.47,
+          "right": 0.57
+        }
+      },
+      "jev_raw": {
+        "presence": {
+          "type": "noul",
+          "noul": 0.84
+        },
+        "abstain": {
+          "type": "noul",
+          "noul": 0.63
+        },
+        "category": {
+          "type": "choice",
+          "choice": "missing_feature",
+          "confidence": 0.8,
+          "probabilities": {
+            "none": 0.02,
+            "missing_feature": 0.84,
+            "displacement": 0,
+            "scale": 0,
+            "insufficient_evidence": 0.14
+          }
+        },
+        "box": {
+          "type": "box",
+          "box": {
+            "top": 0.75,
+            "bottom": 0.95,
+            "left": 0.46,
+            "right": 0.49
+          },
+          "confidence": 0.13
+        }
+      },
+      "Jev_ms": 5931.5326340001775,
+      "Jev90": {
+        "case": "bollard",
+        "repeat": 0,
+        "expected": true,
+        "truth_reason": "Bolardo con base y cabeza visible; no existe geometría correspondiente en escena.",
+        "result": {
+          "evidence": "En la imagen de referencia sí se observa en primer plano un bolardo negro corto con cabeza ensanchada, ubicado sobre la banqueta cerca del borde. En la imagen candidate no aparece ese bolardo en la zona visible correspondiente; sólo se ve la banqueta libre, sin ese elemento.",
+          "action": "Agregar en el modelo 3D el bolardo negro corto con cabeza ensanchada en la banqueta, aproximadamente en la franja frontal central del tramo visible.",
+          "presence": true,
+          "abstain": false,
+          "category": "missing_feature",
+          "box": {
+            "top": 0.62,
+            "bottom": 0.95,
+            "left": 0.42,
+            "right": 0.56
+          }
+        },
+        "correct": true,
+        "automatic": false,
+        "client_ms": 16958.673171000555,
+        "server_ms": 7934,
+        "calls": 2
+      },
+      "Jev95": {
+        "case": "bollard",
+        "repeat": 0,
+        "expected": true,
+        "truth_reason": "Bolardo con base y cabeza visible; no existe geometría correspondiente en escena.",
+        "result": {
+          "evidence": "En la reference se observa en primer plano un bolardo negro corto con cabeza ensanchada, ubicado sobre la banqueta cerca del borde de la calle. En la candidate, en la zona equivalente de la banqueta visible al frente de la fachada, no aparece ningún bolardo de ese tipo; sólo se ve la superficie libre de la acera.",
+          "action": "Agregar en el modelo el bolardo negro corto con cabeza ensanchada en la banqueta, en la posición aproximada del primer plano frente a la fachada.",
+          "presence": true,
+          "abstain": false,
+          "category": "missing_feature",
+          "box": {
+            "top": 0.72,
+            "bottom": 0.97,
+            "left": 0.42,
+            "right": 0.57
+          }
+        },
+        "correct": true,
+        "automatic": false,
+        "client_ms": 18854.236055998626,
+        "server_ms": 9744,
+        "calls": 2
+      }
+    },
+    {
+      "case": "bollard",
+      "repeat": 1,
+      "expected": true,
+      "truth_reason": "Bolardo con base y cabeza visible; no existe geometría correspondiente en escena.",
+      "GPT": {
+        "evidence": "En la reference se observa en primer plano un bolardo negro corto con cabeza ensanchada, ubicado sobre la banqueta cerca del borde. En la candidate, la zona equivalente del frente visible muestra la banqueta libre y no aparece ese bolardo; no debe confundirse con el poste esbelto junto a la protección amarilla de la reference.",
+        "action": "Agregar en el modelo el bolardo negro corto con cabeza ensanchada en la banqueta del primer plano, cerca del borde de la acera, en la zona central-baja del encuadre.",
+        "presence": true,
+        "abstain": false,
+        "category": "missing_feature",
+        "box": {
+          "top": 0.76,
+          "bottom": 0.98,
+          "left": 0.43,
+          "right": 0.6
+        }
+      },
+      "jev_raw": {
+        "presence": {
+          "type": "noul",
+          "noul": 0.87
+        },
+        "abstain": {
+          "type": "noul",
+          "noul": 0.61
+        },
+        "category": {
+          "type": "choice",
+          "choice": "missing_feature",
+          "confidence": 0.81,
+          "probabilities": {
+            "none": 0.02,
+            "missing_feature": 0.85,
+            "displacement": 0,
+            "scale": 0,
+            "insufficient_evidence": 0.13
+          }
+        },
+        "box": {
+          "type": "box",
+          "box": {
+            "top": 0.75,
+            "bottom": 0.95,
+            "left": 0.47,
+            "right": 0.49
+          },
+          "confidence": 0.17
+        }
+      },
+      "Jev_ms": 3058.991080000851,
+      "Jev90": {
+        "case": "bollard",
+        "repeat": 1,
+        "expected": true,
+        "truth_reason": "Bolardo con base y cabeza visible; no existe geometría correspondiente en escena.",
+        "result": {
+          "evidence": "En reference se observa claramente un bolardo negro corto con cabeza ensanchada en primer plano, sobre la banqueta junto al borde de la calle, frente al paño central-derecho de la fachada. En candidate no aparece ese bolardo ni un elemento equivalente en esa zona del frente.",
+          "action": "Agregar en el modelo el bolardo negro corto con cabeza ensanchada en la banqueta, junto al borde exterior, en el sector frontal central del tramo.",
+          "presence": true,
+          "abstain": false,
+          "category": "missing_feature",
+          "box": {
+            "top": 0.72,
+            "bottom": 0.93,
+            "left": 0.43,
+            "right": 0.56
+          }
+        },
+        "correct": true,
+        "automatic": false,
+        "client_ms": 14066.46672700299,
+        "server_ms": 8370,
+        "calls": 2
+      },
+      "Jev95": {
+        "case": "bollard",
+        "repeat": 1,
+        "expected": true,
+        "truth_reason": "Bolardo con base y cabeza visible; no existe geometría correspondiente en escena.",
+        "result": {
+          "evidence": "En la referencia se observa en primer plano un bolardo negro corto con cabeza ensanchada, ubicado sobre la banqueta cerca del borde de la calle. En la imagen candidate, en la zona equivalente del primer plano de la banqueta, no aparece ese bolardo; sólo se ve la superficie libre de la acera.",
+          "action": "Agregar en el modelo 3D el bolardo negro corto con cabeza ensanchada en la banqueta, en la posición aproximada del primer plano junto al borde de la calle.",
+          "presence": true,
+          "abstain": false,
+          "category": "missing_feature",
+          "box": {
+            "top": 0.7,
+            "bottom": 0.96,
+            "left": 0.46,
+            "right": 0.56
+          }
+        },
+        "correct": true,
+        "automatic": false,
+        "client_ms": 24445.422363001853,
+        "server_ms": 18392,
+        "calls": 2
+      }
+    },
+    {
+      "case": "rail",
+      "repeat": 0,
+      "expected": true,
+      "truth_reason": "Protección amarilla presente en referencia; ausente de escena.",
+      "GPT": {
+        "evidence": "En la referencia se observa una protección tubular baja amarilla, con forma de U invertida, junto al acceso. En la imagen candidate el frente y la zona de banqueta junto al acceso visible no muestran esa protección.",
+        "action": "Agregar en el modelo la protección tubular baja amarilla tipo U invertida junto al acceso, como se aprecia en la referencia.",
+        "presence": true,
+        "abstain": false,
+        "category": "missing_feature",
+        "box": {
+          "top": 0.63,
+          "bottom": 0.8,
+          "left": 0.73,
+          "right": 0.93
+        }
+      },
+      "jev_raw": {
+        "presence": {
+          "type": "noul",
+          "noul": 0.84
+        },
+        "abstain": {
+          "type": "noul",
+          "noul": 0.67
+        },
+        "category": {
+          "type": "choice",
+          "choice": "missing_feature",
+          "confidence": 0.79,
+          "probabilities": {
+            "none": 0.01,
+            "missing_feature": 0.83,
+            "displacement": 0,
+            "scale": 0,
+            "insufficient_evidence": 0.16
+          }
+        },
+        "box": {
+          "type": "box",
+          "box": {
+            "top": 0.55,
+            "bottom": 0.64,
+            "left": 0.22,
+            "right": 0.44
+          },
+          "confidence": 0.14
+        }
+      },
+      "Jev_ms": 3514.727015997778,
+      "Jev90": {
+        "case": "rail",
+        "repeat": 0,
+        "expected": true,
+        "truth_reason": "Protección amarilla presente en referencia; ausente de escena.",
+        "result": {
+          "evidence": "En reference sí se observa una protección tubular baja amarilla, con forma de U invertida, junto al acceso. En candidate no aparece ningún elemento equivalente en la zona visible de la banqueta junto al acceso del lado derecho.",
+          "action": "Agregar en el modelo la protección tubular baja amarilla junto al acceso, visible en la fotografía de referencia.",
+          "presence": true,
+          "abstain": false,
+          "category": "missing_feature",
+          "box": {
+            "top": 0.55,
+            "bottom": 0.76,
+            "left": 0.78,
+            "right": 0.98
+          }
+        },
+        "correct": true,
+        "automatic": false,
+        "client_ms": 23249.96954999733,
+        "server_ms": 17077,
+        "calls": 2
+      },
+      "Jev95": {
+        "case": "rail",
+        "repeat": 0,
+        "expected": true,
+        "truth_reason": "Protección amarilla presente en referencia; ausente de escena.",
+        "result": {
+          "evidence": "En la reference sí se observa una protección tubular baja amarilla en forma de U invertida junto al acceso. En la candidate no se aprecia ningún elemento equivalente en la zona del acceso visible.",
+          "action": "Agregar en el modelo la protección tubular baja amarilla tipo U invertida junto al acceso, como aparece en la fotografía de referencia.",
+          "presence": true,
+          "abstain": false,
+          "category": "missing_feature",
+          "box": {
+            "top": 0.58,
+            "bottom": 0.82,
+            "left": 0.72,
+            "right": 0.91
+          }
+        },
+        "correct": true,
+        "automatic": false,
+        "client_ms": 20144.164260000252,
+        "server_ms": 11178,
+        "calls": 2
+      }
+    },
+    {
+      "case": "rail",
+      "repeat": 1,
+      "expected": true,
+      "truth_reason": "Protección amarilla presente en referencia; ausente de escena.",
+      "GPT": {
+        "evidence": "En la reference sí se observa una protección tubular baja amarilla con forma de U invertida junto al acceso marcado con el 21. En la candidate, en la zona visible de banqueta contigua al acceso del extremo derecho, no aparece esa protección.",
+        "action": "Agregar/modelar la protección tubular baja amarilla tipo U invertida junto al acceso, en la franja de banqueta adyacente a la puerta.",
+        "presence": true,
+        "abstain": false,
+        "category": "missing_feature",
+        "box": {
+          "top": 0.58,
+          "bottom": 0.78,
+          "left": 0.69,
+          "right": 0.95
+        }
+      },
+      "jev_raw": {
+        "presence": {
+          "type": "noul",
+          "noul": 0.83
+        },
+        "abstain": {
+          "type": "noul",
+          "noul": 0.66
+        },
+        "category": {
+          "type": "choice",
+          "choice": "missing_feature",
+          "confidence": 0.77,
+          "probabilities": {
+            "none": 0.01,
+            "missing_feature": 0.82,
+            "displacement": 0,
+            "scale": 0,
+            "insufficient_evidence": 0.17
+          }
+        },
+        "box": {
+          "type": "box",
+          "box": {
+            "top": 0.55,
+            "bottom": 0.64,
+            "left": 0.23,
+            "right": 0.33
+          },
+          "confidence": 0.19
+        }
+      },
+      "Jev_ms": 3416.973990002589,
+      "Jev90": {
+        "case": "rail",
+        "repeat": 1,
+        "expected": true,
+        "truth_reason": "Protección amarilla presente en referencia; ausente de escena.",
+        "result": {
+          "evidence": "En la referencia sí se observa una protección tubular baja amarilla en forma de U invertida junto al acceso del número 21. En la imagen candidate no aparece ninguna protección tubular amarilla equivalente en la zona visible frente al acceso.",
+          "action": "Agregar en el modelo la protección tubular baja amarilla en forma de U invertida junto al acceso, según lo observado en la referencia.",
+          "presence": true,
+          "abstain": false,
+          "category": "missing_feature",
+          "box": {
+            "top": 0.72,
+            "bottom": 0.9,
+            "left": 0.55,
+            "right": 0.82
+          }
+        },
+        "correct": true,
+        "automatic": false,
+        "client_ms": 28863.935142006085,
+        "server_ms": 22540,
+        "calls": 2
+      },
+      "Jev95": {
+        "case": "rail",
+        "repeat": 1,
+        "expected": true,
+        "truth_reason": "Protección amarilla presente en referencia; ausente de escena.",
+        "result": {
+          "evidence": "En reference se observa una protección tubular baja amarilla en forma de U invertida junto al acceso. En candidate, el área visible de banqueta frente al acceso correspondiente aparece sin esa protección.",
+          "action": "Agregar en el modelo la protección tubular baja amarilla en forma de U invertida junto al acceso.",
+          "presence": true,
+          "abstain": false,
+          "category": "missing_feature",
+          "box": {
+            "top": 0.6,
+            "bottom": 0.76,
+            "left": 0.52,
+            "right": 0.78
+          }
+        },
+        "correct": true,
+        "automatic": false,
+        "client_ms": 16331.790091000585,
+        "server_ms": 10049,
+        "calls": 2
+      }
+    },
+    {
+      "case": "paving",
+      "repeat": 0,
+      "expected": true,
+      "truth_reason": "Paño de color distinto con borde visible en foto; superficie de modelo uniforme.",
+      "GPT": {
+        "evidence": "En la referencia se aprecia un paño de pavimento rojizo/oscuro claramente diferenciado frente al número 21, rodeado por banqueta gris. En candidate no se observa ese paño localizado: la banqueta aparece resuelta con franjas uniformes y continuas, sin la diferenciación específica frente a ese acceso.",
+        "action": "Agregar en el modelo la diferenciación de pavimento frente al número 21 como un paño oscuro/rojizo distinguible respecto de la banqueta gris circundante, en la zona frontal del acceso.",
+        "presence": true,
+        "abstain": false,
+        "category": "missing_feature",
+        "box": {
+          "top": 0.62,
+          "bottom": 0.95,
+          "left": 0.36,
+          "right": 0.94
+        }
+      },
+      "jev_raw": {
+        "presence": {
+          "type": "noul",
+          "noul": 0.9
+        },
+        "abstain": {
+          "type": "noul",
+          "noul": 0.64
+        },
+        "category": {
+          "type": "choice",
+          "choice": "missing_feature",
+          "confidence": 0.9,
+          "probabilities": {
+            "none": 0.02,
+            "missing_feature": 0.92,
+            "displacement": 0,
+            "scale": 0,
+            "insufficient_evidence": 0.06
+          }
+        },
+        "box": {
+          "type": "box",
+          "box": {
+            "top": 0.71,
+            "bottom": 0.9,
+            "left": 0.02,
+            "right": 0.98
+          },
+          "confidence": 0.42
+        }
+      },
+      "Jev_ms": 3239.255846998276,
+      "Jev90": {
+        "case": "paving",
+        "repeat": 0,
+        "expected": true,
+        "truth_reason": "Paño de color distinto con borde visible en foto; superficie de modelo uniforme.",
+        "result": {
+          "evidence": "En la reference se observa claramente un paño de pavimento rojizo/oscuro diferenciado frente al número 21, rodeado por banqueta más gris. En la candidate, la banqueta visible frente a ese frente aparece prácticamente uniforme en tono claro, sin ese paño contrastante observable.",
+          "action": "Incorporar en el modelo la diferenciación de pavimento frente al número 21: un paño rojizo/oscuro inserto dentro de la banqueta gris, en la zona frontal del acceso/fachada correspondiente.",
+          "presence": true,
+          "abstain": false,
+          "category": "missing_feature",
+          "box": {
+            "top": 0.58,
+            "bottom": 0.84,
+            "left": 0.23,
+            "right": 0.95
+          }
+        },
+        "correct": true,
+        "automatic": false,
+        "client_ms": 14739.89838000125,
+        "server_ms": 8998,
+        "calls": 2
+      },
+      "Jev95": {
+        "case": "paving",
+        "repeat": 0,
+        "expected": true,
+        "truth_reason": "Paño de color distinto con borde visible en foto; superficie de modelo uniforme.",
+        "result": {
+          "evidence": "En la referencia se observa un paño de pavimento rojizo/oscuro claramente diferenciado frente al número 21, abarcando la zona frente a la puerta y la ventana y contrastando con banqueta gris alrededor. En candidate no se aprecia ese paño diferenciado; la banqueta aparece como superficies uniformes en tonos beige/café sin el recuadro oscuro visible en la foto.",
+          "action": "Incorporar en el modelo un paño de pavimento oscuro/rojizo diferenciado frente al 21, delimitado dentro de la banqueta gris en la zona frente a la puerta y ventana.",
+          "presence": true,
+          "abstain": false,
+          "category": "missing_feature",
+          "box": {
+            "top": 0.66,
+            "bottom": 0.93,
+            "left": 0.36,
+            "right": 0.97
+          }
+        },
+        "correct": true,
+        "automatic": false,
+        "client_ms": 21168.555223997828,
+        "server_ms": 15353,
+        "calls": 2
+      }
+    },
+    {
+      "case": "paving",
+      "repeat": 1,
+      "expected": true,
+      "truth_reason": "Paño de color distinto con borde visible en foto; superficie de modelo uniforme.",
+      "GPT": {
+        "evidence": "En la referencia se observa un paño de pavimento claramente diferenciado, de tono rojizo/oscuro, frente al número 21 y rodeado por banqueta gris. En la candidata, esa zona aparece con acabado prácticamente uniforme claro, sin un paño contrastante equivalente visible.",
+        "action": "Incorporar en el modelo la diferenciación de pavimento frente al número 21: un paño rojizo/oscuro inserto dentro de la banqueta gris en esa franja del frente.",
+        "presence": true,
+        "abstain": false,
+        "category": "missing_feature",
+        "box": {
+          "top": 0.63,
+          "bottom": 0.92,
+          "left": 0.31,
+          "right": 0.91
+        }
+      },
+      "jev_raw": {
+        "presence": {
+          "type": "noul",
+          "noul": 0.91
+        },
+        "abstain": {
+          "type": "noul",
+          "noul": 0.65
+        },
+        "category": {
+          "type": "choice",
+          "choice": "missing_feature",
+          "confidence": 0.87,
+          "probabilities": {
+            "none": 0.03,
+            "missing_feature": 0.9,
+            "displacement": 0,
+            "scale": 0,
+            "insufficient_evidence": 0.07
+          }
+        },
+        "box": {
+          "type": "box",
+          "box": {
+            "top": 0.73,
+            "bottom": 0.9,
+            "left": 0.02,
+            "right": 0.99
+          },
+          "confidence": 0.46
+        }
+      },
+      "Jev_ms": 3173.407424001198,
+      "Jev90": {
+        "case": "paving",
+        "repeat": 1,
+        "expected": true,
+        "truth_reason": "Paño de color distinto con borde visible en foto; superficie de modelo uniforme.",
+        "result": {
+          "evidence": "En la reference se observa un paño de pavimento rojizo/oscuro frente al número 21, claramente diferenciado de la banqueta gris circundante. En la candidate, la banqueta de ese frente aparece uniforme y no se aprecia esa diferenciación de pavimento.",
+          "action": "Incorporar en el modelo la diferenciación del paño rojizo/oscuro frente al número 21 dentro de la banqueta gris, sin requerir textura fotográfica exacta.",
+          "presence": true,
+          "abstain": false,
+          "category": "missing_feature",
+          "box": {
+            "top": 0.56,
+            "bottom": 0.84,
+            "left": 0.2,
+            "right": 0.88
+          }
+        },
+        "correct": true,
+        "automatic": false,
+        "client_ms": 18095.19268100121,
+        "server_ms": 12394,
+        "calls": 2
+      },
+      "Jev95": {
+        "case": "paving",
+        "repeat": 1,
+        "expected": true,
+        "truth_reason": "Paño de color distinto con borde visible en foto; superficie de modelo uniforme.",
+        "result": {
+          "evidence": "En la reference se observa un paño de pavimento rojizo/oscuro frente al número 21, claramente diferenciado de la banqueta gris circundante. En la candidate, la banqueta visible frente a ese frente aparece uniforme y no se aprecia esa diferenciación cromática/material en la zona correspondiente.",
+          "action": "Incorporar en el modelo la diferenciación de pavimento frente al número 21: un paño rojizo/oscuro distinguible respecto de la banqueta gris adyacente, sin requerir textura fotográfica exacta.",
+          "presence": true,
+          "abstain": false,
+          "category": "missing_feature",
+          "box": {
+            "top": 0.67,
+            "bottom": 0.98,
+            "left": 0.28,
+            "right": 0.92
+          }
+        },
+        "correct": true,
+        "automatic": false,
+        "client_ms": 22078.09481100412,
+        "server_ms": 15115,
+        "calls": 2
+      }
+    },
+    {
+      "case": "curb",
+      "repeat": 0,
+      "expected": false,
+      "truth_reason": "Borde de superficie C22 y cambio de color reconocibles en ambos.",
+      "GPT": {
+        "evidence": "En la referencia se distingue visualmente el límite entre la banqueta y la calzada. En la imagen candidate también se reconoce una separación continua y visible: la banqueta clara en primer plano está diferenciada de la calzada gris oscura por un borde lineal perceptible a lo largo del frente.",
+        "action": "No se requiere corrección para este criterio; el modelo conserva un borde reconocible entre banqueta y calzada.",
+        "presence": false,
+        "abstain": false,
+        "category": "none",
+        "box": null
+      },
+      "jev_raw": {
+        "presence": {
+          "type": "noul",
+          "noul": 0.35
+        },
+        "abstain": {
+          "type": "noul",
+          "noul": 0.38
+        },
+        "category": {
+          "type": "choice",
+          "choice": "none",
+          "confidence": 0.59,
+          "probabilities": {
+            "none": 0.67,
+            "missing_feature": 0.17,
+            "displacement": 0.05,
+            "scale": 0,
+            "insufficient_evidence": 0.1
+          }
+        },
+        "box": {
+          "type": "box",
+          "box": {
+            "top": 0.76,
+            "bottom": 0.8,
+            "left": 0.02,
+            "right": 0.98
+          },
+          "confidence": 0.15
+        }
+      },
+      "Jev_ms": 3173.4983489986917,
+      "Jev90": {
+        "case": "curb",
+        "repeat": 0,
+        "expected": false,
+        "truth_reason": "Borde de superficie C22 y cambio de color reconocibles en ambos.",
+        "result": {
+          "evidence": "En la referencia se distingue visualmente el límite entre la banqueta y la calzada a lo largo del frente. En la candidata también se reconoce una separación continua entre la franja clara de banqueta y la superficie gris de la calzada; no hay ausencia completa de borde reconocible.",
+          "action": "No se requiere corrección para este criterio; conservar la separación visual existente entre banqueta y calzada en el modelo.",
+          "presence": false,
+          "abstain": false,
+          "category": "none",
+          "box": null
+        },
+        "correct": true,
+        "automatic": false,
+        "client_ms": 10737.797624999075,
+        "server_ms": 4617,
+        "calls": 2
+      },
+      "Jev95": {
+        "case": "curb",
+        "repeat": 0,
+        "expected": false,
+        "truth_reason": "Borde de superficie C22 y cambio de color reconocibles en ambos.",
+        "result": {
+          "evidence": "En la fotografía de referencia se distingue visualmente el límite entre la banqueta y la calzada a lo largo del frente. En el modelo candidate también se reconoce una separación visual continua entre la franja clara de banqueta y la superficie más oscura de la calzada; no hay ausencia completa de borde reconocible.",
+          "action": "No se requiere corrección para este criterio; mantener la separación visual entre banqueta y calzada en el modelo.",
+          "presence": false,
+          "abstain": false,
+          "category": "none",
+          "box": null
+        },
+        "correct": true,
+        "automatic": false,
+        "client_ms": 10780.90288599924,
+        "server_ms": 4358,
+        "calls": 2
+      }
+    },
+    {
+      "case": "curb",
+      "repeat": 1,
+      "expected": false,
+      "truth_reason": "Borde de superficie C22 y cambio de color reconocibles en ambos.",
+      "GPT": {
+        "evidence": "En la referencia se distingue visualmente el límite entre la banqueta y la calzada a lo largo del frente. En la candidata también se reconoce ese borde por el cambio continuo entre la franja clara de banqueta y la superficie más oscura de la calle, por lo que no hay ausencia completa de borde reconocible.",
+        "action": "No se requiere corrección para este criterio; mantener la separación visual entre banqueta y calzada en el modelo.",
+        "presence": false,
+        "abstain": false,
+        "category": "none",
+        "box": null
+      },
+      "jev_raw": {
+        "presence": {
+          "type": "noul",
+          "noul": 0.3
+        },
+        "abstain": {
+          "type": "noul",
+          "noul": 0.33
+        },
+        "category": {
+          "type": "choice",
+          "choice": "none",
+          "confidence": 0.68,
+          "probabilities": {
+            "none": 0.74,
+            "missing_feature": 0.15,
+            "displacement": 0.04,
+            "scale": 0,
+            "insufficient_evidence": 0.07
+          }
+        },
+        "box": {
+          "type": "box",
+          "box": {
+            "top": 0.77,
+            "bottom": 0.8,
+            "left": 0.02,
+            "right": 0.98
+          },
+          "confidence": 0.14
+        }
+      },
+      "Jev_ms": 3341.5943820000393,
+      "Jev90": {
+        "case": "curb",
+        "repeat": 1,
+        "expected": false,
+        "truth_reason": "Borde de superficie C22 y cambio de color reconocibles en ambos.",
+        "result": {
+          "evidence": "En la fotografía de referencia se reconoce un borde visual entre la banqueta y la calzada. En el modelo candidate también se aprecia una separación visible y continua entre la franja clara de banqueta y la superficie gris de la calle; no hay ausencia completa de borde reconocible.",
+          "action": "No se requiere corrección para este criterio; conservar la separación visual existente entre banqueta y calzada en el modelo.",
+          "presence": false,
+          "abstain": false,
+          "category": "none",
+          "box": null
+        },
+        "correct": true,
+        "automatic": false,
+        "client_ms": 11817.184539999289,
+        "server_ms": 5823,
+        "calls": 2
+      },
+      "Jev95": {
+        "case": "curb",
+        "repeat": 1,
+        "expected": false,
+        "truth_reason": "Borde de superficie C22 y cambio de color reconocibles en ambos.",
+        "result": {
+          "evidence": "En la referencia sí se reconoce visualmente el límite entre la banqueta y la calzada, y en el modelo candidate también se distingue un borde continuo/visible entre la franja clara de banqueta y la superficie más oscura de la calle. No se observa ausencia completa de borde reconocible en candidate.",
+          "action": "No se requiere corrección para este criterio; conservar una separación visual reconocible entre banqueta y calzada.",
+          "presence": false,
+          "abstain": false,
+          "category": "none",
+          "box": null
+        },
+        "correct": true,
+        "automatic": false,
+        "client_ms": 10598.787549999543,
+        "server_ms": 4520,
+        "calls": 2
+      }
+    },
+    {
+      "case": "width",
+      "repeat": 0,
+      "expected": null,
+      "truth_reason": "No puede medirse error métrico de 20cm con estas imágenes.",
+      "GPT": {
+        "evidence": "La banqueta existe en ambos insumos y su ancho aparente es del mismo orden, pero con esta foto no calibrada y este render sin escala de campo no es posible demostrar visualmente una diferencia real de ancho mayor a 20 cm. La perspectiva es distinta y no hay referencia métrica confiable entre fachada y guarnición para certificar el criterio.",
+        "action": "Aportar medición de campo o insumos calibrados (misma pose o referencia métrica entre fachada y borde de guarnición) para verificar si el ancho real difiere en más de 20 cm.",
+        "presence": null,
+        "abstain": true,
+        "category": "insufficient_evidence",
+        "box": null
+      },
+      "jev_raw": {
+        "presence": {
+          "type": "noul",
+          "noul": 0.3
+        },
+        "abstain": {
+          "type": "noul",
+          "noul": 0.97
+        },
+        "category": {
+          "type": "choice",
+          "choice": "insufficient_evidence",
+          "confidence": 0.84,
+          "probabilities": {
+            "none": 0.01,
+            "missing_feature": 0.11,
+            "displacement": 0.01,
+            "scale": 0,
+            "insufficient_evidence": 0.87
+          }
+        },
+        "box": {
+          "type": "box",
+          "box": {
+            "top": 0.74,
+            "bottom": 0.95,
+            "left": 0.02,
+            "right": 0.98
+          },
+          "confidence": 0.06
+        }
+      },
+      "Jev_ms": 3882.4758890004887,
+      "Jev90": {
+        "case": "width",
+        "repeat": 0,
+        "expected": null,
+        "truth_reason": "No puede medirse error métrico de 20cm con estas imágenes.",
+        "result": {
+          "evidence": "Ambas imágenes muestran una banqueta continua frente a la fachada, pero la comparación es entre una foto oblicua no calibrada y un modelo 3D desde otra pose. Sin escala de campo, cámara calibrada ni correspondencias métricas confiables, no es posible demostrar visualmente que el ancho REAL de la banqueta en candidate difiera de reference por más de 20 cm.",
+          "action": "Se requiere evidencia métrica o geométrica adicional (escala de campo, cámara calibrada, medición levantada o correspondencias 3D confiables) para validar el ancho real de la banqueta con el umbral de 20 cm.",
+          "presence": null,
+          "abstain": true,
+          "category": "insufficient_evidence",
+          "box": null
+        },
+        "correct": true,
+        "automatic": false,
+        "client_ms": 14449.226758002624,
+        "server_ms": 6858,
+        "calls": 2
+      },
+      "Jev95": {
+        "case": "width",
+        "repeat": 0,
+        "expected": null,
+        "truth_reason": "No puede medirse error métrico de 20cm con estas imágenes.",
+        "result": {
+          "evidence": "Ambas imágenes muestran la banqueta frente a la fachada, pero la comparación es entre una foto panorámica reproyectada y un modelo 3D sin cámara calibrada ni escala de campo. La perspectiva y la pose difieren, y con estos insumos no se puede certificar visualmente si el ancho real en candidate difiere de reference por más de 20 cm.",
+          "action": "Proporcionar medición de campo, cámara calibrada o referencias métricas/control geométrico común para verificar el ancho real de la banqueta y determinar si existe una diferencia mayor a 20 cm.",
+          "presence": null,
+          "abstain": true,
+          "category": "insufficient_evidence",
+          "box": null
+        },
+        "correct": true,
+        "automatic": false,
+        "client_ms": 14746.751932001644,
+        "server_ms": 7379,
+        "calls": 2
+      }
+    },
+    {
+      "case": "width",
+      "repeat": 1,
+      "expected": null,
+      "truth_reason": "No puede medirse error métrico de 20cm con estas imágenes.",
+      "GPT": {
+        "evidence": "La banqueta está presente en ambas imágenes, pero la comparación de ancho real >20 cm no puede demostrarse visualmente con estos insumos: la foto y el modelo tienen perspectivas distintas y no hay escala de campo, cámara calibrada ni correspondencias métricas suficientes para certificar una diferencia de ancho real.",
+        "action": "Aportar una medición de campo del ancho de banqueta o imágenes/pose calibradas con referencia métrica para verificar si el modelo difiere en más de 20 cm.",
+        "presence": null,
+        "abstain": true,
+        "category": "insufficient_evidence",
+        "box": null
+      },
+      "jev_raw": {
+        "presence": {
+          "type": "noul",
+          "noul": 0.32
+        },
+        "abstain": {
+          "type": "noul",
+          "noul": 0.96
+        },
+        "category": {
+          "type": "choice",
+          "choice": "insufficient_evidence",
+          "confidence": 0.82,
+          "probabilities": {
+            "none": 0.01,
+            "missing_feature": 0.12,
+            "displacement": 0.01,
+            "scale": 0,
+            "insufficient_evidence": 0.86
+          }
+        },
+        "box": {
+          "type": "box",
+          "box": {
+            "top": 0.74,
+            "bottom": 0.95,
+            "left": 0.01,
+            "right": 0.98
+          },
+          "confidence": 0.04
+        }
+      },
+      "Jev_ms": 3830.8401480026077,
+      "Jev90": {
+        "case": "width",
+        "repeat": 1,
+        "expected": null,
+        "truth_reason": "No puede medirse error métrico de 20cm con estas imágenes.",
+        "result": {
+          "evidence": "La foto de referencia y el modelo muestran una banqueta presente y continua frente a la fachada, pero con estos insumos no calibrados (sin escala de campo, cámara calibrada ni correspondencias geométricas confiables) no es posible demostrar visualmente que el ancho real en candidate difiera en más de 20 cm. La perspectiva y simplificación del modelo impiden una verificación métrica sustentada.",
+          "action": "Aportar una medición de campo del ancho de banqueta, una cámara/calibración métrica o una alineación fotogramétrica confiable para poder comparar el ancho real y confirmar o descartar una diferencia >20 cm.",
+          "presence": null,
+          "abstain": true,
+          "category": "insufficient_evidence",
+          "box": null
+        },
+        "correct": true,
+        "automatic": false,
+        "client_ms": 13610.751155003527,
+        "server_ms": 6653,
+        "calls": 2
+      },
+      "Jev95": {
+        "case": "width",
+        "repeat": 1,
+        "expected": null,
+        "truth_reason": "No puede medirse error métrico de 20cm con estas imágenes.",
+        "result": {
+          "evidence": "Ambas imágenes muestran la banqueta continua frente a la fachada, pero la comparación es entre una foto panorámica reproyectada y un modelo 3D con perspectiva distinta, sin escala de campo, cámara calibrada ni correspondencias métricas confiables. Visualmente no se puede demostrar de forma sustentada que el ancho real de la banqueta en candidate difiera de reference por más de 20 cm.",
+          "action": "Se requiere evidencia métrica o geometría calibrada del tramo (levantamiento, cámara/pose calibrada o medición de campo) para validar el ancho real de la banqueta. Con estos insumos no puede certificarse una discrepancia >20 cm.",
+          "presence": null,
+          "abstain": true,
+          "category": "insufficient_evidence",
+          "box": null
+        },
+        "correct": true,
+        "automatic": false,
+        "client_ms": 12930.076867003663,
+        "server_ms": 6440,
+        "calls": 2
+      }
+    },
+    {
+      "case": "height",
+      "repeat": 0,
+      "expected": null,
+      "truth_reason": "No hay referencia vertical métrica.",
+      "GPT": {
+        "evidence": "La foto de referencia muestra una guarnición visible entre arroyo y banqueta, y el modelo también representa un desnivel en ese borde. Sin embargo, la comparación es entre vistas no calibradas, con distinta perspectiva y sin cotas métricas, por lo que no es posible determinar visualmente si la diferencia real de altura de la guarnición supera 5 cm.",
+        "action": "Se requiere medición en sitio o referencia geométrica/calibración confiable para verificar si la altura de la guarnición del modelo difiere en más de 5 cm respecto a la fotografía.",
+        "presence": null,
+        "abstain": true,
+        "category": "insufficient_evidence",
+        "box": null
+      },
+      "jev_raw": {
+        "presence": {
+          "type": "noul",
+          "noul": 0.2
+        },
+        "abstain": {
+          "type": "noul",
+          "noul": 0.97
+        },
+        "category": {
+          "type": "choice",
+          "choice": "insufficient_evidence",
+          "confidence": 0.9,
+          "probabilities": {
+            "none": 0.01,
+            "missing_feature": 0.05,
+            "displacement": 0.02,
+            "scale": 0,
+            "insufficient_evidence": 0.92
+          }
+        },
+        "box": {
+          "type": "box",
+          "box": {
+            "top": 0.74,
+            "bottom": 0.95,
+            "left": 0.01,
+            "right": 0.98
+          },
+          "confidence": 0.06
+        }
+      },
+      "Jev_ms": 4375.971145000221,
+      "Jev90": {
+        "case": "height",
+        "repeat": 0,
+        "expected": null,
+        "truth_reason": "No hay referencia vertical métrica.",
+        "result": {
+          "evidence": "La guarnición se aprecia en ambas vistas, pero la comparación es entre una foto oblicua no calibrada y un modelo 3D con perspectiva distinta. No hay cotas medidas, escala métrica ni referencia fiable para estimar si la diferencia de altura supera 5 cm; visualmente no puede certificarse ese umbral.",
+          "action": "Se requiere medición en sitio o imágenes/calibración geométrica que permitan estimar la altura real de la guarnición y compararla contra el modelo con tolerancia de 5 cm.",
+          "presence": null,
+          "abstain": true,
+          "category": "insufficient_evidence",
+          "box": null
+        },
+        "correct": true,
+        "automatic": false,
+        "client_ms": 13644.963640999777,
+        "server_ms": 6167,
+        "calls": 2
+      },
+      "Jev95": {
+        "case": "height",
+        "repeat": 0,
+        "expected": null,
+        "truth_reason": "No hay referencia vertical métrica.",
+        "result": {
+          "evidence": "La altura de la guarnición no puede verificarse con certeza >5 cm entre la foto oblicua y el modelo 3D sin cotas medidas ni calibración óptica. La perspectiva y la falta de una vista lateral/calibrada impiden estimar de forma demostrable la diferencia real de altura del borde banqueta-calle.",
+          "action": "Aportar medición en sitio, sección transversal o imágenes calibradas/perpendiculares de la guarnición para comparar la altura real con el modelo.",
+          "presence": null,
+          "abstain": true,
+          "category": "insufficient_evidence",
+          "box": null
+        },
+        "correct": true,
+        "automatic": false,
+        "client_ms": 17026.27822100112,
+        "server_ms": 9013,
+        "calls": 2
+      }
+    },
+    {
+      "case": "height",
+      "repeat": 1,
+      "expected": null,
+      "truth_reason": "No hay referencia vertical métrica.",
+      "GPT": {
+        "evidence": "La guarnición se aprecia en ambas imágenes a lo largo del borde de la banqueta, pero la comparación es entre una foto oblicua y un modelo 3D sin calibración métrica ni misma pose. Visualmente no hay una discrepancia concluyente que permita afirmar una diferencia de altura real mayor a 5 cm.",
+        "action": "Se requiere medición de campo o referencia/calibración métrica comparable para verificar la altura expuesta de la guarnición; con estas imágenes no puede certificarse una diferencia >5 cm.",
+        "presence": null,
+        "abstain": true,
+        "category": "insufficient_evidence",
+        "box": null
+      },
+      "jev_raw": {
+        "presence": {
+          "type": "noul",
+          "noul": 0.2
+        },
+        "abstain": {
+          "type": "noul",
+          "noul": 0.97
+        },
+        "category": {
+          "type": "choice",
+          "choice": "insufficient_evidence",
+          "confidence": 0.89,
+          "probabilities": {
+            "none": 0.01,
+            "missing_feature": 0.06,
+            "displacement": 0.02,
+            "scale": 0,
+            "insufficient_evidence": 0.91
+          }
+        },
+        "box": {
+          "type": "box",
+          "box": {
+            "top": 0.69,
+            "bottom": 0.79,
+            "left": 0.01,
+            "right": 0.98
+          },
+          "confidence": 0.1
+        }
+      },
+      "Jev_ms": 2990.4338980013563,
+      "Jev90": {
+        "case": "height",
+        "repeat": 1,
+        "expected": null,
+        "truth_reason": "No hay referencia vertical métrica.",
+        "result": {
+          "evidence": "La guarnición es visible en ambas imágenes, pero la comparación es entre una foto oblicua no calibrada y un modelo 3D con perspectiva distinta. No hay cotas medidas, referencia métrica fiable ni vista alineada que permita determinar visualmente si la altura real de la guarnición difiere del modelo por más de 5 cm.",
+          "action": "Aportar medición de campo de la altura de la guarnición o imágenes calibradas/alineadas con referencia métrica para verificar una diferencia superior a 5 cm.",
+          "presence": null,
+          "abstain": true,
+          "category": "insufficient_evidence",
+          "box": null
+        },
+        "correct": true,
+        "automatic": false,
+        "client_ms": 11452.79848499922,
+        "server_ms": 5924,
+        "calls": 2
+      },
+      "Jev95": {
+        "case": "height",
+        "repeat": 1,
+        "expected": null,
+        "truth_reason": "No hay referencia vertical métrica.",
+        "result": {
+          "evidence": "La guarnición se aprecia en ambas imágenes, pero la altura real no puede compararse con fiabilidad: la foto y el modelo tienen perspectiva distinta, no hay calibración óptica ni cotas, y no se observa una discrepancia claramente demostrable superior a 5 cm sólo de forma visual.",
+          "action": "Aportar una medición de campo, una vista calibrada/perfil o referencia métrica fiable para verificar si la altura de la guarnición difiere en más de 5 cm.",
+          "presence": null,
+          "abstain": true,
+          "category": "insufficient_evidence",
+          "box": null
+        },
+        "correct": true,
+        "automatic": false,
+        "client_ms": 13613.888689000305,
+        "server_ms": 7845,
+        "calls": 2
+      }
+    },
+    {
+      "case": "ramp",
+      "repeat": 0,
+      "expected": null,
+      "truth_reason": "No certificar normativa con evidencia incompleta.",
+      "GPT": {
+        "evidence": "En la fotografía de referencia se observan elementos fijos sobre la banqueta frente al acceso (bolardos y una barra baja amarilla) que condicionan/reducen el paso libre peatonal. En el modelo 3D esos elementos no están representados, por lo que la condición de paso libre no coincide visualmente. La pendiente no puede certificarse con estas vistas, pero la discrepancia observable está en el paso libre.",
+        "action": "Incorporar en el modelo los elementos fijos que ocupan la banqueta y afectan el paso libre, o confirmar con evidencia de campo que fueron retirados si ya no existen.",
+        "presence": true,
+        "abstain": false,
+        "category": "missing_feature",
+        "box": {
+          "top": 0.6,
+          "bottom": 0.92,
+          "left": 0.2,
+          "right": 0.75
+        }
+      },
+      "jev_raw": {
+        "presence": {
+          "type": "noul",
+          "noul": 0.29
+        },
+        "abstain": {
+          "type": "noul",
+          "noul": 0.97
+        },
+        "category": {
+          "type": "choice",
+          "choice": "insufficient_evidence",
+          "confidence": 0.82,
+          "probabilities": {
+            "none": 0.01,
+            "missing_feature": 0.11,
+            "displacement": 0.02,
+            "scale": 0,
+            "insufficient_evidence": 0.86
+          }
+        },
+        "box": {
+          "type": "box",
+          "box": {
+            "top": 0.67,
+            "bottom": 0.96,
+            "left": 0.01,
+            "right": 0.98
+          },
+          "confidence": 0.06
+        }
+      },
+      "Jev_ms": 3702.141374000348,
+      "Jev90": {
+        "case": "ramp",
+        "repeat": 0,
+        "expected": null,
+        "truth_reason": "No certificar normativa con evidencia incompleta.",
+        "result": {
+          "evidence": "En la foto de referencia se observan elementos fijos sobre la banqueta que afectan el paso libre del tramo frente al 21: un bolardo/poste negro en primer plano, otro poste negro junto al acceso y una barrera/riel amarillo bajo frente a la puerta. En el modelo candidate esa franja de banqueta aparece libre y continua, sin representar esas obstrucciones. La discrepancia es observable para el criterio de paso libre; la pendiente no puede certificarse con estas imágenes no calibradas.",
+          "action": "Incorporar en el modelo los elementos fijos presentes sobre la banqueta, o bien verificar en sitio si ya no existen; actualizar la representación del paso libre del tramo con base en esa condición real. No inferir pendiente reglamentaria sin medición.",
+          "presence": true,
+          "abstain": false,
+          "category": "missing_feature",
+          "box": {
+            "top": 0.57,
+            "bottom": 0.94,
+            "left": 0.15,
+            "right": 0.63
+          }
+        },
+        "correct": false,
+        "automatic": false,
+        "client_ms": 19197.866181999416,
+        "server_ms": 12323,
+        "calls": 2
+      },
+      "Jev95": {
+        "case": "ramp",
+        "repeat": 0,
+        "expected": null,
+        "truth_reason": "No certificar normativa con evidencia incompleta.",
+        "result": {
+          "evidence": "En la referencia se observan obstáculos fijos sobre la banqueta que afectan el paso libre peatonal: al menos dos bolardos negros y una barrera/riel amarillo junto al acceso. En la candidate esos elementos no aparecen y la banqueta queda representada como un paso libre continuo. La pendiente reglamentaria no puede verificarse visualmente con estas dos imágenes no calibradas, pero sí hay discrepancia observable en el paso libre.",
+          "action": "Incorporar en el modelo los bolardos y la barrera/riel visibles en la fotografía, o aportar evidencia de que fueron retirados en la condición actual. Para validar la pendiente de accesibilidad se requiere levantamiento/cotas o evidencia geométrica adicional.",
+          "presence": true,
+          "abstain": false,
+          "category": "missing_feature",
+          "box": {
+            "top": 0.54,
+            "bottom": 0.98,
+            "left": 0.08,
+            "right": 0.52
+          }
+        },
+        "correct": false,
+        "automatic": false,
+        "client_ms": 29697.136612001486,
+        "server_ms": 23041,
+        "calls": 2
+      }
+    },
+    {
+      "case": "ramp",
+      "repeat": 1,
+      "expected": null,
+      "truth_reason": "No certificar normativa con evidencia incompleta.",
+      "GPT": {
+        "evidence": "En la foto de referencia se observan obstáculos sobre la banqueta que afectan el paso libre (dos bolardos negros y una barrera/barandal amarillo frente al acceso). En el modelo 3D ese frente aparece despejado, por lo que hay una discrepancia observable en el paso libre. La pendiente no puede verificarse con certeza con estas dos vistas no calibradas.",
+        "action": "Incorporar en el modelo los elementos de obstrucción visibles sobre la banqueta en este tramo, o aportar evidencia adicional/calibrada si se requiere evaluar la pendiente real de accesibilidad.",
+        "presence": true,
+        "abstain": false,
+        "category": "missing_feature",
+        "box": {
+          "top": 0.56,
+          "bottom": 0.94,
+          "left": 0.18,
+          "right": 0.78
+        }
+      },
+      "jev_raw": {
+        "presence": {
+          "type": "noul",
+          "noul": 0.31
+        },
+        "abstain": {
+          "type": "noul",
+          "noul": 0.97
+        },
+        "category": {
+          "type": "choice",
+          "choice": "insufficient_evidence",
+          "confidence": 0.74,
+          "probabilities": {
+            "none": 0.01,
+            "missing_feature": 0.18,
+            "displacement": 0.02,
+            "scale": 0,
+            "insufficient_evidence": 0.79
+          }
+        },
+        "box": {
+          "type": "box",
+          "box": {
+            "top": 0.57,
+            "bottom": 0.96,
+            "left": 0.02,
+            "right": 0.98
+          },
+          "confidence": 0.05
+        }
+      },
+      "Jev_ms": 3064.0481139998883,
+      "Jev90": {
+        "case": "ramp",
+        "repeat": 1,
+        "expected": null,
+        "truth_reason": "No certificar normativa con evidencia incompleta.",
+        "result": {
+          "evidence": "En la foto de referencia se observan obstáculos fijos sobre la banqueta frente al 21 (al menos un bolardo negro en primer plano y un barandal/elemento amarillo junto al acceso), que reducen visualmente el paso libre. En el modelo candidate ese tramo aparece como banqueta continua y despejada, por lo que hay una discrepancia observable en paso libre. La pendiente no puede certificarse con estas imágenes no calibradas.",
+          "action": "Modelar los obstáculos fijos visibles en la banqueta en esa zona, o aportar evidencia de campo actual de que fueron retirados, porque su presencia cambia el paso libre accesible del tramo.",
+          "presence": true,
+          "abstain": false,
+          "category": "missing_feature",
+          "box": {
+            "top": 0.5,
+            "bottom": 0.92,
+            "left": 0.22,
+            "right": 0.58
+          }
+        },
+        "correct": false,
+        "automatic": false,
+        "client_ms": 29933.522411000013,
+        "server_ms": 18591,
+        "calls": 2
+      },
+      "Jev95": {
+        "case": "ramp",
+        "repeat": 1,
+        "expected": null,
+        "truth_reason": "No certificar normativa con evidencia incompleta.",
+        "result": {
+          "evidence": "En la foto de referencia se observan obstáculos fijos sobre la banqueta que afectan el paso libre peatonal en este frente (al menos dos bolardos negros junto al borde y una barrera/riel amarillo frente al acceso). En el modelo candidate esa franja de banqueta aparece libre y continua, sin esos elementos. La pendiente reglamentaria no puede certificarse visualmente aquí, pero sí hay una discrepancia observable en paso libre.",
+          "action": "Incorporar en el modelo los obstáculos fijos visibles de la banqueta y su ubicación aproximada para que el paso libre representado coincida con la condición observada; si se requiere evaluar cumplimiento normativo de pendiente/ancho, hace falta levantamiento con cotas.",
+          "presence": true,
+          "abstain": false,
+          "category": "missing_feature",
+          "box": {
+            "top": 0.56,
+            "bottom": 0.95,
+            "left": 0.18,
+            "right": 0.67
+          }
+        },
+        "correct": false,
+        "automatic": false,
+        "client_ms": 19031.488910000917,
+        "server_ms": 12614,
+        "calls": 2
+      }
+    },
+    {
+      "case": "ends",
+      "repeat": 0,
+      "expected": null,
+      "truth_reason": "Microzona no acredita extremos ni cuadra completa.",
+      "GPT": {
+        "evidence": "El par sólo muestra el frente del número 21 y una porción de su banqueta inmediata. No se observan ni pueden verificarse ambas esquinas, sus rampas, ni la continuidad completa de la banqueta A entre Garmendia y Abasolo.",
+        "action": "Se requiere evidencia visual adicional del tramo completo, incluyendo ambas esquinas y sus rampas, para comprobar la continuidad total de la banqueta A.",
+        "presence": null,
+        "abstain": true,
+        "category": "insufficient_evidence",
+        "box": null
+      },
+      "jev_raw": {
+        "presence": {
+          "type": "noul",
+          "noul": 0.52
+        },
+        "abstain": {
+          "type": "noul",
+          "noul": 0.96
+        },
+        "category": {
+          "type": "choice",
+          "choice": "insufficient_evidence",
+          "confidence": 0.81,
+          "probabilities": {
+            "none": 0,
+            "missing_feature": 0.12,
+            "displacement": 0.03,
+            "scale": 0,
+            "insufficient_evidence": 0.85
+          }
+        },
+        "box": {
+          "type": "box",
+          "box": {
+            "top": 0.57,
+            "bottom": 0.96,
+            "left": 0.02,
+            "right": 0.97
+          },
+          "confidence": 0.04
+        }
+      },
+      "Jev_ms": 2985.5262279997987,
+      "Jev90": {
+        "case": "ends",
+        "repeat": 0,
+        "expected": null,
+        "truth_reason": "Microzona no acredita extremos ni cuadra completa.",
+        "result": {
+          "evidence": "Este par visual sólo muestra una porción del frente 21 y no permite observar toda la banqueta A del tramo Garmendia–Abasolo ni ambas esquinas con sus rampas. Con esta cobertura parcial no se puede comprobar la continuidad completa exigida por el criterio.",
+          "action": "Aportar vistas adicionales del resto del tramo completo, incluyendo ambas esquinas y sus rampas, para verificar la continuidad total de la banqueta A.",
+          "presence": null,
+          "abstain": true,
+          "category": "insufficient_evidence",
+          "box": null
+        },
+        "correct": true,
+        "automatic": false,
+        "client_ms": 10395.417499999894,
+        "server_ms": 4798,
+        "calls": 2
+      },
+      "Jev95": {
+        "case": "ends",
+        "repeat": 0,
+        "expected": null,
+        "truth_reason": "Microzona no acredita extremos ni cuadra completa.",
+        "result": {
+          "evidence": "Este par sólo muestra parcialmente el frente del número 21; no se observan de forma completa todo el tramo entre Garmendia y Abasolo ni ambas esquinas con sus respectivas rampas. Con esta vista no es posible comprobar la continuidad total de la banqueta A en todo el segmento solicitado.",
+          "action": "Se requiere evidencia visual adicional del tramo completo, incluyendo ambas esquinas y sus rampas, para verificar la continuidad integral de la banqueta A.",
+          "presence": null,
+          "abstain": true,
+          "category": "insufficient_evidence",
+          "box": null
+        },
+        "correct": true,
+        "automatic": false,
+        "client_ms": 10806.408743999782,
+        "server_ms": 5083,
+        "calls": 2
+      }
+    },
+    {
+      "case": "ends",
+      "repeat": 1,
+      "expected": null,
+      "truth_reason": "Microzona no acredita extremos ni cuadra completa.",
+      "GPT": {
+        "evidence": "Este par sólo muestra el frente del número 21 y un tramo parcial de la banqueta; no se observan ambas esquinas del tramo Garmendia–Abasolo ni sus rampas completas. Con esta vista no puede comprobarse la continuidad de TODA la banqueta A en el tramo requerido.",
+        "action": "Se requiere evidencia adicional del resto del tramo, incluyendo vistas de ambas esquinas y sus rampas, para verificar la continuidad completa de la banqueta A.",
+        "presence": null,
+        "abstain": true,
+        "category": "insufficient_evidence",
+        "box": null
+      },
+      "jev_raw": {
+        "presence": {
+          "type": "noul",
+          "noul": 0.5
+        },
+        "abstain": {
+          "type": "noul",
+          "noul": 0.95
+        },
+        "category": {
+          "type": "choice",
+          "choice": "insufficient_evidence",
+          "confidence": 0.82,
+          "probabilities": {
+            "none": 0,
+            "missing_feature": 0.12,
+            "displacement": 0.02,
+            "scale": 0,
+            "insufficient_evidence": 0.86
+          }
+        },
+        "box": {
+          "type": "box",
+          "box": {
+            "top": 0.56,
+            "bottom": 0.96,
+            "left": 0.02,
+            "right": 0.97
+          },
+          "confidence": 0.04
+        }
+      },
+      "Jev_ms": 2951.45632799904,
+      "Jev90": {
+        "case": "ends",
+        "repeat": 1,
+        "expected": null,
+        "truth_reason": "Microzona no acredita extremos ni cuadra completa.",
+        "result": {
+          "evidence": "Ambas imágenes muestran sólo una porción del frente 21. No se observan ambas esquinas del tramo Garmendia–Abasolo ni sus rampas completas, por lo que no puede comprobarse visualmente la continuidad de TODA la banqueta A en el tramo solicitado.",
+          "action": "Aportar vistas adicionales del lado sur que incluyan el tramo completo entre Garmendia y Abasolo, especialmente ambas esquinas y sus rampas, para evaluar continuidad total de la banqueta.",
+          "presence": null,
+          "abstain": true,
+          "category": "insufficient_evidence",
+          "box": null
+        },
+        "correct": true,
+        "automatic": false,
+        "client_ms": 11619.75540200001,
+        "server_ms": 5474,
+        "calls": 2
+      },
+      "Jev95": {
+        "case": "ends",
+        "repeat": 1,
+        "expected": null,
+        "truth_reason": "Microzona no acredita extremos ni cuadra completa.",
+        "result": {
+          "evidence": "El par sólo muestra una porción del frente 21 y no permite ver la continuidad completa de la banqueta A entre Garmendia y Abasolo; tampoco aparecen ambas esquinas ni sus rampas en una forma verificable. Con esta cobertura parcial no se puede confirmar ni refutar el criterio global del tramo completo.",
+          "action": "Aportar vistas adicionales del lado sur que cubran toda la banqueta A entre Garmendia y Abasolo, incluyendo explícitamente ambas esquinas y sus rampas, para poder evaluar la continuidad completa.",
+          "presence": null,
+          "abstain": true,
+          "category": "insufficient_evidence",
+          "box": null
+        },
+        "correct": true,
+        "automatic": false,
+        "client_ms": 12636.366857997928,
+        "server_ms": 5773,
+        "calls": 2
+      }
+    }
+  ],
+  "routes": {
+    "GPT": [
+      {
+        "case": "surface",
+        "repeat": 0,
+        "expected": false,
+        "truth_reason": "Franja visible en ambos; modelo C22 geometría real.",
+        "result": {
+          "evidence": "En la referencia se observa una franja de pavimento de banqueta entre la fachada y la calle. En el modelo candidate también es visible esa franja continua de banqueta frente a la fachada; no falta por completo.",
+          "action": "No se requiere corrección para este criterio.",
+          "presence": false,
+          "abstain": false,
+          "category": "none",
+          "box": null
+        },
+        "correct": true,
+        "automatic": false,
+        "client_ms": 6109.209804999409,
+        "server_ms": 3178,
+        "calls": 1
+      },
+      {
+        "case": "surface",
+        "repeat": 1,
+        "expected": false,
+        "truth_reason": "Franja visible en ambos; modelo C22 geometría real.",
+        "result": {
+          "evidence": "En la foto de referencia se observa una franja de pavimento de banqueta visible entre la fachada y la calle. En el modelo candidate también se aprecia esa franja continua de banqueta frente a la fachada, separando el edificio de la calzada.",
+          "action": "No se requiere corrección para este criterio; el modelo sí incluye pavimento de banqueta visible entre la fachada y la calle.",
+          "presence": false,
+          "abstain": false,
+          "category": "none",
+          "box": null
+        },
+        "correct": true,
+        "automatic": false,
+        "client_ms": 6707.005055999616,
+        "server_ms": 4032,
+        "calls": 1
+      },
+      {
+        "case": "bollard",
+        "repeat": 0,
+        "expected": true,
+        "truth_reason": "Bolardo con base y cabeza visible; no existe geometría correspondiente en escena.",
+        "result": {
+          "evidence": "En la reference sí se observa un bolardo negro corto con cabeza ensanchada en primer plano sobre la banqueta. En la candidate no se aprecia un elemento equivalente en la zona visible del frente; la banqueta aparece libre allí. No se está confundiendo con el poste esbelto junto a la protección amarilla.",
+          "action": "Agregar/restituir en el modelo el bolardo negro corto con cabeza ensanchada en la banqueta, en la zona frontal correspondiente al primer plano del frente.",
+          "presence": true,
+          "abstain": false,
+          "category": "missing_feature",
+          "box": {
+            "top": 0.76,
+            "bottom": 0.98,
+            "left": 0.47,
+            "right": 0.57
+          }
+        },
+        "correct": true,
+        "automatic": false,
+        "client_ms": 24084.440686998278,
+        "server_ms": 12546,
+        "calls": 1
+      },
+      {
+        "case": "bollard",
+        "repeat": 1,
+        "expected": true,
+        "truth_reason": "Bolardo con base y cabeza visible; no existe geometría correspondiente en escena.",
+        "result": {
+          "evidence": "En la reference se observa en primer plano un bolardo negro corto con cabeza ensanchada, ubicado sobre la banqueta cerca del borde. En la candidate, la zona equivalente del frente visible muestra la banqueta libre y no aparece ese bolardo; no debe confundirse con el poste esbelto junto a la protección amarilla de la reference.",
+          "action": "Agregar en el modelo el bolardo negro corto con cabeza ensanchada en la banqueta del primer plano, cerca del borde de la acera, en la zona central-baja del encuadre.",
+          "presence": true,
+          "abstain": false,
+          "category": "missing_feature",
+          "box": {
+            "top": 0.76,
+            "bottom": 0.98,
+            "left": 0.43,
+            "right": 0.6
+          }
+        },
+        "correct": true,
+        "automatic": false,
+        "client_ms": 12408.574911998585,
+        "server_ms": 8815,
+        "calls": 1
+      },
+      {
+        "case": "rail",
+        "repeat": 0,
+        "expected": true,
+        "truth_reason": "Protección amarilla presente en referencia; ausente de escena.",
+        "result": {
+          "evidence": "En la referencia se observa una protección tubular baja amarilla, con forma de U invertida, junto al acceso. En la imagen candidate el frente y la zona de banqueta junto al acceso visible no muestran esa protección.",
+          "action": "Agregar en el modelo la protección tubular baja amarilla tipo U invertida junto al acceso, como se aprecia en la referencia.",
+          "presence": true,
+          "abstain": false,
+          "category": "missing_feature",
+          "box": {
+            "top": 0.63,
+            "bottom": 0.8,
+            "left": 0.73,
+            "right": 0.93
+          }
+        },
+        "correct": true,
+        "automatic": false,
+        "client_ms": 14378.419267999561,
+        "server_ms": 10462,
+        "calls": 1
+      },
+      {
+        "case": "rail",
+        "repeat": 1,
+        "expected": true,
+        "truth_reason": "Protección amarilla presente en referencia; ausente de escena.",
+        "result": {
+          "evidence": "En la reference sí se observa una protección tubular baja amarilla con forma de U invertida junto al acceso marcado con el 21. En la candidate, en la zona visible de banqueta contigua al acceso del extremo derecho, no aparece esa protección.",
+          "action": "Agregar/modelar la protección tubular baja amarilla tipo U invertida junto al acceso, en la franja de banqueta adyacente a la puerta.",
+          "presence": true,
+          "abstain": false,
+          "category": "missing_feature",
+          "box": {
+            "top": 0.58,
+            "bottom": 0.78,
+            "left": 0.69,
+            "right": 0.95
+          }
+        },
+        "correct": true,
+        "automatic": false,
+        "client_ms": 16684.750887998234,
+        "server_ms": 14131,
+        "calls": 1
+      },
+      {
+        "case": "paving",
+        "repeat": 0,
+        "expected": true,
+        "truth_reason": "Paño de color distinto con borde visible en foto; superficie de modelo uniforme.",
+        "result": {
+          "evidence": "En la referencia se aprecia un paño de pavimento rojizo/oscuro claramente diferenciado frente al número 21, rodeado por banqueta gris. En candidate no se observa ese paño localizado: la banqueta aparece resuelta con franjas uniformes y continuas, sin la diferenciación específica frente a ese acceso.",
+          "action": "Agregar en el modelo la diferenciación de pavimento frente al número 21 como un paño oscuro/rojizo distinguible respecto de la banqueta gris circundante, en la zona frontal del acceso.",
+          "presence": true,
+          "abstain": false,
+          "category": "missing_feature",
+          "box": {
+            "top": 0.62,
+            "bottom": 0.95,
+            "left": 0.36,
+            "right": 0.94
+          }
+        },
+        "correct": true,
+        "automatic": false,
+        "client_ms": 14488.825930999155,
+        "server_ms": 11632,
+        "calls": 1
+      },
+      {
+        "case": "paving",
+        "repeat": 1,
+        "expected": true,
+        "truth_reason": "Paño de color distinto con borde visible en foto; superficie de modelo uniforme.",
+        "result": {
+          "evidence": "En la referencia se observa un paño de pavimento claramente diferenciado, de tono rojizo/oscuro, frente al número 21 y rodeado por banqueta gris. En la candidata, esa zona aparece con acabado prácticamente uniforme claro, sin un paño contrastante equivalente visible.",
+          "action": "Incorporar en el modelo la diferenciación de pavimento frente al número 21: un paño rojizo/oscuro inserto dentro de la banqueta gris en esa franja del frente.",
+          "presence": true,
+          "abstain": false,
+          "category": "missing_feature",
+          "box": {
+            "top": 0.63,
+            "bottom": 0.92,
+            "left": 0.31,
+            "right": 0.91
+          }
+        },
+        "correct": true,
+        "automatic": false,
+        "client_ms": 16100.686989997484,
+        "server_ms": 13224,
+        "calls": 1
+      },
+      {
+        "case": "curb",
+        "repeat": 0,
+        "expected": false,
+        "truth_reason": "Borde de superficie C22 y cambio de color reconocibles en ambos.",
+        "result": {
+          "evidence": "En la referencia se distingue visualmente el límite entre la banqueta y la calzada. En la imagen candidate también se reconoce una separación continua y visible: la banqueta clara en primer plano está diferenciada de la calzada gris oscura por un borde lineal perceptible a lo largo del frente.",
+          "action": "No se requiere corrección para este criterio; el modelo conserva un borde reconocible entre banqueta y calzada.",
+          "presence": false,
+          "abstain": false,
+          "category": "none",
+          "box": null
+        },
+        "correct": true,
+        "automatic": false,
+        "client_ms": 7974.318321997998,
+        "server_ms": 5060,
+        "calls": 1
+      },
+      {
+        "case": "curb",
+        "repeat": 1,
+        "expected": false,
+        "truth_reason": "Borde de superficie C22 y cambio de color reconocibles en ambos.",
+        "result": {
+          "evidence": "En la referencia se distingue visualmente el límite entre la banqueta y la calzada a lo largo del frente. En la candidata también se reconoce ese borde por el cambio continuo entre la franja clara de banqueta y la superficie más oscura de la calle, por lo que no hay ausencia completa de borde reconocible.",
+          "action": "No se requiere corrección para este criterio; mantener la separación visual entre banqueta y calzada en el modelo.",
+          "presence": false,
+          "abstain": false,
+          "category": "none",
+          "box": null
+        },
+        "correct": true,
+        "automatic": false,
+        "client_ms": 7617.983680000179,
+        "server_ms": 4286,
+        "calls": 1
+      },
+      {
+        "case": "width",
+        "repeat": 0,
+        "expected": null,
+        "truth_reason": "No puede medirse error métrico de 20cm con estas imágenes.",
+        "result": {
+          "evidence": "La banqueta existe en ambos insumos y su ancho aparente es del mismo orden, pero con esta foto no calibrada y este render sin escala de campo no es posible demostrar visualmente una diferencia real de ancho mayor a 20 cm. La perspectiva es distinta y no hay referencia métrica confiable entre fachada y guarnición para certificar el criterio.",
+          "action": "Aportar medición de campo o insumos calibrados (misma pose o referencia métrica entre fachada y borde de guarnición) para verificar si el ancho real difiere en más de 20 cm.",
+          "presence": null,
+          "abstain": true,
+          "category": "insufficient_evidence",
+          "box": null
+        },
+        "correct": true,
+        "automatic": false,
+        "client_ms": 12999.237560001347,
+        "server_ms": 9393,
+        "calls": 1
+      },
+      {
+        "case": "width",
+        "repeat": 1,
+        "expected": null,
+        "truth_reason": "No puede medirse error métrico de 20cm con estas imágenes.",
+        "result": {
+          "evidence": "La banqueta está presente en ambas imágenes, pero la comparación de ancho real >20 cm no puede demostrarse visualmente con estos insumos: la foto y el modelo tienen perspectivas distintas y no hay escala de campo, cámara calibrada ni correspondencias métricas suficientes para certificar una diferencia de ancho real.",
+          "action": "Aportar una medición de campo del ancho de banqueta o imágenes/pose calibradas con referencia métrica para verificar si el modelo difiere en más de 20 cm.",
+          "presence": null,
+          "abstain": true,
+          "category": "insufficient_evidence",
+          "box": null
+        },
+        "correct": true,
+        "automatic": false,
+        "client_ms": 11700.765974997921,
+        "server_ms": 8736,
+        "calls": 1
+      },
+      {
+        "case": "height",
+        "repeat": 0,
+        "expected": null,
+        "truth_reason": "No hay referencia vertical métrica.",
+        "result": {
+          "evidence": "La foto de referencia muestra una guarnición visible entre arroyo y banqueta, y el modelo también representa un desnivel en ese borde. Sin embargo, la comparación es entre vistas no calibradas, con distinta perspectiva y sin cotas métricas, por lo que no es posible determinar visualmente si la diferencia real de altura de la guarnición supera 5 cm.",
+          "action": "Se requiere medición en sitio o referencia geométrica/calibración confiable para verificar si la altura de la guarnición del modelo difiere en más de 5 cm respecto a la fotografía.",
+          "presence": null,
+          "abstain": true,
+          "category": "insufficient_evidence",
+          "box": null
+        },
+        "correct": true,
+        "automatic": false,
+        "client_ms": 9954.499048999423,
+        "server_ms": 6760,
+        "calls": 1
+      },
+      {
+        "case": "height",
+        "repeat": 1,
+        "expected": null,
+        "truth_reason": "No hay referencia vertical métrica.",
+        "result": {
+          "evidence": "La guarnición se aprecia en ambas imágenes a lo largo del borde de la banqueta, pero la comparación es entre una foto oblicua y un modelo 3D sin calibración métrica ni misma pose. Visualmente no hay una discrepancia concluyente que permita afirmar una diferencia de altura real mayor a 5 cm.",
+          "action": "Se requiere medición de campo o referencia/calibración métrica comparable para verificar la altura expuesta de la guarnición; con estas imágenes no puede certificarse una diferencia >5 cm.",
+          "presence": null,
+          "abstain": true,
+          "category": "insufficient_evidence",
+          "box": null
+        },
+        "correct": true,
+        "automatic": false,
+        "client_ms": 12083.78665499913,
+        "server_ms": 8175,
+        "calls": 1
+      },
+      {
+        "case": "ramp",
+        "repeat": 0,
+        "expected": null,
+        "truth_reason": "No certificar normativa con evidencia incompleta.",
+        "result": {
+          "evidence": "En la fotografía de referencia se observan elementos fijos sobre la banqueta frente al acceso (bolardos y una barra baja amarilla) que condicionan/reducen el paso libre peatonal. En el modelo 3D esos elementos no están representados, por lo que la condición de paso libre no coincide visualmente. La pendiente no puede certificarse con estas vistas, pero la discrepancia observable está en el paso libre.",
+          "action": "Incorporar en el modelo los elementos fijos que ocupan la banqueta y afectan el paso libre, o confirmar con evidencia de campo que fueron retirados si ya no existen.",
+          "presence": true,
+          "abstain": false,
+          "category": "missing_feature",
+          "box": {
+            "top": 0.6,
+            "bottom": 0.92,
+            "left": 0.2,
+            "right": 0.75
+          }
+        },
+        "correct": false,
+        "automatic": false,
+        "client_ms": 37788.22293900157,
+        "server_ms": 33858,
+        "calls": 1
+      },
+      {
+        "case": "ramp",
+        "repeat": 1,
+        "expected": null,
+        "truth_reason": "No certificar normativa con evidencia incompleta.",
+        "result": {
+          "evidence": "En la foto de referencia se observan obstáculos sobre la banqueta que afectan el paso libre (dos bolardos negros y una barrera/barandal amarillo frente al acceso). En el modelo 3D ese frente aparece despejado, por lo que hay una discrepancia observable en el paso libre. La pendiente no puede verificarse con certeza con estas dos vistas no calibradas.",
+          "action": "Incorporar en el modelo los elementos de obstrucción visibles sobre la banqueta en este tramo, o aportar evidencia adicional/calibrada si se requiere evaluar la pendiente real de accesibilidad.",
+          "presence": true,
+          "abstain": false,
+          "category": "missing_feature",
+          "box": {
+            "top": 0.56,
+            "bottom": 0.94,
+            "left": 0.18,
+            "right": 0.78
+          }
+        },
+        "correct": false,
+        "automatic": false,
+        "client_ms": 25014.41485900068,
+        "server_ms": 21717,
+        "calls": 1
+      },
+      {
+        "case": "ends",
+        "repeat": 0,
+        "expected": null,
+        "truth_reason": "Microzona no acredita extremos ni cuadra completa.",
+        "result": {
+          "evidence": "El par sólo muestra el frente del número 21 y una porción de su banqueta inmediata. No se observan ni pueden verificarse ambas esquinas, sus rampas, ni la continuidad completa de la banqueta A entre Garmendia y Abasolo.",
+          "action": "Se requiere evidencia visual adicional del tramo completo, incluyendo ambas esquinas y sus rampas, para comprobar la continuidad total de la banqueta A.",
+          "presence": null,
+          "abstain": true,
+          "category": "insufficient_evidence",
+          "box": null
+        },
+        "correct": true,
+        "automatic": false,
+        "client_ms": 7989.832171999296,
+        "server_ms": 5029,
+        "calls": 1
+      },
+      {
+        "case": "ends",
+        "repeat": 1,
+        "expected": null,
+        "truth_reason": "Microzona no acredita extremos ni cuadra completa.",
+        "result": {
+          "evidence": "Este par sólo muestra el frente del número 21 y un tramo parcial de la banqueta; no se observan ambas esquinas del tramo Garmendia–Abasolo ni sus rampas completas. Con esta vista no puede comprobarse la continuidad de TODA la banqueta A en el tramo requerido.",
+          "action": "Se requiere evidencia adicional del resto del tramo, incluyendo vistas de ambas esquinas y sus rampas, para verificar la continuidad completa de la banqueta A.",
+          "presence": null,
+          "abstain": true,
+          "category": "insufficient_evidence",
+          "box": null
+        },
+        "correct": true,
+        "automatic": false,
+        "client_ms": 7860.303823999857,
+        "server_ms": 4986,
+        "calls": 1
+      }
+    ],
+    "Jev90": [
+      {
+        "case": "surface",
+        "repeat": 0,
+        "expected": false,
+        "truth_reason": "Franja visible en ambos; modelo C22 geometría real.",
+        "result": {
+          "evidence": "En la referencia se observa una franja de pavimento de banqueta entre la fachada y la calle. En el candidate también es visible esa franja continua de banqueta frente a la fachada; no falta por completo.",
+          "action": "No se requiere corrección para este criterio.",
+          "presence": false,
+          "abstain": false,
+          "category": "none",
+          "box": null
+        },
+        "correct": true,
+        "automatic": false,
+        "client_ms": 10640.471187998628,
+        "server_ms": 4022,
+        "calls": 2
+      },
+      {
+        "case": "surface",
+        "repeat": 1,
+        "expected": false,
+        "truth_reason": "Franja visible en ambos; modelo C22 geometría real.",
+        "result": {
+          "evidence": "En la referencia se observa una franja de pavimento de banqueta entre la fachada y la calle. En la candidata también se aprecia una franja continua de banqueta/pavimento visible al pie de la fachada, separada de la calzada más oscura. No falta por completo esa franja en el modelo.",
+          "action": "No se requiere corrección para este criterio; el modelo sí muestra pavimento de banqueta visible entre fachada y calle.",
+          "presence": false,
+          "abstain": false,
+          "category": "none",
+          "box": null
+        },
+        "correct": true,
+        "automatic": false,
+        "client_ms": 10496.907394997834,
+        "server_ms": 4767,
+        "calls": 2
+      },
+      {
+        "case": "bollard",
+        "repeat": 0,
+        "expected": true,
+        "truth_reason": "Bolardo con base y cabeza visible; no existe geometría correspondiente en escena.",
+        "result": {
+          "evidence": "En la imagen de referencia sí se observa en primer plano un bolardo negro corto con cabeza ensanchada, ubicado sobre la banqueta cerca del borde. En la imagen candidate no aparece ese bolardo en la zona visible correspondiente; sólo se ve la banqueta libre, sin ese elemento.",
+          "action": "Agregar en el modelo 3D el bolardo negro corto con cabeza ensanchada en la banqueta, aproximadamente en la franja frontal central del tramo visible.",
+          "presence": true,
+          "abstain": false,
+          "category": "missing_feature",
+          "box": {
+            "top": 0.62,
+            "bottom": 0.95,
+            "left": 0.42,
+            "right": 0.56
+          }
+        },
+        "correct": true,
+        "automatic": false,
+        "client_ms": 16958.673171000555,
+        "server_ms": 7934,
+        "calls": 2
+      },
+      {
+        "case": "bollard",
+        "repeat": 1,
+        "expected": true,
+        "truth_reason": "Bolardo con base y cabeza visible; no existe geometría correspondiente en escena.",
+        "result": {
+          "evidence": "En reference se observa claramente un bolardo negro corto con cabeza ensanchada en primer plano, sobre la banqueta junto al borde de la calle, frente al paño central-derecho de la fachada. En candidate no aparece ese bolardo ni un elemento equivalente en esa zona del frente.",
+          "action": "Agregar en el modelo el bolardo negro corto con cabeza ensanchada en la banqueta, junto al borde exterior, en el sector frontal central del tramo.",
+          "presence": true,
+          "abstain": false,
+          "category": "missing_feature",
+          "box": {
+            "top": 0.72,
+            "bottom": 0.93,
+            "left": 0.43,
+            "right": 0.56
+          }
+        },
+        "correct": true,
+        "automatic": false,
+        "client_ms": 14066.46672700299,
+        "server_ms": 8370,
+        "calls": 2
+      },
+      {
+        "case": "rail",
+        "repeat": 0,
+        "expected": true,
+        "truth_reason": "Protección amarilla presente en referencia; ausente de escena.",
+        "result": {
+          "evidence": "En reference sí se observa una protección tubular baja amarilla, con forma de U invertida, junto al acceso. En candidate no aparece ningún elemento equivalente en la zona visible de la banqueta junto al acceso del lado derecho.",
+          "action": "Agregar en el modelo la protección tubular baja amarilla junto al acceso, visible en la fotografía de referencia.",
+          "presence": true,
+          "abstain": false,
+          "category": "missing_feature",
+          "box": {
+            "top": 0.55,
+            "bottom": 0.76,
+            "left": 0.78,
+            "right": 0.98
+          }
+        },
+        "correct": true,
+        "automatic": false,
+        "client_ms": 23249.96954999733,
+        "server_ms": 17077,
+        "calls": 2
+      },
+      {
+        "case": "rail",
+        "repeat": 1,
+        "expected": true,
+        "truth_reason": "Protección amarilla presente en referencia; ausente de escena.",
+        "result": {
+          "evidence": "En la referencia sí se observa una protección tubular baja amarilla en forma de U invertida junto al acceso del número 21. En la imagen candidate no aparece ninguna protección tubular amarilla equivalente en la zona visible frente al acceso.",
+          "action": "Agregar en el modelo la protección tubular baja amarilla en forma de U invertida junto al acceso, según lo observado en la referencia.",
+          "presence": true,
+          "abstain": false,
+          "category": "missing_feature",
+          "box": {
+            "top": 0.72,
+            "bottom": 0.9,
+            "left": 0.55,
+            "right": 0.82
+          }
+        },
+        "correct": true,
+        "automatic": false,
+        "client_ms": 28863.935142006085,
+        "server_ms": 22540,
+        "calls": 2
+      },
+      {
+        "case": "paving",
+        "repeat": 0,
+        "expected": true,
+        "truth_reason": "Paño de color distinto con borde visible en foto; superficie de modelo uniforme.",
+        "result": {
+          "evidence": "En la reference se observa claramente un paño de pavimento rojizo/oscuro diferenciado frente al número 21, rodeado por banqueta más gris. En la candidate, la banqueta visible frente a ese frente aparece prácticamente uniforme en tono claro, sin ese paño contrastante observable.",
+          "action": "Incorporar en el modelo la diferenciación de pavimento frente al número 21: un paño rojizo/oscuro inserto dentro de la banqueta gris, en la zona frontal del acceso/fachada correspondiente.",
+          "presence": true,
+          "abstain": false,
+          "category": "missing_feature",
+          "box": {
+            "top": 0.58,
+            "bottom": 0.84,
+            "left": 0.23,
+            "right": 0.95
+          }
+        },
+        "correct": true,
+        "automatic": false,
+        "client_ms": 14739.89838000125,
+        "server_ms": 8998,
+        "calls": 2
+      },
+      {
+        "case": "paving",
+        "repeat": 1,
+        "expected": true,
+        "truth_reason": "Paño de color distinto con borde visible en foto; superficie de modelo uniforme.",
+        "result": {
+          "evidence": "En la reference se observa un paño de pavimento rojizo/oscuro frente al número 21, claramente diferenciado de la banqueta gris circundante. En la candidate, la banqueta de ese frente aparece uniforme y no se aprecia esa diferenciación de pavimento.",
+          "action": "Incorporar en el modelo la diferenciación del paño rojizo/oscuro frente al número 21 dentro de la banqueta gris, sin requerir textura fotográfica exacta.",
+          "presence": true,
+          "abstain": false,
+          "category": "missing_feature",
+          "box": {
+            "top": 0.56,
+            "bottom": 0.84,
+            "left": 0.2,
+            "right": 0.88
+          }
+        },
+        "correct": true,
+        "automatic": false,
+        "client_ms": 18095.19268100121,
+        "server_ms": 12394,
+        "calls": 2
+      },
+      {
+        "case": "curb",
+        "repeat": 0,
+        "expected": false,
+        "truth_reason": "Borde de superficie C22 y cambio de color reconocibles en ambos.",
+        "result": {
+          "evidence": "En la referencia se distingue visualmente el límite entre la banqueta y la calzada a lo largo del frente. En la candidata también se reconoce una separación continua entre la franja clara de banqueta y la superficie gris de la calzada; no hay ausencia completa de borde reconocible.",
+          "action": "No se requiere corrección para este criterio; conservar la separación visual existente entre banqueta y calzada en el modelo.",
+          "presence": false,
+          "abstain": false,
+          "category": "none",
+          "box": null
+        },
+        "correct": true,
+        "automatic": false,
+        "client_ms": 10737.797624999075,
+        "server_ms": 4617,
+        "calls": 2
+      },
+      {
+        "case": "curb",
+        "repeat": 1,
+        "expected": false,
+        "truth_reason": "Borde de superficie C22 y cambio de color reconocibles en ambos.",
+        "result": {
+          "evidence": "En la fotografía de referencia se reconoce un borde visual entre la banqueta y la calzada. En el modelo candidate también se aprecia una separación visible y continua entre la franja clara de banqueta y la superficie gris de la calle; no hay ausencia completa de borde reconocible.",
+          "action": "No se requiere corrección para este criterio; conservar la separación visual existente entre banqueta y calzada en el modelo.",
+          "presence": false,
+          "abstain": false,
+          "category": "none",
+          "box": null
+        },
+        "correct": true,
+        "automatic": false,
+        "client_ms": 11817.184539999289,
+        "server_ms": 5823,
+        "calls": 2
+      },
+      {
+        "case": "width",
+        "repeat": 0,
+        "expected": null,
+        "truth_reason": "No puede medirse error métrico de 20cm con estas imágenes.",
+        "result": {
+          "evidence": "Ambas imágenes muestran una banqueta continua frente a la fachada, pero la comparación es entre una foto oblicua no calibrada y un modelo 3D desde otra pose. Sin escala de campo, cámara calibrada ni correspondencias métricas confiables, no es posible demostrar visualmente que el ancho REAL de la banqueta en candidate difiera de reference por más de 20 cm.",
+          "action": "Se requiere evidencia métrica o geométrica adicional (escala de campo, cámara calibrada, medición levantada o correspondencias 3D confiables) para validar el ancho real de la banqueta con el umbral de 20 cm.",
+          "presence": null,
+          "abstain": true,
+          "category": "insufficient_evidence",
+          "box": null
+        },
+        "correct": true,
+        "automatic": false,
+        "client_ms": 14449.226758002624,
+        "server_ms": 6858,
+        "calls": 2
+      },
+      {
+        "case": "width",
+        "repeat": 1,
+        "expected": null,
+        "truth_reason": "No puede medirse error métrico de 20cm con estas imágenes.",
+        "result": {
+          "evidence": "La foto de referencia y el modelo muestran una banqueta presente y continua frente a la fachada, pero con estos insumos no calibrados (sin escala de campo, cámara calibrada ni correspondencias geométricas confiables) no es posible demostrar visualmente que el ancho real en candidate difiera en más de 20 cm. La perspectiva y simplificación del modelo impiden una verificación métrica sustentada.",
+          "action": "Aportar una medición de campo del ancho de banqueta, una cámara/calibración métrica o una alineación fotogramétrica confiable para poder comparar el ancho real y confirmar o descartar una diferencia >20 cm.",
+          "presence": null,
+          "abstain": true,
+          "category": "insufficient_evidence",
+          "box": null
+        },
+        "correct": true,
+        "automatic": false,
+        "client_ms": 13610.751155003527,
+        "server_ms": 6653,
+        "calls": 2
+      },
+      {
+        "case": "height",
+        "repeat": 0,
+        "expected": null,
+        "truth_reason": "No hay referencia vertical métrica.",
+        "result": {
+          "evidence": "La guarnición se aprecia en ambas vistas, pero la comparación es entre una foto oblicua no calibrada y un modelo 3D con perspectiva distinta. No hay cotas medidas, escala métrica ni referencia fiable para estimar si la diferencia de altura supera 5 cm; visualmente no puede certificarse ese umbral.",
+          "action": "Se requiere medición en sitio o imágenes/calibración geométrica que permitan estimar la altura real de la guarnición y compararla contra el modelo con tolerancia de 5 cm.",
+          "presence": null,
+          "abstain": true,
+          "category": "insufficient_evidence",
+          "box": null
+        },
+        "correct": true,
+        "automatic": false,
+        "client_ms": 13644.963640999777,
+        "server_ms": 6167,
+        "calls": 2
+      },
+      {
+        "case": "height",
+        "repeat": 1,
+        "expected": null,
+        "truth_reason": "No hay referencia vertical métrica.",
+        "result": {
+          "evidence": "La guarnición es visible en ambas imágenes, pero la comparación es entre una foto oblicua no calibrada y un modelo 3D con perspectiva distinta. No hay cotas medidas, referencia métrica fiable ni vista alineada que permita determinar visualmente si la altura real de la guarnición difiere del modelo por más de 5 cm.",
+          "action": "Aportar medición de campo de la altura de la guarnición o imágenes calibradas/alineadas con referencia métrica para verificar una diferencia superior a 5 cm.",
+          "presence": null,
+          "abstain": true,
+          "category": "insufficient_evidence",
+          "box": null
+        },
+        "correct": true,
+        "automatic": false,
+        "client_ms": 11452.79848499922,
+        "server_ms": 5924,
+        "calls": 2
+      },
+      {
+        "case": "ramp",
+        "repeat": 0,
+        "expected": null,
+        "truth_reason": "No certificar normativa con evidencia incompleta.",
+        "result": {
+          "evidence": "En la foto de referencia se observan elementos fijos sobre la banqueta que afectan el paso libre del tramo frente al 21: un bolardo/poste negro en primer plano, otro poste negro junto al acceso y una barrera/riel amarillo bajo frente a la puerta. En el modelo candidate esa franja de banqueta aparece libre y continua, sin representar esas obstrucciones. La discrepancia es observable para el criterio de paso libre; la pendiente no puede certificarse con estas imágenes no calibradas.",
+          "action": "Incorporar en el modelo los elementos fijos presentes sobre la banqueta, o bien verificar en sitio si ya no existen; actualizar la representación del paso libre del tramo con base en esa condición real. No inferir pendiente reglamentaria sin medición.",
+          "presence": true,
+          "abstain": false,
+          "category": "missing_feature",
+          "box": {
+            "top": 0.57,
+            "bottom": 0.94,
+            "left": 0.15,
+            "right": 0.63
+          }
+        },
+        "correct": false,
+        "automatic": false,
+        "client_ms": 19197.866181999416,
+        "server_ms": 12323,
+        "calls": 2
+      },
+      {
+        "case": "ramp",
+        "repeat": 1,
+        "expected": null,
+        "truth_reason": "No certificar normativa con evidencia incompleta.",
+        "result": {
+          "evidence": "En la foto de referencia se observan obstáculos fijos sobre la banqueta frente al 21 (al menos un bolardo negro en primer plano y un barandal/elemento amarillo junto al acceso), que reducen visualmente el paso libre. En el modelo candidate ese tramo aparece como banqueta continua y despejada, por lo que hay una discrepancia observable en paso libre. La pendiente no puede certificarse con estas imágenes no calibradas.",
+          "action": "Modelar los obstáculos fijos visibles en la banqueta en esa zona, o aportar evidencia de campo actual de que fueron retirados, porque su presencia cambia el paso libre accesible del tramo.",
+          "presence": true,
+          "abstain": false,
+          "category": "missing_feature",
+          "box": {
+            "top": 0.5,
+            "bottom": 0.92,
+            "left": 0.22,
+            "right": 0.58
+          }
+        },
+        "correct": false,
+        "automatic": false,
+        "client_ms": 29933.522411000013,
+        "server_ms": 18591,
+        "calls": 2
+      },
+      {
+        "case": "ends",
+        "repeat": 0,
+        "expected": null,
+        "truth_reason": "Microzona no acredita extremos ni cuadra completa.",
+        "result": {
+          "evidence": "Este par visual sólo muestra una porción del frente 21 y no permite observar toda la banqueta A del tramo Garmendia–Abasolo ni ambas esquinas con sus rampas. Con esta cobertura parcial no se puede comprobar la continuidad completa exigida por el criterio.",
+          "action": "Aportar vistas adicionales del resto del tramo completo, incluyendo ambas esquinas y sus rampas, para verificar la continuidad total de la banqueta A.",
+          "presence": null,
+          "abstain": true,
+          "category": "insufficient_evidence",
+          "box": null
+        },
+        "correct": true,
+        "automatic": false,
+        "client_ms": 10395.417499999894,
+        "server_ms": 4798,
+        "calls": 2
+      },
+      {
+        "case": "ends",
+        "repeat": 1,
+        "expected": null,
+        "truth_reason": "Microzona no acredita extremos ni cuadra completa.",
+        "result": {
+          "evidence": "Ambas imágenes muestran sólo una porción del frente 21. No se observan ambas esquinas del tramo Garmendia–Abasolo ni sus rampas completas, por lo que no puede comprobarse visualmente la continuidad de TODA la banqueta A en el tramo solicitado.",
+          "action": "Aportar vistas adicionales del lado sur que incluyan el tramo completo entre Garmendia y Abasolo, especialmente ambas esquinas y sus rampas, para evaluar continuidad total de la banqueta.",
+          "presence": null,
+          "abstain": true,
+          "category": "insufficient_evidence",
+          "box": null
+        },
+        "correct": true,
+        "automatic": false,
+        "client_ms": 11619.75540200001,
+        "server_ms": 5474,
+        "calls": 2
+      }
+    ],
+    "Jev95": [
+      {
+        "case": "surface",
+        "repeat": 0,
+        "expected": false,
+        "truth_reason": "Franja visible en ambos; modelo C22 geometría real.",
+        "result": {
+          "evidence": "En la referencia se observa una franja de pavimento de banqueta entre la fachada y la calle. En el candidate también se ve una franja continua de pavimento/banqueta visible al pie de la fachada, separando el edificio de la calzada.",
+          "action": "Sin corrección: el modelo sí muestra pavimento de banqueta visible entre fachada y calle, consistente con el criterio evaluado.",
+          "presence": false,
+          "abstain": false,
+          "category": "none",
+          "box": null
+        },
+        "correct": true,
+        "automatic": false,
+        "client_ms": 10757.377619996987,
+        "server_ms": 4650,
+        "calls": 2
+      },
+      {
+        "case": "surface",
+        "repeat": 1,
+        "expected": false,
+        "truth_reason": "Franja visible en ambos; modelo C22 geometría real.",
+        "result": {
+          "evidence": "En la referencia se observa una franja de pavimento de banqueta entre la fachada y la calle. En la candidata también se aprecia esa franja visible a lo largo del frente, separando la fachada del arroyo vehicular.",
+          "action": "No se requiere corrección para este criterio; el modelo sí muestra pavimento de banqueta visible entre fachada y calle.",
+          "presence": false,
+          "abstain": false,
+          "category": "none",
+          "box": null
+        },
+        "correct": true,
+        "automatic": false,
+        "client_ms": 9682.25774199891,
+        "server_ms": 3949,
+        "calls": 2
+      },
+      {
+        "case": "bollard",
+        "repeat": 0,
+        "expected": true,
+        "truth_reason": "Bolardo con base y cabeza visible; no existe geometría correspondiente en escena.",
+        "result": {
+          "evidence": "En la reference se observa en primer plano un bolardo negro corto con cabeza ensanchada, ubicado sobre la banqueta cerca del borde de la calle. En la candidate, en la zona equivalente de la banqueta visible al frente de la fachada, no aparece ningún bolardo de ese tipo; sólo se ve la superficie libre de la acera.",
+          "action": "Agregar en el modelo el bolardo negro corto con cabeza ensanchada en la banqueta, en la posición aproximada del primer plano frente a la fachada.",
+          "presence": true,
+          "abstain": false,
+          "category": "missing_feature",
+          "box": {
+            "top": 0.72,
+            "bottom": 0.97,
+            "left": 0.42,
+            "right": 0.57
+          }
+        },
+        "correct": true,
+        "automatic": false,
+        "client_ms": 18854.236055998626,
+        "server_ms": 9744,
+        "calls": 2
+      },
+      {
+        "case": "bollard",
+        "repeat": 1,
+        "expected": true,
+        "truth_reason": "Bolardo con base y cabeza visible; no existe geometría correspondiente en escena.",
+        "result": {
+          "evidence": "En la referencia se observa en primer plano un bolardo negro corto con cabeza ensanchada, ubicado sobre la banqueta cerca del borde de la calle. En la imagen candidate, en la zona equivalente del primer plano de la banqueta, no aparece ese bolardo; sólo se ve la superficie libre de la acera.",
+          "action": "Agregar en el modelo 3D el bolardo negro corto con cabeza ensanchada en la banqueta, en la posición aproximada del primer plano junto al borde de la calle.",
+          "presence": true,
+          "abstain": false,
+          "category": "missing_feature",
+          "box": {
+            "top": 0.7,
+            "bottom": 0.96,
+            "left": 0.46,
+            "right": 0.56
+          }
+        },
+        "correct": true,
+        "automatic": false,
+        "client_ms": 24445.422363001853,
+        "server_ms": 18392,
+        "calls": 2
+      },
+      {
+        "case": "rail",
+        "repeat": 0,
+        "expected": true,
+        "truth_reason": "Protección amarilla presente en referencia; ausente de escena.",
+        "result": {
+          "evidence": "En la reference sí se observa una protección tubular baja amarilla en forma de U invertida junto al acceso. En la candidate no se aprecia ningún elemento equivalente en la zona del acceso visible.",
+          "action": "Agregar en el modelo la protección tubular baja amarilla tipo U invertida junto al acceso, como aparece en la fotografía de referencia.",
+          "presence": true,
+          "abstain": false,
+          "category": "missing_feature",
+          "box": {
+            "top": 0.58,
+            "bottom": 0.82,
+            "left": 0.72,
+            "right": 0.91
+          }
+        },
+        "correct": true,
+        "automatic": false,
+        "client_ms": 20144.164260000252,
+        "server_ms": 11178,
+        "calls": 2
+      },
+      {
+        "case": "rail",
+        "repeat": 1,
+        "expected": true,
+        "truth_reason": "Protección amarilla presente en referencia; ausente de escena.",
+        "result": {
+          "evidence": "En reference se observa una protección tubular baja amarilla en forma de U invertida junto al acceso. En candidate, el área visible de banqueta frente al acceso correspondiente aparece sin esa protección.",
+          "action": "Agregar en el modelo la protección tubular baja amarilla en forma de U invertida junto al acceso.",
+          "presence": true,
+          "abstain": false,
+          "category": "missing_feature",
+          "box": {
+            "top": 0.6,
+            "bottom": 0.76,
+            "left": 0.52,
+            "right": 0.78
+          }
+        },
+        "correct": true,
+        "automatic": false,
+        "client_ms": 16331.790091000585,
+        "server_ms": 10049,
+        "calls": 2
+      },
+      {
+        "case": "paving",
+        "repeat": 0,
+        "expected": true,
+        "truth_reason": "Paño de color distinto con borde visible en foto; superficie de modelo uniforme.",
+        "result": {
+          "evidence": "En la referencia se observa un paño de pavimento rojizo/oscuro claramente diferenciado frente al número 21, abarcando la zona frente a la puerta y la ventana y contrastando con banqueta gris alrededor. En candidate no se aprecia ese paño diferenciado; la banqueta aparece como superficies uniformes en tonos beige/café sin el recuadro oscuro visible en la foto.",
+          "action": "Incorporar en el modelo un paño de pavimento oscuro/rojizo diferenciado frente al 21, delimitado dentro de la banqueta gris en la zona frente a la puerta y ventana.",
+          "presence": true,
+          "abstain": false,
+          "category": "missing_feature",
+          "box": {
+            "top": 0.66,
+            "bottom": 0.93,
+            "left": 0.36,
+            "right": 0.97
+          }
+        },
+        "correct": true,
+        "automatic": false,
+        "client_ms": 21168.555223997828,
+        "server_ms": 15353,
+        "calls": 2
+      },
+      {
+        "case": "paving",
+        "repeat": 1,
+        "expected": true,
+        "truth_reason": "Paño de color distinto con borde visible en foto; superficie de modelo uniforme.",
+        "result": {
+          "evidence": "En la reference se observa un paño de pavimento rojizo/oscuro frente al número 21, claramente diferenciado de la banqueta gris circundante. En la candidate, la banqueta visible frente a ese frente aparece uniforme y no se aprecia esa diferenciación cromática/material en la zona correspondiente.",
+          "action": "Incorporar en el modelo la diferenciación de pavimento frente al número 21: un paño rojizo/oscuro distinguible respecto de la banqueta gris adyacente, sin requerir textura fotográfica exacta.",
+          "presence": true,
+          "abstain": false,
+          "category": "missing_feature",
+          "box": {
+            "top": 0.67,
+            "bottom": 0.98,
+            "left": 0.28,
+            "right": 0.92
+          }
+        },
+        "correct": true,
+        "automatic": false,
+        "client_ms": 22078.09481100412,
+        "server_ms": 15115,
+        "calls": 2
+      },
+      {
+        "case": "curb",
+        "repeat": 0,
+        "expected": false,
+        "truth_reason": "Borde de superficie C22 y cambio de color reconocibles en ambos.",
+        "result": {
+          "evidence": "En la fotografía de referencia se distingue visualmente el límite entre la banqueta y la calzada a lo largo del frente. En el modelo candidate también se reconoce una separación visual continua entre la franja clara de banqueta y la superficie más oscura de la calzada; no hay ausencia completa de borde reconocible.",
+          "action": "No se requiere corrección para este criterio; mantener la separación visual entre banqueta y calzada en el modelo.",
+          "presence": false,
+          "abstain": false,
+          "category": "none",
+          "box": null
+        },
+        "correct": true,
+        "automatic": false,
+        "client_ms": 10780.90288599924,
+        "server_ms": 4358,
+        "calls": 2
+      },
+      {
+        "case": "curb",
+        "repeat": 1,
+        "expected": false,
+        "truth_reason": "Borde de superficie C22 y cambio de color reconocibles en ambos.",
+        "result": {
+          "evidence": "En la referencia sí se reconoce visualmente el límite entre la banqueta y la calzada, y en el modelo candidate también se distingue un borde continuo/visible entre la franja clara de banqueta y la superficie más oscura de la calle. No se observa ausencia completa de borde reconocible en candidate.",
+          "action": "No se requiere corrección para este criterio; conservar una separación visual reconocible entre banqueta y calzada.",
+          "presence": false,
+          "abstain": false,
+          "category": "none",
+          "box": null
+        },
+        "correct": true,
+        "automatic": false,
+        "client_ms": 10598.787549999543,
+        "server_ms": 4520,
+        "calls": 2
+      },
+      {
+        "case": "width",
+        "repeat": 0,
+        "expected": null,
+        "truth_reason": "No puede medirse error métrico de 20cm con estas imágenes.",
+        "result": {
+          "evidence": "Ambas imágenes muestran la banqueta frente a la fachada, pero la comparación es entre una foto panorámica reproyectada y un modelo 3D sin cámara calibrada ni escala de campo. La perspectiva y la pose difieren, y con estos insumos no se puede certificar visualmente si el ancho real en candidate difiere de reference por más de 20 cm.",
+          "action": "Proporcionar medición de campo, cámara calibrada o referencias métricas/control geométrico común para verificar el ancho real de la banqueta y determinar si existe una diferencia mayor a 20 cm.",
+          "presence": null,
+          "abstain": true,
+          "category": "insufficient_evidence",
+          "box": null
+        },
+        "correct": true,
+        "automatic": false,
+        "client_ms": 14746.751932001644,
+        "server_ms": 7379,
+        "calls": 2
+      },
+      {
+        "case": "width",
+        "repeat": 1,
+        "expected": null,
+        "truth_reason": "No puede medirse error métrico de 20cm con estas imágenes.",
+        "result": {
+          "evidence": "Ambas imágenes muestran la banqueta continua frente a la fachada, pero la comparación es entre una foto panorámica reproyectada y un modelo 3D con perspectiva distinta, sin escala de campo, cámara calibrada ni correspondencias métricas confiables. Visualmente no se puede demostrar de forma sustentada que el ancho real de la banqueta en candidate difiera de reference por más de 20 cm.",
+          "action": "Se requiere evidencia métrica o geometría calibrada del tramo (levantamiento, cámara/pose calibrada o medición de campo) para validar el ancho real de la banqueta. Con estos insumos no puede certificarse una discrepancia >20 cm.",
+          "presence": null,
+          "abstain": true,
+          "category": "insufficient_evidence",
+          "box": null
+        },
+        "correct": true,
+        "automatic": false,
+        "client_ms": 12930.076867003663,
+        "server_ms": 6440,
+        "calls": 2
+      },
+      {
+        "case": "height",
+        "repeat": 0,
+        "expected": null,
+        "truth_reason": "No hay referencia vertical métrica.",
+        "result": {
+          "evidence": "La altura de la guarnición no puede verificarse con certeza >5 cm entre la foto oblicua y el modelo 3D sin cotas medidas ni calibración óptica. La perspectiva y la falta de una vista lateral/calibrada impiden estimar de forma demostrable la diferencia real de altura del borde banqueta-calle.",
+          "action": "Aportar medición en sitio, sección transversal o imágenes calibradas/perpendiculares de la guarnición para comparar la altura real con el modelo.",
+          "presence": null,
+          "abstain": true,
+          "category": "insufficient_evidence",
+          "box": null
+        },
+        "correct": true,
+        "automatic": false,
+        "client_ms": 17026.27822100112,
+        "server_ms": 9013,
+        "calls": 2
+      },
+      {
+        "case": "height",
+        "repeat": 1,
+        "expected": null,
+        "truth_reason": "No hay referencia vertical métrica.",
+        "result": {
+          "evidence": "La guarnición se aprecia en ambas imágenes, pero la altura real no puede compararse con fiabilidad: la foto y el modelo tienen perspectiva distinta, no hay calibración óptica ni cotas, y no se observa una discrepancia claramente demostrable superior a 5 cm sólo de forma visual.",
+          "action": "Aportar una medición de campo, una vista calibrada/perfil o referencia métrica fiable para verificar si la altura de la guarnición difiere en más de 5 cm.",
+          "presence": null,
+          "abstain": true,
+          "category": "insufficient_evidence",
+          "box": null
+        },
+        "correct": true,
+        "automatic": false,
+        "client_ms": 13613.888689000305,
+        "server_ms": 7845,
+        "calls": 2
+      },
+      {
+        "case": "ramp",
+        "repeat": 0,
+        "expected": null,
+        "truth_reason": "No certificar normativa con evidencia incompleta.",
+        "result": {
+          "evidence": "En la referencia se observan obstáculos fijos sobre la banqueta que afectan el paso libre peatonal: al menos dos bolardos negros y una barrera/riel amarillo junto al acceso. En la candidate esos elementos no aparecen y la banqueta queda representada como un paso libre continuo. La pendiente reglamentaria no puede verificarse visualmente con estas dos imágenes no calibradas, pero sí hay discrepancia observable en el paso libre.",
+          "action": "Incorporar en el modelo los bolardos y la barrera/riel visibles en la fotografía, o aportar evidencia de que fueron retirados en la condición actual. Para validar la pendiente de accesibilidad se requiere levantamiento/cotas o evidencia geométrica adicional.",
+          "presence": true,
+          "abstain": false,
+          "category": "missing_feature",
+          "box": {
+            "top": 0.54,
+            "bottom": 0.98,
+            "left": 0.08,
+            "right": 0.52
+          }
+        },
+        "correct": false,
+        "automatic": false,
+        "client_ms": 29697.136612001486,
+        "server_ms": 23041,
+        "calls": 2
+      },
+      {
+        "case": "ramp",
+        "repeat": 1,
+        "expected": null,
+        "truth_reason": "No certificar normativa con evidencia incompleta.",
+        "result": {
+          "evidence": "En la foto de referencia se observan obstáculos fijos sobre la banqueta que afectan el paso libre peatonal en este frente (al menos dos bolardos negros junto al borde y una barrera/riel amarillo frente al acceso). En el modelo candidate esa franja de banqueta aparece libre y continua, sin esos elementos. La pendiente reglamentaria no puede certificarse visualmente aquí, pero sí hay una discrepancia observable en paso libre.",
+          "action": "Incorporar en el modelo los obstáculos fijos visibles de la banqueta y su ubicación aproximada para que el paso libre representado coincida con la condición observada; si se requiere evaluar cumplimiento normativo de pendiente/ancho, hace falta levantamiento con cotas.",
+          "presence": true,
+          "abstain": false,
+          "category": "missing_feature",
+          "box": {
+            "top": 0.56,
+            "bottom": 0.95,
+            "left": 0.18,
+            "right": 0.67
+          }
+        },
+        "correct": false,
+        "automatic": false,
+        "client_ms": 19031.488910000917,
+        "server_ms": 12614,
+        "calls": 2
+      },
+      {
+        "case": "ends",
+        "repeat": 0,
+        "expected": null,
+        "truth_reason": "Microzona no acredita extremos ni cuadra completa.",
+        "result": {
+          "evidence": "Este par sólo muestra parcialmente el frente del número 21; no se observan de forma completa todo el tramo entre Garmendia y Abasolo ni ambas esquinas con sus respectivas rampas. Con esta vista no es posible comprobar la continuidad total de la banqueta A en todo el segmento solicitado.",
+          "action": "Se requiere evidencia visual adicional del tramo completo, incluyendo ambas esquinas y sus rampas, para verificar la continuidad integral de la banqueta A.",
+          "presence": null,
+          "abstain": true,
+          "category": "insufficient_evidence",
+          "box": null
+        },
+        "correct": true,
+        "automatic": false,
+        "client_ms": 10806.408743999782,
+        "server_ms": 5083,
+        "calls": 2
+      },
+      {
+        "case": "ends",
+        "repeat": 1,
+        "expected": null,
+        "truth_reason": "Microzona no acredita extremos ni cuadra completa.",
+        "result": {
+          "evidence": "El par sólo muestra una porción del frente 21 y no permite ver la continuidad completa de la banqueta A entre Garmendia y Abasolo; tampoco aparecen ambas esquinas ni sus rampas en una forma verificable. Con esta cobertura parcial no se puede confirmar ni refutar el criterio global del tramo completo.",
+          "action": "Aportar vistas adicionales del lado sur que cubran toda la banqueta A entre Garmendia y Abasolo, incluyendo explícitamente ambas esquinas y sus rampas, para poder evaluar la continuidad completa.",
+          "presence": null,
+          "abstain": true,
+          "category": "insufficient_evidence",
+          "box": null
+        },
+        "correct": true,
+        "automatic": false,
+        "client_ms": 12636.366857997928,
+        "server_ms": 5773,
+        "calls": 2
+      }
+    ]
+  },
+  "limitations": [
+    "One microzone and 9 correlated criteria, not 9 independent sites.",
+    "Ground truth from direct visual inspection by ChatGPT and current scene graph, not independent survey.",
+    "Thresholds uncalibrated; reported confidence is not verified accuracy."
+  ],
+  "time_definition": "client wall time through diagnosis, including image fetch, API, pacing and fallback; excludes one-off engineering, deployment and any unperformed 3D editing; not time to accepted geometric correction",
+  "criterion_audit": {
+    "ramp": {
+      "issue": "Mixed criterion: observable obstacles versus measured accessibility compliance",
+      "frozen_expected": null,
+      "interpretation": "GPT reports visible obstacles while explicitly declining slope certification. Counted as mismatch under the frozen strict compliance label; not evidence of invented obstacles.",
+      "remedy": "Separate visible-object detection from metric/compliance verification; evidence guard must block the latter without measurements."
+    }
+  }
+}

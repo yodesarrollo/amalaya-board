@@ -33,5 +33,10 @@ for name,rr in routes.items():
         ratios=[e['client_ms']/b['client_ms']for e,b in zip(rr,routes['GPT'])]
         summary[name]['median_paired_time_change_pct']=(statistics.median(ratios)-1)*100
 report={'study_id':r.MANIFEST['study_id'],'manifest_sha256':r.FREEZE['manifest_sha256'],'summary':summary,'rows':rows,'routes':routes,'limitations':r.MANIFEST['limitations'],'time_definition':'client wall time through diagnosis, including image fetch, API, pacing and fallback; excludes one-off engineering, deployment and any unperformed 3D editing; not time to accepted geometric correction'}
+audit=json.loads((r.DATA/'criterion-audit.json').read_text())
+report['criterion_audit']=audit['criteria']
+for name,rr in routes.items():
+    clean=[e for e in rr if e['case'] not in audit['exclude_only_for_sensitivity']]
+    summary[name]['unambiguous_sensitivity']={'correct':sum(e['correct']for e in clean),'total':len(clean),'excluded_case':'ramp','status':'posthoc sensitivity; original frozen score retained'}
 (r.OUT/'analysis.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n')
 print(json.dumps(summary,ensure_ascii=False,indent=2))

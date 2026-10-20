@@ -1,0 +1,14 @@
+{
+  "timing": "Posthoc audit after the per-criterion trial; before completion of primary whole-review trial",
+  "exclude_only_for_sensitivity": [
+    "ramp"
+  ],
+  "criteria": {
+    "ramp": {
+      "issue": "Mixed criterion: observable obstacles versus measured accessibility compliance",
+      "frozen_expected": null,
+      "interpretation": "GPT reports visible obstacles while explicitly declining slope certification. Counted as mismatch under the frozen strict compliance label; not evidence of invented obstacles.",
+      "remedy": "Separate visible-object detection from metric/compliance verification; evidence guard must block the latter without measurements."
+    }
+  }
+}

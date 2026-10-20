@@ -32,6 +32,7 @@ function BlockDialog({block:b,task,tasks,onClose,onTask,onBuilding}){
   <button className="simple-close" onClick={onClose} aria-label="Cerrar cuadra">×</button>
   <span className="eyebrow">CUADRA {b.displayNumber??b.id}</span><h2 id="block-title">{b.name}</h2>
   <BlockSections block={b}/>
+  {b.id==='C22'&&<aside className="block-inventory"><strong>Revisión específica · banqueta del frente 21</strong><p>Fotografía y modelo contrastados. Faltantes visibles registrados; anclaje, medidas y continuidad siguen por comprobar.</p><a className="secondary-link" href={`${BASE}levantamiento/sidewalk-real-v1/`}>Abrir evidencia y prueba de revisión ↗</a></aside>}
   {b.tracing&&<button className="quiet calco-open" aria-expanded={showTrace} onClick={()=>setShowTrace(!showTrace)}>{showTrace?'Cerrar plano':b.visualFit?'Ver trazado y montaje visual previo':'Ver calco 2D · calles y banquetas'}</button>}
   {showTrace&&<Suspense fallback={<p role="status">Abriendo calco…</p>}><Calco block={b}/></Suspense>}
   {!showTrace&&b.inventoryEvidence&&<img className="focus-photo" src={BASE+b.inventoryEvidence} alt={`${b.id}: límite de manzana en verde y huellas del modelo superpuestas`}/>}
