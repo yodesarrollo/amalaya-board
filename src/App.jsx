@@ -31,12 +31,13 @@ function usarChinche(sesion, modo, seccion) {
     if (!activa || window.YODChinche || document.getElementById('amalaya-chinche')) return
     const s = document.createElement('script')
     s.id = 'amalaya-chinche'
-    s.src = `${BASE}chinche.js?v=f10`
+    s.src = `${BASE}chinche.js?v=secuencia-1`
     // Las pantallas sueltas (modelo 3D, recorrido) leen de aquí a qué servidor mandar.
     try { localStorage.setItem('amalaya_exec', APPS_SCRIPT_URL) } catch { /* modo privado */ }
     s.onload = () => window.YODChinche?.init({
       pantalla: 'amalaya', repo: 'amalaya-board',
       // Envío automático: cada chinche va sola al servidor (sin «Mandar a Claude»).
+      identidad: async () => Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(sesionRef.current?.codigo || '')))).map(x=>x.toString(16).padStart(2,'0')).join(''),
       enviar: (ch) => apiCall('chinche', { codigo: sesionRef.current?.codigo, chinche: ch }),
       quien: () => sesion?.nombre || '',
       // Mapa y visores dicen qué había bajo el toque (el DOM solo ve un lienzo).

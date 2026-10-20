@@ -1,25 +1,15 @@
 {
-  "modelRevision": "2026-10-01.28-chinches-complementos",
-  "atlasCommit": "4bcff83904b282aaa5287d599f4fe57773ed980f",
-  "proposalIds": [
-    "CHG-AMALAYA-CHINCHES-001"
-  ],
+  "model_revision": "2026-10-20.chinches-secuencia.1",
+  "proposal_id": "CHG-CHINCHES-SECUENCIA-20261020",
+  "summary": "Voz, trazos y capturas con secuencia temporal; conservar identidad y bandeja nativas.",
   "components": [
     "SYS-AMALAYA",
     "GAS-AMALAYA",
     "SHEET-AMALAYA"
   ],
-  "contracts": [
-    "CTR-AMALAYA-CHINCHES-ESTADO"
-  ],
-  "summary": "Cámara/galería y borrador local del seguimiento 3D. Reutiliza subirArchivo privado y chinche autenticados, sin modificar backend, roles ni permisos. Referencias a fotos exclusivamente en detalle privado; el puente público sólo recibe cantidad y contexto.",
   "tests": [
-    "npm run pruebas",
-    "python3 scripts/pruebas-puente.py",
-    "npm run verificar:publicacion",
-    "npm run build",
-    "Recorrido Chromium móvil/escritorio con backend sintético: fotos, borrador, rechazo, ACK perdido y reintento",
-    "Fuente activa GAS cotejada para subirArchivo/chinche; artefacto Pages publicado cotejado"
+    "npm run build && npm run pruebas"
   ],
-  "rollback": "Revertir PR frontend; devolver el mismo deployment GAS a su versión anterior conservando URL/config/editor. Estados de chinches solo mediante contrato protegido y evidencia, nunca escrituras directas al Sheet."
+  "rollback": "Revertir código por PR; conservar archivos privados, IDs y registros originales.",
+  "model_commit": "b8f70c6828ac1ede9a931c012f882f2390680bce"
 }

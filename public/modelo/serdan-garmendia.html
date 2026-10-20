@@ -143,12 +143,14 @@ requestAnimationFrame(frame);
     var s = JSON.parse(localStorage.getItem('amalaya_sesion') || 'null');
     if (!s || !s.codigo || ['admin', 'master', 'editor', 'visor'].indexOf(s.rol) === -1) return;
     var el = document.createElement('script');
-    el.src = '../chinche.js?v=f10';
+    el.src = '../chinche.js?v=secuencia-1';
     el.onload = function () {
       if (window.YODChinche) YODChinche.init({ pantalla: 'amalaya-modelo', repo: 'amalaya-board',
         quien: function () { return s.nombre || ''; },
         // Envío automático al servidor de Amalaya (misma dirección que usa el board).
+        identidad: async function(){var live=JSON.parse(localStorage.getItem('amalaya_sesion')||'null');return Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(live&&live.codigo||'')))).map(function(x){return x.toString(16).padStart(2,'0');}).join('');},
         enviar: function (ch) {
+          s=JSON.parse(localStorage.getItem('amalaya_sesion')||'null');if(!s||!s.codigo)return Promise.reject(new Error('sin sesión'));
           var url = localStorage.getItem('amalaya_exec');
           if (!url) return Promise.reject(new Error('sin servidor'));
           return fetch(url, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' },
