@@ -31,7 +31,7 @@ function usarChinche(sesion, modo, seccion) {
     if (!activa || window.YODChinche || document.getElementById('amalaya-chinche')) return
     const s = document.createElement('script')
     s.id = 'amalaya-chinche'
-    s.src = `${BASE}chinche.js?v=1.1.0`
+    s.src = `${BASE}chinche.js?v=secuencia-1`
     // Las pantallas sueltas (modelo 3D, recorrido) leen de aquí a qué servidor mandar.
     try { localStorage.setItem('amalaya_exec', APPS_SCRIPT_URL) } catch { /* modo privado */ }
     s.onload = () => window.YODChinche?.init({
