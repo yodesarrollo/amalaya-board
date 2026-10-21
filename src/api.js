@@ -36,11 +36,12 @@ async function llamada(action, payload) {
       data = JSON.parse(texto)
     } catch {
       if (texto.toLowerCase().includes('<html')) {
-        throw new Error(
-          'El servidor está pidiendo inicio de sesión de Google. ' +
-            'El despliegue del Apps Script debe quedar con Acceso: "Cualquier usuario". ' +
-            'Avísale a Alejandro para corregirlo.'
+        const error = new Error(
+          'Google devolvió una página en lugar de los datos del tablero. ' +
+            'Reintenta la conexión; el modelo 3D público sigue disponible para presentar.'
         )
+        error.code = 'BACKEND_HTML'
+        throw error
       }
       throw new Error('El servidor respondió algo inesperado. Si se re-desplegó el Apps Script, hay que actualizar la URL.')
     }
@@ -62,7 +63,7 @@ export async function apiCall(action, payload = {}) {
   } catch (e) {
     const esTimeout = e.name === 'AbortError'
     const esRed = e instanceof TypeError
-    if ((esTimeout || esRed) && IDEMPOTENTES.has(action)) {
+    if ((esTimeout || esRed || e.code === 'BACKEND_HTML') && IDEMPOTENTES.has(action)) {
       // Un solo reintento tras 2 s: cubre el arranque en frío.
       await new Promise((r) => setTimeout(r, 2000))
       try {

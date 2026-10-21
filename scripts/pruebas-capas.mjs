@@ -11,7 +11,10 @@ assert.equal(sequence('todo','tema').length,17)
 const s={layers:['piso','arboles','piso','evil'],background:'croquis',theme:'urbanismo',mode:'tema'}
 assert.deepEqual(decode('#'+encode(s)),{...s,layers:['piso','arboles']})
 assert.deepEqual(decode('#capas=<script>,solar,solar&fondo=javascript:alert(1)&tema=bad'),{layers:['solar'],background:'croquis',theme:'todo',mode:'tema'})
-const acceso=readFileSync('src/componentes/Acceso.jsx','utf8');assert.match(acceso,/\['mapa','observatorio','seguimiento','capas'\]/)
+const acceso=readFileSync('src/componentes/Acceso.jsx','utf8');assert.match(acceso,/\['observatorio','seguimiento','capas'\]\.includes\(section\)&&<PortalFrame/)
+// El mapa público reutiliza la experiencia original del tablero, sin un visor alternativo.
+assert.match(acceso,/import\('\.\/Mapa\.jsx'\)/)
+assert.match(acceso,/section==='mapa'&&<Suspense[\s\S]*?<Mapa\s*\/>/)
 console.log('Capas: independencia, secuencia por tema/acumulativa, URL segura y entrada pública verificados.')
 assert.match(svg, /corte transversal vial/i)
 assert.match(svg, /assets\/transversal\/base\.png/)

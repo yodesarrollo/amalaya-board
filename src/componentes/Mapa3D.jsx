@@ -309,8 +309,8 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
   const [respaldoMapa, setRespaldoMapa] = useState(false)
   // Entrada por capas: 0 satélite · 1 lámina · 2 rutas · 3 puntos · 4 fin
   const reducido = useMemo(() => { try { return window.matchMedia('(prefers-reduced-motion: reduce)').matches } catch { return false } }, [])
-  // La entrada animada corre una vez por sesión; al volver al mapa, directo a la maqueta.
-  const [etapa, setEtapa] = useState(() => { try { return reducido || sessionStorage.getItem('amalaya_entrada') ? 4 : 0 } catch { return reducido ? 4 : 0 } })
+  // Recuperar el vuelo de entrada al abrir el mapa; respetar movimiento reducido.
+  const [etapa, setEtapa] = useState(reducido ? 4 : 0)
   useEffect(() => { if (etapa >= 4) { try { sessionStorage.setItem('amalaya_entrada', '1') } catch { /* sin almacenamiento */ } } }, [etapa])
   const etapaRef = useRef(etapa)
   useEffect(() => { etapaRef.current = etapa }, [etapa])
@@ -377,7 +377,6 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
   useEffect(() => {
     if (!cont.current || mapa.current) return
     const centro = centroGeo(geoSheet)
-    if (!hayWebGL()) { setFalla3d('Este equipo no muestra 3D (WebGL apagado).'); return }
     let m
     let desmontarLevantamiento = () => {}
     let pinesModelo = []
@@ -421,6 +420,7 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
       pitch: 0,
       bearing: 0,
       antialias: true,
+      pixelRatio: Math.min(window.devicePixelRatio || 1, 2),
       attributionControl: false,
       clickTolerance: 5,          // un micro-arrastre ya no se come el clic
     }) } catch (err) {
@@ -446,7 +446,7 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
     // colgado en el velo de carga.
     let arrancado = false
     let reloj = null
-    const arrancar = () => {
+    const ejecutarArranque = () => {
       if (arrancado) return
       if (!m.isStyleLoaded()) { clearTimeout(reloj); reloj = setTimeout(arrancar, 400); return }
       clearTimeout(reloj)
@@ -607,15 +607,37 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
       r.push(setTimeout(() => setEtapa(3), ENTRADA_MS.puntos))
       r.push(setTimeout(() => { setEtapa(4); volar(m, ENTRADA_MS.vueloDur) }, ENTRADA_MS.vuelo))
     }
+    const arrancar = () => {
+      try { ejecutarArranque() } catch (error) {
+        clearTimeout(reloj)
+        recuperacion.dispose()
+        console.error('No se pudo montar el mapa', error)
+        setFalla3d('No se pudo completar el montaje. Puedes reintentar el 3D.')
+      }
+    }
+    const contextoPerdido = event => {
+      event.preventDefault()
+      setFalla3d('El navegador interrumpió el dibujo 3D. Reintenta para recuperarlo.')
+    }
+    m.getCanvas().addEventListener('webglcontextlost', contextoPerdido)
     m.on('load', arrancar)
     m.on('styledata', arrancar)
     reloj = setTimeout(arrancar, 600)
     mapa.current = m
+    // MapLibre no observa cambios de tamaño del panel ni las barras de Safari.
+    const ajustar = () => { if (cont.current?.clientWidth && cont.current?.clientHeight) m.resize() }
+    const observador = new ResizeObserver(ajustar)
+    observador.observe(cont.current)
+    window.visualViewport?.addEventListener('resize', ajustar)
+    ajustar()
     return () => {
       window.removeEventListener('amalaya:map-view', alCambiarVistaMapa)
       window.removeEventListener('amalaya:focus-coordinate', alEnfocarCoordenada)
       window.removeEventListener('amalaya:recorrido-mode', alCambiarModoRecorrido)
       window.removeEventListener('amalaya:focus-study', alEnfocarModelo)
+      m.getCanvas().removeEventListener('webglcontextlost', contextoPerdido)
+      observador.disconnect()
+      window.visualViewport?.removeEventListener('resize', ajustar)
       pinesModelo.forEach(pin => pin.remove()); pinesModelo = []; clearTimeout(reloj)
       relojesEntrada.current.forEach(clearTimeout); cancelAnimationFrame(trazo.current); desmontarLevantamiento(); m.remove(); mapa.current = null
     }
@@ -918,6 +940,7 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
           <p className="text-arena text-sm">Puedes seguir trabajando: abre cualquier espacio para ver su ficha, sus documentos y descargarlos.</p>
           <div className="flex flex-wrap gap-2">
             <button type="button" className="ctrl-mapa" onClick={() => window.location.reload()}>Reintentar el 3D</button>
+            <a className="ctrl-mapa" href={`${BASE}modelo-completo.html?embed=1&vista=volumen`}>Usar vista ligera</a>
             <a className="ctrl-mapa" href={`${BASE}lamina-zona-nucleo.jpg`} target="_blank" rel="noreferrer" download>Lámina «Zona Núcleo» (JPG)</a>
             <a className="ctrl-mapa" href={`${BASE}mapa-poligono.jpg`} target="_blank" rel="noreferrer" download>Plano del polígono (JPG)</a>
           </div>
@@ -931,7 +954,7 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
 
   return (
     <div className={`relative w-full h-full mapa3d tema-${tema}`} data-entrada={listo ? etapa : ''}>
-      <div ref={cont} className="absolute inset-0" />
+      <div ref={cont} className="mapa-canvas" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%' }} />
 
       {/* Tocar en cualquier parte durante la entrada la salta */}
       {listo && etapa < 4 && (
@@ -973,7 +996,7 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
 
       {respaldoMapa && <div role="status" className="absolute bottom-3 left-1/2 -translate-x-1/2 z-10 rounded bg-white/95 px-3 py-1 text-xs text-stone-800 pointer-events-none">Referencia local de respaldo · fecha de foto sin confirmar</div>}
       {/* ── Carril superior izquierdo: capas ─────────────────────── */}
-      <div className="absolute left-4 top-4 bottom-4 z-20 flex flex-col gap-2 items-start pointer-events-none">
+      <div className="mapa-layer-tools absolute left-4 top-4 bottom-4 z-20 flex flex-col gap-2 items-start pointer-events-none" style={{ zIndex: panel ? 45 : 20 }}>
         <button className={`ctrl-mapa pointer-events-auto ${panel ? 'ctrl-on' : ''}`} onClick={() => setPanel(!panel)}>
           <Layers size={15} /> Capas
         </button>
@@ -1029,7 +1052,7 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
       </div>
 
       {/* ── Carril superior derecho: espacios y monito ─────────────── */}
-      <div className="absolute right-4 top-4 z-20 flex gap-2">
+      <div className="mapa-space-tools absolute right-4 top-4 z-20 flex gap-2">
         <button className={`ctrl-mapa ${lista ? 'ctrl-on' : ''}`} onClick={() => setLista(!lista)} title="Lista y buscador de espacios">
           <List size={15} /> Espacios
         </button>
@@ -1071,7 +1094,7 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
       )}
 
       {/* ── Carril inferior derecho: cámara ──────────────────────── */}
-      <div className="absolute right-4 bottom-12 z-20 flex flex-col items-end gap-2">
+      <div className="mapa-camera-tools absolute right-4 bottom-12 z-20 flex flex-col items-end gap-2">
         <div className="grupo-ctrl">
           <button onClick={() => mapa.current?.zoomIn({ duration: 300 })} title="Acercar" aria-label="Acercar">+</button>
           <button onClick={() => mapa.current?.zoomOut({ duration: 300 })} title="Alejar" aria-label="Alejar">−</button>

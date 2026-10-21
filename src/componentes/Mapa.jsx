@@ -1,3 +1,4 @@
+import '../mapa-workspace.css'
 import { useState, useRef, useCallback, useMemo } from 'react'
 import { Plus, Pencil, Check, ArrowUp, ArrowDown, ArrowLeft, ArrowRight, ClipboardList, X } from 'lucide-react'
 import { usarDatos } from '../datos.jsx'
@@ -235,15 +236,16 @@ export default function Mapa() {
   const en3d = vista === '3d'
 
   return (
-    <div className="relative">
+    <div className="relative mapa-workspace">
       {/* Barra del mapa */}
-      <div className="max-w-6xl mx-auto px-4 pt-4 pb-2 flex items-center gap-2 flex-wrap">
+      <div className="mapa-heading max-w-6xl mx-auto px-4 pt-4 pb-2 flex items-center gap-2 flex-wrap">
         <h2 className="font-cartel font-normal uppercase tracking-wide text-2xl">Mapa Amalaya</h2>
 
         <span className="text-xs text-terciario ml-2 hidden sm:inline">planta · 3D · caminar · Street View, en una sola vista</span>
 
         <div className="flex-1" />
 
+        {puedeEditar && <details className="mapa-edit-menu" open={modoEdicion || enRutas || undefined}><summary>Editar mapa</summary><div className="mapa-edit-actions">
         {/* Rutas: la barra de rutas se abre sobre el mismo mapa */}
         {puedeEditar && (
           <button
@@ -272,12 +274,13 @@ export default function Mapa() {
                 <span className="flex items-center gap-1.5"><Pencil size={14} /> Mover espacios</span>
               </button>
             )}
-            <button className="boton-primario !px-3 !py-2 text-sm hidden sm:block" onClick={() => setCreando(true)} title="Crear espacio">
+            <button className="boton-primario !px-3 !py-2 text-sm" onClick={() => setCreando(true)} title="Crear espacio">
               <span className="flex items-center gap-1.5"><Plus size={16} /> Espacio</span>
             </button>
           </>
         )}
 
+        </div></details>}
       </div>
 
       {modoEdicion && (
@@ -311,8 +314,8 @@ export default function Mapa() {
       )}
 
       {/* El mapa */}
-      <div className="px-2 pb-3">
-          <div className="relative mx-auto rounded-2xl overflow-hidden border border-linea" style={{ height: 'calc(100dvh - 150px)', minHeight: '420px' }}>
+      <div className="mapa-stage-wrap px-2 pb-3">
+          <div className="mapa-stage relative mx-auto rounded-2xl overflow-hidden border border-linea" style={{ height: 'calc(100dvh - 150px)', minHeight: '420px' }}>
             <Mapa3D
               espacios={espacios} rutas={rutas} paradas={paradas} onAbrir={setAbierto} enfocado={abierto}
               onNuevo={puedeEditar ? () => setCreando(true) : undefined}
