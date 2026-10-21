@@ -309,8 +309,8 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
   const [respaldoMapa, setRespaldoMapa] = useState(false)
   // Entrada por capas: 0 satélite · 1 lámina · 2 rutas · 3 puntos · 4 fin
   const reducido = useMemo(() => { try { return window.matchMedia('(prefers-reduced-motion: reduce)').matches } catch { return false } }, [])
-  // La entrada animada corre una vez por sesión; al volver al mapa, directo a la maqueta.
-  const [etapa, setEtapa] = useState(() => { try { return reducido || sessionStorage.getItem('amalaya_entrada') ? 4 : 0 } catch { return reducido ? 4 : 0 } })
+  // Recuperar el vuelo de entrada al abrir el mapa; respetar movimiento reducido.
+  const [etapa, setEtapa] = useState(reducido ? 4 : 0)
   useEffect(() => { if (etapa >= 4) { try { sessionStorage.setItem('amalaya_entrada', '1') } catch { /* sin almacenamiento */ } } }, [etapa])
   const etapaRef = useRef(etapa)
   useEffect(() => { etapaRef.current = etapa }, [etapa])
@@ -377,7 +377,6 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
   useEffect(() => {
     if (!cont.current || mapa.current) return
     const centro = centroGeo(geoSheet)
-    if (!hayWebGL()) { setFalla3d('Este equipo no muestra 3D (WebGL apagado).'); return }
     let m
     let desmontarLevantamiento = () => {}
     let pinesModelo = []
@@ -918,6 +917,7 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
           <p className="text-arena text-sm">Puedes seguir trabajando: abre cualquier espacio para ver su ficha, sus documentos y descargarlos.</p>
           <div className="flex flex-wrap gap-2">
             <button type="button" className="ctrl-mapa" onClick={() => window.location.reload()}>Reintentar el 3D</button>
+            <a className="ctrl-mapa" href={`${BASE}modelo-completo.html?embed=1&vista=volumen`}>Usar vista ligera</a>
             <a className="ctrl-mapa" href={`${BASE}lamina-zona-nucleo.jpg`} target="_blank" rel="noreferrer" download>Lámina «Zona Núcleo» (JPG)</a>
             <a className="ctrl-mapa" href={`${BASE}mapa-poligono.jpg`} target="_blank" rel="noreferrer" download>Plano del polígono (JPG)</a>
           </div>

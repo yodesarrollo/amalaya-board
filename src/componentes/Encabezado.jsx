@@ -81,7 +81,7 @@ export default function Encabezado({ onInicio }) {
       </div>
       {errorSync && modo !== 'demo' && (
         <div className="bg-superficie border-t border-linea">
-          <p className="max-w-6xl mx-auto px-4 py-2 text-xs text-ladrillo">{errorSync}</p>
+          <p className="max-w-6xl mx-auto px-4 py-2 text-xs text-ladrillo">{errorSync} <a className="underline text-oro" href="/amalaya-board/explorar.html?forzar3d=1&integrado=1">Abrir modelo 3D público para presentar</a></p>
         </div>
       )}
       {/* Portal: el backdrop-blur del encabezado encerraría a un «fixed» */}
