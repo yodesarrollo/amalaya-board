@@ -1,175 +1,30 @@
-import { useState } from 'react'
-import { KeyRound, ClipboardList, Mail, ArrowUpRight } from 'lucide-react'
-import { usarDatos } from '../datos.jsx'
+import {useState,useEffect} from 'react'
+import {createPortal} from 'react-dom'
+import {KeyRound,Mail,ArrowRight,X,LockKeyhole} from 'lucide-react'
+import {usarDatos} from '../datos.jsx'
 import BotonGoogle from './BotonGoogle.jsx'
 import LineaAmalaya from './LineaAmalaya.jsx'
 import Peticiones from './Peticiones.jsx'
-import { apiCall, cargarPeticionesPublicas } from '../api.js'
-import { BACKEND_LISTO } from '../config.js'
+import {apiCall,cargarPeticionesPublicas} from '../api.js'
+import {BACKEND_LISTO} from '../config.js'
+import {usarDialogo} from '../usarDialogo.js'
+import {availableSections,resolveSection,PUBLIC_SECTIONS} from '../portal-model.js'
+import {usePortalNavigation} from '../usePortalNavigation.js'
+import PortalShell,{PortalFrame} from './PortalShell.jsx'
+import PortalInicio from './PortalInicio.jsx'
+import SistemaPortal from './SistemaPortal.jsx'
 
-// La puerta de Amalaya (plan UX v2, fase 1). Tres formas de entrar, en
-// este orden: Continuar con Google, mandarme mi liga por correo, y «tengo
-// un código» chiquito abajo. «Peticiones a la ciudad» sigue pública.
-// Todo se valida SIEMPRE en el servidor.
-export default function Acceso() {
-  const { entrar, entrarConGoogle } = usarDatos()
-  const [codigo, setCodigo] = useState('')
-  const [mostrarCodigo, setMostrarCodigo] = useState(false)
-  const [correo, setCorreo] = useState('')
-  const [correoEnviado, setCorreoEnviado] = useState(null)
-  const [error, setError] = useState(null)
-  const [cargando, setCargando] = useState(false)
-  const [peticiones, setPeticiones] = useState(null) // {rutas, paradas} públicas
-
-  async function con(fn) {
-    setCargando(true)
-    setError(null)
-    try {
-      await fn()
-    } catch (err) {
-      setError(err.message)
-    } finally {
-      setCargando(false)
-    }
-  }
-
-  const enviarCodigo = (e) => {
-    e.preventDefault()
-    const limpio = codigo.trim()
-    if (limpio) con(() => entrar(limpio))
-  }
-
-  const pedirLiga = (e) => {
-    e.preventDefault()
-    if (!correo.trim()) return
-    con(async () => {
-      const r = await apiCall('ligaPorCorreo', { correo: correo.trim() })
-      setCorreoEnviado(r.mensaje)
-    })
-  }
-
-  const abrirPeticiones = () => con(async () => {
-    const r = await cargarPeticionesPublicas()
-    setPeticiones({ rutas: r.rutas || [], paradas: r.paradas || [] })
-  })
-
-  return (
-    <div
-      className="min-h-dvh flex items-center justify-center px-6"
-      style={{
-        background:
-          'radial-gradient(ellipse 90% 60% at 50% 110%, rgba(201,164,92,0.16), transparent 60%),' +
-          'radial-gradient(ellipse 60% 40% at 50% -10%, rgba(184,92,56,0.10), transparent 60%)',
-      }}
-    >
-      <div className="w-full max-w-sm">
-        <div className="text-center mb-6">
-          <p className="text-xs uppercase tracking-[0.3em] text-arena">
-            Tierra Sonora · Distrito Cultural y Musical
-          </p>
-          <h1 className="font-firma font-normal text-7xl mt-4 glow-ambar">Amalaya</h1>
-          <p className="font-cartel uppercase tracking-[0.35em] text-oro text-xs mt-3">
-            El corazón acústico de Hermosillo
-          </p>
-        </div>
-
-        <LineaAmalaya cargando={cargando} className="mb-8" />
-        <a href="/amalaya-board/observatorio.html" className="flex items-center justify-center gap-2 text-sm text-oro mb-6 py-3 border border-linea rounded-lg">Observatorio · publicaciones y red <ArrowUpRight size={16} /></a>
-
-        {!BACKEND_LISTO ? (
-          <p className="text-terciario text-sm text-center">El servidor aún no está conectado.</p>
-        ) : (
-          <div className="space-y-5">
-            {/* 1 · Google */}
-            <BotonGoogle deshabilitado={cargando} onToken={(t) => con(() => entrarConGoogle(t))} />
-
-            {/* 2 · La liga por correo, estilo YOD OS */}
-            {correoEnviado ? (
-              <p className="text-salvia text-sm text-center leading-relaxed">{correoEnviado}</p>
-            ) : (
-              <form className="space-y-2" onSubmit={pedirLiga}>
-                <label className="block text-xs text-arena text-center" htmlFor="correo-liga">
-                  o mándame mi liga por correo
-                </label>
-                <div className="flex gap-2">
-                  <input
-                    id="correo-liga"
-                    type="email"
-                    className="campo !py-2 flex-1 text-sm"
-                    placeholder="tu@correo.com"
-                    value={correo}
-                    onChange={(e) => setCorreo(e.target.value)}
-                    disabled={cargando}
-                  />
-                  <button
-                    type="submit"
-                    className="boton-secundario !px-3 !py-2 text-sm"
-                    disabled={cargando || !correo.trim()}
-                  >
-                    <span className="flex items-center gap-1.5"><Mail size={14} /> Mandar</span>
-                  </button>
-                </div>
-              </form>
-            )}
-
-            {/* 3 · El código, chiquito abajo */}
-            {!mostrarCodigo ? (
-              <div className="flex items-center justify-center gap-5 pt-1">
-                <button
-                  className="text-terciario hover:text-arena text-xs flex items-center gap-1.5 transition-colors duration-micro ease-casa"
-                  onClick={() => setMostrarCodigo(true)}
-                >
-                  <KeyRound size={12} /> Tengo un código
-                </button>
-                <button
-                  className="text-terciario hover:text-arena text-xs flex items-center gap-1.5 transition-colors duration-micro ease-casa"
-                  onClick={abrirPeticiones}
-                  disabled={cargando}
-                >
-                  <ClipboardList size={12} /> Peticiones a la ciudad
-                </button>
-              </div>
-            ) : (
-              <form onSubmit={enviarCodigo} className="flex gap-2">
-                <input
-                  type="password"
-                  inputMode="text"
-                  autoComplete="off"
-                  aria-label="Tu código de acceso"
-                  placeholder="tu código"
-                  className="campo !py-2 flex-1 text-center tracking-[0.3em]"
-                  value={codigo}
-                  onChange={(e) => setCodigo(e.target.value)}
-                  disabled={cargando}
-                  autoFocus
-                />
-                <button type="submit" className="boton-secundario !px-3 !py-2 text-sm" disabled={cargando || !codigo.trim()}>
-                  {cargando ? 'Entrando…' : 'Entrar'}
-                </button>
-              </form>
-            )}
-          </div>
-        )}
-
-        {error && (
-          <p className="text-ladrillo text-sm mt-4 text-center" role="alert">
-            {error}
-          </p>
-        )}
-
-        <p className="text-terciario text-xs mt-8 text-center leading-relaxed">
-          Los números de Amalaya viven protegidos en Google y solo se entregan
-          a quien tiene acceso. Tu liga y tu código son personales: no los compartas.
-        </p>
-        <a href="./explorar.html?ligero=1" className="boton-secundario mt-5 w-full justify-center">
-          Explorar Amalaya en 3D <ArrowUpRight size={16} />
-        </a>
-        <a href="./seguimiento-3d.html" className="mt-5 mx-auto w-fit flex items-center gap-1.5 text-xs text-oro hover:text-marfil transition-colors duration-micro ease-casa">
-          Seguimiento público del levantamiento 3D <ArrowUpRight size={13} />
-        </a>
-      </div>
-
-      {peticiones && <Peticiones publicas={peticiones} onCerrar={() => setPeticiones(null)} />}
-    </div>
-  )
+export default function Acceso(){
+ const {entrar,entrarConGoogle}=usarDatos()
+ const [requested,navigate]=usePortalNavigation(),sections=availableSections({publicMode:true}),section=resolveSection(requested,sections)
+ const [login,setLogin]=useState(()=>!PUBLIC_SECTIONS.includes(requested)),[codigo,setCodigo]=useState(''),[mostrarCodigo,setMostrarCodigo]=useState(false),[correo,setCorreo]=useState(''),[correoEnviado,setCorreoEnviado]=useState(null),[error,setError]=useState(null),[cargando,setCargando]=useState(false),[peticiones,setPeticiones]=useState(null)
+ const close=()=>{if(!cargando){setLogin(false);if(!PUBLIC_SECTIONS.includes(requested))navigate('inicio')}}
+ const ref=usarDialogo(login,close)
+ useEffect(()=>{if(!login)return;const previous=document.body.style.overflow;document.body.style.overflow='hidden';return()=>{document.body.style.overflow=previous}},[login])
+ async function con(fn){setCargando(true);setError(null);try{await fn()}catch(err){setError(err.message)}finally{setCargando(false)}}
+ const openLogin=id=>{if(typeof id==='string')navigate(id);setLogin(true)}
+ const enviarCodigo=e=>{e.preventDefault();if(codigo.trim())con(()=>entrar(codigo.trim()))}
+ const pedirLiga=e=>{e.preventDefault();if(!correo.trim())return;con(async()=>{const r=await apiCall('ligaPorCorreo',{correo:correo.trim()});setCorreoEnviado(r.mensaje)})}
+ const abrirPeticiones=()=>con(async()=>{const r=await cargarPeticionesPublicas();setLogin(false);setPeticiones({rutas:r.rutas||[],paradas:r.paradas||[]})})
+ return <><header className="portal-public-header"><button className="portal-brand-button" onClick={()=>navigate('inicio')}>Amalaya<span>Tierra Sonora</span></button><button className="portal-login-button" onClick={()=>openLogin()}><LockKeyhole size={15}/><span>Mi espacio</span><ArrowRight size={15}/></button></header><PortalShell sections={sections} section={section} onNavigate={navigate} publicMode onLogin={()=>openLogin()}><main id="portal-contenido" tabIndex="-1" className="portal-content">{section==='inicio'&&<PortalInicio sections={sections} onNavigate={navigate} publicMode onLogin={openLogin} onPeticiones={abrirPeticiones}/>} {['mapa','observatorio','seguimiento'].includes(section)&&<PortalFrame type={section}/>} {section==='sistema'&&<SistemaPortal sections={sections} onNavigate={navigate} publicMode onLogin={openLogin}/>} {error&&!login&&<p className="portal-error" role="alert">{error}</p>}</main></PortalShell>{login&&createPortal(<div className="portal-sheet-backdrop" onClick={close}><section ref={ref} role="dialog" aria-modal="true" aria-label="Entrar a mi espacio" className="portal-login-sheet" onClick={e=>e.stopPropagation()}><div className="portal-sheet-head"><div><span className="portal-eyebrow">Acceso personal</span><h2>Tu espacio de trabajo.</h2></div><button aria-label="Cerrar acceso" onClick={close} disabled={cargando}><X size={22}/></button></div><p className="portal-login-intro">Retoma el proyecto con tus herramientas, tus permisos y la información de tu equipo.</p><LineaAmalaya cargando={cargando} className="mb-6"/>{!BACKEND_LISTO?<p>El servidor aún no está conectado.</p>:<><div className="portal-auth-tabs"><button className={!mostrarCodigo?'is-active':''} onClick={()=>setMostrarCodigo(false)} disabled={cargando}>Google o correo</button><button className={mostrarCodigo?'is-active':''} onClick={()=>setMostrarCodigo(true)} disabled={cargando}><KeyRound size={15}/>Tengo un código</button></div>{!mostrarCodigo?<div className="portal-login-methods"><BotonGoogle deshabilitado={cargando} onToken={t=>con(()=>entrarConGoogle(t))}/><div className="portal-auth-separator"><span>o recibe tu liga personal</span></div>{correoEnviado?<p className="text-salvia" role="status">{correoEnviado}</p>:<form onSubmit={pedirLiga}><label htmlFor="correo-liga">Correo de acceso</label><input id="correo-liga" type="email" placeholder="tu@correo.com" autoComplete="email" value={correo} onChange={e=>setCorreo(e.target.value)} disabled={cargando} required/><button className="portal-primary" type="submit" disabled={cargando||!correo.trim()}><Mail size={17}/>{cargando?'Solicitando…':'Recibir mi liga'}</button></form>}</div>:<form className="portal-code-form" onSubmit={enviarCodigo}><label htmlFor="portal-codigo">Tu código de acceso</label><input id="portal-codigo" type="password" autoComplete="off" value={codigo} onChange={e=>setCodigo(e.target.value)} disabled={cargando} placeholder="Código personal" required/><button type="submit" className="portal-primary" disabled={cargando||!codigo.trim()}>{cargando?'Entrando…':'Entrar al tablero'}<ArrowRight size={17}/></button></form>}</>}{error&&<p className="portal-error" role="alert">{error}</p>}<p className="portal-login-privacy"><LockKeyhole size={14}/>La información de trabajo conserva sus permisos. Tu liga y tu código son personales; no los compartas.</p><button className="portal-text-button" onClick={abrirPeticiones} disabled={cargando}>Peticiones a la ciudad<ArrowRight size={14}/></button></section></div>,document.body)}{peticiones&&<Peticiones publicas={peticiones} onCerrar={()=>setPeticiones(null)}/>}</>
 }

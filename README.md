@@ -3,6 +3,12 @@
 Board de control de **Amalaya**, polígono de actuación concertada en el centro de
 Hermosillo, Sonora. Interfaz en `https://yodesarrollo.github.io/amalaya-board/`.
 
+## Portal principal y mapa del sistema
+
+[Inicio](https://yodesarrollo.github.io/amalaya-board/) · [Mapa del sistema](https://yodesarrollo.github.io/amalaya-board/?seccion=sistema) · [Observatorio integrado](https://yodesarrollo.github.io/amalaya-board/?seccion=observatorio).
+
+Portada y navegación adaptadas al celular, con directorio de áreas y diagrama de conexiones, bases funcionales y pendientes. Los módulos y permisos operativos se conservan. [Registro de entrega y criterios del semáforo](docs/portal-principal-2026-10-20.md).
+
 ## Instrucciones de revisión con Jev
 
 Aplicar [AGENTS.md](AGENTS.md) y [Jev: revisión operativa](docs/JEV-REVISION-OPERATIVA.md) al localizar evidencia, comparar foto/modelo o revisar un cierre. La guía integra criterios por caso, rutas textuales/visuales/voz, requisitos de evidencia y lo aprendido en la prueba real de banqueta. Priorizar tiempo total y calidad; usar el método convencional cuando Jev no evite trabajo posterior.

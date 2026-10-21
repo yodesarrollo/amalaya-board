@@ -10,7 +10,7 @@ import { usarDialogo } from '../usarDialogo.js'
 // Encabezado sobrio: sello, nombre, estado de sincronización,
 // Actualizar y salir. La pastilla DEMOSTRACIÓN o "copia local"
 // aparece junto al logo — discreta, nunca un banner.
-export default function Encabezado() {
+export default function Encabezado({ onInicio }) {
   const { sesion, modo, sincronizando, ultimaSync, errorSync, copiaTs, actualizar, salir, guardados, reintentarTodo } = usarDatos()
   // El engrane ⚙️ (solo admin) abre los accesos como ventana lateral.
   const [accesos, setAccesos] = useState(false)
@@ -18,11 +18,11 @@ export default function Encabezado() {
   const refAccesos = usarDialogo(accesos, () => setAccesos(false))
 
   return (
-    <header className="no-imprimir sticky top-0 z-40 bg-noche/95 backdrop-blur border-b border-linea">
+    <header className="portal-account-header no-imprimir sticky top-0 z-40 bg-noche/95 backdrop-blur border-b border-linea">
       <div className="max-w-6xl mx-auto px-4 py-3 flex items-center gap-3">
         <img src="/amalaya-board/sello.svg" alt="" className="w-8 h-8 rounded-lg" />
         <div className="flex items-center gap-2 min-w-0">
-          <span className="font-firma text-2xl leading-none">Amalaya</span>
+          <button type="button" onClick={onInicio} disabled={!onInicio} className="portal-brand-button" aria-label="Inicio de Amalaya">Amalaya</button>
           {modo === 'demo' && <span className="pastilla-demo">Demostración</span>}
           {/* Chinche #19: solo se ve si de verdad el servidor no contestó; dice de cuándo es lo que ves. */}
           {modo === 'copia' && errorSync && (
@@ -38,7 +38,7 @@ export default function Encabezado() {
         </div>
 
         <div className="flex-1" />
-        <a href="/amalaya-board/observatorio.html" className="text-xs text-oro px-2 py-2" title="Publicaciones y red de comunicación">Observatorio</a>
+        {sesion?.rol === 'inversionista' && <a href="/amalaya-board/observatorio.html" className="text-xs text-oro px-2 py-2" title="Publicaciones y red de comunicación">Observatorio</a>}
 
         {modo !== 'demo' && <EstadoGuardado guardados={guardados} ultimaSync={ultimaSync} modo={modo} onReintentar={reintentarTodo} />}
 
