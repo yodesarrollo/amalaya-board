@@ -4,11 +4,11 @@ Entrega solicitada el 21 de octubre de 2026: comparador público por etapas, con
 
 ## Criterios y alcance
 
-- Misma fotografía P10 del frente 21 en todas las combinaciones. Original íntegro y sin modificaciones. El croquis alternativo es una interpretación de la foto generada con IA, no otra fuente de campo.
-- Diecisiete grupos SVG independientes. Piso, captación, árboles, bancas, murales, esculturas, exposiciones, huellas, luces, cubierta solar, bocinas, pantallas, conectividad, seguridad, terrazas, venta itinerante y marcas.
+- Mismo corte perspectivado en todas las combinaciones. La fotografía P10 del frente 21 se conserva íntegra, en una vista de referencia separada. El corte completo es una reinterpretación generada con IA: el frente opuesto, la profundidad y las alturas son aproximaciones de estudio, no evidencia de campo.
+- Diecisiete grupos independientes, con recortes raster transparentes dibujados a plumón y compuestos mediante SVG. Piso, captación, árboles, bancas, murales, esculturas, exposiciones, huellas, luces, cubierta solar, bocinas, pantallas, conectividad, seguridad, terrazas, venta itinerante y marcas.
 - El recorrido **Por tema** vuelve a la base para cada familia. **Acumulativo** incluye las familias anteriores. Anterior/Siguiente reconstruye la secuencia de la familia seleccionada. Los interruptores permiten una combinación libre.
-- Comparar original conserva la selección. Volver al original la vacía y muestra la foto. Ver todo junto activa las 17 capas.
-- La URL conserva la combinación y se puede compartir. Exportación PNG con el fondo incrustado y aviso conceptual. Impresión desde el navegador.
+- Comparar base conserva la selección. Volver a la base la vacía y muestra el corte sin propuestas. Foto de referencia conserva la selección y oculta las capas; cualquier nueva activación vuelve al corte. Ver todo junto activa las 17 capas.
+- La URL conserva la combinación y se puede compartir. Exportación PNG con todos los recursos visibles incrustados (incluidas las definiciones de recortes reutilizados) y aviso conceptual. Impresión desde el navegador.
 - En celular, Capas abre un panel inferior y mantiene la escena al alcance de la vista. Controles por teclado, estado anunciado y Escape para cerrar el panel.
 
 ## Evidencia y límites
@@ -20,3 +20,14 @@ Las superposiciones son elementos de comunicación conceptual con posiciones fij
 ## Registro para el Buzón
 
 Implementación nueva en `public/capas/`, entrada pública y privada en el directorio existente. Inversionistas conservan sólo Reporte. Pruebas deterministas en `scripts/pruebas-capas.mjs` incorporadas a la suite. Revisión del navegador: conmutación de cada capa, rutas por tema/acumulativas, restablecimiento, comparación reversible, persistencia en URL, exportación PNG, anchos 320/390/escritorio y entrada desde el portal. Despliegue sujeto a verificadores existentes y comprobación de la URL final.
+
+
+## Revisión visual: corte perspectivado a plumón
+
+Se reemplazó la superposición de vectores rígidos sobre fotografía por un corte con fuga y sección de terreno, banquetas, paramentos y azoteas. Se mantiene un único encuadre 1672 × 941 y se conservan las 17 capas y sus rutas. El dibujo de base utiliza la fotografía P10 como referencia de carácter arquitectónico, con el frente azul reconocible. La vista opuesta y las alturas no se presentan como levantamiento.
+
+Recursos finales en [assets](../public/capas/assets/): `corte-base.png`, `recortes.png`, `piso.png` y `solar.png`. Generación mediante la herramienta integrada de imágenes, con revisión visual. Las coordenadas de `scene.js` sólo componen la ilustración; no alteran el modelo 3D. El original `croquis-base.png` se conserva como antecedente.
+
+Pruebas de esta revisión: 17 capas; secuencias por tema y acumulativas; comparación reversible; foto sin superposiciones; URL; descarga PNG con transparencias; 320/390 px sin desbordes; entrada pública desde el portal. Registro para el Buzón: revisión del lenguaje visual y corrección de exportación con múltiples imágenes. No se modifican geometría ni evidencias del levantamiento.
+
+[Referencias y prompts finales de generación](amalaya-croquis-prompts.md).

@@ -10,6 +10,6 @@ assert.equal(sequence('arte','acumulativo').length,9)
 assert.equal(sequence('todo','tema').length,17)
 const s={layers:['piso','arboles','piso','evil'],background:'croquis',theme:'urbanismo',mode:'tema'}
 assert.deepEqual(decode('#'+encode(s)),{...s,layers:['piso','arboles']})
-assert.deepEqual(decode('#capas=<script>,solar,solar&fondo=javascript:alert(1)&tema=bad'),{layers:['solar'],background:'foto',theme:'todo',mode:'tema'})
+assert.deepEqual(decode('#capas=<script>,solar,solar&fondo=javascript:alert(1)&tema=bad'),{layers:['solar'],background:'croquis',theme:'todo',mode:'tema'})
 const acceso=readFileSync('src/componentes/Acceso.jsx','utf8');assert.match(acceso,/\['mapa','observatorio','seguimiento','capas'\]/)
 console.log('Capas: independencia, secuencia por tema/acumulativa, URL segura y entrada pública verificados.')
