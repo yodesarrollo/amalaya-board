@@ -33,6 +33,7 @@ const focoCoordenada = (point, heading, view) => {
 export default function RecorridoModelo() {
   const { datos, sesion, modo: modoDatos, verArchivo, subirArchivo } = usarDatos()
   const puedeEditar = modoDatos !== 'demo' && puedeEditarRol(sesion?.rol)
+  const [controles, setControles] = useState(false)
   const [modo, setModo] = useState('modelo')
   const [vistaMapa, setVistaMapa] = useState('modelo')
   const [version, setVersion] = useState('actual')
@@ -348,7 +349,15 @@ export default function RecorridoModelo() {
         ))}
       </div>
 
-      <div className="recorrido-unico__punto" hidden={modo === 'caminar' && estadoCaminata === 'light'}>
+      <div className="recorrido-quickbar">
+        <button type="button" className="recorrido-toggle" aria-expanded={controles} aria-controls="recorrido-detalles" onClick={() => setControles(v => !v)}>Recorrido <span aria-hidden="true">{controles ? '−' : '+'}</span></button>
+        <div className="recorrido-unico__version" role="group" aria-label="Escenario del modelo">
+          {[["actual", 'Actual'], ['amalaya', 'Amalaya']].map(([id, label]) => (
+            <button key={id} type="button" aria-pressed={version === id} className={version === id ? 'activo' : ''} onClick={() => setVersion(id)}>{label}</button>
+          ))}
+        </div>
+      </div>
+      <div id="recorrido-detalles" className="recorrido-unico__punto" hidden={!controles || (modo === 'caminar' && estadoCaminata === 'light')}>
         <button type="button" aria-label="Punto anterior" disabled={!punto || indice <= 0} onClick={() => avanzar(-1)}><ChevronLeft size={17} /></button>
         <label className="recorrido-unico__ruta">
           <span>Recorrido</span>
@@ -366,11 +375,6 @@ export default function RecorridoModelo() {
           </select>
         </label>
         <button type="button" aria-label="Punto siguiente" disabled={!punto || indice >= ruta.puntos.length - 1} onClick={() => avanzar(1)}><ChevronRight size={17} /></button>
-        <div className="recorrido-unico__version" role="group" aria-label="Escenario del modelo">
-          {[["actual", 'Actual'], ['amalaya', 'Amalaya']].map(([id, label]) => (
-            <button key={id} type="button" aria-pressed={version === id} className={version === id ? 'activo' : ''} onClick={() => setVersion(id)}>{label}</button>
-          ))}
-        </div>
         {modo === 'streetview' && punto && (
           <div className="recorrido-unico__extras">
             {puedeEditar && (
