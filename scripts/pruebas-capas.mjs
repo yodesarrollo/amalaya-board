@@ -1,0 +1,15 @@
+import assert from 'node:assert/strict'
+import {readFileSync} from 'node:fs'
+import {THEMES,LAYERS,sequence,decode,encode} from '../public/capas/model.js'
+import {scene} from '../public/capas/scene.js'
+assert.equal(new Set(LAYERS.map(x=>x.id)).size,17)
+const svg=scene()
+for(const l of LAYERS){assert.ok(THEMES.some(t=>t.id===l.theme));assert.ok(l.note.length>40);assert.equal(svg.split(`data-layer="${l.id}"`).length,2)}
+assert.equal(sequence('arte','tema').length,5)
+assert.equal(sequence('arte','acumulativo').length,9)
+assert.equal(sequence('todo','tema').length,17)
+const s={layers:['piso','arboles','piso','evil'],background:'croquis',theme:'urbanismo',mode:'tema'}
+assert.deepEqual(decode('#'+encode(s)),{...s,layers:['piso','arboles']})
+assert.deepEqual(decode('#capas=<script>,solar,solar&fondo=javascript:alert(1)&tema=bad'),{layers:['solar'],background:'foto',theme:'todo',mode:'tema'})
+const acceso=readFileSync('src/componentes/Acceso.jsx','utf8');assert.match(acceso,/\['mapa','observatorio','seguimiento','capas'\]/)
+console.log('Capas: independencia, secuencia por tema/acumulativa, URL segura y entrada pública verificados.')

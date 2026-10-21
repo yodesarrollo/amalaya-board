@@ -85,9 +85,9 @@ function Principal() {
         {seccion === 'reporte' && <Suspense fallback={<p className="p-6">Abriendo área…</p>}><Reporte /></Suspense>}
         {seccion === 'plan' && <Suspense fallback={<p className="p-6">Abriendo área…</p>}><PlanAccion /></Suspense>}
         {seccion === 'ayuda' && <Suspense fallback={<p className="p-6">Abriendo área…</p>}><Ayuda /></Suspense>}
-        {['observatorio','seguimiento'].includes(seccion) && <PortalFrame type={seccion} />}
+        {['observatorio','seguimiento','capas'].includes(seccion) && <PortalFrame type={seccion} />}
         {seccion === 'sistema' && <SistemaAmalaya sections={secciones} onNavigate={navigate} />}
-        {modo === 'demo' && seccion !== 'reporte' && !['observatorio','seguimiento','sistema'].includes(seccion) && <p className="portal-demo-note">Demostración: los datos de negocio son ficticios y no se guardan cambios. El Observatorio y el seguimiento conservan sus fuentes públicas.</p>}
+        {modo === 'demo' && seccion !== 'reporte' && !['observatorio','seguimiento','sistema','capas'].includes(seccion) && <p className="portal-demo-note">Demostración: los datos de negocio son ficticios y no se guardan cambios. El Observatorio y el seguimiento conservan sus fuentes públicas.</p>}
       </main>
     </PortalShell>
   </>

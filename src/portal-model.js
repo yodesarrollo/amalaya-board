@@ -2,6 +2,7 @@
 import { puedeEditarRol } from './roles.js'
 export const SECTIONS = [
   {id:'mapa',label:'Territorio',group:'Explorar',icon:'map',description:'Mapa, espacios, fichas, rutas, caminar y Street View.'},
+  {id:'capas',label:'Amalaya por capas',group:'Explorar',icon:'layers',description:'Transformar la calle por etapas y activar cada propuesta.'},
   {id:'modelos',label:'Modelos 3D',group:'Explorar',icon:'box',description:'Biblioteca de volúmenes y modelos disponibles.'},
   {id:'seguimiento',label:'Levantamiento',group:'Explorar',icon:'scan',description:'Evidencias, matriz por cuadra y revisión del territorio.'},
   {id:'recintos',label:'Recintos y negocios',group:'Desarrollar',icon:'building',description:'Unidades de negocio, operación y escenarios por recinto.'},
@@ -12,7 +13,7 @@ export const SECTIONS = [
   {id:'sistema',label:'Mapa del sistema',group:'Entender',icon:'layers',description:'Cómo se conecta todo, qué existe y qué falta.'},
   {id:'ayuda',label:'Guía de uso',group:'Entender',icon:'help',description:'Ayuda por pantalla, instrucciones y herramientas.'},
 ]
-export const PUBLIC_SECTIONS=['mapa','seguimiento','observatorio','sistema']
+export const PUBLIC_SECTIONS=['mapa','capas','seguimiento','observatorio','sistema']
 export function availableSections({role,data,models=false,publicMode=false}) {
  if(publicMode)return SECTIONS.filter(x=>PUBLIC_SECTIONS.includes(x.id))
  if(role==='inversionista')return SECTIONS.filter(x=>x.id==='reporte')
