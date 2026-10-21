@@ -7,7 +7,7 @@ Hermosillo, Sonora. Interfaz en `https://yodesarrollo.github.io/amalaya-board/`.
 
 [Inicio](https://yodesarrollo.github.io/amalaya-board/) · [Mapa del sistema](https://yodesarrollo.github.io/amalaya-board/?seccion=sistema) · [Observatorio integrado](https://yodesarrollo.github.io/amalaya-board/?seccion=observatorio).
 
-Portada y navegación adaptadas al celular, con directorio de áreas y diagrama de conexiones, bases funcionales y pendientes. Los módulos y permisos operativos se conservan. [Registro de entrega y criterios del semáforo](docs/portal-principal-2026-10-20.md).
+Entrada directa al mapa 3D, con menú de herramientas y vistas separadas para el mapa del sistema y el Observatorio. Los módulos y permisos operativos se conservan. [Plan de limpieza del tablero existente](docs/plan-limpieza-tablero-3d.md). [Registro de entrega y criterios del semáforo](docs/portal-principal-2026-10-20.md).
 
 ## Instrucciones de revisión con Jev
 
