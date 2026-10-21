@@ -21,3 +21,17 @@ assert.match(svg, /assets\/transversal\/base\.png/)
 assert.doesNotMatch(svg, /matrix\(|corte-base\.png|assets\/solar\.png/)
 assert.equal((svg.match(/data-guide=/g)||[]).length,3)
 assert.ok(svg.includes('data-road-object'))
+
+// Shared public drawing links must not wait for session revalidation.
+const {runInNewContext}=await import('node:vm')
+const entryHtml=readFileSync('index.html','utf8')
+const entryScript=entryHtml.match(/<script>([\s\S]*?)<\/script>/)[1]
+for(const [suffix,expected] of [['?seccion=capas','capas/index.html'],['?seccion=capas#capas=solar','capas/index.html#capas=solar'],['?seccion=capas&t=test-only',null],['?seccion=reporte',null],['',null]]){
+ let target=null
+ runInNewContext(entryScript,{URL,window:{location:{href:'https://example.test/amalaya-board/'+suffix,replace:v=>target=v}}})
+ assert.equal(target,expected?'https://example.test/amalaya-board/'+expected:null)
+}
+const drawingHtml=readFileSync('public/capas/index.html','utf8')
+assert.ok(drawingHtml.includes('class="scene-fallback"'))
+assert.ok(drawingHtml.includes('href="../?seccion=mapa"'))
+assert.ok(entryHtml.includes('href="/amalaya-board/capas/index.html"'))

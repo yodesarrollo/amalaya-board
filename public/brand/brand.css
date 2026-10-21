@@ -1,0 +1,5 @@
+/* Identity assets and typography from https://amalayasonora.com/ */
+@font-face{font-family:'Amalaya Cinzel';src:url('./cinzel-latin.woff2') format('woff2');font-weight:400 900;font-display:swap}
+@font-face{font-family:'Amalaya Montserrat';src:url('./montserrat-latin.woff2') format('woff2');font-weight:100 900;font-display:swap}
+:root{--amalaya-paper:#FDFAF6;--amalaya-cream:#F4F0E6;--amalaya-charcoal:#2C2925;--amalaya-orange:#C85025;--amalaya-night:#110F0D;--amalaya-line:#D8CEBE;--amalaya-muted:#6B6257;--amalaya-green:#1E4C40}
+.amalaya-logo{display:block;width:118px;height:auto;aspect-ratio:1000/631;object-fit:contain;flex-shrink:0}

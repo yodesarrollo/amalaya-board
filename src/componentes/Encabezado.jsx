@@ -5,6 +5,7 @@ import { usarDatos } from '../datos.jsx'
 import { fechaHora } from '../formato.js'
 import { NOMBRE_ROL } from '../roles.js'
 import Usuarios from './Usuarios.jsx'
+import MarcaAmalaya from './MarcaAmalaya.jsx'
 import { usarDialogo } from '../usarDialogo.js'
 
 // Encabezado sobrio: sello, nombre, estado de sincronización,
@@ -20,9 +21,9 @@ export default function Encabezado({ onInicio }) {
   return (
     <header className="portal-account-header no-imprimir sticky top-0 z-40 bg-noche/95 backdrop-blur border-b border-linea">
       <div className="max-w-6xl mx-auto px-4 py-3 flex items-center gap-3">
-        <img src="/amalaya-board/sello.svg" alt="" className="w-8 h-8 rounded-lg" />
+
         <div className="flex items-center gap-2 min-w-0">
-          <button type="button" onClick={onInicio} disabled={!onInicio} className="portal-brand-button" aria-label="Inicio de Amalaya">Amalaya</button>
+          <button type="button" onClick={onInicio} disabled={!onInicio} className="portal-brand-button" aria-label="Inicio de Amalaya"><MarcaAmalaya/></button>
           {modo === 'demo' && <span className="pastilla-demo">Demostración</span>}
           {/* Chinche #19: solo se ve si de verdad el servidor no contestó; dice de cuándo es lo que ves. */}
           {modo === 'copia' && errorSync && (

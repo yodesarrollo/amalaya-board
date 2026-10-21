@@ -1,0 +1,75 @@
+
+/* Official Amalaya identity applied to the existing tools and permissions. */
+body:has(.portal-shell),body:has(.portal-startup){background:var(--amalaya-cream);color:var(--amalaya-charcoal);font-family:'Amalaya Montserrat',sans-serif}
+body:has(.portal-shell)::after,body:has(.portal-startup)::after{display:none}
+.portal-shell,.portal-public-header,.portal-account-header,.portal-sheet-backdrop{
+ --portal-bg:var(--amalaya-cream);--portal-panel:var(--amalaya-paper);--portal-raised:#fff;--portal-line:var(--amalaya-line);--portal-text:var(--amalaya-charcoal);--portal-muted:#625A50;--portal-soft:#71675B;--portal-gold:var(--amalaya-orange);--portal-oro:#A05B1F;--portal-salvia:#34634B;--portal-ladrillo:#A73828;
+ font-family:'Amalaya Montserrat',sans-serif;color:var(--portal-text)
+}
+.portal-shell button,.portal-public-header button,.portal-sheet-backdrop button{font-family:inherit}
+.portal-public-header{height:96px;padding:6px clamp(16px,3vw,48px);position:relative;background:var(--amalaya-paper);border-bottom:1px solid var(--amalaya-line)}
+.portal-brand-button{gap:22px;min-height:48px;letter-spacing:0}
+.portal-brand-button .amalaya-logo{width:124px;height:auto}
+.portal-brand-button .portal-brand-caption{display:flex;flex-direction:column;align-items:flex-start;gap:5px;border:0;padding:0;font-family:'Amalaya Montserrat',sans-serif;letter-spacing:0;text-transform:none;white-space:normal}
+.portal-brand-caption strong{font-size:13px;color:var(--amalaya-charcoal);font-weight:600}
+.portal-brand-caption small{font-size:11px;color:var(--amalaya-muted);font-weight:400}
+.portal-login-button{min-height:46px;padding:0 17px;background:var(--amalaya-cream);border-radius:7px;font-size:12px;font-weight:600;color:var(--amalaya-charcoal)}
+.portal-account-header{position:relative!important;background:var(--amalaya-paper)!important}
+.portal-account-header>div:first-child{min-height:90px;padding:4px 24px}
+.portal-account-header .text-marfil{color:var(--amalaya-charcoal)}.portal-account-header .text-arena,.portal-account-header .text-terciario{color:var(--amalaya-muted)}
+.portal-shell{min-height:calc(100dvh - 96px)}
+.portal-toolbar{max-width:none;height:58px;padding:0 clamp(16px,3vw,48px);background:var(--amalaya-paper);border-bottom:1px solid var(--amalaya-line)}
+.portal-toolbar>nav{gap:5px}.portal-toolbar>nav>button{min-height:46px;padding:10px 16px;border-radius:6px;font-size:12px;font-weight:500}
+.portal-toolbar>nav>button[aria-current=page]{background:#F2E3D8;color:#923A1D;box-shadow:inset 0 -2px var(--amalaya-orange)}
+.portal-all-button{font-size:12px;font-weight:500;min-height:46px}
+.portal-frame{padding:24px clamp(16px,3vw,48px) 0}
+.portal-frame>header{margin-bottom:18px}.portal-frame>header h1,.portal-system-head h1,.portal-sheet-head h2,.portal-system-detail h2{font-family:'Amalaya Cinzel',Georgia,serif;letter-spacing:-.025em;font-weight:500}
+.portal-frame>header p{font-size:12px;line-height:1.6}.portal-frame>header>a{font-size:12px;min-height:44px;background:var(--amalaya-paper)}
+.portal-frame iframe{background:var(--amalaya-paper);height:calc(100dvh - 270px);min-height:580px;border-radius:9px;border-color:var(--amalaya-line)}
+.portal-frame:has(iframe[title="Explorar el territorio"]){padding:0}
+.portal-frame iframe[title="Explorar el territorio"]{height:calc(100dvh - 154px);min-height:390px;border:0;border-radius:0}
+.portal-frame-note{font-size:11px;line-height:1.6}.portal-frame-note a{min-height:44px}
+.portal-mobile-nav{display:none}
+.portal-menu-sheet,.portal-login-sheet{background:var(--amalaya-paper);width:min(720px,100%);max-height:100dvh;overflow:auto;padding:28px}
+.portal-sheet-backdrop{background:#110F0D99}.portal-sheet-head{gap:16px;align-items:flex-start}.portal-sheet-head h2{font-size:30px;line-height:1.2}.portal-sheet-head>button{min-width:44px;min-height:44px}
+.portal-search{min-height:48px;margin:20px 0;background:var(--amalaya-cream);border-radius:6px}.portal-search input{font:14px 'Amalaya Montserrat',sans-serif;min-height:46px}
+.portal-menu-sheet nav{display:grid;grid-template-columns:1fr 1fr;gap:20px}.portal-nav-group{margin:0 0 14px}.portal-nav-group>p{font-size:10px;font-weight:600;margin:0 10px 10px;color:#8B4B2D}
+.portal-nav-group button{min-height:72px;padding:12px;border:1px solid var(--amalaya-line);background:var(--amalaya-paper);gap:12px;font-size:13px;line-height:1.45}
+.portal-nav-group button>span{flex:1;min-width:0}.portal-nav-group button small{display:block;font-size:11px;font-weight:400;line-height:1.5;color:var(--amalaya-muted);margin-top:5px}
+.portal-nav-group button.is-active{border-color:var(--amalaya-orange);background:#F6EAE0;color:var(--amalaya-charcoal)}
+.portal-primary{background:var(--amalaya-orange);border-color:var(--amalaya-orange);color:white;font-family:'Amalaya Montserrat',sans-serif;font-size:12px;font-weight:600;min-height:46px;border-radius:6px}
+.portal-text-button{font-size:12px}.portal-login-intro,.portal-login-privacy{font-size:12px;line-height:1.75}.portal-login-sheet label,.portal-login-sheet input{font-family:'Amalaya Montserrat',sans-serif}.portal-login-sheet label{font-size:13px}.portal-login-sheet input{font-size:16px}
+.portal-system{background:var(--amalaya-cream);padding:32px clamp(16px,3vw,48px)}
+.portal-system-head h1{font-size:clamp(28px,3vw,44px)}.portal-system-head p{font-size:14px;line-height:1.7}.portal-explainer{font-size:12px}.portal-review-date{font-size:11px}
+.portal-system-list strong{font-size:14px}.portal-system-list small{font-size:12px}.portal-system-detail>p,.portal-ready-list li,.portal-next-list p{font-size:12px;line-height:1.75}.portal-system-detail h3{font-size:13px}.portal-system-detail h2{font-size:29px}
+.portal-system-tags span,.portal-data-status strong{font-size:11px}.portal-data-status span{font-size:10px}.portal-system-list>button{background:var(--amalaya-paper)}
+.portal-svg-caption,.portal-svg-help,.portal-node-group,.portal-node-title,.portal-node-status,.portal-root-sub{font-family:'Amalaya Montserrat',sans-serif}.portal-root-node text{font-family:'Amalaya Cinzel',serif}.portal-map-caption{font-size:11px}
+.portal-roadmap-grid{gap:14px}.portal-roadmap-grid>button{background:var(--amalaya-paper)}.portal-roadmap-grid h3{font-size:14px}.portal-roadmap-grid p{font-size:12px}.portal-status-dot{font-size:11px}
+.portal-startup{background:var(--amalaya-cream);color:var(--amalaya-charcoal);font-family:'Amalaya Montserrat',sans-serif}
+.portal-startup>section{border-color:var(--amalaya-line);background:var(--amalaya-paper);box-shadow:0 16px 60px #2C292510}.portal-startup .text-marfil{color:var(--amalaya-charcoal)}.portal-startup .text-arena{color:var(--amalaya-muted)}.portal-startup .amalaya-logo{width:160px;margin-left:auto;margin-right:auto}.portal-startup .boton-primario{background:var(--amalaya-orange);color:white;border:0;border-radius:7px;min-height:48px;padding:12px}
+@media(max-width:900px){
+ .portal-public-header{height:82px;padding:4px 16px}.portal-brand-button .amalaya-logo{width:106px}.portal-brand-button{gap:14px}.portal-brand-caption strong{font-size:11px}.portal-brand-caption small{font-size:10px}
+ .portal-account-header>div:first-child{min-height:82px;padding:4px 12px}.portal-account-header .portal-brand-button .amalaya-logo{width:100px}
+ .portal-toolbar{height:48px;padding:0 16px}.portal-public-toolbar{display:none}.portal-toolbar>nav{display:none}
+ .portal-main{padding-bottom:calc(74px + env(safe-area-inset-bottom))}.portal-shell{min-height:calc(100dvh - 82px)}
+ .portal-mobile-nav{position:fixed;inset:auto 0 0;z-index:40;background:var(--amalaya-paper);border-top:1px solid var(--amalaya-line);display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:3px;padding:6px 6px calc(6px + env(safe-area-inset-bottom));min-height:70px;box-shadow:0 -5px 20px #2C292508}
+ .portal-mobile-nav button{min-height:54px;min-width:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;font-size:10px;font-weight:500;color:var(--amalaya-muted);padding:5px 2px;border-radius:6px}
+ .portal-mobile-nav button[aria-current=page]{background:#F5E7DC;color:#923A1D}.portal-mobile-nav svg{width:21px;height:21px}
+ .portal-frame{padding:20px 14px 0}.portal-frame>header h1{font-size:23px}.portal-frame>header p{font-size:12px}.portal-frame iframe{min-height:590px;height:calc(100dvh - 250px)}
+ .portal-frame iframe[title="Explorar el territorio"]{height:calc(100dvh - 156px - env(safe-area-inset-bottom));min-height:340px}
+ .portal-system{padding:25px 16px}.portal-system-head h1{font-size:32px}.portal-system-layout{grid-template-columns:1fr}.portal-system-detail{border-left:0;border-top:1px solid var(--amalaya-line)}
+ .portal-menu-sheet,.portal-login-sheet{padding:24px 18px calc(24px + env(safe-area-inset-bottom));border-radius:16px 16px 0 0;max-height:94dvh}
+ .portal-menu-sheet nav{display:block}.portal-nav-group{margin-bottom:22px}.portal-nav-group button{min-height:68px;font-size:14px}.portal-nav-group button small{font-size:12px}
+ .portal-sheet-head h2{font-size:27px}.portal-login-button{font-size:11px;min-height:44px;padding:0 12px}.portal-login-button>svg:last-child{display:none}
+}
+@media(max-width:380px){.portal-brand-caption{display:none!important}.portal-public-header{padding:4px 12px}.portal-brand-button .amalaya-logo{width:108px}.portal-mobile-nav button{font-size:9px}}
+@media(max-height:450px){
+ .portal-public-header,.portal-account-header{position:relative!important}.portal-mobile-nav{position:static;box-shadow:none}.portal-main{padding-bottom:0}.portal-public-header{height:74px}.portal-public-header .amalaya-logo{width:100px}.portal-frame iframe[title="Explorar el territorio"]{height:320px;min-height:320px}.portal-shell{min-height:0}
+}
+@media print{.portal-startup{display:none}.portal-public-header,.portal-mobile-nav{display:none}.portal-shell{background:white}.portal-main{padding-bottom:0}}
+/* Project assessment uses the same paper, typography and warm chart ground. */
+.diagnostico{--diag-muted:#665D51;background:var(--amalaya-cream);color:var(--amalaya-charcoal);font-family:'Amalaya Montserrat',sans-serif}
+.diagnostico h1,.diag-detail h2{font-family:'Amalaya Cinzel',serif;font-weight:500;letter-spacing:-.025em}.diagnostico small{color:#8D452A}.diag-view-switch{background:var(--amalaya-paper);color:var(--amalaya-charcoal);border-bottom:1px solid var(--amalaya-line);font-family:'Amalaya Montserrat',sans-serif;flex-wrap:wrap}
+.diag-actions button,.diag-view-switch button,.diag-links button{background:var(--amalaya-paper);border-color:var(--amalaya-line);font-size:12px;font-weight:500;min-height:46px}.diag-actions button:hover,.diag-actions button[aria-pressed=true],.diag-view-switch button[aria-pressed=true]{background:#F3E3D6;color:#8F3A1F;border-color:var(--amalaya-orange)}
+.diag-detail{background:var(--amalaya-paper);border-color:var(--amalaya-line)}.diag-detail h3{color:var(--amalaya-charcoal);font-size:13px}.diag-detail li{color:#49614F;font-size:12px}.diag-readout{border-color:var(--amalaya-line);background:var(--amalaya-paper)}.diag-confidence{border-color:var(--amalaya-orange)}.diag-open{background:var(--amalaya-orange);color:white;min-height:46px}.diag-axis-list button{border-color:var(--amalaya-line);background:var(--amalaya-paper)}.diag-axis-list button[aria-pressed=true]{border-color:var(--amalaya-orange);background:#F5E9DD}.diag-axis-list small{color:var(--amalaya-muted)}.diag-method{border-color:var(--amalaya-line)}
+@media(max-width:800px){.diagnostico h1{font-size:28px}.diag-cut{font-size:12px}.diag-actions{gap:7px}.diag-actions button{font-size:11px}.diag-view-switch button{font-size:11px;min-height:46px}.diag-axis-list strong{font-size:13px}}
