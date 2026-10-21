@@ -1,5 +1,7 @@
 # Amalaya por capas
 
+**Versión vigente:** [corte transversal ortogonal](amalaya-transversal.md), aprobado por el usuario. Sustituye el corte con fuga descrito en el historial inferior.
+
 Entrega solicitada el 21 de octubre de 2026: comparador público por etapas, con regreso al original e interruptores independientes. Acceso desde el tablero mediante **Herramientas → Amalaya por capas**, y desde la navegación de escritorio. Ruta directa: [comparador](../public/capas/index.html).
 
 ## Criterios y alcance

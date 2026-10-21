@@ -1,28 +1,29 @@
-// Illustration positions only: these coordinates are not survey measurements.
-const crops={tree:[0,0,353,386],bench:[354,192,295,185],mural:[695,18,211,358],sculpture:[966,57,276,324],art:[10,395,320,291],boot:[349,480,281,183],lights:[677,404,224,94],speaker:[77,750,165,180],screen:[414,688,137,263],wifi:[724,681,118,275],camera:[1047,671,113,288],table:[28,989,315,223],vendor:[390,953,228,278],sign:[649,1000,272,200]}
-function sprite(name,x,y,w,h){const [sx,sy,sw,sh]=crops[name];return `<svg x="${x}" y="${y}" width="${w}" height="${h}" viewBox="${sx} ${sy} ${sw} ${sh}" preserveAspectRatio="none" overflow="hidden"><use href="#recortes"/></svg>`}
+// Conventional transverse section. Coordinates place drawings; they are not measurements.
+const crops={tree:[0,0,312,310],bench:[330,175,285,136],mural:[716,12,149,300],sculpture:[1010,23,184,283],art:[36,349,241,268],boot:[348,360,247,247],lamp:[749,321,88,306],camera:[1064,317,94,310],speaker:[109,674,92,216],screen:[416,640,111,298],wifi:[736,667,97,271],table:[959,758,266,168],vendor:[76,941,174,299],sign:[329,1013,268,162],paving:[631,1067,303,82],drain:[979,1055,236,138]}
+function sprite(name,x,y,w,h){const [sx,sy,sw,sh]=crops[name];return `<svg x="${x}" y="${y}" width="${w}" height="${h}" viewBox="${sx} ${sy} ${sw} ${sh}" preserveAspectRatio="none" overflow="hidden"><use href="#section-sprites"/></svg>`}
 const layer=(id,content)=>`<g data-layer="${id}" hidden>${content}</g>`
-// Affine placement retains the texture of the hand-rendered source.
-function matrix(s,t){const [a,b,c]=s,[d,e,f]=t;const det=(b[0]-a[0])*(c[1]-a[1])-(c[0]-a[0])*(b[1]-a[1]);const ax=((e[0]-d[0])*(c[1]-a[1])-(f[0]-d[0])*(b[1]-a[1]))/det;const cx=((f[0]-d[0])*(b[0]-a[0])-(e[0]-d[0])*(c[0]-a[0]))/det;const ay=((e[1]-d[1])*(c[1]-a[1])-(f[1]-d[1])*(b[1]-a[1]))/det;const cy=((f[1]-d[1])*(b[0]-a[0])-(e[1]-d[1])*(c[0]-a[0]))/det;return `${ax} ${ay} ${cx} ${cy} ${d[0]-ax*a[0]-cx*a[1]} ${d[1]-ay*a[0]-cy*a[1]}`}
-function paving(){const src=[[12,815],[350,815],[1168,815],[1627,815]],dst=[[59,695],[350,756],[1171,773],[1506,739]],sv=[800,545],dv=[755,560];return src.slice(0,3).map((a,i)=>{const points=[sv,a,src[i+1]];return `<defs><clipPath id="paving-${i}"><polygon points="${points.map(p=>p.join(',')).join(' ')}"/></clipPath></defs><g transform="matrix(${matrix(points,[dv,dst[i],dst[i+1]])})"><use href="#paving" clip-path="url(#paving-${i})"/></g>`}).join('')}
-export function scene(){return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1672 941" role="img" aria-labelledby="scene-title scene-desc"><title id="scene-title">Amalaya: corte perspectivado por capas</title><desc id="scene-desc">Interpretación arquitectónica con plumón, fuga central y sección de calle, banquetas, muros y azoteas. Proporciones aproximadas; fotografía original disponible por separado.</desc><defs><image id="recortes" href="./assets/recortes.png" width="1254" height="1254"/><image id="paving" href="./assets/piso.png" width="1672" height="941"/><clipPath id="drain-crop"><path d="M953 1189L1099 1207L1243 958L1219 950Z"/></clipPath></defs>
+const onRoad=content=>`<g data-road-object>${content}</g>`
+export function scene(){return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1672 941" role="img" aria-labelledby="scene-title scene-desc"><title id="scene-title">Amalaya: corte transversal vial por capas</title><desc id="scene-desc">Sección ortogonal de lado a lado de la calle: edificios más altos, banquetas y arroyo vial. Dibujo a plumón sin perspectiva. Capas conceptuales independientes y elementos en proyección.</desc><defs><image id="section-sprites" href="./assets/transversal/recortes.png" width="1254" height="1254"/></defs>
 <image data-background="foto" hidden href="../levantamiento/sidewalk-real-v1/images/photo-P10-south.jpg" width="1672" height="941" preserveAspectRatio="xMidYMid meet"/>
-<image data-background="croquis" href="./assets/corte-base.png" width="1672" height="941"/>
-${layer('piso',paving())}
-${layer('drenaje',`<g transform="matrix(${matrix([[953,1189],[1099,1207],[1231,954]],[[792,768],[817,769],[755,560]])})"><use href="#recortes" clip-path="url(#drain-crop)"/></g>`)}
-${layer('huellas',[[865,715,45,20],[835,675,31,14],[806,642,23,10],[785,616,16,8]].map(v=>sprite('boot',...v)).join(''))}
-${layer('murales',sprite('mural',133,393,91,224)+sprite('mural',965,441,51,130))}
-${layer('marcas',sprite('sign',315,371,116,85)+sprite('sign',1113,414,94,69))}
-${layer('solar','<image href="./assets/solar.png" width="1672" height="941" transform="translate(-44 -16)"/>')}
-${layer('luces',sprite('lights',475,424,348,95)+sprite('lights',823,424,348,95))}
-${layer('bocinas',sprite('speaker',465,328,28,33)+sprite('speaker',1226,329,28,33)+sprite('speaker',633,478,17,20))}
-${layer('pantallas',sprite('screen',1110,540,58,117))}
-${layer('conectividad',sprite('wifi',575,533,36,96))}
-${layer('seguridad',sprite('camera',1393,517,58,169))}
-${layer('terrazas',sprite('table',161,632,155,88)+sprite('table',1293,653,169,96))}
-${layer('exposiciones',sprite('art',1187,591,93,103)+sprite('art',533,553,70,70))}
-${layer('esculturas',sprite('sculpture',326,590,75,125))}
-${layer('venta',sprite('vendor',906,589,86,125))}
-${layer('bancas',sprite('bench',469,651,125,70)+sprite('bench',976,648,118,71))}
-${layer('arboles',sprite('tree',610,442,118,160)+sprite('tree',810,380,150,230)+sprite('tree',330,283,293,427)+sprite('tree',1026,288,312,447))}
+<image data-background="croquis" href="./assets/transversal/base.png" width="1672" height="941"/>
+<g data-guide="heading"><text x="40" y="65" font-family="Georgia,serif" font-size="32" fill="#2c352f">AMALAYA · CORTE TRANSVERSAL VIAL</text><text x="40" y="906" font-family="Arial,sans-serif" font-size="18" fill="#657064">Base conceptual · proporciones por verificar · sin escala</text></g>
+${layer('piso',sprite('paving',236,582,1204,66))}
+${layer('drenaje',`<g data-road-object>${sprite('drain',816,583,48,76)}<path d="M750 574L809 581M800 575L809 581 798 584M929 574L870 581M881 575L870 581 881 584" fill="none" stroke="#467c8c" stroke-width="2"/></g>`)}
+${layer('murales',sprite('mural',45,327,108,218)+'<text x="40" y="565" font-family="Arial,sans-serif" font-size="14" fill="#72593e">Mural · en proyección</text>')}
+${layer('marcas',sprite('sign',48,227,123,74)+sprite('sign',1495,228,123,74))}
+${layer('arboles',sprite('tree',320,241,300,343)+sprite('tree',1080,241,300,343))}
+${layer('solar','<svg x="595" y="255" width="490" height="329" viewBox="288 232 1094 540" preserveAspectRatio="none" overflow="hidden"><image href="./assets/transversal/solar.png" width="1672" height="941"/></svg>')}
+${layer('luces',sprite('lamp',352,342,53,242)+sprite('lamp',1342,342,53,242))}
+${layer('bocinas',sprite('speaker',655,274,20,47)+sprite('speaker',1004,274,20,47))}
+${layer('pantallas',onRoad(sprite('screen',953,412,64,172)))}
+${layer('conectividad',onRoad(sprite('wifi',892,434,44,150)))}
+${layer('seguridad',sprite('camera',1396,332,43,252))}
+${layer('terrazas',sprite('table',1253,493,165,91))}
+${layer('exposiciones',sprite('art',257,451,101,133))}
+${layer('esculturas',onRoad(sprite('sculpture',708,451,71,133)))}
+${layer('venta',onRoad(sprite('vendor',799,420,85,164)))}
+${layer('bancas',onRoad(sprite('bench',492,527,112,57)+sprite('bench',1076,527,112,57)))}
+${layer('huellas',`<g data-road-object><path d="M650 583H679" stroke="#a7824b" stroke-width="5"/><path d="M664 588L664 794 1077 794" fill="none" stroke="#8d8169" stroke-width="1.5" stroke-dasharray="5 6"/></g>${sprite('boot',1080,740,72,72)}<text x="1167" y="788" fill="#66583d" font-family="Arial,sans-serif" font-size="17">Detalle de huella</text><text x="1167" y="812" fill="#66583d" font-family="Arial,sans-serif" font-size="15">al ras del pavimento</text>`)}
+<g data-guide="actual" fill="#4d5a50" font-family="Arial,sans-serif" font-size="20" text-anchor="middle"><text x="345" y="850">BANQUETA</text><text x="838" y="850">ARROYO VIAL</text><text x="1330" y="850">BANQUETA</text><path d="M236 816V828M236 822H483M483 816V828M483 822H1194M1194 816V828M1194 822H1440M1440 816V828" stroke="#79816d" fill="none"/></g>
+<g data-guide="propuesta" hidden fill="#4d5a50" font-family="Arial,sans-serif" font-size="20" text-anchor="middle"><text x="838" y="850">PLATAFORMA PEATONAL CONTINUA</text><path d="M236 816V828M236 822H1440M1440 816V828" stroke="#79816d" fill="none"/></g>
 </svg>`}
