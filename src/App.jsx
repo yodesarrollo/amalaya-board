@@ -14,8 +14,7 @@ import { apiCall } from './api.js'
 import { contextoChinche, repintarParaChinche } from './chinche-contexto.js'
 
 import PortalShell, { PortalFrame } from './componentes/PortalShell.jsx'
-import PortalInicio from './componentes/PortalInicio.jsx'
-import SistemaPortal from './componentes/SistemaPortal.jsx'
+import SistemaAmalaya from './componentes/SistemaAmalaya.jsx'
 import { availableSections, resolveSection } from './portal-model.js'
 import { usePortalNavigation } from './usePortalNavigation.js'
 import './portal.css'
@@ -76,10 +75,9 @@ function Principal() {
   if (esInversionista) return <><Encabezado /><main><Suspense fallback={<p className="p-6">Abriendo reporte…</p>}><Reporte /></Suspense></main></>
 
   return <>
-    <Encabezado onInicio={()=>navigate('inicio')} />
+    <Encabezado onInicio={()=>navigate('mapa')} />
     <PortalShell sections={secciones} section={seccion} onNavigate={navigate} help={<AyudaPantalla seccion={seccion} />}>
       <main id="portal-contenido" tabIndex="-1" className="portal-content">
-        {seccion === 'inicio' && <PortalInicio sections={secciones} onNavigate={navigate} nombre={sesion?.nombre} />}
         {seccion === 'mapa' && <Suspense fallback={<p className="p-6">Abriendo área…</p>}><Mapa /></Suspense>}
         {seccion === 'recintos' && <Suspense fallback={<p className="p-4">Cargando recintos…</p>}><Recintos /></Suspense>}
         {seccion === 'modelos' && BIBLIOTECA_3D && <Suspense fallback={<p className="p-4">Cargando biblioteca…</p>}><Biblioteca3D /></Suspense>}
@@ -88,7 +86,7 @@ function Principal() {
         {seccion === 'plan' && <Suspense fallback={<p className="p-6">Abriendo área…</p>}><PlanAccion /></Suspense>}
         {seccion === 'ayuda' && <Suspense fallback={<p className="p-6">Abriendo área…</p>}><Ayuda /></Suspense>}
         {['observatorio','seguimiento'].includes(seccion) && <PortalFrame type={seccion} />}
-        {seccion === 'sistema' && <SistemaPortal sections={secciones} onNavigate={navigate} />}
+        {seccion === 'sistema' && <SistemaAmalaya sections={secciones} onNavigate={navigate} />}
         {modo === 'demo' && seccion !== 'reporte' && !['observatorio','seguimiento','sistema'].includes(seccion) && <p className="portal-demo-note">Demostración: los datos de negocio son ficticios y no se guardan cambios. El Observatorio y el seguimiento conservan sus fuentes públicas.</p>}
       </main>
     </PortalShell>

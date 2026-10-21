@@ -625,3 +625,6 @@ input[type="range"] { accent-color: #C9A45C; }
 .recorrido-carga button {margin:auto;padding:10px 20px;border-radius:8px;background:#c4a35b;color:#171c1d;}
 
 .recorrido-unico [hidden] {display:none!important}
+
+/* Recorrido dentro del tablero: conservar visor sin duplicar portada y navegación. */
+.recorrido-integrado .public-nav,.recorrido-integrado .public-footer,.recorrido-integrado .tour-heading,.recorrido-integrado .tour-intro{display:none}

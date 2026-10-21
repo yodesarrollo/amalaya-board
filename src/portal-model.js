@@ -1,7 +1,6 @@
 // Navigation and capability inventory only. Never contains private project rows.
 import { puedeEditarRol } from './roles.js'
 export const SECTIONS = [
-  {id:'inicio',label:'Inicio',group:'Principal',icon:'home',description:'Tu punto de partida y accesos al distrito.'},
   {id:'mapa',label:'Territorio',group:'Explorar',icon:'map',description:'Mapa, espacios, fichas, rutas, caminar y Street View.'},
   {id:'modelos',label:'Modelos 3D',group:'Explorar',icon:'box',description:'Biblioteca de volúmenes y modelos disponibles.'},
   {id:'seguimiento',label:'Levantamiento',group:'Explorar',icon:'scan',description:'Evidencias, matriz por cuadra y revisión del territorio.'},
@@ -13,13 +12,13 @@ export const SECTIONS = [
   {id:'sistema',label:'Mapa del sistema',group:'Entender',icon:'layers',description:'Cómo se conecta todo, qué existe y qué falta.'},
   {id:'ayuda',label:'Guía de uso',group:'Entender',icon:'help',description:'Ayuda por pantalla, instrucciones y herramientas.'},
 ]
-export const PUBLIC_SECTIONS=['inicio','mapa','seguimiento','observatorio','sistema']
+export const PUBLIC_SECTIONS=['mapa','seguimiento','observatorio','sistema']
 export function availableSections({role,data,models=false,publicMode=false}) {
  if(publicMode)return SECTIONS.filter(x=>PUBLIC_SECTIONS.includes(x.id))
  if(role==='inversionista')return SECTIONS.filter(x=>x.id==='reporte')
  return SECTIONS.filter(x=>!(x.id==='modelos'&&!models)&&!(x.id==='recintos'&&!Array.isArray(data?.Conocimientos))&&!(x.id==='finanzas'&&!Array.isArray(data?.Finanzas_Lineas))&&!(x.id==='plan'&&(!puedeEditarRol(role)||!Array.isArray(data?.Metas))))
 }
-export function resolveSection(requested,sections){return sections.some(s=>s.id===requested)?requested:(sections[0]?.id||'inicio')}
+export function resolveSection(requested,sections){return sections.some(s=>s.id===requested)?requested:(sections[0]?.id||'mapa')}
 export const STATUS={solid:{label:'Base funcional',color:'salvia',meaning:'Existe un flujo utilizable y comprobable. No certifica que sus datos estén completos.'},partial:{label:'Por completar',color:'oro',meaning:'Hay herramientas disponibles; requiere más evidencia, contenido o validación.'},pending:{label:'Por conectar',color:'ladrillo',meaning:'Capacidad propuesta o conexión pendiente. No está activa.'}}
 export const AREAS=[
  {id:'territorio',title:'Territorio',group:'Explorar',section:'mapa',icon:'map',status:'partial',data:'Mediciones y diseño por validar',purpose:'Ubicar el proyecto y entender cada espacio antes de tomar decisiones.',inside:['Mapa y fichas de espacios','Rutas y paradas','Planta, 3D, caminar y Street View','Biblioteca de modelos cuando está habilitada'],ready:['Navegación del territorio y sus espacios','Vistas enlazadas y recorridos','Fichas con datos según permisos'],next:['Completar medidas verificadas y revisión de campo','Distinguir siempre estado actual, propuesta y diseño aprobado'],connects:['evidencia','documentos','recintos'],x:225,y:135},
