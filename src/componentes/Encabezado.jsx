@@ -38,6 +38,7 @@ export default function Encabezado() {
         </div>
 
         <div className="flex-1" />
+        <a href="/amalaya-board/observatorio.html" className="text-xs text-oro px-2 py-2" title="Publicaciones y red de comunicación">Observatorio</a>
 
         {modo !== 'demo' && <EstadoGuardado guardados={guardados} ultimaSync={ultimaSync} modo={modo} onReintentar={reintentarTodo} />}
 

@@ -1,0 +1,27 @@
+# Registro de imágenes originales
+
+- expreso-lanzamiento: Imagen destacada original descargada; miniatura ≤1200 px | https://blob.expreso.com.mx/images/2026/05/13/amalaya-sonoran-music-town-en-hermosillo-proyecto-cultural-f72c107c-focus-0-0-1200-630.webp
+- noro-lanzamiento: Imagen destacada original descargada; miniatura ≤1200 px | https://noro.mx/wp-content/uploads/2026/05/amalaya-sonoran-music-town-1.png
+- patrullero-compromiso: Imagen destacada original descargada; miniatura ≤1200 px | https://i0.wp.com/elpatrullero.com/wp-content/uploads/2026/05/cc1ef0de-bd1c-4e1b-a50d-d71c448a1ec5-1.jpg?fit=1200%2C900&ssl=1
+- puente-encuentro: Imagen destacada original descargada; miniatura ≤1200 px | https://proyectopuente.com.mx/wp-content/uploads/2026/05/coparmex-portada.jpg
+- extra-compromiso: Imagen original de la publicación descargada; miniatura ≤1200 px | https://laextraob.com/wp-content/uploads/2026/05/PAGA-1-1920x1355.png
+- imparcial-compromiso: Imagen destacada original descargada; miniatura ≤1200 px | https://www.elimparcial.com/resizer/v2/S4HZUJQJ7JAZBMYLCL4ZMZWDVE.jpeg?auth=2e7e43295d7ec574d8abbc9c3dff8f50b348922f89d557fd5ac6e6cab378ce80&smart=true&width=1200&height=630&quality=70
+- primera-plana: Imagen destacada original descargada; miniatura ≤1200 px | https://primeraplana.digital/wp-content/uploads/2026/05/JOVENES-COPARMEX.jpg
+- puente-proyecto: Imagen destacada original descargada; miniatura ≤1200 px | https://proyectopuente.com.mx/wp-content/uploads/2026/05/Amalaya-Portada-Portal.jpg.jpeg
+- imparcial-talento: Imagen destacada original descargada; miniatura ≤1200 px | https://www.elimparcial.com/resizer/v2/5VEOHXCHYFCS7JGCITLRFRWXAQ.jpg?auth=ebe3d78ed5ba8867605f5ee8d47f0419930776f5f9e08dc8d338bebf67b0e2e5&smart=true&width=1200&height=630&quality=70
+- punto-taller: Imagen identificada en la página; descarga bloqueada HTTP 403 | https://somospuntonorte.com/wp-content/uploads/2025/07/PUNTONORTE_Taller_Flyer_FEED_01-1-240x300.png
+- imparcial-columna: Imagen destacada original descargada; miniatura ≤1200 px | https://cloudfront-us-east-1.images.arcpublishing.com/elimparcial/CAEAJAXH45AVBPTBC4462QPFMM.png
+- hcv-feudal: No recuperada: 406 Client Error: Not Acceptable for url: https://hermosillocomovamos.org/2026/10/12/hermosillo-ciudad-feudal/ | None
+- noro-programa: Fuente accesible; sin imagen destacada recuperable | None
+- nh-rumbo: No recuperada: 406 Client Error: Not Acceptable for url: https://noticiashermosillo.com/amalaya-toma-las-calles-de-hermosillo-punto-norte-2026-cierra-hoy-su-congreso-con-musica-rumba-y-artistas-s | None
+- ns-octubre: No recuperada: 406 Client Error: Not Acceptable for url: https://noticiassonora.com/presentan-amalaya-tierra-sonorense-talento-musical-hermosillo/ | None
+- puente-octubre: Imagen destacada original descargada; miniatura ≤1200 px | https://proyectopuente.com.mx/wp-content/uploads/2026/10/elida-7-2.jpg
+- nh-octubre: No recuperada: 406 Client Error: Not Acceptable for url: https://noticiashermosillo.com/presentan-amalaya-tierra-sonorense-impulsar-talento-musical-hermosillo/ | None
+- borchi-linkedin: Imagen destacada original descargada; miniatura ≤1200 px | https://media.licdn.com/dms/image/v2/D4E22AQEJH127icriwg/feedshare-shrink_1280/B4EZ5ASTC3IwAM-/0/1779194999337?e=2147483647&v=beta&t=EAfng5esdFF0Tu1kk5swdO0yp4IE4eHWjUfIntE5uAg
+- borchi-newsletter: Imagen destacada original descargada; miniatura ≤1200 px | https://substackcdn.com/image/fetch/$s_!aypW!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fc807d93c-311d-4a59-824b-d7c13140f749_1620x1080.webp
+- colson-feudal: Imagen destacada original descargada; miniatura ≤1200 px | https://www.colson.edu.mx/adminPaginaColson/publico/imagenesColumnas/g_1610202684744857.png
+- fb-post: No recuperada | None
+- fb-video: No recuperada | None
+- ncr-programa: Fuente accesible; sin imagen destacada recuperable | None
+- nh-programa: No recuperada: 406 Client Error: Not Acceptable for url: https://noticiashermosillo.com/punto-norte-2026-reune-hoy-en-hermosillo-a-artistas-productores-y-protagonistas-de-la-industria-musical-mex | None
+- punto-oficial: Fuente accesible; sin imagen destacada recuperable | None
