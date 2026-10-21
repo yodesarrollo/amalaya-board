@@ -1,0 +1,1073 @@
+{
+  "updatedAt": "2026-10-20",
+  "publications": [
+    {
+      "id": "expreso-lanzamiento",
+      "title": "Nace el proyecto Amalaya para detonar la industria musical en Sonora",
+      "url": "https://www.expreso.com.mx/estelar/musica/amalaya-sonoran-music-town-en-hermosillo-proyecto-cultural/255915",
+      "date": "2026-05-12",
+      "dateLabel": "2026-05-12",
+      "medium": "Expreso",
+      "platform": "Prensa",
+      "account": "Expreso",
+      "author": "Frank Ramos",
+      "speaker": null,
+      "summary": "Recuperación del casco viejo y espacios para producción, formación y creación.",
+      "topics": [
+        "Infraestructura",
+        "Talento"
+      ],
+      "actors": [
+        "Coparmex Sonora Norte"
+      ],
+      "image": "expreso-lanzamiento.webp",
+      "imageSourceUrl": "https://blob.expreso.com.mx/images/2026/05/13/amalaya-sonoran-music-town-en-hermosillo-proyecto-cultural-f72c107c-focus-0-0-1200-630.webp",
+      "imageStatus": "Imagen destacada original descargada; miniatura ≤1200 px",
+      "metrics": {
+        "views": null,
+        "likes": null,
+        "comments": null,
+        "shares": null,
+        "observedAt": null
+      },
+      "evidence": "cobertura",
+      "relations": [
+        {
+          "actor": "Coparmex Sonora Norte",
+          "role": "Coordinación atribuida por la nota"
+        }
+      ],
+      "notes": ""
+    },
+    {
+      "id": "noro-lanzamiento",
+      "title": "Amalaya Sonoran Music Town, proyecto que quiere convertir a Hermosillo en la Nashville del noroeste",
+      "url": "https://noro.mx/industrias-creativas/amalaya-sonoran-music-town-hermosillo/",
+      "date": "2026-05-12",
+      "dateLabel": "2026-05-12",
+      "medium": "NORO",
+      "platform": "Prensa",
+      "account": "NORO",
+      "author": "Ricardo Amador",
+      "speaker": "Carlos ‘Chito’ Díaz",
+      "summary": "Presentación de un ecosistema musical permanente y recuperación urbana.",
+      "topics": [
+        "Visión",
+        "Infraestructura"
+      ],
+      "actors": [
+        "Carlos Díaz",
+        "Eter Ayvar",
+        "Luis Fernando Puebla",
+        "Fernando García de León",
+        "Antonio Astiazarán",
+        "Fernando Rojo de la Vega"
+      ],
+      "image": "noro-lanzamiento.webp",
+      "imageSourceUrl": "https://noro.mx/wp-content/uploads/2026/05/amalaya-sonoran-music-town-1.png",
+      "imageStatus": "Imagen destacada original descargada; miniatura ≤1200 px",
+      "metrics": {
+        "views": null,
+        "likes": null,
+        "comments": null,
+        "shares": null,
+        "observedAt": null
+      },
+      "evidence": "cobertura",
+      "relations": [
+        {
+          "actor": "Carlos Díaz",
+          "role": "Impulsor entrevistado"
+        },
+        {
+          "actor": "Eter Ayvar",
+          "role": "Impulsora nombrada; grafía de esta fuente"
+        },
+        {
+          "actor": "Luis Fernando Puebla",
+          "role": "Impulsor"
+        },
+        {
+          "actor": "Fernando García de León",
+          "role": "Impulsor"
+        },
+        {
+          "actor": "Antonio Astiazarán",
+          "role": "Respaldo público"
+        },
+        {
+          "actor": "Fernando Rojo de la Vega",
+          "role": "Respaldo público"
+        }
+      ],
+      "notes": ""
+    },
+    {
+      "id": "patrullero-compromiso",
+      "title": "Firman compromiso para impulsar proyecto Amalaya: Sonoran Music Town en Hermosillo",
+      "url": "https://elpatrullero.com/2026/05/12/firman-compromiso-para-impulsar-proyecto-amalaya-sonoran-music-town-en-hermosillo/",
+      "date": "2026-05-12",
+      "dateLabel": "2026-05-12",
+      "medium": "El Patrullero",
+      "platform": "Prensa",
+      "account": "El Patrullero",
+      "author": null,
+      "speaker": "Fernando Rojo de la Vega",
+      "summary": "Cobertura de la firma de un compromiso de colaboración.",
+      "topics": [
+        "Instituciones"
+      ],
+      "actors": [
+        "Fernando Rojo de la Vega",
+        "Antonio Astiazarán",
+        "Jaime Félix Gándara",
+        "Carlos Díaz Romero"
+      ],
+      "image": "patrullero-compromiso.webp",
+      "imageSourceUrl": "https://i0.wp.com/elpatrullero.com/wp-content/uploads/2026/05/cc1ef0de-bd1c-4e1b-a50d-d71c448a1ec5-1.jpg?fit=1200%2C900&ssl=1",
+      "imageStatus": "Imagen destacada original descargada; miniatura ≤1200 px",
+      "metrics": {
+        "views": null,
+        "likes": null,
+        "comments": null,
+        "shares": null,
+        "observedAt": null
+      },
+      "evidence": "cobertura",
+      "relations": [
+        {
+          "actor": "Fernando Rojo de la Vega",
+          "role": "Firmante en representación del gobierno estatal"
+        },
+        {
+          "actor": "Antonio Astiazarán",
+          "role": "Firmante"
+        },
+        {
+          "actor": "Jaime Félix Gándara",
+          "role": "Firmante"
+        },
+        {
+          "actor": "Carlos Díaz Romero",
+          "role": "Firmante"
+        }
+      ],
+      "notes": ""
+    },
+    {
+      "id": "puente-encuentro",
+      "title": "Encuentro de Jóvenes COPARMEX reúne a emprendedores, empresarios y artistas reconocidos en Hermosillo",
+      "url": "https://proyectopuente.com.mx/2026/05/12/encuentro-de-jovenes-coparmex-reune-a-emprendedores-empresarios-y-artistas-reconocidos-en-hermosillo/",
+      "date": "2026-05-12",
+      "dateLabel": "2026-05-12",
+      "medium": "Proyecto Puente",
+      "platform": "Prensa",
+      "account": "Proyecto Puente",
+      "author": "Reyli Gastelum",
+      "speaker": "Chito Díaz; Jaime Félix Gándara",
+      "summary": "Cobertura del encuentro empresarial donde se anunció Amalaya.",
+      "topics": [
+        "Lanzamiento",
+        "Encuentro"
+      ],
+      "actors": [
+        "Chito Díaz",
+        "Jaime Félix Gándara",
+        "Yahir",
+        "Ms. Ambar",
+        "Netto Bojórquez"
+      ],
+      "image": "puente-encuentro.webp",
+      "imageSourceUrl": "https://proyectopuente.com.mx/wp-content/uploads/2026/05/coparmex-portada.jpg",
+      "imageStatus": "Imagen destacada original descargada; miniatura ≤1200 px",
+      "metrics": {
+        "views": null,
+        "likes": null,
+        "comments": null,
+        "shares": null,
+        "observedAt": null
+      },
+      "evidence": "cobertura",
+      "relations": [
+        {
+          "actor": "Chito Díaz",
+          "role": "Vocero del encuentro"
+        },
+        {
+          "actor": "Jaime Félix Gándara",
+          "role": "Vocero del encuentro"
+        },
+        {
+          "actor": "Yahir",
+          "role": "Participante del encuentro; no socio acreditado"
+        },
+        {
+          "actor": "Ms. Ambar",
+          "role": "Participante del encuentro; no socia acreditada"
+        },
+        {
+          "actor": "Netto Bojórquez",
+          "role": "Participante del encuentro; no socio acreditado"
+        }
+      ],
+      "notes": ""
+    },
+    {
+      "id": "extra-compromiso",
+      "title": "Firman compromiso para impulsar proyecto Amalaya: Sonoran Music Town en Hermosillo",
+      "url": "https://laextraob.com/firman-compromiso-para-impulsar-proyecto-amalaya-sonoran-music-town-en-hermosillo/",
+      "date": "2026-05-13",
+      "dateLabel": "2026-05-13",
+      "medium": "Extra de la Tarde",
+      "platform": "Prensa",
+      "account": "Extra de la Tarde",
+      "author": null,
+      "speaker": "Fernando Rojo de la Vega",
+      "summary": "Publicación del compromiso entre representantes empresariales y autoridades.",
+      "topics": [
+        "Instituciones"
+      ],
+      "actors": [
+        "Fernando Rojo de la Vega",
+        "Antonio Astiazarán",
+        "Jaime Félix Gándara",
+        "Carlos Díaz Romero"
+      ],
+      "image": "extra-compromiso.webp",
+      "imageSourceUrl": "https://laextraob.com/wp-content/uploads/2026/05/PAGA-1-1920x1355.png",
+      "imageStatus": "Imagen original de la publicación descargada; miniatura ≤1200 px",
+      "metrics": {
+        "views": null,
+        "likes": null,
+        "comments": null,
+        "shares": null,
+        "observedAt": null
+      },
+      "evidence": "cobertura",
+      "relations": [
+        {
+          "actor": "Fernando Rojo de la Vega",
+          "role": "Firmante"
+        },
+        {
+          "actor": "Antonio Astiazarán",
+          "role": "Firmante"
+        },
+        {
+          "actor": "Jaime Félix Gándara",
+          "role": "Firmante"
+        },
+        {
+          "actor": "Carlos Díaz Romero",
+          "role": "Firmante"
+        }
+      ],
+      "notes": ""
+    },
+    {
+      "id": "imparcial-compromiso",
+      "title": "El Gobierno de Sonora impulsará el Amalaya: Sonoran Music Town en Hermosillo: Fernando Rojo",
+      "url": "https://www.elimparcial.com/son/sonora/2026/05/13/el-gobierno-de-sonora-impulsara-el-amalaya-sonoran-music-town-en-hermosillo-fernando-rojo/",
+      "date": "2026-05-13",
+      "dateLabel": "2026-05-13",
+      "medium": "El Imparcial",
+      "platform": "Prensa",
+      "account": "El Imparcial",
+      "author": "Redacción GH",
+      "speaker": "Fernando Rojo de la Vega",
+      "summary": "Respaldo estatal y firma de compromiso para impulsar el distrito.",
+      "topics": [
+        "Instituciones"
+      ],
+      "actors": [
+        "Fernando Rojo de la Vega",
+        "Antonio Astiazarán",
+        "Jaime Félix Gándara",
+        "Carlos Díaz Romero"
+      ],
+      "image": "imparcial-compromiso.webp",
+      "imageSourceUrl": "https://www.elimparcial.com/resizer/v2/S4HZUJQJ7JAZBMYLCL4ZMZWDVE.jpeg?auth=2e7e43295d7ec574d8abbc9c3dff8f50b348922f89d557fd5ac6e6cab378ce80&smart=true&width=1200&height=630&quality=70",
+      "imageStatus": "Imagen destacada original descargada; miniatura ≤1200 px",
+      "metrics": {
+        "views": null,
+        "likes": null,
+        "comments": null,
+        "shares": null,
+        "observedAt": null
+      },
+      "evidence": "cobertura",
+      "relations": [
+        {
+          "actor": "Fernando Rojo de la Vega",
+          "role": "Firmante"
+        },
+        {
+          "actor": "Antonio Astiazarán",
+          "role": "Firmante"
+        },
+        {
+          "actor": "Jaime Félix Gándara",
+          "role": "Firmante"
+        },
+        {
+          "actor": "Carlos Díaz Romero",
+          "role": "Firmante"
+        }
+      ],
+      "notes": ""
+    },
+    {
+      "id": "primera-plana",
+      "title": "Jóvenes empresarios de Sonora buscan llevar su talento al mercado global",
+      "url": "https://www.primeraplanadigital.com.mx/jovenes-empresarios-de-sonora-buscan-llevar-su-talento-al-mercado-global/",
+      "date": "2026-05-13",
+      "dateLabel": "2026-05-13",
+      "medium": "Primera Plana Digital",
+      "platform": "Prensa",
+      "account": "Primera Plana Digital",
+      "author": "Redacción",
+      "speaker": null,
+      "summary": "El encuentro juvenil incluye la presentación del proyecto Amalaya.",
+      "topics": [
+        "Encuentro",
+        "Lanzamiento"
+      ],
+      "actors": [
+        "Coparmex Sonora Norte"
+      ],
+      "image": "primera-plana.webp",
+      "imageSourceUrl": "https://primeraplana.digital/wp-content/uploads/2026/05/JOVENES-COPARMEX.jpg",
+      "imageStatus": "Imagen destacada original descargada; miniatura ≤1200 px",
+      "metrics": {
+        "views": null,
+        "likes": null,
+        "comments": null,
+        "shares": null,
+        "observedAt": null
+      },
+      "evidence": "cobertura",
+      "relations": [
+        {
+          "actor": "Coparmex Sonora Norte",
+          "role": "Organizador del encuentro"
+        }
+      ],
+      "notes": ""
+    },
+    {
+      "id": "puente-proyecto",
+      "title": "Amalaya Sonora Music Town, el proyecto que busca convertir a Hermosillo en un referente musical a nivel mundial",
+      "url": "https://proyectopuente.com.mx/2026/05/13/amalaya-sonora-music-town-el-proyecto-que-busca-convertir-a-hermosillo-en-un-referente-musical-a-nivel-mundial/",
+      "date": "2026-05-13",
+      "dateLabel": "2026-05-13",
+      "medium": "Proyecto Puente",
+      "platform": "Prensa",
+      "account": "Proyecto Puente",
+      "author": "Axel Rivera",
+      "speaker": "Roberto Gradillas Pineda",
+      "summary": "Presentación de la oportunidad económica, turística y cultural.",
+      "topics": [
+        "Visión",
+        "Turismo"
+      ],
+      "actors": [
+        "Roberto Gradillas Pineda"
+      ],
+      "image": "puente-proyecto.webp",
+      "imageSourceUrl": "https://proyectopuente.com.mx/wp-content/uploads/2026/05/Amalaya-Portada-Portal.jpg.jpeg",
+      "imageStatus": "Imagen destacada original descargada; miniatura ≤1200 px",
+      "metrics": {
+        "views": null,
+        "likes": null,
+        "comments": null,
+        "shares": null,
+        "observedAt": null
+      },
+      "evidence": "cobertura",
+      "relations": [
+        {
+          "actor": "Roberto Gradillas Pineda",
+          "role": "Funcionario que comenta la oportunidad"
+        }
+      ],
+      "notes": ""
+    },
+    {
+      "id": "imparcial-talento",
+      "title": "Sonora no necesita talento… ya lo tiene y de sobra: Fernando Rojo de la Vega",
+      "url": "https://www.elimparcial.com/son/sonora/2026/05/15/sonora-no-necesita-talento-ya-lo-tiene-y-de-sobra-fernando-rojo-de-la-vega/",
+      "date": "2026-05-15",
+      "dateLabel": "2026-05-15",
+      "medium": "El Imparcial",
+      "platform": "Prensa",
+      "account": "El Imparcial",
+      "author": "Redacción GH",
+      "speaker": "Fernando Rojo de la Vega",
+      "summary": "Reflexión institucional sobre retención del talento y desarrollo de industria creativa.",
+      "topics": [
+        "Talento",
+        "Instituciones"
+      ],
+      "actors": [
+        "Fernando Rojo de la Vega"
+      ],
+      "image": "imparcial-talento.webp",
+      "imageSourceUrl": "https://www.elimparcial.com/resizer/v2/5VEOHXCHYFCS7JGCITLRFRWXAQ.jpg?auth=ebe3d78ed5ba8867605f5ee8d47f0419930776f5f9e08dc8d338bebf67b0e2e5&smart=true&width=1200&height=630&quality=70",
+      "imageStatus": "Imagen destacada original descargada; miniatura ≤1200 px",
+      "metrics": {
+        "views": null,
+        "likes": null,
+        "comments": null,
+        "shares": null,
+        "observedAt": null
+      },
+      "evidence": "cobertura",
+      "relations": [
+        {
+          "actor": "Fernando Rojo de la Vega",
+          "role": "Vocero citado"
+        }
+      ],
+      "notes": ""
+    },
+    {
+      "id": "punto-taller",
+      "title": "Taller de monetización: ¿Cómo vive un proyecto artístico?",
+      "url": "https://somospuntonorte.com/index.php/evento/taller-de-monetizacion-como-vive-un-proyecto-artistico/",
+      "date": null,
+      "dateLabel": "Publicación sin fecha · taller: 22 julio 2026",
+      "medium": "Punto Norte",
+      "platform": "Sitio oficial",
+      "account": "Punto Norte",
+      "author": null,
+      "speaker": "Etel Ayvar; Alán Guevara; Fernanda Gurrola",
+      "summary": "Ficha de taller de Punto Norte; biografía vincula a Etel Ayvar con Amalaya Tierra Sonora.",
+      "topics": [
+        "Formación",
+        "Relaciones"
+      ],
+      "actors": [
+        "Etel Ayvar",
+        "Alán Guevara",
+        "Fernanda Gurrola"
+      ],
+      "image": null,
+      "imageSourceUrl": "https://somospuntonorte.com/wp-content/uploads/2025/07/PUNTONORTE_Taller_Flyer_FEED_01-1-240x300.png",
+      "imageStatus": "Imagen identificada en la página; descarga bloqueada HTTP 403",
+      "metrics": {
+        "views": null,
+        "likes": null,
+        "comments": null,
+        "shares": null,
+        "observedAt": null
+      },
+      "evidence": "directa",
+      "relations": [
+        {
+          "actor": "Etel Ayvar",
+          "role": "Fundadora de Amalaya Tierra Sonora según biografía"
+        },
+        {
+          "actor": "Alán Guevara",
+          "role": "Participante del taller Punto Norte"
+        },
+        {
+          "actor": "Fernanda Gurrola",
+          "role": "Participante del taller Punto Norte"
+        }
+      ],
+      "notes": "Fecha del evento, no fecha de publicación. Actividad de Punto Norte; no atribuir su producción a Amalaya. Imagen con ruta 2025/07; no usar la ruta como prueba de fecha."
+    },
+    {
+      "id": "imparcial-columna",
+      "title": "Carín León y lo que no estamos haciendo en Sonora",
+      "url": "https://www.elimparcial.com/son/columnas/2026/09/09/carin-leon-y-lo-que-no-estamos-haciendo-en-sonora/",
+      "date": "2026-09-09",
+      "dateLabel": "2026-09-09",
+      "medium": "El Imparcial",
+      "platform": "Prensa",
+      "account": "El Imparcial",
+      "author": "Luis A. Medina",
+      "speaker": "Luis A. Medina",
+      "summary": "Opinión sobre el momento musical sonorense y el potencial de Amalaya.",
+      "topics": [
+        "Opinión",
+        "Talento"
+      ],
+      "actors": [
+        "Luis A. Medina",
+        "Carín León",
+        "Jaime Félix Gándara",
+        "Florencio Díaz Romero"
+      ],
+      "image": "imparcial-columna.webp",
+      "imageSourceUrl": "https://cloudfront-us-east-1.images.arcpublishing.com/elimparcial/CAEAJAXH45AVBPTBC4462QPFMM.png",
+      "imageStatus": "Imagen destacada original descargada; miniatura ≤1200 px",
+      "metrics": {
+        "views": null,
+        "likes": null,
+        "comments": null,
+        "shares": null,
+        "observedAt": null
+      },
+      "evidence": "cobertura",
+      "relations": [
+        {
+          "actor": "Luis A. Medina",
+          "role": "Autor de opinión"
+        },
+        {
+          "actor": "Carín León",
+          "role": "Referencia contextual; no alianza acreditada"
+        },
+        {
+          "actor": "Jaime Félix Gándara",
+          "role": "Mencionado vinculado al proyecto"
+        },
+        {
+          "actor": "Florencio Díaz Romero",
+          "role": "Nombre usado por la columna; identidad no reconciliada con Carlos Díaz"
+        }
+      ],
+      "notes": "No confundir artistas usados como contexto con aliados. La columna escribe Florencio Díaz Romero; otras fuentes nombran Carlos Díaz Romero."
+    },
+    {
+      "id": "hcv-feudal",
+      "title": "Hermosillo: ciudad feudal",
+      "url": "https://hermosillocomovamos.org/2026/10/12/hermosillo-ciudad-feudal/",
+      "date": "2026-10-12",
+      "dateLabel": "2026-10-12",
+      "medium": "Hermosillo ¿Cómo Vamos?",
+      "platform": "Prensa",
+      "account": "Hermosillo ¿Cómo Vamos?",
+      "author": "Luis Fernando Puebla Corella",
+      "speaker": "Luis Fernando Puebla Corella",
+      "summary": "Opinión sobre territorio, inclusión y captura colectiva del beneficio de Amalaya.",
+      "topics": [
+        "Opinión",
+        "Territorio"
+      ],
+      "actors": [
+        "Luis Fernando Puebla Corella"
+      ],
+      "image": null,
+      "imageSourceUrl": null,
+      "imageStatus": "No recuperada: 406 Client Error: Not Acceptable for url: https://hermosillocomovamos.org/2026/10/12/hermosillo-ciudad-feudal/",
+      "metrics": {
+        "views": null,
+        "likes": null,
+        "comments": null,
+        "shares": null,
+        "observedAt": null
+      },
+      "evidence": "directa",
+      "relations": [
+        {
+          "actor": "Luis Fernando Puebla Corella",
+          "role": "Autor"
+        }
+      ],
+      "notes": ""
+    },
+    {
+      "id": "noro-programa",
+      "title": "Congreso de Industria Musical Punto Norte 2026: programa del 13 y 14 de octubre",
+      "url": "https://noro.mx/industrias-creativas/congreso-industria-punto-norte-2026/amp/",
+      "date": "2026-10-12",
+      "dateLabel": "2026-10-12",
+      "medium": "NORO",
+      "platform": "Prensa",
+      "account": "NORO",
+      "author": "Nancy Valenzuela",
+      "speaker": null,
+      "summary": "Programa que anuncia la conversación Amalaya andar en el Amalaya.",
+      "topics": [
+        "Programa",
+        "Conversación"
+      ],
+      "actors": [
+        "Chito Díaz",
+        "Etel Ayvar",
+        "Luis Puebla",
+        "Alejandro Puebla",
+        "Mariana González",
+        "Elizabeth Fuentes"
+      ],
+      "image": null,
+      "imageSourceUrl": null,
+      "imageStatus": "Fuente accesible; sin imagen destacada recuperable",
+      "metrics": {
+        "views": null,
+        "likes": null,
+        "comments": null,
+        "shares": null,
+        "observedAt": null
+      },
+      "evidence": "cobertura",
+      "relations": [
+        {
+          "actor": "Chito Díaz",
+          "role": "Panelista anunciado"
+        },
+        {
+          "actor": "Etel Ayvar",
+          "role": "Panelista anunciada"
+        },
+        {
+          "actor": "Luis Puebla",
+          "role": "Panelista anunciado"
+        },
+        {
+          "actor": "Alejandro Puebla",
+          "role": "Panelista anunciado"
+        },
+        {
+          "actor": "Mariana González",
+          "role": "Panelista anunciada"
+        },
+        {
+          "actor": "Elizabeth Fuentes",
+          "role": "Moderadora anunciada"
+        }
+      ],
+      "notes": ""
+    },
+    {
+      "id": "nh-rumbo",
+      "title": "¡Amalaya toma las calles de Hermosillo! Punto Norte 2026 cierra hoy su congreso",
+      "url": "https://noticiashermosillo.com/amalaya-toma-las-calles-de-hermosillo-punto-norte-2026-cierra-hoy-su-congreso-con-musica-rumba-y-artistas-sorpresa/",
+      "date": "2026-10-16",
+      "dateLabel": "2026-10-16",
+      "medium": "Noticias Hermosillo",
+      "platform": "Prensa",
+      "account": "Noticias Hermosillo",
+      "author": "Comercial",
+      "speaker": null,
+      "summary": "Anuncio del cierre público de Punto Norte con Rumbo al Amalaya.",
+      "topics": [
+        "Activación",
+        "Programa"
+      ],
+      "actors": [
+        "Punto Norte"
+      ],
+      "image": null,
+      "imageSourceUrl": null,
+      "imageStatus": "No recuperada: 406 Client Error: Not Acceptable for url: https://noticiashermosillo.com/amalaya-toma-las-calles-de-hermosillo-punto-norte-2026-cierra-hoy-su-congreso-con-musica-rumba-y-artistas-s",
+      "metrics": {
+        "views": null,
+        "likes": null,
+        "comments": null,
+        "shares": null,
+        "observedAt": null
+      },
+      "evidence": "cobertura",
+      "relations": [
+        {
+          "actor": "Punto Norte",
+          "role": "Congreso cuyo cierre se anuncia"
+        }
+      ],
+      "notes": ""
+    },
+    {
+      "id": "ns-octubre",
+      "title": "Presentan Amalaya Tierra Sonorense para impulsar talento musical local en Hermosillo",
+      "url": "https://noticiassonora.com/presentan-amalaya-tierra-sonorense-talento-musical-hermosillo/",
+      "date": "2026-10-16",
+      "dateLabel": "2026-10-16",
+      "medium": "Noticias Sonora",
+      "platform": "Prensa",
+      "account": "Noticias Sonora",
+      "author": "Redacción",
+      "speaker": null,
+      "summary": "Nota sobre la presentación musical comunitaria.",
+      "topics": [
+        "Activación",
+        "Talento"
+      ],
+      "actors": [],
+      "image": null,
+      "imageSourceUrl": null,
+      "imageStatus": "No recuperada: 406 Client Error: Not Acceptable for url: https://noticiassonora.com/presentan-amalaya-tierra-sonorense-talento-musical-hermosillo/",
+      "metrics": {
+        "views": null,
+        "likes": null,
+        "comments": null,
+        "shares": null,
+        "observedAt": null
+      },
+      "evidence": "cobertura",
+      "relations": [],
+      "notes": ""
+    },
+    {
+      "id": "puente-octubre",
+      "title": "Proyecto Amalaya Tierra Sonorense busca promover el talento musical local en Hermosillo",
+      "url": "https://proyectopuente.com.mx/2026/10/16/proyecto-amalaya-tierra-sonorense-busca-promover-el-talento-musical-local-en-hermosillo/",
+      "date": "2026-10-16",
+      "dateLabel": "2026-10-16",
+      "medium": "Proyecto Puente",
+      "platform": "Prensa",
+      "account": "Proyecto Puente",
+      "author": "Ana Sánchez",
+      "speaker": null,
+      "summary": "Anuncio de presentación comunitaria junto a Plaza de los Cien Años.",
+      "topics": [
+        "Activación",
+        "Talento"
+      ],
+      "actors": [],
+      "image": "puente-octubre.webp",
+      "imageSourceUrl": "https://proyectopuente.com.mx/wp-content/uploads/2026/10/elida-7-2.jpg",
+      "imageStatus": "Imagen destacada original descargada; miniatura ≤1200 px",
+      "metrics": {
+        "views": null,
+        "likes": null,
+        "comments": null,
+        "shares": null,
+        "observedAt": null
+      },
+      "evidence": "cobertura",
+      "relations": [],
+      "notes": ""
+    },
+    {
+      "id": "nh-octubre",
+      "title": "Presentan Amalaya Tierra Sonorense para impulsar talento musical local en Hermosillo",
+      "url": "https://noticiashermosillo.com/presentan-amalaya-tierra-sonorense-impulsar-talento-musical-hermosillo/",
+      "date": "2026-10-17",
+      "dateLabel": "2026-10-17",
+      "medium": "Noticias Hermosillo",
+      "platform": "Prensa",
+      "account": "Noticias Hermosillo",
+      "author": "Redacción",
+      "speaker": null,
+      "summary": "Republicación sobre la presentación de Amalaya; contiene atribuciones no corroboradas.",
+      "topics": [
+        "Activación",
+        "Talento"
+      ],
+      "actors": [],
+      "image": null,
+      "imageSourceUrl": null,
+      "imageStatus": "No recuperada: 406 Client Error: Not Acceptable for url: https://noticiashermosillo.com/presentan-amalaya-tierra-sonorense-impulsar-talento-musical-hermosillo/",
+      "metrics": {
+        "views": null,
+        "likes": null,
+        "comments": null,
+        "shares": null,
+        "observedAt": null
+      },
+      "evidence": "cobertura",
+      "relations": [],
+      "notes": "La atribución de respaldo de Proyecto Puente y participación de Ana Sánchez no se confirma en la nota original; no se incluye como relación."
+    },
+    {
+      "id": "borchi-linkedin",
+      "title": "Amalaya Sonoran Music Town: una estrategia musical para posicionar Sonora",
+      "url": "https://es.linkedin.com/posts/pabloborchi_c%C3%B3mo-conviertes-un-distrito-de-sonora-en-activity-7462509891048599552-OxUK",
+      "date": null,
+      "dateLabel": "Fecha no verificada",
+      "medium": "LinkedIn",
+      "platform": "LinkedIn",
+      "account": "Pablo Borchi",
+      "author": "Pablo Borchi",
+      "speaker": "Pablo Borchi",
+      "summary": "Propuesta externa de turismo musical y alianzas entre destinos y sellos; no convenio realizado.",
+      "topics": [
+        "Opinión",
+        "Turismo"
+      ],
+      "actors": [
+        "Pablo Borchi"
+      ],
+      "image": "borchi-linkedin.webp",
+      "imageSourceUrl": "https://media.licdn.com/dms/image/v2/D4E22AQEJH127icriwg/feedshare-shrink_1280/B4EZ5ASTC3IwAM-/0/1779194999337?e=2147483647&v=beta&t=EAfng5esdFF0Tu1kk5swdO0yp4IE4eHWjUfIntE5uAg",
+      "imageStatus": "Imagen destacada original descargada; miniatura ≤1200 px",
+      "metrics": {
+        "views": null,
+        "likes": null,
+        "comments": null,
+        "shares": null,
+        "observedAt": null
+      },
+      "evidence": "directa",
+      "relations": [
+        {
+          "actor": "Pablo Borchi",
+          "role": "Autor de propuesta externa"
+        }
+      ],
+      "notes": "Fecha relativa inconsistente entre índice y página. Los artistas internacionales son ejemplos hipotéticos, no aliados."
+    },
+    {
+      "id": "borchi-newsletter",
+      "title": "Una nueva jugada entra al playbook",
+      "url": "https://musictourismlens.substack.com/p/una-nueva-jugada-entra-al-playbook",
+      "date": null,
+      "dateLabel": "Fecha no verificada",
+      "medium": "Music Tourism Lens",
+      "platform": "Newsletter",
+      "account": "Pablo Borchi",
+      "author": "Pablo Borchi",
+      "speaker": "Pablo Borchi",
+      "summary": "Análisis externo de estrategias de turismo musical aplicables a Amalaya.",
+      "topics": [
+        "Opinión",
+        "Turismo"
+      ],
+      "actors": [
+        "Pablo Borchi"
+      ],
+      "image": "borchi-newsletter.webp",
+      "imageSourceUrl": "https://substackcdn.com/image/fetch/$s_!aypW!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fc807d93c-311d-4a59-824b-d7c13140f749_1620x1080.webp",
+      "imageStatus": "Imagen destacada original descargada; miniatura ≤1200 px",
+      "metrics": {
+        "views": null,
+        "likes": null,
+        "comments": null,
+        "shares": null,
+        "observedAt": null
+      },
+      "evidence": "directa",
+      "relations": [
+        {
+          "actor": "Pablo Borchi",
+          "role": "Autor"
+        }
+      ],
+      "notes": ""
+    },
+    {
+      "id": "colson-feudal",
+      "title": "Hermosillo: ciudad feudal",
+      "url": "https://www.colson.edu.mx/coldetalle.aspx?cx=7524",
+      "date": null,
+      "dateLabel": "Texto original: 12 octubre 2026",
+      "medium": "El Colegio de Sonora",
+      "platform": "Prensa",
+      "account": "El Colegio de Sonora",
+      "author": "Luis Fernando Puebla Corella",
+      "speaker": "Luis Fernando Puebla Corella",
+      "summary": "Réplica de la reflexión territorial; su publicación no acredita alianza institucional.",
+      "topics": [
+        "Opinión",
+        "Territorio"
+      ],
+      "actors": [
+        "Luis Fernando Puebla Corella"
+      ],
+      "image": "colson-feudal.webp",
+      "imageSourceUrl": "https://www.colson.edu.mx/adminPaginaColson/publico/imagenesColumnas/g_1610202684744857.png",
+      "imageStatus": "Imagen destacada original descargada; miniatura ≤1200 px",
+      "metrics": {
+        "views": null,
+        "likes": null,
+        "comments": null,
+        "shares": null,
+        "observedAt": null
+      },
+      "evidence": "cobertura",
+      "relations": [
+        {
+          "actor": "Luis Fernando Puebla Corella",
+          "role": "Autor de texto replicado"
+        }
+      ],
+      "notes": "Fecha de réplica no verificada; original en Hermosillo ¿Cómo Vamos? del 12 octubre."
+    },
+    {
+      "id": "fb-post",
+      "title": "Publicación de Facebook incrustada en cobertura COPARMEX",
+      "url": "https://www.facebook.com/proyectopuenteconluisalbertomedina/posts/pfbid02YCwVemG7P3tNhbM4HzdDwPJh1fkmqbSwKfQhGWYazC7AeGkifDt5butjB8Q1sbLpl",
+      "date": null,
+      "dateLabel": "Fecha no verificada",
+      "medium": "Proyecto Puente",
+      "platform": "Facebook",
+      "account": "Proyecto Puente",
+      "author": null,
+      "speaker": null,
+      "summary": "Publicación incrustada en la cobertura del Encuentro COPARMEX. Contenido directo inaccesible.",
+      "topics": [
+        "Enlace localizado"
+      ],
+      "actors": [],
+      "image": null,
+      "imageSourceUrl": null,
+      "imageStatus": "No recuperada",
+      "metrics": {
+        "views": null,
+        "likes": null,
+        "comments": null,
+        "shares": null,
+        "observedAt": null
+      },
+      "evidence": "enlace sin acceso",
+      "relations": [],
+      "notes": "Enlace localizado en artículo de Proyecto Puente del 12 mayo 2026; sin lectura directa ni métricas verificadas."
+    },
+    {
+      "id": "fb-video",
+      "title": "Video de Facebook incrustado en cobertura COPARMEX",
+      "url": "https://www.facebook.com/proyectopuenteconluisalbertomedina/videos/4262632687213398/",
+      "date": null,
+      "dateLabel": "Fecha no verificada",
+      "medium": "Proyecto Puente",
+      "platform": "Facebook",
+      "account": "Proyecto Puente",
+      "author": null,
+      "speaker": null,
+      "summary": "Video incrustado en cobertura del Encuentro COPARMEX. Contenido directo inaccesible.",
+      "topics": [
+        "Enlace localizado"
+      ],
+      "actors": [],
+      "image": null,
+      "imageSourceUrl": null,
+      "imageStatus": "No recuperada",
+      "metrics": {
+        "views": null,
+        "likes": null,
+        "comments": null,
+        "shares": null,
+        "observedAt": null
+      },
+      "evidence": "enlace sin acceso",
+      "relations": [],
+      "notes": "Enlace localizado en artículo de Proyecto Puente del 12 mayo 2026; sin lectura directa ni métricas verificadas."
+    },
+    {
+      "id": "ncr-programa",
+      "title": "Economía de las industrias creativas en una ciudad | Amalaya",
+      "url": "https://ncr.mx/programacion",
+      "date": null,
+      "dateLabel": "Fecha no verificada",
+      "medium": "NORO Community Radio",
+      "platform": "Sitio oficial",
+      "account": "NORO Community Radio",
+      "author": null,
+      "speaker": null,
+      "summary": "Programación de la semana del 5 al 11 de octubre que incluye Economía de las industrias creativas en una ciudad | Amalaya.",
+      "topics": [
+        "Radio",
+        "Conversación"
+      ],
+      "actors": [],
+      "image": null,
+      "imageSourceUrl": null,
+      "imageStatus": "Fuente accesible; sin imagen destacada recuperable",
+      "metrics": {
+        "views": null,
+        "likes": null,
+        "comments": null,
+        "shares": null,
+        "observedAt": null
+      },
+      "evidence": "directa",
+      "relations": [],
+      "notes": ""
+    },
+    {
+      "id": "nh-programa",
+      "title": "Punto Norte 2026 reúne hoy en Hermosillo a artistas, productores y protagonistas de la industria musical mexicana",
+      "url": "https://noticiashermosillo.com/punto-norte-2026-reune-hoy-en-hermosillo-a-artistas-productores-y-protagonistas-de-la-industria-musical-mexicana/",
+      "date": null,
+      "dateLabel": "Fecha no verificada",
+      "medium": "Noticias Hermosillo",
+      "platform": "Prensa",
+      "account": "Noticias Hermosillo",
+      "author": null,
+      "speaker": null,
+      "summary": "Agenda de Punto Norte con conversación específica sobre Amalaya.",
+      "topics": [
+        "Programa",
+        "Conversación"
+      ],
+      "actors": [
+        "Chito Díaz",
+        "Etel Ayvar",
+        "Luis Puebla",
+        "Alejandro Puebla",
+        "Mariana González",
+        "Elizabeth Fuentes"
+      ],
+      "image": null,
+      "imageSourceUrl": null,
+      "imageStatus": "No recuperada: 406 Client Error: Not Acceptable for url: https://noticiashermosillo.com/punto-norte-2026-reune-hoy-en-hermosillo-a-artistas-productores-y-protagonistas-de-la-industria-musical-mex",
+      "metrics": {
+        "views": null,
+        "likes": null,
+        "comments": null,
+        "shares": null,
+        "observedAt": null
+      },
+      "evidence": "cobertura",
+      "relations": [
+        {
+          "actor": "Chito Díaz",
+          "role": "Panelista anunciado"
+        },
+        {
+          "actor": "Etel Ayvar",
+          "role": "Panelista anunciada"
+        },
+        {
+          "actor": "Luis Puebla",
+          "role": "Panelista anunciado"
+        },
+        {
+          "actor": "Alejandro Puebla",
+          "role": "Panelista anunciado"
+        },
+        {
+          "actor": "Mariana González",
+          "role": "Panelista anunciada"
+        },
+        {
+          "actor": "Elizabeth Fuentes",
+          "role": "Moderadora anunciada"
+        }
+      ],
+      "notes": ""
+    },
+    {
+      "id": "punto-oficial",
+      "title": "Somos Punto Norte",
+      "url": "https://somospuntonorte.com/",
+      "date": null,
+      "dateLabel": "Fecha no verificada",
+      "medium": "Punto Norte",
+      "platform": "Sitio oficial",
+      "account": "Punto Norte",
+      "author": null,
+      "speaker": null,
+      "summary": "Sitio del congreso y sus participantes; documenta vinculación de Carlos Díaz con Amalaya/Coparmex.",
+      "topics": [
+        "Programa",
+        "Relaciones"
+      ],
+      "actors": [
+        "Carlos Díaz"
+      ],
+      "image": null,
+      "imageSourceUrl": null,
+      "imageStatus": "Fuente accesible; sin imagen destacada recuperable",
+      "metrics": {
+        "views": null,
+        "likes": null,
+        "comments": null,
+        "shares": null,
+        "observedAt": null
+      },
+      "evidence": "directa",
+      "relations": [
+        {
+          "actor": "Carlos Díaz",
+          "role": "Ponente identificado con Amalaya/Coparmex"
+        }
+      ],
+      "notes": ""
+    }
+  ]
+}

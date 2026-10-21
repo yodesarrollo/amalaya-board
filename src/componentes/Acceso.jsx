@@ -74,6 +74,7 @@ export default function Acceso() {
         </div>
 
         <LineaAmalaya cargando={cargando} className="mb-8" />
+        <a href="/amalaya-board/observatorio.html" className="flex items-center justify-center gap-2 text-sm text-oro mb-6 py-3 border border-linea rounded-lg">Observatorio · publicaciones y red <ArrowUpRight size={16} /></a>
 
         {!BACKEND_LISTO ? (
           <p className="text-terciario text-sm text-center">El servidor aún no está conectado.</p>
