@@ -73,7 +73,7 @@ export default function RecorridoPortal({ board = false, espacios = EMPTY_SPACES
         const osm = await response.json()
         if(!alive||failed)return
         const features = osm.elements.filter(e=>e.tags?.highway && e.geometry?.length>1).map(e=>({type:'Feature',properties:{name:e.tags.name||''},geometry:{type:'LineString',coordinates:e.geometry.map(p=>[p.lon,p.lat])}}))
-        m = new maplibregl.Map({container:container.current,center:HOME,zoom:16.7,pitch:20,bearing:12,maxZoom:21,minZoom:15,
+        m = new maplibregl.Map({container:container.current,center:HOME,zoom:17.5,pitch:58,bearing:-24,maxZoom:21,minZoom:15,
           ...(cameraState.current || {}),
           maxBounds:[[-110.961,29.072],[-110.948,29.082]],antialias:true,
           style:{version:8,sources:{city:{type:'geojson',data:{type:'FeatureCollection',features},attribution:'© OpenStreetMap contributors'}},layers:[
@@ -92,10 +92,6 @@ export default function RecorridoPortal({ board = false, espacios = EMPTY_SPACES
           const active=latest.current.routes.find(r=>r.puntos.some(p=>p.id===latest.current.point?.id));
           if(active){m.addSource('route',{type:'geojson',data:{type:'Feature',geometry:{type:'LineString',coordinates:active.puntos.map(p=>[p.lng,p.lat])}}});m.addLayer({id:'route-line',type:'line',source:'route',paint:{'line-color':'#b36735','line-width':4,'line-opacity':.8}})}
           clearTimeout(timer);setSlow(false);setMapReady(true);setStatus('Levantamiento conectado')
-          if(!cameraState.current){
-            focusedPoint.current=latest.current.point?.id || ''
-            m.easeTo({center:HOME,zoom:17.5,pitch:58,bearing:-24,duration:matchMedia('(prefers-reduced-motion: reduce)').matches?0:2400})
-          }
           } catch { fallback() }
         })
         m.on('error',fallback);m.on('webglcontextlost',fallback)
