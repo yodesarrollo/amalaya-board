@@ -265,7 +265,7 @@ const NOMBRE_ETAPA = { idea: 'idea', negociacion: 'negociación', proyecto: 'pro
 
 const CAPAS_DEF = { satelite: true, ciudad: false, modelos: true, espacios: true, rutas: true, recorrido: true, calco: false, lamina: false }
 
-export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, onNuevo, edicion = {}, enfocado = null }) {
+export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, onNuevo, onFalla, edicion = {}, enfocado = null }) {
   // edicion: { modoEdicion, editandoPuntos, rutaSel, onMoverEspacio(id, pctCentroX, pctCentroY), onAgregarPunto(pctX, pctY) }
   const edRef = useRef(edicion)
   useEffect(() => { edRef.current = edicion }, [edicion])
@@ -372,10 +372,13 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
   // UX-07: si falla el 3D (sin WebGL o sin cartografía) se sigue trabajando
   // con la lista, las fichas, la lámina y las descargas.
   const [falla3d, setFalla3d] = useState(null)
+  useEffect(() => {
+    onFalla?.(Boolean(falla3d))
+  }, [falla3d, onFalla])
 
   // --- crear el mapa una sola vez ------------------------------
   useEffect(() => {
-    if (!cont.current || mapa.current) return
+    if (falla3d || !cont.current || mapa.current) return
     const centro = centroGeo(geoSheet)
     let m
     let desmontarLevantamiento = () => {}
@@ -424,6 +427,7 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
       attributionControl: false,
       clickTolerance: 5,          // un micro-arrastre ya no se come el clic
     }) } catch (err) {
+      console.warn('Mapa 3D no disponible; se abrirá el modelo ligero.')
       window.removeEventListener('amalaya:map-view', alCambiarVistaMapa)
       window.removeEventListener('amalaya:focus-coordinate', alEnfocarCoordenada)
       window.removeEventListener('amalaya:recorrido-mode', alCambiarModoRecorrido)
@@ -433,7 +437,6 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
     }
     const recuperacion = recuperarCartografia(m, {
       onFallback: () => setRespaldoMapa(true),
-      onReady: () => setFalla3d(null),
       onFailure: () => setFalla3d('No fue posible iniciar la cartografía de respaldo.'),
     })
     m.once('remove', () => recuperacion.dispose())
@@ -631,6 +634,9 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
     window.visualViewport?.addEventListener('resize', ajustar)
     ajustar()
     return () => {
+      recuperacion.dispose()
+      m.off('load', arrancar)
+      m.off('styledata', arrancar)
       window.removeEventListener('amalaya:map-view', alCambiarVistaMapa)
       window.removeEventListener('amalaya:focus-coordinate', alEnfocarCoordenada)
       window.removeEventListener('amalaya:recorrido-mode', alCambiarModoRecorrido)
@@ -641,7 +647,7 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
       pinesModelo.forEach(pin => pin.remove()); pinesModelo = []; clearTimeout(reloj)
       relojesEntrada.current.forEach(clearTimeout); cancelAnimationFrame(trazo.current); desmontarLevantamiento(); m.remove(); mapa.current = null
     }
-  }, []) // eslint-disable-line react-hooks/exhaustive-deps
+  }, [falla3d]) // eslint-disable-line react-hooks/exhaustive-deps
 
   // --- entrada por capas ------------------------------------------
   // Vuelo de dron: la cámara se inclina y gira hacia el 3D.
@@ -933,21 +939,26 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
 
   if (falla3d) {
     return (
-      <div className="relative w-full h-full mapa-plan-b overflow-y-auto p-4" role="region" aria-label="Mapa sin 3D">
+      <div className="relative w-full h-full mapa-plan-b" role="region" aria-label="Modelo de respaldo de Amalaya">
         <div ref={cont} className="hidden" />
-        <div className="max-w-3xl mx-auto space-y-3">
-          <p className="text-marfil font-medium">El mapa 3D no cargó · {falla3d}</p>
-          <p className="text-arena text-sm">Puedes seguir trabajando: abre cualquier espacio para ver su ficha, sus documentos y descargarlos.</p>
-          <div className="flex flex-wrap gap-2">
-            <button type="button" className="ctrl-mapa" onClick={() => window.location.reload()}>Reintentar el 3D</button>
-            <a className="ctrl-mapa" href={`${BASE}modelo-completo.html?embed=1&vista=volumen`}>Usar vista ligera</a>
+        <div className="mapa-plan-b__aviso" role="status">
+          <span>Vista ligera · el 3D no está disponible en este navegador.</span>
+          <button type="button" onClick={() => window.location.reload()}>Reintentar 3D</button>
+        </div>
+        <iframe className="mapa-plan-b__visor" title="Modelo ligero de Amalaya" src={`${BASE}modelo-completo.html?embed=1&vista=volumen`} />
+        <details className="mapa-plan-b__detalles">
+          <summary>Recorridos, fichas y descargas</summary>
+          <div className="mapa-plan-b__acciones">
+            <a className="ctrl-mapa" href={`${BASE}levantamiento/visor/?embed=1&character=sonora&route=R-001&waypoint=3&view=street&movement=walk&clean=1&heading=185`}>Caminar por Amalaya</a>
+            <a className="ctrl-mapa" href={`${BASE}recorrido/?embed=1&portal=1&r=R-001&p=Apyr0uKeZr_XWmfLfLeBjQ`}>Street View 360</a>
+            <a className="ctrl-mapa" href={`${BASE}modelo-completo.html?embed=1&vista=volumen`}>Ampliar modelo ligero</a>
             <a className="ctrl-mapa" href={`${BASE}lamina-zona-nucleo.jpg`} target="_blank" rel="noreferrer" download>Lámina «Zona Núcleo» (JPG)</a>
             <a className="ctrl-mapa" href={`${BASE}mapa-poligono.jpg`} target="_blank" rel="noreferrer" download>Plano del polígono (JPG)</a>
           </div>
           <div className="lista-plan-b">
             <ListaEspacios espacios={espacios} busca={busca} setBusca={setBusca} onElegir={(e) => onAbrir?.(e.id)} onCerrar={() => setBusca('')} onNuevo={onNuevo} />
           </div>
-        </div>
+        </details>
       </div>
     )
   }

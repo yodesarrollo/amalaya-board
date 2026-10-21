@@ -1,0 +1,65 @@
+/* Brand and viewport fit for the original map; no camera or geometry changes. */
+.portal-shell.portal-map-active{--map-header:96px;--map-toolbar:58px;--map-heading:44px;--map-nav:0px;--map-pad:8px;--map-safe:0px;min-height:calc(100dvh - var(--map-header))}
+body:has(.portal-map-active) #root>.portal-public-header{height:96px;min-height:96px}
+body:has(.portal-map-active) #root>.portal-account-header>div:first-child{min-height:96px}
+.portal-shell.portal-map-active .portal-main{padding-bottom:0}
+.portal-shell.portal-map-active .portal-toolbar{height:58px}
+.portal-map-active .mapa-workspace .mapa-heading{height:var(--map-heading);min-height:var(--map-heading);padding:4px 14px;color:var(--amalaya-charcoal)}
+.portal-map-active .mapa-workspace .mapa-heading h2{font-family:'Amalaya Cinzel',Georgia,serif;font-size:15px;font-weight:500;letter-spacing:.02em}
+.portal-map-active .mapa-workspace .mapa-stage-wrap{padding:0 8px var(--map-pad)}
+.portal-map-active .mapa-workspace .mapa-stage{height:calc(100dvh - var(--map-header) - var(--map-toolbar) - var(--map-heading) - var(--map-nav) - var(--map-pad) - var(--map-safe))!important;min-height:0!important;border-color:var(--amalaya-line);background:var(--amalaya-cream)}
+/* MapLibre writes position:relative on its container; keep the real canvas fitted. */
+.portal-map-active .mapa3d>.mapa-canvas.maplibregl-map{position:absolute;inset:0;width:100%;height:100%}
+.portal-map-active .mapa3d .ctrl-mapa,.portal-map-active .mapa3d .grupo-ctrl,.portal-map-active .mapa3d .panel-mapa,.portal-map-active .mapa3d .cartela-mapa,.portal-map-active .mapa3d .globo-guia{background:var(--amalaya-paper);color:var(--amalaya-charcoal);border-color:var(--amalaya-line);box-shadow:0 6px 20px #2C29251A;font-family:'Amalaya Montserrat',sans-serif}
+.portal-map-active .mapa3d .ctrl-mapa.ctrl-on{background:var(--amalaya-orange);color:var(--amalaya-paper);border-color:var(--amalaya-orange)}
+.portal-map-active .mapa3d .ctrl-mapa:hover{border-color:var(--amalaya-orange)}
+.portal-map-active .mapa3d .grupo-ctrl button,.portal-map-active .mapa3d .grupo-ctrl .cara{color:var(--amalaya-charcoal);font-family:'Amalaya Montserrat',sans-serif}
+.portal-map-active .mapa3d .grupo-ctrl button:hover{background:var(--amalaya-cream);color:var(--amalaya-orange)}
+.portal-map-active .mapa3d .panel-titulo{color:#923A1D}
+.portal-map-active .mapa3d .panel-nota,.portal-map-active .mapa3d .fila-capa .txt,.portal-map-active .mapa3d .panel-mapa .seg button{color:#625A50}
+.portal-map-active .mapa3d .fila-capa[aria-checked=true] .txt{color:var(--amalaya-charcoal)}
+.portal-map-active .mapa3d .panel-mapa .seg button.on{background:var(--amalaya-orange);color:var(--amalaya-paper)}
+.portal-map-active .mapa3d .panel-pie,.portal-map-active .mapa3d .panel-mapa .seg,.portal-map-active .mapa3d .grupo-ctrl button+button,.portal-map-active .mapa3d .grupo-ctrl .cara+button{border-color:var(--amalaya-line)}
+.portal-map-active .mapa3d .sw[data-on=true]{background:#E8B8A3}
+.portal-map-active .mapa3d .sw[data-on=true] i{background:var(--amalaya-orange)}
+.portal-map-active .mapa3d .cartela-tit,.portal-map-active .mapa3d .cartela-cifras b,.portal-map-active .mapa3d .cartela-etapas b{color:var(--amalaya-charcoal)}
+.portal-map-active .mapa3d .cartela-norte{color:var(--amalaya-orange)}
+.portal-map-active .mapa-edit-menu summary,.portal-map-active .mapa-edit-actions{background:var(--amalaya-paper);color:var(--amalaya-charcoal);border-color:var(--amalaya-line)}
+.portal-map-active .mapa-edit-menu summary::after{color:var(--amalaya-orange)}
+.portal-map-active .recorrido-unico .recorrido-unico__modos,.portal-map-active .recorrido-quickbar .recorrido-unico__version,.portal-map-active .recorrido-unico .recorrido-unico__punto,.portal-map-active .recorrido-unico .recorrido-unico__ayuda{background:var(--amalaya-paper);color:var(--amalaya-charcoal);border-color:var(--amalaya-line);box-shadow:0 5px 16px #2C29251A}
+.portal-map-active .recorrido-unico .recorrido-unico__modos button,.portal-map-active .recorrido-unico .recorrido-unico__version button{color:var(--amalaya-charcoal);font-family:'Amalaya Montserrat',sans-serif}
+.portal-map-active .recorrido-unico .recorrido-unico__modos button.activo,.portal-map-active .recorrido-unico .recorrido-unico__version button.activo{background:var(--amalaya-orange);color:var(--amalaya-paper)}
+.portal-map-active .recorrido-quickbar .recorrido-toggle,.portal-map-active .recorrido-unico .recorrido-unico__punto>button,.portal-map-active .recorrido-unico .recorrido-unico__punto select{background:var(--amalaya-paper);color:var(--amalaya-charcoal);border-color:var(--amalaya-line);font-family:'Amalaya Montserrat',sans-serif}
+.portal-map-active .recorrido-quickbar .recorrido-toggle span,.portal-map-active .recorrido-unico .recorrido-unico__ruta>span,.portal-map-active .recorrido-unico .recorrido-unico__seleccion>span{color:#923A1D}
+.portal-map-active .mapa-plan-b{display:flex;flex-direction:column;background:var(--amalaya-paper);color:var(--amalaya-charcoal);overflow:auto}
+.mapa-plan-b__aviso{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:4px 12px;font-size:11px;line-height:1.5;border-bottom:1px solid var(--amalaya-line);flex:none}
+.mapa-plan-b__aviso button{flex:none;min-height:44px;color:#923A1D;text-decoration:underline;text-underline-offset:3px}
+.mapa-plan-b__visor{display:block;width:100%;min-height:150px;flex:1;border:0;background:var(--amalaya-cream)}
+.mapa-plan-b__detalles{flex:none;background:var(--amalaya-paper);border-top:1px solid var(--amalaya-line)}
+.mapa-plan-b__detalles summary{padding:12px;min-height:44px;font-size:12px;cursor:pointer}
+.mapa-plan-b__detalles[open]{max-height:55%;overflow:auto}
+.mapa-plan-b__acciones{display:flex;flex-wrap:wrap;gap:8px;padding:0 12px 12px}
+.mapa-plan-b .ctrl-mapa{background:var(--amalaya-cream);color:var(--amalaya-charcoal);border-color:var(--amalaya-line);min-height:44px;display:inline-flex;align-items:center;white-space:normal}
+.mapa-plan-b .lista-plan-b{padding:0 12px 12px}
+@media(max-width:900px){
+ .portal-shell.portal-map-active{--map-header:82px;--map-toolbar:0px;--map-heading:42px;--map-nav:74px;--map-pad:4px;--map-safe:env(safe-area-inset-bottom)}
+ body:has(.portal-map-active) #root>.portal-public-header{height:82px;min-height:82px;padding:4px 12px}
+ body:has(.portal-map-active) #root>.portal-account-header>div:first-child{min-height:82px;padding:4px 12px}
+ .portal-shell.portal-map-active .portal-main{padding-bottom:calc(var(--map-nav) + var(--map-safe))}
+ .portal-shell.portal-map-active .portal-toolbar{display:none}
+ .portal-shell.portal-map-active .portal-mobile-nav{min-height:calc(74px + env(safe-area-inset-bottom));padding:6px 6px calc(6px + env(safe-area-inset-bottom))}
+ .portal-shell.portal-map-active .portal-mobile-nav button{min-height:54px}
+ .portal-map-active .mapa-workspace .mapa-heading{padding:2px 10px}
+ .portal-map-active .mapa-workspace .mapa-heading h2{font-size:13px}
+ .portal-map-active .mapa-workspace .mapa-stage-wrap{padding:0 4px var(--map-pad)}
+ .portal-map-active .mapa3d .ctrl-mapa{font-size:11px;min-height:40px}
+ .portal-map-active .mapa3d .mapa-camera-tools .grupo-ctrl button{min-height:36px}
+ .portal-map-active .mapa3d .mapa-layer-tools .panel-mapa{max-height:calc(100% - 48px);overflow-y:auto}
+ .mapa-plan-b__aviso{font-size:10px;padding:2px 8px;gap:8px}
+}
+@media(max-width:900px) and (max-height:450px){
+ /* Brand's low-landscape navigation is in normal flow, after this fitted map. */
+ .portal-shell.portal-map-active .portal-main{padding-bottom:0}
+ .portal-shell.portal-map-active .portal-mobile-nav{position:static}
+ .portal-map-active .mapa-workspace .mapa-stage{min-height:150px!important}
+}

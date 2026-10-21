@@ -77,6 +77,7 @@ export default function Mapa() {
 
   // Capa activa
   const [vista, setVista] = useState('3d') // '3d' | 'espacios' | 'rutas'
+  const [mapaLigero, setMapaLigero] = useState(false)
 
   // Espacios
   const [modoEdicion, setModoEdicion] = useState(false)
@@ -239,7 +240,7 @@ export default function Mapa() {
     <div className="relative mapa-workspace">
       {/* Barra del mapa */}
       <div className="mapa-heading max-w-6xl mx-auto px-4 pt-4 pb-2 flex items-center gap-2 flex-wrap">
-        <h2 className="font-cartel font-normal uppercase tracking-wide text-2xl">Mapa Amalaya</h2>
+        <h2 className="font-normal uppercase tracking-wide text-2xl">Mapa Amalaya</h2>
 
         <span className="text-xs text-terciario ml-2 hidden sm:inline">planta · 3D · caminar · Street View, en una sola vista</span>
 
@@ -317,6 +318,7 @@ export default function Mapa() {
       <div className="mapa-stage-wrap px-2 pb-3">
           <div className="mapa-stage relative mx-auto rounded-2xl overflow-hidden border border-linea" style={{ height: 'calc(100dvh - 150px)', minHeight: '420px' }}>
             <Mapa3D
+              onFalla={setMapaLigero}
               espacios={espacios} rutas={rutas} paradas={paradas} onAbrir={setAbierto} enfocado={abierto}
               onNuevo={puedeEditar ? () => setCreando(true) : undefined}
               edicion={{
@@ -344,7 +346,7 @@ export default function Mapa() {
                 setRecorrido({ rutaId: p.ruta_id, idx: Math.max(0, lista.findIndex((x) => String(x.id) === String(paradaId))) })
               }}
             />
-            <RecorridoModelo />
+            {!mapaLigero && <RecorridoModelo />}
           </div>
         <div
           ref={contRef}

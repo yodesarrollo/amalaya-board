@@ -19,6 +19,7 @@ import { availableSections, resolveSection } from './portal-model.js'
 import { usePortalNavigation } from './usePortalNavigation.js'
 import './portal.css'
 import './brand.css'
+import './brand-mapa.css'
 
 import { BIBLIOTECA_3D } from './modelos3d.js'
 const Recintos = lazy(() => import('./componentes/Recintos.jsx'))
