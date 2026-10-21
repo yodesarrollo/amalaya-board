@@ -24,5 +24,5 @@ export function sequence(theme='todo',mode='tema'){
  const end=THEMES.findIndex(x=>x.id===theme)
  return LAYERS.filter(x=>theme==='todo'||(mode==='acumulativo'?THEMES.findIndex(t=>t.id===x.theme)<=end:x.theme===theme)).map(x=>x.id)
 }
-export function decode(hash){const q=new URLSearchParams(hash.replace(/^#/,''));return {layers:sanitize((q.get('capas')||'').split(',')),background:q.get('fondo')==='croquis'?'croquis':'foto',theme:THEMES.some(x=>x.id===q.get('tema'))?q.get('tema'):'todo',mode:q.get('modo')==='acumulativo'?'acumulativo':'tema'}}
+export function decode(hash){const q=new URLSearchParams(hash.replace(/^#/,''));return {layers:sanitize((q.get('capas')||'').split(',')),background:q.get('fondo')==='foto'?'foto':'croquis',theme:THEMES.some(x=>x.id===q.get('tema'))?q.get('tema'):'todo',mode:q.get('modo')==='acumulativo'?'acumulativo':'tema'}}
 export function encode(s){return new URLSearchParams({capas:sanitize(s.layers).join(','),fondo:s.background,tema:s.theme,modo:s.mode}).toString()}
