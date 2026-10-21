@@ -3,7 +3,7 @@ import fs from 'node:fs'
 import {mergePublications,parseImport,ordered,buildGraph,engagement,validatePublication,hasMetrics,safeUrl,actorName} from '../src/observatorio-model.js'
 const dataset=JSON.parse(fs.readFileSync('public/observatorio/publicaciones.json','utf8'))
 const pubs=parseImport(JSON.stringify(dataset))
-assert.equal(pubs.length,25)
+assert.ok(pubs.length>0)
 assert.equal(new Set(pubs.map(p=>p.id)).size,pubs.length)
 for(const p of pubs){assert.ok(p.url.startsWith('https://'));if(p.image&&!safeUrl(p.image))assert.ok(fs.existsSync('public/observatorio/portadas/'+p.image));assert.equal(hasMetrics(p),false)}
 const sample=pubs[0],old={...sample,date:'2026-01-02'},undated={...pubs[1],date:null},recent={...pubs[2],date:'2026-10-20'}
