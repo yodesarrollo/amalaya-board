@@ -4,6 +4,7 @@ import {Search,ArrowUpRight,ArrowLeft,Network,LayoutGrid,Plus,Download,Upload,X,
 import {METRICS,METRIC_LABELS,fold,safeUrl,canonical,validatePublication,mergePublications,ordered,hasMetrics,engagement,buildGraph,parseImport,actorName} from './observatorio-model.js'
 import './observatorio.css'
 const BASE=import.meta.env.BASE_URL, STORAGE='amalaya.observatorio.v1'
+if(new URLSearchParams(location.search).get('integrado')==='1')document.documentElement.classList.add('obs-integrado')
 const COLORS={proyecto:'#d1ac65',publicacion:'#b7ac95',actor:'#cc805d',medio:'#87ac96',tema:'#9d96bc',cuenta:'#82a4c4'}
 const TYPES={proyecto:'Proyecto',publicacion:'Publicación',actor:'Actor',medio:'Medio',tema:'Tema',cuenta:'Cuenta'}
 const dateLabel=p=>p.dateLabel&&p.dateLabel!==p.date?p.dateLabel:p.date?new Intl.DateTimeFormat('es-MX',{day:'numeric',month:'short',year:'numeric',timeZone:'UTC'}).format(new Date(p.date+'T12:00:00Z')):(p.dateLabel||'Fecha por verificar')

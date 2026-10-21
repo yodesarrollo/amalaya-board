@@ -1,19 +1,24 @@
-import { useState, useEffect, useRef, lazy, Suspense } from 'react'
-import { Map as MapIcon, BarChart3, FileText, LifeBuoy, ListChecks, Box } from 'lucide-react'
+import { useEffect, useRef, lazy, Suspense } from 'react'
 import { usarDatos } from './datos.jsx'
 import Acceso from './componentes/Acceso.jsx'
 import Encabezado from './componentes/Encabezado.jsx'
 import LineaAmalaya from './componentes/LineaAmalaya.jsx'
-import Mapa from './componentes/Mapa.jsx'
-import Financiero from './componentes/Financiero.jsx'
-import Reporte from './componentes/Reporte.jsx'
-import Ayuda from './componentes/Ayuda.jsx'
-import PlanAccion from './componentes/PlanAccion.jsx'
+const Mapa = lazy(() => import('./componentes/Mapa.jsx'))
+const Financiero = lazy(() => import('./componentes/Financiero.jsx'))
+const Reporte = lazy(() => import('./componentes/Reporte.jsx'))
+const Ayuda = lazy(() => import('./componentes/Ayuda.jsx'))
+const PlanAccion = lazy(() => import('./componentes/PlanAccion.jsx'))
 import AyudaPantalla from './componentes/AyudaPantalla.jsx'
-import { puedeEditarRol } from './roles.js'
 import { BASE, APPS_SCRIPT_URL } from './config.js'
 import { apiCall } from './api.js'
 import { contextoChinche, repintarParaChinche } from './chinche-contexto.js'
+
+import PortalShell, { PortalFrame } from './componentes/PortalShell.jsx'
+import PortalInicio from './componentes/PortalInicio.jsx'
+import SistemaPortal from './componentes/SistemaPortal.jsx'
+import { availableSections, resolveSection } from './portal-model.js'
+import { usePortalNavigation } from './usePortalNavigation.js'
+import './portal.css'
 
 import { BIBLIOTECA_3D } from './modelos3d.js'
 const Recintos = lazy(() => import('./componentes/Recintos.jsx'))
@@ -61,84 +66,33 @@ function usarChinche(sesion, modo, seccion) {
 // refleja esa realidad).
 function Principal() {
   const { sesion, datos, modo } = usarDatos()
+  const [requested, navigate] = usePortalNavigation()
   const esInversionista = sesion?.rol === 'inversionista'
-  const [seccion, setSeccion] = useState(new URLSearchParams(location.search).get('seccion') === 'recintos' ? 'recintos' : 'mapa')
+  const secciones = availableSections({role:sesion?.rol,data:datos,models:BIBLIOTECA_3D})
+  const seccion = resolveSection(requested,secciones)
   usarChinche(sesion, modo, seccion)
-  const hayFinanzas = Array.isArray(datos?.Finanzas_Lineas)
 
-  if (esInversionista) {
-    return (
-      <main>
-        <Reporte />
+  // Conservar el contrato: el inversionista sólo recibe la vista Reporte.
+  if (esInversionista) return <><Encabezado /><main><Suspense fallback={<p className="p-6">Abriendo reporte…</p>}><Reporte /></Suspense></main></>
+
+  return <>
+    <Encabezado onInicio={()=>navigate('inicio')} />
+    <PortalShell sections={secciones} section={seccion} onNavigate={navigate} help={<AyudaPantalla seccion={seccion} />}>
+      <main id="portal-contenido" tabIndex="-1" className="portal-content">
+        {seccion === 'inicio' && <PortalInicio sections={secciones} onNavigate={navigate} nombre={sesion?.nombre} />}
+        {seccion === 'mapa' && <Suspense fallback={<p className="p-6">Abriendo área…</p>}><Mapa /></Suspense>}
+        {seccion === 'recintos' && <Suspense fallback={<p className="p-4">Cargando recintos…</p>}><Recintos /></Suspense>}
+        {seccion === 'modelos' && BIBLIOTECA_3D && <Suspense fallback={<p className="p-4">Cargando biblioteca…</p>}><Biblioteca3D /></Suspense>}
+        {seccion === 'finanzas' && <Suspense fallback={<p className="p-6">Abriendo área…</p>}><Financiero /></Suspense>}
+        {seccion === 'reporte' && <Suspense fallback={<p className="p-6">Abriendo área…</p>}><Reporte /></Suspense>}
+        {seccion === 'plan' && <Suspense fallback={<p className="p-6">Abriendo área…</p>}><PlanAccion /></Suspense>}
+        {seccion === 'ayuda' && <Suspense fallback={<p className="p-6">Abriendo área…</p>}><Ayuda /></Suspense>}
+        {['observatorio','seguimiento'].includes(seccion) && <PortalFrame type={seccion} />}
+        {seccion === 'sistema' && <SistemaPortal sections={secciones} onNavigate={navigate} />}
+        {modo === 'demo' && seccion !== 'reporte' && !['observatorio','seguimiento','sistema'].includes(seccion) && <p className="portal-demo-note">Demostración: los datos de negocio son ficticios y no se guardan cambios. El Observatorio y el seguimiento conservan sus fuentes públicas.</p>}
       </main>
-    )
-  }
-
-  const secciones = [
-    ['mapa', 'Mapa', MapIcon],
-    ...(Array.isArray(datos?.Conocimientos) ? [['recintos', 'Recintos', ListChecks]] : []),
-    ...(BIBLIOTECA_3D ? [['modelos', 'Modelos 3D', Box]] : []),
-    ...(hayFinanzas ? [['finanzas', 'Finanzas', BarChart3]] : []),
-    ['reporte', 'Reporte', FileText],
-    ...(puedeEditarRol(sesion?.rol) && Array.isArray(datos?.Metas) ? [['plan', 'Plan', ListChecks]] : []),
-    ['ayuda', 'Ayuda', LifeBuoy],
-  ]
-
-  return (
-    <main className="pb-16 sm:pb-0">
-      {/* Pantalla ancha: pestañas arriba, como siempre */}
-      <nav className="no-imprimir hidden sm:flex max-w-6xl mx-auto px-4 pt-3 gap-1" aria-label="Secciones">
-        {secciones.map(([s, titulo]) => (
-          <button
-            key={s}
-            className={`px-3 py-1.5 text-sm rounded-lg whitespace-nowrap transition-colors duration-micro ease-casa
-              ${seccion === s ? 'bg-superficie text-marfil border border-linea' : 'text-terciario hover:text-arena'}`}
-            onClick={() => setSeccion(s)}
-          >
-            {titulo}
-          </button>
-        ))}
-        <div className="flex-1" />
-        <AyudaPantalla seccion={seccion} />
-      </nav>
-      {/* En teléfono el «?» flota arriba a la derecha de la sección */}
-      <div className="no-imprimir sm:hidden flex justify-end px-3 pt-2 -mb-2"><AyudaPantalla seccion={seccion} /></div>
-
-      {seccion === 'mapa' && <Mapa />}
-      {seccion === 'recintos' && <Suspense fallback={<p className="p-4">Cargando recintos…</p>}><Recintos /></Suspense>}
-      {seccion === 'modelos' && BIBLIOTECA_3D && <Suspense fallback={<p className="p-4">Cargando biblioteca…</p>}><Biblioteca3D /></Suspense>}
-      {seccion === 'finanzas' && <Financiero />}
-      {seccion === 'reporte' && <Reporte />}
-      {seccion === 'plan' && <PlanAccion />}
-      {seccion === 'ayuda' && <Ayuda />}
-      {modo === 'demo' && seccion !== 'reporte' && (
-        <p className="max-w-6xl mx-auto px-4 pb-8 text-terciario text-sm">
-          Estás viendo la demostración: todos los nombres y cifras son
-          inventados. Los datos reales solo se entregan con un código de acceso.
-        </p>
-      )}
-
-      {/* Teléfono: barra de navegación abajo, al alcance del pulgar */}
-      <nav
-        className="no-imprimir sm:hidden fixed inset-x-0 bottom-0 z-40 bg-noche/95 backdrop-blur border-t border-linea flex"
-        style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}
-        aria-label="Secciones"
-      >
-        {secciones.map(([s, titulo, Icono]) => (
-          <button
-            key={s}
-            className={`flex-1 flex flex-col items-center gap-0.5 py-2 transition-colors duration-micro ease-casa
-              ${seccion === s ? 'text-ambar' : 'text-terciario'}`}
-            onClick={() => setSeccion(s)}
-            aria-current={seccion === s ? 'page' : undefined}
-          >
-            <Icono size={20} />
-            <span className="text-[10px] font-medium">{titulo}</span>
-          </button>
-        ))}
-      </nav>
-    </main>
-  )
+    </PortalShell>
+  </>
 }
 
 export default function App() {
@@ -156,10 +110,5 @@ export default function App() {
 
   if (!sesion) return <Acceso />
 
-  return (
-    <>
-      <Encabezado />
-      <Principal />
-    </>
-  )
+  return <Principal />
 }
