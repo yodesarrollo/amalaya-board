@@ -2,22 +2,33 @@
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
+    <script>
+      // This is an already-public standalone tool. Open shared links before
+      // React/auth starts; a saved session must not delay this public drawing.
+      // Login-token links keep their normal, fail-closed authentication flow.
+      var entry = new URL(window.location.href);
+      if (entry.searchParams.get('seccion') === 'capas' && !entry.searchParams.has('t')) {
+        var drawing = new URL('./capas/index.html', entry);
+        drawing.hash = entry.hash;
+        window.location.replace(drawing.href);
+      }
+    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <meta name="theme-color" content="#191411" />
+    <meta name="theme-color" content="#F4F0E6" />
     <meta
       name="description"
       content="Amalaya · Board de control del polígono de actuación concertada en el centro de Hermosillo."
     />
-    <link rel="icon" type="image/svg+xml" href="/amalaya-board/sello.svg" />
+    <link rel="icon" type="image/webp" href="/amalaya-board/brand/logo-amalaya-tierra-sonora.webp" />
     <link rel="manifest" href="/amalaya-board/manifest.webmanifest" />
     <link rel="apple-touch-icon" href="/amalaya-board/apple-touch-icon.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,500;0,600;0,700;0,800;1,600&display=swap" rel="stylesheet" />
     <title>Amalaya · Board</title>
-  </head>
+  <link rel="stylesheet" href="/brand/brand.css" /></head>
   <body>
-    <div id="root"></div>
+    <div id="root"><div id="boot-screen" style="font:16px Arial,sans-serif;max-width:640px;margin:12vh auto;padding:24px;line-height:1.6;color:#294638;background:#f5f1e7;border-radius:12px"><img src="/amalaya-board/brand/logo-amalaya-tierra-sonora.webp" width="150" height="95" alt="Amalaya Tierra Sonora"><p>Abriendo el tablero…</p><p>También puedes abrir directamente el recorrido y las propuestas:</p><a style="display:inline-block;padding:14px 20px;background:#C85025;color:white;border-radius:8px" href="/amalaya-board/explorar.html?ligero=1&amp;integrado=1">Abrir recorrido 3D →</a><p><a href="/amalaya-board/capas/index.html">Abrir el corte por capas →</a></p><noscript><p>Activa JavaScript para usar las herramientas interactivas.</p></noscript></div></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

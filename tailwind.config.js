@@ -33,10 +33,10 @@ export default {
         tinta: '#2B211A',
       },
       fontFamily: {
-        titulo: ['Fraunces', 'Georgia', 'serif'],      // el documento: Reporte, fichas
+        titulo: ['Amalaya Cinzel', 'Georgia', 'serif'],      // el documento: Reporte, fichas
         cartel: ['Anton', 'Impact', 'sans-serif'],      // señalética: secciones, zonas, la cifra estrella
         firma: ['"Pirata One"', 'Georgia', 'serif'],    // SOLO la palabra Amalaya
-        ui: ['Inter', 'system-ui', 'sans-serif'],
+        ui: ['Amalaya Montserrat', 'system-ui', 'sans-serif'],
       },
       transitionTimingFunction: {
         // La curva de la casa: salida suave, sin rebote. Se usa en TODO.

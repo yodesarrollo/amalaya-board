@@ -1,0 +1,48 @@
+{
+  "site": "https://amalayasonora.com/",
+  "title": "Amalaya Tierra Sonora | Distrito Creativo",
+  "palette": {
+    "orange": "#C85025",
+    "charcoal": "#2C2925",
+    "paper": "#FDFAF6",
+    "offwhite": "#F4F0E6",
+    "heroDark": "#110F0D"
+  },
+  "fonts": {
+    "headings": "Cinzel",
+    "body": "Montserrat",
+    "quotes": "Cormorant Garamond"
+  },
+  "assets": [
+    {
+      "path": "logo-amalaya-tierra-sonora.webp",
+      "source": "https://amalayasonora.com/assets/logo-amalaya-tierra-sonora.webp",
+      "bytes": 141934,
+      "sha256": "ef9a0f1170cc9635a6d1cb2427f78b6acbdb1ec8ec9b196d489f0c1e9274390e"
+    },
+    {
+      "path": "logo-amalaya-tierra-sonora-blanco.webp",
+      "source": "https://amalayasonora.com/assets/logo-amalaya-tierra-sonora-blanco.webp",
+      "bytes": 238948,
+      "sha256": "fd2d33d6f2bff0e155e0d1dfd9c229bf7ae85dcb4b0ef29f6872bc944aa50414"
+    },
+    {
+      "path": "hermosillo-oficial.webp",
+      "source": "https://amalayasonora.com/assets/hillo2.webp",
+      "bytes": 427506,
+      "sha256": "7ed096412cd3d9e71f6acf8c5383219ff18fdb7ea55cd0efb92699aba8a9dc30"
+    },
+    {
+      "path": "cinzel-latin.woff2",
+      "source": "https://fonts.gstatic.com/s/cinzel/v26/8vIJ7ww63mVu7gt79mT7.woff2",
+      "bytes": 25904,
+      "sha256": "09941fb1c169c38fd414536b37690057fc01b3117a5c63dd6571186540c8f370"
+    },
+    {
+      "path": "montserrat-latin.woff2",
+      "source": "https://fonts.gstatic.com/s/montserrat/v31/JTUSjIg1_i6t8kCHKm459Wlhyw.woff2",
+      "bytes": 37956,
+      "sha256": "06b16db7a969135d48d38c49183be7fb88d4452e2a3011957c7851941f4e4879"
+    }
+  ]
+}

@@ -1,6 +1,7 @@
-import {THEMES,LAYERS,sequence,decode,encode} from './model.js'
-import {scene} from './scene.js'
+import {THEMES,LAYERS,sequence,decode,encode} from './model.js?v=marca-3'
+import {scene} from './scene.js?v=marca-3'
 const $=s=>document.querySelector(s)
+if(new URLSearchParams(location.search).get('integrado')==='1')document.body.classList.add('capas-integrado')
 let state=decode(location.hash),selected=new Set(state.layers),comparing=false,step=0
 $('#scene').innerHTML=scene()
 $('#themes').innerHTML=THEMES.map(t=>`<button data-theme="${t.id}" aria-pressed="false">${t.label}</button>`).join('')+'<button data-theme="todo" aria-pressed="false">Todo el proyecto</button>'
@@ -54,7 +55,7 @@ $('#export').onclick=async()=>{
   for(const im of svg.querySelectorAll('image')){const href=im.getAttribute('href');if(!embedded.has(href)){const response=await fetch(href);if(!response.ok)throw new Error('asset');const blob=await response.blob();embedded.set(href,await new Promise((resolve,reject)=>{const r=new FileReader();r.onload=()=>resolve(r.result);r.onerror=reject;r.readAsDataURL(blob)}))}im.setAttribute('href',embedded.get(href))}
   svg.setAttribute('width','1672');svg.setAttribute('height','941');
   const blob=new Blob([new XMLSerializer().serializeToString(svg)],{type:'image/svg+xml'}),url=URL.createObjectURL(blob),image=new Image()
-  try{await new Promise((resolve,reject)=>{image.onload=resolve;image.onerror=reject;image.src=url});const canvas=document.createElement('canvas');canvas.width=1672;canvas.height=1061;const ctx=canvas.getContext('2d');ctx.fillStyle='#f5f1e7';ctx.fillRect(0,0,1672,1061);ctx.drawImage(image,0,0,1672,941);ctx.fillStyle='#294638';ctx.font='25px Arial';ctx.fillText('Amalaya · '+(state.background==='foto'?'Foto de referencia':comparing?'Corte base':'Corte transversal por capas'),32,981);ctx.font='18px Arial';ctx.fillText('Sección transversal · Proporciones aproximadas. Elementos en proyección; sin escala.',32,1018);const png=await new Promise(resolve=>canvas.toBlob(resolve,'image/png'));if(!png)throw new Error('png');const download=URL.createObjectURL(png),a=document.createElement('a');a.href=download;a.download='amalaya-capas.png';a.click();setTimeout(()=>URL.revokeObjectURL(download),10000);$('#notice').textContent='Lámina descargada con las capas visibles.'}finally{URL.revokeObjectURL(url)}
+  try{await new Promise((resolve,reject)=>{image.onload=resolve;image.onerror=reject;image.src=url});const canvas=document.createElement('canvas');canvas.width=1672;canvas.height=1061;const ctx=canvas.getContext('2d');ctx.fillStyle='#FDFAF6';ctx.fillRect(0,0,1672,1061);ctx.drawImage(image,0,0,1672,941);ctx.fillStyle='#2C2925';ctx.font='25px Arial';ctx.fillText('Amalaya · '+(state.background==='foto'?'Foto de referencia':comparing?'Corte base':'Corte transversal por capas'),32,981);ctx.font='18px Arial';ctx.fillText('Sección transversal · Proporciones aproximadas. Elementos en proyección; sin escala.',32,1018);const png=await new Promise(resolve=>canvas.toBlob(resolve,'image/png'));if(!png)throw new Error('png');const download=URL.createObjectURL(png),a=document.createElement('a');a.href=download;a.download='amalaya-capas.png';a.click();setTimeout(()=>URL.revokeObjectURL(download),10000);$('#notice').textContent='Lámina descargada con las capas visibles.'}finally{URL.revokeObjectURL(url)}
  }catch{$('#notice').textContent='No se pudo descargar la lámina. Puedes usar Imprimir o compartir esta vista.'}finally{button.disabled=false}
 }
 if(window.innerWidth<701)openGroup()

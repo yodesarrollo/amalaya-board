@@ -28,3 +28,11 @@ Prompts finales resumidos: mantener exactamente el corte transversal aprobado y 
 ## Registro para el Buzón
 
 Se reemplaza la composición en `public/capas/scene.js`, se adapta la rotulación y las posiciones de apoyo en `app.js`, y se actualiza la explicación del alcance. No cambia el modelo 3D, fuentes, identificadores, evidencias ni datos de negocio. Comprobación requerida: 17 interruptores, estados de piso y apoyos, foto sin capas, comparación, secuencias, PNG, celular y acceso desde el portal. Verificadores existentes y publicación real antes de cerrar.
+
+## Corrección de acceso público
+
+Reproducción del fallo reportado: en un navegador aislado, con sesión sintética guardada y la llamada al servidor de acceso interceptada sin respuesta, `?seccion=capas` mostraba cuerpo sin texto y cero iframes después de cinco segundos. El dibujo directo sí cargaba. La prueba no envió credenciales ni modificó sesiones reales.
+
+La entrada compartida `?seccion=capas` ahora dirige a `capas/index.html` antes de arrancar React o validar la sesión. Es la misma herramienta pública existente. Las ligas con `t` conservan el flujo de autenticación original; no se trasladan tokens al dibujo. La navegación desde un portal ya abierto sigue usando su marco y directorio. El regreso al tablero se corrige a `../?seccion=mapa` (el `../..` anterior salía del proyecto).
+
+Además, el HTML del corte contiene una imagen inicial visible si los controles no cargan, con mensaje de recuperación. La entrada del portal conserva un enlace público legible si el módulo principal falla. Se versionan los módulos y estilos del corte para evitar mezclas con recursos anteriores en caché. Registro para el Buzón: corrección de acceso, sin cambios a permisos ni a la revalidación de datos privados.

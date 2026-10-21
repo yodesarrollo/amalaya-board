@@ -2,7 +2,7 @@ import { useEffect, useRef, lazy, Suspense } from 'react'
 import { usarDatos } from './datos.jsx'
 import Acceso from './componentes/Acceso.jsx'
 import Encabezado from './componentes/Encabezado.jsx'
-import LineaAmalaya from './componentes/LineaAmalaya.jsx'
+import InicioPendiente from './componentes/InicioPendiente.jsx'
 const Mapa = lazy(() => import('./componentes/Mapa.jsx'))
 const Financiero = lazy(() => import('./componentes/Financiero.jsx'))
 const Reporte = lazy(() => import('./componentes/Reporte.jsx'))
@@ -18,6 +18,7 @@ import SistemaAmalaya from './componentes/SistemaAmalaya.jsx'
 import { availableSections, resolveSection } from './portal-model.js'
 import { usePortalNavigation } from './usePortalNavigation.js'
 import './portal.css'
+import './brand.css'
 
 import { BIBLIOTECA_3D } from './modelos3d.js'
 const Recintos = lazy(() => import('./componentes/Recintos.jsx'))
@@ -96,15 +97,7 @@ function Principal() {
 export default function App() {
   const { sesion, arrancando } = usarDatos()
 
-  if (arrancando) {
-    return (
-      <div className="min-h-dvh flex items-center justify-center px-10">
-        <div className="w-full max-w-xs">
-          <LineaAmalaya cargando />
-        </div>
-      </div>
-    )
-  }
+  if (arrancando) return <InicioPendiente />
 
   if (!sesion) return <Acceso />
 
