@@ -16,8 +16,8 @@ for(let i=0;i<meta.triangles;i++){
 }
 assert.equal(meta.worldSha256,createHash('sha256').update(await readFile('public/levantamiento/world.js')).digest('hex'));
 assert((await readFile('public/seguimiento-ligero.json')).length<100000,'resumen bajo 100 KB');
-// D1-05 adds nine facade openings and roof rails; small ornaments stay in the
-// full viewer. Retain 630 KB raw and allow 5 KB transfer headroom for this building.
-assert(bytes.length<630000,'geometría completa bajo 630 KB');
-assert(gzipSync(bytes).length<205000,'geometría comprimida bajo 205 KB');
+// D1-06 adds two rows of windows and an actual perforated east screen.
+// Keep this bounded at 750 KB raw / 240 KB gzip (observed 715,520 / 232,471).
+assert(bytes.length<750000,'geometría completa bajo 750 KB');
+assert(gzipSync(bytes).length<240000,'geometría comprimida bajo 240 KB');
 console.log('Vista ligera: todos los IDs y estados conservados; geometría válida y presupuestos de carga cumplidos.');

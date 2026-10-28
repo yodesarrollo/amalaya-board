@@ -109,3 +109,21 @@ CUADRA_DETAILS.push({block:'C23',evidence:'recorrido-R002-P01-P02',buildings:[],
   note:'76 / D1-05: aproximación visual exterior de un nivel, frente norte con cuatro ventanas, puerta de madera, pilastras, cornisa y balaustrada; dos ventanas en cada lateral visible. Huella original y cubierta clara conservadas. Altura de cuerpo 5.15 m y remate hasta 6.20 m son proporciones nominales sin medición; incertidumbre de huella heredada ±3 m. Reverso y cubierta parcialmente ocultos sin detalles inventados. Jardín y cerco oriental externos no se absorben al edificio.'
  }]});
 }
+
+
+// 77 / D1-06: school wing observed from Rosales and Pedro Moreno, 2023/2026.
+{
+ const steel='#a9b2ae',brick='#b96d59',len=35.795;
+ const bands=[{y:.25,h:.42,d:.08,color:'#b2a18a'},{y:3.02,h:.20,d:.24,color:steel},{y:6.10,h:.20,d:.28,color:steel}];
+ const northWindows=[2.6,7.7,12.8,17.9,23,28.1,33.2].flatMap(x=>[.82,3.85].map(b=>({x,w:4.25,h:1.65,b,rect:true,frameColor:steel,fillColor:'#53675d'})));
+ CUADRA_DETAILS.push({block:'C13',evidence:'D1-06/20261028-seis-pasos',buildings:[{
+  id:'D1-06',height:6.2,color:brick,roofColor:'#b47768',uncertainty:3,keepDetails:false,
+  sources:['evidence/D1-06/d106-este-202601.jpg','evidence/D1-06/d106-oeste-202312.jpg','evidence/D1-06/d106-norte-202312.jpg','ajuste-visual/C13.jpg'],
+  facades:[
+   {edge:0,plain:true,bays:northWindows,bands:[...bands,{y:3.3,h:.52,d:.12,color:'#d8d8cc'}],fins:[.12,len/2,len-.12].map(x=>({x,b:.3,h:5.8,w:.18,d:.16,color:steel}))},
+   {edge:1,plain:true,reverseFins:true,bands,bays:[{x:4.484,w:8.4,h:2.75,b:3.22,rect:true,noBars:true,frameColor:steel,fillColor:'#414943',screen:{cols:32,rows:6,color:'#cc7b60'}}],fins:[.12,.897,6.726,8.848].map(x=>({x,b:3.16,h:2.94,w:.16,d:.16,color:steel}))},
+   {edge:3,plain:true,bands,bays:[],fins:[.12,9.346].map(x=>({x,b:.3,h:5.8,w:.18,d:.16,color:steel}))}
+  ],
+  note:'77/D1-06: ala de dos niveles del conjunto escolar observado; celosía rojiza perforada al este, testero rojo ciego con bandas grises al oeste y bandas de ventanas en el norte. Cuatro anclajes y altura nominal6.2m conservados, sin cotas medidas. Módulos de ventana/celosía aproximados; lado sur y detalles de cubierta ocultos sin inventar. Accesos, cerco y jardín externos quedan fuera de la huella.'
+ }]});
+}

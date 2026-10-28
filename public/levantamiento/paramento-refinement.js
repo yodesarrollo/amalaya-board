@@ -1,7 +1,7 @@
 import {FRONT_BUILDINGS,ROUND2_BUILDINGS,HEIGHT_REVIEWS,COURTYARD_REVIEWS,JOIN_REVIEWS,PARAMENTO_VERSION} from './paramento-data.js?v=5cc1cd6d1d7a';
 import {PARAMENTO_SIDEWALKS} from './paramento-sidewalks.js?v=8ee470fed0ad';
 import {footprintColliderCells} from './isc58-refinement.js?v=76eca0365d35';
-import {CUADRA_DETAILS} from './cuadra-detail-data.js?v=a56d6801707b';
+import {CUADRA_DETAILS} from './cuadra-detail-data.js?v=92fef0b5a4a6';
 import {applyObregonApprox} from './obregon-aproximado-data.js?v=9a20c956e9de';
 
 // Uses the scene's own constructors, including in the preserved compiled viewer.
@@ -42,6 +42,17 @@ export function applyParamento(world,colliders,R){
     block(g,bay.x,bay.b+1.25,-.98,bay.w*.68,1.45,.055,'#465151','Paramento · cierre de ventana del pórtico');
    }else if(!bay.open){const fill=mesh(extrude(opening(bay),.045),bay.fillColor||(bay.blind?color:bay.wood?'#59472f':'#262e32'),g,'Paramento · cierre retranqueado');fill.position.z=-.17;}
    if(bay.rect&&bay.frameColor){const trim=shape([[bay.x-bay.w/2-.10,Math.max(0,bay.b-.1)],[bay.x+bay.w/2+.10,Math.max(0,bay.b-.1)],[bay.x+bay.w/2+.10,bay.b+bay.h+.1],[bay.x-bay.w/2-.10,bay.b+bay.h+.1]]);trim.holes.push(opening(bay));const frame=mesh(extrude(trim,.085),bay.frameColor,g,'Paramento · marco rectangular');frame.position.z=.005;}
+   if(bay.screen){
+    // Perforated terracotta screen observed on D1-06 east, January 2026.
+    // Its holes are actual geometry; counts/proportions are visual approximations.
+    const panel=opening(bay),cols=bay.screen.cols,rows=bay.screen.rows;
+    const cw=bay.w/cols,ch=bay.h/rows;
+    for(let row=0;row<rows;row++)for(let col=0;col<cols;col++){
+     const x=bay.x-bay.w/2+(col+.5)*cw,y=bay.b+(row+.5)*ch;
+     panel.holes.push(shape([[x,y-ch*.37],[x+cw*.25,y],[x,y+ch*.37],[x-cw*.25,y]]));
+    }
+    const screen=mesh(extrude(panel,.10),bay.screen.color,g,'Paramento · muro celosía perforada');screen.position.z=-.03;
+   }
    if(bay.lintel){block(g,bay.x,bay.b+bay.h+.20,.05,bay.w+.52,.18,.22,bay.frameColor,'Paramento · banda de fachada dintel');block(g,bay.x,bay.b+bay.h+.33,.04,bay.w+.65,.08,.28,bay.frameColor,'Paramento · banda de fachada remate');}
    if(bay.panels)for(const dx of [-.55,.55])for(const y of [.65,1.75,2.85])block(g,bay.x+dx,y,-.10,.86,.86,.05,'#776345','Paramento · cierre panel de madera');
    if(bay.shutter)for(let y=bay.b+.16;y<bay.b+bay.h-.08;y+=.16)block(g,bay.x,y,-.10,bay.w,.018,.025,'#bdc1bb','Paramento · lama de portón');
@@ -180,7 +191,7 @@ export function applyParamento(world,colliders,R){
    const ownerName=owner.name,plan=p.points?{points:p.points,holes:[]}:owner.userData.fittedPlan||{points:ring(owner.geometry.parameters.shapes),holes:owner.geometry.parameters.shapes.holes.map(ring)};
    if(plan.holes?.length)throw Error('Cuadra: courtyard detail requires explicit hole support '+p.id);
    const n=plan.points.length,reverse=plan.points.reduce((a,p,i)=>a+p[0]*plan.points[(i+1)%n][1]-plan.points[(i+1)%n][0]*p[1],0)>0,points=reverse?[plan.points[0],...plan.points.slice(1).reverse()]:plan.points;
-   const facades=p.facades.map(f=>{const a=plan.points[f.edge],b=plan.points[(f.edge+1)%n],length=Math.hypot(b[0]-a[0],b[1]-a[1]);return {...f,edge:reverse?n-1-f.edge:f.edge,clipBands:true,bays:(f.bays||[]).map(v=>({...v,fullBars:!!v.rect,barColor:p.id==='B2-01'||p.id==='B2-02'?'#bcaa62':undefined,x:reverse?length-v.x:v.x}))}});
+   const facades=p.facades.map(f=>{const a=plan.points[f.edge],b=plan.points[(f.edge+1)%n],length=Math.hypot(b[0]-a[0],b[1]-a[1]);return {...f,edge:reverse?n-1-f.edge:f.edge,clipBands:true,fins:f.reverseFins&&reverse?(f.fins||[]).map(v=>({...v,x:length-v.x})):f.fins,bays:(f.bays||[]).map(v=>({...v,fullBars:!!v.rect,barColor:p.id==='B2-01'||p.id==='B2-02'?'#bcaa62':undefined,x:reverse?length-v.x:v.x}))}});
    removeOwner(prefix,p.id);addFront({...p,part:'cuadra-'+p.id,owner:ownerName,points,facades,evidence:p.sources});
    const added=world.getObjectByName(ownerName);added.userData.fittedPlan=plan;added.userData.blockReview=packet.block;
    entry.batches.push({id:p.id,...compact(added,!!p.keepDetails)});entry.buildings.push({id:p.id,height:p.height,uncertainty:p.uncertainty,sources:p.sources,note:p.note});

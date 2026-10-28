@@ -80,6 +80,9 @@ for(const file of ['28-avance-punto10.png','29-equipamiento-planta.png','30-bola
 const d105Files=new Set(['20261028-seis-pasos.json', 'd105-esquina-noroeste-202312.jpg', 'd105-norte-202312.jpg', 'd105-oeste-202312.jpg', 'd105-oeste-norte-202312.jpg', 'd105-este-202601.jpg', 'antes-norte-3d.jpg', 'antes-noroeste-3d.jpg', 'antes-aerea-3d.jpg', 'despues-norte-3d.jpg', 'despues-noroeste-3d.jpg', 'despues-aerea-3d.jpg']);
 const d105Manifest=JSON.parse(await readFile(root+'/evidence/D1-05/20261028-seis-pasos.json'));
 for(const [name,hash] of Object.entries(d105Manifest.files)){assert(d105Files.has(name));assert.equal(sha256(await readFile(root+'/evidence/D1-05/'+name)),hash,'76: evidencia debe conservar su hash');}
+const d106Files=new Set(['20261028-criterios.json', '20261028-seis-pasos.json', 'd106-norte-202312.jpg', 'despues-noroeste-3d.jpg', 'd106-este-202601.jpg', 'antes-aerea-3d.jpg', 'antes-noroeste-3d.jpg', 'd106-oeste-202312.jpg', 'despues-aerea-3d.jpg', 'despues-este-3d.jpg', 'antes-este-3d.jpg']);
+const d106Manifest=JSON.parse(await readFile(root+'/evidence/D1-06/20261028-seis-pasos.json'));
+for(const [name,hash] of Object.entries(d106Manifest.files)){assert(d106Files.has(name));assert.equal(sha256(await readFile(root+'/evidence/D1-06/'+name)),hash,'77: conservar hashes de evidencia');}
 async function check(dir){
   for(const item of await readdir(dir,{withFileTypes:true})){
     const path=`${dir}/${item.name}`
@@ -98,7 +101,7 @@ async function check(dir){
     }
     if(['/evidence/CH-GA-OXXO/','/evidence/CH-YG-BIB/','/evidence/SER-BLEY/','/evidence/SER-HSBC/'].some(p=>path.includes(p)))assert(roundProgressFiles.has(item.name),'Unexpected round evidence: '+path)
     if(['/evidence/EB-NW/','/evidence/EB-NE/','/evidence/EB-SE/','/evidence/CH-YG-BBVA/'].some(p=>path.includes(p)))assert(roundProgressFiles.has(item.name)||/^(?:sequence\.json|plan-record\.json|01-planta-geometria\.png)$/.test(item.name),'Evidencia fuera del alcance EB-NW: '+path)
-    if(/\/evidence\/(?:[ABCD][123]-\d{2}|OB-21|SER-SANT|PL-GA)\//.test(path))assert(roundProgressFiles.has(item.name)||streetBatch50Files.has(path)||(dir===root+'/evidence/D1-05'&&d105Files.has(item.name)),'Unexpected sheet evidence: '+path)
+    if(/\/evidence\/(?:[ABCD][123]-\d{2}|OB-21|SER-SANT|PL-GA)\//.test(path))assert(roundProgressFiles.has(item.name)||streetBatch50Files.has(path)||(dir===root+'/evidence/D1-05'&&d105Files.has(item.name))||(dir===root+'/evidence/D1-06'&&d106Files.has(item.name)),'Unexpected sheet evidence: '+path)
     if(path.includes('/evidence/EB-SW/'))assert(roundProgressFiles.has(item.name)||/^(?:\d{2}-(?:general|plan|block|pedestrian|south|north)\.png|manifest\.json|sequence\.json|survey\.json)$/.test(item.name),`Evidencia fuera del alcance EB-SW: ${path}`)
     if(path.includes('/evidence/ISC-58/'))assert(roundProgressFiles.has(item.name)||isc58EvidenceFiles.has(item.name),`Evidencia fuera del alcance ISC-58: ${path}`)
     if(path.includes('/evidence/OB-01/'))assert(roundProgressFiles.has(item.name)||ob01EvidenceFiles.has(item.name),`Evidencia fuera del alcance OB-01: ${path}`)
