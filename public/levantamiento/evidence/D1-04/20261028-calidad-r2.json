@@ -1,0 +1,84 @@
+{
+  "building": "D1-04",
+  "visibleNumber": 80,
+  "revision": "calidad-r2",
+  "baseCommit": "ea336ee8f6710cd442ef953805aa982d76d097ad",
+  "worldSha256": "46d65642e6bed5251cf0e17ec657a76ebf6b38e18930966e3f202a06aa3dce4a",
+  "sources": [
+    {
+      "file": "80-oeste-202601.jpg",
+      "date": "2026-01",
+      "side": "oeste",
+      "pano": "Dk0LrJJWuF3FSSzwMSBitg",
+      "camera": [
+        29.0744058,
+        -110.9566431
+      ],
+      "heading": 90
+    },
+    {
+      "file": "80-este-202312.jpg",
+      "date": "2023-12",
+      "side": "este",
+      "pano": "az4pViLi2LFcexpQeybQeQ",
+      "camera": [
+        29.074462,
+        -110.9560097
+      ],
+      "heading": 270
+    },
+    {
+      "file": "80-norte-202405.jpg",
+      "date": "2024-05",
+      "side": "norte",
+      "pano": "ILLHrxA2spQqpSfayjYRrw",
+      "camera": [
+        29.0746217,
+        -110.9565949
+      ],
+      "heading": 150
+    }
+  ],
+  "cameras": [
+    [
+      "80-calle",
+      29.0746217,
+      -110.9565949,
+      150,
+      75,
+      0,
+      2.5
+    ],
+    [
+      "80-noroeste",
+      29.074690935105906,
+      -110.95678300123457,
+      145,
+      75,
+      -12,
+      14
+    ],
+    [
+      "80-este",
+      29.074402516899507,
+      -110.95608341275721,
+      270,
+      75,
+      -8,
+      13
+    ]
+  ],
+  "comparison": "semantic; panorama poses approximate, not calibrated",
+  "neighborsBoundsUnchanged": true,
+  "otherCollidersUnchanged": true,
+  "scope": "Exterior visual aproximado; calidad revisada individualmente. No levantamiento métrico.",
+  "limits": [
+    "Nueve vanos orientales estimados: fotografía obstruida, conteo no certificado",
+    "Planta baja oriental y cubierta no observadas conservadas neutras"
+  ],
+  "files": {
+    "r2-80-calle-3d.jpg": "a0b0d82618bfe68a7d49b660751584dcc5945cad3e8e77ddf9a030550372c1dc",
+    "r2-80-noroeste-3d.jpg": "97823e6bcd39a2c8bd453c2d46183b80c6d7b982c035612e6e810a2b384f0795",
+    "r2-80-este-3d.jpg": "2d43013770edca968ec6282c148c1872b34c92bcdc850c30ee83211b60ac0a46"
+  }
+}

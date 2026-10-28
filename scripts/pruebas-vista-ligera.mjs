@@ -16,8 +16,8 @@ for(let i=0;i<meta.triangles;i++){
 }
 assert.equal(meta.worldSha256,createHash('sha256').update(await readFile('public/levantamiento/world.js')).digest('hex'));
 assert((await readFile('public/seguimiento-ligero.json')).length<100000,'resumen bajo 100 KB');
-// Buildings79–81 add glazing, canopy supports and open-lot fencing.
-// Bounded at 810 KB raw / 270 KB gzip (observed 795,740 / 258,454).
-assert(bytes.length<810000,'geometría completa bajo 810 KB');
-assert(gzipSync(bytes).length<270000,'geometría comprimida bajo 270 KB');
+// Revision quality79–81 retains curved glazing, deep reveals and steel/diamond mesh.
+// Bounded at 910 KB raw / 300 KB gzip; compare the measured release size.
+assert(bytes.length<910000,'geometría completa bajo 910 KB');
+assert(gzipSync(bytes).length<300000,'geometría comprimida bajo 300 KB');
 console.log('Vista ligera: todos los IDs y estados conservados; geometría válida y presupuestos de carga cumplidos.');

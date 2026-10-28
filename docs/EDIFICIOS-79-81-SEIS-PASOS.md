@@ -1,5 +1,7 @@
 # Edificios 79, 80 y 81 · tanda conjunta
 
+Checkpoint inicial conservado. La revisión posterior de calidad y sus correcciones se documentan en [Proceso de calidad individual](PROCESO-CALIDAD-EDIFICIO-3D.md) y en los manifiestos `20261028-calidad-r2.json` por edificio. El cierre técnico inicial no sustituye esa revisión visual.
+
 Entrega exterior visual aproximada autorizada en el tablero original de Amalaya. Revisión: 28 de octubre de 2026, Hermosillo. Base145dc2e. No representa un levantamiento métrico ni acredita interiores o límites de propiedad.
 
 | Paso | 79 · D1-03 · C12 | 80 · D1-04 · C12 | 81 · C1-12 · C06 |

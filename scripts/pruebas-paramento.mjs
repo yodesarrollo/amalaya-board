@@ -76,6 +76,11 @@ assert(!colliders.some(c=>c.buildingId==='D1-07'&&c.containsPoint(new R.Vector3(
 assert(colliders.some(c=>c.buildingId==='D1-07'&&c.containsPoint(new R.Vector3(-210,1.6,225))),'78: no asumir paso libre bajo cubierta no inspeccionada');
 // Batch79–81: preserve the fitted outline, open parking and actual canopy supports.
 assert.deepEqual(world.getObjectByName('Planta física · D1-03').userData.fittedPlan.points,[[-167.58502,147.70856],[-151.60345,134.72798],[-144.72531,132.47049],[-141.69084,145.45106],[-156.05402,155.89197],[-164.34825,152.78792]],'79 conserva ajuste aéreo anterior');
+// Rounded visual outline must stay within the reference hull and preserve its winding.
+const curve79=world.getObjectByName('Planta física · D1-03').userData;
+assert(curve79.visualOutline.length>curve79.fittedPlan.points.length,'79 has actual rounded geometry');
+for(const [x,z] of curve79.visualOutline){const signs=curve79.fittedPlan.points.map((a,i)=>{const b=curve79.fittedPlan.points[(i+1)%6];return (b[0]-a[0])*(z-a[1])-(b[1]-a[1])*(x-a[0])});assert(signs.every(v=>v>=-1e-6)||signs.every(v=>v<=1e-6),'79 visual curve stays inside original envelope');}
+assert(!colliders.some(c=>c.buildingId==='C1-12'&&c.containsPoint(new R.Vector3(-123,1.6,96))),'81 south gateway remains open');
 for(const id of ['D1-04','C1-12'])assert.deepEqual(world.getObjectByName('Planta física · '+id).userData.fittedPlan.points,SHEET_PLANS.find(p=>p.id===id).points);
 for(const pt of [[-123,1.6,91],[-124,1.6,86.5]])assert(!colliders.some(c=>c.buildingId==='C1-12'&&c.containsPoint(new R.Vector3(...pt))),'81 permite patio y espacio bajo cubierta');
 assert(colliders.some(c=>c.buildingId==='C1-12'&&c.containsPoint(new R.Vector3(-124,1.6,80.5))),'81 conserva cuerpo sólido al callejón');

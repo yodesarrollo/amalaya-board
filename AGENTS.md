@@ -1,5 +1,7 @@
 # Instrucciones para agentes en Amalaya
 
+Para terminar o corregir edificios, aplicar [el proceso de calidad individual](docs/PROCESO-CALIDAD-EDIFICIO-3D.md). Revisar uno por uno con evidencia de calle, esquina y aérea; las pruebas técnicas no sustituyen la revisión visual.
+
 Leer [revisión con Jev y método convencional](docs/JEV-REVISION-OPERATIVA.md) al revisar fotografía/modelo, banquetas, evidencia o criterios de cierre. Conservar las guías y el orden vigente del levantamiento; esta guía no cambia su estado.
 
 - Trabajar con un caso real identificado y el mundo vigente. No sustituir una revisión real por defectos sintéticos ni comparar lados distintos como si fueran el mismo frente.
