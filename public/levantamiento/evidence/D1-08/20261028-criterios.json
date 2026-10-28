@@ -1,0 +1,13 @@
+{
+  "id": "D1-08",
+  "number": 83,
+  "scope": "Exterior visual aproximado; mantener registro y anclajes originales; subdivisiones estimadas",
+  "steps": [
+    "Identidad y numero verificados",
+    "Planta y áreas abiertas cotejadas con aérea",
+    "Volúmenes/cubiertas diferenciados sin cotas certificadas",
+    "Fachadas visibles; ocultas sin inventar vanos",
+    "Vecinos76y77 y colisiones ajenas conservados; calles libres",
+    "Antes/después misma cámara, pruebas y publicación conjunta"
+  ]
+}

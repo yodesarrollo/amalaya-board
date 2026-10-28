@@ -127,3 +127,43 @@ CUADRA_DETAILS.push({block:'C23',evidence:'recorrido-R002-P01-P02',buildings:[],
   note:'77/D1-06: ala de dos niveles del conjunto escolar observado; celosía rojiza perforada al este, testero rojo ciego con bandas grises al oeste y bandas de ventanas en el norte. Cuatro anclajes y altura nominal6.2m conservados, sin cotas medidas. Módulos de ventana/celosía aproximados; lado sur y detalles de cubierta ocultos sin inventar. Accesos, cerco y jardín externos quedan fuera de la huella.'
  }]});
 }
+
+
+// Tanda78+83: internal divisions remain visually estimated, not property lines.
+{
+ const q=[[-229.189,198.021],[-204.943,194.640],[-198.947,231.826],[-223.975,234.686]];
+ const mix=(a,b,t)=>a.map((v,i)=>v+(b[i]-v)*t);
+ const at=(u,v)=>mix(mix(q[0],q[1],u),mix(q[3],q[2],u),v);
+ const rect=(u0,v0,u1,v1)=>[at(u0,v0),at(u0,v1),at(u1,v1),at(u1,v0)];
+ CUADRA_DETAILS.push({block:'C13',evidence:'tanda78-83-20261028',buildings:[{
+  id:'D1-07',height:4,color:'#deded4',roofColor:'#e7e8df',uncertainty:3,facades:[],
+  sources:['ajuste-visual/C13.jpg','evidence/D1-07/d107-este-202601.jpg','evidence/D1-07/d107-oeste-202312.jpg'],
+  sections:[
+   {part:'78-servicio-oeste',points:rect(0,0,.32,.45),height:3.1,gableRise:.6,color:'#b96f60',roofColor:'#a8b4af',facades:[
+    {edge:0,plain:true,gableRise:.6,bays:[{x:1.3,w:1.25,h:2.6,b:.05,rect:true,noBars:true,shutter:true,fillColor:'#aab8bd',frameColor:'#dddcd2'}],bands:[{y:.12,h:.22,d:.08,color:'#dfdfd4'}]},
+    {edge:2,plain:true,gableRise:.6,bays:[]}]},
+   {part:'78-cuerpo-gris-norte',points:rect(.32,0,1,.4),height:3.5,color:'#d9d9ce',roofColor:'#a9b9b0',facades:[]},
+   {part:'78-cubierta-clara-sur',points:rect(.32,.4,1,1),height:4,color:'#e2e3d8',roofColor:'#edeee5',facades:[]}
+  ],
+  note:'78/D1-07: huella envolvente original; cuerpo bajo occidental con testero rojo y cubierta a dos aguas, cubierta gris norte y clara sur diferenciadas. Sector suroeste abierto en aérea, liberado de sólido y colisión. Subdivisiones y alturas3.1/3.5/4m aproximadas. Cerramientos de cuerpos interiores no visibles conservados neutros, sin inferir puertas ni acceso bajo cubierta. Fecha aérea desconocida.'
+ }]});
+}
+{
+ const a=[-134.24463299126478,115.06361501656413],b=[-114.997,110.388],c=[-110.565,125.210],d=[-120.994,129.110],e=[-132.47415224303037,133.94493285312078];
+ const mix=(a,b,t)=>a.map((v,i)=>v+(b[i]-v)*t),w=mix(a,e,.4),x=mix(b,c,.4),L=Math.hypot(b[0]-a[0],b[1]-a[1]);
+ const trim='#946e50',cream='#e2dace';
+ const arched=(x,door=false)=>({x,w:1.85,h:3.55,b:.08,door,archFrameColor:trim,fillColor:'#333b3b',...(door?{}:{infillHeight:1.7})});
+ const bands=[{y:.4,h:.8,d:.08,color:trim},{y:.88,h:.1,d:.15,color:trim},{y:5.1,h:.14,d:.18,color:trim},{y:5.32,h:.18,d:.26,color:trim},{y:5.47,h:.10,d:.32,color:trim}];
+ CUADRA_DETAILS.push({block:'C10',evidence:'tanda78-83-20261028',buildings:[{
+  id:'D1-08',height:5.5,color:cream,roofColor:'#c5bba6',uncertainty:3,keepDetails:true,facades:[],
+  sources:['ajuste-visual/C10.jpg','evidence/D1-08/d108-esquina-202503.jpg','evidence/D1-08/d108-oeste-202503.jpg','evidence/D1-08/d108-norte-202312.jpg'],
+  sections:[
+   {part:'83-esquina-arcos',points:[a,w,x,b],height:5.5,color:cream,roofColor:'#c8bfae',facades:[
+    {edge:3,plain:true,bands,pediment:{x:L-2,w:3.2,h:.6,color:trim},bays:[arched(L-2,true),arched(L-6.2),arched(L-10.4),arched(L-14.7),{x:1.5,w:1.5,h:.85,b:2.1,rect:true,frameColor:trim}]},
+    {edge:0,plain:true,bands,bays:[arched(2.1),arched(5.6)]}]},
+   {part:'83-frente-naranja',points:[w,e,d,c,x],height:5.1,color:'#cf7955',roofColor:'#c0b39f',facades:[
+    {edge:0,plain:true,bays:[{x:2.1,w:2.3,h:1.65,b:.85,rect:true,frameColor:'#b66b4d'},{x:5.7,w:1.45,h:2.5,b:.05,rect:true,door:true,noBars:true,fillColor:'#38322b'},{x:9.1,w:2.15,h:1.65,b:.85,rect:true,frameColor:'#b66b4d'}],bands:[{y:.35,h:.7,d:.06,color:'#c26e50'}]}]}
+  ],
+  note:'83/D1-08 es un registro volumétrico provisional que abarca dos frentes observables: esquina crema con arcos parcialmente tapiados, acceso y frontón; frente naranja contiguo con puerta y dos ventanas. No equivale a una sola propiedad. Contorno ajustado a vialidad conservado (cinco vértices); división interior40% aproximada. Alturas nominales5.5/5.1m y remate6.2m sin medición. Fondos ocultos sin vanos inventados.'
+ }]});
+}
