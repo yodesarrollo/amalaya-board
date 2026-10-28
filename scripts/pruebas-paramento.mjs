@@ -1,4 +1,10 @@
 import assert from 'node:assert/strict';
+import {roundedFront} from '../public/levantamiento/paramento-refinement.js';
+// A curved outline must not bring a recessed backing in front of its grille.
+const recessed=roundedFront([[0,0],[12,0],[12,8],[0,8]],[{edge:0,bays:[{x:6,w:8,h:3,b:.7,rect:true,recess:.65}]}],{0:1});
+const recessedBays=recessed.facades.flatMap(f=>f.bays);
+assert(recessedBays.length>0);
+assert(recessedBays.every(b=>b.recess===.65),'rounded frontage preserves explicit recess behind grille');
 import {readFile,writeFile} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
 import {removeSheetHook,refineSheet,sheetHash,SHEET_BASE} from './preparar-lamina.mjs';

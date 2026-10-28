@@ -83,3 +83,5 @@ El comando exporta triángulos reales y usa las cámaras guardadas en cada ficha
 ### Comprobación final en el tablero
 
 La prueba pública detectó que la simplificación ligera omitía las rejas79/80 aunque existían en el modelo completo. Se corrigió su clasificación para conservarlas sólo en esos dos edificios y se añadió una prueba que exige su geometría en los grupos visibles del modelo ligero. La comprobación real de la publicación forma parte del cierre; no basta con el render de evidencia.
+
+Una segunda inspección detectó que el redondeo del79 adelantaba el fondo de su vano lateral y ocultaba los barrotes. El redondeo ahora respeta las profundidades explícitas de los vanos. Criterio añadido: comprobar visibilidad y orden de profundidad de reja, fondo y jambas; la mera presencia de triángulos no demuestra que un detalle sea visible.
