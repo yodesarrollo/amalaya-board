@@ -84,6 +84,10 @@ assert(!colliders.some(c=>c.buildingId==='C1-12'&&c.containsPoint(new R.Vector3(
 for(const id of ['D1-04','C1-12'])assert.deepEqual(world.getObjectByName('Planta física · '+id).userData.fittedPlan.points,SHEET_PLANS.find(p=>p.id===id).points);
 for(const pt of [[-123,1.6,91],[-124,1.6,86.5]])assert(!colliders.some(c=>c.buildingId==='C1-12'&&c.containsPoint(new R.Vector3(...pt))),'81 permite patio y espacio bajo cubierta');
 assert(colliders.some(c=>c.buildingId==='C1-12'&&c.containsPoint(new R.Vector3(-124,1.6,80.5))),'81 conserva cuerpo sólido al callejón');
+// Essential grilles must survive the lightweight material buckets, not only WebGL.
+for(const [id,color] of [['D1-03','3b6297'],['D1-04','3a4142']]){
+ const owner=world.getObjectByName('Planta física · '+id);assert(owner.children.some(m=>m.userData.liteStructural&&m.material.color.getHexString()===color&&Array.from(m.geometry.attributes.position.array).some((v,i)=>i%3===1&&v>.04&&v<1)),id+' grille visible in lightweight model');
+}
 const points=JSON.parse(await readFile('public/recorrido/rutas.json')).rutas.find(r=>r.id==='R-001').puntos;
 const extraStations=[{lat:29.075781,lng:-110.957122},{lat:29.0757998,lng:-110.9569305},{lat:29.07583,lng:-110.9565574},{lat:29.0757712,lng:-110.9562256}];
 for(const p of [...points,...extraStations]){const v=new R.Vector3((p.lng+110.9547151)*97200,1.6,(29.076115-p.lat)*110950);assert(!colliders.some(c=>c.containsPoint(v)),'The inspected street station stays walkable: '+p.id);}
