@@ -628,3 +628,11 @@ input[type="range"] { accent-color: #C9A45C; }
 
 /* Recorrido dentro del tablero: conservar visor sin duplicar portada y navegación. */
 .recorrido-integrado .public-nav,.recorrido-integrado .public-footer,.recorrido-integrado .tour-heading,.recorrido-integrado .tour-intro{display:none}
+
+/* Identificación dentro del mapa del tablero; el mapa se conserva al cerrar. */
+.mapa-identificar { position:absolute; inset:0; z-index:60; display:flex; flex-direction:column; min-width:0; min-height:0; background:#f7f1e7; }
+.mapa-identificar__barra { flex:none; display:flex; align-items:center; justify-content:space-between; gap:12px; padding:8px 12px; color:#30251f; font-weight:600; }
+.mapa-identificar__barra button { min-height:44px; padding:0 14px; border:1px solid #b38b74; border-radius:8px; color:#713c26; background:#fffaf4; }
+.mapa-identificar__barra button:focus-visible { outline:3px solid #b64b24; outline-offset:2px; }
+.mapa-identificar iframe { display:block; flex:1; width:100%; min-height:0; border:0; }
+@media (max-width: 600px) { .mapa-identificar__barra { padding:4px 8px; font-size:13px; } .mapa-identificar__barra button { min-height:40px; } }

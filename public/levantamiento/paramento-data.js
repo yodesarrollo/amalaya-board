@@ -11,7 +11,7 @@ export const FRONT_BUILDINGS=[
   facades:[{edge:0,bays:[4.6,6.7,8.8].map(x=>({x,w:1.35,h:3.75,b:.2}))},{edge:3,bays:[3,6.8,10.6,14.4,18.2].map(x=>({x,w:1.45,h:3.85,b:.15}))},{edge:4,bays:[{x:1.35,w:1.65,h:4.35,b:0,door:true}]}],evidence:['R-001-P08','R-001-P09']},
  {id:'EB-SW',part:'club',owner:'Club Obregón · frente contiguo revisado P09',color:'#a74442',height:5.7,
   points:[pt(85.258),pt(92.194),[89.35,-14.8],[83.7,-14.1]],
-  facades:[{edge:0,bays:[{x:1.85,w:1.8,h:4.45,b:0,door:true},{x:5.35,w:1.35,h:3.9,b:.1}]}],evidence:['R-001-P09']},
+  facades:[{edge:0,bays:[{x:1.85,w:1.8,h:4.45,b:0,door:true},{x:5.35,w:1.35,h:3.9,b:.1}],bands:[{y:5.47,h:.12,d:.22,color:'#e4ded1'}],fins:[.15,3.45,6.75].map(x=>({x,b:5.47,h:.62,w:.22,d:.26,color:'#e4ded1'}))}],evidence:['R-001-P09']},
  {id:'EB-SW',part:'colegio-alto',owner:'El Colegio · remate alto amarillo P09-P10',color:'#cba346',height:5.7,
   points:[pt(92.194),pt(102.1),[100.6,-7.7],[90.65,-6.4]],
   facades:[{edge:0,bays:[{x:2.2,w:1.45,h:3.9,b:.2,blind:true}]}],evidence:['R-001-P09','R-001-P10']},
@@ -45,6 +45,7 @@ export const HEIGHT_REVIEWS=[
  ,{id:'C2-07',height:4.6,color:'#b28971',reason:'Obregón P07: local de un nivel y estructura abierta contigua; altura visual.'}
  ,{id:'C3-02',height:3.9,color:'#ddd7bc',reason:'Obregón P11-P12: frentes bajos continuos, no bloques iguales de 6.2 m.'}
  ,{id:'C3-03',height:4.0,color:'#8ebbb7',reason:'Obregón P12-P14: frente bajo turquesa; altura visual.'}
+ ,{id:'A3-08',height:3.8,color:'#e3e3dc',reason:'Chihuahua R-002 P02: frente blanco bajo de una planta; conservar el patio de la huella. Altura visual aproximada.'}
 ];
 export const COURTYARD_REVIEWS=[{id:'B3-02',holes:[[[127,-8],[145,-9],[143,-25],[125,-24]]],evidence:['R-001-P11','R-001-P12','ground-reference.jpg'],reason:'Patio de estacionamiento visible en imagen aérea y a través de rejas: eliminar el sólido que llenaba el patio.'}];
 export const JOIN_REVIEWS=[

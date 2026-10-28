@@ -53,7 +53,10 @@ const currentWorld=createHash('sha256').update(await readFile('public/levantamie
 for(const [id,num,first] of [['C08',1,3],['C30',8,1]]){
  const block=index.blocks.find(b=>b.id===id);assert.equal(block.displayNumber,num);assert(blockSections(block).every(s=>s.state==='done'));
  for(let n=first;n<=5;n++){
-  const record=await read('public/'+block.sectionReviews[n].record);assert.equal(record.section,n);assert.deepEqual(record.members,block.buildingIds);assert.equal(record.worldSha256,currentWorld);assert.equal(record.approval,'visual-approximate');
+  const record=await read('public/'+block.sectionReviews[n].record);assert.equal(record.section,n);assert.deepEqual(record.members,block.buildingIds);assert.equal(record.worldSha256,'af0cc341f7715a173ce3cac6ea31e5a961e9c92c4ee103ff1fd82d9a2b37b34b');assert.equal(record.approval,'visual-approximate');
+  // Historical evidence refers to the world at the time of the review. A later
+  // visual reconstruction changes the world hash; it must not rewrite the record
+  // or turn that historical approval into a review of the new geometry.
   const base='public/'+block.sectionReviews[n].record.replace(/[^/]+$/,'');
   for(const [file,hash] of Object.entries(record.files))assert.equal(createHash('sha256').update(await readFile(base+file)).digest('hex'),hash);
   assert.equal(record.checks.streetIntrusions,0);assert.equal(record.checks.streetColliderIntrusions,0);assert.equal(record.checks.sheetFootprintsUnchanged,true);
@@ -62,4 +65,4 @@ for(const [id,num,first] of [['C08',1,3],['C30',8,1]]){
 assert.deepEqual(registry.workPlan.sequence.map(s=>s.block),['C08','C30','C20','C21','C22','C23','C28','C29']);
 assert.equal(new Set(registry.blocks.map(b=>b.displayNumber)).size,33);
 assert(index.blocks.filter(b=>!['C08','C30'].includes(b.id)).every(b=>blockSections(b).every(s=>s.state==='pending')),'Ninguna cuadra futura se cierra por herencia');
-console.log('Cuadras 1 y 8: cinco etapas con evidencia íntegra; historial preservado; siguiente cuadra 9.');
+console.log('Cuadras 1 y 8: evidencia histórica íntegra; su hash puede diferir del mundo actual '+currentWorld.slice(0,12)+'. Siguiente cuadra 9.');

@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="brand/modelo-publico.css">
   <script>if(new URLSearchParams(location.search).get('embed')==='1')document.documentElement.classList.add('embedded-root');</script>
 </head>
-<body>
+<body><script>if(new URLSearchParams(location.search).get('host')==='1'){document.body.dataset.host='1';if(innerWidth<761)document.addEventListener('DOMContentLoaded',()=>document.querySelector('#building-panel')?.removeAttribute('open'));}</script>
   <header>
     <a class="brand" href="./" aria-label="Volver al board Amalaya"><img src="brand/logo-amalaya-tierra-sonora.webp" alt="Amalaya · Tierra Sonora"></a>
     <h1>Vista del conjunto</h1>
@@ -31,6 +31,7 @@
           <label for="building">Buscar en el conjunto</label>
           <select id="building" aria-label="Ir a un edificio"><option value="">Todo el conjunto</option></select>
           <p id="detail">Elige un edificio para ubicarlo.</p>
+          <section id="identification-help"><p><strong>Colores por cuadra · números provisionales</strong></p><p>Cada número identifica un volumen o segmento visible; los límites de edificios y propiedades siguen en revisión. Elige una cuadra y toca un número para acercarte. ⚠ indica una huella por revisar.</p><div id="identification-list"></div></section>
           <p id="error" role="alert"></p>
           <button id="retry" hidden>Reintentar carga</button>
           <details class="scope">
@@ -57,6 +58,6 @@
       if (!document.getElementById('retry').hidden) buildingPanel.open = true;
     }).observe(document.getElementById('retry'), {attributes: true, attributeFilter: ['hidden']});
   </script>
-  <script type="module" src="levantamiento/modelo-completo.js?v=depth-20261007a"></script>
+  <script type="module" src="levantamiento/modelo-completo.js?v=edificios-20261027c"></script>
 </body>
 </html>
