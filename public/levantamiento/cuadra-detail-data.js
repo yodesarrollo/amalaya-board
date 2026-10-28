@@ -167,3 +167,44 @@ CUADRA_DETAILS.push({block:'C23',evidence:'recorrido-R002-P01-P02',buildings:[],
   note:'83/D1-08 es un registro volumétrico provisional que abarca dos frentes observables: esquina crema con arcos parcialmente tapiados, acceso y frontón; frente naranja contiguo con puerta y dos ventanas. No equivale a una sola propiedad. Contorno ajustado a vialidad conservado (cinco vértices); división interior40% aproximada. Alturas nominales5.5/5.1m y remate6.2m sin medición. Fondos ocultos sin vanos inventados.'
  }]});
 }
+
+// 79/80/81: public street views 2023–2026; dimensions remain visual estimates.
+{
+ const blue='#3b6297',cream='#dedfd7',steel='#b5bdb7';
+ const glazing=x=>[.7,2.35].map(b=>({x,w:1.65,h:1.55,b,rect:true,noBars:true,frameColor:steel,fillColor:'#547879'}));
+ const bands=[{y:4.4,h:.16,d:.16,color:'#9a9f94'},{y:4.85,h:.18,d:.16,color:'#9a9f94'},{y:5.6,h:1.05,d:.08,color:blue}];
+ CUADRA_DETAILS.push({block:'C12',evidence:'79-81-20261028',buildings:[{
+  id:'D1-03',height:6.2,color:cream,roofColor:'#ddd9ca',uncertainty:3,keepDetails:true,
+  sources:['ajuste-visual/C12.jpg','evidence/D1-03/79-norte-202503.jpg','evidence/D1-03/79-oeste-202503.jpg','evidence/D1-03/79-este-202503.jpg'],
+  facades:[
+   {edge:0,plain:true,bands,bays:[...glazing(13.4),...glazing(15.3),...glazing(17.2),...glazing(19.1),{x:11.5,w:1.05,h:2.4,b:.05,rect:true,noBars:true,door:true,fillColor:'#4b676d',frameColor:steel}]},
+   {edge:1,plain:true,bands:[...bands.filter(b=>b.y<5),{y:5.6,h:1.05,d:.08,color:'#d6bd59'}],bays:[...glazing(1.15),...glazing(3.1),...glazing(5.1)]},
+   {edge:2,plain:true,bays:[{x:6.8,w:10.2,h:2.9,b:.7,rect:true,noCrossBars:true,barColor:blue,fillColor:'#4b5557'}]},
+   {edge:3,plain:true,bays:[]},{edge:4,plain:true,bays:[]},{edge:5,plain:true,bands,bays:[]}
+  ],
+  note:'79/D1-03: llantera observada, esquina acristalada con perfilería, franjas azul/amarilla, lateral oriental enrejado y muro blanco. Se conserva contorno ajustado previamente (seis vértices), altura nominal6.2m y aproximación poligonal del frente curvo; no es levantamiento de su curvatura. Sin inventar interiores ni publicidad textual.'
+ },{
+  id:'D1-04',height:6.2,color:'#d9dad2',roofColor:'#d8d9d0',uncertainty:3,keepDetails:true,
+  sources:['ajuste-visual/C12.jpg','evidence/D1-04/80-oeste-202601.jpg','evidence/D1-04/80-este-202312.jpg','evidence/D1-04/80-norte-202405.jpg'],
+  facades:[
+   {edge:0,plain:true,bands:[{y:4.35,h:3.1,w:4.5,d:.06,color:'#387b9f'}],bays:[{x:2.8,w:4.3,h:2.3,b:.05,rect:true,noCrossBars:true,barColor:'#3a4142',fillColor:'#6f746d'}]},
+   {edge:1,plain:true,bands:[{y:3.5,h:.24,d:.18,color:'#bfbfb2'},{y:6.08,h:.2,d:.15,color:'#c7c9ba'}],bays:Array.from({length:9},(_,i)=>({x:2.4+i*3.9,w:2.8,h:1.8,b:3.85,rect:true,noBars:true,fillColor:'#666a61'}))},
+   {edge:2,plain:true,bays:[]},
+   {edge:3,plain:true,bands:[{y:.22,h:.4,d:.04,color:'#aeb0a5'},{y:2.1,h:.08,d:.05,color:'#b7b9ae'},{y:4.6,h:.08,d:.05,color:'#b7b9ae'}],bays:[]}
+  ],
+  note:'80/D1-04: ala del estacionamiento con muro occidental ciego, juntas horizontales, portón norte y panel azul; al este se observan vanos altos desde vía pública. Cuatro anclajes/altura nominal6.2m conservados. Conteo y proporciones de módulos estimados; planta baja oriental oculta conservada neutra. No se atribuye propiedad ni dirección desde el rótulo de cámara.'
+ }]});
+}
+{
+ const q=[[-132.987,80.28],[-118.908,76.899],[-114.476,94.062],[-130.119,97.182]],mix=(a,b,t)=>a.map((v,i)=>v+(b[i]-v)*t),at=(u,v)=>mix(mix(q[0],q[1],u),mix(q[3],q[2],u),v),rect=(v0,v1)=>[at(0,v0),at(0,v1),at(1,v1),at(1,v0)];
+ CUADRA_DETAILS.push({block:'C06',evidence:'79-81-20261028',buildings:[{
+  id:'C1-12',height:3.6,color:'#bdbeb5',roofColor:'#a6aaa6',uncertainty:3,keepDetails:true,facades:[],
+  sources:['ajuste-visual/C06.jpg','evidence/C1-12/81-oeste-202503.jpg','evidence/C1-12/81-sur-202312.jpg','evidence/C1-12/81-norte-202312.jpg'],
+  sections:[
+   {part:'81-cuerpo-callejon',points:rect(0,.28),height:3.3,color:'#bcbdb4',roofColor:'#a6aaa6',facades:[{edge:3,plain:true,bands:[{y:3.22,h:.16,d:.17,color:'#555e60'}],bays:[{x:2.8,w:1.5,h:2.65,b:.05,rect:true,noBars:true,fillColor:'#404e58',frameColor:'#4c565b'},{x:6.2,w:1.05,h:.55,b:1.8,rect:true,frameColor:'#3c4549'}]}]},
+   {part:'81-cubierta-estacionamiento',points:rect(.28,.60),height:3.6,color:'#a4aaa4',roofColor:'#a4aaa4',openCanopy:true,facades:[]}
+  ],
+  fences:[{a:at(0,.28),b:at(0,1),height:2.3},{a:at(0,1),b:at(.25,1),height:2.3},{a:at(.72,1),b:at(1,1),height:2.3}],
+  note:'81/C1-12: se retira la caja sólida de6.2m; cuerpo bajo norte, cubierta metálica sobre apoyos y patio de estacionamiento con acceso sur observado. Fracciones internas y alturas3.3/3.6m estimadas, contorno registral conservado. Cerco simplificado, sin autos ni concertina; no es validación de accesibilidad o uso público. Cubierta/fachadas con fuentes2023/2025, fecha aérea desconocida.'
+ }]});
+}

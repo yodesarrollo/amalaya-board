@@ -1,0 +1,49 @@
+{
+  "building": "D1-03",
+  "visibleNumber": 79,
+  "block": "C12",
+  "revision": "20261028-79-81",
+  "scope": "Exterior visual aproximado autorizado; no cotas medidas ni límites catastrales",
+  "criteria": [
+    "Identidad y mismo frente confirmados",
+    "Preservar contorno vigente ajustado y vecinos",
+    "Representar sólo vanos observados; módulos aproximados",
+    "Sin invasiones viales; colisiones acordes con espacios abiertos",
+    "Antes/después con mismas cámaras; pruebas y publicación original"
+  ],
+  "sources": [
+    {
+      "file": "79-oeste-202503.jpg",
+      "date": "2025-03",
+      "side": "oeste",
+      "pano": "1Y2a2mU5CnwQUOaGB5gLkw",
+      "camera": [
+        29.0747457,
+        -110.9565514
+      ],
+      "heading": 70
+    },
+    {
+      "file": "79-norte-202503.jpg",
+      "date": "2025-03",
+      "side": "norte",
+      "pano": "rOXSs4J7mVdvYPvbaWQrVQ",
+      "camera": [
+        29.075,
+        -110.9562665
+      ],
+      "heading": 180
+    },
+    {
+      "file": "79-este-202503.jpg",
+      "date": "2025-03",
+      "side": "este",
+      "pano": "coVzdC4ZX_47TncIkXF3Pw",
+      "camera": [
+        29.0748173,
+        -110.9561658
+      ],
+      "heading": 270
+    }
+  ]
+}

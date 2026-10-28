@@ -16,8 +16,8 @@ for(let i=0;i<meta.triangles;i++){
 }
 assert.equal(meta.worldSha256,createHash('sha256').update(await readFile('public/levantamiento/world.js')).digest('hex'));
 assert((await readFile('public/seguimiento-ligero.json')).length<100000,'resumen bajo 100 KB');
-// D1-07 and D1-08 add differentiated roofs and arched facades.
-// Bounded at 760 KB raw / 250 KB gzip (observed 751,540 / 244,253).
-assert(bytes.length<760000,'geometría completa bajo 760 KB');
-assert(gzipSync(bytes).length<250000,'geometría comprimida bajo 250 KB');
+// Buildings79–81 add glazing, canopy supports and open-lot fencing.
+// Bounded at 810 KB raw / 270 KB gzip (observed 795,740 / 258,454).
+assert(bytes.length<810000,'geometría completa bajo 810 KB');
+assert(gzipSync(bytes).length<270000,'geometría comprimida bajo 270 KB');
 console.log('Vista ligera: todos los IDs y estados conservados; geometría válida y presupuestos de carga cumplidos.');

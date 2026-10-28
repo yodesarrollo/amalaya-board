@@ -1,0 +1,121 @@
+{
+  "building": "D1-04",
+  "visibleNumber": 80,
+  "block": "C12",
+  "batch": [
+    79,
+    80,
+    81
+  ],
+  "baseCommit": "145dc2e06c40212b86786ac90e3ed316fabbc239",
+  "worldSha256": "e78b987c921f9bbeae52c7603361fee40135901c6d7c0ced8b274e440f5d4fef",
+  "scope": "Exterior visual aproximado autorizado; no cotas medidas ni límites catastrales",
+  "neighborsBoundsUnchanged": true,
+  "otherCollidersUnchanged": true,
+  "comparisonExcludedOwners": [
+    "D1-03",
+    "D1-04",
+    "C1-12"
+  ],
+  "before": {
+    "id": "D1-04",
+    "owner": "Planta física · D1-04",
+    "min": [
+      -177.5679931640625,
+      0.04999999999998689,
+      173.0570068359375
+    ],
+    "max": [
+      -166.0970001220703,
+      6.2499998092651365,
+      214.14300537109375
+    ],
+    "height": 6.19999980926515
+  },
+  "after": {
+    "id": "D1-04",
+    "owner": "Planta física · D1-04",
+    "min": [
+      -177.61265563964844,
+      0.05000000074505806,
+      173.03924560546875
+    ],
+    "max": [
+      -165.9884490966797,
+      6.25,
+      214.1485595703125
+    ],
+    "height": 6.199999999254942
+  },
+  "sources": [
+    {
+      "file": "80-oeste-202601.jpg",
+      "date": "2026-01",
+      "side": "oeste",
+      "pano": "Dk0LrJJWuF3FSSzwMSBitg",
+      "camera": [
+        29.0744058,
+        -110.9566431
+      ],
+      "heading": 90
+    },
+    {
+      "file": "80-este-202312.jpg",
+      "date": "2023-12",
+      "side": "este",
+      "pano": "az4pViLi2LFcexpQeybQeQ",
+      "camera": [
+        29.074462,
+        -110.9560097
+      ],
+      "heading": 270
+    },
+    {
+      "file": "80-norte-202405.jpg",
+      "date": "2024-05",
+      "side": "norte",
+      "pano": "ILLHrxA2spQqpSfayjYRrw",
+      "camera": [
+        29.0746217,
+        -110.9565949
+      ],
+      "heading": 150
+    }
+  ],
+  "cameras": [
+    [
+      "80-noroeste",
+      29.074690935105906,
+      -110.95678300123457,
+      145,
+      75,
+      -12,
+      14
+    ],
+    [
+      "80-este",
+      29.074402516899507,
+      -110.95608341275721,
+      270,
+      75,
+      -8,
+      13
+    ]
+  ],
+  "limits": [
+    "Alturas y proporciones estimadas, no medidas",
+    "Aérea sin fecha verificada",
+    "Interiores ocultos no certificados",
+    "79 conserva aproximación poligonal del frente curvo; no reproduce radio medido"
+  ],
+  "files": {
+    "20261028-criterios.json": "d1f5d76050e337dcf0de8d1e0f978896951ab4ee90774d627daad90705751210",
+    "80-este-202312.jpg": "91377652fe7ff8257130ec4df3befe798bb5637a5639d40ce9103ab79eec36e1",
+    "80-norte-202405.jpg": "fd2c680fd888a9273b1e791ab324058a255145f62fdf4992c4d9023539d77d3a",
+    "80-oeste-202601.jpg": "716fa1b1142cfeddd1af7edcfbd2de029e698c45a44f1a8acd0e3953298be67c",
+    "antes-80-este-3d.jpg": "f88fc6d39b177ecd6cfb2ef4920daec440026faf47ed4aef50250790a4ae9b62",
+    "antes-80-noroeste-3d.jpg": "617c68d667e8ecd508290fe8cca8309f45297b9856fc696b04dce4fc6a755242",
+    "despues-80-este-3d.jpg": "318ae1cf0a4fa045a4473d157ee9a99eec418ac1c1fefca639a8750083aa3deb",
+    "despues-80-noroeste-3d.jpg": "a2ff822aee57f74425dc53e0b975570e870f56bfa3a0f9fa8f2e07fc45be7323"
+  }
+}

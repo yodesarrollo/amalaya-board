@@ -1,7 +1,7 @@
 import {FRONT_BUILDINGS,ROUND2_BUILDINGS,HEIGHT_REVIEWS,COURTYARD_REVIEWS,JOIN_REVIEWS,PARAMENTO_VERSION} from './paramento-data.js?v=5cc1cd6d1d7a';
 import {PARAMENTO_SIDEWALKS} from './paramento-sidewalks.js?v=8ee470fed0ad';
 import {footprintColliderCells} from './isc58-refinement.js?v=76eca0365d35';
-import {CUADRA_DETAILS} from './cuadra-detail-data.js?v=513fadb16519';
+import {CUADRA_DETAILS} from './cuadra-detail-data.js?v=d62a62fe570a';
 import {applyObregonApprox} from './obregon-aproximado-data.js?v=9a20c956e9de';
 
 // Uses the scene's own constructors, including in the preserved compiled viewer.
@@ -62,7 +62,7 @@ export function applyParamento(world,colliders,R){
    if(!bay.portico&&!bay.blind&&!bay.noBars){
     const barHeight=bay.fullBars?bay.h:bay.h-bay.w/2;
     for(let x=bay.x-bay.w/2+.13;x<bay.x+bay.w/2;x+=.23)block(g,x,bay.b+barHeight/2,-.08,.025,barHeight,.025,bay.barColor||'#131c22','Paramento · reja');
-    if(bay.fullBars)for(let y=bay.b+.4;y<bay.b+bay.h;y+=.45)block(g,bay.x,y,-.065,bay.w,.022,.022,bay.barColor||'#131c22','Paramento · travesaño de reja');
+    if(bay.fullBars&&!bay.noCrossBars)for(let y=bay.b+.4;y<bay.b+bay.h;y+=.45)block(g,bay.x,y,-.065,bay.w,.022,.022,bay.barColor||'#131c22','Paramento · travesaño de reja');
     if(bay.door)block(g,bay.x,bay.h/2,-.04,.04,bay.h,.04,'#8e8a74','Paramento · encuentro de hojas');
    }
   }
@@ -124,7 +124,7 @@ export function applyParamento(world,colliders,R){
      for(let i=0;i<pos.count;i++){const t=((pos.getX(i)-a[0])*vx+(pos.getZ(i)-a[1])*vz)/den;pos.setY(i,pos.getY(i)+section.gableRise*(1-Math.abs(2*t-1)));}roofGeom.computeVertexNormals();const cap=mesh(roofGeom,section.roofColor,g,'Paramento · cubierta inclinada '+section.part);cap.position.y=section.height-.07;}
    }else{const cap=mesh(geom,section.roofColor||p.roofColor||'#c2b9a4',g,'Paramento · cubierta '+section.part);cap.position.y=section.height-.07;}
    const floor=mesh(geom.clone(),section.color,g,'Paramento · base '+section.part);floor.position.y=.05;
-   for(let i=0;i<section.points.length;i++){const f=section.facades.find(f=>f.edge===i);wall(g,section.points[i],section.points[(i+1)%section.points.length],section.height,section.color,f?.bays||[],f&&!f.plain?(f.cornice||true):false,f||{});}
+   if(!section.openCanopy)for(let i=0;i<section.points.length;i++){const f=section.facades.find(f=>f.edge===i);wall(g,section.points[i],section.points[(i+1)%section.points.length],section.height,section.color,f?.bays||[],f&&!f.plain?(f.cornice||true):false,f||{});}
    // Low parapets and rooftop equipment are opt-in, interpreted from the
    // corresponding aerial image. They remain small actual meshes in both views.
    if(section.parapet||p.parapet){
@@ -133,8 +133,24 @@ export function applyParamento(world,colliders,R){
     for(let i=0;i<inset.length;i++){const a=inset[i],b=inset[(i+1)%inset.length],dx=b[0]-a[0],dz=b[1]-a[1];const rim=block(g,(a[0]+b[0])/2,section.height+.13,(a[1]+b[1])/2,Math.hypot(dx,dz),.26,.14,section.parapetColor||section.color,'Paramento · cubierta pretil');rim.rotation.y=Math.atan2(-dz,dx);}
    }
    for(const d of section.roofDetails||p.roofDetails||[])block(g,d.x,section.height+(d.h||.2)/2,d.z,d.w,d.h||.2,d.d,d.color||'#aaa9a0','Paramento · cubierta detalle');
-   const cells=solidCells(section.points);colliderCount+=cells.length;
+   if(section.openCanopy){
+    const mid=(a,b)=>[(a[0]+b[0])/2,(a[1]+b[1])/2],center=section.points.reduce((s,p)=>[s[0]+p[0]/4,s[1]+p[1]/4],[0,0]);
+    const pts=[...section.points,mid(section.points[1],section.points[2]),mid(section.points[3],section.points[0])];
+    for(const v of pts){const dx=center[0]-v[0],dz=center[1]-v[1],len=Math.hypot(dx,dz),x=v[0]+dx*.16/len,z=v[1]+dz*.16/len;
+     block(g,x,section.height/2+.05,z,.12,section.height,.12,'#697575','Paramento · muro pilar metálico');const b=new R.Box3(new R.Vector3(x-.06,.05,z-.06),new R.Vector3(x+.06,section.height+.05,z+.06));b.buildingId=p.id;colliders.push(b);colliderCount++;}
+    for(let i=0;i<4;i++){const a=section.points[i],b=section.points[(i+1)%4],dx=b[0]-a[0],dz=b[1]-a[1],L=Math.hypot(dx,dz);const beam=block(g,(a[0]+b[0])/2,section.height-.24,(a[1]+b[1])/2,L,.10,.10,'#c1c8c4','Paramento · muro viga metálica');beam.rotation.y=Math.atan2(-dz,dx);}
+   }
+   if(section.openCanopy){const a=section.points[1],b=section.points[2],dx=b[0]-a[0],dz=b[1]-a[1],L=Math.hypot(dx,dz),n=6;
+    for(let j=0;j<n;j++){const dy=j%2?.4:-.4,m=block(g,a[0]+dx*(j+.5)/n,section.height-.28,a[1]+dz*(j+.5)/n,Math.hypot(L/n,dy),.055,.055,'#c1c8c4','Paramento · muro diagonal de cercha');m.rotation.y=Math.atan2(-dz,dx);m.rotation.z=Math.atan2(dy,L/n);}
+   }
+   const cells=section.openCanopy?[]:solidCells(section.points);colliderCount+=cells.length;
    for(const c of cells){const b=new R.Box3(new R.Vector3(c.minX,.05,c.minZ),new R.Vector3(c.maxX,section.height+.05,c.maxZ));b.buildingId=p.id;b.frontageId=p.part;colliders.push(b);}
+  }
+  for(const f of p.fences||[]){const dx=f.b[0]-f.a[0],dz=f.b[1]-f.a[1],L=Math.hypot(dx,dz),steps=Math.ceil(L/2.2);
+   for(let i=0;i<=steps;i++){const t=i/steps;block(g,f.a[0]+dx*t,f.height/2+.05,f.a[1]+dz*t,.055,f.height,.055,'#939d99','Paramento · muro poste de cerco');}
+   for(let y=.25;y<=f.height;y+=.35){const m=block(g,(f.a[0]+f.b[0])/2,y,(f.a[1]+f.b[1])/2,L,.018,.018,'#9aa6a0','Paramento · muro alambre');m.rotation.y=Math.atan2(-dz,dx);}
+   for(let t=.15;t<L;t+=.35)block(g,f.a[0]+dx*t/L,f.height/2+.05,f.a[1]+dz*t/L,.018,f.height,.018,'#9aa6a0','Paramento · muro alambre');
+   const cells=solidCells([f.a,f.b,[f.b[0]-dz/L*.08,f.b[1]+dx/L*.08],[f.a[0]-dz/L*.08,f.a[1]+dx/L*.08]]);for(const c of cells){const b=new R.Box3(new R.Vector3(c.minX,.05,c.minZ),new R.Vector3(c.maxX,f.height,c.maxZ));b.buildingId=p.id;colliders.push(b);colliderCount++;}
   }
   for(const w of p.lowWalls||[]){wall(g,w.a,w.b,w.height,w.color);const b=new R.Box3(new R.Vector3(Math.min(w.a[0],w.b[0])-.1,.05,Math.min(w.a[1],w.b[1])-.1),new R.Vector3(Math.max(w.a[0],w.b[0])+.1,w.height+.05,Math.max(w.a[1],w.b[1])+.1));b.buildingId=p.id;b.frontageId=p.part;colliders.push(b);}
   result.frontages.push({id:p.id,part:p.part,points:p.points,heightMeters:p.height,colliders:colliderCount,round:p.round||1,sections:p.sections?.map(s=>({part:s.part,points:s.points,height:s.height}))});
@@ -199,7 +215,7 @@ export function applyParamento(world,colliders,R){
    const ownerName=owner.name,plan=p.points?{points:p.points,holes:[]}:owner.userData.fittedPlan||{points:ring(owner.geometry.parameters.shapes),holes:owner.geometry.parameters.shapes.holes.map(ring)};
    if(plan.holes?.length)throw Error('Cuadra: courtyard detail requires explicit hole support '+p.id);
    const n=plan.points.length,reverse=plan.points.reduce((a,p,i)=>a+p[0]*plan.points[(i+1)%n][1]-plan.points[(i+1)%n][0]*p[1],0)>0,points=reverse?[plan.points[0],...plan.points.slice(1).reverse()]:plan.points;
-   const facades=p.facades.map(f=>{const a=plan.points[f.edge],b=plan.points[(f.edge+1)%n],length=Math.hypot(b[0]-a[0],b[1]-a[1]);return {...f,edge:reverse?n-1-f.edge:f.edge,clipBands:true,fins:f.reverseFins&&reverse?(f.fins||[]).map(v=>({...v,x:length-v.x})):f.fins,bays:(f.bays||[]).map(v=>({...v,fullBars:!!v.rect,barColor:p.id==='B2-01'||p.id==='B2-02'?'#bcaa62':undefined,x:reverse?length-v.x:v.x}))}});
+   const facades=p.facades.map(f=>{const a=plan.points[f.edge],b=plan.points[(f.edge+1)%n],length=Math.hypot(b[0]-a[0],b[1]-a[1]);return {...f,edge:reverse?n-1-f.edge:f.edge,clipBands:true,fins:f.reverseFins&&reverse?(f.fins||[]).map(v=>({...v,x:length-v.x})):f.fins,bays:(f.bays||[]).map(v=>({...v,fullBars:!!v.rect,barColor:p.id==='D1-03'||p.id==='D1-04'?v.barColor:p.id==='B2-01'||p.id==='B2-02'?'#bcaa62':undefined,x:reverse?length-v.x:v.x}))}});
    removeOwner(prefix,p.id);addFront({...p,part:'cuadra-'+p.id,owner:ownerName,points,facades,evidence:p.sources});
    const added=world.getObjectByName(ownerName);added.userData.fittedPlan=plan;added.userData.blockReview=packet.block;
    entry.batches.push({id:p.id,...compact(added,!!p.keepDetails)});entry.buildings.push({id:p.id,height:p.height,uncertainty:p.uncertainty,sources:p.sources,note:p.note});
