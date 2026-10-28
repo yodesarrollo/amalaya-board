@@ -1,7 +1,7 @@
 import {FRONT_BUILDINGS,ROUND2_BUILDINGS,HEIGHT_REVIEWS,COURTYARD_REVIEWS,JOIN_REVIEWS,PARAMENTO_VERSION} from './paramento-data.js?v=5cc1cd6d1d7a';
 import {PARAMENTO_SIDEWALKS} from './paramento-sidewalks.js?v=8ee470fed0ad';
 import {footprintColliderCells} from './isc58-refinement.js?v=76eca0365d35';
-import {CUADRA_DETAILS} from './cuadra-detail-data.js?v=92fef0b5a4a6';
+import {CUADRA_DETAILS} from './cuadra-detail-data.js?v=513fadb16519';
 import {applyObregonApprox} from './obregon-aproximado-data.js?v=9a20c956e9de';
 
 // Uses the scene's own constructors, including in the preserved compiled viewer.
@@ -42,6 +42,7 @@ export function applyParamento(world,colliders,R){
     block(g,bay.x,bay.b+1.25,-.98,bay.w*.68,1.45,.055,'#465151','Paramento · cierre de ventana del pórtico');
    }else if(!bay.open){const fill=mesh(extrude(opening(bay),.045),bay.fillColor||(bay.blind?color:bay.wood?'#59472f':'#262e32'),g,'Paramento · cierre retranqueado');fill.position.z=-.17;}
    if(bay.rect&&bay.frameColor){const trim=shape([[bay.x-bay.w/2-.10,Math.max(0,bay.b-.1)],[bay.x+bay.w/2+.10,Math.max(0,bay.b-.1)],[bay.x+bay.w/2+.10,bay.b+bay.h+.1],[bay.x-bay.w/2-.10,bay.b+bay.h+.1]]);trim.holes.push(opening(bay));const frame=mesh(extrude(trim,.085),bay.frameColor,g,'Paramento · marco rectangular');frame.position.z=.005;}
+   if(bay.infillHeight)block(g,bay.x,bay.b+bay.infillHeight/2,-.025,bay.w,bay.infillHeight,.10,color,'Paramento · cierre de vano tapiado');
    if(bay.screen){
     // Perforated terracotta screen observed on D1-06 east, January 2026.
     // Its holes are actual geometry; counts/proportions are visual approximations.
@@ -57,7 +58,7 @@ export function applyParamento(world,colliders,R){
    if(bay.panels)for(const dx of [-.55,.55])for(const y of [.65,1.75,2.85])block(g,bay.x+dx,y,-.10,.86,.86,.05,'#776345','Paramento · cierre panel de madera');
    if(bay.shutter)for(let y=bay.b+.16;y<bay.b+bay.h-.08;y+=.16)block(g,bay.x,y,-.10,bay.w,.018,.025,'#bdc1bb','Paramento · lama de portón');
    if(!bay.rect){const trim=arch(bay.x,bay.w+.34,bay.h+.22,Math.max(0,bay.b-.08));trim.holes.push(opening(bay));
-    const surround=mesh(extrude(trim,.09),'#e3dfcf',g,'Paramento · moldura de arco');surround.position.z=.005;}
+    const surround=mesh(extrude(trim,.09),bay.archFrameColor||'#e3dfcf',g,'Paramento · moldura de arco');surround.position.z=.005;}
    if(!bay.portico&&!bay.blind&&!bay.noBars){
     const barHeight=bay.fullBars?bay.h:bay.h-bay.w/2;
     for(let x=bay.x-bay.w/2+.13;x<bay.x+bay.w/2;x+=.23)block(g,x,bay.b+barHeight/2,-.08,.025,barHeight,.025,bay.barColor||'#131c22','Paramento · reja');
@@ -96,6 +97,9 @@ export function applyParamento(world,colliders,R){
     block(g,x,base+.68,-.1,.17,.10,.18,r.color,'Paramento · detalle balaustre capitel');
    }
   }
+  if(details.gableRise){const t=mesh(extrude(shape([[0,height],[length,height],[length/2,height+details.gableRise]]),.22),color,g,'Paramento · muro tímpano');t.position.z=-.22;}
+  if(details.pediment){const p=details.pediment,t=mesh(extrude(shape([[p.x-p.w/2,height],[p.x+p.w/2,height],[p.x,height+p.h]]),.18),color,g,'Paramento · cubierta frontón');t.position.z=-.18;
+   for(const sign of [-1,1]){const cap=block(g,p.x+sign*p.w/4,height+p.h/2,.01,Math.hypot(p.w/2,p.h),.12,.25,p.color,'Paramento · cubierta frontón remate');cap.rotation.z=-sign*Math.atan2(p.h,p.w/2);}}
   if(details.canopy){const c=details.canopy,m=block(g,length/2,c.y,c.depth/2-.1,length+.15,.12,c.depth,c.color,'Paramento · marquesina inclinada');m.rotation.x=Math.atan(.25/c.depth);}
   return g;
  }
@@ -114,7 +118,11 @@ export function applyParamento(world,colliders,R){
   let colliderCount=0;
   for(const section of p.sections||[p]){
    const roof=shape(section.points.map(([x,z])=>[x,-z])),geom=extrude(roof,.12);geom.rotateX(-Math.PI/2);
-   const cap=mesh(geom,section.roofColor||p.roofColor||'#c2b9a4',g,'Paramento · cubierta '+section.part);cap.position.y=section.height-.07;
+   if(section.gableRise){
+    const [a,b,c,d]=section.points,mid=(p,q)=>[(p[0]+q[0])/2,(p[1]+q[1])/2],m=mid(a,b),n=mid(d,c),vx=b[0]-a[0],vz=b[1]-a[1],den=vx*vx+vz*vz;
+    for(const pts of [[a,m,n,d],[m,b,c,n]]){const roofGeom=extrude(shape(pts.map(([x,z])=>[x,-z])),.12);roofGeom.rotateX(-Math.PI/2);const pos=roofGeom.attributes.position;
+     for(let i=0;i<pos.count;i++){const t=((pos.getX(i)-a[0])*vx+(pos.getZ(i)-a[1])*vz)/den;pos.setY(i,pos.getY(i)+section.gableRise*(1-Math.abs(2*t-1)));}roofGeom.computeVertexNormals();const cap=mesh(roofGeom,section.roofColor,g,'Paramento · cubierta inclinada '+section.part);cap.position.y=section.height-.07;}
+   }else{const cap=mesh(geom,section.roofColor||p.roofColor||'#c2b9a4',g,'Paramento · cubierta '+section.part);cap.position.y=section.height-.07;}
    const floor=mesh(geom.clone(),section.color,g,'Paramento · base '+section.part);floor.position.y=.05;
    for(let i=0;i<section.points.length;i++){const f=section.facades.find(f=>f.edge===i);wall(g,section.points[i],section.points[(i+1)%section.points.length],section.height,section.color,f?.bays||[],f&&!f.plain?(f.cornice||true):false,f||{});}
    // Low parapets and rooftop equipment are opt-in, interpreted from the

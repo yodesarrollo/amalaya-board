@@ -1,0 +1,107 @@
+{
+  "building": "D1-07",
+  "visibleNumber": 78,
+  "block": "C13",
+  "batch": [
+    78,
+    83
+  ],
+  "baseCommit": "8741ee8438c49d8f4570e2208c63864d29f3bf9e",
+  "scope": "Exterior visual aproximado; no levantamiento métrico, catastral ni interior",
+  "worldSha256": "eb2ef1cd49c2bf78ab7e4fc7c1640e4a0f5920280fade35543b3d40393c26670",
+  "measuredHeight": false,
+  "footprintUncertaintyMeters": 3,
+  "neighborsBoundsUnchanged": true,
+  "otherCollidersUnchanged": true,
+  "comparisonExcludedOwners": [
+    "D1-07",
+    "D1-08"
+  ],
+  "before": {
+    "id": "D1-07",
+    "owner": "Planta física · D1-07",
+    "min": [
+      -229.18899536132812,
+      0.04999999999998563,
+      194.63999938964844
+    ],
+    "max": [
+      -198.94700622558594,
+      6.2499998092651365,
+      234.68600463867188
+    ],
+    "height": 6.199999809265151
+  },
+  "after": {
+    "id": "D1-07",
+    "owner": "Planta física · D1-07",
+    "min": [
+      -229.24839782714844,
+      0.05000000074505806,
+      194.63999938964844
+    ],
+    "max": [
+      -198.94700622558594,
+      4.050000190734863,
+      233.7707977294922
+    ],
+    "height": 4.000000189989805
+  },
+  "sources": [
+    {
+      "front": "east",
+      "date": "2026-01",
+      "pano": "L6jWnv1UwaG-y37nmLMCSw",
+      "camera": [
+        29.0741498,
+        -110.9565968
+      ],
+      "heading": 270
+    },
+    {
+      "front": "west",
+      "date": "2023-12",
+      "pano": "vAprcC0SAsufBetxTU1BEQ",
+      "camera": [
+        29.0741796,
+        -110.9571595
+      ],
+      "heading": 90
+    }
+  ],
+  "aerial": "C13.jpg; fecha desconocida",
+  "cameras": [
+    [
+      "oeste",
+      29.074249294727355,
+      -110.95719452386831,
+      90,
+      80,
+      0,
+      3
+    ],
+    [
+      "aerea",
+      29.074420543037405,
+      -110.95726654032921,
+      145,
+      60,
+      -45,
+      35
+    ]
+  ],
+  "unknowns": [
+    "Dimensiones, alturas y divisiones internas estimadas visualmente",
+    "No se certifica propiedad ni subdivisión catastral",
+    "Cubiertas parcialmente ocultas; sin pasos ni aberturas ocultas inferidas"
+  ],
+  "files": {
+    "20261028-criterios.json": "81fed367519db40dd585cb1694061fb89bcf9a2945a9a7b8776c89308f934d78",
+    "antes-aerea-3d.jpg": "ca9f9c6b5b1b9ba101923e1c9749b9731d08584b4fbd1c483c9b3346e932ddfd",
+    "antes-oeste-3d.jpg": "f7e2ce9f46aa0e5a211f01b1089ea9fe9f07ea1fd2d19af1112d3abe2ff707d0",
+    "d107-este-202601.jpg": "4299bbda46043ce94917f8f2a4cdf57be2df73489f1af3d50f8bfa4b1d7a3b1b",
+    "d107-oeste-202312.jpg": "be7f96d42538f166f7c25f2c94321415950d0b3b10ee2822913f2dd7b7b0fec5",
+    "despues-aerea-3d.jpg": "35e1b6fa0d1d32dbd0154a685c7185da3418d7a12ca541002beae8103dfa2133",
+    "despues-oeste-3d.jpg": "7c6df6ffd281d3826054ee20bea27da05bc480f8976d684068105640c0702fd8"
+  }
+}
