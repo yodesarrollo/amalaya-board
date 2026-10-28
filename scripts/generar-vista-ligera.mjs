@@ -11,12 +11,12 @@ import {applySidewalkRound} from '../public/levantamiento/banquetas-refinement.j
 import {applyStreetRound} from '../public/levantamiento/calzadas-refinement.js';
 const root='public/levantamiento',source=await readFile(root+'/world.js','utf8');
 const raw=source.replace(/^import[^\n]*\n/gm,'').replace(/\nimport[^\n]*\n/gm,'').replace(/export \{[^\n]+\};/,'').replace('Up(c), c;','c;');
-const R=new Function('applyIsc58Refinement','applyEbSwRefinement','applyPlanRoundRefinement','applyStreetRoundRefinement','applySidewalkRoundRefinement','applyPlanReviewRefinement','applySheetPlanRefinement',raw+'\nreturn {createWorld:Fp,Vector3:U};')(applyIsc58,applyEbSw,applyPlanRound,applyStreetRound,applySidewalkRound,applyPlanReview,applySheetPlan);
+const R=new Function('applyIsc58Refinement','applyEbSwRefinement','applyPlanRoundRefinement','applyStreetRoundRefinement','applySidewalkRoundRefinement','applyPlanReviewRefinement','applySheetPlanRefinement',raw+'\nreturn {createWorld:Fp,createConcept:Hp,Vector3:U};')(applyIsc58,applyEbSw,applyPlanRound,applyStreetRound,applySidewalkRound,applyPlanReview,applySheetPlan);
 const originalFetch=globalThis.fetch;let world;try{globalThis.fetch=async url=>({ok:true,json:async()=>JSON.parse(await readFile(root+'/'+url))});world=await R.createWorld('',undefined,'pilot');}finally{globalThis.fetch=originalFetch;}
 const data=JSON.parse(await readFile('public/seguimiento-3d.json','utf8'));
 const buildingOwners=data.blocks.flatMap(b=>b.buildings).filter(b=>!b.publicSpace).map(b=>b.modelReference?.owner).filter(Boolean).concat(['OB-01 · cubierta','La Barra Hidalgo']);
 world.updateMatrixWorld(true);const faces=[],palette=[],colors=new Map();let originalTriangles=0;const faceKeys=new Set();let collapsedTriangles=0,duplicateTriangles=0;
-world.traverse(m=>{
+const collect=m=>{
  if(!m.isMesh||!m.geometry?.attributes.position||/Icosahedron|Sphere|Torus|Tube|Cylinder/.test(m.geometry.type))return;
  let buildingFace=false,reviewedFrontage=false;
  for(let p=m;p;p=p.parent){if(!p.visible)return;if(p.userData.frontageId)reviewedFrontage=true;if(buildingOwners.some(name=>p.name.startsWith(name)))buildingFace=true;}
@@ -47,11 +47,13 @@ world.traverse(m=>{
    faces.push([...xyz,colors.get(hex)]);
   }
  }
-});
+};
+world.traverse(collect);
+const actualTriangles=faces.length,concept=R.createConcept();world.add(concept);world.updateMatrixWorld(true);concept.traverse(collect);
 const bytes=Buffer.alloc(faces.length*20);for(let i=0;i<faces.length;i++){for(let j=0;j<9;j++)bytes.writeInt16LE(faces[i][j],i*20+j*2);bytes.writeUInt16LE(faces[i][9],i*20+18);}
 const version=createHash('sha256').update(bytes).digest('hex').slice(0,12);
 await writeFile(root+'/modelo-ligero.bin',bytes);
-await writeFile(root+'/modelo-ligero.json',JSON.stringify({version,scale:.05,triangles:faces.length,originalTriangles,collapsedTriangles,duplicateTriangles,palette,url:'levantamiento/modelo-ligero.bin?v='+version,worldSha256:createHash('sha256').update(source).digest('hex'),limits:'Vista simplificada; las plantas y sus patios se conservan. El detalle permanece en el recorrido 3D.'}));
+await writeFile(root+'/modelo-ligero.json',JSON.stringify({version,scale:.05,triangles:faces.length,actualTriangles,originalTriangles,collapsedTriangles,duplicateTriangles,palette,url:'levantamiento/modelo-ligero.bin?v='+version,worldSha256:createHash('sha256').update(source).digest('hex'),limits:'Vista simplificada; las plantas y sus patios se conservan. El detalle permanece en el recorrido 3D.'}));
 const buildings=[];for(const col of columns(data)){
  const b=col.building,progress=b.visualProgress;let camera=null;
  if(progress?.manifest){const rec=JSON.parse(await readFile('public/'+progress.manifest));const cam=rec.camera||rec.current?.camera;camera=cam?{target:cam.target||cam.center,span:cam.span}:null;}

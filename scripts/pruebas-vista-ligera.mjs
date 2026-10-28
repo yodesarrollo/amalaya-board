@@ -16,7 +16,8 @@ for(let i=0;i<meta.triangles;i++){
 }
 assert.equal(meta.worldSha256,createHash('sha256').update(await readFile('public/levantamiento/world.js')).digest('hex'));
 assert((await readFile('public/seguimiento-ligero.json')).length<100000,'resumen bajo 100 KB');
-// Retaining small wall/roof faces needs a larger raw budget; compression stays bounded.
-assert(bytes.length<600000,'geometría completa bajo 600 KB');
+// C02 adds source-informed portico and roof geometry. Allow a small uncompressed
+// increase while keeping the actual 200 KB transfer budget unchanged.
+assert(bytes.length<630000,'geometría completa bajo 630 KB');
 assert(gzipSync(bytes).length<200000,'geometría comprimida bajo 200 KB');
 console.log('Vista ligera: todos los IDs y estados conservados; geometría válida y presupuestos de carga cumplidos.');

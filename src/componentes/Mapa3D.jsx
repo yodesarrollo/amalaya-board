@@ -306,6 +306,7 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
   const marcadores = useRef([])
   const esquinas = useRef([])
   const [listo, setListo] = useState(false)
+  const [identificarCuadras, setIdentificarCuadras] = useState(false)
   const [respaldoMapa, setRespaldoMapa] = useState(false)
   // Entrada por capas: 0 satélite · 1 lámina · 2 rutas · 3 puntos · 4 fin
   const reducido = useMemo(() => { try { return window.matchMedia('(prefers-reduced-motion: reduce)').matches } catch { return false } }, [])
@@ -944,8 +945,9 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
         <div className="mapa-plan-b__aviso" role="status">
           <span>Vista ligera · el 3D no está disponible en este navegador.</span>
           <button type="button" onClick={() => window.location.reload()}>Reintentar 3D</button>
+          <button type="button" aria-pressed={identificarCuadras} onClick={() => setIdentificarCuadras(value => !value)}>{identificarCuadras ? 'Ocultar cuadras' : 'Ver cuadras'}</button>
         </div>
-        <iframe className="mapa-plan-b__visor" title="Modelo ligero de Amalaya" src={`${BASE}modelo-completo.html?embed=1&vista=volumen`} />
+        <iframe className="mapa-plan-b__visor" title="Modelo ligero de Amalaya" src={`${BASE}modelo-completo.html?embed=1&vista=volumen${identificarCuadras ? '&identificar=1' : ''}`} />
         <details className="mapa-plan-b__detalles">
           <summary>Recorridos, fichas y descargas</summary>
           <div className="mapa-plan-b__acciones">
@@ -966,6 +968,16 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
   return (
     <div className={`relative w-full h-full mapa3d tema-${tema}`} data-entrada={listo ? etapa : ''}>
       <div ref={cont} className="mapa-canvas" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%' }} />
+
+      {identificarCuadras && (
+        <section className="mapa-identificar" aria-label="Identificación de cuadras y edificios">
+          <div className="mapa-identificar__barra">
+            <span>Cuadras y edificios</span>
+            <button type="button" onClick={() => setIdentificarCuadras(false)} aria-label="Cerrar identificación de cuadras">Volver al mapa</button>
+          </div>
+          <iframe title="Identificación de cuadras y edificios" src={`${BASE}modelo-completo.html?embed=1&vista=volumen&host=1&identificar=1`} />
+        </section>
+      )}
 
       {/* Tocar en cualquier parte durante la entrada la salta */}
       {listo && etapa < 4 && (
@@ -1064,6 +1076,9 @@ export default function Mapa3D({ espacios, rutas, paradas, onAbrir, onRecorrer, 
 
       {/* ── Carril superior derecho: espacios y monito ─────────────── */}
       <div className="mapa-space-tools absolute right-4 top-4 z-20 flex gap-2">
+        <button type="button" className="ctrl-mapa" aria-pressed={identificarCuadras} onClick={() => setIdentificarCuadras(true)}>
+          Cuadras
+        </button>
         <button className={`ctrl-mapa ${lista ? 'ctrl-on' : ''}`} onClick={() => setLista(!lista)} title="Lista y buscador de espacios">
           <List size={15} /> Espacios
         </button>

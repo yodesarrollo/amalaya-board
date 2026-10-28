@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "source": "Geometría vigente por ID exportada de world.js y fittedPlan; anclas dentro de la huella propia; asignación original a cuadra conservada.",
+  "worldSha256": "af0cc341f7715a173ce3cac6ea31e5a961e9c92c4ee103ff1fd82d9a2b37b34b",
+  "points": {
+    "B1-09": [
+      -236.955,
+      -1.6075
+    ],
+    "B3-02": [
+      134.348325,
+      -25.058750000000003
+    ],
+    "C1-03": [
+      -178.78735,
+      64.12299999999999
+    ],
+    "C1-08": [
+      -234.76500000000001,
+      58.8775
+    ],
+    "C1-09": [
+      -226.775,
+      54.669999999999995
+    ]
+  }
+}

@@ -35,6 +35,21 @@ const parking=world.getObjectByName('Planta física · B3-02');assert.equal(park
 assert(world.getObjectByName('Planta física · B1-09').userData.heightMeters>world.getObjectByName('Planta física · B1-08').userData.heightMeters*3,'Tower and low garage are distinct masses');
 // A facade adjustment must never close a courtyard in roof geometry or navigation.
 const onTriangle=(x,z,v)=>{const signs=v.map((a,i)=>{const b=v[(i+1)%3];return (b.x-a.x)*(z-a.z)-(b.z-a.z)*(x-a.x)});return signs.every(s=>s>=-1e-6)||signs.every(s=>s<=1e-6);};
+// The Chihuahua corner is an open lot in the reference, not a solid block.
+const lot=world.getObjectByName('ESQUINA NORESTE · recinto abierto');assert(lot?.userData.openLot);
+assert(!colliders.some(c=>c.containsPoint(new R.Vector3(165,1.6,-32))),'El estacionamiento no debe tener un collider sólido en su interior');
+for(const m of lot.children.filter(c=>c.isMesh)){const pos=m.geometry.attributes.position,idx=m.geometry.index?.array||Array.from({length:pos.count},(_,i)=>i);for(let i=0;i<idx.length;i+=3){const v=[0,1,2].map(j=>new R.Vector3().fromBufferAttribute(pos,idx[i+j]).applyMatrix4(m.matrixWorld));if(v.every(p=>p.y>.5))assert(!onTriangle(165,-32,v),'El recinto abierto no debe tener una cubierta sobre los autos');}}
+const chihuahua=world.getObjectByName('Planta física · A3-08');assert.equal(chihuahua.geometry.parameters.shapes.holes.length,1,'El patio de Chihuahua 66 se conserva');
+assert.equal(chihuahua.userData.heightMeters,3.8);
+// The C02 historical frontage has a real recessed portico and upper openings,
+// and their faces must survive the compact representation used on phones.
+const soto=world.getObjectByName('Planta física · B1-03');
+assert.equal(soto.userData.blockReview,'C02');assert.equal(soto.userData.heightMeters,8.2);
+for(const color of ['465151','535b57']){
+ const detail=soto.children.find(m=>m.isMesh&&m.userData.liteStructural&&m.material.color.getHexString()===color);
+ assert(detail&&detail.geometry.attributes.position.count>0,'El pórtico y los vanos superiores deben conservar geometría visible');
+}
+assert(!colliders.some(c=>c.buildingId==='B1-03'&&c.containsPoint(new R.Vector3(-195,12,13))),'La altura anterior de 14 m no debe dejar una colisión invisible');
 for(const [id,x,z] of [['C2-06',12,40],['C2-07',37,40]]){
  const m=world.getObjectByName('Planta física · '+id),expected=SHEET_PLANS.find(p=>p.id===id).holes;
  assert.deepEqual(m.userData.fittedPlan.holes,expected,id+' preserves the original courtyard boundary');

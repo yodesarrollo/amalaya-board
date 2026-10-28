@@ -1,3 +1,8 @@
+import {C02_APROXIMADA} from './cuadra-c02-aproximada.js?v=762653c8bba5';
+import {SERDAN_APROXIMADO} from './serdan-aproximado-data.js?v=0bbe41f3555a';
+import {C05_APROXIMADA} from './cuadra-c05-aproximada.js?v=5b91975adb8a';
+import {CORREDOR_OBREGON_20261026} from './corredor-obregon-20261026.js?v=0b3a3165be8d';
+import {BLOQUE1_SERDAN} from './bloque1-serdan-20261026.js?v=25a7d7b95b21';
 // Visible features only. Dimensions are visual estimates from the retained photos.
 // Existing fitted footprints are read from the scene, never retraced by this layer.
 export const CUADRA_DETAILS = [{
@@ -35,9 +40,9 @@ export const CUADRA_DETAILS = [{
  ]
 },{block:'C30',orderLabel:8,evidence:'c30-cierre-20261008',buildings:[
  {id:'CH-YG-BIB',ownerPrefix:'Huella OSM 1533334038',points:[[9.12708,-99.045067],[-3.68388,-96.704018],[3.33396,-59.313869],[17.53488,-65.105461]],height:9.6,color:'#bbbdb5',uncertainty:1.5,
-  sources:['c30-serdan-biblioteca-20261008.jpg','c30-serdan-centro-20261008.jpg'],
-  facades:[{edge:0,plain:true,bays:[.35,3.55,6.75].flatMap(b=>[3.2,9.65].map(x=>({x,w:5.5,h:2.5,b,rect:true,open:true,noBars:true}))),bands:[{y:3.25,h:.25,d:.35,color:'#c4c6bd'},{y:6.45,h:.25,d:.35,color:'#c4c6bd'}]}],
-  note:'Estructura abierta visible en la foto de 2023. Se conserva el código histórico; el nombre Biblioteca no atribuye ese uso al frente fotografiado.'},
+  sources:['c30-serdan-biblioteca-20261008.jpg','https://www.colson.edu.mx/nota.aspx?nx=7106','https://www.elimparcial.com/son/hermosillo/2025/05/27/biblioteca-gerardo-cornejo-culmina-mayo-con-actividades-culturales-y-literarias/'],
+  facades:[{edge:0,plain:true,bays:[{x:2.8,w:3.6,h:2.9,b:.1,rect:true,noBars:true,fillColor:'#344044'},{x:8.3,w:4.4,h:2.9,b:.1,rect:true,noBars:true,fillColor:'#354446'},...[3.45,6.55].flatMap(b=>[3.0,9.0].map(x=>({x,w:4.5,h:2.25,b,rect:true,noBars:true,fillColor:'#455758'})))],bands:[{y:3.23,h:.24,d:.22,color:'#aaa8a0'},{y:6.35,h:.24,d:.22,color:'#aaa8a0'},{x:7.8,w:5.8,y:3.35,h:.64,d:.15,color:'#96563f'},{y:9.36,h:.2,d:.28,color:'#bcbab0'}],fins:[.6,1.25,1.9,2.55,3.2,3.85,4.5,5.15,5.8,6.45,7.1,7.75,8.4,9.05,9.7,10.35,11].map(x=>({x,b:6.6,h:2.05,w:.07,d:.12,color:'#343d3b'}))}],
+  note:'Biblioteca terminada: la foto de 2023 mostraba obra y la referencia de 2025 muestra una fachada cerrada con vidrio, panel rojizo y elementos oscuros. Interpretación visual aproximada, sin dimensiones medidas.'},
  {id:'CH-YG-BBVA',ownerPrefix:'Huella OSM 499759374',points:[[-34.04916,-90.00264],[-75.495239,-82.424751],[-68.341316,-43.492401],[-26.895241,-51.070286]],height:6.2,color:'#e2e4df',uncertainty:1.2,
   sources:['c30-yanez-banco-20261008.jpg','c30-serdan-biblioteca-20261008.jpg'],
   facades:[{edge:0,plain:true,bays:[{x:22,w:4.4,h:2.8,b:.05,rect:true,noBars:true,fillColor:'#536777'}],bands:[{x:22,w:13,y:4.5,h:.7,d:.18,color:'#315678'}]},
@@ -51,5 +56,36 @@ export const CUADRA_DETAILS = [{
   facades:[{edge:1,plain:true,bays:[{x:1.5,w:1,h:2.45,b:0,rect:true,door:true,frameColor:'#618a7c'},{x:4.5,w:2.8,h:1.8,b:.65,rect:true,frameColor:'#bbad79'},{x:9,w:3.7,h:2.7,b:0,rect:true,noBars:true,fillColor:'#414842',shutter:true},{x:5,w:.8,h:.7,b:3.25,rect:true,frameColor:'#bdad79'}],bands:[{y:2.88,h:.17,d:.45,color:'#846d68'},{y:4.5,h:.17,d:.16,color:'#977b72'}]}],note:'Cuerpo turquesa bajo, cortina, ventana y puerta diferenciadas; pequeño vano alto observado.'},
  {id:'B2-02',height:3.6,color:'#62a8bf',uncertainty:.8,sources:['c30-garmendia-sur-20261008.jpg'],
   facades:[{edge:3,plain:true,bays:[{x:.8,w:1,h:1.2,b:.8,rect:true,frameColor:'#c9b65c'},{x:2.45,w:.9,h:2.2,b:0,rect:true,door:true,frameColor:'#c9b65c'},{x:4.05,w:1,h:1.2,b:.8,rect:true,frameColor:'#c9b65c'}],bands:[{y:3.3,h:.12,d:.14,color:'#8d8081'}]}],note:'Frente azul bajo con dos ventanas y puerta; no se reproduce el mural ni se llena el patio lateral.'}
- ],access:{building:'CH-YG-BBVA',edge:0,center:22,steps:3,rise:.12,tread:.28,width:3.2,source:'c30-yanez-banco-20261008.jpg'},heritage:{ownerPrefix:'PH-01 · Instituto Sonorense de Cultura · fachada patrimonial interpretada',a:[-56.9592,-.166425],b:[34.54488,-8.066065],westEndX:-25,redStartX:2,height:7.45,westHeight:10.2,source:'c30-obregon-isc-20261008.jpg',note:'Tres frentes distintos: poniente de dos niveles, pórtico central de cinco arcos y paño rojo oriental. El ala este previa se conserva.'}
+ ],access:{building:'CH-YG-BBVA',edge:0,center:22,steps:3,rise:.12,tread:.28,width:3.2,source:'c30-yanez-banco-20261008.jpg'},heritage:{ownerPrefix:'PH-01 · Instituto Sonorense de Cultura · fachada patrimonial interpretada',a:[-56.9592,-.166425],b:[34.54488,-8.066065],westEndX:-25,redStartX:2,height:7.45,westHeight:10.2,source:'c30-obregon-isc-20261008.jpg',note:'Tres frentes distintos: poniente de dos niveles, pórtico central de cuatro arcos visibles y paño rojo oriental con pilastras. El ala este previa se conserva. Proporciones estimadas, no medidas.'}
 }];
+
+CUADRA_DETAILS.push(C02_APROXIMADA);
+CUADRA_DETAILS.push(...SERDAN_APROXIMADO);
+CUADRA_DETAILS.push(C05_APROXIMADA);
+CUADRA_DETAILS.push(...CORREDOR_OBREGON_20261026);
+CUADRA_DETAILS.push(...BLOQUE1_SERDAN);
+
+// Chihuahua: the panorama and the aerial footprint show distinct fronts. All
+// heights and the internal split are visual estimates, not parcel boundaries.
+CUADRA_DETAILS.push({block:'C21',evidence:'recorrido-R002-P05-P07',buildings:[
+ {id:'EB-NW',ownerPrefix:'ESQUINA NOROESTE',points:[[65.48577,-36.82626],[80.48021,-37.82364],[82.88317,-22.9738],[67.88873,-21.97642]],height:4.4,color:'#789465',uncertainty:2.0,
+  sources:['recorrido/cjTHuFQqgbHlqPDeYtUDaQ.jpg','recorrido/kwpqUP9tZmmjDfiFDIJbsg.jpg'],
+  facades:[{edge:0,plain:true,bays:[3,8,12].map(x=>({x,w:1.35,h:2.15,b:.55,rect:true,frameColor:'#ece9dd'})),bands:[{y:4.23,h:.18,d:.20,color:'#eeeae0'}]},
+   {edge:3,plain:true,bays:[3.5,8.5,12.5].map(x=>({x,w:1.2,h:2.1,b:.55,rect:true,frameColor:'#ece9dd'})),bands:[{y:4.23,h:.18,d:.20,color:'#eeeae0'}]}],
+  note:'Esquina verde de un nivel en Garmendia y Chihuahua, con rejas y marcos claros; anchuras y altura estimadas.'},
+ {id:'B3-01',points:[[84.044,-37.19],[84.044,-21.327],[91.083,-20.547],[101.251,-21.587],[101.251,-22.628],[112.17399,-24.12317],[110.27508,-38.82501]],height:4.4,color:'#f2f0e7',uncertainty:2.5,
+  sources:['recorrido/qU0XiVpeIHZyTixjEBUfgg.jpg','recorrido/kwpqUP9tZmmjDfiFDIJbsg.jpg'],facades:[],sections:[
+   {part:'frente-rojo',points:[[84.044,-37.19],[84.044,-21.327],[91.083,-20.547],[92,-20.64079],[92,-37.68597]],height:4.2,color:'#a95345',facades:[{edge:4,plain:true,bays:[{x:1.5,w:1.05,h:2,b:.55,rect:true,frameColor:'#dbd4c9'},{x:4,w:1.1,h:2.5,b:.08,rect:true,door:true,frameColor:'#d8d1c6'},{x:6.3,w:1.0,h:2,b:.55,rect:true,frameColor:'#d8d1c6'}],bands:[{y:4,h:.16,d:.18,color:'#dfd7c8'}]}]},
+   {part:'frente-blanco',points:[[92,-37.68597],[92,-20.64079],[101.251,-21.587],[101.251,-22.628],[112.17399,-24.12317],[110.27508,-38.82501]],height:4.4,color:'#e8e8df',facades:[{edge:5,plain:true,bays:[{x:2.8,w:2.3,h:2.8,b:.05,door:true},{x:7,w:2.8,h:2.9,b:.05,rect:true,door:true,fillColor:'#3b3734'},{x:11.5,w:1.35,h:2.0,b:.55,rect:true,frameColor:'#dedbd1'},{x:15.2,w:1.5,h:2.6,b:.1,door:true}],bands:[{y:4.25,h:.16,d:.2,color:'#f1eee3'}]}]}
+  ],note:'Cuerpos rojo y blanco sobre Chihuahua, diferenciados por panoramas contiguos; la división interior y el fondo son aproximados.'}
+]});
+
+// In this corner the available panorama shows cars behind masonry and grilles;
+// the capture date is unknown.
+// Keep it open: the former generic solid and roof do not represent the photo.
+CUADRA_DETAILS.push({block:'C23',evidence:'recorrido-R002-P01-P02',buildings:[],openLots:[{
+ id:'EB-NE',ownerPrefix:'ESQUINA NORESTE',points:[[176.42772,-41.7172],[152.41932,-40.05295],[155.14107,-23.4478],[179.14947,-25.11205]],
+ height:3.0,color:'#9d8d7d',sources:['recorrido/77G-ooH2G6Dx2QbnJ20OAQ.jpg','recorrido/TMvGKzSUcJSVhkTRRxjHIA.jpg'],
+ walls:[{edge:0,bays:[4,11,18].map(x=>({x,w:2.25,h:2.35,b:.15,rect:true,open:true,fullBars:true}))},{edge:3,bays:[4,10,14].map(x=>({x,w:2.0,h:2.3,b:.15,rect:true,open:true,fullBars:true}))}],
+ note:'Recinto abierto con autos, muro de mampostería y rejas visibles en el panorama; sin cubierta genérica. Estado actual y límites exactos por verificar.'
+}]});

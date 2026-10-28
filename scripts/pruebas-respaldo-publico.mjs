@@ -34,8 +34,8 @@ const element=(type,props,...children)=>({type,props:props||{},children});
 const jsxFunction=(code,context)=>vm.runInNewContext(transformSync(code,{loader:'jsx',jsxFactory:'element',jsxFragment:'Fragment'}).code,{element,...context});
 const ListaEspacios=()=>null,RecorridoModelo=()=>null;
 let opened;
-const renderFailure=jsxFunction(`(function(falla3d){${mapa3dSource.slice(failureStart,failureEnd)}return null;})`,{
- BASE:'/amalaya-board/',cont:{current:null},espacios:[],busca:'',setBusca(){},onAbrir:id=>{opened=id},onNuevo:undefined,ListaEspacios,
+const renderFailure=jsxFunction(`(function(falla3d,identificarCuadras=false){${mapa3dSource.slice(failureStart,failureEnd)}return null;})`,{
+ setIdentificarCuadras(){},BASE:'/amalaya-board/',cont:{current:null},espacios:[],busca:'',setBusca(){},onAbrir:id=>{opened=id},onNuevo:undefined,ListaEspacios,
 });
 assert.equal(renderFailure(null),null,'The lightweight view does not replace a working map');
 const tree=renderFailure('WebGL unavailable');
@@ -43,6 +43,7 @@ const nodes=node=>node&&typeof node==='object'?[node,...(node.children||[]).flat
 const recoveryNodes=nodes(tree),iframe=recoveryNodes.find(n=>n.type==='iframe');
 assert(iframe,'Map failure automatically embeds a viewer');
 assert.equal(iframe.props.src,'/amalaya-board/modelo-completo.html?embed=1&vista=volumen');
+assert.equal(nodes(renderFailure('WebGL unavailable',true)).find(n=>n.type==='iframe').props.src,'/amalaya-board/modelo-completo.html?embed=1&vista=volumen&identificar=1','Identification remains available in recovery');
 assert.equal(new URL(iframe.props.src,'https://example.test').origin,'https://example.test','Recovery stays on the public project origin');
 for(const asset of ['lamina-zona-nucleo.jpg','mapa-poligono.jpg'])assert(recoveryNodes.some(n=>n.type==='a'&&n.props.href.endsWith(asset)&&n.props.download===true),asset+' remains downloadable');
 const list=recoveryNodes.find(n=>n.type===ListaEspacios);assert(list,'Work records remain available');list.props.onElegir({id:'fixture-space'});assert.equal(opened,'fixture-space','A recovery list item still opens its record');

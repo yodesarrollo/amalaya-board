@@ -1,0 +1,90 @@
+{
+  "nota": "Direcciones publicadas en las fuentes indicadas. No sustituyen constancia municipal de numeración oficial ni demuestran límites de propiedad.",
+  "registros": {
+    "ISC-58": {
+      "direccion": "Álvaro Obregón 58, Centro",
+      "estado": "Domicilio publicado por la institución y el Gobierno de Sonora",
+      "fuente": "https://www.sonora.gob.mx/gobierno/estructura-organizacional/entidades/instituto-sonorense-de-cultura-7a9cd646"
+    },
+    "EB-SW": {
+      "direccion": "Garmendia 193, esquina con Obregón",
+      "estado": "Domicilio publicado por el establecimiento; numeración oficial por confirmar",
+      "fuente": "https://www.instagram.com/barra_hidalgo/p/DEqzmxRC578/"
+    },
+    "EB-SW-CLUB": {
+      "direccion": "Álvaro Obregón, junto a Garmendia",
+      "estado": "Número exterior por confirmar: un directorio indica 22, pero otra institución publica ese número en un edificio de otra esquina",
+      "fuente": "https://www.colson.edu.mx/nota.aspx?nx=6836"
+    },
+    "CH-YG-BIB": {
+      "direccion": "Aquiles Serdán 127, Centro",
+      "estado": "Domicilio publicado por El Colegio de Sonora; numeración oficial por confirmar",
+      "fuente": "https://www.colson.edu.mx/nota.aspx?nx=6822"
+    },
+    "B1-03": {
+      "direccion": "Rosales y Álvaro Obregón",
+      "estado": "Posible ubicación de la antigua Procuraduría; la correspondencia con este volumen y el límite de la demolición siguen por confirmar",
+      "fuente": "https://www.radiosonora.com.mx/derribo-de-inmueble-dara-paso-a-ampliacion-del-bulevar-hidalgo/"
+    },
+    "CH-YG-BBVA": {
+      "direccion": "Aquiles Serdán 141, esquina Yáñez, Centro",
+      "estado": "Domicilio publicado por BBVA; correspondencia cartográfica aproximada con esta huella, numeración municipal por confirmar",
+      "fuente": "https://www.bbva.mx/content/dam/public-web/mexico/documents/personas/servicios-digitales/soluciones-de-pago/Red_Centros_Especializados_en_Recuperacion.pdf"
+    },
+    "SER-BLEY": {
+      "nombre": "Edificio Bley · referencia Mueblería México",
+      "direccion": "Aquiles Serdán 122-B, esquina Garmendia",
+      "estado": "Número publicado en un directorio de la mueblería; la asociación del edificio histórico y su deslinde requieren confirmación",
+      "fuente": "https://www.allbiz.mx/muebleria-mexico_2n-662-213-2056"
+    },
+    "SER-HSBC": {
+      "nombre": "Fantasías Miguel · frente a Serdán",
+      "direccion": "Aquiles Serdán 112, Centro",
+      "estado": "Domicilio publicado por el comercio; frente cotejado visualmente con panoramas. El ID previo del modelo se conserva",
+      "fuente": "https://fantasiasmiguel.mx/pages/hermosillo"
+    },
+    "A3-01": {
+      "nombre": "Woolworth · Serdán",
+      "direccion": "Aquiles Serdán 98, Centro",
+      "estado": "Dirección publicada en el Boletín Oficial; la huella se relacionó con el frente por fotografía y ubicación aproximada",
+      "fuente": "https://boletinoficial.sonora.gob.mx/boletin.php?id=337"
+    },
+    "A3-08": {
+      "nombre": "Chihuahua 66 · referencia Carpingenia",
+      "direccion": "Avenida Chihuahua 66, Centro",
+      "estado": "Número visible en el panorama y publicado en un directorio; la ocupación actual y los límites exactos del inmueble requieren confirmación",
+      "fuente": "https://www.allbiz.mx/carpingenia-662-297-4624"
+    },
+    "EB-NE": {
+      "nombre": "Recinto abierto · Chihuahua y Abasolo",
+      "direccion": "Avenida Chihuahua, esquina Abasolo",
+      "tipo": "recinto_abierto",
+      "estado": "El panorama muestra autos y rejas en el recinto; el número, su ocupación actual y los linderos están por confirmar",
+      "fuente": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.0765266,-110.9530857"
+    },
+    "CH-GA-OXXO": {
+      "nombre": "OXXO · Serdán y Garmendia",
+      "direccion": "Aquiles Serdán, entre Garmendia y Guerrero",
+      "estado": "Frente y punto de un directorio de 2021 coinciden aproximadamente; el número exterior y la ocupación actual siguen por verificar",
+      "fuente": "https://www.hsbc.com.mx/content/dam/hsbc/mx/documents/tu-banco-cerca-de-ti/oxxo.pdf"
+    },
+    "B2-02": {
+      "nombre": "Casa Garmendia · café y churrería",
+      "direccion": "Calle Garmendia 186, Centro",
+      "estado": "Domicilio publicado por el establecimiento; fachada azul y posición cotejadas con el panorama. Delimitación del predio aproximada",
+      "fuente": "https://linktr.ee/casagarmendia"
+    },
+    "C2-04": {
+      "nombre": "Casona Obregón 55",
+      "direccion": "Álvaro Obregón 55, Centro",
+      "estado": "Dirección publicada por la autoridad; fachada cotejada con fotografía de la obra y panorama. Linderos por confirmar",
+      "fuente": "https://proteccioncivil.sonora.gob.mx/media/attachments/2025/03/12/2025ccxv16ii.pdf"
+    },
+    "EB-SW-COLEGIO": {
+      "nombre": "El Colegio de Sonora · posgrado",
+      "direccion": "Álvaro Obregón 22, esquina callejón De Ayón",
+      "estado": "Domicilio publicado por la institución; el frente amarillo con su rótulo coincide con el panorama. Predio exacto por confirmar",
+      "fuente": "https://www.colson.edu.mx/nota.aspx?nx=6836"
+    }
+  }
+}
