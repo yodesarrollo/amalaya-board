@@ -1,2 +1,2 @@
 // Cache version of the actual 3D world.
-export const VERSION_LEVANTAMIENTO = 'fc35d3ce93bf';
+export const VERSION_LEVANTAMIENTO = '892c7e06184e';

@@ -2,7 +2,7 @@ import { applyVisualFit } from './ajuste-visual-refinement.js?v=60d91fad5f72';
 import { applyParamento } from './paramento-refinement.js?v=0868c6eb49d1';
 import { applyGroundReference } from './ground-reference-refinement.js?v=46dad659fe0a';
 import { applyStreetBatch50 } from './street-batch50-refinement.js?v=9300d223f642';
-import { SHEET_PLANS } from './sheet-plan-data.js?v=9ae568697dde';
+import { SHEET_PLANS } from './sheet-plan-data.js?v=84e4beca6051';
 import { footprintColliderCells } from './isc58-refinement.js?v=76eca0365d35';
 
 // Physical roof footprints. Heights are modelling placeholders for action 7.
@@ -75,5 +75,18 @@ export function applySheetPlan(world, colliders, R) {
   applyGroundReference(world, colliders, R);
   applyVisualFit(world, colliders, R);
   applyParamento(world, colliders, R);
+  // ExtrudeGeometry group 0 is the cap, group 1 the walls. Retain the owner's
+  // existing geometry, affine fit, wall material and all navigation colliders.
+  for (const plan of SHEET_PLANS.filter(p => p.roofMaterialReview)) {
+    const review = {id:plan.id, ...plan.roofMaterialReview};
+    const owner = world.getObjectByName('Planta física · '+review.id);
+    if (!owner || owner.geometry?.type !== 'ExtrudeGeometry') throw Error('Roof material: missing owner '+review.id);
+    const old = Array.isArray(owner.material) ? owner.material : [owner.material];
+    const roof = old[0].clone();
+    roof.map = null;
+    roof.color.set(review.color);
+    owner.material = [roof, old[1] || old[0]];
+    owner.userData.roofMaterialReview = {...review, status:'visual approximation; imagery date unverified'};
+  }
   world.userData.sheetPlan=result; return result;
 }
