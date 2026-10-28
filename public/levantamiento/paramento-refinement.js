@@ -1,7 +1,7 @@
 import {FRONT_BUILDINGS,ROUND2_BUILDINGS,HEIGHT_REVIEWS,COURTYARD_REVIEWS,JOIN_REVIEWS,PARAMENTO_VERSION} from './paramento-data.js?v=5cc1cd6d1d7a';
 import {PARAMENTO_SIDEWALKS} from './paramento-sidewalks.js?v=8ee470fed0ad';
 import {footprintColliderCells} from './isc58-refinement.js?v=76eca0365d35';
-import {CUADRA_DETAILS} from './cuadra-detail-data.js?v=f8f7963126e3';
+import {CUADRA_DETAILS} from './cuadra-detail-data.js?v=a56d6801707b';
 import {applyObregonApprox} from './obregon-aproximado-data.js?v=9a20c956e9de';
 
 // Uses the scene's own constructors, including in the preserved compiled viewer.
@@ -42,6 +42,8 @@ export function applyParamento(world,colliders,R){
     block(g,bay.x,bay.b+1.25,-.98,bay.w*.68,1.45,.055,'#465151','Paramento · cierre de ventana del pórtico');
    }else if(!bay.open){const fill=mesh(extrude(opening(bay),.045),bay.fillColor||(bay.blind?color:bay.wood?'#59472f':'#262e32'),g,'Paramento · cierre retranqueado');fill.position.z=-.17;}
    if(bay.rect&&bay.frameColor){const trim=shape([[bay.x-bay.w/2-.10,Math.max(0,bay.b-.1)],[bay.x+bay.w/2+.10,Math.max(0,bay.b-.1)],[bay.x+bay.w/2+.10,bay.b+bay.h+.1],[bay.x-bay.w/2-.10,bay.b+bay.h+.1]]);trim.holes.push(opening(bay));const frame=mesh(extrude(trim,.085),bay.frameColor,g,'Paramento · marco rectangular');frame.position.z=.005;}
+   if(bay.lintel){block(g,bay.x,bay.b+bay.h+.20,.05,bay.w+.52,.18,.22,bay.frameColor,'Paramento · banda de fachada dintel');block(g,bay.x,bay.b+bay.h+.33,.04,bay.w+.65,.08,.28,bay.frameColor,'Paramento · banda de fachada remate');}
+   if(bay.panels)for(const dx of [-.55,.55])for(const y of [.65,1.75,2.85])block(g,bay.x+dx,y,-.10,.86,.86,.05,'#776345','Paramento · cierre panel de madera');
    if(bay.shutter)for(let y=bay.b+.16;y<bay.b+bay.h-.08;y+=.16)block(g,bay.x,y,-.10,bay.w,.018,.025,'#bdc1bb','Paramento · lama de portón');
    if(!bay.rect){const trim=arch(bay.x,bay.w+.34,bay.h+.22,Math.max(0,bay.b-.08));trim.holes.push(opening(bay));
     const surround=mesh(extrude(trim,.09),'#e3dfcf',g,'Paramento · moldura de arco');surround.position.z=.005;}
@@ -67,6 +69,22 @@ export function applyParamento(world,colliders,R){
    for(const [a,b] of spans)block(g,(a+b)/2,band.y,.02,b-a,band.h,band.d,band.color,'Paramento · banda de fachada');
   }
   for(const fin of details.fins||[])block(g,fin.x,fin.b+fin.h/2,fin.d/2,fin.w,fin.h,fin.d,fin.color,'Paramento · parasol vertical');
+  // Opt-in historical frontage. Fractions are symmetric so winding reversal
+  // cannot move a pier into an opening; dimensions remain visual estimates.
+  for(const t of details.pilasters||[])block(g,length*t,2.55,.06,.32,5.1,.18,details.trimColor,'Paramento · banda de fachada pilastra');
+  if(details.balustrade){
+   const r=details.balustrade,base=height+.06;
+   block(g,length/2,base+.06,-.1,length,.12,.3,r.trim,'Paramento · cubierta balaustrada base');
+   block(g,length/2,base+.84,-.1,length,.14,.34,r.trim,'Paramento · cubierta balaustrada pasamanos');
+   const bays=5;
+   for(let j=0;j<=bays;j++)block(g,length*j/bays,base+.47,-.1,.36,.94,.36,r.trim,'Paramento · cubierta balaustrada pilar');
+   for(let j=0;j<bays;j++)for(let k=1;k<10;k++){
+    const x=length*(j+k/10)/bays;
+    block(g,x,base+.43,-.1,.10,.64,.14,r.color,'Paramento · detalle balaustre');
+    block(g,x,base+.35,-.1,.19,.23,.19,r.color,'Paramento · detalle balaustre vientre');
+    block(g,x,base+.68,-.1,.17,.10,.18,r.color,'Paramento · detalle balaustre capitel');
+   }
+  }
   if(details.canopy){const c=details.canopy,m=block(g,length/2,c.y,c.depth/2-.1,length+.15,.12,c.depth,c.color,'Paramento · marquesina inclinada');m.rotation.x=Math.atan(.25/c.depth);}
   return g;
  }

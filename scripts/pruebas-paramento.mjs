@@ -60,6 +60,12 @@ for(const [id,x,z] of [['C2-06',12,40],['C2-07',37,40]]){
 for(const [x,z] of [[-240,55],[-222,55]])assert(!colliders.some(c=>c.containsPoint(new R.Vector3(x,1.6,z))),'Hidalgo open side yards stay clear');
 assert(colliders.some(c=>c.buildingId==='C1-02'&&c.containsPoint(new R.Vector3(-172,5.5,50))),'Obregon western body has the observed second level');
 assert(!colliders.some(c=>c.buildingId==='C1-02'&&c.containsPoint(new R.Vector3(-161,5.5,47))),'Obregon one-storey neighbour is not extruded to the same height');
+const d105=world.getObjectByName('Planta física · D1-05');
+assert.deepEqual(d105.userData.fittedPlan.points,SHEET_PLANS.find(p=>p.id==='D1-05').points,'76 conserva todos sus anclajes; no absorbe el jardín oriental');
+assert.equal(d105.userData.heightStatus,'visual estimate, unmeasured');
+assert.equal(d105.userData.blockReview,'C13');
+assert(d105.children.some(m=>m.userData.liteStructural&&m.material.color.getHexString()==='74715a'),'El remate y marcos del 76 sobreviven al visor ligero');
+for(const id of ['D1-06','D1-07'])assert.equal(world.getObjectByName('Planta física · '+id).geometry.type,'ExtrudeGeometry','El detalle del 76 no sustituye sus vecinos');
 const points=JSON.parse(await readFile('public/recorrido/rutas.json')).rutas.find(r=>r.id==='R-001').puntos;
 const extraStations=[{lat:29.075781,lng:-110.957122},{lat:29.0757998,lng:-110.9569305},{lat:29.07583,lng:-110.9565574},{lat:29.0757712,lng:-110.9562256}];
 for(const p of [...points,...extraStations]){const v=new R.Vector3((p.lng+110.9547151)*97200,1.6,(29.076115-p.lat)*110950);assert(!colliders.some(c=>c.containsPoint(v)),'The inspected street station stays walkable: '+p.id);}

@@ -1,0 +1,114 @@
+{
+  "building": "D1-05",
+  "visibleNumber": 76,
+  "block": "C13",
+  "visibleBlock": 22,
+  "scope": "Exterior visual aproximado; no levantamiento métrico ni interior",
+  "baseCommit": "d1d299636709baff5cc26db9e600f6e28b320b34",
+  "nominalBodyHeight": 5.15,
+  "nominalTopHeight": 6.2,
+  "measuredHeight": false,
+  "footprintUncertaintyMeters": 3,
+  "neighborsBoundsUnchanged": true,
+  "otherCollidersUnchanged": true,
+  "before": {
+    "id": "D1-05",
+    "owner": "Planta física · D1-05",
+    "min": [
+      -237.27099609375,
+      0.04999999999998898,
+      153.81399536132812
+    ],
+    "max": [
+      -201.29299926757812,
+      6.2499998092651365,
+      180.0780029296875
+    ],
+    "height": 6.199999809265147
+  },
+  "after": {
+    "id": "D1-05",
+    "owner": "Planta física · D1-05",
+    "min": [
+      -237.45587158203125,
+      0.04999999701976776,
+      153.6443634033203
+    ],
+    "max": [
+      -201.1259002685547,
+      6.199999809265137,
+      180.0780029296875
+    ],
+    "height": 6.149999812245369
+  },
+  "sources": [
+    {
+      "front": "north",
+      "date": "2023-12",
+      "pano": "OIICOqVMyGvqcoGUoqN8Vw"
+    },
+    {
+      "front": "northwest",
+      "date": "2023-12",
+      "pano": "JVMgnFcxraCh-AKtmT58pA"
+    },
+    {
+      "front": "west",
+      "date": "2023-12",
+      "pano": "lW6-lge24Q7AeDT-MbcfKQ"
+    },
+    {
+      "front": "east",
+      "date": "2026-01",
+      "pano": "LSmCeol-Jj5we9m5bOkz0Q"
+    }
+  ],
+  "unknowns": [
+    "Altura y anchuras físicas sin medición independiente",
+    "Reverso y cubierta parcialmente ocultos",
+    "Fecha de la referencia aérea desconocida",
+    "Nombre y número oficial del inmueble no corroborados"
+  ],
+  "cameras": [
+    [
+      "norte",
+      29.074880209553854,
+      -110.9569784744856,
+      180,
+      75,
+      0,
+      3
+    ],
+    [
+      "noroeste",
+      29.074925274898604,
+      -110.95733855679012,
+      135,
+      65,
+      -12,
+      12
+    ],
+    [
+      "aerea",
+      29.074988366381255,
+      -110.95718423580247,
+      155,
+      65,
+      -55,
+      65
+    ]
+  ],
+  "files": {
+    "antes-aerea-3d.jpg": "35eac2e50ddc3d3cc3ee473cdbc41a6fa414d82e85eb6e1741f9f42c7c0fdd69",
+    "antes-noroeste-3d.jpg": "b5473213ebd61eb247cffcfc1d9f310a0e9565962b9a2cbbf14fe2f743241d59",
+    "antes-norte-3d.jpg": "220852c4944a9bbd41025cdfe3349395650c9b926998dd38d8d3f22a5ee187ae",
+    "d105-esquina-noroeste-202312.jpg": "c32f015cc925eb2fe48e87a06508d16fd9628d8c7dc2bba6e131637e4f02e4a8",
+    "d105-este-202601.jpg": "8cbad6a10e093eab714d1a2e1d605120c4e7fb5963e289a5b084b10cf44621b7",
+    "d105-norte-202312.jpg": "36ffd7d5ebca2f0b317b24b53057339ced76ffebc002d11eb53d393eb845e957",
+    "d105-oeste-202312.jpg": "ed3a3cfda75f52c9e9d75f510839ac2f3547a6660754e5c5fc2d9744310d742f",
+    "d105-oeste-norte-202312.jpg": "d67ef5e79acc87e5b2e677fca1a3580c4f61691d74328480edf7f05a7b8e230b",
+    "despues-aerea-3d.jpg": "71729d89a0bc5935c1ace8e6b34f67dbbd4390ea7cde8cc5d5d4f82a5408fdef",
+    "despues-noroeste-3d.jpg": "e22dddcd039246cedc97c52b192362fc278974fca5b5b45dae11e2135f27d260",
+    "despues-norte-3d.jpg": "843ab7c903be76910a967b999763864aa41ef26143a49ea9eb04b33c2dd49a87"
+  }
+}

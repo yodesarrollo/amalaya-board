@@ -89,3 +89,23 @@ CUADRA_DETAILS.push({block:'C23',evidence:'recorrido-R002-P01-P02',buildings:[],
  walls:[{edge:0,bays:[4,11,18].map(x=>({x,w:2.25,h:2.35,b:.15,rect:true,open:true,fullBars:true}))},{edge:3,bays:[4,10,14].map(x=>({x,w:2.0,h:2.3,b:.15,rect:true,open:true,fullBars:true}))}],
  note:'Recinto abierto con autos, muro de mampostería y rejas visibles en el panorama; sin cubierta genérica. Estado actual y límites exactos por verificar.'
 }]});
+
+
+// Edificio visible 76: D1-05. Only this owner is replaced. Native anchors retained.
+// Street View: north/west Dec 2023; east Jan 2026. No survey or hidden rear detail.
+{
+ const trim='#74715a', white='#e7e5dc';
+ const bands=[{y:.23,h:.46,d:.10,color:trim},{y:4.65,h:.13,d:.20,color:trim},{y:4.98,h:.24,d:.30,color:trim}];
+ const window=x=>({x,w:2.05,h:2.9,b:.3,rect:true,frameColor:trim,fillColor:'#55594e'});
+ CUADRA_DETAILS.push({block:'C13',evidence:'D1-05/20261028-seis-pasos',buildings:[{
+  id:'D1-05',height:5.15,color:white,roofColor:'#e5e2d5',uncertainty:3,keepDetails:false,
+  sources:['evidence/D1-05/d105-norte-202312.jpg','evidence/D1-05/d105-esquina-noroeste-202312.jpg','evidence/D1-05/d105-oeste-202312.jpg','evidence/D1-05/d105-este-202601.jpg','ajuste-visual/C13.jpg'],
+  facades:[
+   {edge:0,plain:true,trimColor:trim,pilasters:[0,.2,.4,.6,.8,1],balustrade:{trim,color:white},bands,
+    bays:[{...window(3.2),lintel:true},{x:9,w:2.35,h:3.55,b:.05,rect:true,door:true,wood:true,noBars:true,panels:true,lintel:true,frameColor:trim},... [15.7,22.2,28.3].map(x=>({...window(x),lintel:true}))]},
+   {edge:1,plain:true,bands:bands.slice(1),bays:[window(6),window(17.8)]},
+   {edge:4,plain:true,bands:bands.slice(1),bays:[window(5.5),window(16.7)]}
+  ],
+  note:'76 / D1-05: aproximación visual exterior de un nivel, frente norte con cuatro ventanas, puerta de madera, pilastras, cornisa y balaustrada; dos ventanas en cada lateral visible. Huella original y cubierta clara conservadas. Altura de cuerpo 5.15 m y remate hasta 6.20 m son proporciones nominales sin medición; incertidumbre de huella heredada ±3 m. Reverso y cubierta parcialmente ocultos sin detalles inventados. Jardín y cerco oriental externos no se absorben al edificio.'
+ }]});
+}
