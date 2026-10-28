@@ -22,7 +22,7 @@ export function roundedFront(points,facades,radii={}){
  }
  return {points:spans.map(v=>v.a),facades:spans.map((v,edge)=>{
   const f=facades.find(f=>f.edge===v.edge)||{plain:true},len=Math.hypot(v.b[0]-v.a[0],v.b[1]-v.a[1]),scale=len/(v.hi-v.lo);
-  const bays=(f.bays||[]).flatMap(b=>{const lo=Math.max(v.lo,b.x-b.w/2),hi=Math.min(v.hi,b.x+b.w/2);return hi-lo>.06?[{...b,x:((lo+hi)/2-v.lo)*scale,w:(hi-lo)*scale,frameWidth:.035,recess:.025,fragment:true,frameLeft:lo<=b.x-b.w/2+.001,frameRight:hi>=b.x+b.w/2-.001}]:[]});
+  const bays=(f.bays||[]).flatMap(b=>{const lo=Math.max(v.lo,b.x-b.w/2),hi=Math.min(v.hi,b.x+b.w/2);return hi-lo>.06?[{...b,x:((lo+hi)/2-v.lo)*scale,w:(hi-lo)*scale,frameWidth:.035,recess:b.recess??.025,fragment:true,frameLeft:lo<=b.x-b.w/2+.001,frameRight:hi>=b.x+b.w/2-.001}]:[]});
   const bands=(f.bands||[]).flatMap(b=>{if(b.x===undefined&&b.w===undefined)return[b];const lo=Math.max(v.lo,(b.x??L[v.edge]/2)-(b.w??L[v.edge])/2),hi=Math.min(v.hi,(b.x??L[v.edge]/2)+(b.w??L[v.edge])/2);return hi>lo?[{...b,x:((lo+hi)/2-v.lo)*scale,w:(hi-lo)*scale}]:[]});
   return {...f,edge,bays,bands};
  })};
