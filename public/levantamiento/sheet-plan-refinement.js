@@ -1,8 +1,8 @@
 import { applyVisualFit } from './ajuste-visual-refinement.js?v=60d91fad5f72';
-import { applyParamento } from './paramento-refinement.js?v=104db0353fa4';
+import { applyParamento } from './paramento-refinement.js?v=54432d824fb4';
 import { applyGroundReference } from './ground-reference-refinement.js?v=46dad659fe0a';
 import { applyStreetBatch50 } from './street-batch50-refinement.js?v=9300d223f642';
-import { SHEET_PLANS } from './sheet-plan-data.js?v=0c7915195436';
+import { SHEET_PLANS } from './sheet-plan-data.js?v=0c1ab17a7a90';
 import { footprintColliderCells } from './isc58-refinement.js?v=76eca0365d35';
 
 // Physical roof footprints. Heights are modelling placeholders for action 7.

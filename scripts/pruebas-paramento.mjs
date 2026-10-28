@@ -65,7 +65,11 @@ assert.deepEqual(d105.userData.fittedPlan.points,SHEET_PLANS.find(p=>p.id==='D1-
 assert.equal(d105.userData.heightStatus,'visual estimate, unmeasured');
 assert.equal(d105.userData.blockReview,'C13');
 assert(d105.children.some(m=>m.userData.liteStructural&&m.material.color.getHexString()==='74715a'),'El remate y marcos del 76 sobreviven al visor ligero');
-for(const id of ['D1-06','D1-07'])assert.equal(world.getObjectByName('Planta física · '+id).geometry.type,'ExtrudeGeometry','El detalle del 76 no sustituye sus vecinos');
+for(const id of ['D1-07'])assert.equal(world.getObjectByName('Planta física · '+id).geometry.type,'ExtrudeGeometry','El detalle de76y77 no sustituye al78');
+const d106=world.getObjectByName('Planta física · D1-06');
+assert.deepEqual(d106.userData.fittedPlan.points,SHEET_PLANS.find(p=>p.id==='D1-06').points,'77 conserva su huella y la junta con76');
+assert.equal(d106.userData.heightMeters,6.2,'77 conserva altura nominal no medida');
+assert(d106.children.some(m=>m.userData.liteStructural&&m.material.color.getHexString()==='cc7b60'),'La celosía del77 conserva geometría perforada');
 const points=JSON.parse(await readFile('public/recorrido/rutas.json')).rutas.find(r=>r.id==='R-001').puntos;
 const extraStations=[{lat:29.075781,lng:-110.957122},{lat:29.0757998,lng:-110.9569305},{lat:29.07583,lng:-110.9565574},{lat:29.0757712,lng:-110.9562256}];
 for(const p of [...points,...extraStations]){const v=new R.Vector3((p.lng+110.9547151)*97200,1.6,(29.076115-p.lat)*110950);assert(!colliders.some(c=>c.containsPoint(v)),'The inspected street station stays walkable: '+p.id);}
