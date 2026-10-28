@@ -1,8 +1,32 @@
 import {FRONT_BUILDINGS,ROUND2_BUILDINGS,HEIGHT_REVIEWS,COURTYARD_REVIEWS,JOIN_REVIEWS,PARAMENTO_VERSION} from './paramento-data.js?v=5cc1cd6d1d7a';
 import {PARAMENTO_SIDEWALKS} from './paramento-sidewalks.js?v=8ee470fed0ad';
 import {footprintColliderCells} from './isc58-refinement.js?v=76eca0365d35';
-import {CUADRA_DETAILS} from './cuadra-detail-data.js?v=d62a62fe570a';
+import {CUADRA_DETAILS} from './cuadra-detail-data.js?v=7771aa300b8f';
 import {applyObregonApprox} from './obregon-aproximado-data.js?v=9a20c956e9de';
+
+// Rounded visual outline stays inside the existing convex surveyed/estimated envelope.
+// Source distances preserve facade identity across the rounded corner; no new parcel anchors.
+export function roundedFront(points,facades,radii={}){
+ const n=points.length,L=points.map((a,i)=>Math.hypot(points[(i+1)%n][0]-a[0],points[(i+1)%n][1]-a[1]));
+ const r=points.map((_,i)=>Math.min(radii[i]||0,L[(i+n-1)%n]*.4,L[i]*.4));
+ const lerp=(a,b,t)=>a.map((v,i)=>v+(b[i]-v)*t),at=(i,x)=>lerp(points[i],points[(i+1)%n],x/L[i]);
+ const spans=[];
+ for(let i=0;i<n;i++){
+  const j=(i+1)%n,lo=r[i],hi=L[i]-r[j];
+  spans.push({a:at(i,lo),b:at(i,hi),edge:i,lo,hi});
+  if(r[j]){const a=at(i,hi),b=points[j],c=at(j,r[j]),steps=8;
+   const bez=t=>lerp(lerp(a,b,t),lerp(b,c,t),t);
+   for(let k=0;k<steps;k++){const t=k/steps,u=(k+1)/steps,first=k<steps/2;
+    spans.push({a:bez(t),b:bez(u),edge:first?i:j,lo:first?hi+2*t*r[j]:(2*t-1)*r[j],hi:first?hi+2*u*r[j]:(2*u-1)*r[j]});}
+  }
+ }
+ return {points:spans.map(v=>v.a),facades:spans.map((v,edge)=>{
+  const f=facades.find(f=>f.edge===v.edge)||{plain:true},len=Math.hypot(v.b[0]-v.a[0],v.b[1]-v.a[1]),scale=len/(v.hi-v.lo);
+  const bays=(f.bays||[]).flatMap(b=>{const lo=Math.max(v.lo,b.x-b.w/2),hi=Math.min(v.hi,b.x+b.w/2);return hi-lo>.06?[{...b,x:((lo+hi)/2-v.lo)*scale,w:(hi-lo)*scale,frameWidth:.035,recess:.025,fragment:true,frameLeft:lo<=b.x-b.w/2+.001,frameRight:hi>=b.x+b.w/2-.001}]:[]});
+  const bands=(f.bands||[]).flatMap(b=>{if(b.x===undefined&&b.w===undefined)return[b];const lo=Math.max(v.lo,(b.x??L[v.edge]/2)-(b.w??L[v.edge])/2),hi=Math.min(v.hi,(b.x??L[v.edge]/2)+(b.w??L[v.edge])/2);return hi>lo?[{...b,x:((lo+hi)/2-v.lo)*scale,w:(hi-lo)*scale}]:[]});
+  return {...f,edge,bays,bands};
+ })};
+}
 
 // Uses the scene's own constructors, including in the preserved compiled viewer.
 export function applyParamento(world,colliders,R){
@@ -27,6 +51,8 @@ export function applyParamento(world,colliders,R){
  }
  function mesh(g,m,parent,name){const o=new Mesh(g,mat(m));o.name=name;o.castShadow=o.receiveShadow=true;parent.add(o);return o;}
  function block(parent,x,y,z,w,h,d,color,name){const m=mesh(new Box(w,h,d),color,parent,name);m.position.set(x,y,z);return m;}
+ function rod(parent,a,b,width,color,name){const delta=new R.Vector3(...b).sub(new R.Vector3(...a)),length=delta.length();if(length<1e-5)return;
+  const m=block(parent,(a[0]+b[0])/2,(a[1]+b[1])/2,(a[2]+b[2])/2,length,width,width,color,name);m.quaternion.setFromUnitVectors(new R.Vector3(1,0,0),delta.normalize());return m;}
  function arch(x,w,h,b=0){const r=w/2,s=new Shape();s.moveTo(x-r,b);s.lineTo(x+r,b);s.lineTo(x+r,b+h-r);s.absarc(x,b+h-r,r,0,Math.PI,false);s.closePath();return s;}
  function wall(parent,a,b,height,color,bays=[],ornament=false,details={}){
   const dx=b[0]-a[0],dz=b[1]-a[1],length=Math.hypot(dx,dz),g=new Group();g.position.set(a[0],.05,a[1]);g.rotation.y=Math.atan2(-dz,dx);parent.add(g);
@@ -40,8 +66,16 @@ export function applyParamento(world,colliders,R){
     // Keep the setback as geometry, including the darker opening at the back.
     const back=mesh(extrude(opening(bay),.045),bay.fillColor||color,g,'Paramento · cierre del pórtico');back.position.z=-1.05;
     block(g,bay.x,bay.b+1.25,-.98,bay.w*.68,1.45,.055,'#465151','Paramento · cierre de ventana del pórtico');
-   }else if(!bay.open){const fill=mesh(extrude(opening(bay),.045),bay.fillColor||(bay.blind?color:bay.wood?'#59472f':'#262e32'),g,'Paramento · cierre retranqueado');fill.position.z=-.17;}
-   if(bay.rect&&bay.frameColor){const trim=shape([[bay.x-bay.w/2-.10,Math.max(0,bay.b-.1)],[bay.x+bay.w/2+.10,Math.max(0,bay.b-.1)],[bay.x+bay.w/2+.10,bay.b+bay.h+.1],[bay.x-bay.w/2-.10,bay.b+bay.h+.1]]);trim.holes.push(opening(bay));const frame=mesh(extrude(trim,.085),bay.frameColor,g,'Paramento · marco rectangular');frame.position.z=.005;}
+   }else if(!bay.open){const fill=mesh(extrude(opening(bay),.045),bay.fillColor||(bay.blind?color:bay.wood?'#59472f':'#262e32'),g,'Paramento · cierre retranqueado');fill.position.z=-(bay.recess??.17);}
+   if(bay.fragment&&bay.frameColor){const fw=bay.frameWidth;
+    for(const y of [bay.b,bay.b+bay.h])block(g,bay.x,y,.04,bay.w,fw,.08,bay.frameColor,'Paramento · marco rectangular');
+    if(bay.frameLeft)block(g,bay.x-bay.w/2,bay.b+bay.h/2,.04,fw,bay.h,.08,bay.frameColor,'Paramento · marco rectangular');
+    if(bay.frameRight)block(g,bay.x+bay.w/2,bay.b+bay.h/2,.04,fw,bay.h,.08,bay.frameColor,'Paramento · marco rectangular');
+   }else if(bay.rect&&bay.frameColor){const fw=bay.frameWidth??.10;const trim=shape([[bay.x-bay.w/2-fw,Math.max(0,bay.b-fw)],[bay.x+bay.w/2+fw,Math.max(0,bay.b-fw)],[bay.x+bay.w/2+fw,bay.b+bay.h+fw],[bay.x-bay.w/2-fw,bay.b+bay.h+fw]]);trim.holes.push(opening(bay));const frame=mesh(extrude(trim,.085),bay.frameColor,g,'Paramento · marco rectangular');frame.position.z=.005;}
+   if(bay.recess>.22){const depth=bay.recess-.11,shade=bay.revealColor||color;
+    for(const x of [bay.x-bay.w/2,bay.x+bay.w/2])block(g,x,bay.b+bay.h/2,-depth/2-.1,.06,bay.h,depth,shade,'Paramento · cierre jamba profunda');
+    for(const y of [bay.b,bay.b+bay.h])block(g,bay.x,y,-depth/2-.1,bay.w,.06,depth,shade,'Paramento · cierre dintel profundo');
+   }
    if(bay.infillHeight)block(g,bay.x,bay.b+bay.infillHeight/2,-.025,bay.w,bay.infillHeight,.10,color,'Paramento · cierre de vano tapiado');
    if(bay.screen){
     // Perforated terracotta screen observed on D1-06 east, January 2026.
@@ -140,16 +174,36 @@ export function applyParamento(world,colliders,R){
      block(g,x,section.height/2+.05,z,.12,section.height,.12,'#697575','Paramento · muro pilar metálico');const b=new R.Box3(new R.Vector3(x-.06,.05,z-.06),new R.Vector3(x+.06,section.height+.05,z+.06));b.buildingId=p.id;colliders.push(b);colliderCount++;}
     for(let i=0;i<4;i++){const a=section.points[i],b=section.points[(i+1)%4],dx=b[0]-a[0],dz=b[1]-a[1],L=Math.hypot(dx,dz);const beam=block(g,(a[0]+b[0])/2,section.height-.24,(a[1]+b[1])/2,L,.10,.10,'#c1c8c4','Paramento · muro viga metálica');beam.rotation.y=Math.atan2(-dz,dx);}
    }
-   if(section.openCanopy){const a=section.points[1],b=section.points[2],dx=b[0]-a[0],dz=b[1]-a[1],L=Math.hypot(dx,dz),n=6;
-    for(let j=0;j<n;j++){const dy=j%2?.4:-.4,m=block(g,a[0]+dx*(j+.5)/n,section.height-.28,a[1]+dz*(j+.5)/n,Math.hypot(L/n,dy),.055,.055,'#c1c8c4','Paramento · muro diagonal de cercha');m.rotation.y=Math.atan2(-dz,dx);m.rotation.z=Math.atan2(dy,L/n);}
+   if(section.openCanopy&&section.detailedSteel){
+    const pts=section.points,mix=(a,b,t)=>a.map((v,i)=>v+(b[i]-v)*t),y=section.height-.12,low=y-.48;
+    for(const [a,b] of [[pts[1],pts[2]],[pts[0],pts[3]]]){
+     rod(g,[a[0],y,a[1]],[b[0],y,b[1]],.075,'#b8c3c0','Paramento · muro cordón superior');
+     rod(g,[a[0],low,a[1]],[b[0],low,b[1]],.075,'#b8c3c0','Paramento · muro cordón inferior');
+     for(let j=0;j<8;j++){const u=mix(a,b,j/8),v=mix(a,b,(j+1)/8);rod(g,[u[0],j%2?low:y,u[1]],[v[0],j%2?y:low,v[1]],.055,'#c4ccca','Paramento · muro diagonal de cercha');}
+    }
+    for(let i=0;i<=8;i++){const a=mix(pts[0],pts[3],i/8),b=mix(pts[1],pts[2],i/8);
+     rod(g,[a[0],y-.1,a[1]],[b[0],y-.1,b[1]],.08,'#717e7e','Paramento · muro correa de cubierta');}
+    for(let i=1;i<24;i++){const a=mix(pts[0],pts[3],i/24),b=mix(pts[1],pts[2],i/24);
+     rod(g,[a[0],section.height+.06,a[1]],[b[0],section.height+.06,b[1]],.022,'#c0c6c1','Paramento · cubierta nervadura de lámina');}
    }
    const cells=section.openCanopy?[]:solidCells(section.points);colliderCount+=cells.length;
    for(const c of cells){const b=new R.Box3(new R.Vector3(c.minX,.05,c.minZ),new R.Vector3(c.maxX,section.height+.05,c.maxZ));b.buildingId=p.id;b.frontageId=p.part;colliders.push(b);}
   }
+  if(p.yardSurface){const floor=extrude(shape(p.yardSurface.points.map(([x,z])=>[x,-z])),.035);floor.rotateX(-Math.PI/2);mesh(floor,p.yardSurface.color,g,'Paramento · base patio').position.y=.05;}
   for(const f of p.fences||[]){const dx=f.b[0]-f.a[0],dz=f.b[1]-f.a[1],L=Math.hypot(dx,dz),steps=Math.ceil(L/2.2);
    for(let i=0;i<=steps;i++){const t=i/steps;block(g,f.a[0]+dx*t,f.height/2+.05,f.a[1]+dz*t,.055,f.height,.055,'#939d99','Paramento · muro poste de cerco');}
-   for(let y=.25;y<=f.height;y+=.35){const m=block(g,(f.a[0]+f.b[0])/2,y,(f.a[1]+f.b[1])/2,L,.018,.018,'#9aa6a0','Paramento · muro alambre');m.rotation.y=Math.atan2(-dz,dx);}
-   for(let t=.15;t<L;t+=.35)block(g,f.a[0]+dx*t/L,f.height/2+.05,f.a[1]+dz*t/L,.018,f.height,.018,'#9aa6a0','Paramento · muro alambre');
+   if(f.diamond){
+    const at=(x,y)=>[f.a[0]+dx*x/L,y+.065,f.a[1]+dz*x/L];
+    for(const y of [.1,f.height])rod(g,at(0,y),at(L,y),.055,'#a7b1ab','Paramento · muro marco de malla');
+    for(const sign of [-1,1])for(let c=-f.height;c<L+f.height;c+=.4){
+     const hits=[];for(const x of [0,L]){const y=sign*(x-c);if(y>=0&&y<=f.height)hits.push([x,y]);}
+     for(const y of [0,f.height]){const x=c+sign*y;if(x>0&&x<L)hits.push([x,y]);}
+     if(hits.length===2)rod(g,at(...hits[0]),at(...hits[1]),.012,'#8d9b94','Paramento · muro malla romboidal');
+    }
+   }else{
+    for(let y=.25;y<=f.height;y+=.35){const m=block(g,(f.a[0]+f.b[0])/2,y,(f.a[1]+f.b[1])/2,L,.018,.018,'#9aa6a0','Paramento · muro alambre');m.rotation.y=Math.atan2(-dz,dx);}
+    for(let t=.15;t<L;t+=.35)block(g,f.a[0]+dx*t/L,f.height/2+.05,f.a[1]+dz*t/L,.018,f.height,.018,'#9aa6a0','Paramento · muro alambre');
+   }
    const cells=solidCells([f.a,f.b,[f.b[0]-dz/L*.08,f.b[1]+dx/L*.08],[f.a[0]-dz/L*.08,f.a[1]+dx/L*.08]]);for(const c of cells){const b=new R.Box3(new R.Vector3(c.minX,.05,c.minZ),new R.Vector3(c.maxX,f.height,c.maxZ));b.buildingId=p.id;colliders.push(b);colliderCount++;}
   }
   for(const w of p.lowWalls||[]){wall(g,w.a,w.b,w.height,w.color);const b=new R.Box3(new R.Vector3(Math.min(w.a[0],w.b[0])-.1,.05,Math.min(w.a[1],w.b[1])-.1),new R.Vector3(Math.max(w.a[0],w.b[0])+.1,w.height+.05,Math.max(w.a[1],w.b[1])+.1));b.buildingId=p.id;b.frontageId=p.part;colliders.push(b);}
@@ -214,10 +268,11 @@ export function applyParamento(world,colliders,R){
    const prefix=p.ownerPrefix||'Planta física · '+p.id;let owner;world.traverse(o=>{if(!owner&&o.name.startsWith(prefix))owner=o});if(!owner)throw Error('Cuadra: missing '+p.id);
    const ownerName=owner.name,plan=p.points?{points:p.points,holes:[]}:owner.userData.fittedPlan||{points:ring(owner.geometry.parameters.shapes),holes:owner.geometry.parameters.shapes.holes.map(ring)};
    if(plan.holes?.length)throw Error('Cuadra: courtyard detail requires explicit hole support '+p.id);
-   const n=plan.points.length,reverse=plan.points.reduce((a,p,i)=>a+p[0]*plan.points[(i+1)%n][1]-plan.points[(i+1)%n][0]*p[1],0)>0,points=reverse?[plan.points[0],...plan.points.slice(1).reverse()]:plan.points;
-   const facades=p.facades.map(f=>{const a=plan.points[f.edge],b=plan.points[(f.edge+1)%n],length=Math.hypot(b[0]-a[0],b[1]-a[1]);return {...f,edge:reverse?n-1-f.edge:f.edge,clipBands:true,fins:f.reverseFins&&reverse?(f.fins||[]).map(v=>({...v,x:length-v.x})):f.fins,bays:(f.bays||[]).map(v=>({...v,fullBars:!!v.rect,barColor:p.id==='D1-03'||p.id==='D1-04'?v.barColor:p.id==='B2-01'||p.id==='B2-02'?'#bcaa62':undefined,x:reverse?length-v.x:v.x}))}});
+   const visual=p.roundCorners?roundedFront(plan.points,p.facades,p.roundCorners):{points:plan.points,facades:p.facades};
+   const n=visual.points.length,reverse=visual.points.reduce((a,p,i)=>a+p[0]*visual.points[(i+1)%n][1]-visual.points[(i+1)%n][0]*p[1],0)>0,points=reverse?[visual.points[0],...visual.points.slice(1).reverse()]:visual.points;
+   const facades=visual.facades.map(f=>{const a=visual.points[f.edge],b=visual.points[(f.edge+1)%n],length=Math.hypot(b[0]-a[0],b[1]-a[1]);return {...f,edge:reverse?n-1-f.edge:f.edge,clipBands:true,fins:f.reverseFins&&reverse?(f.fins||[]).map(v=>({...v,x:length-v.x})):f.fins,bays:(f.bays||[]).map(v=>({...v,frameLeft:reverse?v.frameRight:v.frameLeft,frameRight:reverse?v.frameLeft:v.frameRight,fullBars:!!v.rect,barColor:p.id==='D1-03'||p.id==='D1-04'?v.barColor:p.id==='B2-01'||p.id==='B2-02'?'#bcaa62':undefined,x:reverse?length-v.x:v.x}))}});
    removeOwner(prefix,p.id);addFront({...p,part:'cuadra-'+p.id,owner:ownerName,points,facades,evidence:p.sources});
-   const added=world.getObjectByName(ownerName);added.userData.fittedPlan=plan;added.userData.blockReview=packet.block;
+   const added=world.getObjectByName(ownerName);added.userData.fittedPlan=plan;if(p.roundCorners)added.userData.visualOutline=visual.points;added.userData.blockReview=packet.block;
    entry.batches.push({id:p.id,...compact(added,!!p.keepDetails)});entry.buildings.push({id:p.id,height:p.height,uncertainty:p.uncertainty,sources:p.sources,note:p.note});
   }
   for(const lot of packet.openLots||[]){

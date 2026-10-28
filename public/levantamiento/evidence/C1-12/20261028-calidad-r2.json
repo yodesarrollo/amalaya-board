@@ -1,0 +1,84 @@
+{
+  "building": "C1-12",
+  "visibleNumber": 81,
+  "revision": "calidad-r2",
+  "baseCommit": "ea336ee8f6710cd442ef953805aa982d76d097ad",
+  "worldSha256": "46d65642e6bed5251cf0e17ec657a76ebf6b38e18930966e3f202a06aa3dce4a",
+  "sources": [
+    {
+      "file": "81-oeste-202503.jpg",
+      "date": "2025-03",
+      "side": "oeste",
+      "pano": "xwTlxVohnHcUyZ2NsiDldQ",
+      "camera": [
+        29.0753849,
+        -110.9561838
+      ],
+      "heading": 90
+    },
+    {
+      "file": "81-sur-202312.jpg",
+      "date": "2023-12",
+      "side": "sur",
+      "pano": "uKHxHjmKzg4qC-Chphee8A",
+      "camera": [
+        29.0751575,
+        -110.9559716
+      ],
+      "heading": 0
+    },
+    {
+      "file": "81-norte-202312.jpg",
+      "date": "2023-12",
+      "side": "norte",
+      "pano": "k5xaqmQQYWeAKH44cnL0PA",
+      "camera": [
+        29.0754339,
+        -110.9560331
+      ],
+      "heading": 180
+    }
+  ],
+  "cameras": [
+    [
+      "81-calle",
+      29.0751575,
+      -110.9559716,
+      0,
+      85,
+      0,
+      2.5
+    ],
+    [
+      "81-suroeste",
+      29.075123562415502,
+      -110.9562480218107,
+      45,
+      65,
+      -15,
+      12
+    ],
+    [
+      "81-aerea",
+      29.075078497070756,
+      -110.95620686954733,
+      40,
+      65,
+      -45,
+      30
+    ]
+  ],
+  "comparison": "semantic; panorama poses approximate, not calibrated",
+  "neighborsBoundsUnchanged": true,
+  "otherCollidersUnchanged": true,
+  "scope": "Exterior visual aproximado; calidad revisada individualmente. No levantamiento métrico.",
+  "limits": [
+    "Apoyos, alturas y subdivisiones estimados",
+    "Sin certificación de accesibilidad ni uso público"
+  ],
+  "files": {
+    "r2-81-calle-3d.jpg": "9620bf65d76b16e49f60703393971f29d97deb52352821c220639ab729002eb3",
+    "r2-81-suroeste-3d.jpg": "479a232f969d01dadf96c93d4b9625c21bcbb969fc160797b28895d5f368b096",
+    "r2-81-aerea-3d.jpg": "53af62b4309350326a539c6f7754936ee8aaee8fafe0012e59b8f299c6d9788b"
+  }
+}

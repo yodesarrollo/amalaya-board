@@ -171,28 +171,28 @@ CUADRA_DETAILS.push({block:'C23',evidence:'recorrido-R002-P01-P02',buildings:[],
 // 79/80/81: public street views 2023–2026; dimensions remain visual estimates.
 {
  const blue='#3b6297',cream='#dedfd7',steel='#b5bdb7';
- const glazing=x=>[.7,2.35].map(b=>({x,w:1.65,h:1.55,b,rect:true,noBars:true,frameColor:steel,fillColor:'#547879'}));
+ const glazing=x=>[.72,1.52,2.32,3.12].map((b,row)=>({x,w:1.73,h:.72,b,rect:true,noBars:true,frameWidth:.045,frameColor:steel,fillColor:['#526e70','#46666c','#607f82','#789393'][row]}));
  const bands=[{y:4.4,h:.16,d:.16,color:'#9a9f94'},{y:4.85,h:.18,d:.16,color:'#9a9f94'},{y:5.6,h:1.05,d:.08,color:blue}];
  CUADRA_DETAILS.push({block:'C12',evidence:'79-81-20261028',buildings:[{
-  id:'D1-03',height:6.2,color:cream,roofColor:'#ddd9ca',uncertainty:3,keepDetails:true,
+  id:'D1-03',roundCorners:{0:2.8,1:3.0,2:1.1},height:6.2,color:cream,roofColor:'#ddd9ca',uncertainty:3,keepDetails:true,
   sources:['ajuste-visual/C12.jpg','evidence/D1-03/79-norte-202503.jpg','evidence/D1-03/79-oeste-202503.jpg','evidence/D1-03/79-este-202503.jpg'],
   facades:[
-   {edge:0,plain:true,bands,bays:[...glazing(13.4),...glazing(15.3),...glazing(17.2),...glazing(19.1),{x:11.5,w:1.05,h:2.4,b:.05,rect:true,noBars:true,door:true,fillColor:'#4b676d',frameColor:steel}]},
+   {edge:0,plain:true,bands,bays:[...glazing(13.4),...glazing(15.3),...glazing(17.2),...glazing(19.1),{x:11.5,w:1.05,h:2.8,b:.05,rect:true,noBars:true,door:true,fillColor:'#4b676d',frameColor:steel}]},
    {edge:1,plain:true,bands:[...bands.filter(b=>b.y<5),{y:5.6,h:1.05,d:.08,color:'#d6bd59'}],bays:[...glazing(1.15),...glazing(3.1),...glazing(5.1)]},
-   {edge:2,plain:true,bays:[{x:6.8,w:10.2,h:2.9,b:.7,rect:true,noCrossBars:true,barColor:blue,fillColor:'#4b5557'}]},
+   {edge:2,plain:true,bays:[{x:6.8,w:10.2,h:2.9,b:.7,rect:true,noCrossBars:true,barColor:blue,recess:.65,revealColor:'#b8bcb3',fillColor:'#343e40'}]},
    {edge:3,plain:true,bays:[]},{edge:4,plain:true,bays:[]},{edge:5,plain:true,bands,bays:[]}
   ],
-  note:'79/D1-03: llantera observada, esquina acristalada con perfilería, franjas azul/amarilla, lateral oriental enrejado y muro blanco. Se conserva contorno ajustado previamente (seis vértices), altura nominal6.2m y aproximación poligonal del frente curvo; no es levantamiento de su curvatura. Sin inventar interiores ni publicidad textual.'
+  note:'79/D1-03: llantera observada, esquina acristalada con perfilería, franjas azul/amarilla, lateral oriental enrejado y muro blanco. Se conservan seis anclajes de referencia y altura nominal6.2m; esquinas visuales redondeadas hacia dentro de la envolvente, con ventanería en cuatro franjas. Curvatura estimada, no medida. Sin inventar interiores ni publicidad textual.'
  },{
   id:'D1-04',height:6.2,color:'#d9dad2',roofColor:'#d8d9d0',uncertainty:3,keepDetails:true,
   sources:['ajuste-visual/C12.jpg','evidence/D1-04/80-oeste-202601.jpg','evidence/D1-04/80-este-202312.jpg','evidence/D1-04/80-norte-202405.jpg'],
   facades:[
-   {edge:0,plain:true,bands:[{y:4.35,h:3.1,w:4.5,d:.06,color:'#387b9f'}],bays:[{x:2.8,w:4.3,h:2.3,b:.05,rect:true,noCrossBars:true,barColor:'#3a4142',fillColor:'#6f746d'}]},
-   {edge:1,plain:true,bands:[{y:3.5,h:.24,d:.18,color:'#bfbfb2'},{y:6.08,h:.2,d:.15,color:'#c7c9ba'}],bays:Array.from({length:9},(_,i)=>({x:2.4+i*3.9,w:2.8,h:1.8,b:3.85,rect:true,noBars:true,fillColor:'#666a61'}))},
+   {edge:0,plain:true,reverseFins:true,fins:[.12,5.50].map(x=>({x,b:.05,h:6.12,w:.20,d:.20,color:'#e4e2d9'})),bands:[{y:4.35,h:3.1,w:4.5,d:.12,color:'#387b9f'},{y:6.1,h:.16,d:.26,color:'#e3e2d6'},{y:2.6,h:.16,d:.23,color:'#c4c5b9'}],bays:[{x:2.8,w:4.3,h:2.3,b:.05,rect:true,noCrossBars:true,barColor:'#3a4142',recess:.45,revealColor:'#b8b9b0',frameColor:'#c7c8bd',frameWidth:.06,fillColor:'#444e4b'}]},
+   {edge:1,plain:true,bands:[{y:3.5,h:.24,d:.18,color:'#bfbfb2'},{y:6.08,h:.2,d:.15,color:'#c7c9ba'}],bays:Array.from({length:9},(_,i)=>({x:2.4+i*3.9,w:2.8,h:1.8,b:3.85,rect:true,noBars:true,recess:.5,revealColor:'#aaa99b',frameColor:'#c8c8bd',frameWidth:.055,fillColor:i%3===0?'#46504b':'#555e53'}))},
    {edge:2,plain:true,bays:[]},
-   {edge:3,plain:true,bands:[{y:.22,h:.4,d:.04,color:'#aeb0a5'},{y:2.1,h:.08,d:.05,color:'#b7b9ae'},{y:4.6,h:.08,d:.05,color:'#b7b9ae'}],bays:[]}
+   {edge:3,plain:true,bands:[{y:.22,h:.4,d:.04,color:'#aeb0a5'},{y:2.1,h:.09,d:.13,color:'#b7b9ae'},{y:4.6,h:.09,d:.13,color:'#b7b9ae'},{y:6.12,h:.12,d:.16,color:'#cdcec3'}],bays:[]}
   ],
-  note:'80/D1-04: ala del estacionamiento con muro occidental ciego, juntas horizontales, portón norte y panel azul; al este se observan vanos altos desde vía pública. Cuatro anclajes/altura nominal6.2m conservados. Conteo y proporciones de módulos estimados; planta baja oriental oculta conservada neutra. No se atribuye propiedad ni dirección desde el rótulo de cámara.'
+  note:'80/D1-04: ala del estacionamiento con muro occidental ciego, juntas horizontales, portón norte y panel azul; al este se observan vanos altos desde vía pública. Cuatro anclajes/altura nominal6.2m conservados. Marcos, jambas profundas y remates diferenciados; conteo y proporciones de módulos estimados, no confirmados por la toma oriental obstruida; planta baja oriental oculta conservada neutra. No se atribuye propiedad ni dirección desde el rótulo de cámara.'
  }]});
 }
 {
@@ -202,9 +202,10 @@ CUADRA_DETAILS.push({block:'C23',evidence:'recorrido-R002-P01-P02',buildings:[],
   sources:['ajuste-visual/C06.jpg','evidence/C1-12/81-oeste-202503.jpg','evidence/C1-12/81-sur-202312.jpg','evidence/C1-12/81-norte-202312.jpg'],
   sections:[
    {part:'81-cuerpo-callejon',points:rect(0,.28),height:3.3,color:'#bcbdb4',roofColor:'#a6aaa6',facades:[{edge:3,plain:true,bands:[{y:3.22,h:.16,d:.17,color:'#555e60'}],bays:[{x:2.8,w:1.5,h:2.65,b:.05,rect:true,noBars:true,fillColor:'#404e58',frameColor:'#4c565b'},{x:6.2,w:1.05,h:.55,b:1.8,rect:true,frameColor:'#3c4549'}]}]},
-   {part:'81-cubierta-estacionamiento',points:rect(.28,.60),height:3.6,color:'#a4aaa4',roofColor:'#a4aaa4',openCanopy:true,facades:[]}
+   {part:'81-cubierta-estacionamiento',points:rect(.28,.60),height:3.6,color:'#a4aaa4',roofColor:'#a4aaa4',openCanopy:true,detailedSteel:true,facades:[]}
   ],
-  fences:[{a:at(0,.28),b:at(0,1),height:2.3},{a:at(0,1),b:at(.25,1),height:2.3},{a:at(.72,1),b:at(1,1),height:2.3}],
-  note:'81/C1-12: se retira la caja sólida de6.2m; cuerpo bajo norte, cubierta metálica sobre apoyos y patio de estacionamiento con acceso sur observado. Fracciones internas y alturas3.3/3.6m estimadas, contorno registral conservado. Cerco simplificado, sin autos ni concertina; no es validación de accesibilidad o uso público. Cubierta/fachadas con fuentes2023/2025, fecha aérea desconocida.'
+  yardSurface:{points:rect(.28,1),color:'#b0aa99'},
+  fences:[{a:at(0,.28),b:at(0,1),height:2.3,diamond:true},{a:at(0,1),b:at(.25,1),height:2.3,diamond:true},{a:at(.72,1),b:at(1,1),height:2.3,diamond:true}],
+  note:'81/C1-12: se retira la caja sólida de6.2m; cuerpo bajo norte, cubierta metálica sobre apoyos y patio de estacionamiento con acceso sur observado. Fracciones internas y alturas3.3/3.6m estimadas, contorno registral conservado. Cerco romboidal con marcos, cerchas de dos cordones y diagonales, correas y nervaduras de lámina; sin autos ni concertina; no es validación de accesibilidad o uso público. Cubierta/fachadas con fuentes2023/2025, fecha aérea desconocida.'
  }]});
 }

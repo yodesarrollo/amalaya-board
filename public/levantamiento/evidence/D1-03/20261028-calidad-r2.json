@@ -1,0 +1,84 @@
+{
+  "building": "D1-03",
+  "visibleNumber": 79,
+  "revision": "calidad-r2",
+  "baseCommit": "ea336ee8f6710cd442ef953805aa982d76d097ad",
+  "worldSha256": "46d65642e6bed5251cf0e17ec657a76ebf6b38e18930966e3f202a06aa3dce4a",
+  "sources": [
+    {
+      "file": "79-oeste-202503.jpg",
+      "date": "2025-03",
+      "side": "oeste",
+      "pano": "1Y2a2mU5CnwQUOaGB5gLkw",
+      "camera": [
+        29.0747457,
+        -110.9565514
+      ],
+      "heading": 70
+    },
+    {
+      "file": "79-norte-202503.jpg",
+      "date": "2025-03",
+      "side": "norte",
+      "pano": "rOXSs4J7mVdvYPvbaWQrVQ",
+      "camera": [
+        29.075,
+        -110.9562665
+      ],
+      "heading": 180
+    },
+    {
+      "file": "79-este-202503.jpg",
+      "date": "2025-03",
+      "side": "este",
+      "pano": "coVzdC4ZX_47TncIkXF3Pw",
+      "camera": [
+        29.0748173,
+        -110.9561658
+      ],
+      "heading": 270
+    }
+  ],
+  "cameras": [
+    [
+      "79-calle",
+      29.075,
+      -110.9562665,
+      180,
+      85,
+      0,
+      2.5
+    ],
+    [
+      "79-noroeste",
+      29.075051457863903,
+      -110.95662868024691,
+      135,
+      65,
+      -12,
+      14
+    ],
+    [
+      "79-este",
+      29.074808105002255,
+      -110.95600110823045,
+      270,
+      70,
+      -10,
+      10
+    ]
+  ],
+  "comparison": "semantic; panorama poses approximate, not calibrated",
+  "neighborsBoundsUnchanged": true,
+  "otherCollidersUnchanged": true,
+  "scope": "Exterior visual aproximado; calidad revisada individualmente. No levantamiento métrico.",
+  "limits": [
+    "Radio y proporciones estimados; anclajes de referencia conservados",
+    "Interiores y publicidad no reproducidos"
+  ],
+  "files": {
+    "r2-79-calle-3d.jpg": "8901899ef558a8a9c1b535c9e12136361484d0afe2f092171e6b6aea21b8dd82",
+    "r2-79-noroeste-3d.jpg": "85ef5152c6512db2e22b85e073b093be88afba4fe5d816c49c505853bbe7ba68",
+    "r2-79-este-3d.jpg": "6f95eae90bd9c3af82cc814ac24ceade1e768db96ff56677071ec0033ebf3b5b"
+  }
+}
