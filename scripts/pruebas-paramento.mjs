@@ -74,6 +74,11 @@ for(const id of ['D1-07']){const owner=world.getObjectByName('Planta física · 
 assert.deepEqual(world.getObjectByName('Planta física · D1-08').userData.fittedPlan.points,[[-120.994,129.110],[-110.565,125.210],[-114.997,110.388],[-134.24463299126478,115.06361501656413],[-132.47415224303037,133.94493285312078]],'83 conserva el contorno previo ajustado a vialidad');
 assert(!colliders.some(c=>c.buildingId==='D1-07'&&c.containsPoint(new R.Vector3(-221,1.6,225))),'78: espacio suroeste abierto no debe quedar sólido');
 assert(colliders.some(c=>c.buildingId==='D1-07'&&c.containsPoint(new R.Vector3(-210,1.6,225))),'78: no asumir paso libre bajo cubierta no inspeccionada');
+// Batch79–81: preserve the fitted outline, open parking and actual canopy supports.
+assert.deepEqual(world.getObjectByName('Planta física · D1-03').userData.fittedPlan.points,[[-167.58502,147.70856],[-151.60345,134.72798],[-144.72531,132.47049],[-141.69084,145.45106],[-156.05402,155.89197],[-164.34825,152.78792]],'79 conserva ajuste aéreo anterior');
+for(const id of ['D1-04','C1-12'])assert.deepEqual(world.getObjectByName('Planta física · '+id).userData.fittedPlan.points,SHEET_PLANS.find(p=>p.id===id).points);
+for(const pt of [[-123,1.6,91],[-124,1.6,86.5]])assert(!colliders.some(c=>c.buildingId==='C1-12'&&c.containsPoint(new R.Vector3(...pt))),'81 permite patio y espacio bajo cubierta');
+assert(colliders.some(c=>c.buildingId==='C1-12'&&c.containsPoint(new R.Vector3(-124,1.6,80.5))),'81 conserva cuerpo sólido al callejón');
 const points=JSON.parse(await readFile('public/recorrido/rutas.json')).rutas.find(r=>r.id==='R-001').puntos;
 const extraStations=[{lat:29.075781,lng:-110.957122},{lat:29.0757998,lng:-110.9569305},{lat:29.07583,lng:-110.9565574},{lat:29.0757712,lng:-110.9562256}];
 for(const p of [...points,...extraStations]){const v=new R.Vector3((p.lng+110.9547151)*97200,1.6,(29.076115-p.lat)*110950);assert(!colliders.some(c=>c.containsPoint(v)),'The inspected street station stays walkable: '+p.id);}
