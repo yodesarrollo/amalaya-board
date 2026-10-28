@@ -174,7 +174,7 @@ CUADRA_DETAILS.push({block:'C23',evidence:'recorrido-R002-P01-P02',buildings:[],
  const glazing=x=>[.72,1.52,2.32,3.12].map((b,row)=>({x,w:1.73,h:.72,b,rect:true,noBars:true,frameWidth:.045,frameColor:steel,fillColor:['#526e70','#46666c','#607f82','#789393'][row]}));
  const bands=[{y:4.4,h:.16,d:.16,color:'#9a9f94'},{y:4.85,h:.18,d:.16,color:'#9a9f94'},{y:5.6,h:1.05,d:.08,color:blue}];
  CUADRA_DETAILS.push({block:'C12',evidence:'79-81-20261028',buildings:[{
-  id:'D1-03',roundCorners:{0:2.8,1:3.0,2:1.1},height:6.2,color:cream,roofColor:'#ddd9ca',uncertainty:3,keepDetails:true,
+  id:'D1-03',keepGrilles:true,roundCorners:{0:2.8,1:3.0,2:1.1},height:6.2,color:cream,roofColor:'#ddd9ca',uncertainty:3,keepDetails:true,
   sources:['ajuste-visual/C12.jpg','evidence/D1-03/79-norte-202503.jpg','evidence/D1-03/79-oeste-202503.jpg','evidence/D1-03/79-este-202503.jpg'],
   facades:[
    {edge:0,plain:true,bands,bays:[...glazing(13.4),...glazing(15.3),...glazing(17.2),...glazing(19.1),{x:11.5,w:1.05,h:2.8,b:.05,rect:true,noBars:true,door:true,fillColor:'#4b676d',frameColor:steel}]},
@@ -184,7 +184,7 @@ CUADRA_DETAILS.push({block:'C23',evidence:'recorrido-R002-P01-P02',buildings:[],
   ],
   note:'79/D1-03: llantera observada, esquina acristalada con perfilería, franjas azul/amarilla, lateral oriental enrejado y muro blanco. Se conservan seis anclajes de referencia y altura nominal6.2m; esquinas visuales redondeadas hacia dentro de la envolvente, con ventanería en cuatro franjas. Curvatura estimada, no medida. Sin inventar interiores ni publicidad textual.'
  },{
-  id:'D1-04',height:6.2,color:'#d9dad2',roofColor:'#d8d9d0',uncertainty:3,keepDetails:true,
+  id:'D1-04',keepGrilles:true,height:6.2,color:'#d9dad2',roofColor:'#d8d9d0',uncertainty:3,keepDetails:true,
   sources:['ajuste-visual/C12.jpg','evidence/D1-04/80-oeste-202601.jpg','evidence/D1-04/80-este-202312.jpg','evidence/D1-04/80-norte-202405.jpg'],
   facades:[
    {edge:0,plain:true,reverseFins:true,fins:[.12,5.50].map(x=>({x,b:.05,h:6.12,w:.20,d:.20,color:'#e4e2d9'})),bands:[{y:4.35,h:3.1,w:4.5,d:.12,color:'#387b9f'},{y:6.1,h:.16,d:.26,color:'#e3e2d6'},{y:2.6,h:.16,d:.23,color:'#c4c5b9'}],bays:[{x:2.8,w:4.3,h:2.3,b:.05,rect:true,noCrossBars:true,barColor:'#3a4142',recess:.45,revealColor:'#b8b9b0',frameColor:'#c7c8bd',frameWidth:.06,fillColor:'#444e4b'}]},

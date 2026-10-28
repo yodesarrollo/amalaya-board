@@ -79,3 +79,7 @@ node scripts/evidencia-calidad-7981.mjs /tmp/amalaya-calidad-7981
 ```
 
 El comando exporta triángulos reales y usa las cámaras guardadas en cada ficha. El render de evidencia usa iluminación simplificada y no demuestra por sí solo el funcionamiento WebGL del navegador.
+
+### Comprobación final en el tablero
+
+La prueba pública detectó que la simplificación ligera omitía las rejas79/80 aunque existían en el modelo completo. Se corrigió su clasificación para conservarlas sólo en esos dos edificios y se añadió una prueba que exige su geometría en los grupos visibles del modelo ligero. La comprobación real de la publicación forma parte del cierre; no basta con el render de evidencia.

@@ -1,7 +1,7 @@
 import {FRONT_BUILDINGS,ROUND2_BUILDINGS,HEIGHT_REVIEWS,COURTYARD_REVIEWS,JOIN_REVIEWS,PARAMENTO_VERSION} from './paramento-data.js?v=5cc1cd6d1d7a';
 import {PARAMENTO_SIDEWALKS} from './paramento-sidewalks.js?v=8ee470fed0ad';
 import {footprintColliderCells} from './isc58-refinement.js?v=76eca0365d35';
-import {CUADRA_DETAILS} from './cuadra-detail-data.js?v=7771aa300b8f';
+import {CUADRA_DETAILS} from './cuadra-detail-data.js?v=ed033f74a4e9';
 import {applyObregonApprox} from './obregon-aproximado-data.js?v=9a20c956e9de';
 
 // Rounded visual outline stays inside the existing convex surveyed/estimated envelope.
@@ -241,9 +241,9 @@ export function applyParamento(world,colliders,R){
  // A small data packet adds only the active block's visible detail. Reuse native
  // geometry/materials and merge by material to avoid one draw call per fence bar.
  result.blockDetails=[];
- function compact(group,keepDetails=false){
+ function compact(group,keepDetails=false,keepGrilles=false){
   group.updateMatrixWorld(true);const buckets=new Map();let count=0;
-  group.traverse(m=>{if(!m.isMesh||Array.isArray(m.material))return;count++;const structural=/^Paramento · (muro|cubierta|base|cierre)/.test(m.name)||(keepDetails&&/^Paramento · (marco rectangular|banda de fachada)/.test(m.name))||m.name==='Cuadra · cubierta del segundo nivel',key=m.material.uuid+'-'+structural;
+  group.traverse(m=>{if(!m.isMesh||Array.isArray(m.material))return;count++;const structural=/^Paramento · (muro|cubierta|base|cierre)/.test(m.name)||(keepDetails&&/^Paramento · (marco rectangular|banda de fachada)/.test(m.name))||(keepGrilles&&/^Paramento · (reja|travesaño de reja|encuentro de hojas)/.test(m.name))||m.name==='Cuadra · cubierta del segundo nivel',key=m.material.uuid+'-'+structural;
    if(!buckets.has(key))buckets.set(key,{material:m.material,structural,positions:[],normals:[]});
    const b=buckets.get(key),g=m.geometry.index?m.geometry.toNonIndexed():m.geometry.clone();g.applyMatrix4(m.matrixWorld);
    b.positions.push(...g.attributes.position.array);b.normals.push(...g.attributes.normal.array);g.dispose();
@@ -273,7 +273,7 @@ export function applyParamento(world,colliders,R){
    const facades=visual.facades.map(f=>{const a=visual.points[f.edge],b=visual.points[(f.edge+1)%n],length=Math.hypot(b[0]-a[0],b[1]-a[1]);return {...f,edge:reverse?n-1-f.edge:f.edge,clipBands:true,fins:f.reverseFins&&reverse?(f.fins||[]).map(v=>({...v,x:length-v.x})):f.fins,bays:(f.bays||[]).map(v=>({...v,frameLeft:reverse?v.frameRight:v.frameLeft,frameRight:reverse?v.frameLeft:v.frameRight,fullBars:!!v.rect,barColor:p.id==='D1-03'||p.id==='D1-04'?v.barColor:p.id==='B2-01'||p.id==='B2-02'?'#bcaa62':undefined,x:reverse?length-v.x:v.x}))}});
    removeOwner(prefix,p.id);addFront({...p,part:'cuadra-'+p.id,owner:ownerName,points,facades,evidence:p.sources});
    const added=world.getObjectByName(ownerName);added.userData.fittedPlan=plan;if(p.roundCorners)added.userData.visualOutline=visual.points;added.userData.blockReview=packet.block;
-   entry.batches.push({id:p.id,...compact(added,!!p.keepDetails)});entry.buildings.push({id:p.id,height:p.height,uncertainty:p.uncertainty,sources:p.sources,note:p.note});
+   entry.batches.push({id:p.id,...compact(added,!!p.keepDetails,!!p.keepGrilles)});entry.buildings.push({id:p.id,height:p.height,uncertainty:p.uncertainty,sources:p.sources,note:p.note});
   }
   for(const lot of packet.openLots||[]){
    removeOwner(lot.ownerPrefix,lot.id);
