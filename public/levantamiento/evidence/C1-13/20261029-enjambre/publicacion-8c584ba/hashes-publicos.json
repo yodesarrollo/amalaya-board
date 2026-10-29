@@ -1,0 +1,116 @@
+{
+  "checkedAt": "2026-10-29T18:22:49.968430+00:00",
+  "merge": "8c584bac919741d95160a3e5e979059eb3c984dd",
+  "deployRun": 40929674832,
+  "files": [
+    {
+      "path": "public/levantamiento/sector-visor.js",
+      "url": "https://yodesarrollo.github.io/amalaya-board/levantamiento/sector-visor.js",
+      "bytes": 2669,
+      "publicSha256": "b8998854242107908a4611ef7b3fffc742cf2bcc4e1560db5a9866d2c1e5648e",
+      "localSha256": "b8998854242107908a4611ef7b3fffc742cf2bcc4e1560db5a9866d2c1e5648e",
+      "equal": true
+    },
+    {
+      "path": "public/levantamiento/plantas-refinement.js",
+      "url": "https://yodesarrollo.github.io/amalaya-board/levantamiento/plantas-refinement.js",
+      "bytes": 7005,
+      "publicSha256": "8a5221b14a88f7349610097e3d6007056a1acf805c052df5db6a5d5870fc3949",
+      "localSha256": "8a5221b14a88f7349610097e3d6007056a1acf805c052df5db6a5d5870fc3949",
+      "equal": true
+    },
+    {
+      "path": "public/levantamiento/visor/assets/index-RoPA5goG.js",
+      "url": "https://yodesarrollo.github.io/amalaya-board/levantamiento/visor/assets/index-RoPA5goG.js",
+      "bytes": 765634,
+      "publicSha256": "90afcc43814c774572d591ebe13fe84532b1ec9cd223631157127779ce550941",
+      "localSha256": "90afcc43814c774572d591ebe13fe84532b1ec9cd223631157127779ce550941",
+      "equal": true
+    },
+    {
+      "path": "public/levantamiento/visor/index.html",
+      "url": "https://yodesarrollo.github.io/amalaya-board/levantamiento/visor/index.html",
+      "bytes": 1436,
+      "publicSha256": "72cd3097d166cd2e646ba243a93612eccfde7101bb5b21f0850a247183b8364b",
+      "localSha256": "72cd3097d166cd2e646ba243a93612eccfde7101bb5b21f0850a247183b8364b",
+      "equal": true
+    },
+    {
+      "path": "public/levantamiento/paramento-refinement.js",
+      "url": "https://yodesarrollo.github.io/amalaya-board/levantamiento/paramento-refinement.js",
+      "bytes": 40331,
+      "publicSha256": "fa81a93e97c6b182322eac2390f564fbc32c7998249137ff60cd91cff2fd59f1",
+      "localSha256": "fa81a93e97c6b182322eac2390f564fbc32c7998249137ff60cd91cff2fd59f1",
+      "equal": true
+    },
+    {
+      "path": "public/levantamiento/c1-13-barandal.js",
+      "url": "https://yodesarrollo.github.io/amalaya-board/levantamiento/c1-13-barandal.js",
+      "bytes": 2927,
+      "publicSha256": "6fae4d2552dd84f537d8d8de03380a6331d31fd191120bfac6dfde4e990350bd",
+      "localSha256": "6fae4d2552dd84f537d8d8de03380a6331d31fd191120bfac6dfde4e990350bd",
+      "equal": true
+    },
+    {
+      "path": "public/levantamiento/modelo-ligero.bin",
+      "url": "https://yodesarrollo.github.io/amalaya-board/levantamiento/modelo-ligero.bin",
+      "bytes": 948840,
+      "publicSha256": "bdebad2e265cfc8cb0911cbb024d56387398390810bd82c0c7fb3ce2ebd4be2f",
+      "localSha256": "bdebad2e265cfc8cb0911cbb024d56387398390810bd82c0c7fb3ce2ebd4be2f",
+      "equal": true
+    },
+    {
+      "path": "public/levantamiento/modelo-ligero.json",
+      "url": "https://yodesarrollo.github.io/amalaya-board/levantamiento/modelo-ligero.json",
+      "bytes": 18157,
+      "publicSha256": "f639772fbb98693f1150d658ac89f8d8f2c61d5927e800c366bb513fe3ef68d9",
+      "localSha256": "f639772fbb98693f1150d658ac89f8d8f2c61d5927e800c366bb513fe3ef68d9",
+      "equal": true
+    },
+    {
+      "path": "public/levantamiento/cuadra-detail-data.js",
+      "url": "https://yodesarrollo.github.io/amalaya-board/levantamiento/cuadra-detail-data.js",
+      "bytes": 25138,
+      "publicSha256": "697d2a8a4bc36dfc650a0e4e5ef50ad2ad1d5cecbb2a98478cceea2ffc717648",
+      "localSha256": "697d2a8a4bc36dfc650a0e4e5ef50ad2ad1d5cecbb2a98478cceea2ffc717648",
+      "equal": true
+    },
+    {
+      "path": "public/levantamiento/plan-accion-data.json",
+      "url": "https://yodesarrollo.github.io/amalaya-board/levantamiento/plan-accion-data.json",
+      "bytes": 752326,
+      "publicSha256": "257b3d1b82b3f743cc54671616960523465c3137ff1d779f48a63677d20a2b5d",
+      "localSha256": "257b3d1b82b3f743cc54671616960523465c3137ff1d779f48a63677d20a2b5d",
+      "equal": true
+    },
+    {
+      "path": "public/levantamiento/data/amalaya-observations.json",
+      "url": "https://yodesarrollo.github.io/amalaya-board/levantamiento/data/amalaya-observations.json",
+      "bytes": 50854,
+      "publicSha256": "d70c874cc9ea43bfd5ebf21806028e7ea7cd6c7ab2e2a72086893985325233b3",
+      "localSha256": "d70c874cc9ea43bfd5ebf21806028e7ea7cd6c7ab2e2a72086893985325233b3",
+      "equal": true
+    },
+    {
+      "path": "public/levantamiento/visor/data/amalaya-observations.json",
+      "url": "https://yodesarrollo.github.io/amalaya-board/levantamiento/visor/data/amalaya-observations.json",
+      "bytes": 50854,
+      "publicSha256": "d70c874cc9ea43bfd5ebf21806028e7ea7cd6c7ab2e2a72086893985325233b3",
+      "localSha256": "d70c874cc9ea43bfd5ebf21806028e7ea7cd6c7ab2e2a72086893985325233b3",
+      "equal": true
+    },
+    {
+      "path": "public/plan-accion-amalaya.html",
+      "url": "https://yodesarrollo.github.io/amalaya-board/plan-accion-amalaya.html",
+      "bytes": 23814,
+      "publicSha256": "11119655df92093b266f3b96b24fc35349556db538c402585e8bef76d39c6c89",
+      "localSha256": "11119655df92093b266f3b96b24fc35349556db538c402585e8bef76d39c6c89",
+      "equal": true
+    }
+  ],
+  "allEqual": true,
+  "omittedInvalidProbe": {
+    "path": "public/levantamiento/plan-accion.html",
+    "reason": "Ruta inexistente local y remota; no es artefacto del proyecto."
+  }
+}

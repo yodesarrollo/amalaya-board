@@ -32,3 +32,9 @@ Astra aprobó P1–P5 y P6a en `AUDIT-ASTRA-82-20261029-REV3-RUNTIME`. Se conser
 La prueba local Chromium/SwiftShader abrió P111 frente al 82 y avanzó aproximadamente 1.44 m con teclado, tras un ajuste de entrada de unos 2.5 m. No acredita giro de ratón, iPhone físico ni todo el recorrido. Los recibos anteriores de fallo se conservan como historia; la adenda y capturas vigentes están en `public/levantamiento/evidence/C1-13/20261029-enjambre/auditoria-runtime.json` y `runtime-0e73851/`.
 
 Suite completa, compilación, verificador de publicación, pruebas de plan/puente y regresiones de sector/entrada pasaron localmente. El modelo ligero final mide 948,840 bytes (298,785 gzip), 47,442 triángulos. P6b requiere el recibo de despliegue y la comprobación pública; la aceptación local no los sustituye.
+
+## Publicación verificada
+
+Astra emitió `AUDIT-ASTRA-82-20261029-REV4-PUBLICACION` el 2026-10-29T18:25:36.465994+00:00: P6b PASA. PR 113, merge `8c584bac919741d95160a3e5e979059eb3c984dd`, CI `40929361247` y despliegue `40929674832` exitosos. Los hashes públicos coinciden con la revisión aprobada. La sesión pública Chromium/SwiftShader abrió P111 y avanzó aproximadamente 3.96 m con W durante cinco segundos, con el frente 82 visible.
+
+Evidencia nueva en `public/levantamiento/evidence/C1-13/20261029-enjambre/publicacion-8c584ba/`: dictamen, recibo de despliegue, hashes, capturas y registro CDP. El checklist actual distingue esta entrega de los rechazos y diagnósticos conservados. Este checkpoint documental no altera geometría ni runtime. Ratón, iPhone físico, recorrido completo, medidas y superficies ocultas siguen sin certificar. Los edificios 84 y 89 no se declaran terminados.

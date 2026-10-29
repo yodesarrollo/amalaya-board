@@ -1,0 +1,33 @@
+{
+  "url": "https://yodesarrollo.github.io/amalaya-board/levantamiento/visor/",
+  "merge": "8c584bac919741d95160a3e5e979059eb3c984dd",
+  "deployRun": "40929674832",
+  "browser": "Chromium 151 headless; ANGLE SwiftShader",
+  "loader": {
+    "event": "amalaya:world-ready",
+    "display": "none",
+    "visibility": "visible"
+  },
+  "input": "Selector P111 y botón VER PUNTO EN MODELO; cerrar panel, desenfocar selector, clic canvas y sostener W durante cinco segundos.",
+  "reference": {
+    "lat": 29.0751079,
+    "lng": -110.9556997
+  },
+  "before": {
+    "lat": 29.0751301,
+    "lng": -110.9556952
+  },
+  "after": {
+    "lat": 29.0751658,
+    "lng": -110.9556952
+  },
+  "observation": "Posición inicial ajustada ≈2.5 m; movimiento ≈3.96 m al norte, fachada 82 visible. No valida giro de ratón, todos los recorridos o metrología.",
+  "warning": "La automatización registró rechazo de pointer lock por falta de gesto válido; el teclado sí movió la cámara.",
+  "sha256": {
+    "cdp-carga.json": "a472220954179839ffd441b77e48b3c868acdcdedf754ba84d2e050ee87cf01e",
+    "p111-antes.png": "1def1248b6c5ac39461d042d1448cd61d6f3ee45c6abe78bc6fc116c556b020d",
+    "p111-despues.png": "c9712079634d76dbd35cbe4712700cf0b7ea55dcb8073b8445e16de1826a955b",
+    "sector-visor.js": "b8998854242107908a4611ef7b3fffc742cf2bcc4e1560db5a9866d2c1e5648e",
+    "visor.js": "90afcc43814c774572d591ebe13fe84532b1ec9cd223631157127779ce550941"
+  }
+}

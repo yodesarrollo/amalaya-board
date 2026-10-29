@@ -10,14 +10,14 @@
     "docs/PROCESO-CALIDAD-EDIFICIO-3D.md"
   ],
   "currentWave": {
-    "label": "Primera ola real",
-    "status": "OLA ENTREGADA · 0 EDIFICIOS CERRADOS",
+    "label": "Continuación de la primera ola · edificio 82",
+    "status": "82 PUBLICADO VERIFICADO · 84 Y 89 PENDIENTES",
     "numbers": [
       82,
       84,
       89
     ],
-    "summary": "Tres paquetes reales: diagnósticos de los edificios 84 y 89 aceptados y prototipo del 82 rechazado por Astra para su integración. Las comparativas y fuentes están conservadas; ninguna geometría nueva está activada. El resto del inventario queda en cola y los agentes han entregado su trabajo."
+    "summary": "El edificio 82 quedó integrado como exterior visual aproximado y verificado en el visor público. Los diagnósticos de 84 y 89 siguen conservados; sus geometrías nuevas continúan pendientes. El resto del inventario permanece en cola."
   },
   "buildings": [
     {
@@ -13488,7 +13488,7 @@
         "name": "Centro / Surfragio Efectivo"
       },
       "queue": "ola actual",
-      "nextAction": "Completar auditoría de las pruebas y del paquete final, comprobar el recorrido navegable y, tras publicación, verificar la vista pública y registrar el recibo P6b.",
+      "nextAction": "Entrega exterior aproximada del 82 publicada y verificada. Conservar cotas, cubierta posterior, lateral completo y prueba en iPhone como incertidumbres; continuar el orden pendiente de 84 y 89 sin declararlos terminados.",
       "steps": [
         {
           "id": "P1",
@@ -13803,6 +13803,10 @@
           "path": "levantamiento/evidence/C1-13/20261029-enjambre/final-06f05c6/manifest.json",
           "label": "Candidato local 06f05c6 · hashes, comparaciones y vista ligera",
           "date": "2026-10-29"
+        },
+        {
+          "path": "levantamiento/evidence/C1-13/20261029-enjambre/publicacion-8c584ba/auditoria.json",
+          "label": "Dictamen público P6b · Astra · revisión 8c584bac"
         }
       ],
       "captures": [
@@ -13849,6 +13853,10 @@
         {
           "path": "levantamiento/evidence/C1-13/20261029-enjambre/final-06f05c6/ligera-82.png",
           "label": "Vista ligera local en Chromium · no acredita publicación"
+        },
+        {
+          "path": "levantamiento/evidence/C1-13/20261029-enjambre/publicacion-8c584ba/p111-despues.png",
+          "label": "Recorrido WebGL público desde P111 · desplazamiento con teclado comprobado"
         }
       ],
       "auditReceipt": {
@@ -13859,9 +13867,9 @@
       },
       "currentReview": {
         "candidate": "06f05c697813b0762a3146656b2da14ec3a89344",
-        "status": "REVISIÓN LOCAL APROBADA · PUBLICACIÓN PENDIENTE",
+        "status": "PUBLICADO VERIFICADO · EXTERIOR VISUAL APROXIMADO DEL EDIFICIO 82",
         "evidence": "levantamiento/evidence/C1-13/20261029-enjambre/final-06f05c6/manifest.json",
-        "limitations": "Representación exterior aproximada; fuentes calle diciembre 2023 y aérea sin fecha. Cubierta posterior, cotas y extensión oriental sin certificar. WebGL local SwiftShader: carga y desplazamiento comprobados; ratón e iPhone físico no verificados.",
+        "limitations": "Representación exterior aproximada; fuentes calle diciembre 2023 y aérea sin fecha. Cubierta posterior, cotas y extensión oriental sin certificar. WebGL público SwiftShader: carga y desplazamiento comprobados; ratón e iPhone físico no verificados.",
         "team": [
           {
             "agent": "/root/terra1",
@@ -13905,7 +13913,7 @@
             "result": "PASA",
             "reason": "Identidad visual: continuidad patio 81, cuerpo oriental y esquina; sur y este diciembre 2023, aérea de fecha desconocida.",
             "auditor": "Astra · /root/astra · gpt-6-astra",
-            "date": "2026-10-29T17:54:00.828321+00:00",
+            "date": "2026-10-29T17:55:03.276900+00:00",
             "revision": "06f05c697813b0762a3146656b2da14ec3a89344",
             "scope": "Revisión local; mejora visual aproximada, no cierre público."
           },
@@ -13914,7 +13922,7 @@
             "result": "PASA",
             "reason": "Forma visual aproximada: fittedPlan vigente de cinco puntos y esquina interior; patio abierto. No certifica medidas ni cubierta posterior.",
             "auditor": "Astra · /root/astra · gpt-6-astra",
-            "date": "2026-10-29T17:54:00.828321+00:00",
+            "date": "2026-10-29T17:55:03.276900+00:00",
             "revision": "06f05c697813b0762a3146656b2da14ec3a89344",
             "scope": "Revisión local; mejora visual aproximada, no cierre público."
           },
@@ -13923,7 +13931,7 @@
             "result": "PASA",
             "reason": "Fachadas sur y este representadas, orden lateral y vanos altos diferenciados; posición y conteo total oriental no certificados.",
             "auditor": "Astra · /root/astra · gpt-6-astra",
-            "date": "2026-10-29T17:54:00.828321+00:00",
+            "date": "2026-10-29T17:55:03.276900+00:00",
             "revision": "06f05c697813b0762a3146656b2da14ec3a89344",
             "scope": "Revisión local; mejora visual aproximada, no cierre público."
           },
@@ -13932,7 +13940,7 @@
             "result": "PASA",
             "reason": "Barandal, pilastra y friso visibles; materiales diferenciados, proporciones estimadas.",
             "auditor": "Astra · /root/astra · gpt-6-astra",
-            "date": "2026-10-29T17:54:00.828321+00:00",
+            "date": "2026-10-29T17:55:03.276900+00:00",
             "revision": "06f05c697813b0762a3146656b2da14ec3a89344",
             "scope": "Revisión local; mejora visual aproximada, no cierre público."
           },
@@ -13941,34 +13949,44 @@
             "result": "PASA",
             "reason": "Encaje, vecinos y ligero comprobados; recorrido WebGL local abrió P111 con entrada segura y avanzó aproximadamente 1.44 m con teclado.",
             "auditor": "Astra · /root/astra · gpt-6-astra",
-            "date": "2026-10-29T18:16:22.939247+00:00",
+            "date": "2026-10-29T18:15:59.557984+00:00",
             "revision": "0e73851",
             "scope": "Tramo local probado, no todo el recorrido ni dispositivos físicos."
           },
           {
             "id": "P6",
-            "result": "BLOQUEADO",
-            "reason": "Paquete reproducible local; publicación y comprobación pública pendientes.",
+            "result": "PASA",
+            "reason": "Paquete reproducible y despliegue público verificados por Astra; evidencia y recibo de la revisión exacta conservados.",
             "auditor": "Astra · /root/astra · gpt-6-astra",
-            "date": "2026-10-29T17:54:00.828321+00:00",
-            "revision": "06f05c697813b0762a3146656b2da14ec3a89344",
-            "scope": "Revisión local; mejora visual aproximada, no cierre público."
+            "date": "2026-10-29T18:25:36.465994+00:00",
+            "revision": "8c584bac919741d95160a3e5e979059eb3c984dd",
+            "scope": "Publicación verificada de la representación exterior aproximada y del tramo P111 probado."
           }
         ],
         "prepublication": {
           "result": "PASA",
-          "reason": "Paquete reproducible, pruebas y auditoría visual local aprobados. Publicación y verificación pública pendientes.",
+          "reason": "Paquete reproducible y auditoría REV3 aprobados antes de publicar; P6b tiene dictamen separado.",
           "auditor": "Astra · /root/astra · gpt-6-astra",
-          "date": "2026-10-29T17:54:00.828321+00:00",
+          "date": "2026-10-29T18:15:59.557984+00:00",
           "revision": "06f05c697813b0762a3146656b2da14ec3a89344"
         },
         "publication": {
-          "result": "PENDIENTE",
-          "reason": "Publicación y comprobación pública pendientes."
+          "result": "PASA",
+          "status": "PUBLICADO VERIFICADO",
+          "reason": "Astra confirmó el despliegue exitoso por GitHub API, cotejó nueve archivos públicos HTTP200 con los SHA256 de la revisión aprobada e inspeccionó dos capturas nuevas del visor público. La fachada 82 y barandal se muestran en WebGL; el selector P111 usa entrada segura y W cinco segundos cambia HUD/perspectiva aproximadamente 3.96 m al norte sin penetrar fachada en tramo probado.",
+          "auditor": "Astra · /root/astra · gpt-6-astra",
+          "date": "2026-10-29T18:25:36.465994+00:00",
+          "revision": "8c584bac919741d95160a3e5e979059eb3c984dd",
+          "receipt": "levantamiento/evidence/C1-13/20261029-enjambre/publicacion-8c584ba/auditoria.json"
         },
         "runtimeRevision": "0e73851",
         "runtimeEvidence": "levantamiento/evidence/C1-13/20261029-enjambre/runtime-0e73851/recibo.json",
-        "auditReceipt": "levantamiento/evidence/C1-13/20261029-enjambre/auditoria-runtime.json"
+        "auditReceipt": "levantamiento/evidence/C1-13/20261029-enjambre/auditoria-runtime.json",
+        "integration": {
+          "status": "APROBADO PARA INTEGRAR",
+          "reason": "Astra aprobó P1–P5 y P6a en REV3; la publicación del merge 8c584bac pasó P6b en REV4."
+        },
+        "publicationEvidence": "levantamiento/evidence/C1-13/20261029-enjambre/publicacion-8c584ba/recibo.json"
       }
     },
     {
@@ -22738,76 +22756,170 @@
       "agent": "Astra · /root · gpt-6-astra",
       "action": "El prototipo del edificio 82 no pasa para integrar ni cerrar: P3, fachada oriental incompleta y variación de vanos; P4, barandal y encuentros ausentes. P1, P2 y P5 quedan bloqueados. P6a pasa sólo por reproducibilidad: 12 hashes comprobados. Se conservaron dos fuentes públicas capturadas y las comparativas; el prototipo no está activado.",
       "evidence": "levantamiento/evidence/C1-13/20261029-ola1/auditoria-astra82.json"
+    },
+    {
+      "date": "2026-10-29T18:25:36.465994+00:00",
+      "agent": "Astra · /root/astra · gpt-6-astra",
+      "action": "P6b PASA: merge8c584bac desplegado y verificado públicamente. 82 aceptado como exterior visual aproximado; 84/89 siguen pendientes. Cinco Terra entregaron sus frentes y root integró en rol Sol. Auditoría real por rotaciones registrada; cadencia aproximada.",
+      "evidence": "levantamiento/evidence/C1-13/20261029-enjambre/publicacion-8c584ba/auditoria.json"
     }
   ],
-  "updatedAt": "2026-10-29T03:57:10.342893Z",
+  "updatedAt": "2026-10-29T18:26:43.232065+00:00",
   "displayTimezone": "America/Hermosillo",
-  "sourceCommit": "2c59d1b2ca4871ed85604b32c5326f8222dacf62",
+  "sourceCommit": "8c584bac919741d95160a3e5e979059eb3c984dd",
   "agents": [
     {
-      "id": "/root",
+      "id": "/root/terra1",
+      "name": "terra1",
+      "model": "gpt-6.1-terra",
+      "role": "Forma, anclas, encaje y diagnóstico de selección",
+      "state": "Entrega 82 verificada; sin ejecución continua después del cierre",
+      "activeBuilding": "C1-13",
+      "lease": "Reserva de esta entrega liberada al cierre; consultar bitácora antes de retomar"
+    },
+    {
+      "id": "/root/terra2",
+      "name": "terra2",
+      "model": "gpt-6.1-terra",
+      "role": "Fachadas y vanos",
+      "state": "Entrega 82 verificada; sin ejecución continua después del cierre",
+      "activeBuilding": "C1-13",
+      "lease": "Reserva de esta entrega liberada al cierre; consultar bitácora antes de retomar"
+    },
+    {
+      "id": "/root/terra3",
+      "name": "terra3",
+      "model": "gpt-6.1-terra",
+      "role": "Barandal y estructura",
+      "state": "Entrega 82 verificada; sin ejecución continua después del cierre",
+      "activeBuilding": "C1-13",
+      "lease": "Reserva de esta entrega liberada al cierre; consultar bitácora antes de retomar"
+    },
+    {
+      "id": "/root/terra4",
+      "name": "terra4",
+      "model": "gpt-6.1-terra",
+      "role": "Pruebas geométricas, ligero y presupuesto",
+      "state": "Entrega 82 verificada; sin ejecución continua después del cierre",
+      "activeBuilding": "C1-13",
+      "lease": "Reserva de esta entrega liberada al cierre; consultar bitácora antes de retomar"
+    },
+    {
+      "id": "/root/terra5",
+      "name": "terra5",
+      "model": "gpt-6.1-terra",
+      "role": "Evidencia, cámaras y QA de navegador",
+      "state": "Entrega 82 verificada; sin ejecución continua después del cierre",
+      "activeBuilding": "C1-13",
+      "lease": "Reserva de esta entrega liberada al cierre; consultar bitácora antes de retomar"
+    },
+    {
+      "id": "/root/astra",
       "name": "Astra",
       "model": "gpt-6-astra",
-      "role": "Auditor independiente",
-      "state": "Entregado / revisión cerrada de esta ola; sin ejecución continua",
-      "activeBuilding": null,
-      "lease": "Sin reserva activa al cierre; consultar último paquete antes de retomar"
-    },
-    {
-      "id": "/root/manager_sol",
-      "name": "Sol",
-      "model": "gpt-6.1-sol",
-      "role": "Director e integrador",
-      "state": "Entregado / revisión cerrada de esta ola; sin ejecución continua",
-      "activeBuilding": null,
-      "lease": "Sin reserva activa al cierre; consultar último paquete antes de retomar"
-    },
-    {
-      "id": "/root/manager_sol/html_terra",
-      "name": "Terra · Plan",
-      "model": "gpt-6.1-terra",
-      "role": "HTML / contratos",
-      "state": "Entregado / revisión cerrada de esta ola; sin ejecución continua",
-      "activeBuilding": null,
-      "lease": "Sin reserva activa al cierre; consultar último paquete antes de retomar"
-    },
-    {
-      "id": "/root/manager_sol/cuadra_c06_terra",
-      "name": "Terra · Cuadra 24",
-      "model": "gpt-6.1-terra",
-      "role": "Productor por cuadra",
-      "state": "Entregado / revisión cerrada de esta ola; sin ejecución continua",
+      "role": "Auditoría independiente",
+      "state": "Entrega 82 verificada; sin ejecución continua después del cierre",
       "activeBuilding": "C1-13",
-      "lease": "Sin reserva activa al cierre; consultar último paquete antes de retomar"
+      "lease": "Reserva de esta entrega liberada al cierre; consultar bitácora antes de retomar"
     },
     {
-      "id": "/root/manager_sol/cuadra_c10_terra",
-      "name": "Terra · Cuadra 25",
-      "model": "gpt-6.1-terra",
-      "role": "Productor por cuadra",
-      "state": "Entregado / revisión cerrada de esta ola; sin ejecución continua",
-      "activeBuilding": "D1-09",
-      "lease": "Sin reserva activa al cierre; consultar último paquete antes de retomar"
-    },
-    {
-      "id": "/root/manager_sol/cuadra_c11_terra",
-      "name": "Terra · Cuadra 26",
-      "model": "gpt-6.1-terra",
-      "role": "Productor por cuadra",
-      "state": "Entregado / revisión cerrada de esta ola; sin ejecución continua",
-      "activeBuilding": "D1-12",
-      "lease": "Sin reserva activa al cierre; consultar último paquete antes de retomar"
+      "id": "/root",
+      "name": "Sol (rol)",
+      "model": null,
+      "role": "Coordinación e integración, rol Sol; modelo no verificable",
+      "state": "Entrega 82 verificada; sin ejecución continua después del cierre",
+      "activeBuilding": "C1-13",
+      "lease": "Reserva de esta entrega liberada al cierre; consultar bitácora antes de retomar"
     }
   ],
-  "updatedAtISO": "2026-10-29T18:16:22.939247+00:00",
+  "updatedAtISO": "2026-10-29T18:26:43.232065+00:00",
   "releaseReceipt": {
-    "pr": 110,
-    "url": "https://github.com/yodesarrollo/amalaya-board/pull/110",
-    "approvedHead": "16e2e4c6f005f7accb4cfaccb407392969f5c11c",
-    "tree": "dacbd0f1887f59293d9d180c7be93d1e79bec2d4",
-    "merge": "1151127284644fb0507ef949aed24fbabd5eb804",
-    "ci": "40814334168 success",
-    "deploy": "40814695031 success",
-    "publicVerification": "Publicado y verificado por Astra en el tablero original: 139 registros, 33 cuadras y seis pasos; filtros de C06 y edificio 82, ola de tres unidades, expansión, enlaces y galerías. Acceso comprobado desde Herramientas → Levantamiento → Plan y checklist. Esta verificación no aprueba los modelos."
-  }
+    "pr": 113,
+    "url": "https://github.com/yodesarrollo/amalaya-board/pull/113",
+    "approvedHead": "ede2de68bc4c6980a92ee8437eac036ebe934c4d",
+    "merge": "8c584bac919741d95160a3e5e979059eb3c984dd",
+    "ci": "40929361247 success",
+    "deploy": "40929674832 success",
+    "publicVerification": "Astra REV4 verificó archivos públicos, fachada 82 en WebGL y desplazamiento desde P111 de aproximadamente 3.96 m. Exterior visual aproximado; no certifica cotas ni otros edificios. Este recibo corresponde al modelo publicado; el checkpoint documental posterior conserva su geometría y runtime."
+  },
+  "waveHistory": [
+    {
+      "wave": {
+        "label": "Primera ola real",
+        "status": "OLA ENTREGADA · 0 EDIFICIOS CERRADOS",
+        "numbers": [
+          82,
+          84,
+          89
+        ],
+        "summary": "Tres paquetes reales: diagnósticos de los edificios 84 y 89 aceptados y prototipo del 82 rechazado por Astra para su integración. Las comparativas y fuentes están conservadas; ninguna geometría nueva está activada. El resto del inventario queda en cola y los agentes han entregado su trabajo."
+      },
+      "agents": [
+        {
+          "id": "/root",
+          "name": "Astra",
+          "model": "gpt-6-astra",
+          "role": "Auditor independiente",
+          "state": "Entregado / revisión cerrada de esta ola; sin ejecución continua",
+          "activeBuilding": null,
+          "lease": "Sin reserva activa al cierre; consultar último paquete antes de retomar"
+        },
+        {
+          "id": "/root/manager_sol",
+          "name": "Sol",
+          "model": "gpt-6.1-sol",
+          "role": "Director e integrador",
+          "state": "Entregado / revisión cerrada de esta ola; sin ejecución continua",
+          "activeBuilding": null,
+          "lease": "Sin reserva activa al cierre; consultar último paquete antes de retomar"
+        },
+        {
+          "id": "/root/manager_sol/html_terra",
+          "name": "Terra · Plan",
+          "model": "gpt-6.1-terra",
+          "role": "HTML / contratos",
+          "state": "Entregado / revisión cerrada de esta ola; sin ejecución continua",
+          "activeBuilding": null,
+          "lease": "Sin reserva activa al cierre; consultar último paquete antes de retomar"
+        },
+        {
+          "id": "/root/manager_sol/cuadra_c06_terra",
+          "name": "Terra · Cuadra 24",
+          "model": "gpt-6.1-terra",
+          "role": "Productor por cuadra",
+          "state": "Entregado / revisión cerrada de esta ola; sin ejecución continua",
+          "activeBuilding": "C1-13",
+          "lease": "Sin reserva activa al cierre; consultar último paquete antes de retomar"
+        },
+        {
+          "id": "/root/manager_sol/cuadra_c10_terra",
+          "name": "Terra · Cuadra 25",
+          "model": "gpt-6.1-terra",
+          "role": "Productor por cuadra",
+          "state": "Entregado / revisión cerrada de esta ola; sin ejecución continua",
+          "activeBuilding": "D1-09",
+          "lease": "Sin reserva activa al cierre; consultar último paquete antes de retomar"
+        },
+        {
+          "id": "/root/manager_sol/cuadra_c11_terra",
+          "name": "Terra · Cuadra 26",
+          "model": "gpt-6.1-terra",
+          "role": "Productor por cuadra",
+          "state": "Entregado / revisión cerrada de esta ola; sin ejecución continua",
+          "activeBuilding": "D1-12",
+          "lease": "Sin reserva activa al cierre; consultar último paquete antes de retomar"
+        }
+      ],
+      "releaseReceipt": {
+        "pr": 110,
+        "url": "https://github.com/yodesarrollo/amalaya-board/pull/110",
+        "approvedHead": "16e2e4c6f005f7accb4cfaccb407392969f5c11c",
+        "tree": "dacbd0f1887f59293d9d180c7be93d1e79bec2d4",
+        "merge": "1151127284644fb0507ef949aed24fbabd5eb804",
+        "ci": "40814334168 success",
+        "deploy": "40814695031 success",
+        "publicVerification": "Publicado y verificado por Astra en el tablero original: 139 registros, 33 cuadras y seis pasos; filtros de C06 y edificio 82, ola de tres unidades, expansión, enlaces y galerías. Acceso comprobado desde Herramientas → Levantamiento → Plan y checklist. Esta verificación no aprueba los modelos."
+      }
+    }
+  ]
 }
