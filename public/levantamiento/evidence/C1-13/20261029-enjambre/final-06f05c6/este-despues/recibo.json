@@ -1,0 +1,13 @@
+{
+  "stage": "este-despues",
+  "commit": "9bc4aceba0bbc5ed70496d0799925564ba5fda4e",
+  "status": "?? public/levantamiento/evidence/C1-13/20261029-enjambre/final-06f05c6/",
+  "worldSha256": "401a29332e4b6335df2246d744593c6d1adea67dba9efb8d39be8e394cebf91b",
+  "block": "C06",
+  "triangles": 27246,
+  "files": {
+    "camaras.json": "3823efa71c503a3a9a7d3d6663e362a48be3257fd32adbd70b28c92978f1ca24",
+    "82-este-elevada-3d.jpg": "3e39588903baceef40b180f853e7c5e48e427d217bf312c34a095140518a57f6"
+  },
+  "limite": "Render de triángulos con iluminación simplificada; no prueba WebGL ni cámara calibrada."
+}

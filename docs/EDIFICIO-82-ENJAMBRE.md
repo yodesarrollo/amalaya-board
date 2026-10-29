@@ -14,3 +14,9 @@ node scripts/evidencia-c1-13-enjambre.mjs despues
 Los directorios existentes se rechazan para no sobrescribir evidencia. Se puede indicar como segundo argumento otro directorio padre. Después debe hacerse sobre el candidato integrado, conservar su recibo y cotejar las cuatro cámaras con la línea base. Para concluir se requieren revisión visual, pruebas de encaje y colisiones, preservación de vecinos, versión ligera y comprobación del visor real. La publicación requiere su propio recibo.
 
 Prueba inicial local: Chromium 151 se ejecutó con SwiftShader y servidor HTTP local; la captura con presupuesto virtual no terminó y se interrumpió. No se acredita WebGL ni navegación, ni la versión ligera con este intento. Pendiente prueba controlada del candidato integrado.
+
+## Candidato 06f05c6
+
+Se conservaron vistas intermedias de `9762851` en `intermedia-9762851/` y el candidato `06f05c6` en `final-06f05c6/`. La cámara este elevada es complementaria y tiene su par de base en `este-antes/`; muestra los tres arcos y la pilastra unida al friso. La vista llamada `este-detalle` de las cuatro originales mira principalmente al sur y la esquina. La comparación de cámaras es exacta entre cada par, no calibrada contra fotografía. Los recibos registran imágenes y cámara; `final-06f05c6/manifest.json` identifica además los hashes del código de paramento, datos, fuentes y archivos ligeros regenerados en el árbol de integración.
+
+En Chromium 151 con HTTP local, se seleccionó C1-13 en la vista ligera regenerada, se pulsó Acercar dos veces y Girar 45°. `final-06f05c6/ligera-82.png` muestra fachada sur, curva, parte del este y vecino; el barandal se aprecia como línea fina y no permite evaluar cada pieza. La vista ligera usa canvas 2D. En el recorrido completo se creó contexto WebGL con SwiftShader, pero el cargador mostró fallo antes de obtener una vista navegable; no se valida el recorrido ni la publicación.
