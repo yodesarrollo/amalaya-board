@@ -58,7 +58,7 @@ export function registro82(p){
  // the three observed local features; their progression is approximate.
  const eastNear=[{...east[2],x:6.05}];
  const eastFar=[{...east[1],x:3.2},{...east[0],x:6.7}];
- return {...p,facades:p.facades.map(f=>f.edge===3?{...f,c113Side:'este',bays:eastNear}:f.edge===4?{...f,c113Side:'este',bays:eastFar,bands:[...(f.bands||[]),{x:3.2,w:1.0,y:5.93,h:.12,d:.20,color:purple}],reverseBands:true,localizeFins:true,reverseFins:true,fins:[...(f.fins||[]),{x:1.1,b:.45,h:3.4,w:.28,d:.12,color:purple}]}:f.edge===2?{...f,c113Side:'sur',bays:south}:f)};
+ return {...p,facades:p.facades.map(f=>f.edge===3?{...f,c113Side:'este',bays:eastNear}:f.edge===4?{...f,c113Side:'este',bays:eastFar,bands:[...(f.bands||[]),{x:3.2,w:1.0,y:5.93,h:.12,d:.20,color:purple}],reverseBands:true,localizeFins:true,reverseFins:true,fins:[...(f.fins||[]),{x:1.1,b:.7,h:4.47,w:.28,d:.12,color:purple}]}:f.edge===2?{...f,c113Side:'sur',bays:south}:f)};
 }
 
 // Uses the scene's own constructors, including in the preserved compiled viewer.
