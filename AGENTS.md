@@ -13,3 +13,7 @@ Leer [revisión con Jev y método convencional](docs/JEV-REVISION-OPERATIVA.md) 
 - Mantener datos de negocio, audio, claves y evidencias privadas en sus sistemas autorizados. Los cambios de instrucciones no habilitan nuevos permisos ni despliegan servicios.
 
 Para código y publicación, seguir los verificadores existentes y comprobar el resultado real. Para MD, verificar enlaces y coherencia con los contratos antes de integrar. Registrar cambios en el Buzón con evidencia y respetar reservas ajenas.
+
+## Relevo de Jev Images · 28-oct-2026
+
+Leer [protocolo visual experimental](docs/JEV-IMAGENES-20261028.md) antes de clasificar fotografías, planos o capturas mediante Jev. La guía define un piloto en sombra y **no acredita ejecución ni despliegue**. Mantener los contratos, CI, reservas, pruebas y rutas canónicas vigentes; no usar Jev textual como visión ni dar por notificados a otros chats hasta observar su acuse.
