@@ -17,7 +17,7 @@
       84,
       89
     ],
-    "summary": "Tres paquetes reales: diagnósticos84y89 aceptados y prototipo82 rechazado para integración porAstra. Comparativas y fuentes conservadas; ninguna geometría nueva activada. Resto del inventario en cola; agentes sin ejecución en segundo plano."
+    "summary": "Tres paquetes reales: diagnósticos de los edificios 84 y 89 aceptados y prototipo del 82 rechazado por Astra para su integración. Las comparativas y fuentes están conservadas; ninguna geometría nueva está activada. El resto del inventario queda en cola y los agentes han entregado su trabajo."
   },
   "buildings": [
     {
@@ -13488,7 +13488,7 @@
         "name": "Centro / Surfragio Efectivo"
       },
       "queue": "ola actual",
-      "nextAction": "Terra: cerrar continuidad con patio81; representar arcos/molduras/balcones orientales y variación de vanos altos sur; añadir barandal blanco; probar molduras/calzada, recorrido y ligero antes de volver aAstra.",
+      "nextAction": "Terra debe cerrar la continuidad con el patio del edificio 81; representar los arcos, molduras y balcones orientales y la variación de los vanos altos al sur; añadir el barandal blanco; y probar las molduras contra la calzada, el recorrido y la versión ligera antes de volver a Astra.",
       "steps": [
         {
           "id": "P1",
@@ -13496,7 +13496,7 @@
           "criterion": "Referencias del mismo edificio; ID, número, huella, frentes, fechas, tres rasgos y límites identificados.",
           "audit": {
             "result": "BLOQUEADO",
-            "reason": "Fuentes sur y este observadas por Astra; falta cerrar continuidad de la huella con patio81.",
+            "reason": "Fuentes sur y este observadas por Astra; falta cerrar continuidad de la huella con patio del edificio 81.",
             "auditor": "Astra · /root · gpt-6-astra",
             "date": "2026-10-29T03:57:10.342893Z",
             "revision": "9e8616df2945a24fe6836c687f1db7664ee1963b"
@@ -13568,7 +13568,7 @@
           "criterion": "Acceso, suelo y colindancias revisados; sin colisiones ajenas ni pérdida esencial en ligero.",
           "audit": {
             "result": "BLOQUEADO",
-            "reason": "16919 colisionadores idénticos y vecino81 intacto son evidencia parcial; falta encaje de molduras +0.15m, recorrido y versión ligera.",
+            "reason": "16919 colisionadores idénticos y vecino del edificio 81 intacto son evidencia parcial; falta encaje de molduras +0.15m, recorrido y versión ligera.",
             "auditor": "Astra · /root · gpt-6-astra",
             "date": "2026-10-29T03:57:10.342893Z",
             "revision": "9e8616df2945a24fe6836c687f1db7664ee1963b"
@@ -13602,7 +13602,7 @@
               "id": "P6a",
               "audit": {
                 "result": "PASA",
-                "reason": "Sólo reproducibilidad del prototipo:12hashes correctos y mismas cámaras; no paquete final.",
+                "reason": "Sólo reproducibilidad del prototipo: 12 hashes correctos y mismas cámaras; no paquete final.",
                 "auditor": "Astra · /root · gpt-6-astra",
                 "date": "2026-10-29T03:57:10.342893Z",
                 "revision": "9e8616df2945a24fe6836c687f1db7664ee1963b"
@@ -13702,7 +13702,7 @@
         "responsible": "/root/manager_sol/cuadra_c06_terra",
         "model": "gpt-6.1-terra",
         "baseSha": "2c59d1b2ca4871ed85604b32c5326f8222dacf62",
-        "manifestHash": "779200fc3bf7d782b7f5e959961d3837731c1cbba76e43eebb256548a62bf456",
+        "manifestHash": "98c8078a1dedede494389d582a7dc6dd2a2a7c9a804bc0d6c0868cd4bc92a45b",
         "handoff": "Prototipo entregado y juzgado por Astra; conservado sólo como evidencia.",
         "receipt": "AUDIT-ASTRA-82-20261029",
         "manifestPath": "levantamiento/evidence/C1-13/20261029-ola1/auditoria-astra82.json",
@@ -13711,7 +13711,7 @@
       },
       "integration": {
         "status": "NO PASA PARA INTEGRAR",
-        "reason": "Astra9e8616d:fachadaoriental incompleta y barandal/encuentros ausentes.",
+        "reason": "Astra, revisión 9e8616d: fachada oriental incompleta; faltan el barandal y los encuentros del lateral.",
         "scope": "Prototipo conservado, geometría no activada."
       },
       "publication": {
@@ -13786,12 +13786,12 @@
         },
         {
           "path": "levantamiento/evidence/C1-13/20261029-ola1/auditoria-astra82.json",
-          "label": "Dictamen Astra82 y hashes de fuentes/prototipo",
+          "label": "Dictamen Astra sobre el edificio 82 y hashes de fuentes/prototipo",
           "date": "2026-10-29T03:57:10.342893Z"
         },
         {
           "path": "levantamiento/evidence/C1-13/20261029-ola1/prototipo-9e8616d.json",
-          "label": "Manifiesto archivado de prototipo9e8616d (sin activar)",
+          "label": "Manifiesto archivado de prototipo 9e8616d (sin activar)",
           "date": "2026-10-29T03:57:10.342893Z"
         }
       ],
@@ -14160,7 +14160,7 @@
       },
       "integration": {
         "status": "DIAGNÓSTICO ACEPTADO; EDIFICIO BLOQUEADO",
-        "reason": "Astra sobre6bb9463 integradoe6d3857; P2NO PASA, otros criterios bloqueados para cierre."
+        "reason": "Astra sobre 6bb9463, integrado como e6d3857; P2 NO PASA, otros criterios bloqueados para cierre."
       },
       "publication": {
         "status": "PENDIENTE",
@@ -15032,7 +15032,7 @@
       },
       "integration": {
         "status": "DIAGNÓSTICO ACEPTADO; EDIFICIO BLOQUEADO",
-        "reason": "Dictamen Astra sobre aaa92b8 integrado07872c0; no aprobado cierre ni nueva geometría."
+        "reason": "Dictamen Astra sobre aaa92b8, integrado como 07872c0; no aprobado cierre ni nueva geometría."
       },
       "publication": {
         "status": "PENDIENTE",
@@ -22593,7 +22593,7 @@
     {
       "date": "2026-10-29T03:57:10.342893Z",
       "agent": "Astra · /root · gpt-6-astra",
-      "action": "82NO PASA integrar/cerrar: P3fachada este incompleta y variación vanos; P4barandal/encuentros ausentes; P1/P2/P5bloqueados; P6aPASA sólo reproducibilidad.12hashes comprobados y2fuentes públicas capturadas. Prototipo conservado sin activar.",
+      "action": "El prototipo del edificio 82 no pasa para integrar ni cerrar: P3, fachada oriental incompleta y variación de vanos; P4, barandal y encuentros ausentes. P1, P2 y P5 quedan bloqueados. P6a pasa sólo por reproducibilidad: 12 hashes comprobados. Se conservaron dos fuentes públicas capturadas y las comparativas; el prototipo no está activado.",
       "evidence": "levantamiento/evidence/C1-13/20261029-ola1/auditoria-astra82.json"
     }
   ],
@@ -22665,6 +22665,6 @@
     "merge": "1151127284644fb0507ef949aed24fbabd5eb804",
     "ci": "40814334168 success",
     "deploy": "40814695031 success",
-    "publicVerification": "Astra comprobó públicamente139/33/6, filtroC06+82, olaactual82/84/89, expansiónP1-P6/P6a-b y galerías. Acceso desde herramientas originales en comprobación final; no aprobación de modelos."
+    "publicVerification": "Publicado y verificado por Astra en el tablero original: 139 registros, 33 cuadras y seis pasos; filtros de C06 y edificio 82, ola de tres unidades, expansión, enlaces y galerías. Acceso comprobado desde Herramientas → Levantamiento → Plan y checklist. Esta verificación no aprueba los modelos."
   }
 }

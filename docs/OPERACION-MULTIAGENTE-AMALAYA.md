@@ -15,7 +15,7 @@ Los seis criterios son los del proceso individual: identidad y evidencia, forma,
 
 **APROBADO PARA INTEGRAR** requiere dictamen Astra independiente PASA en P1–P5 y P6a, el paquete previo a publicación. **PUBLICADO VERIFICADO** requiere además P6b PASA, recibo de despliegue y comprobación del tablero real; son hitos separados. No se migran estados históricos «Hecho» a seis pasos aprobados. Los antecedentes publicados de 79/D1-03, 80/D1-04 y 81/C1-12 se verificaron el 28 de octubre; no constituyen un nuevo dictamen Astra.
 
-La ola asigna 82/C1-13 en C06, cuadra visible 24; 84/D1-09 en C10, cuadra 25; y 89/D1-12 en C11, cuadra 26. Los tres paquetes se entregaron: diagnósticos84y89 aceptados y prototipo82NO PASA para integrar; ninguno de los tres edificios está cerrado. 76/D1-05, 77/D1-06, 78/D1-07 y 83/D1-08 son antecedentes de seis pasos documentados, con exterior visual aproximado; no son producción nueva ni dictámenes Astra nuevos. EB-SW 42 y 140/141 son segmentos visuales, no tres propiedades. El manager incorporará resultados, reservas y dictámenes al JSON versionado junto con fecha, evidencia y bitácora. No se emplea localStorage ni controles de la página como aprobación.
+La ola asigna 82/C1-13 en C06, cuadra visible 24; 84/D1-09 en C10, cuadra 25; y 89/D1-12 en C11, cuadra 26. Los tres paquetes se entregaron: diagnósticos de los edificios 84 y 89 aceptados y prototipo del 82 con dictamen NO PASA para integrar; ninguno de los tres edificios está cerrado. 76/D1-05, 77/D1-06, 78/D1-07 y 83/D1-08 son antecedentes de seis pasos documentados, con exterior visual aproximado; no son producción nueva ni dictámenes Astra nuevos. EB-SW 42 y 140/141 son segmentos visuales, no tres propiedades. El manager incorporará resultados, reservas y dictámenes al JSON versionado junto con fecha, evidencia y bitácora. No se emplea localStorage ni controles de la página como aprobación.
 
 ## Reanudación y límites de concurrencia
 
@@ -50,4 +50,4 @@ Checkpoint como máximo cada diez minutos durante trabajo activo, con hora y efe
 
 ## Corte de resultado
 
-Dictamen82: revisión9e8616d, manifiestoSHA256fdd327dcbc048515362f1117036a46ecf9fab4bae54d5b5b8ad8d5d251e18b88; NO PASA para integrar/cerrar. Comparativas y fuentes de diciembre2023 conservadas; módulo y parche no activados. Los agentes de la ola han entregado y quedan sin ejecución continua. Retomar sólo después de conciliar main y abrir nueva reserva con alcance concreto.
+Dictamen del edificio 82: revisión 9e8616d, manifiesto SHA256 fdd327dcbc048515362f1117036a46ecf9fab4bae54d5b5b8ad8d5d251e18b88; NO PASA para integrar/cerrar. Comparativas y fuentes de diciembre de 2023 conservadas; módulo y parche no activados. Los agentes de la ola han entregado y quedan sin ejecución continua. Retomar sólo después de conciliar main y abrir nueva reserva con alcance concreto.

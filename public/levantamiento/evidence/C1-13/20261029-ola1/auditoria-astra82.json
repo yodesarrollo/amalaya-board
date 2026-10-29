@@ -9,7 +9,7 @@
   "criteria": {
     "P1": {
       "result": "BLOQUEADO",
-      "reason": "Fuentes sur y este observadas por Astra; falta cerrar continuidad de la huella con patio81."
+      "reason": "Fuentes sur y este observadas por Astra; falta cerrar continuidad de la huella con patio del edificio 81."
     },
     "P2": {
       "result": "BLOQUEADO",
@@ -25,7 +25,7 @@
     },
     "P5": {
       "result": "BLOQUEADO",
-      "reason": "16919 colisionadores idénticos y vecino81 intacto son evidencia parcial; falta encaje de molduras +0.15m, recorrido y versión ligera."
+      "reason": "16919 colisionadores idénticos y vecino del edificio 81 intacto son evidencia parcial; falta encaje de molduras +0.15m, recorrido y versión ligera."
     },
     "P6": {
       "result": "BLOQUEADO",
@@ -34,7 +34,7 @@
   },
   "P6a": {
     "result": "PASA",
-    "reason": "Sólo reproducibilidad del prototipo:12hashes correctos y mismas cámaras; no paquete final."
+    "reason": "Sólo reproducibilidad del prototipo: 12 hashes correctos y mismas cámaras; no paquete final."
   },
   "P6b": {
     "result": "PENDIENTE",
@@ -49,5 +49,5 @@
     "pruebas.json": "7a8a365326d031e96a3c2cbe060d75cb0d1b6be5a81081cb3eba0e45f60e9214",
     "prototipo-9e8616d.json": "fdd327dcbc048515362f1117036a46ecf9fab4bae54d5b5b8ad8d5d251e18b88"
   },
-  "sourceNote": "Capturas completas de Google Street View con fecha dic2023 visible y contexto; la etiqueta de dirección del panorama no se atribuye como domicilio. Manifiesto de prototipo archivado remite al checkout/revisión productor, no sustituye la ficha histórica."
+  "sourceNote": "Capturas completas de Google Street View con fecha visible de diciembre de 2023 y contexto. La etiqueta de dirección del panorama no se atribuye como domicilio. El manifiesto del prototipo archivado remite a la revisión del productor y no sustituye la ficha histórica."
 }
