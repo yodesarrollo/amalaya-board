@@ -586,8 +586,8 @@
       "kind": "lado",
       "lat": 29.076767,
       "lng": -110.953255,
-      "headingDegrees": 360,
-      "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.076767,-110.953255&heading=360&pitch=0&fov=80"
+      "headingDegrees": 0,
+      "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.076767,-110.953255&heading=0&pitch=0&fov=80"
     },
     {
       "id": "P024",
