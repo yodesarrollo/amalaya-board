@@ -1,0 +1,227 @@
+{
+  "state": {
+    "id": 7,
+    "result": {
+      "result": {
+        "type": "object",
+        "value": {
+          "url": "http://127.0.0.1:8766/levantamiento/visor/",
+          "loader": "No se pudo abrir el recorrido 3D\n\nReintenta la carga o continúa con la vista ligera.\n\nReintentar\nVer edificios",
+          "events": [
+            {
+              "type": "amalaya:world-error",
+              "message": ""
+            },
+            {
+              "type": "amalaya:world-ready",
+              "message": ""
+            }
+          ],
+          "webgl": true,
+          "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)"
+        }
+      }
+    }
+  },
+  "events": [
+    {
+      "method": "Runtime.consoleAPICalled",
+      "params": {
+        "type": "warning",
+        "args": [
+          {
+            "type": "string",
+            "value": "THREE.Clock: This module has been deprecated. Please use THREE.Timer instead."
+          }
+        ],
+        "executionContextId": 9,
+        "timestamp": 1793296405398.488,
+        "stackTrace": {
+          "callFrames": [
+            {
+              "functionName": "B",
+              "scriptId": "74",
+              "url": "http://127.0.0.1:8766/levantamiento/visor/assets/index-RoPA5goG.js?v=665a7a1395ee",
+              "lineNumber": 1,
+              "columnNumber": 2068
+            },
+            {
+              "functionName": "ws",
+              "scriptId": "74",
+              "url": "http://127.0.0.1:8766/levantamiento/visor/assets/index-RoPA5goG.js?v=665a7a1395ee",
+              "lineNumber": 5,
+              "columnNumber": 38453
+            },
+            {
+              "functionName": "",
+              "scriptId": "74",
+              "url": "http://127.0.0.1:8766/levantamiento/visor/assets/index-RoPA5goG.js?v=665a7a1395ee",
+              "lineNumber": 4355,
+              "columnNumber": 730
+            }
+          ]
+        }
+      }
+    },
+    {
+      "method": "Runtime.consoleAPICalled",
+      "params": {
+        "type": "warning",
+        "args": [
+          {
+            "type": "string",
+            "value": "THREE.WebGLShadowMap: PCFSoftShadowMap has been removed. Using PCFShadowMap instead."
+          }
+        ],
+        "executionContextId": 9,
+        "timestamp": 1793296405429.695,
+        "stackTrace": {
+          "callFrames": [
+            {
+              "functionName": "B",
+              "scriptId": "74",
+              "url": "http://127.0.0.1:8766/levantamiento/visor/assets/index-RoPA5goG.js?v=665a7a1395ee",
+              "lineNumber": 1,
+              "columnNumber": 2068
+            },
+            {
+              "functionName": "Pu.render",
+              "scriptId": "74",
+              "url": "http://127.0.0.1:8766/levantamiento/visor/assets/index-RoPA5goG.js?v=665a7a1395ee",
+              "lineNumber": 4196,
+              "columnNumber": 832
+            },
+            {
+              "functionName": "Yu.render",
+              "scriptId": "74",
+              "url": "http://127.0.0.1:8766/levantamiento/visor/assets/index-RoPA5goG.js?v=665a7a1395ee",
+              "lineNumber": 4220,
+              "columnNumber": 33949
+            },
+            {
+              "functionName": "Ev",
+              "scriptId": "74",
+              "url": "http://127.0.0.1:8766/levantamiento/visor/assets/index-RoPA5goG.js?v=665a7a1395ee",
+              "lineNumber": 4355,
+              "columnNumber": 24045
+            },
+            {
+              "functionName": "kv",
+              "scriptId": "74",
+              "url": "http://127.0.0.1:8766/levantamiento/visor/assets/index-RoPA5goG.js?v=665a7a1395ee",
+              "lineNumber": 4355,
+              "columnNumber": 29078
+            },
+            {
+              "functionName": "",
+              "scriptId": "74",
+              "url": "http://127.0.0.1:8766/levantamiento/visor/assets/index-RoPA5goG.js?v=665a7a1395ee",
+              "lineNumber": 4355,
+              "columnNumber": 29086
+            }
+          ]
+        }
+      }
+    },
+    {
+      "method": "Runtime.consoleAPICalled",
+      "params": {
+        "type": "warning",
+        "args": [
+          {
+            "type": "string",
+            "value": "No se pudo cargar el índice georreferenciado del board."
+          },
+          {
+            "type": "object",
+            "subtype": "error",
+            "className": "Error",
+            "description": "Error: Registro del board inválido: P023\n    at tv (http://127.0.0.1:8766/levantamiento/visor/assets/index-RoPA5goG.js?v=665a7a1395ee:4356:8359)",
+            "objectId": "-6495108902405277118.9.1",
+            "preview": {
+              "type": "object",
+              "subtype": "error",
+              "description": "Error: Registro del board inválido: P023\n    at tv (http://127.0.0.1:8766/levantamiento/visor/assets/index-RoPA5goG.js?v=665a7a1395ee:4356:8359)",
+              "overflow": false,
+              "properties": [
+                {
+                  "name": "stack",
+                  "type": "string",
+                  "value": "Error: Registro del board inválido: P023\n    at tv…ssets/index-RoPA5goG.js?v=665a7a1395ee:4356:8359)"
+                },
+                {
+                  "name": "message",
+                  "type": "string",
+                  "value": "Registro del board inválido: P023"
+                }
+              ]
+            }
+          }
+        ],
+        "executionContextId": 9,
+        "timestamp": 1793296405713.742,
+        "stackTrace": {
+          "callFrames": [
+            {
+              "functionName": "tv",
+              "scriptId": "74",
+              "url": "http://127.0.0.1:8766/levantamiento/visor/assets/index-RoPA5goG.js?v=665a7a1395ee",
+              "lineNumber": 4355,
+              "columnNumber": 9058
+            }
+          ]
+        }
+      }
+    },
+    {
+      "method": "Runtime.consoleAPICalled",
+      "params": {
+        "type": "warning",
+        "args": [
+          {
+            "type": "string",
+            "value": "No se pudo cargar la capa OSM; se conserva el pavimento provisional."
+          },
+          {
+            "type": "object",
+            "subtype": "error",
+            "className": "Error",
+            "description": "Error: Round 01: missing template or duplicate OSM owner\n    at applyPlanRound (http://127.0.0.1:8766/levantamiento/plantas-refinement.js?v=8a5221b14a88:1:5224)\n    at mv (http://127.0.0.1:8766/levantamiento/visor/assets/index-RoPA5goG.js?v=665a7a1395ee:4356:17236)",
+            "objectId": "-6495108902405277118.9.2",
+            "preview": {
+              "type": "object",
+              "subtype": "error",
+              "description": "Error: Round 01: missing template or duplicate OSM owner\n    at applyPlanRound (http://127.0.0.1:8766/levantamiento/plantas-refinement.js?v=8a5221b14a88:1:5224)\n    at mv (http://127.0.0.1:8766/levantamiento/visor/assets/index-RoPA5goG.js?v=665a7a1395ee:4356:17236)",
+              "overflow": false,
+              "properties": [
+                {
+                  "name": "stack",
+                  "type": "string",
+                  "value": "Error: Round 01: missing template or duplicate OSM…sets/index-RoPA5goG.js?v=665a7a1395ee:4356:17236)"
+                },
+                {
+                  "name": "message",
+                  "type": "string",
+                  "value": "Round 01: missing template or duplicate OSM owner"
+                }
+              ]
+            }
+          }
+        ],
+        "executionContextId": 9,
+        "timestamp": 1793296407589.658,
+        "stackTrace": {
+          "callFrames": [
+            {
+              "functionName": "mv",
+              "scriptId": "74",
+              "url": "http://127.0.0.1:8766/levantamiento/visor/assets/index-RoPA5goG.js?v=665a7a1395ee",
+              "lineNumber": 4355,
+              "columnNumber": 18739
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
