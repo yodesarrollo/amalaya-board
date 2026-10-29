@@ -6,7 +6,8 @@
     "public/levantamiento/paramento-data.js": "5cc1cd6d1d7afe221bb96edbbfa6990a7e446a487014ba4ae0bc8df76d359d93",
     "public/levantamiento/cuadra-detail-data.js": "697d2a8a4bc36dfc650a0e4e5ef50ad2ad1d5cecbb2a98478cceea2ffc717648",
     "public/levantamiento/evidence/C1-13/20261029-ola1/82-sur-fuente-202312.jpg": "0dd8e829de337398229330c2bb8235aac48dfe72eec3b79a782307d4235fbef2",
-    "public/levantamiento/evidence/C1-13/20261029-ola1/82-este-fuente-202312.jpg": "ab851282a93087b2122e60dab6c4f90ec8ea11a53eccf409e74b234ad1e78072"
+    "public/levantamiento/evidence/C1-13/20261029-ola1/82-este-fuente-202312.jpg": "ab851282a93087b2122e60dab6c4f90ec8ea11a53eccf409e74b234ad1e78072",
+    "public/levantamiento/c1-13-barandal.js": "6fae4d2552dd84f537d8d8de03380a6331d31fd191120bfac6dfde4e990350bd"
   },
   "lightHashesFromRootRegenerated": {
     "public/levantamiento/modelo-ligero.bin": "bdebad2e265cfc8cb0911cbb024d56387398390810bd82c0c7fb3ce2ebd4be2f",
@@ -22,7 +23,8 @@
     "final-06f05c6/este-despues/82-este-elevada-3d.jpg": "3e39588903baceef40b180f853e7c5e48e427d217bf312c34a095140518a57f6",
     "final-06f05c6/este-despues/camaras.json": "3823efa71c503a3a9a7d3d6663e362a48be3257fd32adbd70b28c92978f1ca24",
     "final-06f05c6/este-despues/recibo.json": "f38d05aab8ce7ef28e22088ab6fb7c6245f227a0d6162879e28c251c4ec8b1e9",
-    "final-06f05c6/ligera-82.png": "5f2f85bbe75966cc08961b4d1cc8a56ae25b2a312ce768bda380fed3df435075"
+    "final-06f05c6/ligera-82.png": "5f2f85bbe75966cc08961b4d1cc8a56ae25b2a312ce768bda380fed3df435075",
+    "final-06f05c6/ligera-82-este.png": "815af89a17c9743eb80acc1ddc9932f9f931d0287111059ea2952eeb98f4c317"
   },
   "note": "Capturas raster con cámaras aproximadas; captura ligera local 2D en Chromium, no prueba de navegación WebGL ni publicación."
 }
