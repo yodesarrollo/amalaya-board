@@ -1,0 +1,36 @@
+{
+  "candidate": "72541c3",
+  "server": "http://127.0.0.1:8766/levantamiento/visor/",
+  "browser": "Chromium 151 headless; ANGLE SwiftShader",
+  "worldEvents": [
+    {
+      "type": "amalaya:world-ready",
+      "message": ""
+    }
+  ],
+  "note": "El nodo de carga conserva texto pero computedStyle display:none al abrir. Registro CDP contiene mensajes de cargas anteriores, por eso no se atribuyen al intento actual. P111 y P122 seleccionados con interfaz real. W 5 segundos, tras desenfocar selector y clic canvas, no modificó posición ni imagen; causa no determinada. P122 queda pegado a superficie, sin vista utilizable del este.",
+  "p111": {
+    "lat": 29.0751079,
+    "lng": -110.9556997,
+    "heading": 0
+  },
+  "p122": {
+    "lat": 29.0753125,
+    "lng": -110.95572,
+    "heading": 175
+  },
+  "hashes": {
+    "public/levantamiento/sector-visor.js": "aca50ca41ce867bac667310a9c720fcf2878e33d22baf042fba48e20321dfc94",
+    "public/levantamiento/plantas-refinement.js": "8a5221b14a88f7349610097e3d6007056a1acf805c052df5db6a5d5870fc3949",
+    "public/levantamiento/visor/assets/index-RoPA5goG.js": "54bcc7f9d4e4fe1ea67f95a6f1f91b4d826799c4f092b01166c914e51f737ad7",
+    "public/levantamiento/visor/index.html": "0b09d4e5ae8336508efd7dae1eb2c213a616ccebaabcc20a3e7dd0964bea5491",
+    "public/levantamiento/paramento-refinement.js": "fa81a93e97c6b182322eac2390f564fbc32c7998249137ff60cd91cff2fd59f1",
+    "public/levantamiento/c1-13-barandal.js": "6fae4d2552dd84f537d8d8de03380a6331d31fd191120bfac6dfde4e990350bd",
+    "public/levantamiento/modelo-ligero.bin": "bdebad2e265cfc8cb0911cbb024d56387398390810bd82c0c7fb3ce2ebd4be2f",
+    "public/levantamiento/modelo-ligero.json": "f639772fbb98693f1150d658ac89f8d8f2c61d5927e800c366bb513fe3ef68d9"
+  },
+  "capturas": {
+    "p111-frente.png": "f56c6d757d156ad85b617aa73aaa4d4b8bfd3768531f9cc909564a4c9621d35e",
+    "p122-superficie.png": "0083ff5f6e83f1c5b4b361b117f621426f5dee8bdccca66bf16cded74ab65cdb"
+  }
+}
