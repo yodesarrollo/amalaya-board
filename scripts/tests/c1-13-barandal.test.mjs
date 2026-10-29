@@ -9,6 +9,10 @@ test('barandal sur se apoya en cornisa y queda en el tramo recto de la huella',(
  assert.equal(r.edge,2); assert.equal(r.start,1.4); assert.ok(r.end>r.start);
  assert.equal(calls.filter(c=>c.name.endsWith('riel')).length,2);
  assert.equal(calls.filter(c=>c.name.endsWith('barrotes')).length,r.intervals+1);
+ assert.equal(calls.filter(c=>c.name.endsWith('riel curvo')).length,16);
+ assert.equal(calls.filter(c=>c.name.endsWith('barrote curvo')).length,8);
+ const curved=calls.filter(c=>c.name.endsWith('riel curvo')).at(-1), straight=calls.find(c=>c.name.endsWith('riel'));
+ assert.ok(Math.hypot(curved.x-straight.x,curved.z-straight.z)<(curved.w+straight.w)/2+.03);
  assert.ok(calls.every(c=>c.y-c.h/2>=6.25-1e-9));
  const [a,b]=[points[2],points[3]],dx=b[0]-a[0],dz=b[1]-a[1],L=Math.hypot(dx,dz);
  for(const c of calls.filter(c=>c.name.endsWith('barrotes'))){
