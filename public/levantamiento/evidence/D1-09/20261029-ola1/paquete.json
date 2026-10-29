@@ -1,0 +1,213 @@
+{
+  "id": "D1-09",
+  "number": 84,
+  "block": "C10",
+  "display": 25,
+  "baseSHA": "2c59d1b2ca4871ed85604b32c5326f8222dacf62",
+  "model": "gpt-6.1-terra",
+  "agentCanonical": "/root/manager_sol/cuadra_c10_terra",
+  "timestamp": "2026-10-29T03:41:18.742794+00:00",
+  "sources": [
+    {
+      "date": "desconocida",
+      "side": "aérea",
+      "coverage": "C10 completa; contorno visible interpretado, detalles y alturas no medibles",
+      "path": "public/levantamiento/ajuste-visual/C10.jpg",
+      "sha256": "f67df2cf4a3c3eeef2520966220d1321be624a4d1f5137445930a925b501e8f9"
+    },
+    {
+      "date": "2026-10-06",
+      "side": "planta del modelo, no foto",
+      "coverage": "polígono y procedencia histórica",
+      "path": "public/levantamiento/evidence/D1-09/20261006-01-cierre.json",
+      "sha256": "a0b0a3591cc46eb7355def87e08a0ad91428676d09a8e4f9a853aeacbb19ef2d"
+    },
+    {
+      "date": "2023-12",
+      "side": "panorama próximo mirando sur y suroeste",
+      "coverage": "nave clara, patio y portón; correspondencia exacta con D1-09 no verificada",
+      "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.07525,-110.955755&heading=180&pitch=0&fov=80",
+      "pano": "ia1FQIrplW8gDlrhfmmECg",
+      "path": null,
+      "sha256": null,
+      "note": "Inspección visual en navegador; no se guardó captura local. Coordenada del panorama 29.0752061,-110.9557688; giro 233° también observado."
+    }
+  ],
+  "traits": [
+    {
+      "name": "Cubierta clara longitudinal",
+      "status": "observada en aérea, asignación de detalle pendiente"
+    },
+    {
+      "name": "Anexo extremo sur",
+      "status": "interpretación de ficha histórica; altura y separación pendientes"
+    },
+    {
+      "name": "Zona posterior abierta",
+      "status": "visible en aérea, límites y uso no certificados"
+    }
+  ],
+  "cameras": [
+    [
+      "calle-norte",
+      29.07525,
+      -110.955755,
+      180,
+      70,
+      -3,
+      3
+    ],
+    [
+      "esquina-noreste",
+      29.07527,
+      -110.95557,
+      215,
+      70,
+      -5,
+      5
+    ],
+    [
+      "aerea",
+      29.0750068,
+      -110.955754,
+      0,
+      60,
+      -90,
+      80
+    ]
+  ],
+  "before": {
+    "worldSha256": "401a29332e4b6335df2246d744593c6d1adea67dba9efb8d39be8e394cebf91b",
+    "views": [
+      "calle-norte-3d.jpg",
+      "esquina-noreste-3d.jpg",
+      "aerea-3d.jpg"
+    ],
+    "bounds": {
+      "min": [
+        -113.694,
+        0.05,
+        108.307
+      ],
+      "max": [
+        -88.666,
+        6.25,
+        138.732
+      ]
+    },
+    "trianglesSceneC10": 19075
+  },
+  "after": null,
+  "limits": [
+    "Altura y contorno estimados; no levantamiento ni deslinde.",
+    "Cámaras software aproximadas, no calibradas con foto; iluminación simplificada.",
+    "Panorama 2023 y aérea de fecha desconocida no prueban estado actual.",
+    "No se atribuye domicilio, propiedad o fachada a partir del resultado textual.",
+    "Autobservación del productor no es dictamen de auditoría."
+  ],
+  "criteria": {
+    "P1": {
+      "observation": "Seguimiento asigna ID D1-09 y número 84 de inventario a C10; identidad de fachada del panorama no está anclada con certeza.",
+      "evidence": [
+        "camaras.json",
+        "aerea-3d.jpg",
+        "calle-norte-3d.jpg",
+        "esquina-noreste-3d.jpg"
+      ],
+      "status": "BLOQUEADO",
+      "requiredChange": "Confirmar relación física entre polígono y fachada mediante toma de calle con esquina y rasgos enlazables al plano."
+    },
+    "P2": {
+      "observation": "Aérea muestra cubierta longitudinal clara y zona abierta al sur; modelo existente tiene polígono en L y altura uniforme estimada 6.2 m. Anexo bajo indicado en ficha histórica no se distingue en masa uniforme.",
+      "evidence": [
+        "camaras.json",
+        "aerea-3d.jpg",
+        "calle-norte-3d.jpg",
+        "esquina-noreste-3d.jpg"
+      ],
+      "status": "PENDIENTE_AUDITORIA",
+      "requiredChange": "Cotejar contorno, cubierta y posible anexo con nueva aérea legible y vistas de calle; no certificar altura o predio."
+    },
+    "P3": {
+      "observation": "El modelo de la unidad aparece como paño ciego; el panorama próximo presenta portón azul y otras formas, pero no hay asignación inequívoca.",
+      "evidence": [
+        "camaras.json",
+        "aerea-3d.jpg",
+        "calle-norte-3d.jpg",
+        "esquina-noreste-3d.jpg"
+      ],
+      "status": "BLOQUEADO",
+      "requiredChange": "Identificar frente correspondiente antes de introducir vanos, acceso y cornisas."
+    },
+    "P4": {
+      "observation": "Masa uniforme en modelo; materiales, estructura y apoyos reales no identificados para esta huella.",
+      "evidence": [
+        "camaras.json",
+        "aerea-3d.jpg",
+        "calle-norte-3d.jpg",
+        "esquina-noreste-3d.jpg"
+      ],
+      "status": "BLOQUEADO",
+      "requiredChange": "Obtener vistas de fachada y cubierta asociadas inequívocamente."
+    },
+    "P5": {
+      "observation": "Vista aérea del modelo deja zona posterior abierta; no se modificó modelo ni colisionadores. Sin comprobación nueva de acceso o colisiones locales.",
+      "evidence": [
+        "camaras.json",
+        "aerea-3d.jpg",
+        "calle-norte-3d.jpg",
+        "esquina-noreste-3d.jpg"
+      ],
+      "status": "BLOQUEADO",
+      "requiredChange": "Verificar encaje geométrico local, acceso y vecino después de definir cambio."
+    },
+    "P6": {
+      "observation": "Tres vistas software fijadas y verificadas visualmente, pruebas generales realizadas; sin cambio 3D ni publicación. La comparación fotográfica depende de identidad de fachada.",
+      "evidence": [
+        "camaras.json",
+        "aerea-3d.jpg",
+        "calle-norte-3d.jpg",
+        "esquina-noreste-3d.jpg"
+      ],
+      "status": "BLOQUEADO",
+      "requiredChange": "Aportar fotografías de calle, esquina y aérea con continuidad; corregir, probar, auditar y publicar según flujo."
+    }
+  },
+  "changes": [
+    "Ninguna geometría modificada; paquete de diagnóstico y tres vistas reproducibles."
+  ],
+  "tests": [
+    {
+      "command": "node scripts/pruebas-cuadras.mjs",
+      "result": "aprobado"
+    },
+    {
+      "command": "node scripts/pruebas-vista-ligera.mjs",
+      "result": "aprobado general, no prueba detalle nuevo"
+    },
+    {
+      "command": "node scripts/pruebas-modelos3d.mjs",
+      "result": "aprobado tras enlazar dependencias del repositorio original; primer intento falló por three ausente"
+    },
+    {
+      "command": "node scripts/exportar-escena-c08.mjs /tmp/ola-c10-scene.json C10",
+      "result": "19075 triángulos"
+    },
+    {
+      "command": "python scripts/renderizar-evidencia-paramento.py /tmp/ola-c10-scene.json public/levantamiento/evidence/D1-09/20261029-ola1 public/levantamiento/evidence/D1-09/20261029-ola1/camaras.json",
+      "result": "tres vistas generadas y observadas"
+    }
+  ],
+  "filesHash": {
+    "public/levantamiento/evidence/D1-09/20261029-ola1/aerea-3d.jpg": "b5e97373d769fda21f4a0d90f67c31471ae45465c365bec5f2eceb044e624943",
+    "public/levantamiento/evidence/D1-09/20261029-ola1/calle-norte-3d.jpg": "d729e875c8cc362b4becf59cbe740fa57e9d079f727ed8dc4ea8a136e473bd3e",
+    "public/levantamiento/evidence/D1-09/20261029-ola1/camaras.json": "cf63126ff37fb97f524633a983fc78db4b4bd4ebee1ae4e91302bf53fef93ba0",
+    "public/levantamiento/evidence/D1-09/20261029-ola1/esquina-noreste-3d.jpg": "20eac7acc039ac5079960f3e61c7a89644ff50a9790167c8dd67cd751e0617c9"
+  },
+  "remaining": [
+    "Identificar inequívocamente D1-09 en fotografía de calle, esquina y cubierta",
+    "Resolver anexo/alturas, fachada y materiales con evidencia",
+    "Pruebas locales de colisiones y acceso, auditoría independiente, integración y publicación"
+  ],
+  "nextAction": "Abrir panorama citado y comparar una foto de calle continua con aérea georreferenciada que enlace esquina, nave y acceso; después decidir geometría y vistas antes/después."
+}
