@@ -116,6 +116,8 @@ for(const [path,hash] of Object.entries({...swarm82Final.sourceHashes,...swarm82
 for(const [path,hash] of Object.entries(swarm82Final.outputHashes))assert.equal(sha256(await readFile(swarm82Root+'/'+path)),hash,'82: evidencia final '+path);
 olaEvidenceFiles.get(swarm82Root+'/final-06f05c6').add('ligera-82-este.png');
 olaEvidenceFiles.get(swarm82Root+'/final-06f05c6').add('webgl-local-diagnostico.json');
+olaEvidenceFiles.get(swarm82Root+'/final-06f05c6').add('recibo-pruebas-terra4.json');
+olaEvidenceFiles.get(swarm82Root).add('visor-runtime-recibo.json');
 async function check(dir){
   for(const item of await readdir(dir,{withFileTypes:true})){
     const path=`${dir}/${item.name}`
