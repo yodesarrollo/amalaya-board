@@ -94,6 +94,27 @@ const olaEvidenceFiles=new Map([
  ['D1-09',['aerea-3d.jpg','calle-norte-3d.jpg','esquina-noreste-3d.jpg','camaras.json','paquete.json']],
  ['D1-12',['aerea-3d.jpg','calle-3d.jpg','esquina-3d.jpg','camaras.json','escena.json','paquete.json']]
 ].map(([id,names])=>[root+'/evidence/'+id+'/20261029-ola1',new Set(names)]));
+const swarm82Root=root+'/evidence/C1-13/20261029-enjambre';
+olaEvidenceFiles.set(swarm82Root,new Set());
+for(const stage of ['antes','despues']){
+ const dir=swarm82Root+'/'+stage;
+ const names=new Set(['82-aerea-3d.jpg','82-calle-3d.jpg','82-esquina-3d.jpg','82-este-detalle-3d.jpg','camaras.json','recibo.json']);
+ olaEvidenceFiles.set(dir,names);
+ const receipt=JSON.parse(await readFile(dir+'/recibo.json'));
+ assert.equal(receipt.stage,stage);
+ for(const [name,hash] of Object.entries(receipt.files)){assert(names.has(name));assert.equal(sha256(await readFile(dir+'/'+name)),hash,'82: conservar evidencia '+stage);}
+}
+olaEvidenceFiles.set("public/levantamiento/evidence/C1-13/20261029-enjambre/este-antes",new Set(["82-este-elevada-3d.jpg", "camaras.json", "recibo.json"]));
+olaEvidenceFiles.set("public/levantamiento/evidence/C1-13/20261029-enjambre/final-06f05c6",new Set(["ligera-82.png", "manifest.json"]));
+olaEvidenceFiles.set("public/levantamiento/evidence/C1-13/20261029-enjambre/final-06f05c6/despues",new Set(["82-aerea-3d.jpg", "82-calle-3d.jpg", "82-esquina-3d.jpg", "82-este-detalle-3d.jpg", "camaras.json", "recibo.json"]));
+olaEvidenceFiles.set("public/levantamiento/evidence/C1-13/20261029-enjambre/final-06f05c6/este-despues",new Set(["82-este-elevada-3d.jpg", "camaras.json", "recibo.json"]));
+olaEvidenceFiles.set("public/levantamiento/evidence/C1-13/20261029-enjambre/intermedia-9762851",new Set([]));
+olaEvidenceFiles.set("public/levantamiento/evidence/C1-13/20261029-enjambre/intermedia-9762851/despues",new Set(["82-aerea-3d.jpg", "82-calle-3d.jpg", "82-esquina-3d.jpg", "82-este-detalle-3d.jpg", "camaras.json", "recibo.json"]));
+olaEvidenceFiles.set("public/levantamiento/evidence/C1-13/20261029-enjambre/intermedia-9762851/este-despues",new Set(["82-este-elevada-3d.jpg", "camaras.json", "recibo.json"]));
+const swarm82Final=JSON.parse(await readFile(swarm82Root+'/final-06f05c6/manifest.json'));
+for(const [path,hash] of Object.entries({...swarm82Final.sourceHashes,...swarm82Final.lightHashesFromRootRegenerated}))assert.equal(sha256(await readFile(path)),hash,'82: candidato exacto '+path);
+for(const [path,hash] of Object.entries(swarm82Final.outputHashes))assert.equal(sha256(await readFile(swarm82Root+'/'+path)),hash,'82: evidencia final '+path);
+olaEvidenceFiles.get(swarm82Root+'/final-06f05c6').add('ligera-82-este.png');
 async function check(dir){
   for(const item of await readdir(dir,{withFileTypes:true})){
     const path=`${dir}/${item.name}`
