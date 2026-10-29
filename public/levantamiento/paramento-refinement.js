@@ -37,7 +37,7 @@ export function registro82(p){
  if(p.id!=='C1-13')return p;
  const purple='#5b3c66',blue='#478eb7';
  const east=[
-  {x:5.2,w:1.25,h:2.85,b:.05,archFrameColor:purple,fillColor:'#45545a',barColor:blue},
+  {x:5.2,w:1.25,h:2.85,b:.05,archFrameColor:purple,fillColor:'#45545a',barColor:blue,frontBars:true},
   {x:8.7,w:1.35,h:2.9,b:.05,blind:true,archFrameColor:purple,fillColor:purple},
   {x:12.6,w:1.15,h:2.8,b:.05,noBars:true,archFrameColor:purple,fillColor:'#318cc8'}
  ];
@@ -56,9 +56,9 @@ export function registro82(p){
  const south=southFromCorner.map(b=>({...b,x:length-b.x}));
  // The east frontage is split by an existing fitted-plan vertex. Retain only
  // the three observed local features; their progression is approximate.
- const eastNear=[{...east[2],x:6.05}];
- const eastFar=[{...east[1],x:3.2},{...east[0],x:6.7}];
- return {...p,facades:p.facades.map(f=>f.edge===3?{...f,c113Side:'este',bays:eastNear}:f.edge===4?{...f,c113Side:'este',bays:eastFar,bands:[...(f.bands||[]),{x:3.2,w:1.0,y:5.93,h:.12,d:.20,color:purple}],reverseBands:true,localizeFins:true,reverseFins:true,fins:[...(f.fins||[]),{x:1.1,b:.7,h:4.47,w:.28,d:.12,color:purple}]}:f.edge===2?{...f,c113Side:'sur',bays:south}:f)};
+ const eastNear=[{...east[0],x:6.05}];
+ const eastFar=[{...east[1],x:3.2},{...east[2],x:6.7}];
+ return {...p,facades:p.facades.map(f=>f.edge===3?{...f,c113Side:'este',bays:eastNear}:f.edge===4?{...f,c113Side:'este',bays:eastFar,bands:[...(f.bands||[]),{x:3.2,w:1.0,y:5.93,h:.12,d:.20,color:purple}],reverseBands:true,localizeFins:true,reverseFins:true,fins:[...(f.fins||[]),{x:4.9,b:.7,h:4.47,w:.28,d:.12,color:purple}]}:f.edge===2?{...f,c113Side:'sur',bays:south}:f)};
 }
 
 // Uses the scene's own constructors, including in the preserved compiled viewer.
