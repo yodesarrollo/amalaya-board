@@ -13488,7 +13488,7 @@
         "name": "Centro / Surfragio Efectivo"
       },
       "queue": "ola actual",
-      "nextAction": "Terra debe cerrar la continuidad con el patio del edificio 81; representar los arcos, molduras y balcones orientales y la variación de los vanos altos al sur; añadir el barandal blanco; y probar las molduras contra la calzada, el recorrido y la versión ligera antes de volver a Astra.",
+      "nextAction": "Completar auditoría de las pruebas y del paquete final, comprobar el recorrido navegable y, tras publicación, verificar la vista pública y registrar el recibo P6b.",
       "steps": [
         {
           "id": "P1",
@@ -13710,9 +13710,14 @@
         "status": "PROTOTIPO ENTREGADO · NO ACTIVADO"
       },
       "integration": {
-        "status": "NO PASA PARA INTEGRAR",
-        "reason": "Astra, revisión 9e8616d: fachada oriental incompleta; faltan el barandal y los encuentros del lateral.",
-        "scope": "Prototipo conservado, geometría no activada."
+        "status": "EN REVISIÓN LOCAL",
+        "reason": "Astra acepta P1–P4 visuales y P6a; P5 bloqueado por recorrido WebGL y P6b pendiente.",
+        "scope": "Revisión visual aproximada, no certifica medidas, propiedad ni cubierta posterior.",
+        "previous": {
+          "status": "NO PASA PARA INTEGRAR",
+          "reason": "Astra, revisión 9e8616d: fachada oriental incompleta; faltan el barandal y los encuentros del lateral.",
+          "scope": "Prototipo conservado, geometría no activada."
+        }
       },
       "publication": {
         "status": "PENDIENTE",
@@ -13793,6 +13798,11 @@
           "path": "levantamiento/evidence/C1-13/20261029-ola1/prototipo-9e8616d.json",
           "label": "Manifiesto archivado de prototipo 9e8616d (sin activar)",
           "date": "2026-10-29T03:57:10.342893Z"
+        },
+        {
+          "path": "levantamiento/evidence/C1-13/20261029-enjambre/final-06f05c6/manifest.json",
+          "label": "Candidato local 06f05c6 · hashes, comparaciones y vista ligera",
+          "date": "2026-10-29"
         }
       ],
       "captures": [
@@ -13819,6 +13829,26 @@
         {
           "path": "levantamiento/evidence/C1-13/20261029-ola1/despues-82-aerea-3d.jpg",
           "label": "despues-82-aerea-3d.jpg · PROTOTIPO RECHAZADO; NO ACTIVADO"
+        },
+        {
+          "path": "levantamiento/evidence/C1-13/20261029-enjambre/final-06f05c6/despues/82-calle-3d.jpg",
+          "label": "Candidato local 06f05c6 · 82-calle-3d.jpg"
+        },
+        {
+          "path": "levantamiento/evidence/C1-13/20261029-enjambre/final-06f05c6/despues/82-esquina-3d.jpg",
+          "label": "Candidato local 06f05c6 · 82-esquina-3d.jpg"
+        },
+        {
+          "path": "levantamiento/evidence/C1-13/20261029-enjambre/final-06f05c6/despues/82-aerea-3d.jpg",
+          "label": "Candidato local 06f05c6 · 82-aerea-3d.jpg"
+        },
+        {
+          "path": "levantamiento/evidence/C1-13/20261029-enjambre/final-06f05c6/este-despues/82-este-elevada-3d.jpg",
+          "label": "Candidato local · lateral este elevado"
+        },
+        {
+          "path": "levantamiento/evidence/C1-13/20261029-enjambre/final-06f05c6/ligera-82.png",
+          "label": "Vista ligera local en Chromium · no acredita publicación"
         }
       ],
       "auditReceipt": {
@@ -13826,6 +13856,116 @@
         "producerCommit": "9e8616df2945a24fe6836c687f1db7664ee1963b",
         "date": "2026-10-29T03:57:10.342893Z",
         "path": "levantamiento/evidence/C1-13/20261029-ola1/auditoria-astra82.json"
+      },
+      "currentReview": {
+        "candidate": "06f05c697813b0762a3146656b2da14ec3a89344",
+        "status": "DICTAMEN COMUNICADO · PENDIENTE DE RECIBO",
+        "evidence": "levantamiento/evidence/C1-13/20261029-enjambre/final-06f05c6/manifest.json",
+        "limitations": "Aérea de fecha desconocida; imágenes de calle diciembre 2023, lado este parcial. Cubierta posterior, cotas y conteo total oriental sin certificar. Render de cámaras aproximadas y vista ligera local; recorrido WebGL no validado.",
+        "team": [
+          {
+            "agent": "/root/terra1",
+            "model": "gpt-6.1-terra",
+            "role": "Forma, anclas, encaje y diagnóstico de selección"
+          },
+          {
+            "agent": "/root/terra2",
+            "model": "gpt-6.1-terra",
+            "role": "Fachadas y vanos"
+          },
+          {
+            "agent": "/root/terra3",
+            "model": "gpt-6.1-terra",
+            "role": "Barandal y estructura"
+          },
+          {
+            "agent": "/root/terra4",
+            "model": "gpt-6.1-terra",
+            "role": "Pruebas geométricas, ligero y presupuesto"
+          },
+          {
+            "agent": "/root/terra5",
+            "model": "gpt-6.1-terra",
+            "role": "Evidencia, cámaras y QA de navegador"
+          },
+          {
+            "agent": "/root/astra",
+            "model": "gpt-6-astra",
+            "role": "Auditoría independiente"
+          },
+          {
+            "agent": "/root",
+            "model": null,
+            "role": "Coordinación e integración, rol Sol; modelo no verificable"
+          }
+        ],
+        "audit": [
+          {
+            "id": "P1",
+            "result": "PASA",
+            "reason": "Identidad visual: continuidad patio 81, cuerpo oriental y esquina; sur y este diciembre 2023, aérea de fecha desconocida.",
+            "auditor": "Astra · /root/astra · gpt-6-astra",
+            "date": "2026-10-29T17:54:00.828321+00:00",
+            "revision": "06f05c697813b0762a3146656b2da14ec3a89344",
+            "scope": "Revisión local; mejora visual aproximada, no cierre público."
+          },
+          {
+            "id": "P2",
+            "result": "PASA",
+            "reason": "Forma visual aproximada: fittedPlan vigente de cinco puntos y esquina interior; patio abierto. No certifica medidas ni cubierta posterior.",
+            "auditor": "Astra · /root/astra · gpt-6-astra",
+            "date": "2026-10-29T17:54:00.828321+00:00",
+            "revision": "06f05c697813b0762a3146656b2da14ec3a89344",
+            "scope": "Revisión local; mejora visual aproximada, no cierre público."
+          },
+          {
+            "id": "P3",
+            "result": "PASA",
+            "reason": "Fachadas sur y este representadas, orden lateral y vanos altos diferenciados; posición y conteo total oriental no certificados.",
+            "auditor": "Astra · /root/astra · gpt-6-astra",
+            "date": "2026-10-29T17:54:00.828321+00:00",
+            "revision": "06f05c697813b0762a3146656b2da14ec3a89344",
+            "scope": "Revisión local; mejora visual aproximada, no cierre público."
+          },
+          {
+            "id": "P4",
+            "result": "PASA",
+            "reason": "Barandal, pilastra y friso visibles; materiales diferenciados, proporciones estimadas.",
+            "auditor": "Astra · /root/astra · gpt-6-astra",
+            "date": "2026-10-29T17:54:00.828321+00:00",
+            "revision": "06f05c697813b0762a3146656b2da14ec3a89344",
+            "scope": "Revisión local; mejora visual aproximada, no cierre público."
+          },
+          {
+            "id": "P5",
+            "result": "BLOQUEADO",
+            "reason": "Vista ligera local observada y pruebas geométricas; recorrido WebGL no cargó y queda pendiente comprobarlo.",
+            "auditor": "Astra · /root/astra · gpt-6-astra",
+            "date": "2026-10-29T17:54:00.828321+00:00",
+            "revision": "06f05c697813b0762a3146656b2da14ec3a89344",
+            "scope": "Revisión local; mejora visual aproximada, no cierre público."
+          },
+          {
+            "id": "P6",
+            "result": "BLOQUEADO",
+            "reason": "Paquete reproducible local; publicación y comprobación pública pendientes.",
+            "auditor": "Astra · /root/astra · gpt-6-astra",
+            "date": "2026-10-29T17:54:00.828321+00:00",
+            "revision": "06f05c697813b0762a3146656b2da14ec3a89344",
+            "scope": "Revisión local; mejora visual aproximada, no cierre público."
+          }
+        ],
+        "prepublication": {
+          "result": "PASA",
+          "reason": "Comparativas, hashes y pruebas reproducibles; recorrido WebGL pendiente en P5.",
+          "auditor": "Astra · /root/astra · gpt-6-astra",
+          "date": "2026-10-29T17:54:00.828321+00:00",
+          "revision": "06f05c697813b0762a3146656b2da14ec3a89344"
+        },
+        "publication": {
+          "result": "PENDIENTE",
+          "reason": "Publicación y comprobación pública pendientes."
+        }
       }
     },
     {
