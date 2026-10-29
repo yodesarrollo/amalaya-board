@@ -85,3 +85,7 @@ El comando exporta triángulos reales y usa las cámaras guardadas en cada ficha
 La prueba pública detectó que la simplificación ligera omitía las rejas79/80 aunque existían en el modelo completo. Se corrigió su clasificación para conservarlas sólo en esos dos edificios y se añadió una prueba que exige su geometría en los grupos visibles del modelo ligero. La comprobación real de la publicación forma parte del cierre; no basta con el render de evidencia.
 
 Una segunda inspección detectó que el redondeo del79 adelantaba el fondo de su vano lateral y ocultaba los barrotes. El redondeo ahora respeta las profundidades explícitas de los vanos. Criterio añadido: comprobar visibilidad y orden de profundidad de reja, fondo y jambas; la mera presencia de triángulos no demuestra que un detalle sea visible.
+
+### Presupuesto ligero del candidato 82
+
+El candidato integrado de C1-13 conserva barandal, rejas, arcos y pilastra en grupos del modelo ligero. Su binario medido tiene 47,458 triángulos, 949,160 bytes y 305,749 bytes gzip, frente a 886,700 y 282,310 bytes gzip en `ef89166`. Se ajustan los límites de prueba a 960,000 bytes y 310,000 bytes gzip, con un margen pequeño para esa geometría. La presencia de triángulos no acredita su visibilidad: la revisión visual y el dictamen de cierre siguen pendientes.
