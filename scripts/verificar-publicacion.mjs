@@ -115,6 +115,7 @@ const swarm82Final=JSON.parse(await readFile(swarm82Root+'/final-06f05c6/manifes
 for(const [path,hash] of Object.entries({...swarm82Final.sourceHashes,...swarm82Final.lightHashesFromRootRegenerated}))assert.equal(sha256(await readFile(path)),hash,'82: candidato exacto '+path);
 for(const [path,hash] of Object.entries(swarm82Final.outputHashes))assert.equal(sha256(await readFile(swarm82Root+'/'+path)),hash,'82: evidencia final '+path);
 olaEvidenceFiles.get(swarm82Root+'/final-06f05c6').add('ligera-82-este.png');
+olaEvidenceFiles.get(swarm82Root+'/final-06f05c6').add('webgl-local-diagnostico.json');
 async function check(dir){
   for(const item of await readdir(dir,{withFileTypes:true})){
     const path=`${dir}/${item.name}`
