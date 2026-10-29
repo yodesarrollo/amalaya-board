@@ -1,0 +1,191 @@
+{
+  "candidate": "06f05c697813b0762a3146656b2da14ec3a89344",
+  "testRevision": "acb4b27f4c065469fb3c521491297c0a981c9801",
+  "recordedAtUTC": "2026-10-29T17:59:35.862210+00:00",
+  "hashes": {
+    "public/levantamiento/world.js": "401a29332e4b6335df2246d744593c6d1adea67dba9efb8d39be8e394cebf91b",
+    "public/levantamiento/paramento-refinement.js": "fa81a93e97c6b182322eac2390f564fbc32c7998249137ff60cd91cff2fd59f1",
+    "public/levantamiento/paramento-data.js": "5cc1cd6d1d7afe221bb96edbbfa6990a7e446a487014ba4ae0bc8df76d359d93",
+    "public/levantamiento/cuadra-detail-data.js": "697d2a8a4bc36dfc650a0e4e5ef50ad2ad1d5cecbb2a98478cceea2ffc717648",
+    "public/levantamiento/evidence/C1-13/20261029-ola1/82-sur-fuente-202312.jpg": "0dd8e829de337398229330c2bb8235aac48dfe72eec3b79a782307d4235fbef2",
+    "public/levantamiento/evidence/C1-13/20261029-ola1/82-este-fuente-202312.jpg": "ab851282a93087b2122e60dab6c4f90ec8ea11a53eccf409e74b234ad1e78072",
+    "public/levantamiento/c1-13-barandal.js": "6fae4d2552dd84f537d8d8de03380a6331d31fd191120bfac6dfde4e990350bd",
+    "public/levantamiento/modelo-ligero.bin": "bdebad2e265cfc8cb0911cbb024d56387398390810bd82c0c7fb3ce2ebd4be2f",
+    "public/levantamiento/modelo-ligero.json": "f639772fbb98693f1150d658ac89f8d8f2c61d5927e800c366bb513fe3ef68d9",
+    "scripts/pruebas-c1-13-enjambre.mjs": "7424ca58a111c1f05eb86ff784cb1b1bd5f3e7d50356f904990062677eead712",
+    "scripts/pruebas-vista-ligera.mjs": "2cb98a2e416031ac08bb4bb3ffb557d79b69f6da1d477782f4372253cb7608dd",
+    "scripts/pruebas-lamina.mjs": "bc59d326de7c439aabb78943b792e3c35c1a8314d417d85b7dfb064cb12bb6b9"
+  },
+  "measured": {
+    "lightBytes": 948840,
+    "lightGzipBytes": 298785,
+    "triangles": 47442,
+    "scene": {
+      "worldSha256": "401a29332e4b6335df2246d744593c6d1adea67dba9efb8d39be8e394cebf91b",
+      "colliders": {
+        "count": 16945,
+        "sha256": "2414c9e6b32f8ddf609a7d1def932d088f76c3a6bce7facef02e79bc178dd43a"
+      },
+      "otherColliders": {
+        "count": 16831,
+        "sha256": "3bf307ff85d11dadb283941c5fe477fbb15a133e8847bbb1a5d587a54102f325"
+      },
+      "owners": {
+        "76": {
+          "id": "D1-05",
+          "meshes": 9,
+          "bounds": [
+            [
+              -237.45587158203125,
+              0.04999999701976776,
+              153.6443634033203
+            ],
+            [
+              -201.1259002685547,
+              6.199999809265137,
+              180.0780029296875
+            ]
+          ],
+          "sha256": "c35f334e5894333a9f32a89a0ed8034aad92e0e29224fafc839b4aa46a8f5902"
+        },
+        "77": {
+          "id": "D1-06",
+          "meshes": 9,
+          "bounds": [
+            [
+              -235.33981323242188,
+              0.05000000074505806,
+              179.65834045410156
+            ],
+            [
+              -196.70791625976562,
+              6.25,
+              191.30406188964844
+            ]
+          ],
+          "sha256": "2c227daf96994b3067b65321b7e89aea4de71a2664f560ee959d52f48b395245"
+        },
+        "78": {
+          "id": "D1-07",
+          "meshes": 10,
+          "bounds": [
+            [
+              -229.24839782714844,
+              0.05000000074505806,
+              194.63999938964844
+            ],
+            [
+              -198.94700622558594,
+              4.050000190734863,
+              233.7707977294922
+            ]
+          ],
+          "sha256": "30c8e3e823ebf52df7391a1eb0b59ae379a938ed3c600ac91a347ce0c99e8b39"
+        },
+        "79": {
+          "id": "D1-03",
+          "meshes": 13,
+          "bounds": [
+            [
+              -166.91616821289062,
+              0.05000000074505806,
+              132.63076782226562
+            ],
+            [
+              -141.6908416748047,
+              6.25,
+              155.8919677734375
+            ]
+          ],
+          "sha256": "1a41d2f62245957f7ea3184400f1b5893e82e3caec4707db8271616b0f42d5aa"
+        },
+        "80": {
+          "id": "D1-04",
+          "meshes": 19,
+          "bounds": [
+            [
+              -177.667236328125,
+              0.05000000074505806,
+              172.8686981201172
+            ],
+            [
+              -165.9884490966797,
+              6.25,
+              214.1553497314453
+            ]
+          ],
+          "sha256": "dd0a3f45832b966cedcb78eb8037bf84733faf67a7f9e4dc0a0b1e853d04f763"
+        },
+        "81": {
+          "id": "C1-12",
+          "meshes": 19,
+          "bounds": [
+            [
+              -133.0115203857422,
+              0.05000000074505806,
+              76.79690551757812
+            ],
+            [
+              -114.44850158691406,
+              3.6710000038146973,
+              97.20950317382812
+            ]
+          ],
+          "sha256": "ef383ab43373c9ab3ff10102739532307f62bd61a342603887a849c04491c80c"
+        },
+        "82": {
+          "id": "C1-13",
+          "meshes": 18,
+          "bounds": [
+            [
+              -115.25800323486328,
+              0.04999997466802597,
+              72.2105941772461
+            ],
+            [
+              -97.1130599975586,
+              7.369999885559082,
+              94.42645263671875
+            ]
+          ],
+          "sha256": "1f4aa1b872889c9e336e8e607a337da7747f868372d9f4bce5805d0d71169820"
+        },
+        "83": {
+          "id": "D1-08",
+          "meshes": 13,
+          "bounds": [
+            [
+              -134.42384338378906,
+              0.04999999329447746,
+              110.21308898925781
+            ],
+            [
+              -110.56500244140625,
+              6.206179618835449,
+              133.94960021972656
+            ]
+          ],
+          "sha256": "4be03db76d75bd9bf204daacf3690250b189463a72844cfe5c0751545ad7397b"
+        }
+      }
+    }
+  },
+  "tests": [
+    {
+      "command": "node scripts/pruebas-c1-13-enjambre.mjs --detalles",
+      "exitCode": 0,
+      "output": "82: 2107 caras proyectadas; suma de intersecciones proyectadas con calzada (no área única) 0.000000 m².\nbarandal { meshes: 1, total: 732, found: 528 }\nreja sur { meshes: 2, total: 298, found: 248 }\nreja este { meshes: 1, total: 20, found: 20 }\narco este { meshes: 3, total: 1025, found: 693 }\narco pintado sur { meshes: 1, total: 330, found: 108 }\npilastra este { meshes: 1, total: 12, found: 12 }\nColisionadores y siete vecinos preservados. Presencia de detalle no equivale a visibilidad; revisar calle, esquina y aérea."
+    },
+    {
+      "command": "node scripts/pruebas-vista-ligera.mjs",
+      "exitCode": 0,
+      "output": "Vista ligera: todos los IDs y estados conservados; geometría válida y presupuestos de carga cumplidos."
+    },
+    {
+      "command": "node scripts/pruebas-lamina.mjs",
+      "exitCode": 0,
+      "output": "Lámina: 139 plantas cerradas; 127 contornos individualizados; 12 sectores; geometría, patios, imágenes, registros y reversibilidad verificados."
+    }
+  ],
+  "scope": "Firmas de vecinos y colisionadores ajenos contra ef89166; presencia parcial de detalles por coincidencia de triángulos cuantizados. No acredita continuidad, visibilidad, navegación WebGL ni publicación; suma de intersecciones proyectadas no equivale a área única."
+}
