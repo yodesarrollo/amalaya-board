@@ -1,0 +1,16 @@
+{
+  "stage": "despues",
+  "commit": "80c1c6a04f437c04264e110265e0a710f05d2676",
+  "status": "?? public/levantamiento/evidence/C1-13/20261029-enjambre/final/",
+  "worldSha256": "401a29332e4b6335df2246d744593c6d1adea67dba9efb8d39be8e394cebf91b",
+  "block": "C06",
+  "triangles": 27246,
+  "files": {
+    "camaras.json": "69f3eb0282e34cb5e02c912c42fe3c42d49e8ff52cfeceffef25264efbd87530",
+    "82-calle-3d.jpg": "83b4ab779beb08c780e888abc4af95e8dd0ecafa916a5384bb720025cf093f60",
+    "82-esquina-3d.jpg": "cec4228017a7f4cf50f09febefebbe977e8ef17efe7938ede74af1e3cda75a9b",
+    "82-aerea-3d.jpg": "10b524e9cb9fab6b46285b06c2897b630c7bc0170002260c165ebba59841fc90",
+    "82-este-detalle-3d.jpg": "60ac03f23420198404bf30abf4c463715ae25eaeef531ebcbf781d98209e58fa"
+  },
+  "limite": "Render de triángulos con iluminación simplificada; no prueba WebGL ni cámara calibrada."
+}
