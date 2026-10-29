@@ -1,3 +1,4 @@
+import {createHash} from 'node:crypto';
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 const read=async p=>JSON.parse(await readFile(p,'utf8'));
@@ -31,3 +32,6 @@ console.log('Fuentes históricas locales y navegación declarada verificadas.');
 
 if(data.updatedAtISO!==undefined)assert(Number.isFinite(Date.parse(data.updatedAtISO))&&/T.*(Z|[+-]\d\d:\d\d)$/.test(data.updatedAtISO),'updatedAtISO requiere hora y zona');
 if(data.agents!==undefined)assert(Array.isArray(data.agents));
+
+for(const b of data.buildings){if(!b.auditReceipt?.path)continue;const path='public/'+b.auditReceipt.path;const receipt=await read(path);const dir=path.slice(0,path.lastIndexOf('/')+1);for(const [name,hash] of Object.entries(receipt.files||{})){assert(!name.includes('/')&&!name.includes('..'));assert.equal(createHash('sha256').update(await readFile(dir+name)).digest('hex'),hash,`Fuente/prototipo auditado alterado: ${name}`);}}
+console.log('Recibos y hashes de fuentes/comparativas auditadas verificados.');

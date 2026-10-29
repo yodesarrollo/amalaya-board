@@ -15,7 +15,7 @@ Los seis criterios son los del proceso individual: identidad y evidencia, forma,
 
 **APROBADO PARA INTEGRAR** requiere dictamen Astra independiente PASA en P1–P5 y P6a, el paquete previo a publicación. **PUBLICADO VERIFICADO** requiere además P6b PASA, recibo de despliegue y comprobación del tablero real; son hitos separados. No se migran estados históricos «Hecho» a seis pasos aprobados. Los antecedentes publicados de 79/D1-03, 80/D1-04 y 81/C1-12 se verificaron el 28 de octubre; no constituyen un nuevo dictamen Astra.
 
-La ola asigna 82/C1-13 en C06, cuadra visible 24; 84/D1-09 en C10, cuadra 25; y 89/D1-12 en C11, cuadra 26. Los paquetes y dictámenes están pendientes. 76/D1-05, 77/D1-06, 78/D1-07 y 83/D1-08 son antecedentes de seis pasos documentados, con exterior visual aproximado; no son producción nueva ni dictámenes Astra nuevos. EB-SW 42 y 140/141 son segmentos visuales, no tres propiedades. El manager incorporará resultados, reservas y dictámenes al JSON versionado junto con fecha, evidencia y bitácora. No se emplea localStorage ni controles de la página como aprobación.
+La ola asigna 82/C1-13 en C06, cuadra visible 24; 84/D1-09 en C10, cuadra 25; y 89/D1-12 en C11, cuadra 26. Los tres paquetes se entregaron: diagnósticos de los edificios 84 y 89 aceptados y prototipo del 82 con dictamen NO PASA para integrar; ninguno de los tres edificios está cerrado. 76/D1-05, 77/D1-06, 78/D1-07 y 83/D1-08 son antecedentes de seis pasos documentados, con exterior visual aproximado; no son producción nueva ni dictámenes Astra nuevos. EB-SW 42 y 140/141 son segmentos visuales, no tres propiedades. El manager incorporará resultados, reservas y dictámenes al JSON versionado junto con fecha, evidencia y bitácora. No se emplea localStorage ni controles de la página como aprobación.
 
 ## Reanudación y límites de concurrencia
 
@@ -31,7 +31,7 @@ La comprobación histórica detectó que 83/D1-08 ya tenía seis pasos publicado
 
 `updatedAtISO` es una fecha y hora ISO 8601 con zona, por ejemplo `2026-10-29T00:30:00Z`. La página la muestra en `America/Hermosillo` y calcula la edad desde ese instante; no usa la fecha del servidor como fecha local ni estima una ETA. Si falta el dato, informa que la hora está pendiente.
 
-`currentWave` contiene `status`, `label`, `summary` y `units` (cada unidad con `buildingId`, `number`, `blockId` y `blockDisplayNumber`). `agents` es un arreglo con `id`, `name`, `role`, `model`, `state`, `activeBuilding` y `lease` por agente. El manager mantiene ambos desde evidencia y reservas vigentes; la vista no debe asumir que un agente sigue activo.
+`currentWave` contiene `status`, `label`, `summary` y `numbers` (números provisionales de las unidades; sus IDs y cuadras se resuelven en `buildings`). `agents` es un arreglo con `id`, `name`, `role`, `model`, `state`, `activeBuilding` y `lease` por agente. El manager mantiene ambos desde evidencia y reservas vigentes; la vista no debe asumir que un agente sigue activo.
 
 `buildings[].steps` contiene seis pasos P1–P6. P6 contiene `subgates.prepublication` (id P6a) y `subgates.publication` (id P6b). P6a comprueba comparaciones, evidencias y pruebas previas a integración; P6b comprueba el recibo de despliegue y vista real. Cada subgate tiene objeto `audit` con resultado, motivo, auditor y fecha. Una ficha histórica P6 sin esta separación se muestra con dos subgates pendientes, sin atribuirle un juicio nuevo. La integración requiere PASA P1–P5 y P6a; la publicación verificada requiere además P6b PASA y recibo.
 
@@ -47,3 +47,7 @@ La comprobación histórica detectó que 83/D1-08 ya tenía seis pasos publicado
 8. Sol publica la revisión exacta aprobada, registra CI, commit, URL y hashes de activos. Astra comprueba P6b mediante UI pública y recibo. Sólo entonces cierra el lease y registra publicación verificada. Publicar un diagnóstico no cierra el modelo del edificio.
 
 Checkpoint como máximo cada diez minutos durante trabajo activo, con hora y efecto real, sin ETA inventada. Para retomar, reconciliar agentes terminados, reservas y main; revisar el último paquete y recibo antes de ejecutar. Lo que sigue en cola no trabaja al cerrar el chat. Salida de Terra: paquete reproducible o bloqueo concreto con intento de búsqueda, nunca promesa de ejecución futura. Salida de Sol: revisión exacta integrada o rechazo motivado. Salida de Astra: dictamen independiente por criterio.
+
+## Corte de resultado
+
+Dictamen del edificio 82: revisión 9e8616d, manifiesto SHA256 fdd327dcbc048515362f1117036a46ecf9fab4bae54d5b5b8ad8d5d251e18b88; NO PASA para integrar/cerrar. Comparativas y fuentes de diciembre de 2023 conservadas; módulo y parche no activados. Los agentes de la ola han entregado y quedan sin ejecución continua. Retomar sólo después de conciliar main y abrir nueva reserva con alcance concreto.

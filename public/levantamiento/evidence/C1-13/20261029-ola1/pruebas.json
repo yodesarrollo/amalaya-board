@@ -1,0 +1,29 @@
+{
+  "colliders": {
+    "before": 16919,
+    "after": 16919,
+    "equal": true
+  },
+  "neighbor81BoundsEqual": true,
+  "height82": 6.200000014156103,
+  "triangles": {
+    "before": 22082,
+    "after": 24558
+  },
+  "building82": {
+    "id": "C1-13",
+    "owner": "Planta física · C1-13",
+    "min": [
+      -115.25800323486328,
+      0.049999985843896866,
+      72.21900177001953
+    ],
+    "max": [
+      -96.993408203125,
+      6.25,
+      94.47208404541016
+    ],
+    "height": 6.200000014156103
+  },
+  "scope": "Mundo exportado completo; no verifica interactividad WebGL ni vista ligera."
+}
