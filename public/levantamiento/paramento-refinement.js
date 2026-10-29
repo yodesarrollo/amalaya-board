@@ -3,6 +3,7 @@ import {PARAMENTO_SIDEWALKS} from './paramento-sidewalks.js?v=8ee470fed0ad';
 import {footprintColliderCells} from './isc58-refinement.js?v=76eca0365d35';
 import {CUADRA_DETAILS} from './cuadra-detail-data.js?v=ed033f74a4e9';
 import {applyObregonApprox} from './obregon-aproximado-data.js?v=9a20c956e9de';
+import {addC113SouthRail} from './c1-13-barandal.js';
 
 // Rounded visual outline stays inside the existing convex surveyed/estimated envelope.
 // Source distances preserve facade identity across the rounded corner; no new parcel anchors.
@@ -24,8 +25,40 @@ export function roundedFront(points,facades,radii={}){
   const f=facades.find(f=>f.edge===v.edge)||{plain:true},len=Math.hypot(v.b[0]-v.a[0],v.b[1]-v.a[1]),scale=len/(v.hi-v.lo);
   const bays=(f.bays||[]).flatMap(b=>{const lo=Math.max(v.lo,b.x-b.w/2),hi=Math.min(v.hi,b.x+b.w/2);return hi-lo>.06?[{...b,x:((lo+hi)/2-v.lo)*scale,w:(hi-lo)*scale,frameWidth:.035,recess:b.recess??.025,fragment:true,frameLeft:lo<=b.x-b.w/2+.001,frameRight:hi>=b.x+b.w/2-.001}]:[]});
   const bands=(f.bands||[]).flatMap(b=>{if(b.x===undefined&&b.w===undefined)return[b];const lo=Math.max(v.lo,(b.x??L[v.edge]/2)-(b.w??L[v.edge])/2),hi=Math.min(v.hi,(b.x??L[v.edge]/2)+(b.w??L[v.edge])/2);return hi>lo?[{...b,x:((lo+hi)/2-v.lo)*scale,w:(hi-lo)*scale}]:[]});
-  return {...f,edge,bays,bands};
+  const fins=f.localizeFins?(f.fins||[]).filter(fin=>fin.x>=v.lo&&fin.x<=v.hi).map(fin=>({...fin,x:(fin.x-v.lo)*scale})):f.fins;
+  return {...f,edge,bays,bands,fins};
  })};
+}
+
+// C1-13: local December 2023 facade observations, on the existing visual
+// footprint. Positions and sizes are estimates; east coverage is a close crop,
+// not a survey or a count of the complete side. No hidden openings are inferred.
+export function registro82(p){
+ if(p.id!=='C1-13')return p;
+ const purple='#5b3c66',blue='#478eb7';
+ const east=[
+  {x:5.2,w:1.25,h:2.85,b:.05,archFrameColor:purple,fillColor:'#45545a',barColor:blue},
+  {x:8.7,w:1.35,h:2.9,b:.05,blind:true,archFrameColor:purple,fillColor:purple},
+  {x:12.6,w:1.15,h:2.8,b:.05,noBars:true,archFrameColor:purple,fillColor:'#318cc8'}
+ ];
+ // Values below start at the curved corner; reverse them for the fitted
+ // south edge, which runs from the courtyard toward the corner.
+ const southFromCorner=[
+  {x:4.0,w:1.45,h:2.45,b:.05,rect:true,door:true,frameColor:purple,fillColor:'#487991',barColor:blue,frontBars:true,paintedArch:purple},
+  {x:6.3,w:1.6,h:1.65,b:.85,rect:true,frameColor:purple,fillColor:'#596c70',barColor:blue,frontBars:true,paintedArch:purple},
+  {x:9.3,w:1.8,h:2.5,b:.05,rect:true,door:true,frameColor:purple,fillColor:'#596c70',barColor:blue,frontBars:true,paintedArch:purple},
+  {x:12.6,w:1.35,h:2.45,b:.05,rect:true,door:true,frameColor:purple,fillColor:'#487991',barColor:blue,frontBars:true,paintedArch:purple},
+  {x:2.25,w:.85,h:.7,b:3.3,rect:true,fillColor:'#4e6267',barColor:blue,frontBars:true},
+  {x:5.5,w:1.55,h:.85,b:4.35,rect:true,mullion:true,frameColor:'#826d57',fillColor:'#4e6267',barColor:'#bdd4cb',frontBars:true},
+  {x:14.1,w:1.1,h:.85,b:4.35,rect:true,fillColor:'#4e6267',barColor:'#bdd4cb',frontBars:true}
+ ];
+ const length=Math.hypot(p.points[3][0]-p.points[2][0],p.points[3][1]-p.points[2][1]);
+ const south=southFromCorner.map(b=>({...b,x:length-b.x}));
+ // The east frontage is split by an existing fitted-plan vertex. Retain only
+ // the three observed local features; their progression is approximate.
+ const eastNear=[{...east[2],x:6.05}];
+ const eastFar=[{...east[1],x:3.2},{...east[0],x:6.7}];
+ return {...p,facades:p.facades.map(f=>f.edge===3?{...f,c113Side:'este',bays:eastNear}:f.edge===4?{...f,c113Side:'este',bays:eastFar,bands:[...(f.bands||[]),{x:3.2,w:1.0,y:5.93,h:.12,d:.20,color:purple}],reverseBands:true,localizeFins:true,reverseFins:true,fins:[...(f.fins||[]),{x:1.1,b:.45,h:3.4,w:.28,d:.12,color:purple}]}:f.edge===2?{...f,c113Side:'sur',bays:south}:f)};
 }
 
 // Uses the scene's own constructors, including in the preserved compiled viewer.
@@ -56,6 +89,7 @@ export function applyParamento(world,colliders,R){
  function arch(x,w,h,b=0){const r=w/2,s=new Shape();s.moveTo(x-r,b);s.lineTo(x+r,b);s.lineTo(x+r,b+h-r);s.absarc(x,b+h-r,r,0,Math.PI,false);s.closePath();return s;}
  function wall(parent,a,b,height,color,bays=[],ornament=false,details={}){
   const dx=b[0]-a[0],dz=b[1]-a[1],length=Math.hypot(dx,dz),g=new Group();g.position.set(a[0],.05,a[1]);g.rotation.y=Math.atan2(-dz,dx);parent.add(g);
+  g.userData.c113Side=details.c113Side;
   const face=shape([[0,0],[length,0],[length,height],[0,height]]);
   const opening=bay=>bay.rect?shape([[bay.x-bay.w/2,bay.b],[bay.x+bay.w/2,bay.b],[bay.x+bay.w/2,bay.b+bay.h],[bay.x-bay.w/2,bay.b+bay.h]]):arch(bay.x,bay.w,bay.h,bay.b);
   for(const bay of bays)face.holes.push(opening(bay));
@@ -76,6 +110,12 @@ export function applyParamento(world,colliders,R){
     for(const x of [bay.x-bay.w/2,bay.x+bay.w/2])block(g,x,bay.b+bay.h/2,-depth/2-.1,.06,bay.h,depth,shade,'Paramento · cierre jamba profunda');
     for(const y of [bay.b,bay.b+bay.h])block(g,bay.x,y,-depth/2-.1,bay.w,.06,depth,shade,'Paramento · cierre dintel profundo');
    }
+   if(bay.paintedArch&&(!bay.fragment||(bay.frameLeft&&bay.frameRight))){
+    // Painted semicircle above the rectangular opening; does not cut the wall.
+    const r=bay.w/2,paint=new Shape();paint.moveTo(bay.x-r,bay.b+bay.h);paint.absarc(bay.x,bay.b+bay.h,r,Math.PI,0,true);paint.closePath();
+    const cap=mesh(extrude(paint,.025),bay.paintedArch,g,'Paramento · banda de fachada arco pintado');cap.position.z=.015;
+   }
+   if(bay.mullion)block(g,bay.x,bay.b+bay.h/2,.13,.075,bay.h,.045,bay.frameColor,'Paramento · marco rectangular parteluz');
    if(bay.infillHeight)block(g,bay.x,bay.b+bay.infillHeight/2,-.025,bay.w,bay.infillHeight,.10,color,'Paramento · cierre de vano tapiado');
    if(bay.screen){
     // Perforated terracotta screen observed on D1-06 east, January 2026.
@@ -95,8 +135,8 @@ export function applyParamento(world,colliders,R){
     const surround=mesh(extrude(trim,.09),bay.archFrameColor||'#e3dfcf',g,'Paramento · moldura de arco');surround.position.z=.005;}
    if(!bay.portico&&!bay.blind&&!bay.noBars){
     const barHeight=bay.fullBars?bay.h:bay.h-bay.w/2;
-    for(let x=bay.x-bay.w/2+.13;x<bay.x+bay.w/2;x+=.23)block(g,x,bay.b+barHeight/2,-.08,.025,barHeight,.025,bay.barColor||'#131c22','Paramento · reja');
-    if(bay.fullBars&&!bay.noCrossBars)for(let y=bay.b+.4;y<bay.b+bay.h;y+=.45)block(g,bay.x,y,-.065,bay.w,.022,.022,bay.barColor||'#131c22','Paramento · travesaño de reja');
+    for(let x=bay.x-bay.w/2+.13;x<bay.x+bay.w/2;x+=.23)block(g,x,bay.b+barHeight/2,bay.frontBars?.12:-.08,.025,barHeight,.025,bay.barColor||'#131c22','Paramento · reja');
+    if(bay.fullBars&&!bay.noCrossBars)for(let y=bay.b+.4;y<bay.b+bay.h;y+=.45)block(g,bay.x,y,bay.frontBars?.13:-.065,bay.w,.022,.022,bay.barColor||'#131c22','Paramento · travesaño de reja');
     if(bay.door)block(g,bay.x,bay.h/2,-.04,.04,bay.h,.04,'#8e8a74','Paramento · encuentro de hojas');
    }
   }
@@ -243,16 +283,20 @@ export function applyParamento(world,colliders,R){
  result.blockDetails=[];
  function compact(group,keepDetails=false,keepGrilles=false){
   group.updateMatrixWorld(true);const buckets=new Map();let count=0;
-  group.traverse(m=>{if(!m.isMesh||Array.isArray(m.material))return;count++;const structural=/^Paramento · (muro|cubierta|base|cierre)/.test(m.name)||(keepDetails&&/^Paramento · (marco rectangular|banda de fachada)/.test(m.name))||(keepGrilles&&/^Paramento · (reja|travesaño de reja|encuentro de hojas)/.test(m.name))||m.name==='Cuadra · cubierta del segundo nivel',key=m.material.uuid+'-'+structural;
-   if(!buckets.has(key))buckets.set(key,{material:m.material,structural,positions:[],normals:[]});
-   const b=buckets.get(key),g=m.geometry.index?m.geometry.toNonIndexed():m.geometry.clone();g.applyMatrix4(m.matrixWorld);
+  group.traverse(m=>{if(!m.isMesh||Array.isArray(m.material))return;count++;const structural=/^Paramento · (muro|cubierta|base|cierre)/.test(m.name)||(keepDetails&&/^Paramento · (marco rectangular|banda de fachada)/.test(m.name))||(keepGrilles&&/^Paramento · (reja|travesaño de reja|encuentro de hojas)/.test(m.name))||m.name==='Cuadra · cubierta del segundo nivel'||(group.userData.buildingId==='C1-13'&&/^(Paramento · moldura de arco|Paramento · parasol vertical)/.test(m.name)),key=m.material.uuid+'-'+structural;
+   // Keep C1-13's observed features identifiable after batching, also in lite.
+   const side=m.parent?.userData?.c113Side;
+   const semantic=group.userData.buildingId==='C1-13'?(m.name.includes('barandal')?'barandal':side&&/reja|travesaño de reja/.test(m.name)?'reja '+side:side&&/moldura de arco|cierre retranqueado/.test(m.name)?'arco '+side:side&&m.name.includes('parasol vertical')?'pilastra '+side:side&&m.name.includes('arco pintado')?'arco pintado '+side:''):'';
+   const bucketKey=key+'-'+semantic;
+   if(!buckets.has(bucketKey))buckets.set(bucketKey,{material:m.material,structural,semantic,positions:[],normals:[]});
+   const b=buckets.get(bucketKey),g=m.geometry.index?m.geometry.toNonIndexed():m.geometry.clone();g.applyMatrix4(m.matrixWorld);
    b.positions.push(...g.attributes.position.array);b.normals.push(...g.attributes.normal.array);g.dispose();
   });
   let base;world.traverse(m=>{if(!base&&m.geometry?.type==='BufferGeometry')base=m.geometry});
   if(!base)return {before:count,after:count};
   const Attribute=base.attributes.position.constructor;
   for(const child of [...group.children])group.remove(child);
-  for(const b of buckets.values()){const geo=new base.constructor();geo.setAttribute('position',new Attribute(b.positions,3));geo.setAttribute('normal',new Attribute(b.normals,3));const m=new Mesh(geo,b.material);m.name=b.structural?'Paramento · muro y cubierta agrupados':'Cuadra · detalle agrupado';m.userData.liteStructural=b.structural;m.castShadow=m.receiveShadow=true;group.add(m)}
+  for(const b of buckets.values()){const geo=new base.constructor();geo.setAttribute('position',new Attribute(b.positions,3));geo.setAttribute('normal',new Attribute(b.normals,3));const m=new Mesh(geo,b.material);m.name=b.semantic?'C1-13 · '+b.semantic:b.structural?'Paramento · muro y cubierta agrupados':'Cuadra · detalle agrupado';m.userData.liteStructural=b.structural;m.castShadow=m.receiveShadow=true;group.add(m)}
   return {before:count,after:buckets.size};
  }
  function wallColliders(a,b,height,owner,bays=[]){
@@ -264,15 +308,16 @@ export function applyParamento(world,colliders,R){
  }
  for(const packet of CUADRA_DETAILS){
   const entry={block:packet.block,buildings:[],equipment:[],batches:[]};
-  for(const p of packet.buildings){
-   const prefix=p.ownerPrefix||'Planta física · '+p.id;let owner;world.traverse(o=>{if(!owner&&o.name.startsWith(prefix))owner=o});if(!owner)throw Error('Cuadra: missing '+p.id);
-   const ownerName=owner.name,plan=p.points?{points:p.points,holes:[]}:owner.userData.fittedPlan||{points:ring(owner.geometry.parameters.shapes),holes:owner.geometry.parameters.shapes.holes.map(ring)};
+  for(const item of packet.buildings){
+   const prefix=item.ownerPrefix||'Planta física · '+item.id;let owner;world.traverse(o=>{if(!owner&&o.name.startsWith(prefix))owner=o});if(!owner)throw Error('Cuadra: missing '+item.id);
+   const ownerName=owner.name,plan=item.points?{points:item.points,holes:[]}:owner.userData.fittedPlan||{points:ring(owner.geometry.parameters.shapes),holes:owner.geometry.parameters.shapes.holes.map(ring)};
+   const p=item.id==='C1-13'?registro82({...item,points:plan.points}):item;
    if(plan.holes?.length)throw Error('Cuadra: courtyard detail requires explicit hole support '+p.id);
    const visual=p.roundCorners?roundedFront(plan.points,p.facades,p.roundCorners):{points:plan.points,facades:p.facades};
    const n=visual.points.length,reverse=visual.points.reduce((a,p,i)=>a+p[0]*visual.points[(i+1)%n][1]-visual.points[(i+1)%n][0]*p[1],0)>0,points=reverse?[visual.points[0],...visual.points.slice(1).reverse()]:visual.points;
-   const facades=visual.facades.map(f=>{const a=visual.points[f.edge],b=visual.points[(f.edge+1)%n],length=Math.hypot(b[0]-a[0],b[1]-a[1]);return {...f,edge:reverse?n-1-f.edge:f.edge,clipBands:true,fins:f.reverseFins&&reverse?(f.fins||[]).map(v=>({...v,x:length-v.x})):f.fins,bays:(f.bays||[]).map(v=>({...v,frameLeft:reverse?v.frameRight:v.frameLeft,frameRight:reverse?v.frameLeft:v.frameRight,fullBars:!!v.rect,barColor:p.id==='D1-03'||p.id==='D1-04'?v.barColor:p.id==='B2-01'||p.id==='B2-02'?'#bcaa62':undefined,x:reverse?length-v.x:v.x}))}});
+   const facades=visual.facades.map(f=>{const a=visual.points[f.edge],b=visual.points[(f.edge+1)%n],length=Math.hypot(b[0]-a[0],b[1]-a[1]);return {...f,edge:reverse?n-1-f.edge:f.edge,clipBands:true,bands:f.reverseBands&&reverse?(f.bands||[]).map(v=>v.x===undefined?v:{...v,x:length-v.x}):f.bands,fins:f.reverseFins&&reverse?(f.fins||[]).map(v=>({...v,x:length-v.x})):f.fins,bays:(f.bays||[]).map(v=>({...v,frameLeft:reverse?v.frameRight:v.frameLeft,frameRight:reverse?v.frameLeft:v.frameRight,fullBars:!!v.rect,barColor:p.id==='D1-03'||p.id==='D1-04'||p.id==='C1-13'?v.barColor:p.id==='B2-01'||p.id==='B2-02'?'#bcaa62':undefined,x:reverse?length-v.x:v.x}))}});
    removeOwner(prefix,p.id);addFront({...p,part:'cuadra-'+p.id,owner:ownerName,points,facades,evidence:p.sources});
-   const added=world.getObjectByName(ownerName);added.userData.fittedPlan=plan;if(p.roundCorners)added.userData.visualOutline=visual.points;added.userData.blockReview=packet.block;
+   const added=world.getObjectByName(ownerName);if(p.id==='C1-13')added.userData.southRail=addC113SouthRail(added,plan.points,p.height,block);added.userData.fittedPlan=plan;if(p.roundCorners)added.userData.visualOutline=visual.points;added.userData.blockReview=packet.block;
    entry.batches.push({id:p.id,...compact(added,!!p.keepDetails,!!p.keepGrilles)});entry.buildings.push({id:p.id,height:p.height,uncertainty:p.uncertainty,sources:p.sources,note:p.note});
   }
   for(const lot of packet.openLots||[]){
