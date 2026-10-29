@@ -1,0 +1,39 @@
+{
+  "candidate": "0e73851",
+  "url": "http://127.0.0.1:8766/levantamiento/visor/",
+  "browser": "Chromium 151 headless, ANGLE SwiftShader",
+  "loader": {
+    "event": "amalaya:world-ready",
+    "display": "none",
+    "visibility": "visible"
+  },
+  "input": "Seleccionar P111; VER PUNTO EN MODELO; cerrar panel, desenfocar selector y clic en canvas; sostener KeyW cinco segundos.",
+  "anchor": {
+    "lat": 29.0751079,
+    "lng": -110.9556997
+  },
+  "spawn": {
+    "lat": 29.0751301,
+    "lng": -110.9556952
+  },
+  "after": {
+    "lat": 29.0751431,
+    "lng": -110.9556952
+  },
+  "observation": "Ajuste aproximado 2.5 m y desplazamiento aproximado 1.44 m hacia el norte. Escena y fachada visibles; no prueba todo el recorrido, este ni publicación.",
+  "warning": "Se registró rechazo de pointer lock: A user gesture is required to request Pointer Lock; el desplazamiento de teclado sí ocurrió.",
+  "hashes": {
+    "public/levantamiento/sector-visor.js": "b8998854242107908a4611ef7b3fffc742cf2bcc4e1560db5a9866d2c1e5648e",
+    "public/levantamiento/plantas-refinement.js": "8a5221b14a88f7349610097e3d6007056a1acf805c052df5db6a5d5870fc3949",
+    "public/levantamiento/visor/assets/index-RoPA5goG.js": "90afcc43814c774572d591ebe13fe84532b1ec9cd223631157127779ce550941",
+    "public/levantamiento/visor/index.html": "72cd3097d166cd2e646ba243a93612eccfde7101bb5b21f0850a247183b8364b",
+    "public/levantamiento/paramento-refinement.js": "fa81a93e97c6b182322eac2390f564fbc32c7998249137ff60cd91cff2fd59f1",
+    "public/levantamiento/c1-13-barandal.js": "6fae4d2552dd84f537d8d8de03380a6331d31fd191120bfac6dfde4e990350bd",
+    "public/levantamiento/modelo-ligero.bin": "bdebad2e265cfc8cb0911cbb024d56387398390810bd82c0c7fb3ce2ebd4be2f",
+    "public/levantamiento/modelo-ligero.json": "f639772fbb98693f1150d658ac89f8d8f2c61d5927e800c366bb513fe3ef68d9"
+  },
+  "captures": {
+    "p111-antes.png": "58176048ae427188554b2bd59201e8fda2d76c6b09e5a872850cc28484f574cc",
+    "p111-despues.png": "87338a3fe207af78fbf081336662e9806b9ab0012c12ac1bfabd8c1a51ac6beb"
+  }
+}

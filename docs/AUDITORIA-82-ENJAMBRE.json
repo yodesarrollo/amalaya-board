@@ -1,0 +1,88 @@
+{
+  "id": "AUDIT-ASTRA-82-20261029-REV2",
+  "auditor": "/root/astra",
+  "date": "2026-10-29T17:55:03.276900+00:00",
+  "candidate": "06f05c697813b0762a3146656b2da14ec3a89344",
+  "manifestSha256": "ca28cb1282a607708fc32b12c0ad63c22964a4b338d8ee7075970c365384bba0",
+  "decision": "MEJORA VISUAL PREPARADA; NO APROBADO PARA INTEGRAR NI CERRAR HASTA P5",
+  "scope": "Exterior observable aproximado de 82/C1-13; no levantamiento medido ni totalidad del lateral oculto.",
+  "criteria": {
+    "P1": {
+      "result": "PASA",
+      "reason": "Fuentes sur82, sur81 y aéreaC06 inspeccionadas; continuidad visual patio, cuerpo oriental y esquina coherente. Identidad de seguimiento, no predial."
+    },
+    "P2": {
+      "result": "PASA",
+      "reason": "FittedPlan vigente de cinco puntos preservado, curva sureste interior y patio81 abierto. Prueba final:2107caras inspeccionadas, suma de intersecciones proyectadas con calzada0; no área única ni medición de campo."
+    },
+    "P3": {
+      "result": "PASA",
+      "reason": "Sur conserva cuatro vanos rectangulares y semicírculos pintados, herrería azul y altos diferenciados con parteluz; este corregido reja visible, nicho opaco, pilastra y puerta azul en orden fuente. Progresivas estimadas; sin conteo total del lateral."
+    },
+    "P4": {
+      "result": "PASA",
+      "reason": "Barandal claro sustentado y retorno curvo; pilastra este unida al friso, morado/turquesa/metal diferenciados. Repi­sas superiores parciales y cubierta posterior permanecen limitación, no balcones completos certificados."
+    },
+    "P5": {
+      "result": "BLOQUEADO",
+      "reason": "Encaje, colisionadores ajenos, siete vecinos y tres puntos patio81 verificados; ligero Canvas2D inspeccionado sur/esquina/este con reja,nicho,pilastra,barandal legibles. Falta recorrido real WebGL: contexto ANGLE SwiftShader sí creado, pero applyPlanRound lanza Round 01: missing template or duplicate OSM owner. Loader conserva world-error aun tras world-ready. Diagnóstico y reparación en curso; no es indisponibilidad GPU."
+    },
+    "P6a": {
+      "result": "PASA",
+      "reason": "Paquete reproducible de mejora preparada:20hashes cotejados con archivos, cámaras antes/después idénticas (cuatro vistas más este elevada), fuentes originales intactas; pruebas completas/build/verificador y pruebas dirigidas inspeccionadas. P5 bloqueado impide aprobación integral."
+    },
+    "P6b": {
+      "result": "PENDIENTE",
+      "reason": "No publicación de esta geometría ni recibo/vista pública final verificados."
+    }
+  },
+  "evidence": {
+    "root": "public/levantamiento/evidence/C1-13/20261029-enjambre/",
+    "final": "final-06f05c6/",
+    "sources": [
+      "public/levantamiento/evidence/C1-13/20261029-ola1/82-sur-fuente-202312.jpg",
+      "public/levantamiento/evidence/C1-13/20261029-ola1/82-este-fuente-202312.jpg",
+      "public/levantamiento/evidence/C1-12/81-sur-202312.jpg",
+      "public/levantamiento/ajuste-visual/C06.jpg"
+    ],
+    "checkedHashes": [
+      "public/levantamiento/world.js",
+      "public/levantamiento/paramento-refinement.js",
+      "public/levantamiento/paramento-data.js",
+      "public/levantamiento/cuadra-detail-data.js",
+      "public/levantamiento/evidence/C1-13/20261029-ola1/82-sur-fuente-202312.jpg",
+      "public/levantamiento/evidence/C1-13/20261029-ola1/82-este-fuente-202312.jpg",
+      "public/levantamiento/c1-13-barandal.js",
+      "public/levantamiento/modelo-ligero.bin",
+      "public/levantamiento/modelo-ligero.json",
+      "final-06f05c6/despues/82-aerea-3d.jpg",
+      "final-06f05c6/despues/82-calle-3d.jpg",
+      "final-06f05c6/despues/82-esquina-3d.jpg",
+      "final-06f05c6/despues/82-este-detalle-3d.jpg",
+      "final-06f05c6/despues/camaras.json",
+      "final-06f05c6/despues/recibo.json",
+      "final-06f05c6/este-despues/82-este-elevada-3d.jpg",
+      "final-06f05c6/este-despues/camaras.json",
+      "final-06f05c6/este-despues/recibo.json",
+      "final-06f05c6/ligera-82.png",
+      "final-06f05c6/ligera-82-este.png"
+    ],
+    "testLogs": {
+      "/workspace/scratch/amalaya82-geometria-final.log": "df9ec18c6eefdbf10bafd305a6fdfab1258c98156ccb3c1f9f92f66aae3cfbc0",
+      "/workspace/scratch/amalaya82-publicacion-r3.log": "663840580261eb9cb5279cb69f79f2de5eeca722d4ff09feb2b62f255e2513ed",
+      "/workspace/scratch/amalaya82-build-final.log": "6af074f9dfd183d16298861cd620fa03952bb1110e915360668023f461539a92",
+      "/workspace/scratch/amalaya82-tests-r3.log": "8433d28a6858f9914a79e144f6f73c504609fb16d6ffc1b7442312cc1756c504"
+    },
+    "runtimeFailure": {
+      "path": "/tmp/amalaya-webgl-diag.json",
+      "sha256": "0a8bc51f1205e62c87acedd4813da5d203e5dce14ff6c7afdc00addd562028a9"
+    }
+  },
+  "limits": [
+    "Fuentes calle diciembre2023; aérea fecha desconocida.",
+    "Cámaras aproximadas; raster software y Canvas2D no son navegación WebGL.",
+    "Dimensiones, radio y progresivas estimadas, no certificadas; cubierta posterior y lateral fuera de recorte desconocidos.",
+    "79/80/81 preservados; no rehechos ni reaprobados como nueva producción."
+  ],
+  "nextAction": "Resolver carga WebGL y comprobar recorrido; repetir P5 afectado. Luego aprobación exacta, publicación y P6b."
+}

@@ -1,0 +1,93 @@
+{
+  "id": "AUDIT-ASTRA-82-20261029-REV3-RUNTIME",
+  "auditor": "/root/astra",
+  "date": "2026-10-29T18:15:59.557984+00:00",
+  "supersedesScope": "Sustituye sólo bloqueo P5 del dictamenREV2; conserva históricos y límites visuales.",
+  "geometryCandidate": "06f05c697813b0762a3146656b2da14ec3a89344",
+  "runtimeCandidate": "0e7385189cf61fbb03bb1d9ba2ec4bdd470e0839",
+  "reviewedTree": "6663c31e6c28f84409d8f6221ee9825815a3d12c",
+  "decision": "APROBADO PARA INTEGRAR COMO EXTERIOR VISUAL APROXIMADO; PUBLICACIÓN PENDIENTE",
+  "criteria": {
+    "P1": {
+      "result": "PASA",
+      "reason": "Conserva auditoría visual REV2; hashes geométricos y fuentes originales sin cambios."
+    },
+    "P2": {
+      "result": "PASA",
+      "reason": "Conserva auditoría REV2: fittedPlan de cinco puntos, curva interior, patio abierto y cero intersecciones proyectadas con calzada."
+    },
+    "P3": {
+      "result": "PASA",
+      "reason": "Conserva auditoría REV2: sur rectángulos/semicírculos pintados/altos distintos; este reja,nicho,pilastra,puertaazul en orden de foto. Ligero inspeccionado; frontal WebGL visible."
+    },
+    "P4": {
+      "result": "PASA",
+      "reason": "Conserva auditoría REV2: barandal curvo sustentado, pilastra-friso y materiales; frontal WebGL conserva rasgos."
+    },
+    "P5": {
+      "result": "PASA",
+      "reason": "Encaje/colisionadores ajenos/vecinos/patio y ligero verificados. Astra inspeccionó dos capturas WebGL reales canónicas: carga completa y fachada 82 visible; P111 ajusta entrada segura sin cambiar ancla fotográfica y KeyW desplaza cámara aproximadamente 1.44 m al norte, sin penetrar fachada en tramo probado. Wrapper sector y entrada auditados con pruebas independientes; vuelo preservado."
+    },
+    "P6a": {
+      "result": "PASA",
+      "reason": "Paquete geométrico verificable: 20 hashes; adenda runtime: 10 hashes comprobados contra árbol actual; capturas antes/después, fuentes, recibos de pruebas y suite/build/verificador conservados. Cambios runtime reversibles, sin cambiar world.js histórico."
+    },
+    "P6b": {
+      "result": "PENDIENTE",
+      "reason": "Se requiere publicación de revisión exacta, recibo de despliegue y comprobación pública posterior."
+    }
+  },
+  "runtimeEvidence": {
+    "receipt": "public/levantamiento/evidence/C1-13/20261029-enjambre/runtime-0e73851/recibo.json",
+    "receiptSha256": "3bd0e5e5199a437f12794ebc3f3b2b61a980d4536e58c1a0a6d6fb158f918105",
+    "hashes": {
+      "public/levantamiento/sector-visor.js": "b8998854242107908a4611ef7b3fffc742cf2bcc4e1560db5a9866d2c1e5648e",
+      "public/levantamiento/plantas-refinement.js": "8a5221b14a88f7349610097e3d6007056a1acf805c052df5db6a5d5870fc3949",
+      "public/levantamiento/visor/assets/index-RoPA5goG.js": "90afcc43814c774572d591ebe13fe84532b1ec9cd223631157127779ce550941",
+      "public/levantamiento/visor/index.html": "72cd3097d166cd2e646ba243a93612eccfde7101bb5b21f0850a247183b8364b",
+      "public/levantamiento/paramento-refinement.js": "fa81a93e97c6b182322eac2390f564fbc32c7998249137ff60cd91cff2fd59f1",
+      "public/levantamiento/c1-13-barandal.js": "6fae4d2552dd84f537d8d8de03380a6331d31fd191120bfac6dfde4e990350bd",
+      "public/levantamiento/modelo-ligero.bin": "bdebad2e265cfc8cb0911cbb024d56387398390810bd82c0c7fb3ce2ebd4be2f",
+      "public/levantamiento/modelo-ligero.json": "f639772fbb98693f1150d658ac89f8d8f2c61d5927e800c366bb513fe3ef68d9"
+    },
+    "captureHashes": {
+      "p111-antes.png": "58176048ae427188554b2bd59201e8fda2d76c6b09e5a872850cc28484f574cc",
+      "p111-despues.png": "87338a3fe207af78fbf081336662e9806b9ab0012c12ac1bfabd8c1a51ac6beb"
+    },
+    "input": "Seleccionar P111; VER PUNTO EN MODELO; cerrar panel, desenfocar selector y clic en canvas; sostener KeyW cinco segundos.",
+    "anchor": {
+      "lat": 29.0751079,
+      "lng": -110.9556997
+    },
+    "spawn": {
+      "lat": 29.0751301,
+      "lng": -110.9556952
+    },
+    "after": {
+      "lat": 29.0751431,
+      "lng": -110.9556952
+    }
+  },
+  "tests": {
+    "/workspace/scratch/amalaya82-entry-tests.log": {
+      "sha256": "03113bf31619d290cd69483b3885c70ad584db4a078d595903c7b12a00d7ac40"
+    },
+    "/workspace/scratch/amalaya82-entry-build.log": {
+      "sha256": "db91385cefd440774d3ada10bda96dae80d3c655df8e158efd36f11389897e15"
+    },
+    "/workspace/scratch/amalaya82-entry-verificar.log": {
+      "sha256": "663840580261eb9cb5279cb69f79f2de5eeca722d4ff09feb2b62f255e2513ed"
+    },
+    "/workspace/scratch/amalaya82-geometria-final.log": {
+      "sha256": "df9ec18c6eefdbf10bafd305a6fdfab1258c98156ccb3c1f9f92f66aae3cfbc0"
+    }
+  },
+  "limits": [
+    "Dimensiones,radio,progresivas estimadas; no levantamiento medido.",
+    "Sur/este fotos de diciembre de 2023; aérea fecha desconocida; cubierta posterior y totalidad lateral no acreditadas.",
+    "Navegación WebGL local probada en Chromium 151 / ANGLE SwiftShader, frente 82 y tramo corto con teclado.",
+    "Pointerlock fue rechazado por automatización: no acredita giro de ratón, todo el recorrido ni lateral WebGL; lateral fue revisado en raster y ligero Canvas.",
+    "No recibo de publicación ni verificación pública todavía."
+  ],
+  "nextAction": "Sol integra revisión exacta aprobada, publica si autorización vigente, conserva hashes y solicita P6b tras despliegue."
+}

@@ -209,3 +209,15 @@ CUADRA_DETAILS.push({block:'C23',evidence:'recorrido-R002-P01-P02',buildings:[],
   note:'81/C1-12: se retira la caja sólida de6.2m; cuerpo bajo norte, cubierta metálica sobre apoyos y patio de estacionamiento con acceso sur observado. Fracciones internas y alturas3.3/3.6m estimadas, contorno registral conservado. Cerco romboidal con marcos, cerchas de dos cordones y diagonales, correas y nervaduras de lámina; sin autos ni concertina; no es validación de accesibilidad o uso público. Cubierta/fachadas con fuentes2023/2025, fecha aérea desconocida.'
  }]});
 }
+
+// 82 / C1-13: proportions are visual estimates; the original footprint remains the reference.
+{
+ const turquoise='#8ddbd4',purple='#60405f';
+ const bands=[{y:.35,h:.7,d:.04,color:purple},{y:5.25,h:.16,d:.04,color:purple},{y:5.85,h:.16,d:.04,color:purple},{y:6.08,h:.16,d:.04,color:purple}];
+ CUADRA_DETAILS.push({block:'C06',evidence:'C1-13/20261029-ola1',buildings:[{
+  id:'C1-13',height:6.2,color:turquoise,roofColor:'#bcbcb2',uncertainty:3,keepDetails:true,keepGrilles:true,roundCorners:{3:1.4},
+  sources:['ajuste-visual/C06.jpg','evidence/C1-13/20261029-ola1/82-sur-fuente-202312.jpg','evidence/C1-13/20261029-ola1/82-este-fuente-202312.jpg'],
+  facades:[{edge:0,plain:true,bays:[]},{edge:1,plain:true,bays:[]},{edge:2,plain:true,bays:[],bands},{edge:3,plain:true,bays:[],bands},{edge:4,plain:true,bays:[],bands}],
+  note:'82/C1-13: masa turquesa con zócalo y cornisas morados, esquina suroriental redondeada hacia dentro de la huella histórica. Contorno de cinco puntos ajustado a calle, altura nominal 6.2 m e incertidumbre ±3 m conservadas; radios y bandas estimados visualmente, no medidos. Lateral este visto parcialmente: ubicación de detalles y cubierta posterior sin verificar; sin inferir predio ni interior.'
+ }]});
+}

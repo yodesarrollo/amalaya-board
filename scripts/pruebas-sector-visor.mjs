@@ -1,0 +1,30 @@
+import assert from 'node:assert/strict';
+import {readFile} from 'node:fs/promises';
+import {removePlanRoundHook} from './preparar-plantas.mjs';
+import {removeEbSwHook} from './preparar-ebsw.mjs';
+import {removeIsc58Hook} from './preparar-isc58.mjs';
+import {removeStreetRoundHook} from './preparar-calzadas.mjs';
+import {applyPlanRound} from '../public/levantamiento/plantas-refinement.js';
+import {ensureViewerSector} from '../public/levantamiento/sector-visor.js';
+import {applyEbSw} from '../public/levantamiento/ebsw-refinement.js';
+const source=removeStreetRoundHook(await readFile('public/levantamiento/world.js','utf8'));
+const raw=removeIsc58Hook(removeEbSwHook(removePlanRoundHook(source))).replace(/export \{[^\n]+\};\s*$/,'');
+const R=new Function(raw+'\nreturn {Group:Ot,Mesh:Y,Shape:$r,Path:Qr,ShapeGeometry:Wi,BoxGeometry:X,BufferGeometry:An,Float32BufferAttribute:J,Box3:Zt,Vector3:U,createProceduralMaterial:$,buildEast:Tp,buildSector:sf};')();
+const osm=JSON.parse(await readFile('public/levantamiento/data/osm-context.json')),plaza=JSON.parse(await readFile('public/levantamiento/data/osm-plaza-hidalgo.json'));
+function scene(hasSector){const e=R.buildEast(osm,plaza),world=new R.Group(),colliders=[...e.colliders];world.add(e.group);if(hasSector)world.add(R.buildSector(osm).group);applyEbSw(world,colliders,R,9);world.updateMatrixWorld(true);if(!hasSector)ensureViewerSector(world,{...R,osmContext:osm});const result=applyPlanRound(world,colliders,R);assert.equal(applyPlanRound(world,colliders,R),result);world.updateMatrixWorld(true);return{world,colliders,result};}
+const a=scene(true),b=scene(false),ids=[499759728,499760720,1533334038,499759374];
+function capture(s){const sector=s.world.children.find(o=>o.name.startsWith('Sector Amalaya'));assert(sector);return ids.map(id=>{const matches=sector.children.filter(o=>o.userData.osmWayId===id);assert.equal(matches.length,1,`OSM ${id} debe tener propietario único`);const m=matches[0],shape=m.geometry.parameters.shapes,box=new R.Box3().setFromObject(m);return{id,name:m.name,height:m.userData.heightMeters,materials:(Array.isArray(m.material)?m.material:[m.material]).map(x=>({type:x.type,color:x.color.getHexString(),roughness:x.roughness,metalness:x.metalness,side:x.side,transparent:x.transparent,opacity:x.opacity,depthWrite:x.depthWrite,texture:!!x.map})),points:shape.getPoints().map(p=>[p.x,p.y]),vertices:Array.from(m.geometry.attributes.position.array),min:box.min.toArray(),max:box.max.toArray()};});}
+const reference=capture(a),actual=capture(b);assert.deepEqual(actual,reference,'Geometría reconstruida difiere del sector real');
+const cs=s=>s.colliders.map(c=>({min:c.min.toArray(),max:c.max.toArray()}));assert.deepEqual(cs(b),cs(a),'Colisionadores deben coincidir');assert.deepEqual(b.result,a.result,'Registro de la ronda debe coincidir');
+console.log(JSON.stringify({ids,heights:actual.map(o=>o.height),bounds:actual.map(o=>({id:o.id,min:o.min,max:o.max})),colliders:a.colliders.length,idempotent:true}));
+const {removeViewerSectorHook,refineViewerSector}=await import('./preparar-navegacion.mjs');
+const {createHash}=await import('node:crypto');
+const hash=v=>createHash('sha256').update(v).digest('hex');
+const viewer=await readFile('public/levantamiento/visor/assets/index-RoPA5goG.js','utf8');
+const historical=removeViewerSectorHook(viewer);
+assert.equal(hash(historical),'665a7a1395ee26e3d03c77d36430b577fcca2c79f1bb83bf536159add149fcc4','Se conserva el visor previo exactamente');
+assert.equal(refineViewerSector(historical,hash(await readFile('public/levantamiento/sector-visor.js'))),viewer,'El hook debe ser reproducible');
+const broken=R.buildEast(osm,plaza),badWorld=new R.Group();badWorld.add(broken.group);
+assert.throws(()=>ensureViewerSector(badWorld,{...R,osmContext:{elements:[]}}),/sector OSM source missing/);
+assert(!badWorld.children.some(o=>o.name.startsWith('Sector Amalaya')),'No se añade sector parcial');
+console.log('Hook reversible; fuente OSM ausente rechazada sin sector parcial.');
