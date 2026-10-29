@@ -1,4 +1,4 @@
-import {removeNavigationHook,refineNavigation} from './preparar-navegacion.mjs';
+import {removeNavigationHook,refineNavigation,refineViewerSector} from './preparar-navegacion.mjs';
 import {createHash} from 'node:crypto';
 export const SHEET_BASE={world:'24df38e516de43dad7cc6bd1b6d8faf56a50caebc3650cb5efd2fdae1b22c614',visor:'a293ff5b0562649401b8449301d289042fcd8ed828e49d7dc8a5f86f277f1099'};
 export const sheetHash=v=>createHash('sha256').update(v).digest('hex');
@@ -15,8 +15,9 @@ export function removeSheetHook(source,kind='world'){
 }
 export function refineSheet(source,kind,moduleHash){
  const navigationHash=kind==='visor'?source.match(/walk-navigation\.js\?v=([a-f0-9]{12})/)?.[1]:null;
+ const sectorHash=kind==='visor'?source.match(/sector-visor\.js\?v=([a-f0-9]{12})/)?.[1]:null;
  const base=removeSheetHook(source,kind),anchor=anchors[kind];
  if(!/^[a-f0-9]{64}$/.test(moduleHash)||sheetHash(base)!==SHEET_BASE[kind]||base.split(anchor).length!==2)throw Error('Sheet plan: invalid baseline');
  let result=base.replace(anchor,calls[kind]+anchor)+`\nimport { applySheetPlan as applySheetPlanRefinement } from "${kind==='world'?'./':'../../'}sheet-plan-refinement.js?v=${moduleHash.slice(0,12)}";\n`;
- if(kind==='world')result=result.replace('Ip(c, n), Up(c), c;','Ip(c, n), r.overview || Up(c), c;');return navigationHash?refineNavigation(result,navigationHash):result;
+ if(kind==='world')result=result.replace('Ip(c, n), Up(c), c;','Ip(c, n), r.overview || Up(c), c;');result=navigationHash?refineNavigation(result,navigationHash):result;return sectorHash?refineViewerSector(result,sectorHash):result;
 }

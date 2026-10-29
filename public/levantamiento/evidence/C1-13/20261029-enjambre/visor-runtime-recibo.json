@@ -1,0 +1,20 @@
+{
+  "id": "C1-13-VISOR-RUNTIME-20261029",
+  "date": "2026-10-29T18:02:07.909519+00:00",
+  "baseCandidate": "06f05c697813b0762a3146656b2da14ec3a89344",
+  "scope": "Reparación aislada del visor: restaurar sector a partir de contexto OSM antes de Round 01; world.js y las evidencias históricas no cambian.",
+  "sourceHashes": {
+    "public/levantamiento/world.js": "401a29332e4b6335df2246d744593c6d1adea67dba9efb8d39be8e394cebf91b",
+    "public/levantamiento/plantas-refinement.js": "8a5221b14a88f7349610097e3d6007056a1acf805c052df5db6a5d5870fc3949",
+    "public/levantamiento/sector-visor.js": "aca50ca41ce867bac667310a9c720fcf2878e33d22baf042fba48e20321dfc94",
+    "public/levantamiento/visor/assets/index-RoPA5goG.js": "54bcc7f9d4e4fe1ea67f95a6f1f91b4d826799c4f092b01166c914e51f737ad7"
+  },
+  "historicalViewerSha256": "665a7a1395ee26e3d03c77d36430b577fcca2c79f1bb83bf536159add149fcc4",
+  "checks": [
+    "Sector desde OSM equivalente al constructor sf: propietarios, formas, vértices, alturas, bounds, colisionadores y propiedades de material",
+    "Visor sin hook recupera exactamente hash histórico",
+    "Pruebas plantas, revisión de plantas, lámina y navegación pasan",
+    "WebGL y recorrido de 82 pendientes de recibo de QA final"
+  ],
+  "limitations": "Recibo técnico local; no acredita publicación ni cierra P5. Se verificaron tipo, color, rugosidad, metal, lado, transparencia, opacidad, profundidad y presencia de textura; no identidad binaria de textura."
+}
