@@ -118,6 +118,9 @@ olaEvidenceFiles.get(swarm82Root+'/final-06f05c6').add('ligera-82-este.png');
 olaEvidenceFiles.get(swarm82Root+'/final-06f05c6').add('webgl-local-diagnostico.json');
 olaEvidenceFiles.get(swarm82Root+'/final-06f05c6').add('recibo-pruebas-terra4.json');
 olaEvidenceFiles.get(swarm82Root).add('visor-runtime-recibo.json');
+olaEvidenceFiles.set(swarm82Root+'/runtime-72541c3',new Set(['p111-frente.png','p122-superficie.png','recibo.json']));
+olaEvidenceFiles.get(swarm82Root+'/runtime-72541c3').add('entrada-teclado.json');
+olaEvidenceFiles.get(swarm82Root+'/runtime-72541c3').add('cuadros-teclado.json');
 async function check(dir){
   for(const item of await readdir(dir,{withFileTypes:true})){
     const path=`${dir}/${item.name}`
