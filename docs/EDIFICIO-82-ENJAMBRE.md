@@ -24,3 +24,11 @@ En Chromium 151 con HTTP local, se seleccionó C1-13 en la vista ligera regenera
 Una segunda rotación de 45° desde la misma interacción produce `final-06f05c6/ligera-82-este.png`: se distinguen los tres arcos orientales, la pilastra y el friso en la vista ligera. El recibo identifica también el hash de `c1-13-barandal.js`. La reducción y escala impiden certificar cada pieza o profundidad del arco.
 
 Diagnóstico único adicional del recorrido servido desde el árbol de integración: Chromium creó WebGL2 en ANGLE/SwiftShader. La consola informó `Round 01: missing template or duplicate OSM owner` en `applyPlanRound`, emitió `amalaya:world-error` y después `amalaya:world-ready`; el cargador permaneció en estado de error. También informó `Registro del board inválido: P023`. No se observaron respuestas HTTP ≥400 en los recursos monitorizados. El recibo crudo es `final-06f05c6/webgl-local-diagnostico.json`. Esto no demuestra la causa profunda del fallo ni permite validar el recorrido de 82.
+
+## Revisión integrada aprobada
+
+Astra aprobó P1–P5 y P6a en `AUDIT-ASTRA-82-20261029-REV3-RUNTIME`. Se conserva la geometría de `06f05c6`; el runtime `0e73851` restaura el sector OSM usando la fuente canónica y permite entrar a los puntos del board sin quedar dentro de una colisión. La referencia fotográfica permanece intacta; caminar usa una entrada libre y avisa el ajuste. P023 conserva el norte mediante normalización 360°→0°.
+
+La prueba local Chromium/SwiftShader abrió P111 frente al 82 y avanzó aproximadamente 1.44 m con teclado, tras un ajuste de entrada de unos 2.5 m. No acredita giro de ratón, iPhone físico ni todo el recorrido. Los recibos anteriores de fallo se conservan como historia; la adenda y capturas vigentes están en `public/levantamiento/evidence/C1-13/20261029-enjambre/auditoria-runtime.json` y `runtime-0e73851/`.
+
+Suite completa, compilación, verificador de publicación, pruebas de plan/puente y regresiones de sector/entrada pasaron localmente. El modelo ligero final mide 948,840 bytes (298,785 gzip), 47,442 triángulos. P6b requiere el recibo de despliegue y la comprobación pública; la aceptación local no los sustituye.

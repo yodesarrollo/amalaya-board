@@ -13859,9 +13859,9 @@
       },
       "currentReview": {
         "candidate": "06f05c697813b0762a3146656b2da14ec3a89344",
-        "status": "DICTAMEN COMUNICADO · PENDIENTE DE RECIBO",
+        "status": "REVISIÓN LOCAL APROBADA · PUBLICACIÓN PENDIENTE",
         "evidence": "levantamiento/evidence/C1-13/20261029-enjambre/final-06f05c6/manifest.json",
-        "limitations": "Aérea de fecha desconocida; imágenes de calle diciembre 2023, lado este parcial. Cubierta posterior, cotas y conteo total oriental sin certificar. Render de cámaras aproximadas y vista ligera local; recorrido WebGL no validado.",
+        "limitations": "Representación exterior aproximada; fuentes calle diciembre 2023 y aérea sin fecha. Cubierta posterior, cotas y extensión oriental sin certificar. WebGL local SwiftShader: carga y desplazamiento comprobados; ratón e iPhone físico no verificados.",
         "team": [
           {
             "agent": "/root/terra1",
@@ -13938,12 +13938,12 @@
           },
           {
             "id": "P5",
-            "result": "BLOQUEADO",
-            "reason": "Vista ligera local observada y pruebas geométricas; recorrido WebGL no cargó y queda pendiente comprobarlo.",
+            "result": "PASA",
+            "reason": "Encaje, vecinos y ligero comprobados; recorrido WebGL local abrió P111 con entrada segura y avanzó aproximadamente 1.44 m con teclado.",
             "auditor": "Astra · /root/astra · gpt-6-astra",
-            "date": "2026-10-29T17:54:00.828321+00:00",
-            "revision": "06f05c697813b0762a3146656b2da14ec3a89344",
-            "scope": "Revisión local; mejora visual aproximada, no cierre público."
+            "date": "2026-10-29T18:16:22.939247+00:00",
+            "revision": "0e73851",
+            "scope": "Tramo local probado, no todo el recorrido ni dispositivos físicos."
           },
           {
             "id": "P6",
@@ -13957,7 +13957,7 @@
         ],
         "prepublication": {
           "result": "PASA",
-          "reason": "Comparativas, hashes y pruebas reproducibles; recorrido WebGL pendiente en P5.",
+          "reason": "Paquete reproducible, pruebas y auditoría visual local aprobados. Publicación y verificación pública pendientes.",
           "auditor": "Astra · /root/astra · gpt-6-astra",
           "date": "2026-10-29T17:54:00.828321+00:00",
           "revision": "06f05c697813b0762a3146656b2da14ec3a89344"
@@ -13965,7 +13965,10 @@
         "publication": {
           "result": "PENDIENTE",
           "reason": "Publicación y comprobación pública pendientes."
-        }
+        },
+        "runtimeRevision": "0e73851",
+        "runtimeEvidence": "levantamiento/evidence/C1-13/20261029-enjambre/runtime-0e73851/recibo.json",
+        "auditReceipt": "levantamiento/evidence/C1-13/20261029-enjambre/auditoria-runtime.json"
       }
     },
     {
@@ -22796,7 +22799,7 @@
       "lease": "Sin reserva activa al cierre; consultar último paquete antes de retomar"
     }
   ],
-  "updatedAtISO": "2026-10-29T03:57:10.342893Z",
+  "updatedAtISO": "2026-10-29T18:16:22.939247+00:00",
   "releaseReceipt": {
     "pr": 110,
     "url": "https://github.com/yodesarrollo/amalaya-board/pull/110",

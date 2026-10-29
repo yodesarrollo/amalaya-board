@@ -121,6 +121,12 @@ olaEvidenceFiles.get(swarm82Root).add('visor-runtime-recibo.json');
 olaEvidenceFiles.set(swarm82Root+'/runtime-72541c3',new Set(['p111-frente.png','p122-superficie.png','recibo.json']));
 olaEvidenceFiles.get(swarm82Root+'/runtime-72541c3').add('entrada-teclado.json');
 olaEvidenceFiles.get(swarm82Root+'/runtime-72541c3').add('cuadros-teclado.json');
+olaEvidenceFiles.set(swarm82Root+'/runtime-0e73851',new Set(['p111-antes.png','p111-despues.png','recibo.json']));
+const runtime82Dir=swarm82Root+'/runtime-0e73851';
+const runtime82=JSON.parse(await readFile(runtime82Dir+'/recibo.json'));
+for(const [path,hash] of Object.entries(runtime82.hashes))assert.equal(sha256(await readFile(path)),hash,'82: runtime exacto '+path);
+for(const [name,hash] of Object.entries(runtime82.captures))assert.equal(sha256(await readFile(runtime82Dir+'/'+name)),hash,'82: captura runtime '+name);
+olaEvidenceFiles.get(swarm82Root).add('auditoria-runtime.json');
 async function check(dir){
   for(const item of await readdir(dir,{withFileTypes:true})){
     const path=`${dir}/${item.name}`
