@@ -1,0 +1,13 @@
+{
+  "candidate": "72541c3",
+  "url": "http://127.0.0.1:8766/levantamiento/visor/",
+  "point": "P111",
+  "visibilityState": "visible",
+  "documentHasFocus": true,
+  "key": "KeyA",
+  "heldSeconds": 22,
+  "requestAnimationFrameCallbacks": 21,
+  "positionBefore": "29.0751079, -110.9556997",
+  "positionAfter": "29.0751079, -110.9556997",
+  "conclusion": "Hubo cuadros mientras se sostenía la tecla; no se observó movimiento. La causa no se determina con esta prueba."
+}
