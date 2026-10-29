@@ -90,7 +90,7 @@ for(const [dir,names] of batch7981Files){const manifest=JSON.parse(await readFil
 const qualityR2Files=new Map([["D1-03", ["r2-79-calle-3d.jpg", "r2-79-noroeste-3d.jpg", "r2-79-este-3d.jpg", "20261028-calidad-r2.json"]], ["D1-04", ["r2-80-calle-3d.jpg", "r2-80-noroeste-3d.jpg", "r2-80-este-3d.jpg", "20261028-calidad-r2.json"]], ["C1-12", ["r2-81-calle-3d.jpg", "r2-81-suroeste-3d.jpg", "r2-81-aerea-3d.jpg", "20261028-calidad-r2.json"]]].map(([id,names])=>[root+"/evidence/"+id,new Set(names)]));
 for(const [dir,names] of qualityR2Files){const m=JSON.parse(await readFile(dir+"/20261028-calidad-r2.json"));assert(/^[a-f0-9]{64}$/.test(m.worldSha256));for(const [name,hash] of Object.entries(m.files)){assert(names.has(name));assert.equal(sha256(await readFile(dir+"/"+name)),hash,"CalidadR2: evidencia inmutable");}}
 const olaEvidenceFiles=new Map([
- ['C1-13',['82-aerea-3d.jpg','82-calle-3d.jpg','82-esquina-3d.jpg','camaras.json','manifest.json']],
+ ['C1-13',['82-aerea-3d.jpg','82-calle-3d.jpg','82-esquina-3d.jpg','camaras.json','manifest.json','82-sur-fuente-202312.jpg','82-este-fuente-202312.jpg','despues-82-aerea-3d.jpg','despues-82-calle-3d.jpg','despues-82-esquina-3d.jpg','pruebas.json','prototipo-9e8616d.json','auditoria-astra82.json']],
  ['D1-09',['aerea-3d.jpg','calle-norte-3d.jpg','esquina-noreste-3d.jpg','camaras.json','paquete.json']],
  ['D1-12',['aerea-3d.jpg','calle-3d.jpg','esquina-3d.jpg','camaras.json','escena.json','paquete.json']]
 ].map(([id,names])=>[root+'/evidence/'+id+'/20261029-ola1',new Set(names)]));

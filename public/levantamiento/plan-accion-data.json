@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "snapshotDate": "2026-10-29T03:47:12.296407Z",
+  "snapshotDate": "2026-10-29T03:57:10.342893Z",
   "baseSha": "2c59d1b2ca4871ed85604b32c5326f8222dacf62",
   "scope": "139 registros del modelo; no constituyen un censo de edificios reales. EB-SW 42 y los identificadores 140/141 son segmentos visuales, no tres propiedades.",
   "sources": [
@@ -11,13 +11,13 @@
   ],
   "currentWave": {
     "label": "Primera ola real",
-    "status": "2 DIAGNÓSTICOS ACEPTADOS · 82 EN AUDITORÍA",
+    "status": "OLA ENTREGADA · 0 EDIFICIOS CERRADOS",
     "numbers": [
       82,
       84,
       89
     ],
-    "summary": "Dos diagnósticos aceptados por Astra (84 y89), sin cierre de esos edificios. Terra82 entregó un prototipo estimado para revisión; aún no integrado ni publicado."
+    "summary": "Tres paquetes reales: diagnósticos84y89 aceptados y prototipo82 rechazado para integración porAstra. Comparativas y fuentes conservadas; ninguna geometría nueva activada. Resto del inventario en cola; agentes sin ejecución en segundo plano."
   },
   "buildings": [
     {
@@ -13488,22 +13488,23 @@
         "name": "Centro / Surfragio Efectivo"
       },
       "queue": "ola actual",
-      "nextAction": "Implementar rasgos sur y este observables distinguiendo semicírculos pintados de arcos reales; comparar vistas fijas.",
+      "nextAction": "Terra: cerrar continuidad con patio81; representar arcos/molduras/balcones orientales y variación de vanos altos sur; añadir barandal blanco; probar molduras/calzada, recorrido y ligero antes de volver aAstra.",
       "steps": [
         {
           "id": "P1",
           "name": "Identidad y evidencia",
           "criterion": "Referencias del mismo edificio; ID, número, huella, frentes, fechas, tres rasgos y límites identificados.",
           "audit": {
-            "result": "PENDIENTE",
-            "reason": "Sin dictamen independiente registrado.",
-            "auditor": null,
-            "date": null
+            "result": "BLOQUEADO",
+            "reason": "Fuentes sur y este observadas por Astra; falta cerrar continuidad de la huella con patio81.",
+            "auditor": "Astra · /root · gpt-6-astra",
+            "date": "2026-10-29T03:57:10.342893Z",
+            "revision": "9e8616df2945a24fe6836c687f1db7664ee1963b"
           },
           "evidence": [
             {
-              "path": "levantamiento/evidence/C1-13/20261029-ola1/manifest.json",
-              "label": "Paquete C1-13 · P1"
+              "path": "levantamiento/evidence/C1-13/20261029-ola1/auditoria-astra82.json",
+              "label": "Dictamen exactoAstra82 · P1"
             }
           ]
         },
@@ -13512,15 +13513,16 @@
           "name": "Forma",
           "criterion": "Silueta coherente en planta, calle y esquina; sin invadir vialidad ni cerrar patios.",
           "audit": {
-            "result": "PENDIENTE",
-            "reason": "Sin dictamen independiente registrado.",
-            "auditor": null,
-            "date": null
+            "result": "BLOQUEADO",
+            "reason": "Cubierta posterior desconocida; prueba de molduras contra calle pendiente.",
+            "auditor": "Astra · /root · gpt-6-astra",
+            "date": "2026-10-29T03:57:10.342893Z",
+            "revision": "9e8616df2945a24fe6836c687f1db7664ee1963b"
           },
           "evidence": [
             {
-              "path": "levantamiento/evidence/C1-13/20261029-ola1/manifest.json",
-              "label": "Paquete C1-13 · P2"
+              "path": "levantamiento/evidence/C1-13/20261029-ola1/auditoria-astra82.json",
+              "label": "Dictamen exactoAstra82 · P2"
             }
           ]
         },
@@ -13529,15 +13531,16 @@
           "name": "Fachada",
           "criterion": "Rasgos y ritmo visibles; sin paños tapados, huecos falsos ni detalles flotantes.",
           "audit": {
-            "result": "PENDIENTE",
-            "reason": "Sin dictamen independiente registrado.",
-            "auditor": null,
-            "date": null
+            "result": "NO PASA",
+            "reason": "El lateral liso omite arcos, molduras y balcones visibles; vanos altos sur uniformes omiten diversidad de posición y tamaño de la fuente.",
+            "auditor": "Astra · /root · gpt-6-astra",
+            "date": "2026-10-29T03:57:10.342893Z",
+            "revision": "9e8616df2945a24fe6836c687f1db7664ee1963b"
           },
           "evidence": [
             {
-              "path": "levantamiento/evidence/C1-13/20261029-ola1/manifest.json",
-              "label": "Paquete C1-13 · P3"
+              "path": "levantamiento/evidence/C1-13/20261029-ola1/auditoria-astra82.json",
+              "label": "Dictamen exactoAstra82 · P3"
             }
           ]
         },
@@ -13546,15 +13549,16 @@
           "name": "Material y estructura",
           "criterion": "Materiales diferenciados, elementos sustentados y encuentros coherentes.",
           "audit": {
-            "result": "PENDIENTE",
-            "reason": "Sin dictamen independiente registrado.",
-            "auditor": null,
-            "date": null
+            "result": "NO PASA",
+            "reason": "Falta barandal superior blanco claramente visible al sur y encuentros del lateral.",
+            "auditor": "Astra · /root · gpt-6-astra",
+            "date": "2026-10-29T03:57:10.342893Z",
+            "revision": "9e8616df2945a24fe6836c687f1db7664ee1963b"
           },
           "evidence": [
             {
-              "path": "levantamiento/evidence/C1-13/20261029-ola1/manifest.json",
-              "label": "Paquete C1-13 · P4"
+              "path": "levantamiento/evidence/C1-13/20261029-ola1/auditoria-astra82.json",
+              "label": "Dictamen exactoAstra82 · P4"
             }
           ]
         },
@@ -13563,15 +13567,16 @@
           "name": "Conjunto y ligero",
           "criterion": "Acceso, suelo y colindancias revisados; sin colisiones ajenas ni pérdida esencial en ligero.",
           "audit": {
-            "result": "PENDIENTE",
-            "reason": "Sin dictamen independiente registrado.",
-            "auditor": null,
-            "date": null
+            "result": "BLOQUEADO",
+            "reason": "16919 colisionadores idénticos y vecino81 intacto son evidencia parcial; falta encaje de molduras +0.15m, recorrido y versión ligera.",
+            "auditor": "Astra · /root · gpt-6-astra",
+            "date": "2026-10-29T03:57:10.342893Z",
+            "revision": "9e8616df2945a24fe6836c687f1db7664ee1963b"
           },
           "evidence": [
             {
-              "path": "levantamiento/evidence/C1-13/20261029-ola1/manifest.json",
-              "label": "Paquete C1-13 · P5"
+              "path": "levantamiento/evidence/C1-13/20261029-ola1/auditoria-astra82.json",
+              "label": "Dictamen exactoAstra82 · P5"
             }
           ]
         },
@@ -13580,25 +13585,27 @@
           "name": "Comparación y entrega",
           "criterion": "Comparación de frente, esquina y aérea; evidencias, pruebas, recibo de publicación y vista real verificada.",
           "audit": {
-            "result": "PENDIENTE",
-            "reason": "Sin dictamen independiente registrado.",
-            "auditor": null,
-            "date": null
+            "result": "BLOQUEADO",
+            "reason": "Prototipo reproducible; no paquete final ni modelo publicado.",
+            "auditor": "Astra · /root · gpt-6-astra",
+            "date": "2026-10-29T03:57:10.342893Z",
+            "revision": "9e8616df2945a24fe6836c687f1db7664ee1963b"
           },
           "evidence": [
             {
-              "path": "levantamiento/evidence/C1-13/20261029-ola1/manifest.json",
-              "label": "Paquete C1-13 · P6"
+              "path": "levantamiento/evidence/C1-13/20261029-ola1/auditoria-astra82.json",
+              "label": "Dictamen exactoAstra82 · P6"
             }
           ],
           "subgates": {
             "prepublication": {
               "id": "P6a",
               "audit": {
-                "result": "PENDIENTE",
-                "reason": "Paquete exacto y pruebas pendientes de juicio independiente.",
-                "auditor": null,
-                "date": null
+                "result": "PASA",
+                "reason": "Sólo reproducibilidad del prototipo:12hashes correctos y mismas cámaras; no paquete final.",
+                "auditor": "Astra · /root · gpt-6-astra",
+                "date": "2026-10-29T03:57:10.342893Z",
+                "revision": "9e8616df2945a24fe6836c687f1db7664ee1963b"
               }
             },
             "publication": {
@@ -13675,22 +13682,37 @@
           "pano": "ebEx3iq6XSZir3JGDhOr-A",
           "accessed": "2026-10-29",
           "hashLimit": "Captura remota no exportada"
+        },
+        {
+          "path": "levantamiento/evidence/C1-13/20261029-ola1/82-sur-fuente-202312.jpg",
+          "label": "Fuente sur · Google Street View",
+          "date": "2023-12",
+          "side": "sur, mirada norte",
+          "coverage": "Cuatro vanos rectangulares bajo semicírculos pintados, variación de vanos altos, barandal superior blanco; vehículos/poste obstruyen parte."
+        },
+        {
+          "path": "levantamiento/evidence/C1-13/20261029-ola1/82-este-fuente-202312.jpg",
+          "label": "Fuente este · Google Street View",
+          "date": "2023-12",
+          "side": "este, rumbo270",
+          "coverage": "Arcos reales, molduras, pilastra y salientes de balcón."
         }
       ],
       "productionPackage": {
         "responsible": "/root/manager_sol/cuadra_c06_terra",
         "model": "gpt-6.1-terra",
         "baseSha": "2c59d1b2ca4871ed85604b32c5326f8222dacf62",
-        "manifestHash": "a29a8e0bd6a3732d9b4fffe00f8fbe2463b067faa39399b8833a16478d3d10e8",
-        "handoff": "Diagnóstico entregado por Terra · 4d0126e",
-        "receipt": "Sol recibió y comprobó rutas del paquete en checkout original",
-        "manifestPath": "levantamiento/evidence/C1-13/20261029-ola1/manifest.json",
-        "producerCommit": "4d0126e",
-        "status": "MEJORA EN PRODUCCIÓN"
+        "manifestHash": "779200fc3bf7d782b7f5e959961d3837731c1cbba76e43eebb256548a62bf456",
+        "handoff": "Prototipo entregado y juzgado por Astra; conservado sólo como evidencia.",
+        "receipt": "AUDIT-ASTRA-82-20261029",
+        "manifestPath": "levantamiento/evidence/C1-13/20261029-ola1/auditoria-astra82.json",
+        "producerCommit": "9e8616df2945a24fe6836c687f1db7664ee1963b",
+        "status": "PROTOTIPO ENTREGADO · NO ACTIVADO"
       },
       "integration": {
-        "status": "PENDIENTE",
-        "reason": "Sin dictamen Astra nuevo."
+        "status": "NO PASA PARA INTEGRAR",
+        "reason": "Astra9e8616d:fachadaoriental incompleta y barandal/encuentros ausentes.",
+        "scope": "Prototipo conservado, geometría no activada."
       },
       "publication": {
         "status": "PENDIENTE",
@@ -13741,14 +13763,14 @@
         "block": "C06",
         "branch": "ola-c06",
         "baseSha": "2c59d1b2ca4871ed85604b32c5326f8222dacf62",
-        "status": "ACTIVA_EN_ESTA_SESION",
+        "status": "ENTREGADA; SIN EJECUCIÓN CONTINUA",
         "scope": [
           "C1-13"
         ],
         "renewal": "Sólo manager tras recibo; no ejecución continua al cerrar chat",
         "task_id": "OLA1-C1-13-20261029",
         "criterion_rev": "Astra-v1-20261029",
-        "expiry": "Al cierre de esta sesión; reanudar sólo tras reconciliar main, reserva y acuse",
+        "expiry": "Cierre de sesión; reanudar requiere nueva conciliación y acuse deSol.",
         "allowed_paths": [
           "public/levantamiento/evidence/C1-13/20261029-ola1/",
           "public/levantamiento/ola-c06-20261029.js",
@@ -13761,6 +13783,16 @@
           "path": "levantamiento/evidence/C1-13/20261029-ola1/manifest.json",
           "label": "Paquete de evidencia · 4d0126e",
           "date": "2026-10-29"
+        },
+        {
+          "path": "levantamiento/evidence/C1-13/20261029-ola1/auditoria-astra82.json",
+          "label": "Dictamen Astra82 y hashes de fuentes/prototipo",
+          "date": "2026-10-29T03:57:10.342893Z"
+        },
+        {
+          "path": "levantamiento/evidence/C1-13/20261029-ola1/prototipo-9e8616d.json",
+          "label": "Manifiesto archivado de prototipo9e8616d (sin activar)",
+          "date": "2026-10-29T03:57:10.342893Z"
         }
       ],
       "captures": [
@@ -13775,8 +13807,26 @@
         {
           "path": "levantamiento/evidence/C1-13/20261029-ola1/82-aerea-3d.jpg",
           "label": "82-aerea-3d.jpg · modelo vigente, sin cambio geométrico"
+        },
+        {
+          "path": "levantamiento/evidence/C1-13/20261029-ola1/despues-82-calle-3d.jpg",
+          "label": "despues-82-calle-3d.jpg · PROTOTIPO RECHAZADO; NO ACTIVADO"
+        },
+        {
+          "path": "levantamiento/evidence/C1-13/20261029-ola1/despues-82-esquina-3d.jpg",
+          "label": "despues-82-esquina-3d.jpg · PROTOTIPO RECHAZADO; NO ACTIVADO"
+        },
+        {
+          "path": "levantamiento/evidence/C1-13/20261029-ola1/despues-82-aerea-3d.jpg",
+          "label": "despues-82-aerea-3d.jpg · PROTOTIPO RECHAZADO; NO ACTIVADO"
         }
-      ]
+      ],
+      "auditReceipt": {
+        "reviewer": "Astra",
+        "producerCommit": "9e8616df2945a24fe6836c687f1db7664ee1963b",
+        "date": "2026-10-29T03:57:10.342893Z",
+        "path": "levantamiento/evidence/C1-13/20261029-ola1/auditoria-astra82.json"
+      }
     },
     {
       "id": "D1-08",
@@ -14147,14 +14197,14 @@
         "block": "C10",
         "branch": "ola-c10",
         "baseSha": "2c59d1b2ca4871ed85604b32c5326f8222dacf62",
-        "status": "ENTREGADA_A_SOL",
+        "status": "ENTREGADA; SIN EJECUCIÓN CONTINUA",
         "scope": [
           "D1-09"
         ],
         "renewal": "Sólo manager tras recibo; no ejecución continua al cerrar chat",
         "task_id": "OLA1-D1-09-20261029",
         "criterion_rev": "Astra-v1-20261029",
-        "expiry": "Al cierre de esta sesión; reanudar sólo tras reconciliar main, reserva y acuse",
+        "expiry": "Cierre de sesión; reanudar requiere nueva conciliación y acuse deSol.",
         "allowed_paths": [
           "public/levantamiento/evidence/D1-09/20261029-ola1/",
           "public/levantamiento/ola-c10-20261029.js",
@@ -15019,14 +15069,14 @@
         "block": "C11",
         "branch": "ola-c11",
         "baseSha": "2c59d1b2ca4871ed85604b32c5326f8222dacf62",
-        "status": "ENTREGADA_A_SOL",
+        "status": "ENTREGADA; SIN EJECUCIÓN CONTINUA",
         "scope": [
           "D1-12"
         ],
         "renewal": "Sólo manager tras recibo; no ejecución continua al cerrar chat",
         "task_id": "OLA1-D1-12-20261029",
         "criterion_rev": "Astra-v1-20261029",
-        "expiry": "Al cierre de esta sesión; reanudar sólo tras reconciliar main, reserva y acuse",
+        "expiry": "Cierre de sesión; reanudar requiere nueva conciliación y acuse deSol.",
         "allowed_paths": [
           "public/levantamiento/evidence/D1-12/20261029-ola1/",
           "public/levantamiento/ola-c11-20261029.js",
@@ -22539,9 +22589,15 @@
       "agent": "Astra · gpt-6-astra",
       "action": "Aceptó diagnóstico84; P2NO PASA para cierre por cubierta/anexo sin resolver; P1/P3/P4/P5bloqueados; P6aPASA sólo reproducibilidad, P6bpendiente. No geometría nueva aprobada.",
       "evidence": "levantamiento/evidence/D1-09/20261029-ola1/paquete.json"
+    },
+    {
+      "date": "2026-10-29T03:57:10.342893Z",
+      "agent": "Astra · /root · gpt-6-astra",
+      "action": "82NO PASA integrar/cerrar: P3fachada este incompleta y variación vanos; P4barandal/encuentros ausentes; P1/P2/P5bloqueados; P6aPASA sólo reproducibilidad.12hashes comprobados y2fuentes públicas capturadas. Prototipo conservado sin activar.",
+      "evidence": "levantamiento/evidence/C1-13/20261029-ola1/auditoria-astra82.json"
     }
   ],
-  "updatedAt": "2026-10-29T03:47:12.296407Z",
+  "updatedAt": "2026-10-29T03:57:10.342893Z",
   "displayTimezone": "America/Hermosillo",
   "sourceCommit": "2c59d1b2ca4871ed85604b32c5326f8222dacf62",
   "agents": [
@@ -22550,55 +22606,65 @@
       "name": "Astra",
       "model": "gpt-6-astra",
       "role": "Auditor independiente",
-      "state": "Revisión por criterios; sin publicar modelos rechazados",
+      "state": "Entregado / revisión cerrada de esta ola; sin ejecución continua",
       "activeBuilding": null,
-      "lease": "Sólo auditoría"
+      "lease": "Sin reserva activa al cierre; consultar último paquete antes de retomar"
     },
     {
       "id": "/root/manager_sol",
       "name": "Sol",
       "model": "gpt-6.1-sol",
       "role": "Director e integrador",
-      "state": "Integra paquetes y controla compartidos/generados/publicación",
+      "state": "Entregado / revisión cerrada de esta ola; sin ejecución continua",
       "activeBuilding": null,
-      "lease": "Único writer integración"
+      "lease": "Sin reserva activa al cierre; consultar último paquete antes de retomar"
     },
     {
       "id": "/root/manager_sol/html_terra",
       "name": "Terra · Plan",
       "model": "gpt-6.1-terra",
       "role": "HTML / contratos",
-      "state": "Revisión de gates y UX",
+      "state": "Entregado / revisión cerrada de esta ola; sin ejecución continua",
       "activeBuilding": null,
-      "lease": "ola-html: HTML / tests / método"
+      "lease": "Sin reserva activa al cierre; consultar último paquete antes de retomar"
     },
     {
       "id": "/root/manager_sol/cuadra_c06_terra",
       "name": "Terra · Cuadra 24",
       "model": "gpt-6.1-terra",
       "role": "Productor por cuadra",
-      "state": "Prototipo entregado a auditoría; sin ejecución en segundo plano",
+      "state": "Entregado / revisión cerrada de esta ola; sin ejecución continua",
       "activeBuilding": "C1-13",
-      "lease": "C06 · edificio 82 · ola-c06"
+      "lease": "Sin reserva activa al cierre; consultar último paquete antes de retomar"
     },
     {
       "id": "/root/manager_sol/cuadra_c10_terra",
       "name": "Terra · Cuadra 25",
       "model": "gpt-6.1-terra",
       "role": "Productor por cuadra",
-      "state": "Diagnóstico entregado; sin ejecución en segundo plano",
+      "state": "Entregado / revisión cerrada de esta ola; sin ejecución continua",
       "activeBuilding": "D1-09",
-      "lease": "C10 · edificio 84 · ola-c10"
+      "lease": "Sin reserva activa al cierre; consultar último paquete antes de retomar"
     },
     {
       "id": "/root/manager_sol/cuadra_c11_terra",
       "name": "Terra · Cuadra 26",
       "model": "gpt-6.1-terra",
       "role": "Productor por cuadra",
-      "state": "Diagnóstico entregado; sin ejecución en segundo plano",
+      "state": "Entregado / revisión cerrada de esta ola; sin ejecución continua",
       "activeBuilding": "D1-12",
-      "lease": "C11 · edificio 89 · ola-c11"
+      "lease": "Sin reserva activa al cierre; consultar último paquete antes de retomar"
     }
   ],
-  "updatedAtISO": "2026-10-29T03:47:12.296407Z"
+  "updatedAtISO": "2026-10-29T03:57:10.342893Z",
+  "releaseReceipt": {
+    "pr": 110,
+    "url": "https://github.com/yodesarrollo/amalaya-board/pull/110",
+    "approvedHead": "16e2e4c6f005f7accb4cfaccb407392969f5c11c",
+    "tree": "dacbd0f1887f59293d9d180c7be93d1e79bec2d4",
+    "merge": "1151127284644fb0507ef949aed24fbabd5eb804",
+    "ci": "40814334168 success",
+    "deploy": "40814695031 success",
+    "publicVerification": "Astra comprobó públicamente139/33/6, filtroC06+82, olaactual82/84/89, expansiónP1-P6/P6a-b y galerías. Acceso desde herramientas originales en comprobación final; no aprobación de modelos."
+  }
 }

@@ -1,0 +1,240 @@
+{
+  "id": "C1-13",
+  "number": 82,
+  "block": "C06",
+  "display": 24,
+  "baseSHA": "2c59d1b2ca4871ed85604b32c5326f8222dacf62",
+  "model": "gpt-6.1-terra",
+  "agentCanonical": "/root/manager_sol/cuadra_c06_terra",
+  "startedISO": "2026-10-29T03:37:00Z",
+  "updatedISO": "2026-10-29T03:47:55.039203+00:00",
+  "sources": [
+    {
+      "path": "public/levantamiento/ajuste-visual/C06.jpg",
+      "date": "desconocida",
+      "side": "aérea",
+      "coverage": "cuadra general; correspondencia exacta por corroborar",
+      "sha256": "f83fff2caa82ad3e8964469b51de7ad784191426eb59782702ff3ed8c0c393e7"
+    },
+    {
+      "path": "public/levantamiento/cuadras/C06-inventario.jpg",
+      "date": "desconocida",
+      "side": "aérea",
+      "coverage": "límite general, baja resolución",
+      "sha256": "fcbe88f7dd1a99b183d2b4c74e9920d82313129250f1b28c4c5670f0c23aa95b"
+    },
+    {
+      "path": "public/levantamiento/evidence/C1-13/20261006-01-cierre.json",
+      "date": "2026-10-06 registro; imagen desconocida",
+      "side": "aérea",
+      "coverage": "huella histórica e incertidumbre",
+      "sha256": "c1c3c31c9381e4b7d488d3eb4253d6c580c621a0894324373de9fd3f467db0d6"
+    },
+    {
+      "path": "public/levantamiento/evidence/C1-12/81-sur-202312.jpg",
+      "date": "2023-12",
+      "side": "sur",
+      "coverage": "entorno C1-12; no fachada inequívoca de 82",
+      "sha256": "f96347ec5fb8c4dc0807e1e17e9ff6c738e3cd096497d9b51617754f9d90e3b2"
+    },
+    {
+      "path": "public/levantamiento/evidence/C1-12/81-norte-202312.jpg",
+      "date": "2023-12",
+      "side": "norte",
+      "coverage": "C1-12; no fachada inequívoca de 82",
+      "sha256": "540f61b59eaef2cf15bc29c0521dbad00d74dd3ea5116ddbc4ed33dcfdeaf62d"
+    },
+    {
+      "path": "public/levantamiento/evidence/C1-12/81-oeste-202503.jpg",
+      "date": "2025-03",
+      "side": "oeste",
+      "coverage": "C1-12 y contexto; no fachada inequívoca de 82",
+      "sha256": "2cbdb96ea262996e1f0e84cdcde24fd9bf5f37cd177e49335fdcbdf1d547d95d"
+    },
+    {
+      "path": "https://www.google.com/maps/@29.0752061,-110.9557688,207a,90y,90t/data=!3m7!1e1!3m5!1sia1FQIrplW8gDlrhfmmECg!2e0!6shttps:%2F%2Fstreetviewpixels-pa.clients6.google.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D0%26panoid%3Dia1FQIrplW8gDlrhfmmECg%26yaw%3D0!7i16384!8i8192?entry=ttu&g_ep=EgoyMDI2MTAyMC4wIKXMDSoASAFQAw%3D%3D",
+      "date": "2023-12",
+      "side": "sur",
+      "coverage": "Frente, esquina, patio vecino; obstrucción por vehículos y poste",
+      "sha256": null,
+      "pano": "ia1FQIrplW8gDlrhfmmECg",
+      "accessed": "2026-10-29",
+      "hashLimit": "Captura remota no exportada"
+    },
+    {
+      "path": "https://www.google.com/maps/@29.075346,-110.9557022,207a,90y,270h,90t/data=!3m7!1e1!3m5!1sebEx3iq6XSZir3JGDhOr-A!2e0!6shttps:%2F%2Fstreetviewpixels-pa.clients6.google.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D0%26panoid%3DebEx3iq6XSZir3JGDhOr-A%26yaw%3D270!7i16384!8i8192?entry=ttu&g_ep=EgoyMDI2MTAyMC4wIKXMDSoASAFQAw%3D%3D",
+      "date": "2023-12",
+      "side": "este",
+      "coverage": "Lateral cercano parcial; no conteo total",
+      "sha256": null,
+      "pano": "ebEx3iq6XSZir3JGDhOr-A",
+      "accessed": "2026-10-29",
+      "hashLimit": "Captura remota no exportada"
+    }
+  ],
+  "threeTraits": [
+    {
+      "trait": "Fachada turquesa y zócalo/cornisa morados",
+      "status": "observado sur y este, pendiente aplicar"
+    },
+    {
+      "trait": "Sur: semicírculos decorativos sobre vanos rectangulares y herrería azul",
+      "status": "observado, pendiente aplicar"
+    },
+    {
+      "trait": "Esquina curva y lateral con arcos y balcones altos",
+      "status": "observado parcialmente, pendiente aplicar"
+    }
+  ],
+  "cameras": [
+    [
+      "82-calle",
+      29.07514,
+      -110.955805,
+      0,
+      75,
+      0,
+      2.5
+    ],
+    [
+      "82-esquina",
+      29.07512,
+      -110.95561,
+      320,
+      70,
+      -10,
+      8
+    ],
+    [
+      "82-aerea",
+      29.07512,
+      -110.95558,
+      320,
+      65,
+      -48,
+      42
+    ]
+  ],
+  "beforeAfter": {
+    "before": [
+      "82-calle-3d.jpg",
+      "82-esquina-3d.jpg",
+      "82-aerea-3d.jpg"
+    ],
+    "after": [
+      "despues-82-calle-3d.jpg",
+      "despues-82-esquina-3d.jpg",
+      "despues-82-aerea-3d.jpg"
+    ],
+    "sameCameras": true,
+    "application": "prototipo local con parche propuesto; no integrado ni publicado"
+  },
+  "limits": [
+    "Cámaras no calibradas; imágenes renderizadas no son fotografías ni WebGL.",
+    "Sin geometría nueva publicada ni levantamiento; altura histórica no medida y huella ±3 m.",
+    "No se atribuyen rótulos, propiedad o domicilio.",
+    "Las dos fuentes remotas se inspeccionaron en navegador; sin archivo exportado ni hash local.",
+    "Sur y este de diciembre 2023; conteo completo oriental y cubierta posterior no confirmados.",
+    "El lateral este sigue incompleto, con huecos y balcones no reproducidos.",
+    "Caja visual crece ~0.15 m al sur por molduras; no hay prueba de intersección con calzada.",
+    "Prototipo activo sólo mediante parche local propuesto; falta prueba de versión ligera y WebGL."
+  ],
+  "criteria": {
+    "P1": {
+      "observation": "Correspondencia visual mediante patio de 81 y esquina; 82 es índice, no dirección.",
+      "evidence": [
+        "docs/OLA-C06-20261029.md",
+        "public/levantamiento/evidence/C1-13/20261029-ola1/"
+      ],
+      "status": "PENDIENTE_AUDITORIA",
+      "requiredChange": "Validar correspondencia y cobertura en auditoría independiente."
+    },
+    "P2": {
+      "observation": "Curva sureste en modelo dentro del contorno estimado; cubierta posterior desconocida.",
+      "evidence": [
+        "docs/OLA-C06-20261029.md",
+        "public/levantamiento/evidence/C1-13/20261029-ola1/"
+      ],
+      "status": "PENDIENTE_AUDITORIA",
+      "requiredChange": "Auditar forma y realizar prueba de intersección de adornos, pues caja visual crece ~0.15 m sur."
+    },
+    "P3": {
+      "observation": "Cuatro vanos rectangulares y superficies semicirculares en sur; rejas visibles. Este permanece incompleto pese a foto.",
+      "evidence": [
+        "docs/OLA-C06-20261029.md",
+        "public/levantamiento/evidence/C1-13/20261029-ola1/"
+      ],
+      "status": "PENDIENTE_AUDITORIA",
+      "requiredChange": "Auditar sur y resolver vanos y balcones del lado este con cobertura disponible."
+    },
+    "P4": {
+      "observation": "Aplanado y rejas diferenciados en prototipo; estructura de cubierta y barandal superior pendientes.",
+      "evidence": [
+        "docs/OLA-C06-20261029.md",
+        "public/levantamiento/evidence/C1-13/20261029-ola1/"
+      ],
+      "status": "PENDIENTE_AUDITORIA",
+      "requiredChange": "Revisar materiales, estructura y barandal con fuente."
+    },
+    "P5": {
+      "observation": "16919 colisionadores originales idénticos; bounds de vecino 81 iguales. Molduras extienden bounds hacia sur.",
+      "evidence": [
+        "docs/OLA-C06-20261029.md",
+        "public/levantamiento/evidence/C1-13/20261029-ola1/"
+      ],
+      "status": "PENDIENTE_AUDITORIA",
+      "requiredChange": "Comprobar intersección con calzada, recorrido y versión ligera."
+    },
+    "P6": {
+      "observation": "Antes/después con mismas cámaras y hashes; sin dictamen ni publicación.",
+      "evidence": [
+        "docs/OLA-C06-20261029.md",
+        "public/levantamiento/evidence/C1-13/20261029-ola1/"
+      ],
+      "status": "PENDIENTE_AUDITORIA",
+      "requiredChange": "Auditoría independiente, pruebas de integración y recibo de publicación."
+    }
+  },
+  "changes": [
+    "Módulo optativo C1-13: cuatro vanos inferiores rectangulares con arcos pintados, rejas, tres huecos altos estimados, zócalo y cornisa; curva sureste contenida.",
+    "Parche separado al constructor: añade arco pintado y rejas adelantadas optativas, mantiene colisionadores previos y activa el módulo."
+  ],
+  "tests": [
+    {
+      "name": "Reproducción antes con cámaras registradas",
+      "result": "PASS",
+      "details": "Calle, esquina, aérea y cámaras producidos con hash idéntico en segundo render antes de prototipo."
+    },
+    {
+      "name": "Escenas antes/después colisiones y vecino 81",
+      "result": "PASS",
+      "details": "16919 colisionadores iguales por contenido; caja de 81 idéntica. Ver pruebas.json."
+    },
+    {
+      "name": "Modelo ligero, intersección de molduras y WebGL",
+      "result": "NO EJECUTADO",
+      "details": "Pendiente de integración y auditoría."
+    }
+  ],
+  "filesHash": {
+    "public/levantamiento/evidence/C1-13/20261029-ola1/82-aerea-3d.jpg": "9dab0bce4bab75a8a0913d92bd075866f31dcf2dfce2c63cf974ab4af9984abd",
+    "public/levantamiento/evidence/C1-13/20261029-ola1/82-calle-3d.jpg": "c9a667903ad61b43edd1c18f2c95d4a49bd7e191b64e7951b95837af2aa7191d",
+    "public/levantamiento/evidence/C1-13/20261029-ola1/82-esquina-3d.jpg": "cc22164e2f2bbf33e7771ebefe339a3789088816f8169071567adc4adc853a92",
+    "public/levantamiento/evidence/C1-13/20261029-ola1/camaras.json": "716e93b26c0dd83fae9948d48bad1cdd15588c564d3ba451196f7af56244a563",
+    "public/levantamiento/evidence/C1-13/20261029-ola1/despues-82-aerea-3d.jpg": "a1a9614cf579aececf0be4386a9f3df95491d821f9f81c9d0ec2e15eeb28caba",
+    "public/levantamiento/evidence/C1-13/20261029-ola1/despues-82-calle-3d.jpg": "974f2d96a3e7b1821a17451f71a8b675d7ce8b9867a15a932d152aeaceb0298a",
+    "public/levantamiento/evidence/C1-13/20261029-ola1/despues-82-esquina-3d.jpg": "5f5c2764d9c34fc3d0c9f2debc1e188980656b1af1512281c0a438bcc5de50a3",
+    "public/levantamiento/evidence/C1-13/20261029-ola1/paramento-propuesto.patch": "c9845f63cdd586912f2902f941a9276bfe54428473b0c60bac8f2f2195d6f1f9",
+    "public/levantamiento/evidence/C1-13/20261029-ola1/pruebas.json": "7a8a365326d031e96a3c2cbe060d75cb0d1b6be5a81081cb3eba0e45f60e9214",
+    "docs/OLA-C06-20261029.md": "5a5f9289d1d69e0732fcba9b3cc6a3435205df44466fee370bfa67c6205921f4",
+    "scripts/evidencia-ola-c06.mjs": "22a661ceff6ada6f4fb824096f4817325347024387d12d5162948b95f3d3266e",
+    "public/levantamiento/ola-c06-20261029.js": "666f870a528f442320e5627c36844c595d841f98cb5b090a192f4290c46d4db2"
+  },
+  "remaining": [
+    "Auditoría independiente de las dos fuentes, proporciones y renders",
+    "Resolver vanos y balcones orientales, barandal y cubierta visible",
+    "Probar molduras contra calzada, recorrido y versión ligera",
+    "Integración y recibo de publicación si se aprueba"
+  ],
+  "nextAction": "Auditor independiente evalúa P1–P6 y manager revisa parche antes de integrar."
+}
