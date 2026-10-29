@@ -1,0 +1,13 @@
+{
+  "scope": "Evidencia inmutable del despliegue 8c584bac; el checklist puede evolucionar sin cambiar este recibo.",
+  "merge": "8c584bac919741d95160a3e5e979059eb3c984dd",
+  "files": {
+    "auditoria.json": "a3d6087a3a8899b13d2555010e885bbc3e92f83508bce38fd34c49e59acc55b9",
+    "cdp-carga.json": "a472220954179839ffd441b77e48b3c868acdcdedf754ba84d2e050ee87cf01e",
+    "despliegue.json": "26fd026a47c7e11156f1a4abc42ad15b53180574ef7506c990a1e958b4001e30",
+    "hashes-publicos.json": "68ef06b551f539e6c27f19f17f3e7f92c2f8805ca858105aa1fcd1f5424fcbf0",
+    "p111-antes.png": "1def1248b6c5ac39461d042d1448cd61d6f3ee45c6abe78bc6fc116c556b020d",
+    "p111-despues.png": "c9712079634d76dbd35cbe4712700cf0b7ea55dcb8073b8445e16de1826a955b",
+    "recibo.json": "6b6a85bb24fac7c74f23f801c5d721f9b222237237dd70f5fd80ac73a42a30db"
+  }
+}

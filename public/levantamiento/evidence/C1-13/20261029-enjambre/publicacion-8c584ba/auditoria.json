@@ -1,0 +1,146 @@
+{
+  "id": "AUDIT-ASTRA-82-20261029-REV4-PUBLICACION",
+  "auditor": "/root/astra",
+  "date": "2026-10-29T18:25:36.465994+00:00",
+  "criterion": "P6b",
+  "result": "PASA",
+  "decision": "PUBLICADO VERIFICADO · EXTERIOR VISUAL APROXIMADO DEL EDIFICIO 82",
+  "mergeCommit": "8c584bac919741d95160a3e5e979059eb3c984dd",
+  "releaseCommit": "ede2de68bc4c6980a92ee8437eac036ebe934c4d",
+  "geometryCandidate": "06f05c697813b0762a3146656b2da14ec3a89344",
+  "runtimeCandidate": "0e7385189cf61fbb03bb1d9ba2ec4bdd470e0839",
+  "reason": "Astra confirmó el despliegue exitoso por GitHub API, cotejó nueve archivos públicos HTTP200 con los SHA256 de la revisión aprobada e inspeccionó dos capturas nuevas del visor público. La fachada 82 y barandal se muestran en WebGL; el selector P111 usa entrada segura y W cinco segundos cambia HUD/perspectiva aproximadamente 3.96 m al norte sin penetrar fachada en tramo probado.",
+  "deployment": {
+    "id": 40929674832,
+    "name": "Publicar en GitHub Pages",
+    "status": "completed",
+    "conclusion": "success",
+    "head_sha": "8c584bac919741d95160a3e5e979059eb3c984dd",
+    "html_url": "https://github.com/yodesarrollo/amalaya-board/actions/runs/40929674832",
+    "run_started_at": "2026-10-29T18:19:16Z",
+    "updated_at": "2026-10-29T18:21:15Z"
+  },
+  "publicAssets": {
+    "auditor": "/root/astra",
+    "checkedAt": "2026-10-29T18:22:37.917893+00:00",
+    "mergeCommit": "8c584bac919741d95160a3e5e979059eb3c984dd",
+    "files": [
+      {
+        "path": "levantamiento/paramento-refinement.js",
+        "url": "https://yodesarrollo.github.io/amalaya-board/levantamiento/paramento-refinement.js?audit=8c584bac9197",
+        "httpStatus": 200,
+        "bytes": 40331,
+        "sha256": "fa81a93e97c6b182322eac2390f564fbc32c7998249137ff60cd91cff2fd59f1",
+        "expected": "fa81a93e97c6b182322eac2390f564fbc32c7998249137ff60cd91cff2fd59f1",
+        "matches": true
+      },
+      {
+        "path": "levantamiento/cuadra-detail-data.js",
+        "url": "https://yodesarrollo.github.io/amalaya-board/levantamiento/cuadra-detail-data.js?audit=8c584bac9197",
+        "httpStatus": 200,
+        "bytes": 25138,
+        "sha256": "697d2a8a4bc36dfc650a0e4e5ef50ad2ad1d5cecbb2a98478cceea2ffc717648",
+        "expected": "697d2a8a4bc36dfc650a0e4e5ef50ad2ad1d5cecbb2a98478cceea2ffc717648",
+        "matches": true
+      },
+      {
+        "path": "levantamiento/c1-13-barandal.js",
+        "url": "https://yodesarrollo.github.io/amalaya-board/levantamiento/c1-13-barandal.js?audit=8c584bac9197",
+        "httpStatus": 200,
+        "bytes": 2927,
+        "sha256": "6fae4d2552dd84f537d8d8de03380a6331d31fd191120bfac6dfde4e990350bd",
+        "expected": "6fae4d2552dd84f537d8d8de03380a6331d31fd191120bfac6dfde4e990350bd",
+        "matches": true
+      },
+      {
+        "path": "levantamiento/sector-visor.js",
+        "url": "https://yodesarrollo.github.io/amalaya-board/levantamiento/sector-visor.js?audit=8c584bac9197",
+        "httpStatus": 200,
+        "bytes": 2669,
+        "sha256": "b8998854242107908a4611ef7b3fffc742cf2bcc4e1560db5a9866d2c1e5648e",
+        "expected": "b8998854242107908a4611ef7b3fffc742cf2bcc4e1560db5a9866d2c1e5648e",
+        "matches": true
+      },
+      {
+        "path": "levantamiento/visor/assets/index-RoPA5goG.js",
+        "url": "https://yodesarrollo.github.io/amalaya-board/levantamiento/visor/assets/index-RoPA5goG.js?audit=8c584bac9197",
+        "httpStatus": 200,
+        "bytes": 765634,
+        "sha256": "90afcc43814c774572d591ebe13fe84532b1ec9cd223631157127779ce550941",
+        "expected": "90afcc43814c774572d591ebe13fe84532b1ec9cd223631157127779ce550941",
+        "matches": true
+      },
+      {
+        "path": "levantamiento/visor/index.html",
+        "url": "https://yodesarrollo.github.io/amalaya-board/levantamiento/visor/index.html?audit=8c584bac9197",
+        "httpStatus": 200,
+        "bytes": 1436,
+        "sha256": "72cd3097d166cd2e646ba243a93612eccfde7101bb5b21f0850a247183b8364b",
+        "expected": "72cd3097d166cd2e646ba243a93612eccfde7101bb5b21f0850a247183b8364b",
+        "matches": true
+      },
+      {
+        "path": "levantamiento/modelo-ligero.bin",
+        "url": "https://yodesarrollo.github.io/amalaya-board/levantamiento/modelo-ligero.bin?audit=8c584bac9197",
+        "httpStatus": 200,
+        "bytes": 948840,
+        "sha256": "bdebad2e265cfc8cb0911cbb024d56387398390810bd82c0c7fb3ce2ebd4be2f",
+        "expected": "bdebad2e265cfc8cb0911cbb024d56387398390810bd82c0c7fb3ce2ebd4be2f",
+        "matches": true
+      },
+      {
+        "path": "levantamiento/modelo-ligero.json",
+        "url": "https://yodesarrollo.github.io/amalaya-board/levantamiento/modelo-ligero.json?audit=8c584bac9197",
+        "httpStatus": 200,
+        "bytes": 18157,
+        "sha256": "f639772fbb98693f1150d658ac89f8d8f2c61d5927e800c366bb513fe3ef68d9",
+        "expected": "f639772fbb98693f1150d658ac89f8d8f2c61d5927e800c366bb513fe3ef68d9",
+        "matches": true
+      },
+      {
+        "path": "levantamiento/plan-accion-data.json",
+        "url": "https://yodesarrollo.github.io/amalaya-board/levantamiento/plan-accion-data.json?audit=8c584bac9197",
+        "httpStatus": 200,
+        "bytes": 752326,
+        "sha256": "257b3d1b82b3f743cc54671616960523465c3137ff1d779f48a63677d20a2b5d",
+        "expected": "257b3d1b82b3f743cc54671616960523465c3137ff1d779f48a63677d20a2b5d",
+        "matches": true
+      }
+    ]
+  },
+  "publicUI": {
+    "url": "https://yodesarrollo.github.io/amalaya-board/levantamiento/visor/",
+    "receiptProposedPath": "public/levantamiento/evidence/C1-13/20261029-enjambre/publicacion-8c584ba/recibo.json",
+    "receiptSha256": "6b6a85bb24fac7c74f23f801c5d721f9b222237237dd70f5fd80ac73a42a30db",
+    "checkedFiles": {
+      "cdp-carga.json": "a472220954179839ffd441b77e48b3c868acdcdedf754ba84d2e050ee87cf01e",
+      "p111-antes.png": "1def1248b6c5ac39461d042d1448cd61d6f3ee45c6abe78bc6fc116c556b020d",
+      "p111-despues.png": "c9712079634d76dbd35cbe4712700cf0b7ea55dcb8073b8445e16de1826a955b",
+      "sector-visor.js": "b8998854242107908a4611ef7b3fffc742cf2bcc4e1560db5a9866d2c1e5648e",
+      "visor.js": "90afcc43814c774572d591ebe13fe84532b1ec9cd223631157127779ce550941"
+    },
+    "input": "Selector P111 y botón VER PUNTO EN MODELO; cerrar panel, desenfocar selector, clic canvas y sostener W durante cinco segundos.",
+    "before": {
+      "lat": 29.0751301,
+      "lng": -110.9556952
+    },
+    "after": {
+      "lat": 29.0751658,
+      "lng": -110.9556952
+    },
+    "loader": {
+      "event": "amalaya:world-ready",
+      "display": "none",
+      "visibility": "visible"
+    },
+    "browser": "Chromium 151 headless; ANGLE SwiftShader"
+  },
+  "limits": [
+    "Exterior observado aproximado, no levantamiento medido: cotas, radio y progresivas estimadas.",
+    "Fuentes calle diciembre de 2023, aérea sin fecha; cubierta posterior y totalidad oriental no certificadas.",
+    "Prueba pública con Chromium 151 / ANGLE SwiftShader: tramo corto con teclado; pointerlock rechazado por automatización, sin certificar giro de ratón, iPhone físico ni todos los recorridos.",
+    "Este dictamen acredita publicación de 8c584bac; actualización documental posterior de estados debe verificarse aparte sin cambiar geometría/runtime aprobados."
+  ],
+  "snapshotUpdateAuthorized": "Actualizar currentReview a PUBLICADO VERIFICADO, P6b PASA, y conservar límites y rechazos históricos. Para P1–P4 usar fecha de REV2 2026-10-29T17:55:03.276900+00:00; P5/P6a fecha de REV3 2026-10-29T18:15:59.557984+00:00; P6b fecha de esta adenda.",
+  "nextAction": "Sol guarda evidencia y adenda nuevas, actualiza snapshot documental y comprueba el estado público final."
+}

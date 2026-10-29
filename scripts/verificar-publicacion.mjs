@@ -127,6 +127,17 @@ const runtime82=JSON.parse(await readFile(runtime82Dir+'/recibo.json'));
 for(const [path,hash] of Object.entries(runtime82.hashes))assert.equal(sha256(await readFile(path)),hash,'82: runtime exacto '+path);
 for(const [name,hash] of Object.entries(runtime82.captures))assert.equal(sha256(await readFile(runtime82Dir+'/'+name)),hash,'82: captura runtime '+name);
 olaEvidenceFiles.get(swarm82Root).add('auditoria-runtime.json');
+const published82Dir=swarm82Root+'/publicacion-8c584ba';
+const published82Names=new Set(['recibo.json','cdp-carga.json','p111-antes.png','p111-despues.png','hashes-publicos.json','despliegue.json','auditoria.json','manifest.json']);
+olaEvidenceFiles.set(published82Dir,published82Names);
+const published82Manifest=JSON.parse(await readFile(published82Dir+'/manifest.json'));
+for(const [name,hash] of Object.entries(published82Manifest.files)){assert(published82Names.has(name));assert.equal(sha256(await readFile(published82Dir+'/'+name)),hash,'82: evidencia pública inmutable '+name);}
+const published82Receipt=JSON.parse(await readFile(published82Dir+'/recibo.json'));
+for(const [name,hash] of Object.entries(published82Receipt.sha256)){
+ const source=name==='visor.js'?root+'/visor/assets/index-RoPA5goG.js':name==='sector-visor.js'?root+'/sector-visor.js':published82Dir+'/'+name;
+ assert.equal(sha256(await readFile(source)),hash,'82: fuente o captura pública '+name);
+}
+
 async function check(dir){
   for(const item of await readdir(dir,{withFileTypes:true})){
     const path=`${dir}/${item.name}`
