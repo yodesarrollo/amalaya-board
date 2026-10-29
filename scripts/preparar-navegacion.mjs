@@ -5,9 +5,13 @@ import {fileURLToPath} from 'node:url';
 const hash=s=>createHash('sha256').update(s).digest('hex');
 const sectorAnchor='applyPlanRoundRefinement(Ng,Hg,{Box3:Jn,Vector3:U,Shape:da,Mesh:J});';
 const sectorCall='ensureViewerSector(Ng,{Shape:da,Mesh:J,createProceduralMaterial:Q,osmContext:l});';
-const sectorImport=h=>'\nimport { ensureViewerSector } from "../../sector-visor.js?v='+h.slice(0,12)+'";\n';
-export function removeViewerSectorHook(source){const m=source.match(/\nimport \{ ensureViewerSector \} from "\.\.\/\.\.\/sector-visor\.js\?v=[a-f0-9]{12}";\n$/);if(!m)return source;if(source.split(sectorCall+sectorAnchor).length!==2)throw Error('Viewer sector: unknown hook');return source.slice(0,-m[0].length).replace(sectorCall+sectorAnchor,sectorAnchor)}
-export function refineViewerSector(input,moduleHash){const base=removeViewerSectorHook(input);if(!/^(?:[a-f0-9]{12}|[a-f0-9]{64})$/.test(moduleHash)||base.split(sectorAnchor).length!==2)throw Error('Viewer sector: invalid baseline');return base.replace(sectorAnchor,sectorCall+sectorAnchor)+sectorImport(moduleHash)}
+const boardStart='function cv(){if(!P_)return;let e=P_';
+const boardStartNew='function cv(){if(!P_)return;let boardPrevious=$.position.clone();let e=P_';
+const boardEnd='La referencia Street View abre fuera del modelo.`),Tv()}function lv';
+const boardEndNew='La referencia Street View abre fuera del modelo.`),enterBoardPoint({camera:$,character:Ug,point:t,previous:boardPrevious,yaw:E_,mode:k_,colliders:Hg,bounds:H_,notify:xv}),Tv()}function lv';
+const sectorImport=h=>'\nimport { ensureViewerSector, enterBoardPoint } from "../../sector-visor.js?v='+h.slice(0,12)+'";\n';
+export function removeViewerSectorHook(source){const m=source.match(/\nimport \{ ensureViewerSector(?:, enterBoardPoint)? \} from "\.\.\/\.\.\/sector-visor\.js\?v=[a-f0-9]{12}";\n$/);if(!m)return source;source=source.slice(0,-m[0].length);if(source.includes('enterBoardPoint({')){if(source.split(boardStartNew).length!==2||source.split(boardEndNew).length!==2)throw Error('Viewer board: unknown hook');source=source.replace(boardStartNew,boardStart).replace(boardEndNew,boardEnd)}if(source.split(sectorCall+sectorAnchor).length!==2)throw Error('Viewer sector: unknown hook');return source.replace(sectorCall+sectorAnchor,sectorAnchor)}
+export function refineViewerSector(input,moduleHash){const base=removeViewerSectorHook(input);if(!/^(?:[a-f0-9]{12}|[a-f0-9]{64})$/.test(moduleHash)||base.split(sectorAnchor).length!==2||base.split(boardStart).length!==2||base.split(boardEnd).length!==2)throw Error('Viewer sector: invalid baseline');return base.replace(sectorAnchor,sectorCall+sectorAnchor).replace(boardStart,boardStartNew).replace(boardEnd,boardEndNew)+sectorImport(moduleHash)}
 const changes=[
  ['Ig&&(Ug=new Eg(Ng,$,Hg)', 'installWalkingNavigation(Eg,{colliders:Hg,bounds:H_,notify:xv});Ig&&(Ug=new Eg(Ng,$,Hg)'],
  ['mv().then(()=>{Fg&&window.parent', 'mv().then(()=>{window.dispatchEvent(new Event("amalaya:world-ready"));Fg&&window.parent'],
