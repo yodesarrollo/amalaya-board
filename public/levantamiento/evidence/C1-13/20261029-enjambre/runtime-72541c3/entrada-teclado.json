@@ -1,0 +1,13 @@
+{
+  "candidate": "72541c3",
+  "point": "P111",
+  "method": "Tras elegir P111 y activar VER PUNTO EN MODELO: desenfocar selector, cerrar panel y hacer clic en canvas. Repetir con Page.bringToFront y listener temporal en captura.",
+  "observedEvents": [
+    {"type":"keydown","code":"KeyA","target":"BODY","active":"BODY","focus":true},
+    {"type":"keyup","code":"KeyA","target":"BODY","active":"BODY","focus":true}
+  ],
+  "pointerLock": "no adquirido",
+  "positionBefore": "29.0751079, -110.9556997",
+  "positionAfter": "29.0751079, -110.9556997",
+  "result": "Sin desplazamiento observable en este intento de cinco segundos; causa no determinada. También W mantuvo posición e imagen. No se acredita recorrido continuo."
+}
