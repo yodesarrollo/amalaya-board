@@ -1,0 +1,63 @@
+diff --git a/public/levantamiento/paramento-refinement.js b/public/levantamiento/paramento-refinement.js
+index f3fc045..06c50d0 100644
+--- a/public/levantamiento/paramento-refinement.js
++++ b/public/levantamiento/paramento-refinement.js
+@@ -1,3 +1,4 @@
++import {OLA_C06_20261029} from './ola-c06-20261029.js';
+ import {FRONT_BUILDINGS,ROUND2_BUILDINGS,HEIGHT_REVIEWS,COURTYARD_REVIEWS,JOIN_REVIEWS,PARAMENTO_VERSION} from './paramento-data.js?v=5cc1cd6d1d7a';
+ import {PARAMENTO_SIDEWALKS} from './paramento-sidewalks.js?v=8ee470fed0ad';
+ import {footprintColliderCells} from './isc58-refinement.js?v=76eca0365d35';
+@@ -67,6 +68,12 @@ export function applyParamento(world,colliders,R){
+     const back=mesh(extrude(opening(bay),.045),bay.fillColor||color,g,'Paramento · cierre del pórtico');back.position.z=-1.05;
+     block(g,bay.x,bay.b+1.25,-.98,bay.w*.68,1.45,.055,'#465151','Paramento · cierre de ventana del pórtico');
+    }else if(!bay.open){const fill=mesh(extrude(opening(bay),.045),bay.fillColor||(bay.blind?color:bay.wood?'#59472f':'#262e32'),g,'Paramento · cierre retranqueado');fill.position.z=-(bay.recess??.17);}
++   // The C1-13 south frontage has painted semicircles above rectangular
++   // openings, not arched holes. Draw a shallow surface over the intact wall.
++   if(bay.rect&&bay.paintedArch){const r=bay.w*.56, y=bay.b+bay.h;const painted=new Shape();
++    painted.moveTo(bay.x-r,y);painted.lineTo(bay.x+r,y);painted.absarc(bay.x,y,r,0,Math.PI,false);painted.closePath();
++    const decal=mesh(extrude(painted,.012),bay.paintedArch,g,'Paramento · arco pintado');decal.position.z=.012;
++   }
+    if(bay.fragment&&bay.frameColor){const fw=bay.frameWidth;
+     for(const y of [bay.b,bay.b+bay.h])block(g,bay.x,y,.04,bay.w,fw,.08,bay.frameColor,'Paramento · marco rectangular');
+     if(bay.frameLeft)block(g,bay.x-bay.w/2,bay.b+bay.h/2,.04,fw,bay.h,.08,bay.frameColor,'Paramento · marco rectangular');
+@@ -95,8 +102,8 @@ export function applyParamento(world,colliders,R){
+     const surround=mesh(extrude(trim,.09),bay.archFrameColor||'#e3dfcf',g,'Paramento · moldura de arco');surround.position.z=.005;}
+    if(!bay.portico&&!bay.blind&&!bay.noBars){
+     const barHeight=bay.fullBars?bay.h:bay.h-bay.w/2;
+-    for(let x=bay.x-bay.w/2+.13;x<bay.x+bay.w/2;x+=.23)block(g,x,bay.b+barHeight/2,-.08,.025,barHeight,.025,bay.barColor||'#131c22','Paramento · reja');
+-    if(bay.fullBars&&!bay.noCrossBars)for(let y=bay.b+.4;y<bay.b+bay.h;y+=.45)block(g,bay.x,y,-.065,bay.w,.022,.022,bay.barColor||'#131c22','Paramento · travesaño de reja');
++    for(let x=bay.x-bay.w/2+.13;x<bay.x+bay.w/2;x+=.23)block(g,x,bay.b+barHeight/2,bay.frontBars?.07:-.08,.025,barHeight,.025,bay.barColor||'#131c22','Paramento · reja');
++    if(bay.fullBars&&!bay.noCrossBars)for(let y=bay.b+.4;y<bay.b+bay.h;y+=.45)block(g,bay.x,y,bay.frontBars?.08:-.065,bay.w,.022,.022,bay.barColor||'#131c22','Paramento · travesaño de reja');
+     if(bay.door)block(g,bay.x,bay.h/2,-.04,.04,bay.h,.04,'#8e8a74','Paramento · encuentro de hojas');
+    }
+   }
+@@ -243,7 +250,7 @@ export function applyParamento(world,colliders,R){
+  result.blockDetails=[];
+  function compact(group,keepDetails=false,keepGrilles=false){
+   group.updateMatrixWorld(true);const buckets=new Map();let count=0;
+-  group.traverse(m=>{if(!m.isMesh||Array.isArray(m.material))return;count++;const structural=/^Paramento · (muro|cubierta|base|cierre)/.test(m.name)||(keepDetails&&/^Paramento · (marco rectangular|banda de fachada)/.test(m.name))||(keepGrilles&&/^Paramento · (reja|travesaño de reja|encuentro de hojas)/.test(m.name))||m.name==='Cuadra · cubierta del segundo nivel',key=m.material.uuid+'-'+structural;
++  group.traverse(m=>{if(!m.isMesh||Array.isArray(m.material))return;count++;const structural=/^Paramento · (muro|cubierta|base|cierre)/.test(m.name)||(keepDetails&&/^Paramento · (marco rectangular|banda de fachada|arco pintado)/.test(m.name))||(keepGrilles&&/^Paramento · (reja|travesaño de reja|encuentro de hojas)/.test(m.name))||m.name==='Cuadra · cubierta del segundo nivel',key=m.material.uuid+'-'+structural;
+    if(!buckets.has(key))buckets.set(key,{material:m.material,structural,positions:[],normals:[]});
+    const b=buckets.get(key),g=m.geometry.index?m.geometry.toNonIndexed():m.geometry.clone();g.applyMatrix4(m.matrixWorld);
+    b.positions.push(...g.attributes.position.array);b.normals.push(...g.attributes.normal.array);g.dispose();
+@@ -262,7 +269,7 @@ export function applyParamento(world,colliders,R){
+    for(const c of solidCells(poly)){const box=new R.Box3(new R.Vector3(c.minX,.05,c.minZ),new R.Vector3(c.maxX,height+.05,c.maxZ));box.blockDetail=owner;colliders.push(box)}
+   }
+  }
+- for(const packet of CUADRA_DETAILS){
++ for(const packet of [...CUADRA_DETAILS,OLA_C06_20261029]){
+   const entry={block:packet.block,buildings:[],equipment:[],batches:[]};
+   for(const p of packet.buildings){
+    const prefix=p.ownerPrefix||'Planta física · '+p.id;let owner;world.traverse(o=>{if(!owner&&o.name.startsWith(prefix))owner=o});if(!owner)throw Error('Cuadra: missing '+p.id);
+@@ -270,8 +277,10 @@ export function applyParamento(world,colliders,R){
+    if(plan.holes?.length)throw Error('Cuadra: courtyard detail requires explicit hole support '+p.id);
+    const visual=p.roundCorners?roundedFront(plan.points,p.facades,p.roundCorners):{points:plan.points,facades:p.facades};
+    const n=visual.points.length,reverse=visual.points.reduce((a,p,i)=>a+p[0]*visual.points[(i+1)%n][1]-visual.points[(i+1)%n][0]*p[1],0)>0,points=reverse?[visual.points[0],...visual.points.slice(1).reverse()]:visual.points;
+-   const facades=visual.facades.map(f=>{const a=visual.points[f.edge],b=visual.points[(f.edge+1)%n],length=Math.hypot(b[0]-a[0],b[1]-a[1]);return {...f,edge:reverse?n-1-f.edge:f.edge,clipBands:true,fins:f.reverseFins&&reverse?(f.fins||[]).map(v=>({...v,x:length-v.x})):f.fins,bays:(f.bays||[]).map(v=>({...v,frameLeft:reverse?v.frameRight:v.frameLeft,frameRight:reverse?v.frameLeft:v.frameRight,fullBars:!!v.rect,barColor:p.id==='D1-03'||p.id==='D1-04'?v.barColor:p.id==='B2-01'||p.id==='B2-02'?'#bcaa62':undefined,x:reverse?length-v.x:v.x}))}});
++   const facades=visual.facades.map(f=>{const a=visual.points[f.edge],b=visual.points[(f.edge+1)%n],length=Math.hypot(b[0]-a[0],b[1]-a[1]);return {...f,edge:reverse?n-1-f.edge:f.edge,clipBands:true,fins:f.reverseFins&&reverse?(f.fins||[]).map(v=>({...v,x:length-v.x})):f.fins,bays:(f.bays||[]).map(v=>({...v,frameLeft:reverse?v.frameRight:v.frameLeft,frameRight:reverse?v.frameLeft:v.frameRight,fullBars:!!v.rect,barColor:p.id==='C1-13'||p.id==='D1-03'||p.id==='D1-04'?v.barColor:p.id==='B2-01'||p.id==='B2-02'?'#bcaa62':undefined,x:reverse?length-v.x:v.x}))}});
++   const originalColliders=p.id==='C1-13'?colliders.filter(c=>c.buildingId===p.id):null;
+    removeOwner(prefix,p.id);addFront({...p,part:'cuadra-'+p.id,owner:ownerName,points,facades,evidence:p.sources});
++   if(originalColliders){for(let i=colliders.length-1;i>=0;i--)if(colliders[i].buildingId===p.id)colliders.splice(i,1);colliders.push(...originalColliders);}
+    const added=world.getObjectByName(ownerName);added.userData.fittedPlan=plan;if(p.roundCorners)added.userData.visualOutline=visual.points;added.userData.blockReview=packet.block;
+    entry.batches.push({id:p.id,...compact(added,!!p.keepDetails,!!p.keepGrilles)});entry.buildings.push({id:p.id,height:p.height,uncertainty:p.uncertainty,sources:p.sources,note:p.note});
+   }
