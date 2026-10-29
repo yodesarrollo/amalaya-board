@@ -1,0 +1,193 @@
+{
+  "id": "D1-12",
+  "number": 89,
+  "block": "C11",
+  "displayNumber": 26,
+  "baseSHA": "2c59d1b2ca4871ed85604b32c5326f8222dacf62",
+  "model": "gpt-6.1-terra",
+  "agentCanonical": "/root/manager_sol/cuadra_c11_terra",
+  "timestamp": "2026-10-29T03:39:38.179042+00:00",
+  "sources": [
+    {
+      "path": "public/levantamiento/ajuste-visual/C11.jpg",
+      "sha256": "b7c0554316d8e138ea07835e0d52e140be76e0490f38b285118aa5d9d4bee379",
+      "date": "desconocida",
+      "side": "aérea",
+      "coverage": "conjunto y dos huecos; imagen compuesta de referencia y montaje"
+    },
+    {
+      "path": "public/levantamiento/cuadras/C11-inventario.jpg",
+      "sha256": "1b82526ad8d803bba1430e1f533db385c6f1906e312aebb02ad9eb8dc2211485",
+      "date": "desconocida",
+      "side": "aérea",
+      "coverage": "límite de inventario INEGI superpuesto; no guarnición"
+    },
+    {
+      "path": "public/levantamiento/evidence/D1-12/20261006-01-cierre.json",
+      "sha256": "6b1c9e792a88158bdbc416050890552df27e1ef108818782d02efd1c684cc279",
+      "date": "2026-10-06 (registro; fecha imagen desconocida)",
+      "side": "aérea",
+      "coverage": "interpretación histórica, escala y altura provisional"
+    },
+    {
+      "path": "public/levantamiento/evidence/D1-12/20261006-01-cierre.png",
+      "sha256": "0705e4af2c41c6146646dc6cb4c09df6f2375c710d738a6880a64c2a1f9b3806",
+      "date": "2026-10-06",
+      "side": "modelo aéreo",
+      "coverage": "render histórico, no foto"
+    },
+    {
+      "path": null,
+      "url": "https://www.google.com/maps/@29.0740423,-110.9557832,207a,90y,90t/data=!3m7!1e1!3m5!1swCAjZTaNz6Qt4POhDordqw!2e0!7i16384!8i8192",
+      "pano": "wCAjZTaNz6Qt4POhDordqw",
+      "date": "2023-12",
+      "side": "hacia norte desde Bavispe, presumiblemente frente sur",
+      "coverage": "fragmento: muro amarillo con dos vanos superpuestos y nichos; continuidad con esquinas no confirmada",
+      "sha256": null,
+      "hashReason": "panorama consultado en navegador, captura no conservada localmente"
+    }
+  ],
+  "features": [
+    {
+      "feature": "patio mayor",
+      "result": "visible en aérea y hueco en modelo; límites estimados"
+    },
+    {
+      "feature": "segundo patio",
+      "result": "interpretado en aérea y hueco en modelo; límites estimados"
+    },
+    {
+      "feature": "conjunto conectado de cubiertas",
+      "result": "masa general en modelo; composición fina y altura sin verificar"
+    }
+  ],
+  "cameras": [
+    [
+      "calle",
+      29.073960876520957,
+      -110.95574390658436,
+      0,
+      90,
+      0,
+      2.5
+    ],
+    [
+      "esquina",
+      29.073960876520957,
+      -110.95532209588478,
+      315,
+      85,
+      -4,
+      4
+    ],
+    [
+      "aerea",
+      29.074258307796306,
+      -110.95574390658436,
+      180,
+      70,
+      -89,
+      100
+    ]
+  ],
+  "before": {
+    "worldSHA256": "401a29332e4b6335df2246d744593c6d1adea67dba9efb8d39be8e394cebf91b",
+    "images": [
+      "public/levantamiento/evidence/D1-12/20261029-ola1/calle-3d.jpg",
+      "public/levantamiento/evidence/D1-12/20261029-ola1/esquina-3d.jpg",
+      "public/levantamiento/evidence/D1-12/20261029-ola1/aerea-3d.jpg"
+    ]
+  },
+  "after": {
+    "changed": false,
+    "sameAs": "before"
+  },
+  "limits": [
+    "Fecha de imagen aérea no verificada; dimensiones de planta aproximadas ±3 m según ficha histórica.",
+    "Altura de 6.2 m provisional y no medida; poses no calibradas.",
+    "Street View diciembre 2023 muestra fragmento cercano al límite sur; correspondencia con el conjunto y continuidad hacia esquinas aún sin validar.",
+    "Vista de software sin texturas; no equivale a WebGL ni inspección in situ."
+  ],
+  "criteria": {
+    "P1": {
+      "observation": "Inventario asigna D1-12 a C11/26 y número provisional 89; conjunto, no identificación predial.",
+      "evidence": "Aérea y registros de identidad.",
+      "status": "PENDIENTE_AUDITORIA",
+      "requiredChange": "Confirmar identidad en fotos de calle y fechas."
+    },
+    "P2": {
+      "observation": "Dos patios presentes en modelo y en interpretación aérea; cubierta plana y altura 6.2 m provisionales.",
+      "evidence": "aerea-3d.jpg; referencia C11.jpg; ficha histórica.",
+      "status": "BLOQUEADO",
+      "requiredChange": "Contrastar aérea y límites urbanos; usar estimaciones autorizadas con ancla suficiente y declarar incertidumbre."
+    },
+    "P3": {
+      "observation": "Vista de modelo lisa; panorama muestra muro amarillo y vanos enrejados cerca del límite sur, pero no se confirmó correspondencia del fragmento con el conjunto ni su ubicación precisa.",
+      "evidence": "Panorama Google Street View wCAjZTaNz6Qt4POhDordqw, dic 2023; calle-3d.jpg y esquina-3d.jpg.",
+      "status": "BLOQUEADO",
+      "requiredChange": "Confirmar continuidad del fragmento con esquinas y contorno aéreo; estimar proporciones y emplazamiento de los vanos antes de aplicarlos."
+    },
+    "P4": {
+      "observation": "Modelo usa masa uniforme; estructura, materiales y encuentros reales no observados.",
+      "evidence": "Vistas de modelo y aérea.",
+      "status": "BLOQUEADO",
+      "requiredChange": "Fotos cercanas de materiales, apoyos y cubierta visibles; no inferir lo oculto."
+    },
+    "P5": {
+      "observation": "Sin cambios a vecinos. Dos puntos en patios sin colisión de D1-12; no prueba recorridos completos ni accesos.",
+      "evidence": "escena.json y prueba puntual; navegación general.",
+      "status": "BLOQUEADO",
+      "requiredChange": "Confirmar accesos, colisiones de todo recorrido y vista ligera con evidencia de campo."
+    },
+    "P6": {
+      "observation": "Tres vistas fijas reproducidas con hashes idénticos; sin modificación, antes y después son el mismo estado. No hay recibo de publicación.",
+      "evidence": "camaras.json y tres jpg.",
+      "status": "BLOQUEADO",
+      "requiredChange": "Auditoría independiente, cotejo fotográfico, pruebas y publicación/verificación real si se autoriza."
+    }
+  },
+  "changes": [
+    "Sin cambio de geometría. Se añade diagnóstico y reproducción de vistas."
+  ],
+  "tests": [
+    {
+      "name": "pruebas-lamina.mjs",
+      "result": "aprobada; 139 plantas y patios revisados técnicamente"
+    },
+    {
+      "name": "pruebas-navegacion.mjs",
+      "result": "aprobada tras enlazar dependencias locales; primer intento falló por falta de three"
+    },
+    {
+      "name": "patios puntos (-111,207) y (-89,197)",
+      "result": "0 colliders de D1-12 en ambos puntos; no verifica el patio entero"
+    },
+    {
+      "name": "reproducibilidad",
+      "result": "escena, cámaras y tres imágenes SHA-256 idénticos en segunda ejecución"
+    }
+  ],
+  "filesHash": {
+    "public/levantamiento/evidence/D1-12/20261029-ola1/camaras.json": "b9ee315fff74c625bcb7cbe2250fb43752b10dbdd904cd668d152631ef21cae0",
+    "public/levantamiento/evidence/D1-12/20261029-ola1/escena.json": "7cc91dd14c7576ee444c625a54c22ccca5b0a9b38cd1717f5551d00ae1a81be8",
+    "public/levantamiento/evidence/D1-12/20261029-ola1/calle-3d.jpg": "fe7489167eb1aca1c3b7cb255988a070ba8cb2faa3527973c97f05c626755274",
+    "public/levantamiento/evidence/D1-12/20261029-ola1/esquina-3d.jpg": "36a536e0626d670dd1bafc7664c8ccd8e8489bed4c93ad01fa0ef4fa3019b42d",
+    "public/levantamiento/evidence/D1-12/20261029-ola1/aerea-3d.jpg": "dba47f1ff9428141c1ef27a397f4e3fe053c6de06348c13016de5bcc857113de",
+    "scripts/evidencia-ola-c11.mjs": "5ebe1c8df1d57f86eabbab8bc95362c0a765a59668d70f2b400514d15fba372b",
+    "docs/OLA-C11-20261029.md": "d073145743f42d9ffbda7fc7ae5aff661c4bf202936d1aa0dda5fcff2b5f7330"
+  },
+  "remaining": [
+    "Confirmar continuidad del panorama del sur con ambas esquinas y el contorno aéreo",
+    "Cubrir otros frentes visibles y estimar posición de rasgos",
+    "Comparación y auditoría independiente",
+    "Recibo de publicación y comprobación pública"
+  ],
+  "nextAction": "Inspeccionar panoramas contiguos y esquinas para anclar el fragmento amarillo al conjunto; con la correspondencia comprobada, modelar rasgos visibles con dimensiones estimadas declaradas.",
+  "publicationReceipt": null,
+  "status": "BLOQUEADO",
+  "searchAttempt": {
+    "date": "2026-10-29",
+    "method": "búsqueda pública y Google Maps en navegador",
+    "result": "Street View dic 2023 visible; búsqueda web de calles arrojó contexto histórico sin vinculación visual verificable. El acceso de search_service al enlace Maps falló, pero navegador sí mostró el panorama."
+  }
+}
