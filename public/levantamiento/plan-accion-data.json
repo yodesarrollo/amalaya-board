@@ -23024,6 +23024,12 @@
       "agent": "Astra · /root/astra · gpt-6-astra",
       "action": "P6b PASA: merge8c584bac desplegado y verificado públicamente. 82 aceptado como exterior visual aproximado; 84/89 siguen pendientes. Cinco Terra entregaron sus frentes y root integró en rol Sol. Auditoría real por rotaciones registrada; cadencia aproximada.",
       "evidence": "levantamiento/evidence/C1-13/20261029-enjambre/publicacion-8c584ba/auditoria.json"
+    },
+    {
+      "date": "2026-10-30T03:32:03.586322+00:00",
+      "agent": "Sol Integración · /root/sol_integracion · gpt-6.1-sol",
+      "action": "C10:84 forma estimada parcial, soporte opt-in85 probado con activación real y diagnósticos85–88; sin nivelmedio ni despliegue. Se preservan83/82 y recibos históricos. DictamenAstraR1 acepta avance parcial para revisión.",
+      "evidence": "levantamiento/evidence/C10/20261030-equipo/auditoria-astra-r1.json"
     }
   ],
   "updatedAt": "2026-10-29T18:26:43.232065+00:00",
@@ -23031,67 +23037,67 @@
   "sourceCommit": "8c584bac919741d95160a3e5e979059eb3c984dd",
   "agents": [
     {
-      "id": "/root/terra1",
-      "name": "terra1",
-      "model": "gpt-6.1-terra",
-      "role": "Forma, anclas, encaje y diagnóstico de selección",
-      "state": "Entrega 82 verificada; sin ejecución continua después del cierre",
-      "activeBuilding": "C1-13",
-      "lease": "Reserva de esta entrega liberada al cierre; consultar bitácora antes de retomar"
-    },
-    {
-      "id": "/root/terra2",
-      "name": "terra2",
-      "model": "gpt-6.1-terra",
-      "role": "Fachadas y vanos",
-      "state": "Entrega 82 verificada; sin ejecución continua después del cierre",
-      "activeBuilding": "C1-13",
-      "lease": "Reserva de esta entrega liberada al cierre; consultar bitácora antes de retomar"
-    },
-    {
-      "id": "/root/terra3",
-      "name": "terra3",
-      "model": "gpt-6.1-terra",
-      "role": "Barandal y estructura",
-      "state": "Entrega 82 verificada; sin ejecución continua después del cierre",
-      "activeBuilding": "C1-13",
-      "lease": "Reserva de esta entrega liberada al cierre; consultar bitácora antes de retomar"
-    },
-    {
-      "id": "/root/terra4",
-      "name": "terra4",
-      "model": "gpt-6.1-terra",
-      "role": "Pruebas geométricas, ligero y presupuesto",
-      "state": "Entrega 82 verificada; sin ejecución continua después del cierre",
-      "activeBuilding": "C1-13",
-      "lease": "Reserva de esta entrega liberada al cierre; consultar bitácora antes de retomar"
-    },
-    {
-      "id": "/root/terra5",
-      "name": "terra5",
-      "model": "gpt-6.1-terra",
-      "role": "Evidencia, cámaras y QA de navegador",
-      "state": "Entrega 82 verificada; sin ejecución continua después del cierre",
-      "activeBuilding": "C1-13",
-      "lease": "Reserva de esta entrega liberada al cierre; consultar bitácora antes de retomar"
-    },
-    {
-      "id": "/root/astra",
-      "name": "Astra",
+      "id": "/root/astra_c10",
+      "name": "astra_c10",
       "model": "gpt-6-astra",
       "role": "Auditoría independiente",
-      "state": "Entrega 82 verificada; sin ejecución continua después del cierre",
-      "activeBuilding": "C1-13",
-      "lease": "Reserva de esta entrega liberada al cierre; consultar bitácora antes de retomar"
+      "state": "Entrega parcial local; disponible para correcciones, sin servicio permanente",
+      "activeBuilding": "C10",
+      "lease": "Reservas de esta entrega; se liberan al cierre coordinado por Sol Flujo"
+    },
+    {
+      "id": "/root/sol_flujo",
+      "name": "sol_flujo",
+      "model": "gpt-6.1-sol",
+      "role": "Asignación y reservas",
+      "state": "Entrega parcial local; disponible para correcciones, sin servicio permanente",
+      "activeBuilding": "C10",
+      "lease": "Reservas de esta entrega; se liberan al cierre coordinado por Sol Flujo"
+    },
+    {
+      "id": "/root/sol_integracion",
+      "name": "sol_integracion",
+      "model": "gpt-6.1-sol",
+      "role": "Integración, runtime y pruebas",
+      "state": "Entrega parcial local; disponible para correcciones, sin servicio permanente",
+      "activeBuilding": "C10",
+      "lease": "Reservas de esta entrega; se liberan al cierre coordinado por Sol Flujo"
+    },
+    {
+      "id": "/root/terra_c10_84",
+      "name": "terra_c10_84",
+      "model": "gpt-6.1-terra",
+      "role": "Forma y encaje84",
+      "state": "Entrega parcial local; disponible para correcciones, sin servicio permanente",
+      "activeBuilding": "C10",
+      "lease": "Reservas de esta entrega; se liberan al cierre coordinado por Sol Flujo"
+    },
+    {
+      "id": "/root/terra_c10_8586",
+      "name": "terra_c10_8586",
+      "model": "gpt-6.1-terra",
+      "role": "Diagnóstico85–86 y prueba patio85",
+      "state": "Entrega parcial local; disponible para correcciones, sin servicio permanente",
+      "activeBuilding": "C10",
+      "lease": "Reservas de esta entrega; se liberan al cierre coordinado por Sol Flujo"
+    },
+    {
+      "id": "/root/terra_c10_8788",
+      "name": "terra_c10_8788",
+      "model": "gpt-6.1-terra",
+      "role": "Diagnóstico87–88 y encuentros",
+      "state": "Entrega parcial local; disponible para correcciones, sin servicio permanente",
+      "activeBuilding": "C10",
+      "lease": "Reservas de esta entrega; se liberan al cierre coordinado por Sol Flujo"
     },
     {
       "id": "/root",
-      "name": "Sol (rol)",
+      "name": "root",
       "model": null,
-      "role": "Coordinación e integración, rol Sol; modelo no verificable",
-      "state": "Entrega 82 verificada; sin ejecución continua después del cierre",
-      "activeBuilding": "C1-13",
-      "lease": "Reserva de esta entrega liberada al cierre; consultar bitácora antes de retomar"
+      "role": "Enlace y autorizaciones; modelo no comprobado",
+      "state": "Entrega parcial local; disponible para correcciones, sin servicio permanente",
+      "activeBuilding": "C10",
+      "lease": "Reservas de esta entrega; se liberan al cierre coordinado por Sol Flujo"
     }
   ],
   "updatedAtISO": "2026-10-30T03:26:19.040769+00:00",
@@ -23195,7 +23201,72 @@
         "summary": "El edificio 82 quedó integrado como exterior visual aproximado y verificado en el visor público. Los diagnósticos de 84 y 89 siguen conservados; sus geometrías nuevas continúan pendientes. El resto del inventario permanece en cola."
       },
       "sourceCommit": "99a0490",
-      "note": "Conservado al abrir entrega parcialC10; estado82 publicado verificado permanece."
+      "note": "Conservado al abrir entrega parcialC10; estado82 publicado verificado permanece.",
+      "agents": [
+        {
+          "id": "/root/terra1",
+          "name": "terra1",
+          "model": "gpt-6.1-terra",
+          "role": "Forma, anclas, encaje y diagnóstico de selección",
+          "state": "Entrega 82 verificada; sin ejecución continua después del cierre",
+          "activeBuilding": "C1-13",
+          "lease": "Reserva de esta entrega liberada al cierre; consultar bitácora antes de retomar"
+        },
+        {
+          "id": "/root/terra2",
+          "name": "terra2",
+          "model": "gpt-6.1-terra",
+          "role": "Fachadas y vanos",
+          "state": "Entrega 82 verificada; sin ejecución continua después del cierre",
+          "activeBuilding": "C1-13",
+          "lease": "Reserva de esta entrega liberada al cierre; consultar bitácora antes de retomar"
+        },
+        {
+          "id": "/root/terra3",
+          "name": "terra3",
+          "model": "gpt-6.1-terra",
+          "role": "Barandal y estructura",
+          "state": "Entrega 82 verificada; sin ejecución continua después del cierre",
+          "activeBuilding": "C1-13",
+          "lease": "Reserva de esta entrega liberada al cierre; consultar bitácora antes de retomar"
+        },
+        {
+          "id": "/root/terra4",
+          "name": "terra4",
+          "model": "gpt-6.1-terra",
+          "role": "Pruebas geométricas, ligero y presupuesto",
+          "state": "Entrega 82 verificada; sin ejecución continua después del cierre",
+          "activeBuilding": "C1-13",
+          "lease": "Reserva de esta entrega liberada al cierre; consultar bitácora antes de retomar"
+        },
+        {
+          "id": "/root/terra5",
+          "name": "terra5",
+          "model": "gpt-6.1-terra",
+          "role": "Evidencia, cámaras y QA de navegador",
+          "state": "Entrega 82 verificada; sin ejecución continua después del cierre",
+          "activeBuilding": "C1-13",
+          "lease": "Reserva de esta entrega liberada al cierre; consultar bitácora antes de retomar"
+        },
+        {
+          "id": "/root/astra",
+          "name": "Astra",
+          "model": "gpt-6-astra",
+          "role": "Auditoría independiente",
+          "state": "Entrega 82 verificada; sin ejecución continua después del cierre",
+          "activeBuilding": "C1-13",
+          "lease": "Reserva de esta entrega liberada al cierre; consultar bitácora antes de retomar"
+        },
+        {
+          "id": "/root",
+          "name": "Sol (rol)",
+          "model": null,
+          "role": "Coordinación e integración, rol Sol; modelo no verificable",
+          "state": "Entrega 82 verificada; sin ejecución continua después del cierre",
+          "activeBuilding": "C1-13",
+          "lease": "Reserva de esta entrega liberada al cierre; consultar bitácora antes de retomar"
+        }
+      ]
     }
   ]
 }
