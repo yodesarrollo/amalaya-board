@@ -1,0 +1,40 @@
+{
+  "startedAt": "2026-10-30T20:35:46.828Z",
+  "complete": true,
+  "id": "D1-10",
+  "number": "85",
+  "errors": [],
+  "sources": {
+    "/levantamiento/modelo-completo.js": "961c886b4d01e81363c91cec34f86790c0ca0e0d3d65c1d85ca881d8ef44a09b",
+    "/levantamiento/depth-raster.js": "6d87e9dc90725fa55251f21f3d1499332aa140da082303ba265ef48a005e4041",
+    "/levantamiento/ground-reference-data.js": "7c61c41bf1145e5e80b58c35bbe77932db37e4830593416eb92fa55a4f64f513",
+    "/levantamiento/paramento-data.js": "5cc1cd6d1d7afe221bb96edbbfa6990a7e446a487014ba4ae0bc8df76d359d93",
+    "/levantamiento/label-interaction.js": "20c4246baa848387ac1254248fd9ee1cf1d092da76e01c1b6c12d0d1dd69c804",
+    "/seguimiento-ligero.json": "52eeb2f5b55d2ae38a7abaa9131eb8f3d690b4481599551b415cd212c6075579",
+    "/levantamiento/modelo-ligero.json": "e5adac67c1ad587307ba61bf213b226a0967c7ea334f74fcc1bdf6ee18d7d388",
+    "/levantamiento/cuadras.json": "ae35907f3c2d34a8383b9dba51f5b68dc6e4d86fcf4d132b3b354b0126025a83",
+    "/levantamiento/direcciones-referencias.json": "1be59bb73e46c444b0321f65cd4749ec1f94584717cbf4b52a85106faca06322",
+    "/levantamiento/anclas-geometria-actual.json": "3fac6e78677f079abecb7de99ed03b9f0e5f00ebc77f1312f9c364bf40dc4a09",
+    "/levantamiento/identificadores-provisionales.json": "832402154e0d94bcb0297af40ddd40b8f1d721898b85d8b8417984cd501c97cd",
+    "/levantamiento/cuadras/asignaciones.json": "698261cd7f9e22aa5579d74d309c92ade79cb2648980171333db8b384a2410f1",
+    "/levantamiento/modelo-ligero.bin": "a799f2e980acbd0531ffd52d1da0f88d7a9ed38b595722dc2a4cc7b536b0d19e"
+  },
+  "limits": "Visor ligero real mediante controles UI, no recorrido WebGL ni fidelidad fotográfica.",
+  "light": {
+    "status": "Vista ligera lista · arrastra para mover y usa + / − para acercar.",
+    "selected": "D1-10",
+    "canvas": {
+      "yaw": "0.4714",
+      "tilt": "0.8200",
+      "span": "44.05",
+      "center": "-114.47599792480469,1,170.19650268554688",
+      "faces": "47886",
+      "focusBlock": "C10",
+      "visibleLabels": "2"
+    },
+    "tested_path": "/modelo-completo.html?identificar=1&edificio=D1-10"
+  },
+  "finishedAt": "2026-10-30T20:35:51.863Z",
+  "test_environment": "Local loopback; this receipt does not certify public deployment.",
+  "raw_receipt_sha256": "76310d866dd817f168ee8e22bdb963feec6dd5cd262d89ee4a40e0328ade288f"
+}

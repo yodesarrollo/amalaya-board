@@ -1,0 +1,154 @@
+{
+  "at": "2026-10-30T20:35:18.726Z",
+  "complete": true,
+  "id": "D1-10",
+  "captures": [
+    {
+      "name": "85-general-hipotesis",
+      "position": [
+        -112.2000474873289,
+        4.8,
+        189.17919380751673
+      ],
+      "rotation": [
+        -0.16352661882099317,
+        -6.191279744908881,
+        0,
+        "YXZ"
+      ],
+      "fov": 100,
+      "render": {
+        "frame": 1,
+        "calls": 2580,
+        "triangles": 194414,
+        "points": 0,
+        "lines": 120
+      },
+      "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+      "buffer": [
+        1100,
+        760
+      ],
+      "sha256": "81cf0eb1e01460a4bc30addd29ddfca192cafc55e9f0f74607e6c640b7397c43"
+    },
+    {
+      "name": "85-oblicua-hipotesis",
+      "position": [
+        -91.80001530457389,
+        20,
+        209.378743451078
+      ],
+      "rotation": [
+        -0.3567712170552784,
+        -5.778423932254259,
+        0,
+        "YXZ"
+      ],
+      "fov": 51,
+      "render": {
+        "frame": 2,
+        "calls": 1466,
+        "triangles": 121428,
+        "points": 0,
+        "lines": 99
+      },
+      "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+      "buffer": [
+        1100,
+        760
+      ],
+      "sha256": "afc976b8b7ee2571c79c047a538adfb6825c2d81c3d25f9a6793fe2970ef1abb"
+    },
+    {
+      "name": "85-patio-hipotesis",
+      "position": [
+        -113.9999999995382,
+        58,
+        170.00000000012
+      ],
+      "rotation": [
+        -1.5707963267948966,
+        0,
+        0,
+        "YXZ"
+      ],
+      "fov": 54,
+      "render": {
+        "frame": 3,
+        "calls": 1110,
+        "triangles": 86914,
+        "points": 0,
+        "lines": 99
+      },
+      "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+      "buffer": [
+        1100,
+        760
+      ],
+      "sha256": "82a4fc85fdd3ef98688ed6a84de8a364fde334d94d13ee2c9e948d2b11b07202"
+    }
+  ],
+  "limits": "Inspección WebGL del visor compilado real. Render automático pausado durante la carga; cámaras colocadas por el arnés. Sin alterar visibilidad, geometría, luces ni materiales. NO acredita recorrido interactivo, rendimiento, fotografía real ni decisión del propietario.",
+  "runtime": {
+    "id": "D1-10",
+    "meshes": 4,
+    "materials": [
+      {
+        "color": "c1b7a5",
+        "metalness": 0,
+        "roughness": 0.96
+      },
+      {
+        "color": "aaa89d",
+        "metalness": 0,
+        "roughness": 0.96
+      },
+      {
+        "color": "b5b3a7",
+        "metalness": 0,
+        "roughness": 0.96
+      },
+      {
+        "color": "a3a195",
+        "metalness": 0,
+        "roughness": 0.96
+      }
+    ],
+    "loader": "Preparando tu recorrido…"
+  },
+  "finishedAt": "2026-10-30T20:35:44.064Z",
+  "sources": {
+    "/levantamiento/visor-loader.js": "5aed9ea91fb801a1ace6e4cbd9a1c4d050f53498e75c78cc3d5b684352df7ae1",
+    "/levantamiento/visor/assets/index-RoPA5goG.js": "3569232cbc4e6c420abfea212feed1b65158b0fb68a21b9bc557beb4a06d5169",
+    "/levantamiento/ebsw-refinement.js": "765e5fd4f8693ffdd610a16632e5848f73ce70525ea1e17503cc74799e2de057",
+    "/levantamiento/plan-review-refinement.js": "eb8d22536cb3753ce469ca1eb8406aa0fc9a2b0e95858c7a51613835f0c2c421",
+    "/levantamiento/calzadas-refinement.js": "6e7bf650d403fa22fb629cb9e19ed59b69a24296942f0b792a98f1ceef418bec",
+    "/levantamiento/plantas-refinement.js": "8a5221b14a88f7349610097e3d6007056a1acf805c052df5db6a5d5870fc3949",
+    "/levantamiento/banquetas-refinement.js": "4c0e1c096e78f0771dc76fd84cf42d5d7180dea5490b83022827d709758ea8f9",
+    "/levantamiento/isc58-refinement.js": "76eca0365d35400e94b996fa16080888772c137398b7140df9d0308dc50e3a9b",
+    "/levantamiento/sheet-plan-refinement.js": "a3ce160f7c16452d5301981b9507bbbc768f8542ebd47166cf8beb3bdb6ea903",
+    "/levantamiento/sector-visor.js": "b8998854242107908a4611ef7b3fffc742cf2bcc4e1560db5a9866d2c1e5648e",
+    "/levantamiento/walk-navigation.js": "41d52d93116d2be18a27d11ae01290c1468001ea1b8772b5fa5cb3a2f9141e94",
+    "/levantamiento/street-batch50-refinement.js": "9300d223f642a2e4889a565415fb73e29b0580e47110e8f85a7725ebab673cca",
+    "/levantamiento/paramento-refinement.js": "16ded6d3f57795e4d723a86cb93115586af2acd3a8fa432666ba2840479d8901",
+    "/levantamiento/ajuste-visual-refinement.js": "60d91fad5f7220897884bf41c17dd4e7e5fd501fd8637f14821184f3d9832249",
+    "/levantamiento/ground-reference-refinement.js": "46dad659fe0a671ea7b7405c77e759a13c7fecfd7d84d4cb62f7edccf39d79ed",
+    "/levantamiento/obregon-aproximado-data.js": "9a20c956e9deafd3c80a64d0eb5ce74eeef98a1ee088dbeabe770f758217d40f",
+    "/levantamiento/paramento-data.js": "5cc1cd6d1d7afe221bb96edbbfa6990a7e446a487014ba4ae0bc8df76d359d93",
+    "/levantamiento/c1-13-barandal.js": "6fae4d2552dd84f537d8d8de03380a6331d31fd191120bfac6dfde4e990350bd",
+    "/levantamiento/paramento-sidewalks.js": "8ee470fed0adc69c1dc18ccba021efcd621d5f941d27d0f0ee4ea0075eeb18ea",
+    "/levantamiento/sheet-plan-data.js": "9ae568697dde4a4c780a54b0e76ff3255ecadd9ca6b2605fe0f01b53aacaf30f",
+    "/levantamiento/street-batch50-data.js": "dbace99ec7008f142f5310b13e178a8fa56de22bdcd1b6a964cec48d348201ab",
+    "/levantamiento/cuadra-detail-data.js": "2eee4c41b198bd70e513628b13f4fd5b7e31ba2bdc9223f907bfc7009f9dd3ff",
+    "/levantamiento/ground-reference-data.js": "7c61c41bf1145e5e80b58c35bbe77932db37e4830593416eb92fa55a4f64f513",
+    "/levantamiento/serdan-aproximado-data.js": "0bbe41f3555a82dc209d58f3907380667a61126556bd2007de7d3a5fe96e5ab3",
+    "/levantamiento/corredor-obregon-20261026.js": "0b3a3165be8db1e25f79130a79bffd86031afc86e6ce7526895ef55548fe0f17",
+    "/levantamiento/cuadra-c05-aproximada.js": "5b91975adb8acc25dae8fe174be004381df38303b2e35bda70e1e3fc6227c3b4",
+    "/levantamiento/bloque1-serdan-20261026.js": "25a7d7b95b2169eea8ae3ba3a2b55ad9bff0cec4b24c0787cee1201b0e4e9c77",
+    "/levantamiento/cuadra-c02-aproximada.js": "762653c8bba5fce25428553c2fa68cf4bffa30cc87225b2835306a1afe49adc1",
+    "/levantamiento/c10-84-data.js": "eac898b15b51dec1633b69860d009d092f18f74acec4b0b3bbd66b5ba99f7744",
+    "/levantamiento/c10-85-data.js": "dc70a8b0a7a0b83171e17b3617a176ffd6283b941fa6b3b0864113d4ddad032e",
+    "/levantamiento/ajuste-visual-data.js": "c3c433261b271213e7d7657f33ae75d1210ceb21a61178d0c0cf0d6713da8a5d"
+  },
+  "errors": []
+}

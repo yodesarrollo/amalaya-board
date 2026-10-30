@@ -1,5 +1,5 @@
 import { applyVisualFit } from './ajuste-visual-refinement.js?v=60d91fad5f72';
-import { applyParamento } from './paramento-refinement.js?v=0b9d048f17dd';
+import { applyParamento } from './paramento-refinement.js?v=16ded6d3f577';
 import { applyGroundReference } from './ground-reference-refinement.js?v=46dad659fe0a';
 import { applyStreetBatch50 } from './street-batch50-refinement.js?v=9300d223f642';
 import { SHEET_PLANS } from './sheet-plan-data.js?v=9ae568697dde';

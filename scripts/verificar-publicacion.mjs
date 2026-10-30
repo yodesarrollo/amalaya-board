@@ -1,3 +1,4 @@
+import {verifyC10Generations} from './c10-generaciones.mjs'
 import {removePlanRoundHook} from './preparar-plantas.mjs'
 import {removeEbSwHook,refineEbSw,EB_BASE_WORLD,EB_BASE_VISOR} from './preparar-ebsw.mjs'
 import { readdir, readFile, stat } from 'node:fs/promises'
@@ -99,18 +100,7 @@ const swarm82Root=root+'/evidence/C1-13/20261029-enjambre';
 // their exact historical bytes separately from the current C10 artifact.
 const c10Root=root+'/evidence/C10/20261030-equipo';
 const c10Manifest=JSON.parse(await readFile(c10Root+'/manifest.json'));
-const c10ContinuationRoot=root+'/evidence/C10/20261030-continuacion';
-const c10Continuation=JSON.parse(await readFile(c10ContinuationRoot+'/manifest.json'));
-assert.equal(sha256(await readFile(c10Root+'/manifest.json')),c10Continuation.previousManifestSha256,'C10: manifiesto anterior inmutable');
-assert.deepEqual(Object.keys(c10Continuation.sourceHashes).sort(),Object.keys(c10Manifest.sourceHashes).sort(),'C10: conservar cobertura de fuentes actuales');
-for(const [path,hash] of Object.entries(c10Continuation.sourceHashes))assert.equal(sha256(await readFile(path)),hash,'C10: artefacto actual '+path);
-for(const [path,hash] of Object.entries(c10Manifest.sourceHashes)){
- if(sha256(await readFile(path))===hash)continue;
- const snapshot=c10Continuation.historicalC10Snapshots[path+'@'+hash];
- assert(snapshot,'C10: falta snapshot de la fuente anterior '+path);
- assert.match(snapshot,new RegExp('^docs/historico-c10/'+hash+'-[A-Za-z0-9_.-]+$'));
- assert.equal(sha256(await readFile(snapshot)),hash,'C10: fuente anterior exacta '+path);
-}
+const c10Generations=await verifyC10Generations();
 for(const [key,path] of Object.entries(c10Manifest.historical82Snapshots)){
  const hash=key.slice(key.lastIndexOf('@')+1);
  assert.match(path,new RegExp('^docs/historico82/'+hash+'-[A-Za-z0-9_.-]+$'));
@@ -122,16 +112,11 @@ async function verify82Source(path,hash){
  assert(snapshot,'82: falta snapshot del archivo histórico '+path);
  assert.equal(sha256(await readFile(snapshot)),hash,'82: fuente histórica exacta '+path);
 }
-// Verify each generation independently; a new map must never shadow an old hash.
-for(const [path,hash] of [...Object.entries(c10Manifest.evidenceFiles),...Object.entries(c10Continuation.evidenceFiles)]){
- assert.match(path,/^public\/levantamiento\/evidence\/(?:D1-09|D1-10|D1-11|D2-01|D2-02|C10)\/20261030-[A-Za-z0-9-]+\/[A-Za-z0-9_./-]+$/);
- assert(!path.includes('..'),'C10: ruta de evidencia inválida');
- assert.equal(sha256(await readFile(path)),hash,'C10: evidencia exacta '+path);
-}
-for(const path of [...Object.keys(c10Manifest.evidenceFiles),...Object.keys(c10Continuation.evidenceFiles),c10Root+'/manifest.json',c10ContinuationRoot+'/manifest.json']){
+// Every generation was verified independently; register only validated public paths.
+for(const path of c10Generations.publicPaths){
  let dir=path.slice(0,path.lastIndexOf('/'));const name=path.slice(path.lastIndexOf('/')+1);
  if(!olaEvidenceFiles.has(dir))olaEvidenceFiles.set(dir,new Set());olaEvidenceFiles.get(dir).add(name);
- while(dir!==root+'/evidence'){if(!olaEvidenceFiles.has(dir))olaEvidenceFiles.set(dir,new Set());dir=dir.slice(0,dir.lastIndexOf('/'));}
+ while(dir!==root){if(!olaEvidenceFiles.has(dir))olaEvidenceFiles.set(dir,new Set());dir=dir.slice(0,dir.lastIndexOf('/'));}
 }
 olaEvidenceFiles.set(swarm82Root,new Set());
 for(const stage of ['antes','despues']){
@@ -181,6 +166,7 @@ async function check(dir){
     const path=`${dir}/${item.name}`
     assert(!item.isSymbolicLink(),`No se permiten enlaces: ${path}`)
     if(item.isDirectory()){const allowed=olaEvidenceFiles.has(path)||(dir===root&&['cuadras','calco','ajuste-visual','jev-pilot-v1','sidewalk-real-v1'].includes(item.name))||([pilotDir,realDir].includes(dir)&&item.name==='images')||['data','visor','assets','fonts','evidence'].includes(item.name)||(dir===`${root}/evidence`&&(['c08-cierre-20261008','c30-cierre-20261008','c08-punto1-20261008','c08-punto2-20261008','paramento-20261007','paramento-ronda2-20261008','OB-01','OB-02','ISC-58','EB-SW','EB-NW','EB-NE','EB-SE','CH-GA-OXXO','CH-YG-BBVA','CH-YG-BIB','SER-BLEY','SER-HSBC','OB-21','SER-SANT','PL-GA'].includes(item.name)||/^[ABCD][123]-\d{2}$/.test(item.name)));assert(allowed,`Carpeta inesperada: ${path}`);await check(path);continue}
+    if(path.startsWith(root+'/evidence/C10/')||path.startsWith(root+'/revision-practica/'))assert(olaEvidenceFiles.get(dir)?.has(item.name),'C10: evidencia fuera de manifiesto '+path)
     if(dir===pilotDir||dir===pilotDir+'/images')assert(pilotFiles.has(path.slice(pilotDir.length+1)),'Piloto: archivo fuera de manifiesto')
     if(dir===realDir||dir===realDir+'/images')assert(realFiles.has(path.slice(realDir.length+1)),'Banqueta real: archivo fuera de inventario')
     if(batchDirs.has(dir)){assert(batchDirs.get(dir).has(item.name),'Evidencia de tanda no revisada: '+path);if(item.name==='index.html')assert(!/<script|<iframe|\bon[a-z]+\s*=|(?:src|href)=["']https?:/i.test(await readFile(path,'utf8')),'Comparación estática y autónoma');}

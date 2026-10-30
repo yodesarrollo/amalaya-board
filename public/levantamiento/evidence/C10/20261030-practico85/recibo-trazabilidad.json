@@ -1,0 +1,21 @@
+{
+  "kind": "recibo-tecnico-trazabilidad",
+  "stage": 85,
+  "publication": false,
+  "scope": "Sellado de bytes y sucesión de fuentes; no acredita auditoría, fotos, fidelidad ni publicación.",
+  "previousManifestPath": "public/levantamiento/evidence/C10/20261030-continuacion/manifest.json",
+  "previousManifestSha256": "aa1b91295183b9cba85107ba25021b6ef0c46222cbb1f703d03877deb8d43a23",
+  "sourceHashes": {
+    "public/levantamiento/c10-84-data.js": "eac898b15b51dec1633b69860d009d092f18f74acec4b0b3bbd66b5ba99f7744",
+    "public/levantamiento/cuadra-detail-data.js": "2eee4c41b198bd70e513628b13f4fd5b7e31ba2bdc9223f907bfc7009f9dd3ff",
+    "public/levantamiento/paramento-refinement.js": "16ded6d3f57795e4d723a86cb93115586af2acd3a8fa432666ba2840479d8901",
+    "public/levantamiento/sheet-plan-refinement.js": "a3ce160f7c16452d5301981b9507bbbc768f8542ebd47166cf8beb3bdb6ea903",
+    "public/levantamiento/world.js": "f230770eece427eed87b28f77cdcd4143398b52ddde18cc5927721d9c4e1648d",
+    "public/levantamiento/visor/assets/index-RoPA5goG.js": "3569232cbc4e6c420abfea212feed1b65158b0fb68a21b9bc557beb4a06d5169",
+    "public/levantamiento/visor/index.html": "de3788dc3c57e1029b66c089dcf7a977855ea807dabfe3b9919b9591617fdd0d",
+    "public/levantamiento/modelo-ligero.bin": "a799f2e980acbd0531ffd52d1da0f88d7a9ed38b595722dc2a4cc7b536b0d19e",
+    "public/levantamiento/modelo-ligero.json": "e5adac67c1ad587307ba61bf213b226a0967c7ea334f74fcc1bdf6ee18d7d388",
+    "public/levantamiento/c10-85-data.js": "dc70a8b0a7a0b83171e17b3617a176ffd6283b941fa6b3b0864113d4ddad032e"
+  },
+  "preserved": "P1–P6 y dictámenes anteriores se conservan; PRACTICO-2 no convierte fidelidad en PASA."
+}
