@@ -1,0 +1,41 @@
+{
+  "testedSourceCommit": "7f59715c42dc91119bf4cab7f395a93fbce5c792",
+  "recordedAt": "2026-10-30T03:42:10.029114+00:00",
+  "results": [
+    {
+      "command": "npm run pruebas",
+      "exitCode": 0,
+      "log": "pruebas-r2.log"
+    },
+    {
+      "command": "npm run build",
+      "exitCode": 0,
+      "log": "build.log"
+    },
+    {
+      "command": "npm run verificar:publicacion",
+      "exitCode": 0,
+      "log": "verificar.log"
+    },
+    {
+      "command": "node scripts/pruebas-plan-accion.mjs",
+      "exitCode": 0,
+      "log": "plan.log"
+    }
+  ],
+  "previousAttempt": {
+    "exitCode": 1,
+    "log": "pruebas-r1-fallo-hash.log",
+    "reason": "Hash histórico del visor incluía query de import antigua; corregido guardando todos los demás bytes y exigiendo hash del módulo actual."
+  },
+  "runtime": {
+    "receipt": "../runtime-7f59715/recibo.json",
+    "result": "PARCIAL: carga/selección/movimiento/ligera comprobados; P5visual84 bloqueado por pared oscuraP113"
+  },
+  "light": {
+    "bytes": 952680,
+    "gzipNode24": 306601,
+    "triangles": 47634
+  },
+  "limits": "Sólo candidato local; sin merge, despliegue, ratón ni iPhone físico."
+}

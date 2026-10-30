@@ -14405,13 +14405,13 @@
         "requiredChange": "Explorar vistas contiguas y enlazar esquinas; conservar captura confecha/orientación/hash; resolver cubierta/anexo."
       },
       "currentReview": {
-        "candidate": "df9735b",
+        "candidate": "7f59715c42dc91119bf4cab7f395a93fbce5c792",
         "status": "PARCIAL LOCAL · Forma parcial integrada: nave y anexo sur estimado. Fachada no identificada.",
         "evidence": "levantamiento/evidence/D1-09/20261030-equipo/manifest.json",
-        "limitations": "Sin fotografía de calle identificada, no se aprueba nivel medio ni medidas. Fuentes aéreas de fecha desconocida; partes ocultas pendientes.",
+        "limitations": "Sin fotografía de calle identificada, no se aprueba nivel medio ni medidas. Fuentes aéreas de fecha desconocida; partes ocultas pendientes. P5 visual bloqueado: paredP113 permanece muy oscura tras retroceso; falta corrección segura de iluminación/material.",
         "integration": {
           "status": "INTEGRADO PARCIAL PARA REVISIÓN",
-          "reason": "Forma parcial integrada: nave y anexo sur estimado. Fachada no identificada."
+          "reason": "Forma parcial integrada: nave y anexo sur estimado. Fachada no identificada. P5 visual bloqueado; no apto para merge."
         },
         "publication": {
           "status": "PENDIENTE",
@@ -14428,7 +14428,9 @@
             "id": "P2",
             "result": "PARCIAL",
             "reason": "Forma parcial integrada: nave y anexo sur estimado. Fachada no identificada.",
-            "scope": "Entrega parcial; criterios anteriores conservados en historial."
+            "scope": "Entrega parcial; criterios anteriores conservados en historial.",
+            "auditor": "Astra · /root/astra_c10 · gpt-6-astra",
+            "date": "2026-10-30T03:43:22.711458+00:00"
           },
           {
             "id": "P3",
@@ -14444,9 +14446,11 @@
           },
           {
             "id": "P5",
-            "result": "PENDIENTE",
-            "reason": "Forma parcial integrada: nave y anexo sur estimado. Fachada no identificada.",
-            "scope": "Entrega parcial; criterios anteriores conservados en historial."
+            "result": "BLOQUEADO",
+            "reason": "P113 muestra pared muy oscura aun fuera de la huella; carga y teclado funcionan pero no acreditan visibilidad satisfactoria. Probes locales sin corrección productiva.",
+            "scope": "Entrega parcial; criterios anteriores conservados en historial.",
+            "auditor": "Astra · /root/astra_c10 · gpt-6-astra",
+            "date": "2026-10-30T03:43:22.711458+00:00"
           },
           {
             "id": "P6",
@@ -14454,7 +14458,8 @@
             "reason": "Comprobaciones locales preparadas; sin publicación.",
             "scope": "Entrega parcial; criterios anteriores conservados en historial."
           }
-        ]
+        ],
+        "finalAudit": "levantamiento/evidence/C10/20261030-equipo/auditoria-astra-r2.json"
       }
     },
     {
@@ -14606,7 +14611,7 @@
         "note": "Estados anteriores conservados; no equivalen a cierre de los seis pasos."
       },
       "currentReview": {
-        "candidate": "df9735b",
+        "candidate": "7f59715c42dc91119bf4cab7f395a93fbce5c792",
         "status": "PARCIAL LOCAL · Patio existente preservado; soporte técnico opt-in probado. Exterior sin cambios.",
         "evidence": "levantamiento/evidence/D1-10/20261030-equipo/patio-prueba.json",
         "limitations": "Sin fotografía de calle identificada, no se aprueba nivel medio ni medidas. Fuentes aéreas de fecha desconocida; partes ocultas pendientes.",
@@ -14655,7 +14660,8 @@
             "reason": "Comprobaciones locales preparadas; sin publicación.",
             "scope": "Entrega parcial; criterios anteriores conservados en historial."
           }
-        ]
+        ],
+        "finalAudit": "levantamiento/evidence/C10/20261030-equipo/auditoria-astra-r2.json"
       }
     },
     {
@@ -14807,7 +14813,7 @@
         "note": "Estados anteriores conservados; no equivalen a cierre de los seis pasos."
       },
       "currentReview": {
-        "candidate": "df9735b",
+        "candidate": "7f59715c42dc91119bf4cab7f395a93fbce5c792",
         "status": "PARCIAL LOCAL · Planta y junta existentes conservadas; sin discrepancia exterior sustentada.",
         "evidence": "levantamiento/evidence/C10/20261030-equipo/manifest.json",
         "limitations": "Sin fotografía de calle identificada, no se aprueba nivel medio ni medidas. Fuentes aéreas de fecha desconocida; partes ocultas pendientes.",
@@ -14856,7 +14862,8 @@
             "reason": "Comprobaciones locales preparadas; sin publicación.",
             "scope": "Entrega parcial; criterios anteriores conservados en historial."
           }
-        ]
+        ],
+        "finalAudit": "levantamiento/evidence/C10/20261030-equipo/auditoria-astra-r2.json"
       }
     },
     {
@@ -15008,7 +15015,7 @@
         "note": "Estados anteriores conservados; no equivalen a cierre de los seis pasos."
       },
       "currentReview": {
-        "candidate": "df9735b",
+        "candidate": "7f59715c42dc91119bf4cab7f395a93fbce5c792",
         "status": "PARCIAL LOCAL · Diagnóstico de planta y aérea; exterior sin cambios.",
         "evidence": "levantamiento/evidence/D2-01/20261030-equipo/ficha-pendiente.json",
         "limitations": "Sin fotografía de calle identificada, no se aprueba nivel medio ni medidas. Fuentes aéreas de fecha desconocida; partes ocultas pendientes.",
@@ -15057,7 +15064,8 @@
             "reason": "Comprobaciones locales preparadas; sin publicación.",
             "scope": "Entrega parcial; criterios anteriores conservados en historial."
           }
-        ]
+        ],
+        "finalAudit": "levantamiento/evidence/C10/20261030-equipo/auditoria-astra-r2.json"
       }
     },
     {
@@ -15209,7 +15217,7 @@
         "note": "Estados anteriores conservados; no equivalen a cierre de los seis pasos."
       },
       "currentReview": {
-        "candidate": "df9735b",
+        "candidate": "7f59715c42dc91119bf4cab7f395a93fbce5c792",
         "status": "PARCIAL LOCAL · Diagnóstico de planta y aérea; exterior sin cambios.",
         "evidence": "levantamiento/evidence/D2-02/20261030-equipo/ficha-pendiente.json",
         "limitations": "Sin fotografía de calle identificada, no se aprueba nivel medio ni medidas. Fuentes aéreas de fecha desconocida; partes ocultas pendientes.",
@@ -15258,7 +15266,8 @@
             "reason": "Comprobaciones locales preparadas; sin publicación.",
             "scope": "Entrega parcial; criterios anteriores conservados en historial."
           }
-        ]
+        ],
+        "finalAudit": "levantamiento/evidence/C10/20261030-equipo/auditoria-astra-r2.json"
       }
     },
     {

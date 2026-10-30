@@ -1,0 +1,90 @@
+{
+  "id": "AUDIT-ASTRA-C10-20261030-ADENDA-R2",
+  "timestamp": "2026-10-30T03:42:48.060298+00:00",
+  "auditor": "/root/astra_c10",
+  "amends": "AUDIT-ASTRA-C10-20261030-PARCIAL-R1",
+  "candidateCommit": "7f59715c42dc91119bf4cab7f395a93fbce5c792",
+  "verdict": "ADMISIBLE_SOLO_COMO_DRAFT_PARCIAL_CON_REGRESION_WEBGL_ABIERTA",
+  "mediumComplete": false,
+  "blockComplete": false,
+  "mergeAccepted": false,
+  "publicationAccepted": false,
+  "visualObservations": [
+    {
+      "component": "Ligera84",
+      "result": "VISIBLE_APROBADO_COMO_FORMA_PARCIAL",
+      "evidence": "public/levantamiento/evidence/C10/20261030-equipo/runtime-7f59715/ligera84.png",
+      "observedByAuditor": true,
+      "detail": "Nave, anexo bajo, número84 y C10 visibles; corresponde al prototipo geométrico ya revisado."
+    },
+    {
+      "component": "WebGL84/P113",
+      "result": "BLOQUEADO_REGRESION_VISUAL",
+      "evidence": "public/levantamiento/evidence/C10/20261030-equipo/runtime-7f59715/p113-despues.png",
+      "observedByAuditor": true,
+      "detail": "Pared84 casi negra tras retrocesoS3s y lateralA3s; baseline mostraba pared crema. No se acepta lectura visual del edificio en esta vista."
+    },
+    {
+      "component": "WebGL82/P111control",
+      "result": "VISIBLE_CONTROL_POSITIVO",
+      "evidence": "public/levantamiento/evidence/C10/20261030-equipo/runtime-7f59715/p111-control.png",
+      "observedByAuditor": true,
+      "detail": "Mismo artefacto muestra82,barandal,arcos y calle. No es fallo global de carga; control no certifica todas las vistas."
+    },
+    {
+      "component": "Prueba efímera emisivo84",
+      "result": "DIAGNOSTICO_NO_PRODUCTO",
+      "evidence": "public/levantamiento/evidence/C10/20261030-equipo/runtime-7f59715/probes/emisivo-rojo.png",
+      "observedByAuditor": true,
+      "detail": "Cambiar material84 a emisivo rojo en copia diagnóstica produce pared roja en región antes negra. Acota problema a respuesta visual/material/iluminación del84; no identifica causa completa ni acredita corrección. No integrar material rojo."
+    }
+  ],
+  "functionalEvidence": {
+    "receipt": "public/levantamiento/evidence/C10/20261030-equipo/runtime-7f59715/recibo.json",
+    "url": "http://127.0.0.1:8766/levantamiento/visor/",
+    "environment": "Chromium151 headless, ANGLE/SwiftShader,1365x900",
+    "load": "world-ready,loadernone,128puntos",
+    "selection": "P113 y D1-09 ligera identificados",
+    "movement": "S3s y A3s cambian coordenadas; esto no suple apariencia negra",
+    "P5": "PARCIAL: carga/selección/control y ligera comprobados; aparienciaWebGL84 y recorrido perimetral no aprobados",
+    "limits": "Sin prueba ratón, iPhone físico, accesibilidad o continuidad de perímetro."
+  },
+  "preservation": {
+    "result": "CONSERVADA",
+    "detail": "R1:16820colliders salvo84 exactos frente99a049, incluidos82/83; cajas83/85–88 exactas. Patio85 soporte técnico PASS independiente. No se activó nuevo exterior85."
+  },
+  "verificationChanges": {
+    "historical82": "7/7snapshots cotejados por Astra byteporbyte con git99a0490,9/9fuentesactualesC10 coinciden; evidenciaC1-13 histórica intacta. Verificador distingue pasado/actual.",
+    "viewerGuard": "Aceptada normalización exclusiva de querysheet-plan comprobada contra hashactual; resto de bytes e inserciónreversible preservados."
+  },
+  "tests": {
+    "independentAstra": "pruebas-c10-patio PASS; comparación escenas y snapshots propios descritos enR1/adenda",
+    "integratorReport": "Recibo consolidado leído porAstra: npm run pruebas/build/verificar:publicacion y pruebas-plan-accion exit0 sobre7f59715; falloR1 conservado. Los logs técnicos no subsanan regresiónvisualP113.",
+    "initialFailuresPreserved": [
+      "Prueba85 inicial no activaba paquete por instanciaESM distinta, corregida y reejecutada.",
+      "Guardia visor falló legítimamente por nuevo hashimport; corrección conserva todos los demás bytes."
+    ],
+    "receipt": "public/levantamiento/evidence/C10/20261030-equipo/checks/resultado.json"
+  },
+  "remaining": [
+    "Identidad de fachada y fotografías continuas84–88; P1/P3/P4 no completados.",
+    "Corregir y revalidar aparienciaWebGL84/P113 antes de cualquier aceptación funcional integral o merge.",
+    "Revisión individual y perímetro antes de declarar C10nivelmedio."
+  ],
+  "closeScope": "Revisión de borrador parcial admisible dentro autorización de coordinación. No merge ni publicación. ConservaR1inmutable y registra esta regresión visible.",
+  "hashes": {
+    "public/levantamiento/evidence/C10/20261030-equipo/runtime-7f59715/ligera84.png": "58df95d37a68f2e97be754b4dffe6eeac23665378ecd6f7c88d8631054a08c24",
+    "public/levantamiento/evidence/C10/20261030-equipo/runtime-7f59715/p113-despues.png": "18332971436039d80dfe34f314589fcd339e24da6ba1a4172db678547cc51971",
+    "public/levantamiento/evidence/C10/20261030-equipo/runtime-7f59715/recibo.json": "a8e6655fb1594606a1a8e22d7fb168cda24f4ddf5aade474450d2b80f67e681e",
+    "public/levantamiento/evidence/C10/20261030-equipo/runtime-7f59715/p111-control.png": "0c8b476e1a934fcffbd74a27d104e13f417b52864c5b816dbc13a9026f790aca",
+    "public/levantamiento/evidence/C10/20261030-equipo/runtime-7f59715/probes/emisivo-rojo.png": "a6aea557bb4774990d2eeb3a8174f0f6a4d07367c907e3e308209a9764190ff3",
+    "public/levantamiento/evidence/C10/20261030-equipo/checks/resultado.json": "05be220bd4d95fe445e619f209fdb966cb7d75b782ba0e3d25959c581f4cec10"
+  },
+  "lightBudget": {
+    "bytes": 952680,
+    "gzipNode24": 306601,
+    "triangles": 47634
+  },
+  "nextDiagnosticHypothesis": "Comparar material original completo de84 y FrontSide con material común nuevo, en futura prueba acotada. Hipótesis sin ejecutar; no aplicar emisión ni Basic para ocultar la regresión.",
+  "finalizedAt": "2026-10-30T03:43:22.711458+00:00"
+}

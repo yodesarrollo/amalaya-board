@@ -1,0 +1,194 @@
+
+> amalaya-board@0.1.0 prepruebas
+> node scripts/generar-seguimiento-3d.mjs && node scripts/generar-vista-ligera.mjs
+
+Matriz Markdown: 140 columnas.
+Vista ligera: 47634/89660 caras, 952680 bytes; índice 79409 bytes, 140 entradas.
+
+> amalaya-board@0.1.0 pruebas
+> node scripts/pruebas-calc.mjs && node scripts/pruebas-careta.mjs && node scripts/pruebas-avance.mjs && node scripts/pruebas-confianza.mjs && node scripts/pruebas-chinches.mjs && node scripts/pruebas-chinche-visores.mjs && node scripts/pruebas-moac.mjs && node scripts/pruebas-recorrido.mjs && node scripts/pruebas-modelos3d.mjs && node scripts/pruebas-portal.mjs && node scripts/pruebas-espacios-mapa.mjs && node scripts/pruebas-levantamiento-mapa.mjs && node scripts/pruebas-seguimiento-3d.mjs && node scripts/pruebas-cuadras.mjs && node scripts/pruebas-identificacion.mjs && node scripts/pruebas-calco-cuadras.mjs && node scripts/pruebas-isc58.mjs && node scripts/pruebas-visor-isc58.mjs && node scripts/pruebas-ebsw.mjs && node scripts/pruebas-plantas.mjs && node scripts/pruebas-calzadas.mjs && node scripts/pruebas-banquetas.mjs && node scripts/pruebas-revision-plantas.mjs && node scripts/pruebas-calzadas-lote50.mjs && node scripts/pruebas-lamina.mjs && node scripts/pruebas-vista-ligera.mjs && node scripts/pruebas-depth-raster.mjs && node scripts/pruebas-suelo.mjs && node scripts/pruebas-ajuste-visual.mjs && node scripts/pruebas-mapa-recuperacion.mjs && node scripts/pruebas-navegacion.mjs && node scripts/pruebas-paramento.mjs && node scripts/pruebas-secciones-cuadra.mjs && node scripts/pruebas-c1-13-enjambre.mjs --detalles && node scripts/pruebas-sector-visor.mjs && node scripts/pruebas-board-walk-entry.mjs && node scripts/pruebas-c10-patio.mjs && node scripts/pruebas-respaldo-publico.mjs && node scripts/pruebas-recintos.mjs && node --test scripts/jev-pilot/contract.test.mjs && node --test scripts/jev-pilot/transport.test.mjs && npm run pruebas:banqueta-real && node scripts/pruebas-observatorio.mjs && node scripts/pruebas-portal-shell.mjs && node scripts/pruebas-diagnostico.mjs && node scripts/pruebas-capas.mjs
+
+normalizarId
+  ✓ quita acentos, minúsculas, espacios a _
+interpretar — casos válidos
+  ✓ aritmética con precedencia
+  ✓ variables normalizadas (con acento y mayúsculas)
+interpretar — errores con texto en español, nunca 0 silencioso
+  ✓ factor inexistente
+  ✓ división entre cero
+  ✓ paréntesis desbalanceados
+  ✓ batería maliciosa: nada se ejecuta, todo da error
+  ✓ el resultado no finito da error
+montoLinea
+  ✓ número directo, con formato de moneda
+  ✓ fórmula con factores del espacio
+  ✓ monto vacío o no numérico da error
+escenarios
+  ✓ las líneas sin escenario aplican siempre; las de escenario, solo si está activo
+resumenEspacio y resumenGlobal — el valor por acción
+  ✓ resumen del espacio escuela: 20 alumnos
+  ✓ valor por acción con el desglose de 3 componentes
+  ✓ cambiar la escuela de 20 a 50 alumnos mueve el valor por acción
+  ✓ una línea con fórmula rota reporta error y NO suma cero en silencio
+  ✓ sin acciones emitidas, porAccion es null (no división entre cero)
+  ✓ UX-08: sin acciones emitidas el total avisa qué falta
+  ✓ UX-08: una fórmula rota vuelve el total «incompleto» y se lista
+  ✓ UX-08: sin costo por m² del tipo se lista como faltante (no como cero real)
+  ✓ una clave repetida con 0 no pisa el valor real
+  ✓ una copia de Config no oculta el cambio de la primera fila que edita el servidor
+  ✓ el cero explícito de la primera fila no se reemplaza por una copia antigua
+  ✓ vaciar las acciones canónicas deja el valor por acción incompleto aunque exista una copia vieja
+configNum
+  ✓ lee números con formato y respeta el valor por defecto
+Valor por acción desglosado por espacio
+  ✓ la suma por espacio da exactamente el valor por acción
+  ✓ cada espacio lleva sus tres componentes
+¿Y si…? — ajuste de ingresos que no guarda nada
+  ✓ sin ajuste el factor es 1 y nada cambia
+  ✓ +10% ocupación y −10% precio multiplican los ingresos por 0.99
+  ✓ el ajuste llega al valor por acción
+Comparar escenarios
+  ✓ cada escenario se calcula como si fuera el único prendido
+Autocompletar factores
+  ✓ sugiere las etiquetas que empiezan con lo que va escrito
+  ✓ a media fórmula mira solo la última palabra
+  ✓ sin «=» no sugiere nada (es un número)
+
+Todas las pruebas del motor financiero pasaron.
+data.json — la premisa
+  ✓ trae la bandera demo: true
+  ✓ no contiene la pestaña Usuarios ni códigos
+  ✓ no contiene datos reales conocidos del proyecto
+  ✓ todas las pestañas de datos existen (sin Usuarios)
+paleta — contraste WCAG
+  ✓ texto normal sobre los tres fondos (4.5:1)
+  ✓ acentos como texto grande (3:1)
+  ✓ el ámbar neón como texto (4.5:1 — lleva texto chico en la portada)
+  ✓ el papel del Reporte (impresión)
+  ✓ el oro claro NUNCA como texto sobre papel (comprobación negativa)
+repo — sin datos de infraestructura
+  ✓ config.js no trae IDs de Sheets ni carpetas de Drive
+
+La careta pasa todas las pruebas de premisa y diseño.
+avance — 5 rayitas por estado_desarrollo
+  ✓ "idea" → 1
+  ✓ "negociación" → 2
+  ✓ "Negociacion" → 2
+  ✓ "proyecto" → 3
+  ✓ "OBRA" → 4
+  ✓ "operando" → 5
+  ✓ "" → 0
+  ✓ undefined → 0
+  ✓ "otra cosa" → 0
+  ✓ obra pinta 4 llenas de 5
+
+El indicador de avance pasa sus pruebas.
+Confianza financiera: estimaciones vigentes visibles; filas sin uso y escenarios inactivos excluidos.
+Chinches: token, formato de ID (CHN y UUID), CAS ID/estado/issue, GitHub autoritativo, motivo, cross-repo, idempotencia, reapertura y fallo de historial verificados sin red ni Sheets reales.
+Chinche en mapa y visores: círculo → Street View, anterior/siguiente, contexto del toque, protocolo con el visor 360, limpieza de datos y dictado por voz verificados sin navegador.
+mini MOAC — semáforo, regla D.2 y peticiones
+  ✓ {"fecha":"2026-09-20","hecho":"no"} → rojo
+  ✓ {"fecha":"2026-09-24","hecho":"no"} → ambar
+  ✓ {"fecha":"2026-09-30","hecho":"no"} → ambar
+  ✓ {"fecha":"2026-10-15","hecho":"no"} → verde
+  ✓ {"fecha":"2026-09-01","hecho":"si"} → hecho
+  ✓ {"fecha":"","hecho":"no"} → sin-fecha
+  ✓ acciones sin objetivo (incluye las de un objetivo borrado)
+  ✓ peticiones con id estable y estado normalizado
+  ✓ avance de un objetivo
+
+El mini MOAC pasa sus pruebas.
+recorrido 360 — render «después» desde Drive
+  ✓ irA usa el render guardado sin error
+
+El visor 360 pasa su prueba.
+OK: vínculos inequívocos, estado validado, escala/coordenadas, rutas de activos y regresión render360.
+Portal: IDs de panoramas preservados, rumbo derivado y mensajes desconocidos rechazados.
+Espacios: IDs preservados, anclas y calibración compartidas, zona explícita y modo libre respetados.
+Maqueta: capa nueva bajo las rutas, fallo conserva respaldo y carga cancelada libera recursos.
+Seguimiento 3D: 18 tramos, 139 anclas; estimación 81–152 h; Markdown sincronizado.
+Matriz XY: estados, problemas, contexto de indicaciones y envío verificados.
+Fotos 3D: formato, límite, asociación privada y ausencia de IDs/nombres en texto público verificados.
+Cuadras: 33 identificada(s), 0 edificios por asignar, 1 espacio(s) público(s); 140 registros conservados.
+Inventario completo: límites, pertenencia espacial, fuente y ocho revisiones verificadas.
+33 cuadras, 139 registros y 141 referencias visuales únicas con anclas en superficies del modelo.
+Calco 2D: 33 revisiones, 25 fragmentos abiertos, transformación exacta y ninguna aprobación física.
+ISC-58: UV métricas, tres vanos, 62 celdas interiores (3631.9 m²), altura heredada, preservación OB-01/OB-02 e hooks invertibles comprobados.
+PH-01 A: base bajo juntas, 4 losetas recortadas sin pisar calzada, 12 colliders de sólidos visibles; cotas, transición y norte conservados.
+PH-01 B: juntas con base, 41 losetas retiradas/recortadas con bisel y cierres, 165 genéricas recortadas por ownership;03,OBytransición conservados.
+ISC-58 visor: checkpoint anterior reversible, caché por fuente, hook único y runtime propio antes del avatar verificados.
+EB-SW 3: bases, calzada/vecinos, colisiones y geometría según alcance comprobados.
+EB-SW 4: bases, calzada/vecinos, colisiones y geometría según alcance comprobados.
+EB-SW 7: bases, calzada/vecinos, colisiones y geometría según alcance comprobados.
+EB-SW 8: bases, calzada/vecinos, colisiones y geometría según alcance comprobados.
+EB-SW 9: bases, calzada/vecinos, colisiones y geometría según alcance comprobados.
+EB-NW: plant 15.20 x 15.06 m; 62 collider rows, unchanged height and neighbours.
+EB-NE: plant 24.07 x 16.83 m; 72 collider rows, unchanged height and neighbours.
+EB-SE: plant 27.33 x 25.71 m; 105 collider rows, unchanged height and neighbours.
+CH-YG-BBVA: unique OSM footprint added; unmeasured height default explicitly retained
+Round 01: reversible October checkpoints, both viewer hooks, geometry, collision ownership and production preparation checked.
+Round 02: both reversible viewers, widths and joins, unchanged buildings/sidewalks, production merge, 12 mandatory progress images and records checked.
+Round 03: exact widths, road/body separation, inherited heights/materials, inscribed registered collisions, reversible viewers, production merge and 12 current column images checked.
+Revisión 01: cubierta 23.42 × 6.11; 14 colisiones propias; alturas, patio, acceso y vecinos conservados; historial y cierre del inventario comprobados.
+Lote 50: 827 caras viales; 20 tramos y reparación B3-04; edificios/colisiones preservados; 50 comparaciones y registros válidos; 77 calzadas pendientes.
+Lámina: 139 plantas cerradas; 127 contornos individualizados; 12 sectores; geometría, patios, imágenes, registros y reversibilidad verificados.
+Vista ligera: todos los IDs y estados conservados; geometría válida y presupuestos de carga cumplidos.
+Profundidad por píxel: caras cruzadas, suelo/fachada, doble orientación y juntas sin grietas.
+{"roadOwners":31,"beforeMeshes":3324,"afterMeshes":1996,"beforeInstances":13959,"afterInstances":2241,"removedColliders":17,"buildings":139}
+Encaje 3D: {
+  trianglesChecked: 44694,
+  collidersChecked: 13849,
+  roadMeshIntrusions: 0,
+  roadColliderIntrusions: 0
+}
+{"blocks":33,"buildings":139,"surfaces":37,"triangles":2538,"corrections":[{"id":"EB-SW","colliders":46,"maxDisplacementMeters":2.108},{"id":"EB-SW","colliders":214,"maxDisplacementMeters":6.464},{"id":"EB-NW","colliders":62,"maxDisplacementMeters":0.589},{"id":"EB-SE","colliders":115,"maxDisplacementMeters":0.721}]}
+Encaje agrupado del mapa principal: {
+  trianglesChecked: 44855,
+  collidersChecked: 13849,
+  roadMeshIntrusions: 0,
+  roadColliderIntrusions: 0
+}
+OK: recuperación única; sin errores tardíos ni temporizadores tras desmontar.
+{"points":37,"colliders":16974,"adjusted":0,"maxAdjustment":0,"checks":"thin walls, wall sliding, boundaries, spawn, four camera bearings, real character/POV"}
+Carga: espera escena real, fallo WebGL, pérdida de contexto, timeout y llegada tardía verificados.
+Paramento: {
+  worldSha256: '5a3b14d1f53250d3ab479e161c31eeb8be84032b9172d127637eef913cfff574',
+  finiteGeometry: true,
+  parkingAndGatewayFree: true,
+  streetStations: 18,
+  trianglesChecked: 54216,
+  collidersChecked: 16974,
+  roadMeshIntrusions: 0,
+  roadColliderIntrusions: 0
+}
+{"frontages":50,"heightReviews":14,"courtyards":1,"joins":7,"streetStations":18}
+Cuadras 1 y 8: evidencia histórica íntegra; su hash puede diferir del mundo actual 5a3b14d1f532. Siguiente cuadra 9.
+82: 2107 caras proyectadas; suma de intersecciones proyectadas con calzada (no área única) 0.000000 m².
+barandal { meshes: 1, total: 732, found: 528 }
+reja sur { meshes: 2, total: 298, found: 248 }
+reja este { meshes: 1, total: 20, found: 20 }
+arco este { meshes: 3, total: 1025, found: 693 }
+arco pintado sur { meshes: 1, total: 330, found: 108 }
+pilastra este { meshes: 1, total: 12, found: 12 }
+Colisionadores y siete vecinos preservados. Presencia de detalle no equivale a visibilidad; revisar calle, esquina y aérea.
+{"ids":[499759728,499760720,1533334038,499759374],"heights":[6.2,6.2,8.5,6.2],"bounds":[{"id":499759728,"min":[48.201480865478516,0.040000000000007634,-154.67539978027344],"max":[86.36219787597656,6.239999809265137,-124.59684753417969]},{"id":499760720,"min":[53.0809211730957,0.040000000000004615,-114.5114974975586],"max":[73.63871765136719,6.239999809265137,-75.40161895751953]},{"id":1533334038,"min":[-3.683880090713501,0.04000000000000363,-99.0450668334961],"max":[17.534879684448242,8.54,-59.31386947631836]},{"id":499759374,"min":[-75.4952392578125,0.040000000000002665,-90.00263977050781],"max":[-26.895240783691406,6.239999809265137,-43.492401123046875]}],"colliders":688,"idempotent":true}
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Se conserva el visor previo exactamente
++ actual - expected
+
++ '1f8e7851cc0d71d47f2b69ec3b0c984ab180e5673da3cf2a3ed63bc76cf102cf'
+- '665a7a1395ee26e3d03c77d36430b577fcca2c79f1bb83bf536159add149fcc4'
+
+    at file:///workspace/amalaya-c10/scripts/pruebas-sector-visor.mjs:25:8 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: '1f8e7851cc0d71d47f2b69ec3b0c984ab180e5673da3cf2a3ed63bc76cf102cf',
+  expected: '665a7a1395ee26e3d03c77d36430b577fcca2c79f1bb83bf536159add149fcc4',
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.19.0

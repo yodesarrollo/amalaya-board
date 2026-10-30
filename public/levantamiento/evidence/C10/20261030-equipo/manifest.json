@@ -1,7 +1,7 @@
 {
   "scope": "C10 edificios84–88, conservar83; entrega parcial sin publicación",
   "baseline": "99a0490414f1e2dda9429f945395db547773898d",
-  "candidateCode": "df9735b",
+  "candidateCode": "7f59715c42dc91119bf4cab7f395a93fbce5c792",
   "createdAt": "2026-10-30T03:26:19.040769+00:00",
   "sourceHashes": {
     "public/levantamiento/c10-84-data.js": "14ecc45806f78ee2dca1fe76d53b4efcbc501da8cf8a4933dc61c0cc23d0fbb7",
@@ -29,6 +29,25 @@
   "files": {},
   "evidenceFiles": {
     "public/levantamiento/evidence/C10/20261030-equipo/auditoria-astra-r1.json": "94fa112f0f2c6660ae6b46740887371993e880ab1c56b9c3c9200cc15750d49c",
+    "public/levantamiento/evidence/C10/20261030-equipo/auditoria-astra-r2.json": "ad615616016bb374be8dc3b125f33d51c2d34acf78478047c5d3ee7c517c1479",
+    "public/levantamiento/evidence/C10/20261030-equipo/checks/build.log": "817693735dda3c5a62aeb1c847585eeb806d8b464ed8700e7d3e6fa1c3dd5237",
+    "public/levantamiento/evidence/C10/20261030-equipo/checks/plan.log": "9dd34ce4f9d534f2c21d88801c695009e7721d569112f0df6dd9422ef0a5ffe6",
+    "public/levantamiento/evidence/C10/20261030-equipo/checks/pruebas-r1-fallo-hash.log": "66ae80eaecb40f3c898124010286cb9693f722e31d37cacdcf5530c6cf99eae5",
+    "public/levantamiento/evidence/C10/20261030-equipo/checks/pruebas-r2.log": "d58781db85b2cbd932534c8265664be2017b2922adf368fea32d3841d7036e50",
+    "public/levantamiento/evidence/C10/20261030-equipo/checks/puente-root.json": "fce4da3a5ac6c8a167b1838ee6a8db670045e4f95d76a8a7ebd6a3730cd92b77",
+    "public/levantamiento/evidence/C10/20261030-equipo/checks/resultado.json": "05be220bd4d95fe445e619f209fdb966cb7d75b782ba0e3d25959c581f4cec10",
+    "public/levantamiento/evidence/C10/20261030-equipo/checks/verificar.log": "663840580261eb9cb5279cb69f79f2de5eeca722d4ff09feb2b62f255e2513ed",
+    "public/levantamiento/evidence/C10/20261030-equipo/runtime-7f59715/cdp.json": "e620ca3cd84f722423c8e9dc613ff3ef96b9ecf99ef3a197bfcedccad53d7c5f",
+    "public/levantamiento/evidence/C10/20261030-equipo/runtime-7f59715/diagnostico.json": "cac79f765b55e40484e475079054afbea5c9677c15fcff8d959f263064b62a19",
+    "public/levantamiento/evidence/C10/20261030-equipo/runtime-7f59715/ligera84.png": "58df95d37a68f2e97be754b4dffe6eeac23665378ecd6f7c88d8631054a08c24",
+    "public/levantamiento/evidence/C10/20261030-equipo/runtime-7f59715/p111-control.png": "0c8b476e1a934fcffbd74a27d104e13f417b52864c5b816dbc13a9026f790aca",
+    "public/levantamiento/evidence/C10/20261030-equipo/runtime-7f59715/p113-antes.png": "1e352665e9a89752f8c845eb4332de8152db4482a7bc01cb526dd4960f3d62d2",
+    "public/levantamiento/evidence/C10/20261030-equipo/runtime-7f59715/p113-despues.png": "18332971436039d80dfe34f314589fcd339e24da6ba1a4172db678547cc51971",
+    "public/levantamiento/evidence/C10/20261030-equipo/runtime-7f59715/p113-llegada.png": "d8b1a020592f83236c1cdc72829ad7fbb8e7d7fe691e39f7a03bb3582685adf9",
+    "public/levantamiento/evidence/C10/20261030-equipo/runtime-7f59715/p113-vuelo-control.png": "a76e30a682002a34cd158e6d0d4c6f862a29c8c5e2834d1d5c21e15ae02479a6",
+    "public/levantamiento/evidence/C10/20261030-equipo/runtime-7f59715/probes/emisivo-rojo.png": "a6aea557bb4774990d2eeb3a8174f0f6a4d07367c907e3e308209a9764190ff3",
+    "public/levantamiento/evidence/C10/20261030-equipo/runtime-7f59715/probes/sin-recepcion-sombra.png": "18332971436039d80dfe34f314589fcd339e24da6ba1a4172db678547cc51971",
+    "public/levantamiento/evidence/C10/20261030-equipo/runtime-7f59715/recibo.json": "a8e6655fb1594606a1a8e22d7fb168cda24f4ddf5aade474450d2b80f67e681e",
     "public/levantamiento/evidence/C10/20261030-equipo-encuentros/base.json": "9de37b89f72c7f4cec75f0d1ee88499df1a9d4af7946d61b1807094c55f414f1",
     "public/levantamiento/evidence/C10/20261030-equipo-encuentros/candidata-b4ca03f.json": "f670ce6c8001ed0b2fd52cf51180ea0a2dd8f09dea9ebc71253cad902c1d6634",
     "public/levantamiento/evidence/D1-09/20261030-equipo/antes/aerea-3d.jpg": "aad3091889606bab84d38cdb7e689a3c46db1720ad9071f5d959b8cf0f227eb9",
@@ -52,5 +71,11 @@
     "public/levantamiento/evidence/D2-01/20261030-equipo/ficha-pendiente.json": "d078aa5726833e173ae8b13b64889ce6fe629a568788f36d71781307d16871df",
     "public/levantamiento/evidence/D2-02/20261030-equipo/antes-aerea.jpg": "cd0527f2f70098b48a8dcae4c5e915089e4f72aedb96f17a53e36f4ee30f23be",
     "public/levantamiento/evidence/D2-02/20261030-equipo/ficha-pendiente.json": "03e22f0db285fa4cf29cf99231f191548b4d3b03d6a1879590bf582c4a354a25"
-  }
+  },
+  "verification": "levantamiento/evidence/C10/20261030-equipo/checks/resultado.json",
+  "runtime": "levantamiento/evidence/C10/20261030-equipo/runtime-7f59715/recibo.json",
+  "visual84": "BLOQUEADO P5: paredP113 muy oscura; sin corrección productiva ni merge.",
+  "auditFinal": "levantamiento/evidence/C10/20261030-equipo/auditoria-astra-r2.json",
+  "rootBridgeCheck": "levantamiento/evidence/C10/20261030-equipo/checks/puente-root.json",
+  "verdict": "BORRADOR PARCIAL ADMISIBLE; P5VISUAL84BLOQUEADO; NO MERGE NI DESPLIEGUE"
 }

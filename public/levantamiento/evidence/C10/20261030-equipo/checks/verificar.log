@@ -1,0 +1,28 @@
+
+> amalaya-board@0.1.0 verificar:publicacion
+> node scripts/verificar-publicacion.mjs
+
+Publicación: activos visuales presentes, datos geográficos autorizados y sin credenciales reconocibles. El acceso al negocio se conserva.
+OB-02: cuatro capturas WebGL revisadas, referencias identificadas, cámaras registradas y límites conservados.
+OB-02: planta y calzada con capturas independientes del checkpoint actual.
+OB-02: punto 3 con planta/peatón y cabecera de inicio/avance desde idéntica cámara.
+OB-02: punto 4 norte y Avance 04 desde la cámara fija; evidencias anteriores conservadas.
+OB-02: guarnición continua, Avance 05 desde cámara fija y bloqueo de rampas explícito.
+OB-02: identidad visual con P03/P04 y contexto P02/P05, rutas originales y Avance 06 desde cámara fija.
+OB-02: punto 7 con apoyo de cubierta, dos encuentros laterales, antes/después equivalente y medidas pendientes visibles.
+OB-02: siete vanos documentados, ocho pilastras, zócalo continuo y Avance 08 desde cámara fija.
+OB-02: acabados originales, juntas en paños sólidos y Avance 09 desde cámara fija.
+OB-02: inventario documentado, bolardo apoyado y Avance 10 desde cámara fija; posiciones pendientes visibles.
+OB-02: planta/bloque/peatón desde P03, captura limpia y consulta original reproducible; norte de panorama pendiente.
+ISC-58: once acciones, referencias originales, cámaras coincidentes y checkpoints anteriores preservados.
+ISC-58: punto 01 con frame WebGL 2.0, cámara fija, fuente OSM y bloqueo de frente documentado.
+EB-SW: once acciones ordenadas, capturas por etapa reproducibles, fuentes y cierre incompleto verificados.
+EB-NW: plant 15.20 x 15.06 m; 62 collider rows, unchanged height and neighbours.
+EB-NE: plant 24.07 x 16.83 m; 72 collider rows, unchanged height and neighbours.
+EB-SE: plant 27.33 x 25.71 m; 105 collider rows, unchanged height and neighbours.
+CH-YG-BBVA: unique OSM footprint added; unmeasured height default explicitly retained
+Round 01: reversible October checkpoints, both viewer hooks, geometry, collision ownership and production preparation checked.
+Round 02: both reversible viewers, widths and joins, unchanged buildings/sidewalks, production merge, 12 mandatory progress images and records checked.
+Round 03: exact widths, road/body separation, inherited heights/materials, inscribed registered collisions, reversible viewers, production merge and 12 current column images checked.
+Revisión 01: cubierta 23.42 × 6.11; 14 colisiones propias; alturas, patio, acceso y vecinos conservados; historial y cierre del inventario comprobados.
+Lámina: 139 plantas cerradas; 127 contornos individualizados; 12 sectores; geometría, patios, imágenes, registros y reversibilidad verificados.

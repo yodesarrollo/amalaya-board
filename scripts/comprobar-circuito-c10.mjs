@@ -27,6 +27,11 @@ try{
  await evaluate("(()=>{const s=document.querySelector('#board-point-select');s.value='P113';s.dispatchEvent(new Event('change',{bubbles:true}));document.querySelector('#visit-board-point').click();document.querySelector('#close-evidence').click();document.activeElement?.blur();document.querySelector('#game').focus()})()");
  await pause(700);
  const position=()=>evaluate("({url:location.href,point:document.querySelector('#board-point-select').value,summary:document.querySelector('#board-point-summary').innerText,coordinates:document.querySelector('#geo-coordinates').innerText,mode:document.querySelector('#movement-mode-status').innerText,notice:document.querySelector('#toast')?.innerText})");
+ const arrival=await position();await capture('p113-llegada.png');
+ // The selected photo point is beside a wall. Back away before checking the
+ // lateral walk so the camera has room to display the actual exterior.
+ await send('Input.dispatchKeyEvent',{type:'keyDown',code:'KeyS',key:'s',windowsVirtualKeyCode:83});await pause(3000);
+ await send('Input.dispatchKeyEvent',{type:'keyUp',code:'KeyS',key:'s',windowsVirtualKeyCode:83});
  const before=await position();await capture('p113-antes.png');
  await send('Input.dispatchKeyEvent',{type:'keyDown',code:'KeyA',key:'a',windowsVirtualKeyCode:65});await pause(3000);
  await send('Input.dispatchKeyEvent',{type:'keyUp',code:'KeyA',key:'a',windowsVirtualKeyCode:65});
@@ -36,7 +41,7 @@ try{
  await evaluate("(()=>{document.querySelector('#building-panel').open=true;const s=document.querySelector('#building');s.value='D1-09';s.dispatchEvent(new Event('change',{bubbles:true}));document.querySelector('#iso').click();document.querySelector('#plus').click();document.querySelector('#rotate').click()})()");
  await pause(700);await capture('ligera84.png');
  const light=await evaluate("({url:location.href,status:document.querySelector('#status').innerText,selected:document.querySelector('#building').value,canvas:{...document.querySelector('#model').dataset}})");assert.equal(light.selected,'D1-09');
- const receipt={revision,startedAt,finishedAt:new Date().toISOString(),browser:'Chromium 151 headless, ANGLE SwiftShader; viewport1365x900',load,input:'SeleccionarP113, VER PUNTO EN MODELO, cerrar panel, desenfocar, A durante3segundos',before,after,light,limits:'Circuito local de carga, selección, teclado lateral y ligera. No certifica fidelidad de fachada, ratón, iPhone físico ni recorrido completo.'};
+ const receipt={revision,startedAt,finishedAt:new Date().toISOString(),browser:'Chromium 151 headless, ANGLE SwiftShader; viewport1365x900',load,input:'Seleccionar P113, VER PUNTO EN MODELO, cerrar panel y desenfocar; S durante3segundos para separarse del muro, luego A durante3segundos',arrival,before,after,light,limits:'Circuito local de carga, selección, retroceso, teclado lateral y ligera. Llegada próxima al muro; no certifica fidelidad de fachada, ratón, iPhone físico ni recorrido completo.'};
  await writeFile(out+'/recibo.json',JSON.stringify(receipt,null,2)+'\n');await writeFile(out+'/cdp.json',JSON.stringify(events,null,2)+'\n');
  console.log(JSON.stringify({revision,load,coordinates:[before.coordinates,after.coordinates],light}));
 }finally{ws.close();}

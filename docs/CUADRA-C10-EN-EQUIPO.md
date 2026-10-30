@@ -1,6 +1,6 @@
 # C10 · cuadra 25 · entrega parcial del 30 de octubre de 2026
 
-Base `99a0490414f1e2dda9429f945395db547773898d`. Alcance: edificios 84–88; preservar el 83 y el mundo vigente. **No se declara nivel medio ni edificios terminados.** El paquete se prepara para revisión en PR borrador, sin merge ni despliegue.
+Base `99a0490414f1e2dda9429f945395db547773898d`. Alcance: edificios 84–88; preservar el 83 y el mundo vigente. **No se declara nivel medio ni edificios terminados.** El paquete se prepara para revisión en PR borrador, sin merge ni despliegue. **P5 visual del84 está bloqueado por una pared muy oscura desdeP113; no es apto para merge.**
 
 | Edificio | Entrega comprobable | Pendiente |
 |---|---|---|
@@ -39,3 +39,6 @@ El exportador admite nombres sólo con `--names`; la comprobación de superficie
 Para continuar, 84 requiere una vista continua mirando al sur desde Sufragio que enlace vecinos y huella, acceso y esquinas, más una aérea que permita contrastar el corte del anexo. 85 necesita el frente de Felipe Salido y la relación del patio con la huella. 86 requiere la junta con 85 y el límite con 88; el nombre histórico «rojo» no prueba el material actual. 87 necesita las vistas norte y este sobre Mina ligadas a sus quiebres de cubierta. 88 requiere el frente sur de Felipe Salido y la esquina oriental sobre Mina, relacionados con 86 y 87. Cada original debe conservar procedencia, orientación, fecha conocida o desconocida y hash del archivo real.
 
 Trabajaron seis especialistas: Astra (`gpt-6-astra`), dos Sol (`gpt-6.1-sol`) y tres Terra (`gpt-6.1-terra`), más root como enlace de autorizaciones, siete agentes en total. Al entregar, los productores pasaron a encaje de 84, prueba real del patio 85 y encuentros del solar; los comunes tuvieron un único integrador. Sin otra mejora respaldada, permanecieron disponibles para correcciones. Las reservas se liberan al cerrar esta entrega. No existe una base comparable para atribuir ahorro de tiempo, ni se midieron FPS.
+
+
+El circuito local sobre `7f59715` abrió WebGL con SwiftShader, seleccionó P113, retrocedió con S y avanzó lateralmente con A; el visor ligero seleccionó84 y mostró nave/anexo. La paredP113 permanece muy oscura incluso tras separarse unos2.16m; no se aprueba su visibilidad. El controlP111 muestra82 y el modo vuelo muestra la cubierta84. Se hicieron dos controles finitos en una copia efímera: retirar recepción de sombra no resolvió la pared; emisión roja temporal sí coloreó esa superficie. No se demostró un arreglo seguro y no se incorporó esa emisión ni una sustitución de material al producto. Las capturas, recibos y el resultado de pruebas quedan en el manifiesto C10. El dictamen de avance parcial no aprueba P5 ni habilita merge o publicación.
