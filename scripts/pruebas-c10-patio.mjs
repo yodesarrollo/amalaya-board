@@ -2,11 +2,14 @@ import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
 import {createWorld} from '../public/levantamiento/world.js';
-import {CUADRA_DETAILS} from '../public/levantamiento/cuadra-detail-data.js';
 import {createCollisionIndex,blocked} from '../public/levantamiento/walk-navigation.js';
 
 // Exercise the real D1-10 fitted plan through the same packet path as C10 details.
 const originalFetch=globalThis.fetch;
+const runtime=await readFile('public/levantamiento/paramento-refinement.js','utf8');
+const packetModule=runtime.match(/from '\.\/(cuadra-detail-data\.js[^']*)'/)[1];
+// Query strings participate in module identity: mutate the exact runtime instance.
+const {CUADRA_DETAILS}=await import('../public/levantamiento/'+packetModule);
 globalThis.fetch=async url=>({ok:true,json:async()=>JSON.parse(await readFile('public/levantamiento/'+url))});
 const digest=value=>createHash('sha256').update(JSON.stringify(value)).digest('hex');
 function neighbours(world){
@@ -22,6 +25,8 @@ try{
  const existing=CUADRA_DETAILS.some(p=>p.buildings.some(b=>b.id==='D1-10'));
  if(!existing)CUADRA_DETAILS.push({block:'C10',evidence:'real-courtyard-regression',buildings:[{id:'D1-10',height:owner.userData.heightMeters,color:'#c6c3b8',uncertainty:3,sources:[],facades:[],note:'Neutral test packet on the real fitted footprint.'}]});
  const after=await createWorld('',undefined,'pilot',{overview:true}),updated=after.getObjectByName('Planta física · D1-10');
+ assert.equal(updated.userData.blockReview,'C10','The courtyard packet must actually be applied');
+ assert.equal(updated.userData.frontageId,'cuadra-D1-10','The original unmodified owner is not a valid candidate');
  assert.deepEqual(updated.userData.fittedPlan,plan,'The courtyard and outer footprint must remain exact');
  assert.equal(neighbours(after),beforeNeighbours,'All other geometry, materials and colliders must remain exact');
  const hole=plan.holes[0],center=hole.reduce((s,p)=>[s[0]+p[0]/hole.length,s[1]+p[1]/hole.length],[0,0]);
