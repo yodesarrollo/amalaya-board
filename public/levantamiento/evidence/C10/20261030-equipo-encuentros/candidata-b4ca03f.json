@@ -1,0 +1,83 @@
+{
+  "route": {
+    "start": [
+      -115,
+      150
+    ],
+    "end": [
+      -65,
+      150
+    ],
+    "spacing": 0.25,
+    "playerRadius": 0.23,
+    "footY": 0,
+    "heightInterval": [
+      0.17,
+      1.74
+    ],
+    "blockedSamples": [],
+    "note": "Muestreo discreto recto del solar; no equivale a navegación continua ni verifica perímetro."
+  },
+  "worldSha256": "5a3b14d1f53250d3ab479e161c31eeb8be84032b9172d127637eef913cfff574",
+  "sceneSha256": "1a768c14a32d312bec5a78614ba6d320b6232ed8390e841342b52471b367a2ba",
+  "pairs": [
+    {
+      "a": "D2-01",
+      "b": "D1-11",
+      "intersectionArea": 0,
+      "edgeDistance": 25.40500207690244
+    },
+    {
+      "a": "D2-02",
+      "b": "D1-11",
+      "intersectionArea": 0,
+      "edgeDistance": 0.6824509301187116
+    },
+    {
+      "a": "D2-01",
+      "b": "D2-02",
+      "intersectionArea": 0,
+      "edgeDistance": 23.446101221164657
+    }
+  ],
+  "outside": [
+    {
+      "id": "D2-01",
+      "area": 894.5319165000001,
+      "outsideBoundary": 132.57291765978061
+    },
+    {
+      "id": "D2-02",
+      "area": 242.02472849999867,
+      "outsideBoundary": 1.8081383479902797
+    },
+    {
+      "id": "D1-11",
+      "area": 115.61449700000048,
+      "outsideBoundary": 0
+    }
+  ],
+  "solar": [
+    {
+      "x": -100,
+      "z": 150,
+      "collisionIds": []
+    },
+    {
+      "x": -90,
+      "z": 150,
+      "collisionIds": []
+    },
+    {
+      "x": -80,
+      "z": 150,
+      "collisionIds": []
+    },
+    {
+      "x": -70,
+      "z": 150,
+      "collisionIds": []
+    }
+  ],
+  "note": "Intersecciones sobre SHEET_PLANS originales; no acreditan geometría refinada. Distancia es entre bordes, incluso si existe intersección. Muestras aisladas de AABB a y=1.2 m; no prueban recorrido ni todo el solar. Borde INEGI sólo inventario."
+}
