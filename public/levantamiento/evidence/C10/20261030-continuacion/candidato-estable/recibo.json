@@ -1,0 +1,352 @@
+{
+  "setup": {
+    "loader": "No se pudo abrir el recorrido 3D\n\nReintenta la carga o continúa con la vista ligera.\n\nReintentar\nVer edificios",
+    "candidateMaterials": [
+      {
+        "metalness": 0,
+        "roughness": 0.96,
+        "color": "e3e4dc",
+        "emissive": "000000"
+      },
+      {
+        "metalness": 0,
+        "roughness": 0.96,
+        "color": "d4d2c7",
+        "emissive": "000000"
+      },
+      {
+        "metalness": 0,
+        "roughness": 0.96,
+        "color": "c5c5ba",
+        "emissive": "000000"
+      },
+      {
+        "metalness": 0,
+        "roughness": 0.96,
+        "color": "c8c6ba",
+        "emissive": "000000"
+      }
+    ]
+  },
+  "captures": [
+    {
+      "test": {
+        "name": "control-herencia-metal1",
+        "metalness": 1,
+        "roughness": 1
+      },
+      "camera": {
+        "position": [
+          -95.26899955537965,
+          1.74,
+          107.47572561774476
+        ],
+        "rotation": [
+          -0.035,
+          -3.141592653589793,
+          0,
+          "YXZ"
+        ]
+      },
+      "material": [
+        {
+          "metalness": 1,
+          "roughness": 1,
+          "color": "e3e4dc",
+          "emissive": "000000"
+        },
+        {
+          "metalness": 1,
+          "roughness": 1,
+          "color": "d4d2c7",
+          "emissive": "000000"
+        },
+        {
+          "metalness": 1,
+          "roughness": 1,
+          "color": "c5c5ba",
+          "emissive": "000000"
+        },
+        {
+          "metalness": 1,
+          "roughness": 1,
+          "color": "c8c6ba",
+          "emissive": "000000"
+        }
+      ],
+      "pixel500_300": [
+        13,
+        16,
+        16,
+        255
+      ],
+      "render": {
+        "frame": 1,
+        "calls": 5,
+        "triangles": 224,
+        "points": 0,
+        "lines": 86
+      },
+      "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+      "buffer": [
+        1365,
+        900
+      ]
+    },
+    {
+      "test": {
+        "name": "candidato-material-explicito",
+        "metalness": 0,
+        "roughness": 0.96
+      },
+      "camera": {
+        "position": [
+          -95.26899955537965,
+          1.74,
+          107.47572561774476
+        ],
+        "rotation": [
+          -0.035,
+          -3.141592653589793,
+          0,
+          "YXZ"
+        ]
+      },
+      "material": [
+        {
+          "metalness": 0,
+          "roughness": 0.96,
+          "color": "e3e4dc",
+          "emissive": "000000"
+        },
+        {
+          "metalness": 0,
+          "roughness": 0.96,
+          "color": "d4d2c7",
+          "emissive": "000000"
+        },
+        {
+          "metalness": 0,
+          "roughness": 0.96,
+          "color": "c5c5ba",
+          "emissive": "000000"
+        },
+        {
+          "metalness": 0,
+          "roughness": 0.96,
+          "color": "c8c6ba",
+          "emissive": "000000"
+        }
+      ],
+      "pixel500_300": [
+        125,
+        128,
+        124,
+        255
+      ],
+      "render": {
+        "frame": 2,
+        "calls": 5,
+        "triangles": 224,
+        "points": 0,
+        "lines": 86
+      },
+      "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+      "buffer": [
+        1365,
+        900
+      ]
+    },
+    {
+      "test": {
+        "name": "causal-solo-metalness0",
+        "metalness": 0,
+        "roughness": 1
+      },
+      "camera": {
+        "position": [
+          -95.26899955537965,
+          1.74,
+          107.47572561774476
+        ],
+        "rotation": [
+          -0.035,
+          -3.141592653589793,
+          0,
+          "YXZ"
+        ]
+      },
+      "material": [
+        {
+          "metalness": 0,
+          "roughness": 1,
+          "color": "e3e4dc",
+          "emissive": "000000"
+        },
+        {
+          "metalness": 0,
+          "roughness": 1,
+          "color": "d4d2c7",
+          "emissive": "000000"
+        },
+        {
+          "metalness": 0,
+          "roughness": 1,
+          "color": "c5c5ba",
+          "emissive": "000000"
+        },
+        {
+          "metalness": 0,
+          "roughness": 1,
+          "color": "c8c6ba",
+          "emissive": "000000"
+        }
+      ],
+      "pixel500_300": [
+        125,
+        128,
+        124,
+        255
+      ],
+      "render": {
+        "frame": 3,
+        "calls": 5,
+        "triangles": 224,
+        "points": 0,
+        "lines": 86
+      },
+      "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+      "buffer": [
+        1365,
+        900
+      ]
+    },
+    {
+      "test": {
+        "name": "candidato-mundo-p113",
+        "full": true
+      },
+      "camera": {
+        "position": [
+          -95.26899955537965,
+          1.74,
+          107.47572561774476
+        ],
+        "rotation": [
+          -0.035,
+          -3.141592653589793,
+          0,
+          "YXZ"
+        ]
+      },
+      "material": [
+        {
+          "metalness": 0,
+          "roughness": 0.96,
+          "color": "e3e4dc",
+          "emissive": "000000"
+        },
+        {
+          "metalness": 0,
+          "roughness": 0.96,
+          "color": "d4d2c7",
+          "emissive": "000000"
+        },
+        {
+          "metalness": 0,
+          "roughness": 0.96,
+          "color": "c5c5ba",
+          "emissive": "000000"
+        },
+        {
+          "metalness": 0,
+          "roughness": 0.96,
+          "color": "c8c6ba",
+          "emissive": "000000"
+        }
+      ],
+      "pixel500_300": [
+        125,
+        128,
+        124,
+        255
+      ],
+      "render": {
+        "frame": 4,
+        "calls": 1125,
+        "triangles": 91834,
+        "points": 0,
+        "lines": 86
+      },
+      "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+      "buffer": [
+        1365,
+        900
+      ]
+    },
+    {
+      "test": {
+        "name": "candidato-mundo-p144",
+        "full": true,
+        "p144": true
+      },
+      "camera": {
+        "position": [
+          -102.4196399999937,
+          1.74,
+          100.84245500026992
+        ],
+        "rotation": [
+          -0.035,
+          -2.5132741228718345,
+          0,
+          "YXZ"
+        ]
+      },
+      "material": [
+        {
+          "metalness": 0,
+          "roughness": 0.96,
+          "color": "e3e4dc",
+          "emissive": "000000"
+        },
+        {
+          "metalness": 0,
+          "roughness": 0.96,
+          "color": "d4d2c7",
+          "emissive": "000000"
+        },
+        {
+          "metalness": 0,
+          "roughness": 0.96,
+          "color": "c5c5ba",
+          "emissive": "000000"
+        },
+        {
+          "metalness": 0,
+          "roughness": 0.96,
+          "color": "c8c6ba",
+          "emissive": "000000"
+        }
+      ],
+      "pixel500_300": [
+        124,
+        128,
+        124,
+        255
+      ],
+      "render": {
+        "frame": 5,
+        "calls": 1195,
+        "triangles": 94510,
+        "points": 0,
+        "lines": 99
+      },
+      "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+      "buffer": [
+        1365,
+        900
+      ]
+    }
+  ]
+}

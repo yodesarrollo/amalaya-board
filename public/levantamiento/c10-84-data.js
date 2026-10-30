@@ -4,6 +4,8 @@ const t=(131.711-p[2][1])/(p[3][1]-p[2][1]);
 const q=[p[2][0]+(p[3][0]-p[2][0])*t,131.711];
 export const C10_84={block:'C10',evidence:'D1-09/20261030-equipo',buildings:[{
  id:'D1-09',height:6.2,color:'#d4d2c7',roofColor:'#e3e4dc',uncertainty:3,keepDetails:true,facades:[],
+ // Neutral mineral surface: do not inherit a metallic viewer template.
+ surfaceMaterial:{metalness:0,roughness:.96},
  sources:['ajuste-visual/C10.jpg','evidence/D1-09/20261006-01-cierre.json'],
  sections:[
   {part:'84-nave',points:[p[0],p[1],p[2],q,p[8]],height:6.2,color:'#d4d2c7',roofColor:'#e3e4dc',facades:[]},

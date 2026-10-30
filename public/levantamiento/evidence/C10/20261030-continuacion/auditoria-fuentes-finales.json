@@ -1,0 +1,27 @@
+{
+  "verdict": "PASA_CONTRATO_Y_HASHES_FINALES",
+  "review": "Solo delta de fuentes y documentación, sin reconstruir mundo ni modificar destino",
+  "verified": {
+    "historical_snapshots": 9,
+    "snapshot_comparison": "SHA correcto y byte a byte iguales a git show15d52b4:ruta",
+    "original_evidence": 43,
+    "original_evidence_status": "Todos hashes originales exactos; manifiesto original byte idéntico a PR115",
+    "current_source_contract": "Cobertura idéntica al manifiesto previo y SHA actual exigido antes de considerar snapshots históricos",
+    "test": "pruebas-fuentes-c10 modifica copia temporal de una fuente actual y exige rechazo del verificador real con mensaje específico; no modifica original",
+    "doc": "Declara contrafactual material, GPU estable, buffers iniciales descartados, P5 incompleto, sin nuevas fachadas ni nivelmedio"
+  },
+  "finding_fixed": "Ambos mapas evidenceFiles se verifican por separado. Se permiten keys repetidas legítimas solo si ambos hashes coinciden con bytes reales. Prueba de regresión añade hash discrepante y exige rechazo exacto.",
+  "sha256": {
+    "scripts/verificar-publicacion.mjs": "aa63d1379a856030fe994ad1b5689f43a84e4db57afd1b867c5da7a224520614",
+    "scripts/pruebas-fuentes-c10.mjs": "f1d8213def9efe021bd183586783b82de14c8ca70053e1a4dbb30cea967de509",
+    "docs/C10-MATERIAL84-CONTINUACION.md": "68b919bd00f1d072a130ea185e746238f0c5c3af836b03ff6cacc10b834d0fd5"
+  },
+  "final_check": {
+    "all_current_sources_exact": 9,
+    "modelo_ligero_json": "16eb4f92f27724e43697d150435bed321fddeb9fd218b7f753ffbb6834798744",
+    "original_evidence_exact": 43,
+    "historical_snapshots_git15d52b4_exact": 9,
+    "original_manifest_unchanged": true,
+    "commit": "pendiente; ligado a hashes exactos"
+  }
+}

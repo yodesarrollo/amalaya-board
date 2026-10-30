@@ -1,0 +1,369 @@
+{
+  "camera": {
+    "position": [
+      -95.26899955537965,
+      1.74,
+      107.47572561774476
+    ],
+    "direction": [
+      1.2238967795520655e-16,
+      -0.034992854604336196,
+      0.9993875625234887
+    ]
+  },
+  "renderer": {
+    "toneMapping": 4,
+    "exposure": 1.05,
+    "outputColorSpace": "srgb",
+    "info": {
+      "frame": 2,
+      "calls": 7,
+      "triangles": 226,
+      "points": 0,
+      "lines": 87
+    }
+  },
+  "lights": [
+    {
+      "name": "Rebote ambiental cielo/suelo · aproximación hemisférica",
+      "type": "HemisphereLight",
+      "pos": [
+        0,
+        1,
+        0
+      ],
+      "color": "dcecf7",
+      "intensity": 1.55,
+      "ground": "78604b"
+    },
+    {
+      "name": "Sol cálido · sombra de alta resolución",
+      "type": "DirectionalLight",
+      "pos": [
+        -72,
+        105,
+        48
+      ],
+      "color": "fff0d6",
+      "intensity": 3
+    },
+    {
+      "name": "Rebote cálido de fachada · relleno aproximado sin sombras",
+      "type": "DirectionalLight",
+      "pos": [
+        28,
+        16,
+        18
+      ],
+      "color": "f2d7bb",
+      "intensity": 0.36
+    },
+    {
+      "name": "Luz de cielo difusa · relleno frío de baja intensidad",
+      "type": "DirectionalLight",
+      "pos": [
+        -12,
+        18,
+        -34
+      ],
+      "color": "c7d9e8",
+      "intensity": 0.22
+    }
+  ],
+  "meshes": [
+    {
+      "name": "Paramento · muro y cubierta agrupados",
+      "parents": [
+        "Paramento · muro y cubierta agrupados",
+        "Planta física · D1-09"
+      ],
+      "visible": true,
+      "vertices": 48,
+      "normalType": "Float32Array",
+      "matrix": [
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "material": {
+        "type": "MeshStandardMaterial",
+        "color": "e3e4dc",
+        "emissive": "000000",
+        "roughness": 1,
+        "metalness": 1,
+        "side": 2,
+        "vertexColors": false,
+        "flatShading": false,
+        "normalScale": [
+          1,
+          1
+        ],
+        "map": false,
+        "normalMap": false,
+        "lightMap": false,
+        "aoMap": false,
+        "envMap": false
+      },
+      "normalFirst": [
+        0,
+        -1,
+        -6.123234262925839e-17,
+        0,
+        -1,
+        -6.123234262925839e-17,
+        0,
+        -1,
+        -6.123234262925839e-17,
+        0,
+        -1,
+        -6.123234262925839e-17,
+        0,
+        -1,
+        -6.123234262925839e-17,
+        0,
+        -1,
+        -6.123234262925839e-17,
+        0,
+        -1,
+        -6.123234262925839e-17,
+        0,
+        -1,
+        -6.123234262925839e-17
+      ]
+    },
+    {
+      "name": "Paramento · muro y cubierta agrupados",
+      "parents": [
+        "Paramento · muro y cubierta agrupados",
+        "Planta física · D1-09"
+      ],
+      "visible": true,
+      "vertices": 228,
+      "normalType": "Float32Array",
+      "matrix": [
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "material": {
+        "type": "MeshStandardMaterial",
+        "color": "d4d2c7",
+        "emissive": "000000",
+        "roughness": 1,
+        "metalness": 1,
+        "side": 2,
+        "vertexColors": false,
+        "flatShading": false,
+        "normalScale": [
+          1,
+          1
+        ],
+        "map": false,
+        "normalMap": false,
+        "lightMap": false,
+        "aoMap": false,
+        "envMap": false
+      },
+      "normalFirst": [
+        0,
+        -1,
+        -6.123234262925839e-17,
+        0,
+        -1,
+        -6.123234262925839e-17,
+        0,
+        -1,
+        -6.123234262925839e-17,
+        0,
+        -1,
+        -6.123234262925839e-17,
+        0,
+        -1,
+        -6.123234262925839e-17,
+        0,
+        -1,
+        -6.123234262925839e-17,
+        0,
+        -1,
+        -6.123234262925839e-17,
+        0,
+        -1,
+        -6.123234262925839e-17
+      ]
+    },
+    {
+      "name": "Paramento · muro y cubierta agrupados",
+      "parents": [
+        "Paramento · muro y cubierta agrupados",
+        "Planta física · D1-09"
+      ],
+      "visible": true,
+      "vertices": 72,
+      "normalType": "Float32Array",
+      "matrix": [
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "material": {
+        "type": "MeshStandardMaterial",
+        "color": "c5c5ba",
+        "emissive": "000000",
+        "roughness": 1,
+        "metalness": 1,
+        "side": 2,
+        "vertexColors": false,
+        "flatShading": false,
+        "normalScale": [
+          1,
+          1
+        ],
+        "map": false,
+        "normalMap": false,
+        "lightMap": false,
+        "aoMap": false,
+        "envMap": false
+      },
+      "normalFirst": [
+        0,
+        -1,
+        -6.123234262925839e-17,
+        0,
+        -1,
+        -6.123234262925839e-17,
+        0,
+        -1,
+        -6.123234262925839e-17,
+        0,
+        -1,
+        -6.123234262925839e-17,
+        0,
+        -1,
+        -6.123234262925839e-17,
+        0,
+        -1,
+        -6.123234262925839e-17,
+        0,
+        -1,
+        -6.123234262925839e-17,
+        0,
+        -1,
+        -6.123234262925839e-17
+      ]
+    },
+    {
+      "name": "Paramento · muro y cubierta agrupados",
+      "parents": [
+        "Paramento · muro y cubierta agrupados",
+        "Planta física · D1-09"
+      ],
+      "visible": true,
+      "vertices": 324,
+      "normalType": "Float32Array",
+      "matrix": [
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "material": {
+        "type": "MeshStandardMaterial",
+        "color": "c8c6ba",
+        "emissive": "000000",
+        "roughness": 1,
+        "metalness": 1,
+        "side": 2,
+        "vertexColors": false,
+        "flatShading": false,
+        "normalScale": [
+          1,
+          1
+        ],
+        "map": false,
+        "normalMap": false,
+        "lightMap": false,
+        "aoMap": false,
+        "envMap": false
+      },
+      "normalFirst": [
+        0,
+        -1,
+        -6.123234262925839e-17,
+        0,
+        -1,
+        -6.123234262925839e-17,
+        0,
+        -1,
+        -6.123234262925839e-17,
+        0,
+        -1,
+        -6.123234262925839e-17,
+        0,
+        -1,
+        -6.123234262925839e-17,
+        0,
+        -1,
+        -6.123234262925839e-17,
+        0,
+        -1,
+        -6.123234262925839e-17,
+        0,
+        -1,
+        -6.123234262925839e-17
+      ]
+    }
+  ],
+  "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+  "text": "29.0751463, -110.9556952"
+}

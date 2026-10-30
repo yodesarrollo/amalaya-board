@@ -1,0 +1,19 @@
+{
+  "basePath": "baseline-scene.json",
+  "candidatePath": "candidate-scene.json",
+  "baseWorldSHA": "5a3b14d1f53250d3ab479e161c31eeb8be84032b9172d127637eef913cfff574",
+  "candidateWorldSHA": "22b8615a8fb3790fd42868554e7b8881d422bbb3afcfa35196e9e849c6f49630",
+  "scope": "Triángulos visibles de C10 con margen de 35 m según exportador existente; colliders del mundo completo. Sin revisión visual ni certificación de edificios.",
+  "allTriangleGeometrySame": true,
+  "allCollidersSame": true,
+  "collidersBefore": 16974,
+  "collidersAfter": 16974,
+  "buildingBoundsSame": true,
+  "changedMeshes": [],
+  "hashes": {
+    "baseScene": "86ce10fbf2608d6447a4864eaaab2c3d8b33472ead126ec5eb367cf99cd4cf7d",
+    "candidateScene": "ae937de57cf01004958efffeaa5c9a2b835ce1c0505c3b40701a542fc8502a02",
+    "baselineColliders": "f14e9c5d75a8e6fc46689aa6b40b23e24ed0cf5f09e4a531ce9b4ca0046d43f1",
+    "candidateColliders": "f14e9c5d75a8e6fc46689aa6b40b23e24ed0cf5f09e4a531ce9b4ca0046d43f1"
+  }
+}

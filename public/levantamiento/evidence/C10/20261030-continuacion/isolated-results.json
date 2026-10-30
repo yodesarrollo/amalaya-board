@@ -1,0 +1,60 @@
+[
+  {
+    "type": "Group",
+    "lights": [
+      {
+        "type": "HemisphereLight",
+        "intensity": 1.55
+      },
+      {
+        "type": "DirectionalLight",
+        "intensity": 3
+      },
+      {
+        "type": "DirectionalLight",
+        "intensity": 0.36
+      },
+      {
+        "type": "DirectionalLight",
+        "intensity": 0.22
+      }
+    ],
+    "render": {
+      "frame": 1,
+      "calls": 4,
+      "triangles": 224,
+      "points": 0,
+      "lines": 0
+    },
+    "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)"
+  },
+  {
+    "type": "Scene",
+    "lights": [
+      {
+        "type": "HemisphereLight",
+        "intensity": 1.55
+      },
+      {
+        "type": "DirectionalLight",
+        "intensity": 3
+      },
+      {
+        "type": "DirectionalLight",
+        "intensity": 0.36
+      },
+      {
+        "type": "DirectionalLight",
+        "intensity": 0.22
+      }
+    ],
+    "render": {
+      "frame": 1,
+      "calls": 4,
+      "triangles": 224,
+      "points": 0,
+      "lines": 0
+    },
+    "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)"
+  }
+]

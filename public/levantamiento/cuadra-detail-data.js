@@ -3,7 +3,7 @@ import {SERDAN_APROXIMADO} from './serdan-aproximado-data.js?v=0bbe41f3555a';
 import {C05_APROXIMADA} from './cuadra-c05-aproximada.js?v=5b91975adb8a';
 import {CORREDOR_OBREGON_20261026} from './corredor-obregon-20261026.js?v=0b3a3165be8d';
 import {BLOQUE1_SERDAN} from './bloque1-serdan-20261026.js?v=25a7d7b95b21';
-import {C10_84} from './c10-84-data.js?v=14ecc45806f7';
+import {C10_84} from './c10-84-data.js?v=e942f88151ea';
 // Visible features only. Dimensions are visual estimates from the retained photos.
 // Existing fitted footprints are read from the scene, never retraced by this layer.
 export const CUADRA_DETAILS = [{

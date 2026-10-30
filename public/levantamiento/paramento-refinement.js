@@ -1,7 +1,7 @@
 import {FRONT_BUILDINGS,ROUND2_BUILDINGS,HEIGHT_REVIEWS,COURTYARD_REVIEWS,JOIN_REVIEWS,PARAMENTO_VERSION} from './paramento-data.js?v=5cc1cd6d1d7a';
 import {PARAMENTO_SIDEWALKS} from './paramento-sidewalks.js?v=8ee470fed0ad';
 import {footprintColliderCells} from './isc58-refinement.js?v=76eca0365d35';
-import {CUADRA_DETAILS} from './cuadra-detail-data.js?v=b2c0a82899a5';
+import {CUADRA_DETAILS} from './cuadra-detail-data.js?v=187121a41b7a';
 import {applyObregonApprox} from './obregon-aproximado-data.js?v=9a20c956e9de';
 import {addC113SouthRail} from './c1-13-barandal.js';
 
@@ -322,6 +322,10 @@ export function applyParamento(world,colliders,R){
    const facades=visual.facades.map(f=>{const a=visual.points[f.edge],b=visual.points[(f.edge+1)%n],length=Math.hypot(b[0]-a[0],b[1]-a[1]);return {...f,edge:reverse?n-1-f.edge:f.edge,clipBands:true,bands:f.reverseBands&&reverse?(f.bands||[]).map(v=>v.x===undefined?v:{...v,x:length-v.x}):f.bands,fins:f.reverseFins&&reverse?(f.fins||[]).map(v=>({...v,x:length-v.x})):f.fins,bays:(f.bays||[]).map(v=>({...v,frameLeft:reverse?v.frameRight:v.frameLeft,frameRight:reverse?v.frameLeft:v.frameRight,fullBars:!!v.rect,barColor:p.id==='D1-03'||p.id==='D1-04'||p.id==='C1-13'?v.barColor:p.id==='B2-01'||p.id==='B2-02'?'#bcaa62':undefined,x:reverse?length-v.x:v.x}))}});
    removeOwner(prefix,p.id);addFront({...p,part:'cuadra-'+p.id,owner:ownerName,points,holes:plan.holes||[],facades,evidence:p.sources});
    const added=world.getObjectByName(ownerName);if(p.id==='C1-13')added.userData.southRail=addC113SouthRail(added,plan.points,p.height,block);added.userData.fittedPlan=plan;if(p.roundCorners)added.userData.visualOutline=visual.points;added.userData.blockReview=packet.block;
+   // The preserved viewer and the Node exporter can select different native
+   // extrusion templates. Explicit per-building PBR must not inherit metalness
+   // from that arbitrary first mesh, or mutate materials shared with neighbours.
+   if(p.surfaceMaterial){const ownMaterials=new Map();added.traverse(m=>{if(!m.isMesh||Array.isArray(m.material))return;const original=m.material;let own=ownMaterials.get(original);if(!own){own=original.clone();for(const key of ['metalness','roughness'])if(p.surfaceMaterial[key]!==undefined)own[key]=p.surfaceMaterial[key];ownMaterials.set(original,own);}m.material=own;});}
    entry.batches.push({id:p.id,...compact(added,!!p.keepDetails,!!p.keepGrilles)});entry.buildings.push({id:p.id,height:p.height,uncertainty:p.uncertainty,sources:p.sources,note:p.note});
   }
   for(const lot of packet.openLots||[]){

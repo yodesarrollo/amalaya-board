@@ -1,0 +1,69 @@
+{
+  "camera": [
+    -95.26899955537965,
+    1.74,
+    107.47572561774476
+  ],
+  "changes": [
+    {
+      "name": "Paramento · muro y cubierta agrupados",
+      "before": {
+        "metalness": 1,
+        "roughness": 1,
+        "color": "e3e4dc",
+        "emissive": "000000"
+      },
+      "after": {
+        "metalness": 0,
+        "roughness": 1,
+        "color": "e3e4dc",
+        "emissive": "000000"
+      }
+    },
+    {
+      "name": "Paramento · muro y cubierta agrupados",
+      "before": {
+        "metalness": 1,
+        "roughness": 1,
+        "color": "d4d2c7",
+        "emissive": "000000"
+      },
+      "after": {
+        "metalness": 0,
+        "roughness": 1,
+        "color": "d4d2c7",
+        "emissive": "000000"
+      }
+    },
+    {
+      "name": "Paramento · muro y cubierta agrupados",
+      "before": {
+        "metalness": 1,
+        "roughness": 1,
+        "color": "c5c5ba",
+        "emissive": "000000"
+      },
+      "after": {
+        "metalness": 0,
+        "roughness": 1,
+        "color": "c5c5ba",
+        "emissive": "000000"
+      }
+    },
+    {
+      "name": "Paramento · muro y cubierta agrupados",
+      "before": {
+        "metalness": 1,
+        "roughness": 1,
+        "color": "c8c6ba",
+        "emissive": "000000"
+      },
+      "after": {
+        "metalness": 0,
+        "roughness": 1,
+        "color": "c8c6ba",
+        "emissive": "000000"
+      }
+    }
+  ]
+}
