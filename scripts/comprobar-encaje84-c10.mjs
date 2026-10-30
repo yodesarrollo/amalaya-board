@@ -1,6 +1,8 @@
 // Requires a named scene exported from the same world, retaining mesh name as triangle[10].
 import {readFileSync} from 'node:fs';
+import assert from 'node:assert/strict';
 const scene=JSON.parse(readFileSync(process.argv[2]));
+assert(scene.triangles.some(t=>t[10]?.startsWith('Ajuste visual · road')),'Exportar escena con --names antes de comprobar superficies');
 const p=[[-102.483,108.307],[-89.969,110.388],[-88.666,113.768],[-90.23,134.051],[-98.573,136.131],[-99.355,138.732],[-112.39,136.912],[-113.694,132.231],[-105.351,131.711]];
 const cross=(a,b,c)=>(b[0]-a[0])*(c[1]-a[1])-(b[1]-a[1])*(c[0]-a[0]);
 function ptseg(p,a,b){const dx=b[0]-a[0],dz=b[1]-a[1],t=Math.max(0,Math.min(1,((p[0]-a[0])*dx+(p[1]-a[1])*dz)/(dx*dx+dz*dz)));return Math.hypot(p[0]-a[0]-t*dx,p[1]-a[1]-t*dz)}

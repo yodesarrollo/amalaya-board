@@ -22,6 +22,7 @@ assert(block,'Cuadra desconocida');
 const vertices=block.boundaryLocal.coordinates.flat(2),xs=vertices.map(p=>p[0]),zs=vertices.map(p=>p[1]);
 const bounds=[Math.min(...xs)-35,Math.min(...zs)-35,Math.max(...xs)+35,Math.max(...zs)+35];
 const triangles=[];
+const includeNames=process.argv.includes('--names');
 world.traverse(m=>{
  if(!m.isMesh||!m.visible||!m.geometry?.attributes.position)return;
  const p=m.geometry.attributes.position, idx=m.geometry.index?.array||Array.from({length:p.count},(_,i)=>i);
@@ -32,7 +33,7 @@ world.traverse(m=>{
   if(v.every(q=>q.x<bounds[0])||v.every(q=>q.x>bounds[2])||v.every(q=>q.z<bounds[1])||v.every(q=>q.z>bounds[3]))continue;
   let material=m.material;
   if(Array.isArray(material)){const g=m.geometry.groups.find(g=>i>=g.start&&i<g.start+g.count);material=material[g?.materialIndex||0]}
-  triangles.push([...v.flatMap(q=>q.toArray()),material.color?.getHexString()||'bbbbbb']);
+  triangles.push([...v.flatMap(q=>q.toArray()),material.color?.getHexString()||'bbbbbb',...(includeNames?[m.name]:[])]);
  }
 });
 const {writeFile}=await import('node:fs/promises');

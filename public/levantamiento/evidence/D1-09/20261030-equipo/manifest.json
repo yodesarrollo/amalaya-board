@@ -1,0 +1,35 @@
+{
+  "id": "D1-09",
+  "number": 84,
+  "status": "FORMA PARCIAL ESTIMADA; FACHADA PENDIENTE",
+  "baseline": "99a0490414f1e2dda9429f945395db547773898d",
+  "integratedCode": "df9735b",
+  "createdAt": "2026-10-30T03:26:19.040769+00:00",
+  "method": "Rasterización software de triángulos reales; cámaras aproximadas idénticas; no fotografía ni prueba WebGL.",
+  "sources": {
+    "ajuste-visual/C10.jpg": "f67df2cf4a3c3eeef2520966220d1321be624a4d1f5137445930a925b501e8f9",
+    "evidence/D1-09/20261006-01-cierre.json": "a0b0a3591cc46eb7355def87e08a0ad91428676d09a8e4f9a853aeacbb19ef2d"
+  },
+  "cameraSha256": "cf63126ff37fb97f524633a983fc78db4b4bd4ebee1ae4e91302bf53fef93ba0",
+  "sceneSha256": "1a768c14a32d312bec5a78614ba6d320b6232ed8390e841342b52471b367a2ba",
+  "sourceHashes": {
+    "public/levantamiento/c10-84-data.js": "14ecc45806f78ee2dca1fe76d53b4efcbc501da8cf8a4933dc61c0cc23d0fbb7",
+    "public/levantamiento/cuadra-detail-data.js": "b2c0a82899a59379c115c40a2ca33020a9c2b29af0635b72ec3259bf7d097824",
+    "public/levantamiento/paramento-refinement.js": "15b942c9d5953a8b1a89f4e855bed66a79efb22a0419f323415ff50705ae8e9e",
+    "public/levantamiento/world.js": "5a3b14d1f53250d3ab479e161c31eeb8be84032b9172d127637eef913cfff574"
+  },
+  "files": {
+    "antes/aerea-3d.jpg": "aad3091889606bab84d38cdb7e689a3c46db1720ad9071f5d959b8cf0f227eb9",
+    "antes/calle-norte-3d.jpg": "d729e875c8cc362b4becf59cbe740fa57e9d079f727ed8dc4ea8a136e473bd3e",
+    "antes/esquina-noreste-3d.jpg": "20eac7acc039ac5079960f3e61c7a89644ff50a9790167c8dd67cd751e0617c9",
+    "despues/aerea-3d.jpg": "b19a791366b4e07af602dcf81c62a7ce6c656086ade662e5f6b3c5aaa785439b",
+    "despues/calle-norte-3d.jpg": "ad65bc01bd4fd663a18bf1585f7dc768f292e6ee9ed9f86dfe6eed009c8f9d74",
+    "despues/esquina-noreste-3d.jpg": "e47ed4c71a14f415d1957d8fc40c02264014dad79be504b492f3e158d2c6c844",
+    "integrada-df9735b/aerea-3d.jpg": "b19a791366b4e07af602dcf81c62a7ce6c656086ade662e5f6b3c5aaa785439b",
+    "integrada-df9735b/calle-norte-3d.jpg": "ad65bc01bd4fd663a18bf1585f7dc768f292e6ee9ed9f86dfe6eed009c8f9d74",
+    "integrada-df9735b/esquina-noreste-3d.jpg": "e47ed4c71a14f415d1957d8fc40c02264014dad79be504b492f3e158d2c6c844"
+  },
+  "integratedMatchesProducer": true,
+  "preservation": "16,820 colliders ajenos al 84 idénticos a baseline99a049, incluidos82/83; cajas83/85–88 exactas.",
+  "limits": "Anexo sur3.5m y nave6.2m estimados; junta interior hipótesis. Fachada no identificada, sin vanos inventados; no nivel medio ni cotas certificadas."
+}

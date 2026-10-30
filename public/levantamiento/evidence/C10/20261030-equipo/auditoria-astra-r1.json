@@ -1,0 +1,82 @@
+{
+  "id": "AUDIT-ASTRA-C10-20261030-PARCIAL-R1",
+  "timestamp": "2026-10-30T03:26:19.194497+00:00",
+  "auditor": "/root/astra_c10",
+  "scope": "C10 / visible25 / inventario83–88; revisión de avance parcial, objetivo medio exterior visible todavía no alcanzado",
+  "candidateCommit": "df9735b8471ff05d850a8b8dc2cedc7c6668dff7",
+  "baselineCommit": "99a0490414f1e2dda9429f945395db547773898d",
+  "verdict": "ACEPTABLE_PARA_REVISION_COMO_AVANCE_PARCIAL",
+  "levelReached": {
+    "83": "Preservación del exterior previo comprobada; no nuevo cierre ni elevación de nivel",
+    "84": "Forma exterior estimada parcial: nave longitudinal y anexo sur, sin fachada identificada",
+    "85": "Soporte técnico de patio verificado mediante paquete opt-in real; exterior pendiente",
+    "86": "Diagnóstico de planta/fuentes; exterior pendiente",
+    "87": "Diagnóstico aéreo/planta; exterior pendiente",
+    "88": "Diagnóstico aéreo/planta; exterior pendiente",
+    "block": "C10 no terminada a nivel medio"
+  },
+  "visualReview": {
+    "actuallyViewed": true,
+    "images": [
+      "public/levantamiento/evidence/D1-09/20261030-equipo/integrada-df9735b/calle-norte-3d.jpg",
+      "public/levantamiento/evidence/D1-09/20261030-equipo/integrada-df9735b/esquina-noreste-3d.jpg",
+      "public/levantamiento/evidence/D1-09/20261030-equipo/integrada-df9735b/aerea-3d.jpg"
+    ],
+    "observations": [
+      "Nave84 y anexo bajo diferenciados, solar posterior permanece abierto.",
+      "Fachadas84 permanecen neutras: no representan verificación de muro ciego real.",
+      "Referencia calle84–88 no disponible ni anclada; no se aprueban vanos, materiales o tres rasgos completos.",
+      "Patio85 abierto hacia cielo en renders antes/candidato de prueba; muros interiores neutros.",
+      "83 conserva rasgos históricos reconocibles, sin nueva producción."
+    ],
+    "limits": [
+      "Aérea real de fecha desconocida, no estado actual certificado.",
+      "Alturas6.2/3.5m y corte interior de84 estimados; no medición ni junta observada.",
+      "Cámaras software aproximadas; no calibración métrica."
+    ]
+  },
+  "independentChecks": [
+    {
+      "check": "node scripts/pruebas-c10-patio.mjs",
+      "result": "PASS ejecutado por Astra; instancia de módulo runtime exacta y activación comprobadas; hole, base/cubierta abiertas, interior sin colisión, vecinos iguales"
+    },
+    {
+      "check": "comparación JSON escena baseline/candidata",
+      "result": "16820 colliders ajenos a84 exactamente iguales, incluidos82/83; cajas83/85–88 iguales; triángulos24239→24431"
+    },
+    {
+      "check": "lectura guardia pruebas-c1-13-enjambre",
+      "result": "Protección de83 y76–81 intacta; hash de16706colliders salvo82/84 congelado desde99a049; comparación separada conserva82"
+    }
+  ],
+  "functionalEvidence": {
+    "baselineReceipt": "/workspace/scratch/c10-walk-side-baseline.json",
+    "baselineResult": "Dist8766 URL/versión/hora explícitos, P113 seleccionado, A3s cambia coordenada; sólo circuito mínimo",
+    "candidateRuntime": "PENDIENTE recibo exacto de versión integrada",
+    "blockPerimeter": "No comprobado completo",
+    "mobilePhysical": "No comprobado"
+  },
+  "criteria": {
+    "P1": "Inventario C10 confirmado; identidad de fachada84–88 pendiente",
+    "P2": "84 forma parcial aceptable estimada; patio85 soporte técnico aceptable; resto preservado",
+    "P3": "Bloqueado por falta de fuentes de fachada84–88",
+    "P4": "Sin aceptación nueva de materiales/estructura de fachada84–88",
+    "P5": "Preservación y pruebas de patio aprobadas; recorrido de perímetro completo pendiente",
+    "P6a": "Imágenes integradas84 revisadas; cierre medio no alcanzado",
+    "P6b": "Sin publicación ni verificación pública"
+  },
+  "publication": "Sólo paquete parcial para draft PR dentro de autorización confirmada por coordinación. Sin merge ni despliegue. La auditoría no concede permisos nuevos.",
+  "hashes": {
+    "public/levantamiento/evidence/D1-09/20261030-equipo/integrada-df9735b/calle-norte-3d.jpg": "ad65bc01bd4fd663a18bf1585f7dc768f292e6ee9ed9f86dfe6eed009c8f9d74",
+    "public/levantamiento/evidence/D1-09/20261030-equipo/integrada-df9735b/esquina-noreste-3d.jpg": "e47ed4c71a14f415d1957d8fc40c02264014dad79be504b492f3e158d2c6c844",
+    "public/levantamiento/evidence/D1-09/20261030-equipo/integrada-df9735b/aerea-3d.jpg": "b19a791366b4e07af602dcf81c62a7ce6c656086ade662e5f6b3c5aaa785439b",
+    "/workspace/scratch/c10-84-integrada-scene.json": "1a768c14a32d312bec5a78614ba6d320b6232ed8390e841342b52471b367a2ba"
+  },
+  "remaining": [
+    "Fuentes reales de calle/esquina84–88 con continuidad de anclaje",
+    "Rasgos de fachada y materiales por ID sustentados",
+    "Recibo de carga/selección/recorrido del candidato exacto",
+    "Revisión perimetral C10 y controles finales de suite/budget",
+    "Mantener etiquetas parciales y no declarar medio ni cuadra terminada"
+  ]
+}
