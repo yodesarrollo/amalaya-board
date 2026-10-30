@@ -1,0 +1,6 @@
+{
+  "command": "python3 scripts/pruebas-puente.py",
+  "reportedBy": "/root",
+  "passedTests": 3,
+  "evidence": "Resultado comunicado por root; no se recibió archivo de log y no se repitió la comprobación."
+}

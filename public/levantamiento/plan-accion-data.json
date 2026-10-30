@@ -10,14 +10,16 @@
     "docs/PROCESO-CALIDAD-EDIFICIO-3D.md"
   ],
   "currentWave": {
-    "label": "Continuación de la primera ola · edificio 82",
-    "status": "82 PUBLICADO VERIFICADO · 84 Y 89 PENDIENTES",
+    "label": "C10 · cuadra25 · entrega parcial en equipo",
+    "status": "REVISIÓN LOCAL PARCIAL · NIVEL MEDIO EXTERIOR PENDIENTE",
     "numbers": [
-      82,
       84,
-      89
+      85,
+      86,
+      87,
+      88
     ],
-    "summary": "El edificio 82 quedó integrado como exterior visual aproximado y verificado en el visor público. Los diagnósticos de 84 y 89 siguen conservados; sus geometrías nuevas continúan pendientes. El resto del inventario permanece en cola."
+    "summary": "83 preservado;84 integra forma estimada P2 parcial;85 incorpora soporte runtime opt-in del patio existente, sin fachada nueva;86 conserva planta/junta;87–88 aportan diagnósticos y muestreos de encuentros. Fotografías de calle identificadas pendientes para84–88. Sin cierre de cuadra, merge ni despliegue."
   },
   "buildings": [
     {
@@ -14151,7 +14153,7 @@
         "name": "Mina / Surfragio Efectivo"
       },
       "queue": "ola actual",
-      "nextAction": "Explorar panoramas contiguos hacia ambos extremos del frente; asociar esquinas con la huella, guardar capturas con fecha/lado/hash y resolver cubierta/anexo antes de nuevos vanos.",
+      "nextAction": "Fotografía continua mirando al sur desde Sufragio que enlace ambas esquinas/vecinos con D1-09, acceso y tres rasgos de fachada. El portón azul del panorama próximo no está atribuido inequívocamente; guardar captura, fecha y orientación. Aérea más legible para validar corte y altura del anexo.",
       "steps": [
         {
           "id": "P1",
@@ -14401,6 +14403,63 @@
         "integratedCommit": "e6d3857",
         "date": "2026-10-29T03:45:03.792102Z",
         "requiredChange": "Explorar vistas contiguas y enlazar esquinas; conservar captura confecha/orientación/hash; resolver cubierta/anexo."
+      },
+      "currentReview": {
+        "candidate": "7f59715c42dc91119bf4cab7f395a93fbce5c792",
+        "status": "PARCIAL LOCAL · Forma parcial integrada: nave y anexo sur estimado. Fachada no identificada.",
+        "evidence": "levantamiento/evidence/D1-09/20261030-equipo/manifest.json",
+        "limitations": "Sin fotografía de calle identificada, no se aprueba nivel medio ni medidas. Fuentes aéreas de fecha desconocida; partes ocultas pendientes. P5 visual bloqueado: paredP113 permanece muy oscura tras retroceso; falta corrección segura de iluminación/material.",
+        "integration": {
+          "status": "INTEGRADO PARCIAL PARA REVISIÓN",
+          "reason": "Forma parcial integrada: nave y anexo sur estimado. Fachada no identificada. P5 visual bloqueado; no apto para merge."
+        },
+        "publication": {
+          "status": "PENDIENTE",
+          "reason": "Paquete para PR borrador; sin merge ni despliegue."
+        },
+        "audit": [
+          {
+            "id": "P1",
+            "result": "PENDIENTE",
+            "reason": "Fachada, nivel y cierre pendientes de evidencia de calle e identificación.",
+            "scope": "Entrega parcial; criterios anteriores conservados en historial."
+          },
+          {
+            "id": "P2",
+            "result": "PARCIAL",
+            "reason": "Forma parcial integrada: nave y anexo sur estimado. Fachada no identificada.",
+            "scope": "Entrega parcial; criterios anteriores conservados en historial.",
+            "auditor": "Astra · /root/astra_c10 · gpt-6-astra",
+            "date": "2026-10-30T03:43:22.711458+00:00"
+          },
+          {
+            "id": "P3",
+            "result": "PENDIENTE",
+            "reason": "Fachada, nivel y cierre pendientes de evidencia de calle e identificación.",
+            "scope": "Entrega parcial; criterios anteriores conservados en historial."
+          },
+          {
+            "id": "P4",
+            "result": "PENDIENTE",
+            "reason": "Fachada, nivel y cierre pendientes de evidencia de calle e identificación.",
+            "scope": "Entrega parcial; criterios anteriores conservados en historial."
+          },
+          {
+            "id": "P5",
+            "result": "BLOQUEADO",
+            "reason": "P113 muestra pared muy oscura aun fuera de la huella; carga y teclado funcionan pero no acreditan visibilidad satisfactoria. Probes locales sin corrección productiva.",
+            "scope": "Entrega parcial; criterios anteriores conservados en historial.",
+            "auditor": "Astra · /root/astra_c10 · gpt-6-astra",
+            "date": "2026-10-30T03:43:22.711458+00:00"
+          },
+          {
+            "id": "P6",
+            "result": "PENDIENTE",
+            "reason": "Comprobaciones locales preparadas; sin publicación.",
+            "scope": "Entrega parcial; criterios anteriores conservados en historial."
+          }
+        ],
+        "finalAudit": "levantamiento/evidence/C10/20261030-equipo/auditoria-astra-r2.json"
       }
     },
     {
@@ -14413,7 +14472,7 @@
         "name": "Mina / Surfragio Efectivo"
       },
       "queue": "cola",
-      "nextAction": "Identificar fuentes y preparar ficha cuando corresponda.",
+      "nextAction": "Fotografías del frente de Felipe Salido y su encuentro occidental, relacionadas con la huella y el patio interior; acceso, tres rasgos y fecha. El soporte del hueco no sustituye estas fuentes.",
       "steps": [
         {
           "id": "P1",
@@ -14550,6 +14609,59 @@
         },
         "publishedVerified": null,
         "note": "Estados anteriores conservados; no equivalen a cierre de los seis pasos."
+      },
+      "currentReview": {
+        "candidate": "7f59715c42dc91119bf4cab7f395a93fbce5c792",
+        "status": "PARCIAL LOCAL · Patio existente preservado; soporte técnico opt-in probado. Exterior sin cambios.",
+        "evidence": "levantamiento/evidence/D1-10/20261030-equipo/patio-prueba.json",
+        "limitations": "Sin fotografía de calle identificada, no se aprueba nivel medio ni medidas. Fuentes aéreas de fecha desconocida; partes ocultas pendientes.",
+        "integration": {
+          "status": "DIAGNÓSTICO Y SOPORTE TÉCNICO; EXTERIOR CONSERVADO",
+          "reason": "Patio existente preservado; soporte técnico opt-in probado. Exterior sin cambios."
+        },
+        "publication": {
+          "status": "PENDIENTE",
+          "reason": "Paquete para PR borrador; sin merge ni despliegue."
+        },
+        "audit": [
+          {
+            "id": "P1",
+            "result": "PENDIENTE",
+            "reason": "Fachada, nivel y cierre pendientes de evidencia de calle e identificación.",
+            "scope": "Entrega parcial; criterios anteriores conservados en historial."
+          },
+          {
+            "id": "P2",
+            "result": "PENDIENTE",
+            "reason": "Patio existente preservado; soporte técnico opt-in probado. Exterior sin cambios.",
+            "scope": "Entrega parcial; criterios anteriores conservados en historial."
+          },
+          {
+            "id": "P3",
+            "result": "PENDIENTE",
+            "reason": "Fachada, nivel y cierre pendientes de evidencia de calle e identificación.",
+            "scope": "Entrega parcial; criterios anteriores conservados en historial."
+          },
+          {
+            "id": "P4",
+            "result": "PENDIENTE",
+            "reason": "Fachada, nivel y cierre pendientes de evidencia de calle e identificación.",
+            "scope": "Entrega parcial; criterios anteriores conservados en historial."
+          },
+          {
+            "id": "P5",
+            "result": "PENDIENTE",
+            "reason": "Patio existente preservado; soporte técnico opt-in probado. Exterior sin cambios.",
+            "scope": "Entrega parcial; criterios anteriores conservados en historial."
+          },
+          {
+            "id": "P6",
+            "result": "PENDIENTE",
+            "reason": "Comprobaciones locales preparadas; sin publicación.",
+            "scope": "Entrega parcial; criterios anteriores conservados en historial."
+          }
+        ],
+        "finalAudit": "levantamiento/evidence/C10/20261030-equipo/auditoria-astra-r2.json"
       }
     },
     {
@@ -14562,7 +14674,7 @@
         "name": "Mina / Surfragio Efectivo"
       },
       "queue": "cola",
-      "nextAction": "Identificar fuentes y preparar ficha cuando corresponda.",
+      "nextAction": "Fotografía frontal de Felipe Salido que enlace junta con85 y límite con88; acceso, tres rasgos/materiales observados y fecha. La denominación histórica rojo no acredita acabado actual.",
       "steps": [
         {
           "id": "P1",
@@ -14699,6 +14811,59 @@
         },
         "publishedVerified": null,
         "note": "Estados anteriores conservados; no equivalen a cierre de los seis pasos."
+      },
+      "currentReview": {
+        "candidate": "7f59715c42dc91119bf4cab7f395a93fbce5c792",
+        "status": "PARCIAL LOCAL · Planta y junta existentes conservadas; sin discrepancia exterior sustentada.",
+        "evidence": "levantamiento/evidence/C10/20261030-equipo/manifest.json",
+        "limitations": "Sin fotografía de calle identificada, no se aprueba nivel medio ni medidas. Fuentes aéreas de fecha desconocida; partes ocultas pendientes.",
+        "integration": {
+          "status": "DIAGNÓSTICO Y SOPORTE TÉCNICO; EXTERIOR CONSERVADO",
+          "reason": "Planta y junta existentes conservadas; sin discrepancia exterior sustentada."
+        },
+        "publication": {
+          "status": "PENDIENTE",
+          "reason": "Paquete para PR borrador; sin merge ni despliegue."
+        },
+        "audit": [
+          {
+            "id": "P1",
+            "result": "PENDIENTE",
+            "reason": "Fachada, nivel y cierre pendientes de evidencia de calle e identificación.",
+            "scope": "Entrega parcial; criterios anteriores conservados en historial."
+          },
+          {
+            "id": "P2",
+            "result": "PENDIENTE",
+            "reason": "Planta y junta existentes conservadas; sin discrepancia exterior sustentada.",
+            "scope": "Entrega parcial; criterios anteriores conservados en historial."
+          },
+          {
+            "id": "P3",
+            "result": "PENDIENTE",
+            "reason": "Fachada, nivel y cierre pendientes de evidencia de calle e identificación.",
+            "scope": "Entrega parcial; criterios anteriores conservados en historial."
+          },
+          {
+            "id": "P4",
+            "result": "PENDIENTE",
+            "reason": "Fachada, nivel y cierre pendientes de evidencia de calle e identificación.",
+            "scope": "Entrega parcial; criterios anteriores conservados en historial."
+          },
+          {
+            "id": "P5",
+            "result": "PENDIENTE",
+            "reason": "Planta y junta existentes conservadas; sin discrepancia exterior sustentada.",
+            "scope": "Entrega parcial; criterios anteriores conservados en historial."
+          },
+          {
+            "id": "P6",
+            "result": "PENDIENTE",
+            "reason": "Comprobaciones locales preparadas; sin publicación.",
+            "scope": "Entrega parcial; criterios anteriores conservados en historial."
+          }
+        ],
+        "finalAudit": "levantamiento/evidence/C10/20261030-equipo/auditoria-astra-r2.json"
       }
     },
     {
@@ -14711,7 +14876,7 @@
         "name": "Mina / Surfragio Efectivo"
       },
       "queue": "cola",
-      "nextAction": "Identificar fuentes y preparar ficha cuando corresponda.",
+      "nextAction": "Vista continua norte/este de la nave sobre Mina que enlace quiebres de cubierta, esquina y vecinos con D2-01; acceso, tres rasgos y fecha. No inferir cerchas interiores.",
       "steps": [
         {
           "id": "P1",
@@ -14848,6 +15013,59 @@
         },
         "publishedVerified": null,
         "note": "Estados anteriores conservados; no equivalen a cierre de los seis pasos."
+      },
+      "currentReview": {
+        "candidate": "7f59715c42dc91119bf4cab7f395a93fbce5c792",
+        "status": "PARCIAL LOCAL · Diagnóstico de planta y aérea; exterior sin cambios.",
+        "evidence": "levantamiento/evidence/D2-01/20261030-equipo/ficha-pendiente.json",
+        "limitations": "Sin fotografía de calle identificada, no se aprueba nivel medio ni medidas. Fuentes aéreas de fecha desconocida; partes ocultas pendientes.",
+        "integration": {
+          "status": "DIAGNÓSTICO Y SOPORTE TÉCNICO; EXTERIOR CONSERVADO",
+          "reason": "Diagnóstico de planta y aérea; exterior sin cambios."
+        },
+        "publication": {
+          "status": "PENDIENTE",
+          "reason": "Paquete para PR borrador; sin merge ni despliegue."
+        },
+        "audit": [
+          {
+            "id": "P1",
+            "result": "PENDIENTE",
+            "reason": "Fachada, nivel y cierre pendientes de evidencia de calle e identificación.",
+            "scope": "Entrega parcial; criterios anteriores conservados en historial."
+          },
+          {
+            "id": "P2",
+            "result": "PENDIENTE",
+            "reason": "Diagnóstico de planta y aérea; exterior sin cambios.",
+            "scope": "Entrega parcial; criterios anteriores conservados en historial."
+          },
+          {
+            "id": "P3",
+            "result": "PENDIENTE",
+            "reason": "Fachada, nivel y cierre pendientes de evidencia de calle e identificación.",
+            "scope": "Entrega parcial; criterios anteriores conservados en historial."
+          },
+          {
+            "id": "P4",
+            "result": "PENDIENTE",
+            "reason": "Fachada, nivel y cierre pendientes de evidencia de calle e identificación.",
+            "scope": "Entrega parcial; criterios anteriores conservados en historial."
+          },
+          {
+            "id": "P5",
+            "result": "PENDIENTE",
+            "reason": "Diagnóstico de planta y aérea; exterior sin cambios.",
+            "scope": "Entrega parcial; criterios anteriores conservados en historial."
+          },
+          {
+            "id": "P6",
+            "result": "PENDIENTE",
+            "reason": "Comprobaciones locales preparadas; sin publicación.",
+            "scope": "Entrega parcial; criterios anteriores conservados en historial."
+          }
+        ],
+        "finalAudit": "levantamiento/evidence/C10/20261030-equipo/auditoria-astra-r2.json"
       }
     },
     {
@@ -14860,7 +15078,7 @@
         "name": "Mina / Surfragio Efectivo"
       },
       "queue": "cola",
-      "nextAction": "Identificar fuentes y preparar ficha cuando corresponda.",
+      "nextAction": "Vista del frente sur de Felipe Salido y esquina oriental sobre Mina, vinculada a D2-02 y sus encuentros con86/87; acceso, tres rasgos y fecha.",
       "steps": [
         {
           "id": "P1",
@@ -14997,6 +15215,59 @@
         },
         "publishedVerified": null,
         "note": "Estados anteriores conservados; no equivalen a cierre de los seis pasos."
+      },
+      "currentReview": {
+        "candidate": "7f59715c42dc91119bf4cab7f395a93fbce5c792",
+        "status": "PARCIAL LOCAL · Diagnóstico de planta y aérea; exterior sin cambios.",
+        "evidence": "levantamiento/evidence/D2-02/20261030-equipo/ficha-pendiente.json",
+        "limitations": "Sin fotografía de calle identificada, no se aprueba nivel medio ni medidas. Fuentes aéreas de fecha desconocida; partes ocultas pendientes.",
+        "integration": {
+          "status": "DIAGNÓSTICO Y SOPORTE TÉCNICO; EXTERIOR CONSERVADO",
+          "reason": "Diagnóstico de planta y aérea; exterior sin cambios."
+        },
+        "publication": {
+          "status": "PENDIENTE",
+          "reason": "Paquete para PR borrador; sin merge ni despliegue."
+        },
+        "audit": [
+          {
+            "id": "P1",
+            "result": "PENDIENTE",
+            "reason": "Fachada, nivel y cierre pendientes de evidencia de calle e identificación.",
+            "scope": "Entrega parcial; criterios anteriores conservados en historial."
+          },
+          {
+            "id": "P2",
+            "result": "PENDIENTE",
+            "reason": "Diagnóstico de planta y aérea; exterior sin cambios.",
+            "scope": "Entrega parcial; criterios anteriores conservados en historial."
+          },
+          {
+            "id": "P3",
+            "result": "PENDIENTE",
+            "reason": "Fachada, nivel y cierre pendientes de evidencia de calle e identificación.",
+            "scope": "Entrega parcial; criterios anteriores conservados en historial."
+          },
+          {
+            "id": "P4",
+            "result": "PENDIENTE",
+            "reason": "Fachada, nivel y cierre pendientes de evidencia de calle e identificación.",
+            "scope": "Entrega parcial; criterios anteriores conservados en historial."
+          },
+          {
+            "id": "P5",
+            "result": "PENDIENTE",
+            "reason": "Diagnóstico de planta y aérea; exterior sin cambios.",
+            "scope": "Entrega parcial; criterios anteriores conservados en historial."
+          },
+          {
+            "id": "P6",
+            "result": "PENDIENTE",
+            "reason": "Comprobaciones locales preparadas; sin publicación.",
+            "scope": "Entrega parcial; criterios anteriores conservados en historial."
+          }
+        ],
+        "finalAudit": "levantamiento/evidence/C10/20261030-equipo/auditoria-astra-r2.json"
       }
     },
     {
@@ -22762,6 +23033,12 @@
       "agent": "Astra · /root/astra · gpt-6-astra",
       "action": "P6b PASA: merge8c584bac desplegado y verificado públicamente. 82 aceptado como exterior visual aproximado; 84/89 siguen pendientes. Cinco Terra entregaron sus frentes y root integró en rol Sol. Auditoría real por rotaciones registrada; cadencia aproximada.",
       "evidence": "levantamiento/evidence/C1-13/20261029-enjambre/publicacion-8c584ba/auditoria.json"
+    },
+    {
+      "date": "2026-10-30T03:32:03.586322+00:00",
+      "agent": "Sol Integración · /root/sol_integracion · gpt-6.1-sol",
+      "action": "C10:84 forma estimada parcial, soporte opt-in85 probado con activación real y diagnósticos85–88; sin nivelmedio ni despliegue. Se preservan83/82 y recibos históricos. DictamenAstraR1 acepta avance parcial para revisión.",
+      "evidence": "levantamiento/evidence/C10/20261030-equipo/auditoria-astra-r1.json"
     }
   ],
   "updatedAt": "2026-10-29T18:26:43.232065+00:00",
@@ -22769,70 +23046,70 @@
   "sourceCommit": "8c584bac919741d95160a3e5e979059eb3c984dd",
   "agents": [
     {
-      "id": "/root/terra1",
-      "name": "terra1",
-      "model": "gpt-6.1-terra",
-      "role": "Forma, anclas, encaje y diagnóstico de selección",
-      "state": "Entrega 82 verificada; sin ejecución continua después del cierre",
-      "activeBuilding": "C1-13",
-      "lease": "Reserva de esta entrega liberada al cierre; consultar bitácora antes de retomar"
-    },
-    {
-      "id": "/root/terra2",
-      "name": "terra2",
-      "model": "gpt-6.1-terra",
-      "role": "Fachadas y vanos",
-      "state": "Entrega 82 verificada; sin ejecución continua después del cierre",
-      "activeBuilding": "C1-13",
-      "lease": "Reserva de esta entrega liberada al cierre; consultar bitácora antes de retomar"
-    },
-    {
-      "id": "/root/terra3",
-      "name": "terra3",
-      "model": "gpt-6.1-terra",
-      "role": "Barandal y estructura",
-      "state": "Entrega 82 verificada; sin ejecución continua después del cierre",
-      "activeBuilding": "C1-13",
-      "lease": "Reserva de esta entrega liberada al cierre; consultar bitácora antes de retomar"
-    },
-    {
-      "id": "/root/terra4",
-      "name": "terra4",
-      "model": "gpt-6.1-terra",
-      "role": "Pruebas geométricas, ligero y presupuesto",
-      "state": "Entrega 82 verificada; sin ejecución continua después del cierre",
-      "activeBuilding": "C1-13",
-      "lease": "Reserva de esta entrega liberada al cierre; consultar bitácora antes de retomar"
-    },
-    {
-      "id": "/root/terra5",
-      "name": "terra5",
-      "model": "gpt-6.1-terra",
-      "role": "Evidencia, cámaras y QA de navegador",
-      "state": "Entrega 82 verificada; sin ejecución continua después del cierre",
-      "activeBuilding": "C1-13",
-      "lease": "Reserva de esta entrega liberada al cierre; consultar bitácora antes de retomar"
-    },
-    {
-      "id": "/root/astra",
-      "name": "Astra",
+      "id": "/root/astra_c10",
+      "name": "astra_c10",
       "model": "gpt-6-astra",
       "role": "Auditoría independiente",
-      "state": "Entrega 82 verificada; sin ejecución continua después del cierre",
-      "activeBuilding": "C1-13",
-      "lease": "Reserva de esta entrega liberada al cierre; consultar bitácora antes de retomar"
+      "state": "Entrega parcial local; disponible para correcciones, sin servicio permanente",
+      "activeBuilding": "C10",
+      "lease": "Reservas de esta entrega; se liberan al cierre coordinado por Sol Flujo"
+    },
+    {
+      "id": "/root/sol_flujo",
+      "name": "sol_flujo",
+      "model": "gpt-6.1-sol",
+      "role": "Asignación y reservas",
+      "state": "Entrega parcial local; disponible para correcciones, sin servicio permanente",
+      "activeBuilding": "C10",
+      "lease": "Reservas de esta entrega; se liberan al cierre coordinado por Sol Flujo"
+    },
+    {
+      "id": "/root/sol_integracion",
+      "name": "sol_integracion",
+      "model": "gpt-6.1-sol",
+      "role": "Integración, runtime y pruebas",
+      "state": "Entrega parcial local; disponible para correcciones, sin servicio permanente",
+      "activeBuilding": "C10",
+      "lease": "Reservas de esta entrega; se liberan al cierre coordinado por Sol Flujo"
+    },
+    {
+      "id": "/root/terra_c10_84",
+      "name": "terra_c10_84",
+      "model": "gpt-6.1-terra",
+      "role": "Forma y encaje84",
+      "state": "Entrega parcial local; disponible para correcciones, sin servicio permanente",
+      "activeBuilding": "C10",
+      "lease": "Reservas de esta entrega; se liberan al cierre coordinado por Sol Flujo"
+    },
+    {
+      "id": "/root/terra_c10_8586",
+      "name": "terra_c10_8586",
+      "model": "gpt-6.1-terra",
+      "role": "Diagnóstico85–86 y prueba patio85",
+      "state": "Entrega parcial local; disponible para correcciones, sin servicio permanente",
+      "activeBuilding": "C10",
+      "lease": "Reservas de esta entrega; se liberan al cierre coordinado por Sol Flujo"
+    },
+    {
+      "id": "/root/terra_c10_8788",
+      "name": "terra_c10_8788",
+      "model": "gpt-6.1-terra",
+      "role": "Diagnóstico87–88 y encuentros",
+      "state": "Entrega parcial local; disponible para correcciones, sin servicio permanente",
+      "activeBuilding": "C10",
+      "lease": "Reservas de esta entrega; se liberan al cierre coordinado por Sol Flujo"
     },
     {
       "id": "/root",
-      "name": "Sol (rol)",
+      "name": "root",
       "model": null,
-      "role": "Coordinación e integración, rol Sol; modelo no verificable",
-      "state": "Entrega 82 verificada; sin ejecución continua después del cierre",
-      "activeBuilding": "C1-13",
-      "lease": "Reserva de esta entrega liberada al cierre; consultar bitácora antes de retomar"
+      "role": "Enlace y autorizaciones; modelo no comprobado",
+      "state": "Entrega parcial local; disponible para correcciones, sin servicio permanente",
+      "activeBuilding": "C10",
+      "lease": "Reservas de esta entrega; se liberan al cierre coordinado por Sol Flujo"
     }
   ],
-  "updatedAtISO": "2026-10-29T18:26:43.232065+00:00",
+  "updatedAtISO": "2026-10-30T03:26:19.040769+00:00",
   "releaseReceipt": {
     "pr": 113,
     "url": "https://github.com/yodesarrollo/amalaya-board/pull/113",
@@ -22920,6 +23197,85 @@
         "deploy": "40814695031 success",
         "publicVerification": "Publicado y verificado por Astra en el tablero original: 139 registros, 33 cuadras y seis pasos; filtros de C06 y edificio 82, ola de tres unidades, expansión, enlaces y galerías. Acceso comprobado desde Herramientas → Levantamiento → Plan y checklist. Esta verificación no aprueba los modelos."
       }
+    },
+    {
+      "wave": {
+        "label": "Continuación de la primera ola · edificio 82",
+        "status": "82 PUBLICADO VERIFICADO · 84 Y 89 PENDIENTES",
+        "numbers": [
+          82,
+          84,
+          89
+        ],
+        "summary": "El edificio 82 quedó integrado como exterior visual aproximado y verificado en el visor público. Los diagnósticos de 84 y 89 siguen conservados; sus geometrías nuevas continúan pendientes. El resto del inventario permanece en cola."
+      },
+      "sourceCommit": "99a0490",
+      "note": "Conservado al abrir entrega parcialC10; estado82 publicado verificado permanece.",
+      "agents": [
+        {
+          "id": "/root/terra1",
+          "name": "terra1",
+          "model": "gpt-6.1-terra",
+          "role": "Forma, anclas, encaje y diagnóstico de selección",
+          "state": "Entrega 82 verificada; sin ejecución continua después del cierre",
+          "activeBuilding": "C1-13",
+          "lease": "Reserva de esta entrega liberada al cierre; consultar bitácora antes de retomar"
+        },
+        {
+          "id": "/root/terra2",
+          "name": "terra2",
+          "model": "gpt-6.1-terra",
+          "role": "Fachadas y vanos",
+          "state": "Entrega 82 verificada; sin ejecución continua después del cierre",
+          "activeBuilding": "C1-13",
+          "lease": "Reserva de esta entrega liberada al cierre; consultar bitácora antes de retomar"
+        },
+        {
+          "id": "/root/terra3",
+          "name": "terra3",
+          "model": "gpt-6.1-terra",
+          "role": "Barandal y estructura",
+          "state": "Entrega 82 verificada; sin ejecución continua después del cierre",
+          "activeBuilding": "C1-13",
+          "lease": "Reserva de esta entrega liberada al cierre; consultar bitácora antes de retomar"
+        },
+        {
+          "id": "/root/terra4",
+          "name": "terra4",
+          "model": "gpt-6.1-terra",
+          "role": "Pruebas geométricas, ligero y presupuesto",
+          "state": "Entrega 82 verificada; sin ejecución continua después del cierre",
+          "activeBuilding": "C1-13",
+          "lease": "Reserva de esta entrega liberada al cierre; consultar bitácora antes de retomar"
+        },
+        {
+          "id": "/root/terra5",
+          "name": "terra5",
+          "model": "gpt-6.1-terra",
+          "role": "Evidencia, cámaras y QA de navegador",
+          "state": "Entrega 82 verificada; sin ejecución continua después del cierre",
+          "activeBuilding": "C1-13",
+          "lease": "Reserva de esta entrega liberada al cierre; consultar bitácora antes de retomar"
+        },
+        {
+          "id": "/root/astra",
+          "name": "Astra",
+          "model": "gpt-6-astra",
+          "role": "Auditoría independiente",
+          "state": "Entrega 82 verificada; sin ejecución continua después del cierre",
+          "activeBuilding": "C1-13",
+          "lease": "Reserva de esta entrega liberada al cierre; consultar bitácora antes de retomar"
+        },
+        {
+          "id": "/root",
+          "name": "Sol (rol)",
+          "model": null,
+          "role": "Coordinación e integración, rol Sol; modelo no verificable",
+          "state": "Entrega 82 verificada; sin ejecución continua después del cierre",
+          "activeBuilding": "C1-13",
+          "lease": "Reserva de esta entrega liberada al cierre; consultar bitácora antes de retomar"
+        }
+      ]
     }
   ]
 }

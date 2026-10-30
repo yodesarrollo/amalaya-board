@@ -1,3 +1,4 @@
+import {verifyC10Generations} from './c10-generaciones.mjs'
 import {removePlanRoundHook} from './preparar-plantas.mjs'
 import {removeEbSwHook,refineEbSw,EB_BASE_WORLD,EB_BASE_VISOR} from './preparar-ebsw.mjs'
 import { readdir, readFile, stat } from 'node:fs/promises'
@@ -95,6 +96,28 @@ const olaEvidenceFiles=new Map([
  ['D1-12',['aerea-3d.jpg','calle-3d.jpg','esquina-3d.jpg','camaras.json','escena.json','paquete.json']]
 ].map(([id,names])=>[root+'/evidence/'+id+'/20261029-ola1',new Set(names)]));
 const swarm82Root=root+'/evidence/C1-13/20261029-enjambre';
+// C10 changes shared imports legitimately. Keep 82 receipts immutable and verify
+// their exact historical bytes separately from the current C10 artifact.
+const c10Root=root+'/evidence/C10/20261030-equipo';
+const c10Manifest=JSON.parse(await readFile(c10Root+'/manifest.json'));
+const c10Generations=await verifyC10Generations();
+for(const [key,path] of Object.entries(c10Manifest.historical82Snapshots)){
+ const hash=key.slice(key.lastIndexOf('@')+1);
+ assert.match(path,new RegExp('^docs/historico82/'+hash+'-[A-Za-z0-9_.-]+$'));
+ assert.equal(sha256(await readFile(path)),hash,'82: snapshot histórico exacto '+path);
+}
+async function verify82Source(path,hash){
+ if(sha256(await readFile(path))===hash)return;
+ const snapshot=c10Manifest.historical82Snapshots[path+'@'+hash];
+ assert(snapshot,'82: falta snapshot del archivo histórico '+path);
+ assert.equal(sha256(await readFile(snapshot)),hash,'82: fuente histórica exacta '+path);
+}
+// Every generation was verified independently; register only validated public paths.
+for(const path of c10Generations.publicPaths){
+ let dir=path.slice(0,path.lastIndexOf('/'));const name=path.slice(path.lastIndexOf('/')+1);
+ if(!olaEvidenceFiles.has(dir))olaEvidenceFiles.set(dir,new Set());olaEvidenceFiles.get(dir).add(name);
+ while(dir!==root){if(!olaEvidenceFiles.has(dir))olaEvidenceFiles.set(dir,new Set());dir=dir.slice(0,dir.lastIndexOf('/'));}
+}
 olaEvidenceFiles.set(swarm82Root,new Set());
 for(const stage of ['antes','despues']){
  const dir=swarm82Root+'/'+stage;
@@ -112,7 +135,7 @@ olaEvidenceFiles.set("public/levantamiento/evidence/C1-13/20261029-enjambre/inte
 olaEvidenceFiles.set("public/levantamiento/evidence/C1-13/20261029-enjambre/intermedia-9762851/despues",new Set(["82-aerea-3d.jpg", "82-calle-3d.jpg", "82-esquina-3d.jpg", "82-este-detalle-3d.jpg", "camaras.json", "recibo.json"]));
 olaEvidenceFiles.set("public/levantamiento/evidence/C1-13/20261029-enjambre/intermedia-9762851/este-despues",new Set(["82-este-elevada-3d.jpg", "camaras.json", "recibo.json"]));
 const swarm82Final=JSON.parse(await readFile(swarm82Root+'/final-06f05c6/manifest.json'));
-for(const [path,hash] of Object.entries({...swarm82Final.sourceHashes,...swarm82Final.lightHashesFromRootRegenerated}))assert.equal(sha256(await readFile(path)),hash,'82: candidato exacto '+path);
+for(const [path,hash] of Object.entries({...swarm82Final.sourceHashes,...swarm82Final.lightHashesFromRootRegenerated}))await verify82Source(path,hash);
 for(const [path,hash] of Object.entries(swarm82Final.outputHashes))assert.equal(sha256(await readFile(swarm82Root+'/'+path)),hash,'82: evidencia final '+path);
 olaEvidenceFiles.get(swarm82Root+'/final-06f05c6').add('ligera-82-este.png');
 olaEvidenceFiles.get(swarm82Root+'/final-06f05c6').add('webgl-local-diagnostico.json');
@@ -124,7 +147,7 @@ olaEvidenceFiles.get(swarm82Root+'/runtime-72541c3').add('cuadros-teclado.json')
 olaEvidenceFiles.set(swarm82Root+'/runtime-0e73851',new Set(['p111-antes.png','p111-despues.png','recibo.json']));
 const runtime82Dir=swarm82Root+'/runtime-0e73851';
 const runtime82=JSON.parse(await readFile(runtime82Dir+'/recibo.json'));
-for(const [path,hash] of Object.entries(runtime82.hashes))assert.equal(sha256(await readFile(path)),hash,'82: runtime exacto '+path);
+for(const [path,hash] of Object.entries(runtime82.hashes))await verify82Source(path,hash);
 for(const [name,hash] of Object.entries(runtime82.captures))assert.equal(sha256(await readFile(runtime82Dir+'/'+name)),hash,'82: captura runtime '+name);
 olaEvidenceFiles.get(swarm82Root).add('auditoria-runtime.json');
 const published82Dir=swarm82Root+'/publicacion-8c584ba';
@@ -135,7 +158,7 @@ for(const [name,hash] of Object.entries(published82Manifest.files)){assert(publi
 const published82Receipt=JSON.parse(await readFile(published82Dir+'/recibo.json'));
 for(const [name,hash] of Object.entries(published82Receipt.sha256)){
  const source=name==='visor.js'?root+'/visor/assets/index-RoPA5goG.js':name==='sector-visor.js'?root+'/sector-visor.js':published82Dir+'/'+name;
- assert.equal(sha256(await readFile(source)),hash,'82: fuente o captura pública '+name);
+ if(source.startsWith(published82Dir+'/'))assert.equal(sha256(await readFile(source)),hash,'82: captura pública '+name);else await verify82Source(source,hash);
 }
 
 async function check(dir){
@@ -143,6 +166,7 @@ async function check(dir){
     const path=`${dir}/${item.name}`
     assert(!item.isSymbolicLink(),`No se permiten enlaces: ${path}`)
     if(item.isDirectory()){const allowed=olaEvidenceFiles.has(path)||(dir===root&&['cuadras','calco','ajuste-visual','jev-pilot-v1','sidewalk-real-v1'].includes(item.name))||([pilotDir,realDir].includes(dir)&&item.name==='images')||['data','visor','assets','fonts','evidence'].includes(item.name)||(dir===`${root}/evidence`&&(['c08-cierre-20261008','c30-cierre-20261008','c08-punto1-20261008','c08-punto2-20261008','paramento-20261007','paramento-ronda2-20261008','OB-01','OB-02','ISC-58','EB-SW','EB-NW','EB-NE','EB-SE','CH-GA-OXXO','CH-YG-BBVA','CH-YG-BIB','SER-BLEY','SER-HSBC','OB-21','SER-SANT','PL-GA'].includes(item.name)||/^[ABCD][123]-\d{2}$/.test(item.name)));assert(allowed,`Carpeta inesperada: ${path}`);await check(path);continue}
+    if(path.startsWith(root+'/evidence/C10/')||path.startsWith(root+'/revision-practica/'))assert(olaEvidenceFiles.get(dir)?.has(item.name),'C10: evidencia fuera de manifiesto '+path)
     if(dir===pilotDir||dir===pilotDir+'/images')assert(pilotFiles.has(path.slice(pilotDir.length+1)),'Piloto: archivo fuera de manifiesto')
     if(dir===realDir||dir===realDir+'/images')assert(realFiles.has(path.slice(realDir.length+1)),'Banqueta real: archivo fuera de inventario')
     if(batchDirs.has(dir)){assert(batchDirs.get(dir).has(item.name),'Evidencia de tanda no revisada: '+path);if(item.name==='index.html')assert(!/<script|<iframe|\bon[a-z]+\s*=|(?:src|href)=["']https?:/i.test(await readFile(path,'utf8')),'Comparación estática y autónoma');}

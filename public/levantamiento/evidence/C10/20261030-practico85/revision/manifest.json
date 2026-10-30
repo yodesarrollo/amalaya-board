@@ -1,0 +1,19 @@
+{
+  "at": "2026-10-30T20:50:34.681598+00:00",
+  "ids": [
+    84,
+    85
+  ],
+  "count": 2,
+  "files": {
+    "84-fachada-hipotesis.png": "1bac3e5c1ca8b3964d0a1f813cd46a7660d7783b9259e39c2104fd6de9ec8849",
+    "84-oblicua-hipotesis.png": "e70c7b3173b5a6960a2140eef2338b5b12fe2d53aa4ae8a0628f11ecf03377d2",
+    "84-ubicacion.png": "5c10db82b0ecc4269b337f2784c7163047ab881b5ad0920650cfcaa2a2329613",
+    "85-fachada-hipotesis.png": "47eaa46c6d80438f71a9553777f31853cab2bdf7269e11df90863602a8b6f7c3",
+    "85-oblicua-hipotesis.png": "24bbe42de13750a13182de66b3e62e17948a98ab6d2f386b7c0ce457869174ca",
+    "85-ubicacion.png": "4c2bb0882f23ac83194e46cceeddfeaf8fd63b88cd76c82bee550a089449f3e9",
+    "lista-dudas.json": "5e24fe92c10d65722c59498c631b26854a95e87d12482c6279cf294988e109d3",
+    "index.html": "94c1450a570f6befef9f82bc08f30741604c5109936eda03bb106f9439319ec5"
+  },
+  "scope": "Vista derivada de hipótesis; no sustituye el tablero y las decisiones sólo se guardan en este navegador. Las decisiones son sobre el módulo y las fuentes del renderer realmente capturadas; no se transfieren a otra revisión."
+}

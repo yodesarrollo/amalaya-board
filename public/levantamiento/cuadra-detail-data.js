@@ -3,7 +3,11 @@ import {SERDAN_APROXIMADO} from './serdan-aproximado-data.js?v=0bbe41f3555a';
 import {C05_APROXIMADA} from './cuadra-c05-aproximada.js?v=5b91975adb8a';
 import {CORREDOR_OBREGON_20261026} from './corredor-obregon-20261026.js?v=0b3a3165be8d';
 import {BLOQUE1_SERDAN} from './bloque1-serdan-20261026.js?v=25a7d7b95b21';
-// Visible features only. Dimensions are visual estimates from the retained photos.
+import {C10_84} from './c10-84-data.js?v=eac898b15b51';
+import {C10_85} from './c10-85-data.js?v=dc70a8b0a7a0';
+
+// Historic photo-based packets and explicitly labelled modelling hypotheses.
+// Dimensions are approximate; each packet documents its own evidence and limits.
 // Existing fitted footprints are read from the scene, never retraced by this layer.
 export const CUADRA_DETAILS = [{
  block:'C08', orderLabel:1, evidence:'c08-punto2-20261008',
@@ -58,6 +62,7 @@ export const CUADRA_DETAILS = [{
   facades:[{edge:3,plain:true,bays:[{x:.8,w:1,h:1.2,b:.8,rect:true,frameColor:'#c9b65c'},{x:2.45,w:.9,h:2.2,b:0,rect:true,door:true,frameColor:'#c9b65c'},{x:4.05,w:1,h:1.2,b:.8,rect:true,frameColor:'#c9b65c'}],bands:[{y:3.3,h:.12,d:.14,color:'#8d8081'}]}],note:'Frente azul bajo con dos ventanas y puerta; no se reproduce el mural ni se llena el patio lateral.'}
  ],access:{building:'CH-YG-BBVA',edge:0,center:22,steps:3,rise:.12,tread:.28,width:3.2,source:'c30-yanez-banco-20261008.jpg'},heritage:{ownerPrefix:'PH-01 · Instituto Sonorense de Cultura · fachada patrimonial interpretada',a:[-56.9592,-.166425],b:[34.54488,-8.066065],westEndX:-25,redStartX:2,height:7.45,westHeight:10.2,source:'c30-obregon-isc-20261008.jpg',note:'Tres frentes distintos: poniente de dos niveles, pórtico central de cuatro arcos visibles y paño rojo oriental con pilastras. El ala este previa se conserva. Proporciones estimadas, no medidas.'}
 }];
+CUADRA_DETAILS.push(C10_84,C10_85);
 
 CUADRA_DETAILS.push(C02_APROXIMADA);
 CUADRA_DETAILS.push(...SERDAN_APROXIMADO);

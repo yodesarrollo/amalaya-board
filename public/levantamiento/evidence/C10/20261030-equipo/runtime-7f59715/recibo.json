@@ -1,0 +1,59 @@
+{
+  "revision": "7f59715",
+  "startedAt": "2026-10-30T03:33:42.704Z",
+  "finishedAt": "2026-10-30T03:34:05.420Z",
+  "browser": "Chromium 151 headless, ANGLE SwiftShader; viewport1365x900",
+  "load": {
+    "url": "http://127.0.0.1:8766/levantamiento/visor/",
+    "events": [
+      {
+        "type": "amalaya:world-ready",
+        "time": 1793331225424
+      }
+    ],
+    "loaderDisplay": "none",
+    "webgl": true,
+    "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+    "points": 128
+  },
+  "input": "Seleccionar P113, VER PUNTO EN MODELO, cerrar panel y desenfocar; S durante3segundos para separarse del muro, luego A durante3segundos",
+  "arrival": {
+    "url": "http://127.0.0.1:8766/levantamiento/visor/",
+    "point": "P113",
+    "summary": "P113 · Vivienda y estudios de ensayo · centro · 29.0751079, -110.9556997 · S 180° · Z04 Vivienda y estudios de ensayo",
+    "coordinates": "29.0751301, -110.9556952",
+    "mode": "CAMINAR · WASD / RATÓN · F CAMBIA A VUELO",
+    "notice": "Punto de caminata ajustado al paso libre más cercano; la referencia fotográfica conserva su posición."
+  },
+  "before": {
+    "url": "http://127.0.0.1:8766/levantamiento/visor/",
+    "point": "P113",
+    "summary": "P113 · Vivienda y estudios de ensayo · centro · 29.0751079, -110.9556997 · S 180° · Z04 Vivienda y estudios de ensayo",
+    "coordinates": "29.0751496, -110.9556952",
+    "mode": "CAMINAR · WASD / RATÓN · F CAMBIA A VUELO",
+    "notice": "Punto de caminata ajustado al paso libre más cercano; la referencia fotográfica conserva su posición."
+  },
+  "after": {
+    "url": "http://127.0.0.1:8766/levantamiento/visor/",
+    "point": "P113",
+    "summary": "P113 · Vivienda y estudios de ensayo · centro · 29.0751079, -110.9556997 · S 180° · Z04 Vivienda y estudios de ensayo",
+    "coordinates": "29.0751496, -110.9556730",
+    "mode": "CAMINAR · WASD / RATÓN · F CAMBIA A VUELO",
+    "notice": "Punto de caminata ajustado al paso libre más cercano; la referencia fotográfica conserva su posición."
+  },
+  "light": {
+    "url": "http://127.0.0.1:8766/modelo-completo.html?identificar=1&edificio=D1-09",
+    "status": "Vista ligera lista · arrastra para mover y usa + / − para acercar.",
+    "selected": "D1-09",
+    "canvas": {
+      "yaw": "0.4714",
+      "tilt": "0.8200",
+      "span": "38.94",
+      "center": "-101.18000030517578,1,123.51949691772461",
+      "faces": "47634",
+      "focusBlock": "C10",
+      "visibleLabels": "3"
+    }
+  },
+  "limits": "Circuito local de carga, selección, retroceso, teclado lateral y ligera. Llegada próxima al muro; no certifica fidelidad de fachada, ratón, iPhone físico ni recorrido completo."
+}

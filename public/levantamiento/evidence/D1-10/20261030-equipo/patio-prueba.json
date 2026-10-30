@@ -1,0 +1,18 @@
+{
+  "id": "D1-10",
+  "visibleNumber": 85,
+  "kind": "prueba técnica, no propuesta arquitectónica ni cierre",
+  "baselineCommit": "99a0490414f1e2dda9429f945395db547773898d",
+  "candidateCommit": "b3b53b3",
+  "activation": "Paquete neutro temporal en memoria; altura 6.2 m provisional; no se incorpora como producto.",
+  "source": "public/levantamiento/evidence/D1-10/20261006-01-cierre.json: planta existente y hueco, estimación ±3 m; captura satelital de fecha desconocida.",
+  "cameras": [["85-aerea",29.07458,-110.95590,180,70,-80,65],["85-patio",29.074601,-110.955939,0,100,45,1.7]],
+  "method": "Rasterización de triángulos del mundo exportado, colores planos; cámaras idénticas. No acredita navegación WebGL ni dimensiones medidas.",
+  "observation": "El patio y cielo son visibles tanto antes como con el paquete de prueba. Los paños interiores son neutros. La foto aérea no permite confirmar detalles de la fachada o del patio.",
+  "files": {
+    "antes/aerea.jpg":"7b8db86a273ae3d2c9abb40d4f105911cc06cfb344dfa06b1d262384ee55e358",
+    "antes/patio.jpg":"df8208fe2f47768bd0844c8c458f5ce03d8e3b8e4be8c8763b662d99961b1b26",
+    "prueba-patio/aerea.jpg":"a2d0463466e6bca8c14eb4003ed64987b83af5254ccb20ad8b9383285553366e",
+    "prueba-patio/patio.jpg":"c63a61e6b14b01d6a78112bf000fd671bd3ee79959d011fa16a521c5484d356d"
+  }
+}

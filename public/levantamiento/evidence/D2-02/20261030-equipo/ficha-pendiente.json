@@ -1,0 +1,46 @@
+{
+  "id": "D2-02",
+  "numeroProvisional": 88,
+  "base": "99a0490",
+  "estado": "bloqueado: identidad visual de fachada y fotografía de calle pendientes",
+  "identidad": "Felipe Salido norte · cuerpo blanco de Mina",
+  "fuentes": [
+    {
+      "path": "public/levantamiento/cuadras/C10-inventario.jpg",
+      "sha256": "6b3f54863dcd23b476dc7817febe9d9f878faf97a1c7e0af4561b5c497165473",
+      "tipo": "aérea, fecha de captura no verificada"
+    },
+    {
+      "path": "public/levantamiento/ajuste-visual/C10.jpg",
+      "sha256": "f67df2cf4a3c3eeef2520966220d1321be624a4d1f5137445930a925b501e8f9",
+      "tipo": "aérea y montaje, fecha de captura no verificada"
+    },
+    {
+      "path": "public/levantamiento/evidence/D2-02/20261006-01-cierre.json",
+      "sha256": "ef7e53736954d395cf29b4bd53e5771e821548b9d3e383a04f1cda1eefc6a0ae",
+      "tipo": "huella interpretada de imagen aérea; no foto de fachada"
+    }
+  ],
+  "rasgosCandidatos": [
+    "huella cuadrilateral según planta vigente",
+    "cuerpo al borde sur de C10 según planta",
+    "fachada: sin evidencia"
+  ],
+  "limites": "Planta interpretada ±3 m; altura 6.2 m provisional no medida. Vistas de calle, esquina e identidad de vanos sin confirmar. No aplicar fachada ni declarar tres rasgos verificados.",
+  "siguiente": "Conseguir fotografía de calle del mismo frente, anclar identidad a huella, revisar visualmente y definir tres rasgos; capturar antes/después con cámaras idénticas.",
+  "antesAerea": {
+    "imagen": "antes-aerea.jpg",
+    "sha256": "cd0527f2f70098b48a8dcae4c5e915089e4f72aedb96f17a53e36f4ee30f23be",
+    "camara": [
+      "88-aerea",
+      29.07458,
+      -110.95549,
+      0,
+      60,
+      -90,
+      55
+    ],
+    "metodo": "render de triángulos de escena 99a049, proyección perspectiva por scripts/renderizar-evidencia-paramento.py; iluminación simplificada"
+  },
+  "encuentros": "Distancia mínima entre bordes de huellas en planta base: D2-01 a D2-02 23.446 m; D2-02 a D1-11 0.682 m; D2-01 a D1-11 25.405 m. Son separaciones del modelo, no medidas de campo; se requiere comprobar intersección y borde del solar antes de dictaminar."
+}

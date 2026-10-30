@@ -1,0 +1,42 @@
+{
+  "Ajuste visual · road · vial": {
+    "distance": 4.520646959405799,
+    "edge": 0
+  },
+  "Ajuste visual · sidewalk · C05": {
+    "distance": 37.79609169850277,
+    "edge": 6
+  },
+  "Ajuste visual · sidewalk · C06": {
+    "distance": 9.635413312176253,
+    "edge": 0
+  },
+  "Ajuste visual · sidewalk · C07": {
+    "distance": 42.435306000446914,
+    "edge": 0
+  },
+  "Ajuste visual · sidewalk · C08": {
+    "distance": 14.564893106115695,
+    "edge": 0
+  },
+  "Ajuste visual · sidewalk · C09": {
+    "distance": 35.878673689341156,
+    "edge": 1
+  },
+  "Ajuste visual · sidewalk · C10": {
+    "distance": 3.4206471724142107,
+    "edge": 0
+  },
+  "Ajuste visual · sidewalk · C11": {
+    "distance": 43.874922981920115,
+    "edge": 4
+  },
+  "Ajuste visual · sidewalk · C12": {
+    "distance": 28.740414576573542,
+    "edge": 6
+  },
+  "Ajuste visual · sidewalk · C14": {
+    "distance": 55.65776306611071,
+    "edge": 2
+  }
+}

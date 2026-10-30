@@ -1,0 +1,134 @@
+{
+  "verdict": "PASA_CORRECCION_MATERIAL_84; P5_RECORRIDO_COMPLETO_PENDIENTE",
+  "scope": "Corrección causal de superficie negra por herencia metálica arbitraria en 84. No certifica nivel medio, identidad, fachadas o navegación completa.",
+  "base": "15d52b45a876967a2477c25e813ec083a1b6f95d",
+  "candidate_files_sha256": {
+    "public/levantamiento/c10-84-data.js": "e942f88151ea66fbaa196bd573e0031dd8ca6986746591ea783ee6c273dd13b0",
+    "public/levantamiento/cuadra-detail-data.js": "187121a41b7a0a237cc239c26f61276b69c00a22641d007d17c0fd5474750eea",
+    "public/levantamiento/cuadras/asignaciones.json": "ba02edd02893e4942225f9f21b64a31fc0b8212986305058f2ca15f7e901a5f8",
+    "public/levantamiento/ground-audit.json": "2edbb846a0d13a8280dcc432339c62f56f4c2f7fa9aa580d6f6e5e0ade72e6e1",
+    "public/levantamiento/paramento-refinement.js": "0b9d048f17dde2138a2ea86712e1c15dcd77ac63798f1f43987d872d9e81d97a",
+    "public/levantamiento/sheet-plan-provenance.json": "f2141e16421e19c0f82d4fd1251394ef1654594e53f241fb6699670de294e312",
+    "public/levantamiento/sheet-plan-refinement.js": "ce408feafc84fdb743abd22188f66b6051bb91dffc7b93351285bb90fcfd7e78",
+    "public/levantamiento/visor/assets/index-RoPA5goG.js": "d83d9f46c295020e6403081ebcdcae44342d3f0786baf670b407cec3d4797e92",
+    "public/levantamiento/visor/index.html": "e109eada58bcd598de676a0e3517c0ee102125e7958a9bbb9e5aeaa5dd0d09cd",
+    "public/levantamiento/world.js": "22b8615a8fb3790fd42868554e7b8881d422bbb3afcfa35196e9e849c6f49630",
+    "scripts/verificar-publicacion.mjs": "790859a405ee3024136b113d2070475cf898bed08aefea8070f739b7324a19d1",
+    "src/caminata-version.js": "45aabbf51e058bafb84db8ced8fb7855b6d25eec13b61c2195f737dc3f0b011a",
+    "src/levantamiento-version.js": "15476ea79e3becaddea6b993b30acd83eb75fa6052844357d48f48b5405631e7",
+    "scripts/pruebas-material84.mjs": "d83af680b9700e67b78c82a621c97c6f7b390e25fade999a957d77042aa6abcd"
+  },
+  "reviewer": "auditor independiente /root/auditor; sin modificaciones del repositorio",
+  "causal_evidence": {
+    "original_runtime": "visor-aislado/runtime.json: cuatro materiales reales metalness1 roughness1; Node exportaba0/.96 por distinto primer ExtrudeGeometry",
+    "stable_capture": "captura-estable.mjs usa render explícito +gl.finish+readPixels+toDataURL en mismo turno; luz, albedo, geometría y cámara iguales entre probes",
+    "one_variable": "causal-solo-metalness0 conserva roughness1 y produce imagen idéntica al candidato0/.96",
+    "emissive": "000000 en todos los probes",
+    "images": {
+      "control-herencia-metal1": {
+        "sha256": "4c9e95c3ce126db8f94a0e603ede27e1b61143e383ffee4390c410d0a9b40c32",
+        "size": [
+          1365,
+          900
+        ],
+        "pixel500_300": [
+          13,
+          16,
+          16,
+          255
+        ]
+      },
+      "candidato-material-explicito": {
+        "sha256": "1faf841e3eb84695e70c88528a962e1cce896dbd840a4e8211135dff988c7515",
+        "size": [
+          1365,
+          900
+        ],
+        "pixel500_300": [
+          125,
+          128,
+          124,
+          255
+        ]
+      },
+      "causal-solo-metalness0": {
+        "sha256": "0a77e17b9f342f815dd535a2f469cbf354cb3c67a770eb2ce0408b5923d3e639",
+        "size": [
+          1365,
+          900
+        ],
+        "pixel500_300": [
+          125,
+          128,
+          124,
+          255
+        ]
+      },
+      "candidato-mundo-p113": {
+        "sha256": "1faf841e3eb84695e70c88528a962e1cce896dbd840a4e8211135dff988c7515",
+        "size": [
+          1365,
+          900
+        ],
+        "pixel500_300": [
+          125,
+          128,
+          124,
+          255
+        ]
+      },
+      "candidato-mundo-p144": {
+        "sha256": "8cfb562eb9c422a59347f29be46f4f529338e76fc456d4c79434813fa3e2bd57",
+        "size": [
+          1365,
+          900
+        ],
+        "pixel500_300": [
+          124,
+          128,
+          124,
+          255
+        ]
+      }
+    },
+    "receipt_sha256": "7c84e61a4ac8384f4336acfbc94e172bdec529a98e3590116d273c1e8638e8f3"
+  },
+  "code_review": {
+    "opt_in": "surfaceMaterial solo en C10_84; clone por material del propietario antes del compactado evita mutar plantilla y vecinos",
+    "changed_properties": [
+      "metalness0",
+      "roughness.96"
+    ],
+    "geometry": "Mi exportación independiente de 224 triángulos/centros/normales/matrices es byte a byte idéntica al archivo PR115",
+    "generated_files": "JS/HTML/versiones restantes solo hashes; asignaciones y ground solo hashes del world; provenance hashes de cadena",
+    "producer_test_independently_rerun": {
+      "pass": true,
+      "checkedMaterials": 4,
+      "hostile_template": {
+        "metalness": 1,
+        "roughness": 0.17
+      },
+      "non84_geometry_PBR_colliders_SHA": "874f74370186aa5feb115a4fe5192c5f769df8b0fb1ddf2984840667a5572888"
+    }
+  },
+  "visual_review": {
+    "control": "Superficie negra casi uniforme",
+    "candidateP113": "Superficie gris no negra; encuadre aún ocupado por pared cercana",
+    "candidateP144": "Frente y lateral discernibles, contexto de calle visible; no afirmar cubierta visible"
+  },
+  "limits": [
+    "Loader devuelve error de apertura en el recibo; escena fue renderizada manualmente mediante arnés. No equivale a recorrido interactivo satisfactorio.",
+    "No nueva captura estable P111 ni modelo ligero en este expediente; invariancia de vecinos está cubierta por prueba Node y diff, no por nueva comparación GPU P111.",
+    "La identidad del inmueble, medidas de nave/anexo y fachadas siguen sujetos a fuentes pendientes.",
+    "No se repitió GPU en una segunda instancia: inspección independiente de capturas, script, recibo, código y reproducción Node."
+  ],
+  "required_reporting_corrections": [
+    "Nombrar resultado PASA corrección material84, no P5 completo ni C10 nivelmedio.",
+    "Describir P144 como frente/lateral visible, no cubierta.",
+    "Mantener explícito error de loader y render manual al compartir evidencia."
+  ],
+  "remaining_before_full_P5": [
+    "Recorrido normal en versión exacta con carga satisfactoria, P113 movimientos, P111 y vista ligera; no es necesario para demostrar esta causa material."
+  ],
+  "map_prior_verdict": "PASA_HERRAMIENTA_ORIENTACION permanece separado"
+}

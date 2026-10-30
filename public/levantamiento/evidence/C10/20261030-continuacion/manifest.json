@@ -1,0 +1,98 @@
+{
+  "scope": "Corrección PBR explícita84; geometría y fachadas no ampliadas",
+  "baseline": "15d52b4",
+  "createdAt": "2026-10-30T04:51:03.214135+00:00",
+  "previousManifestSha256": "8b84d971ba28bc32f4ead25cfa756f6a0e9ab91378e145a8936e21b6884c59b5",
+  "sourceHashes": {
+    "public/levantamiento/c10-84-data.js": "e942f88151ea66fbaa196bd573e0031dd8ca6986746591ea783ee6c273dd13b0",
+    "public/levantamiento/cuadra-detail-data.js": "187121a41b7a0a237cc239c26f61276b69c00a22641d007d17c0fd5474750eea",
+    "public/levantamiento/paramento-refinement.js": "0b9d048f17dde2138a2ea86712e1c15dcd77ac63798f1f43987d872d9e81d97a",
+    "public/levantamiento/sheet-plan-refinement.js": "ce408feafc84fdb743abd22188f66b6051bb91dffc7b93351285bb90fcfd7e78",
+    "public/levantamiento/world.js": "22b8615a8fb3790fd42868554e7b8881d422bbb3afcfa35196e9e849c6f49630",
+    "public/levantamiento/visor/assets/index-RoPA5goG.js": "d83d9f46c295020e6403081ebcdcae44342d3f0786baf670b407cec3d4797e92",
+    "public/levantamiento/visor/index.html": "e109eada58bcd598de676a0e3517c0ee102125e7958a9bbb9e5aeaa5dd0d09cd",
+    "public/levantamiento/modelo-ligero.bin": "b5687b0c018f89503246e88c078dcbb084da8e3aaeedfd2276e6c78c256debf6",
+    "public/levantamiento/modelo-ligero.json": "16eb4f92f27724e43697d150435bed321fddeb9fd218b7f753ffbb6834798744"
+  },
+  "historicalC10Snapshots": {
+    "public/levantamiento/c10-84-data.js@14ecc45806f78ee2dca1fe76d53b4efcbc501da8cf8a4933dc61c0cc23d0fbb7": "docs/historico-c10/14ecc45806f78ee2dca1fe76d53b4efcbc501da8cf8a4933dc61c0cc23d0fbb7-c10-84-data.js",
+    "public/levantamiento/cuadra-detail-data.js@b2c0a82899a59379c115c40a2ca33020a9c2b29af0635b72ec3259bf7d097824": "docs/historico-c10/b2c0a82899a59379c115c40a2ca33020a9c2b29af0635b72ec3259bf7d097824-cuadra-detail-data.js",
+    "public/levantamiento/paramento-refinement.js@15b942c9d5953a8b1a89f4e855bed66a79efb22a0419f323415ff50705ae8e9e": "docs/historico-c10/15b942c9d5953a8b1a89f4e855bed66a79efb22a0419f323415ff50705ae8e9e-paramento-refinement.js",
+    "public/levantamiento/sheet-plan-refinement.js@d8beaa3b1be7562ef8771506f04981dfaa306421975de27c67851cd4dc0e0409": "docs/historico-c10/d8beaa3b1be7562ef8771506f04981dfaa306421975de27c67851cd4dc0e0409-sheet-plan-refinement.js",
+    "public/levantamiento/world.js@5a3b14d1f53250d3ab479e161c31eeb8be84032b9172d127637eef913cfff574": "docs/historico-c10/5a3b14d1f53250d3ab479e161c31eeb8be84032b9172d127637eef913cfff574-world.js",
+    "public/levantamiento/visor/assets/index-RoPA5goG.js@e207e11140356ed77aaa049995876ce11c45b666394234d6e0f4a262f668fddc": "docs/historico-c10/e207e11140356ed77aaa049995876ce11c45b666394234d6e0f4a262f668fddc-index-RoPA5goG.js",
+    "public/levantamiento/visor/index.html@cea8cd20f9a459daccc862b0f430a6a5016b415fe5abab35945f8de8375a58d3": "docs/historico-c10/cea8cd20f9a459daccc862b0f430a6a5016b415fe5abab35945f8de8375a58d3-index.html",
+    "public/levantamiento/modelo-ligero.bin@b5687b0c018f89503246e88c078dcbb084da8e3aaeedfd2276e6c78c256debf6": "docs/historico-c10/b5687b0c018f89503246e88c078dcbb084da8e3aaeedfd2276e6c78c256debf6-modelo-ligero.bin",
+    "public/levantamiento/modelo-ligero.json@c81dd71ba2853060c9bd01e0b266c46bc308ddb34387f28f08291938c8838dfc": "docs/historico-c10/c81dd71ba2853060c9bd01e0b266c46bc308ddb34387f28f08291938c8838dfc-modelo-ligero.json"
+  },
+  "evidenceFiles": {
+    "public/levantamiento/evidence/C10/20261030-continuacion/auditoria-fuentes-finales.json": "695589ad78d602b92118b221b6b1f69eeaa23c0fc9eb177932db2ba03986e69c",
+    "public/levantamiento/evidence/C10/20261030-continuacion/auditoria-material84.json": "33dacb45c65c40029f37191c4ccd1be615e22115afd3dbdf7eeb4d85639ff53b",
+    "public/levantamiento/evidence/C10/20261030-continuacion/candidato-estable/candidato-material-explicito.png": "1faf841e3eb84695e70c88528a962e1cce896dbd840a4e8211135dff988c7515",
+    "public/levantamiento/evidence/C10/20261030-continuacion/candidato-estable/candidato-mundo-p113.png": "1faf841e3eb84695e70c88528a962e1cce896dbd840a4e8211135dff988c7515",
+    "public/levantamiento/evidence/C10/20261030-continuacion/candidato-estable/candidato-mundo-p144.png": "8cfb562eb9c422a59347f29be46f4f529338e76fc456d4c79434813fa3e2bd57",
+    "public/levantamiento/evidence/C10/20261030-continuacion/candidato-estable/causal-solo-metalness0.png": "0a77e17b9f342f815dd535a2f469cbf354cb3c67a770eb2ce0408b5923d3e639",
+    "public/levantamiento/evidence/C10/20261030-continuacion/candidato-estable/control-herencia-metal1.png": "4c9e95c3ce126db8f94a0e603ede27e1b61143e383ffee4390c410d0a9b40c32",
+    "public/levantamiento/evidence/C10/20261030-continuacion/candidato-estable/recibo.json": "7c84e61a4ac8384f4336acfbc94e172bdec529a98e3590116d273c1e8638e8f3",
+    "public/levantamiento/evidence/C10/20261030-continuacion/checks/build.log": "a0bfe70cf9f19de9cc8a360d02abc55d2a343597b08c365befe0e5d072bdc3db",
+    "public/levantamiento/evidence/C10/20261030-continuacion/checks/plan.log": "9dd34ce4f9d534f2c21d88801c695009e7721d569112f0df6dd9422ef0a5ffe6",
+    "public/levantamiento/evidence/C10/20261030-continuacion/checks/pruebas.log": "41d01237cf708224704328352aa4060bc2e094f09f4ae260e67d30304fbeeae0",
+    "public/levantamiento/evidence/C10/20261030-continuacion/checks/puente.log": "372ee57a30b8a8b17bb056a0814266786a922da7dcf4139f4f9a2457745d6424",
+    "public/levantamiento/evidence/C10/20261030-continuacion/checks/verificar.log": "663840580261eb9cb5279cb69f79f2de5eeca722d4ff09feb2b62f255e2513ed",
+    "public/levantamiento/evidence/C10/20261030-continuacion/encaje-candidato.json": "9536f1505f8560d68d42e4b9c149736ad6a84e04ffb3e54d76a6b9c6f61e15ce",
+    "public/levantamiento/evidence/C10/20261030-continuacion/isolated-Group.png": "8dccf303609bd0a99f21f0483f649fc3337388052bcd4cfd60ef2d473d7a504a",
+    "public/levantamiento/evidence/C10/20261030-continuacion/isolated-Scene.png": "8dccf303609bd0a99f21f0483f649fc3337388052bcd4cfd60ef2d473d7a504a",
+    "public/levantamiento/evidence/C10/20261030-continuacion/isolated-results.json": "82525c3e89a8ddb4e9335afc0f3db1c872b3d11abd889546503375230a3444d2",
+    "public/levantamiento/evidence/C10/20261030-continuacion/normales-candidato.json": "25a9d1966a3456563d57c737b0967f57e381b035d4784f52f1e4249424478dfa",
+    "public/levantamiento/evidence/C10/20261030-continuacion/preservacion-geometria.json": "15437bde97caf3ebd4638165f649d56b4c937b2836a5bb614e14e1b0eac64f68",
+    "public/levantamiento/evidence/C10/20261030-continuacion/regresion-material84.json": "a8a43d044a6baa0b1267add325021e6db39c967ec154b91bd538e16f0ad3dac4",
+    "public/levantamiento/evidence/C10/20261030-continuacion/visor-aislado/p113-llegada.png": "ebbb84700a4f78f80239ad067f04157da33377264fa6d62936a86c1b30ac66ff",
+    "public/levantamiento/evidence/C10/20261030-continuacion/visor-aislado/p113-probe-control-metalness1.png": "8f8b2e2bafb8b3e2c4e525085d26324134a865c3433f7115fa644a73916394fe",
+    "public/levantamiento/evidence/C10/20261030-continuacion/visor-aislado/p113-probe-solo-metalness0.png": "6c2ba52f211804609b5f0b73e6eb752f39ba713183abe72eb56d4aedf40330b7",
+    "public/levantamiento/evidence/C10/20261030-continuacion/visor-aislado/p113-retroceso.png": "e8585adf0101362b04acfa475f2d1069861eab8430bf0391768c8e78ba6f836e",
+    "public/levantamiento/evidence/C10/20261030-continuacion/visor-aislado/probe-metalness.json": "3c71e32d4c19fdc151b374f658d9671e9542a6b28e703f639818942ac603dd53",
+    "public/levantamiento/evidence/C10/20261030-continuacion/visor-aislado/runtime.json": "37ca9c3fd34b3a33d9a6b1781ad5f66a14b7781b2ff1942dba35e1924711d38e"
+  },
+  "limits": [
+    "Captura canvas WebGL real; render suspendido durante carga para memoria limitada.",
+    "Loader UI agotó plazo antes de mundo listo. No recorrido interactivo ni rendimiento acreditados.",
+    "Control metal1 es contrafactual en memoria sobre candidato. Runtime previo1/1 preservado en visor-aislado/runtime.json.",
+    "Probe DOMcontrol celeste descartado por buffer no preservado; sólo candidato-estable tiene lecturaGPU síncrona.",
+    "Nivel medio de la cuadra sigue pendiente por fuentes de fachada84–88."
+  ],
+  "codeHashes": {
+    "public/levantamiento/c10-84-data.js": "e942f88151ea66fbaa196bd573e0031dd8ca6986746591ea783ee6c273dd13b0",
+    "public/levantamiento/paramento-refinement.js": "0b9d048f17dde2138a2ea86712e1c15dcd77ac63798f1f43987d872d9e81d97a",
+    "scripts/verificar-publicacion.mjs": "aa63d1379a856030fe994ad1b5689f43a84e4db57afd1b867c5da7a224520614",
+    "scripts/pruebas-material84.mjs": "d83af680b9700e67b78c82a621c97c6f7b390e25fade999a957d77042aa6abcd",
+    "scripts/pruebas-fuentes-c10.mjs": "f1d8213def9efe021bd183586783b82de14c8ca70053e1a4dbb30cea967de509",
+    "scripts/comprobar-material84-webgl.mjs": "cc7b41e1cd495bde7db769fdc1e27913ccf33fb4275c7db965373fb601141cac",
+    "docs/C10-MATERIAL84-CONTINUACION.md": "68b919bd00f1d072a130ea185e746238f0c5c3af836b03ff6cacc10b834d0fd5",
+    "package.json": "644dcbe585cbc225211805f6aa20bc7a2eb30021599dfafdfd3b8da886c1a39f"
+  },
+  "verification": {
+    "checkedAt": "2026-10-30T05:06:32.248666+00:00",
+    "npmRunPruebas": {
+      "exitCode": 0,
+      "includes": [
+        "material84-template-metal",
+        "current-source-tamper",
+        "historical-key-collision"
+      ]
+    },
+    "npmRunBuild": {
+      "exitCode": 0,
+      "warnings": "fuentes de letra no resueltas en build y chunks>500kB; no se modificaron por esta continuación"
+    },
+    "python3PruebasPuente": {
+      "exitCode": 0
+    },
+    "pruebasPlanAccion": {
+      "exitCode": 0
+    },
+    "publicationVerifier": {
+      "exitCode": 0,
+      "finalFrozenManifestRecheck": "verificar-final.log externo al paquete para evitar autorreferencia"
+    }
+  }
+}

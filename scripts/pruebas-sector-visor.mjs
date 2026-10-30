@@ -22,7 +22,13 @@ const {createHash}=await import('node:crypto');
 const hash=v=>createHash('sha256').update(v).digest('hex');
 const viewer=await readFile('public/levantamiento/visor/assets/index-RoPA5goG.js','utf8');
 const historical=removeViewerSectorHook(viewer);
-assert.equal(hash(historical),'665a7a1395ee26e3d03c77d36430b577fcca2c79f1bb83bf536159add149fcc4','Se conserva el visor previo exactamente');
+const sheetHash=hash(await readFile('public/levantamiento/sheet-plan-refinement.js')).slice(0,12);
+const sheetImport='sheet-plan-refinement.js?v='+sheetHash;
+assert(historical.includes(sheetImport),'El visor debe importar el módulo actual con su hash exacto');
+// C10 updates only this cache key in the preserved viewer. Freeze every other
+// byte against the accepted pre-sector viewer; do not bless unrelated changes.
+const priorCacheKey=historical.replace(sheetImport,'sheet-plan-refinement.js?v=8a2ade3473c7');
+assert.equal(hash(priorCacheKey),'665a7a1395ee26e3d03c77d36430b577fcca2c79f1bb83bf536159add149fcc4','Se conserva el visor previo salvo hash del import de lámina');
 assert.equal(refineViewerSector(historical,hash(await readFile('public/levantamiento/sector-visor.js'))),viewer,'El hook debe ser reproducible');
 const broken=R.buildEast(osm,plaza),badWorld=new R.Group();badWorld.add(broken.group);
 assert.throws(()=>ensureViewerSector(badWorld,{...R,osmContext:{elements:[]}}),/sector OSM source missing/);

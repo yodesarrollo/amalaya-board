@@ -1,0 +1,25 @@
+{
+  "checkedAt": "2026-10-30T04:42:39.114030+00:00",
+  "script": "regresion-material84.mjs",
+  "scriptSha256": "d83af680b9700e67b78c82a621c97c6f7b390e25fade999a957d77042aa6abcd",
+  "baseline": {
+    "commit": "15d52b45a876967a2477c25e813ec083a1b6f95d",
+    "exitCode": 1,
+    "assertion": "84 must override inherited metalness=1",
+    "actual": 1,
+    "expected": 0
+  },
+  "candidate": {
+    "root": "/home/direccion/worktrees/amalaya-c10-continuidad",
+    "exitCode": 0,
+    "pass": true,
+    "checkedMaterials": 4,
+    "template": {
+      "name": "La Barra Hidalgo · masa verde y arcos originales a partir de referencia visual; geometría provisional sin textura",
+      "metalness": 1,
+      "roughness": 0.17
+    },
+    "non84SHA": "874f74370186aa5feb115a4fe5192c5f769df8b0fb1ddf2984840667a5572888"
+  },
+  "scope": "Mundos reales con único template de extrusión clonado y PBR metálico inyectado antes de applyParamento; control sin opt-in versus paquete real actual; vecinos y colliders no-84 comparados a nivel mundo completo. No certifica visual GPU."
+}

@@ -1,0 +1,14 @@
+{
+  "status": "DIAGNÓSTICO CERRADO; SIN CAMBIO DE MATERIAL PRODUCTIVO",
+  "baseline": "7f59715",
+  "productionUrl": "http://127.0.0.1:8766/levantamiento/visor/",
+  "experimentalUrl": "http://127.0.0.1:8767/levantamiento/visor/",
+  "observation": "P113: pared muy oscura tras S3s fuera de la huella; P111/82 y vuelo84 se renderizan. No recepción de sombra en84 no cambia apariencia; emisión roja temporal84 sí colorea la superficie. No se demostró una corrección segura.",
+  "mechanicalChecks": "Raycast frente exterior correcto antes y después de retroceder; normal geométrica y de vértice coherentes; metalness0, roughness.96, vertexColorsfalse, sin mapas y onBeforeCompile vacío.",
+  "verdict": "P5 visual84 BLOQUEADO. Carga, selección y desplazamiento comprobados; no equivalen a visibilidad satisfactoria.",
+  "limits": "Probes efímeros fuera del repositorio y del dist productivo; no representan color o fidelidad real.",
+  "controls": {
+    "p111-control.png": "Mismo artefacto7f59715, selecciónP111N0°, edificio82 visible.",
+    "p113-vuelo-control.png": "Mismo artefacto7f59715, seleccionarP113 y pulsar modo vuelo: cubierta84 visible."
+  }
+}

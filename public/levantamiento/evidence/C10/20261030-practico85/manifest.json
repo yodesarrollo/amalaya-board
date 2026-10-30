@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "stage": 85,
+  "publication": false,
+  "scope": "PRACTICO-2; trazabilidad técnica, no dictamen de fidelidad ni recibo de publicación.",
+  "previousManifestPath": "public/levantamiento/evidence/C10/20261030-continuacion/manifest.json",
+  "previousManifestSha256": "aa1b91295183b9cba85107ba25021b6ef0c46222cbb1f703d03877deb8d43a23",
+  "sourceHashes": {
+    "public/levantamiento/c10-84-data.js": "eac898b15b51dec1633b69860d009d092f18f74acec4b0b3bbd66b5ba99f7744",
+    "public/levantamiento/cuadra-detail-data.js": "2eee4c41b198bd70e513628b13f4fd5b7e31ba2bdc9223f907bfc7009f9dd3ff",
+    "public/levantamiento/paramento-refinement.js": "16ded6d3f57795e4d723a86cb93115586af2acd3a8fa432666ba2840479d8901",
+    "public/levantamiento/sheet-plan-refinement.js": "a3ce160f7c16452d5301981b9507bbbc768f8542ebd47166cf8beb3bdb6ea903",
+    "public/levantamiento/world.js": "f230770eece427eed87b28f77cdcd4143398b52ddde18cc5927721d9c4e1648d",
+    "public/levantamiento/visor/assets/index-RoPA5goG.js": "3569232cbc4e6c420abfea212feed1b65158b0fb68a21b9bc557beb4a06d5169",
+    "public/levantamiento/visor/index.html": "de3788dc3c57e1029b66c089dcf7a977855ea807dabfe3b9919b9591617fdd0d",
+    "public/levantamiento/modelo-ligero.bin": "a799f2e980acbd0531ffd52d1da0f88d7a9ed38b595722dc2a4cc7b536b0d19e",
+    "public/levantamiento/modelo-ligero.json": "e5adac67c1ad587307ba61bf213b226a0967c7ea334f74fcc1bdf6ee18d7d388",
+    "public/levantamiento/c10-85-data.js": "dc70a8b0a7a0b83171e17b3617a176ffd6283b941fa6b3b0864113d4ddad032e"
+  },
+  "historicalC10Snapshots": {
+    "public/levantamiento/c10-84-data.js@e942f88151ea66fbaa196bd573e0031dd8ca6986746591ea783ee6c273dd13b0": "docs/historico-c10/e942f88151ea66fbaa196bd573e0031dd8ca6986746591ea783ee6c273dd13b0-c10-84-data.js",
+    "public/levantamiento/cuadra-detail-data.js@187121a41b7a0a237cc239c26f61276b69c00a22641d007d17c0fd5474750eea": "docs/historico-c10/187121a41b7a0a237cc239c26f61276b69c00a22641d007d17c0fd5474750eea-cuadra-detail-data.js",
+    "public/levantamiento/paramento-refinement.js@0b9d048f17dde2138a2ea86712e1c15dcd77ac63798f1f43987d872d9e81d97a": "docs/historico-c10/0b9d048f17dde2138a2ea86712e1c15dcd77ac63798f1f43987d872d9e81d97a-paramento-refinement.js",
+    "public/levantamiento/sheet-plan-refinement.js@ce408feafc84fdb743abd22188f66b6051bb91dffc7b93351285bb90fcfd7e78": "docs/historico-c10/ce408feafc84fdb743abd22188f66b6051bb91dffc7b93351285bb90fcfd7e78-sheet-plan-refinement.js",
+    "public/levantamiento/world.js@22b8615a8fb3790fd42868554e7b8881d422bbb3afcfa35196e9e849c6f49630": "docs/historico-c10/22b8615a8fb3790fd42868554e7b8881d422bbb3afcfa35196e9e849c6f49630-world.js",
+    "public/levantamiento/visor/assets/index-RoPA5goG.js@d83d9f46c295020e6403081ebcdcae44342d3f0786baf670b407cec3d4797e92": "docs/historico-c10/d83d9f46c295020e6403081ebcdcae44342d3f0786baf670b407cec3d4797e92-index-RoPA5goG.js",
+    "public/levantamiento/visor/index.html@e109eada58bcd598de676a0e3517c0ee102125e7958a9bbb9e5aeaa5dd0d09cd": "docs/historico-c10/e109eada58bcd598de676a0e3517c0ee102125e7958a9bbb9e5aeaa5dd0d09cd-index.html",
+    "public/levantamiento/modelo-ligero.bin@b5687b0c018f89503246e88c078dcbb084da8e3aaeedfd2276e6c78c256debf6": "docs/historico-c10/b5687b0c018f89503246e88c078dcbb084da8e3aaeedfd2276e6c78c256debf6-modelo-ligero.bin",
+    "public/levantamiento/modelo-ligero.json@16eb4f92f27724e43697d150435bed321fddeb9fd218b7f753ffbb6834798744": "docs/historico-c10/16eb4f92f27724e43697d150435bed321fddeb9fd218b7f753ffbb6834798744-modelo-ligero.json"
+  },
+  "evidenceFiles": {
+    "public/levantamiento/evidence/C10/20261030-practico85/84/84-norte-hipotesis.png": "c1fb246e25c671eaf828959ef5905c7ca2375603b7169c973f7fe0c75ed15ca8",
+    "public/levantamiento/evidence/C10/20261030-practico85/84/84-oblicua-hipotesis.png": "0405ab94bf52104acb6749616e3d324c6b9a201a3438ee6bdbb65c4d2dee2a5b",
+    "public/levantamiento/evidence/C10/20261030-practico85/84/ligera/ligera84.png": "f984da039b69b0f7c73b560277990e982944a0513f6f6e0e623f266757df2297",
+    "public/levantamiento/evidence/C10/20261030-practico85/84/ligera/recibo.json": "6b66506561cb089dfd355aa28eb4ded29ebffe73769baa54758e5028101b2756",
+    "public/levantamiento/evidence/C10/20261030-practico85/84/recibo.json": "baebf206bbea91f7b86a43968b25d4493e0959add021381d463493b81007072d",
+    "public/levantamiento/evidence/C10/20261030-practico85/85/85-general-hipotesis.png": "81cf0eb1e01460a4bc30addd29ddfca192cafc55e9f0f74607e6c640b7397c43",
+    "public/levantamiento/evidence/C10/20261030-practico85/85/85-oblicua-hipotesis.png": "afc976b8b7ee2571c79c047a538adfb6825c2d81c3d25f9a6793fe2970ef1abb",
+    "public/levantamiento/evidence/C10/20261030-practico85/85/85-patio-hipotesis.png": "82a4fc85fdd3ef98688ed6a84de8a364fde334d94d13ee2c9e948d2b11b07202",
+    "public/levantamiento/evidence/C10/20261030-practico85/85/ligera/ligera85.png": "9f207d9c7a611ca7e13e0b98ca1ebb16b0cdad7e506eade15458b7ac0cf87c45",
+    "public/levantamiento/evidence/C10/20261030-practico85/85/ligera/recibo.json": "78859890aa594c1d8690ba9e5f18163518fe054347bcbbd591adda991c7e4f55",
+    "public/levantamiento/evidence/C10/20261030-practico85/85/recibo.json": "4f425865f57946047ddc25148a46a19654100e90927b923a08a414196617c69c",
+    "public/levantamiento/evidence/C10/20261030-practico85/revision/84-fachada-hipotesis.png": "1bac3e5c1ca8b3964d0a1f813cd46a7660d7783b9259e39c2104fd6de9ec8849",
+    "public/levantamiento/evidence/C10/20261030-practico85/revision/84-oblicua-hipotesis.png": "e70c7b3173b5a6960a2140eef2338b5b12fe2d53aa4ae8a0628f11ecf03377d2",
+    "public/levantamiento/evidence/C10/20261030-practico85/revision/84-ubicacion.png": "5c10db82b0ecc4269b337f2784c7163047ab881b5ad0920650cfcaa2a2329613",
+    "public/levantamiento/evidence/C10/20261030-practico85/revision/85-fachada-hipotesis.png": "47eaa46c6d80438f71a9553777f31853cab2bdf7269e11df90863602a8b6f7c3",
+    "public/levantamiento/evidence/C10/20261030-practico85/revision/85-oblicua-hipotesis.png": "24bbe42de13750a13182de66b3e62e17948a98ab6d2f386b7c0ce457869174ca",
+    "public/levantamiento/evidence/C10/20261030-practico85/revision/85-ubicacion.png": "4c2bb0882f23ac83194e46cceeddfeaf8fd63b88cd76c82bee550a089449f3e9",
+    "public/levantamiento/evidence/C10/20261030-practico85/revision/index.html": "94c1450a570f6befef9f82bc08f30741604c5109936eda03bb106f9439319ec5",
+    "public/levantamiento/evidence/C10/20261030-practico85/revision/lista-dudas.json": "5e24fe92c10d65722c59498c631b26854a95e87d12482c6279cf294988e109d3",
+    "public/levantamiento/evidence/C10/20261030-practico85/revision/manifest.json": "def67fdf11077866ca93bd70bc1b648b1470445ebca350c8dd208ef5c116752c",
+    "public/levantamiento/evidence/C10/20261030-practico85/recibo-trazabilidad.json": "ed052a4eaa161006bde67fa2dce8418ceffb22e393edb91a6e06215ae0da887b"
+  },
+  "limits": [
+    "P1–P6 y dictámenes históricos sin cambio.",
+    "Evidencia externa recibida por hash; su auditoría semántica corresponde al integrador."
+  ]
+}

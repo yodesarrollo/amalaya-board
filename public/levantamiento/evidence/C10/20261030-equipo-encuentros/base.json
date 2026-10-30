@@ -1,0 +1,64 @@
+{
+  "worldSha256": "401a29332e4b6335df2246d744593c6d1adea67dba9efb8d39be8e394cebf91b",
+  "sceneSha256": "debd5c4c427b34f720dd5522a6c66f836989f69918ea03fb54f14b2f6dda05dd",
+  "pairs": [
+    {
+      "a": "D2-01",
+      "b": "D1-11",
+      "intersectionArea": 0,
+      "edgeDistance": 25.40500207690244
+    },
+    {
+      "a": "D2-02",
+      "b": "D1-11",
+      "intersectionArea": 0,
+      "edgeDistance": 0.6824509301187116
+    },
+    {
+      "a": "D2-01",
+      "b": "D2-02",
+      "intersectionArea": 0,
+      "edgeDistance": 23.446101221164657
+    }
+  ],
+  "outside": [
+    {
+      "id": "D2-01",
+      "area": 894.5319165000001,
+      "outsideBoundary": 132.57291765978061
+    },
+    {
+      "id": "D2-02",
+      "area": 242.02472849999867,
+      "outsideBoundary": 1.8081383479902797
+    },
+    {
+      "id": "D1-11",
+      "area": 115.61449700000048,
+      "outsideBoundary": 0
+    }
+  ],
+  "solar": [
+    {
+      "x": -100,
+      "z": 150,
+      "collisionIds": []
+    },
+    {
+      "x": -90,
+      "z": 150,
+      "collisionIds": []
+    },
+    {
+      "x": -80,
+      "z": 150,
+      "collisionIds": []
+    },
+    {
+      "x": -70,
+      "z": 150,
+      "collisionIds": []
+    }
+  ],
+  "note": "Intersecciones sobre SHEET_PLANS originales; no acreditan geometría refinada. Distancia es entre bordes, incluso si existe intersección. Muestras aisladas de AABB a y=1.2 m; no prueban recorrido ni todo el solar. Borde INEGI sólo inventario."
+}
