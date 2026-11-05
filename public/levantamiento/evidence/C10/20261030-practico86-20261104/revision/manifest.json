@@ -1,0 +1,15 @@
+{
+  "at": "2026-11-05T01:22:00.086324+00:00",
+  "ids": [
+    86
+  ],
+  "count": 1,
+  "files": {
+    "86-fachada-hipotesis.png": "221c99335645a33d8153956c7e3cc734ab253378c496d84aedc3c47ee9f76d3e",
+    "86-oblicua-hipotesis.png": "83844c1680f5ab7bcfd78f180dec6a1cfba28bb97c99d8b415c1a87df10db37c",
+    "86-ubicacion.png": "6d5bfbf839cf89cab7ebf136ad780f3fadbdecc654a9caa8ece04962478c4eac",
+    "lista-dudas.json": "12d7c4952675281e8761cddbe8feec6d89f882273a81a129b12f96579f6f6ce5",
+    "index.html": "7c3e75a0ca0cd31a4e7c4def0b4882c8b7a13b9112e63c9102059437938cb376"
+  },
+  "scope": "Vista derivada de hipótesis; no sustituye el tablero y las decisiones sólo se guardan en este navegador. Las decisiones son sobre el módulo y las fuentes del renderer realmente capturadas; no se transfieren a otra revisión."
+}
