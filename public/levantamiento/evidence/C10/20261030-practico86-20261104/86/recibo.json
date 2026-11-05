@@ -1,0 +1,127 @@
+{
+  "at": "2026-11-04T21:19:41.349Z",
+  "complete": true,
+  "id": "D1-11",
+  "captures": [
+    {
+      "name": "86-calle-frontal-HIPOTESIS",
+      "position": [
+        -89.55817570198974,
+        4,
+        185.14271885419404
+      ],
+      "rotation": [
+        -0.0941651307315086,
+        -6.091533745208482,
+        0,
+        "YXZ"
+      ],
+      "fov": 70,
+      "render": {
+        "frame": 1,
+        "calls": 2165,
+        "triangles": 170955,
+        "points": 0,
+        "lines": 120
+      },
+      "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+      "buffer": [
+        1100,
+        760
+      ],
+      "sha256": "c553e421bec808038cd7ebed0d8d09070bf1b4b7854dc3dc2c1dedc67afac24c"
+    },
+    {
+      "name": "86-calle-oblicua-HIPOTESIS",
+      "position": [
+        -92.5032486533496,
+        4,
+        185.714160286879
+      ],
+      "rotation": [
+        -0.08935925803269908,
+        -0.13009899242553724,
+        0,
+        "YXZ"
+      ],
+      "fov": 70,
+      "render": {
+        "frame": 2,
+        "calls": 2433,
+        "triangles": 186638,
+        "points": 0,
+        "lines": 120
+      },
+      "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+      "buffer": [
+        1100,
+        760
+      ],
+      "sha256": "519691ad6aab63802ddf6372a5b6edabbef0d8ee01cbc4f59b25913a31115538"
+    }
+  ],
+  "limits": "Inspección WebGL del visor compilado real. Render automático pausado durante la carga; cámaras colocadas por el arnés. Sin alterar visibilidad, geometría, luces ni materiales. NO acredita recorrido interactivo, rendimiento, fotografía real ni decisión del propietario.",
+  "runtime": {
+    "id": "D1-11",
+    "meshes": 4,
+    "materials": [
+      {
+        "color": "c1b7a5",
+        "metalness": 0,
+        "roughness": 0.96
+      },
+      {
+        "color": "aaa89d",
+        "metalness": 0,
+        "roughness": 0.96
+      },
+      {
+        "color": "b5b3a7",
+        "metalness": 0,
+        "roughness": 0.96
+      },
+      {
+        "color": "a9a79c",
+        "metalness": 0,
+        "roughness": 0.96
+      }
+    ],
+    "loader": "No se pudo abrir el recorrido 3D\n\nReintenta la carga o continúa con la vista ligera.\n\nReintentar\nVer edificios"
+  },
+  "finishedAt": "2026-11-04T21:23:00.937Z",
+  "sources": {
+    "/levantamiento/visor-loader.js": "5aed9ea91fb801a1ace6e4cbd9a1c4d050f53498e75c78cc3d5b684352df7ae1",
+    "/levantamiento/visor/assets/index-RoPA5goG.js": "22fda0a99e2271721bffac267862628ffb6da0889cc91fff5e9289c5bd8e1b97",
+    "/levantamiento/plan-review-refinement.js": "eb8d22536cb3753ce469ca1eb8406aa0fc9a2b0e95858c7a51613835f0c2c421",
+    "/levantamiento/sheet-plan-refinement.js": "cc61760a1f73a1de020acc8bd9d237d76cee1ab7f9a35b8a0ce8f5d1822d26cc",
+    "/levantamiento/walk-navigation.js": "41d52d93116d2be18a27d11ae01290c1468001ea1b8772b5fa5cb3a2f9141e94",
+    "/levantamiento/plantas-refinement.js": "8a5221b14a88f7349610097e3d6007056a1acf805c052df5db6a5d5870fc3949",
+    "/levantamiento/banquetas-refinement.js": "4c0e1c096e78f0771dc76fd84cf42d5d7180dea5490b83022827d709758ea8f9",
+    "/levantamiento/ebsw-refinement.js": "765e5fd4f8693ffdd610a16632e5848f73ce70525ea1e17503cc74799e2de057",
+    "/levantamiento/isc58-refinement.js": "76eca0365d35400e94b996fa16080888772c137398b7140df9d0308dc50e3a9b",
+    "/levantamiento/sector-visor.js": "b8998854242107908a4611ef7b3fffc742cf2bcc4e1560db5a9866d2c1e5648e",
+    "/levantamiento/calzadas-refinement.js": "6e7bf650d403fa22fb629cb9e19ed59b69a24296942f0b792a98f1ceef418bec",
+    "/levantamiento/ajuste-visual-refinement.js": "60d91fad5f7220897884bf41c17dd4e7e5fd501fd8637f14821184f3d9832249",
+    "/levantamiento/ground-reference-refinement.js": "46dad659fe0a671ea7b7405c77e759a13c7fecfd7d84d4cb62f7edccf39d79ed",
+    "/levantamiento/street-batch50-refinement.js": "9300d223f642a2e4889a565415fb73e29b0580e47110e8f85a7725ebab673cca",
+    "/levantamiento/paramento-refinement.js": "891c94a1d49c52e843dca034d4081472fff17a3102a2150833cf0170644b1c95",
+    "/levantamiento/sheet-plan-data.js": "9ae568697dde4a4c780a54b0e76ff3255ecadd9ca6b2605fe0f01b53aacaf30f",
+    "/levantamiento/ajuste-visual-data.js": "c3c433261b271213e7d7657f33ae75d1210ceb21a61178d0c0cf0d6713da8a5d",
+    "/levantamiento/ground-reference-data.js": "7c61c41bf1145e5e80b58c35bbe77932db37e4830593416eb92fa55a4f64f513",
+    "/levantamiento/paramento-sidewalks.js": "8ee470fed0adc69c1dc18ccba021efcd621d5f941d27d0f0ee4ea0075eeb18ea",
+    "/levantamiento/street-batch50-data.js": "dbace99ec7008f142f5310b13e178a8fa56de22bdcd1b6a964cec48d348201ab",
+    "/levantamiento/obregon-aproximado-data.js": "9a20c956e9deafd3c80a64d0eb5ce74eeef98a1ee088dbeabe770f758217d40f",
+    "/levantamiento/paramento-data.js": "5cc1cd6d1d7afe221bb96edbbfa6990a7e446a487014ba4ae0bc8df76d359d93",
+    "/levantamiento/c1-13-barandal.js": "6fae4d2552dd84f537d8d8de03380a6331d31fd191120bfac6dfde4e990350bd",
+    "/levantamiento/cuadra-detail-data.js": "131f0ce7282f6ec2971d75f69328e1036b35b539c6dce600b5e97895f1d4a945",
+    "/levantamiento/cuadra-c02-aproximada.js": "762653c8bba5fce25428553c2fa68cf4bffa30cc87225b2835306a1afe49adc1",
+    "/levantamiento/serdan-aproximado-data.js": "0bbe41f3555a82dc209d58f3907380667a61126556bd2007de7d3a5fe96e5ab3",
+    "/levantamiento/cuadra-c05-aproximada.js": "5b91975adb8acc25dae8fe174be004381df38303b2e35bda70e1e3fc6227c3b4",
+    "/levantamiento/corredor-obregon-20261026.js": "0b3a3165be8db1e25f79130a79bffd86031afc86e6ce7526895ef55548fe0f17",
+    "/levantamiento/bloque1-serdan-20261026.js": "25a7d7b95b2169eea8ae3ba3a2b55ad9bff0cec4b24c0787cee1201b0e4e9c77",
+    "/levantamiento/c10-85-data.js": "dc70a8b0a7a0b83171e17b3617a176ffd6283b941fa6b3b0864113d4ddad032e",
+    "/levantamiento/c10-84-data.js": "eac898b15b51dec1633b69860d009d092f18f74acec4b0b3bbd66b5ba99f7744",
+    "/levantamiento/c10-86-data.js": "12963b0dd4457e237716904f4ae50a8e1374b08282b1719e7f1de3f2fdf64462"
+  },
+  "errors": []
+}
