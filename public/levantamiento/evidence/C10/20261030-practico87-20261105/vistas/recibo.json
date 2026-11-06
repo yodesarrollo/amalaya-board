@@ -1,0 +1,34 @@
+{
+  "kind": "inspeccion-cpu-no-caminata",
+  "sources": {
+    "world.js": "1169ce6f283756b36d2c125f96715fb6557b1fe89f4bc31eb7349d8611dfc48e",
+    "sheet-plan-data.js": "9ae568697dde4a4c780a54b0e76ff3255ecadd9ca6b2605fe0f01b53aacaf30f",
+    "ajuste-visual-data.js": "c3c433261b271213e7d7657f33ae75d1210ceb21a61178d0c0cf0d6713da8a5d",
+    "paramento-refinement.js": "459a0afc5f06c6c399c2aad7e356860e79a256b1e22da93db25ae062cc643e29",
+    "cuadra-detail-data.js": "5bf3832920ef39e9ebc7bf2affa57c5213e5ed65f2416be7f81dbb7ce575a97f",
+    "c10-87-data.js": "88b083a06801fa32b6a618359a859ebea016eccfac16f4c1c1559c1d2977610c"
+  },
+  "captures": {
+    "frontal": {
+      "path": "../vistas/87-frontal-HIPOTESIS-3d.jpg",
+      "sha256": "f90ef507937323f7f87fd4266124dc3f206b3191b4313af1cf6eaa6b7a921a38",
+      "kind": "Render CPU de triángulos reales; iluminación simplificada, no WebGL ni caminata",
+      "labelled_sha256": "9535f6b72a408c9b5ea084c78002554624524a08153a289b76f254c1c9ee738f"
+    },
+    "oblicua": {
+      "path": "../vistas/87-oblicua-HIPOTESIS-3d.jpg",
+      "sha256": "9931b097e89de9c82b51fa87b1bc9fdc6ed477d5c74dccc454d7f09ef4d593ca",
+      "kind": "Render CPU de triángulos reales; iluminación simplificada, no WebGL ni caminata",
+      "labelled_sha256": "1f7f701e6843bf15faedf63c147dc96dbc11f3b4dfe4d40f6cddf34e395fa578"
+    },
+    "aerea": {
+      "path": "../vistas/87-aerea-HIPOTESIS-3d.jpg",
+      "sha256": "aa5a3dd987a971491e55a836c63f2e011a6243f5b74d65adcf28dc649d4d490f",
+      "kind": "Render CPU de triángulos reales; iluminación simplificada, no WebGL ni caminata",
+      "labelled_sha256": "41a50aff7296ff52f886d56061a95ff687d237ace54f8fdca8e07d8c592da012"
+    }
+  },
+  "limitations": "No WebGL, no selección comprobada, no rendimiento; frontal140 grados, oblicua18 de altura del MODELO.",
+  "same_triangles_after_cache_preparation": true,
+  "scene_export_sha256": "975343c53167fa888c4384b630ee69a17c47247ec977bd4eae0df532be8bdfc3"
+}
