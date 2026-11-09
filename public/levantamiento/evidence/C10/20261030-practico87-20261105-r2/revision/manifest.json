@@ -1,0 +1,16 @@
+{
+  "at": "2026-11-06T22:14:38.130853+00:00",
+  "ids": [
+    87
+  ],
+  "count": 1,
+  "files": {
+    "87-fachada-hipotesis.png": "9535f6b72a408c9b5ea084c78002554624524a08153a289b76f254c1c9ee738f",
+    "87-oblicua-hipotesis.png": "1f7f701e6843bf15faedf63c147dc96dbc11f3b4dfe4d40f6cddf34e395fa578",
+    "87-aerea-hipotesis.png": "41a50aff7296ff52f886d56061a95ff687d237ace54f8fdca8e07d8c592da012",
+    "87-ubicacion.png": "da76712b6546a897f752e7272c3f0e909f27258aa178857aba7e887b8df39544",
+    "lista-dudas.json": "e37933eb0b03a9eed67941ccce8a072a80e437d26170045aabf99db173c33ffa",
+    "index.html": "1fceefad7c68b8d6db07e40ae67d250fafe7725b3442e5fb0732593eaabc170b"
+  },
+  "scope": "Vista derivada de hipótesis; decisiones locales, no aprobación, publicación ni fotografía. Capturas CPU heredadas e inspeccionadas en401; esta revisión añade ficha navegable y modelo ligero87 sin alterar geometría."
+}

@@ -1,0 +1,79 @@
+{
+  "schema": "amalaya-hipotesis-review-v2",
+  "scope": "Vista derivada de hipótesis; decisiones locales, no aprobación, publicación ni fotografía. Capturas CPU heredadas e inspeccionadas en401; esta revisión añade ficha navegable y modelo ligero87 sin alterar geometría.",
+  "cases": [
+    {
+      "id": "AMALAYA-DUDA-0087-MINA",
+      "building_id": "D2-01",
+      "building_number": 87,
+      "block_id": "C10",
+      "block_number": 25,
+      "criterion": "PRACTICO-2",
+      "status": "pendiente",
+      "owner_decision": null,
+      "note": "",
+      "part": "F-M: lado largo oriental del MODELO, arista4 de la huella efectiva",
+      "hypothesis": "Tres paños tonales cerrados y remate fino. Composición y tonos propuestos, no observados; otros frentes neutros.",
+      "assumptions": "H87-M-01 conserva masa, cubierta, seis vértices efectivos y corrección vial previa. Altura6.2 y tonos heredados del MODELO, no medidos ni acreditados. Sin huecos, acceso, interiores ni cerchas inventadas.",
+      "question": "¿Conservamos esta propuesta, corregimos algo o aportas una foto? Pendiente por defecto.",
+      "missing_reference": "Sin fotografía de calle suficientemente atribuible tras búsqueda pública acotada previa. Las aéreas no prueban fachadas.",
+      "location_description": "Hermosillo, entorno de Mina oeste, cuadra25/C10. 87 es número del modelo, no domicilio. Frente F-M orientativo, otros lados sin fotografía.",
+      "building_front_approx": {
+        "lat": 29.07496738114716,
+        "lon": -110.9553380277018
+      },
+      "photo_point_approx": {
+        "lat": 29.074962230624845,
+        "lon": -110.95527657991335,
+        "heading_degrees": 275.46523368761785
+      },
+      "photo_request": "Incluir el frente largo F-M completo, arranque, remate y ambas esquinas; añadir una oblicua que muestre el entrante. Identificar lado y fecha; no extrapolar a otros frentes. Coordenadas y rumbo derivados del MODELO, reajustar en sitio.",
+      "location_limits": "No es puesto seguro ni acceso autorizado. Elegir posición pública permitida sin entrar al inmueble ni pararse en calzada.",
+      "maps_photo_point": "https://www.google.com/maps/search/?api=1&query=29.0749622,-110.9552766",
+      "maps_building_front": "https://www.google.com/maps/search/?api=1&query=29.0749674,-110.9553380",
+      "screenshot": "87-fachada-hipotesis.png",
+      "map": "87-ubicacion.png",
+      "overview": "87-oblicua-hipotesis.png",
+      "source_capture": {
+        "path": "../vistas/87-frontal-HIPOTESIS-3d.jpg",
+        "sha256": "f90ef507937323f7f87fd4266124dc3f206b3191b4313af1cf6eaa6b7a921a38",
+        "kind": "Render CPU de triángulos reales; iluminación simplificada, no WebGL ni caminata",
+        "labelled_sha256": "9535f6b72a408c9b5ea084c78002554624524a08153a289b76f254c1c9ee738f"
+      },
+      "source_oblique": {
+        "path": "../vistas/87-oblicua-HIPOTESIS-3d.jpg",
+        "sha256": "9931b097e89de9c82b51fa87b1bc9fdc6ed477d5c74dccc454d7f09ef4d593ca",
+        "kind": "Render CPU de triángulos reales; iluminación simplificada, no WebGL ni caminata",
+        "labelled_sha256": "1f7f701e6843bf15faedf63c147dc96dbc11f3b4dfe4d40f6cddf34e395fa578"
+      },
+      "model_revision_inspected": "sha256-inspeccion-249e0d37ba1ea0f93e45e3b8c0211089e0107a2c4689a28e7a47b2ce5df17b83",
+      "renderer_sources": {
+        "/levantamiento/world.js": "1169ce6f283756b36d2c125f96715fb6557b1fe89f4bc31eb7349d8611dfc48e",
+        "/levantamiento/sheet-plan-data.js": "9ae568697dde4a4c780a54b0e76ff3255ecadd9ca6b2605fe0f01b53aacaf30f",
+        "/levantamiento/ajuste-visual-data.js": "c3c433261b271213e7d7657f33ae75d1210ceb21a61178d0c0cf0d6713da8a5d",
+        "/levantamiento/paramento-refinement.js": "459a0afc5f06c6c399c2aad7e356860e79a256b1e22da93db25ae062cc643e29",
+        "/levantamiento/cuadra-detail-data.js": "5bf3832920ef39e9ebc7bf2affa57c5213e5ed65f2416be7f81dbb7ce575a97f",
+        "/levantamiento/c10-87-data.js": "88b083a06801fa32b6a618359a859ebea016eccfac16f4c1c1559c1d2977610c"
+      },
+      "inspection_started_at": "2026-11-05T19:45:12.534609-07:00",
+      "base_commit": "35ee4ab5c636fc02dd54ba60674c8298eecf8920",
+      "sources": [
+        "world.js",
+        "sheet-plan-data.js",
+        "ajuste-visual-data.js",
+        "paramento-refinement.js",
+        "cuadra-detail-data.js",
+        "c10-87-data.js"
+      ],
+      "source_limits": "Sólo inspección de render CPU de escena real; no prueba del navegador, selección o rendimiento. Contorno aéreo bruto difiere de huella efectiva; no restaurarlo.",
+      "decision_options": [
+        "dejar_asi",
+        "corregir",
+        "aporto_foto"
+      ],
+      "created_at": "2026-11-05T19:45:12.534666-07:00",
+      "prior_model_revision_inspected": "sha256-inspeccion-c04830f701c84bbf365185181f4e1e599e9dbb7257c9a84f79f5ce28ce596329",
+      "revision_basis_note": "Rutas normalizadas a URL pública para contrato v2; no nueva captura. Fuentes geométricas idénticas a401; fecha de inspección original conservada."
+    }
+  ]
+}

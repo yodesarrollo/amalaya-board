@@ -1,0 +1,20 @@
+{
+  "at": "2026-11-06T22:48:01.295995+00:00",
+  "run": 550,
+  "reason": "R2 embedded images loaded, but original CPU capture paths were missing. R3 preserves all review bytes and includes both original referenced files.",
+  "new_capture": false,
+  "geometry_change": false,
+  "files": [
+    {
+      "path": "public/levantamiento/evidence/C10/20261030-practico87-20261105-r3/vistas/87-frontal-HIPOTESIS-3d.jpg",
+      "sha256": "f90ef507937323f7f87fd4266124dc3f206b3191b4313af1cf6eaa6b7a921a38",
+      "copied_from": "public/levantamiento/evidence/C10/20261030-practico87-20261105/vistas/87-frontal-HIPOTESIS-3d.jpg"
+    },
+    {
+      "path": "public/levantamiento/evidence/C10/20261030-practico87-20261105-r3/vistas/87-oblicua-HIPOTESIS-3d.jpg",
+      "sha256": "9931b097e89de9c82b51fa87b1bc9fdc6ed477d5c74dccc454d7f09ef4d593ca",
+      "copied_from": "public/levantamiento/evidence/C10/20261030-practico87-20261105/vistas/87-oblicua-HIPOTESIS-3d.jpg"
+    }
+  ],
+  "publication": false
+}

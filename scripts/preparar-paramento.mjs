@@ -5,7 +5,7 @@ const root='public/levantamiento';
 // the parent module so visitors do not keep an older C02 reconstruction.
 let details=await readFile(root+'/cuadra-detail-data.js','utf8');
 details=details.replace(/cuadra-c02-aproximada\.js(?:\?v=[a-f0-9]{12})?/,'cuadra-c02-aproximada.js?v='+sheetHash(await readFile(root+'/cuadra-c02-aproximada.js')).slice(0,12));
-for(const number of [84,85,86]){
+for(const number of [84,85,86,87]){
  const file=`c10-${number}-data.js`,pattern=new RegExp(file.replaceAll('.','\\.')+'(?:\\?v=[a-f0-9]{12})?');
  if(pattern.test(details))details=details.replace(pattern,file+'?v='+sheetHash(await readFile(root+'/'+file)).slice(0,12));
 }
