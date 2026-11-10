@@ -5,7 +5,9 @@ import {resolve,dirname,sep} from 'node:path';
 import {createHash} from 'node:crypto';
 const root=resolve('public/levantamiento/evidence/C10');
 const pointer=JSON.parse(await readFile(root+'/actual.json','utf8'));
-const file=resolve(process.argv[2]||dirname(pointer.manifestPath)+'/revision/lista-dudas.json');
+// The 87 r3 review packet is immutable history; later generations (88+) do not carry it.
+const R3='public/levantamiento/evidence/C10/20261030-practico87-20261105-r3/revision/lista-dudas.json';
+const file=resolve(process.argv[2]||(pointer.manifestPath.includes('practico87')?dirname(pointer.manifestPath)+'/revision/lista-dudas.json':R3));
 const packet=JSON.parse(await readFile(file,'utf8'));
 assert.equal(packet.schema,'amalaya-hipotesis-review-v2');assert.equal(packet.cases.length,1);
 let checked=0;

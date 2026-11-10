@@ -1,0 +1,56 @@
+{
+  "schema": "amalaya-decision-propietario-v1",
+  "date": "2026-11-10",
+  "time": "07:58 HMO",
+  "by": "Alejandro Puebla (propietario)",
+  "channel": "chat con Claude",
+  "quote": "Si ya hay una instrucción para eso levantar un genérico y si [no hay] foto específica del lugar para después pero dar por buena la edificación ahora; lo que queremos es que sea un mundo virtual terminado no necesariamente perfecto.",
+  "criterion": "Mundo virtual terminado, no necesariamente perfecto: sin foto específica del lugar se levanta un genérico rotulado y se da por bueno; la foto queda para después y puede corregirlo sin bloquear la cola.",
+  "decisions": [
+    {
+      "building_number": 87,
+      "building_id": "D2-01",
+      "hypothesis": "H87-M-01",
+      "decision": "DEJAR ASÍ",
+      "status": "aceptado como genérico; foto del frente F-M para después",
+      "note": "Las fichas inmutables r1–r3 se conservan; esta decisión no reescribe su historia."
+    },
+    {
+      "building_number": 88,
+      "building_id": "D2-02",
+      "hypothesis": "H88-S-01",
+      "decision": "DEJAR ASÍ",
+      "status": "genérico aceptado; foto del frente sur y la esquina para después"
+    },
+    {
+      "building_numbers": [
+        84,
+        85,
+        86
+      ],
+      "building_ids": [
+        "D1-09",
+        "D1-10",
+        "D1-11"
+      ],
+      "decision": "DEJAR ASÍ",
+      "status": "hipótesis PRACTICO-2 aceptadas bajo el mismo criterio; fotos para después"
+    }
+  ],
+  "block": {
+    "id": "C10",
+    "buildings": [
+      "D1-08",
+      "D1-09",
+      "D1-10",
+      "D1-11",
+      "D2-01",
+      "D2-02"
+    ],
+    "status": "cerrada en primera pasada práctica: todos los cuerpos con modelo vigente o genérico aceptado",
+    "pending_later": [
+      "fotografías de calle de 84–88 para corregir genéricos"
+    ]
+  },
+  "limits": "No certifica fidelidad fotográfica, alturas medidas, accesibilidad ni recorridos. publication sigue en false en el recibo técnico: la publicación se comprueba aparte."
+}
