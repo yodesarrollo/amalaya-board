@@ -1,0 +1,24 @@
+{
+  "kind": "recibo-tecnico-trazabilidad",
+  "stage": 88,
+  "publication": false,
+  "scope": "Sellado de bytes y sucesión de fuentes; no acredita auditoría, fotos, fidelidad ni publicación.",
+  "previousManifestPath": "public/levantamiento/evidence/C10/20261030-practico87-20261105-r3/manifest.json",
+  "previousManifestSha256": "a14cce1bc9f90f3cf41a4099448dcff6aa8a9bdcbcafed7d0dc3b8ff0b96b816",
+  "sourceHashes": {
+    "public/levantamiento/c10-84-data.js": "eac898b15b51dec1633b69860d009d092f18f74acec4b0b3bbd66b5ba99f7744",
+    "public/levantamiento/cuadra-detail-data.js": "2bb92bfcfb03470e6c7df0c7e04efdd49a72a5bf458bdcfe9fcf6799e5d2531a",
+    "public/levantamiento/paramento-refinement.js": "77c718ed7afd915f1b8047950c427d2bf3b54922cb66560b76dd318f176d662f",
+    "public/levantamiento/sheet-plan-refinement.js": "477cc2e81bd269ee5c08a73dc75936e9ad80f5a8f0ca21e8b5c3e2c8e9ff47e0",
+    "public/levantamiento/world.js": "79df72fd856c81b7a3200e2ac1384b399b6b5856585848247bce0e6ef48e839a",
+    "public/levantamiento/visor/assets/index-RoPA5goG.js": "1ef9fa55af87658c366e234799028121151ce2352c8a930deafb48b69b4578a1",
+    "public/levantamiento/visor/index.html": "be14b5cfe57b710946141fa5546679f40e7db7522d1ce0a3bdd15ff7f213c292",
+    "public/levantamiento/modelo-ligero.bin": "b5ab9c9e7ae77099dda0db6935bcf9d8e0c3039ce4217caf868191d6020c6924",
+    "public/levantamiento/modelo-ligero.json": "0062877abb0aee2afd07b93e549af89ae8d50f48b0983b803ab3bad8dbdcd7cb",
+    "public/levantamiento/c10-85-data.js": "dc70a8b0a7a0b83171e17b3617a176ffd6283b941fa6b3b0864113d4ddad032e",
+    "public/levantamiento/c10-86-data.js": "12963b0dd4457e237716904f4ae50a8e1374b08282b1719e7f1de3f2fdf64462",
+    "public/levantamiento/c10-87-data.js": "88b083a06801fa32b6a618359a859ebea016eccfac16f4c1c1559c1d2977610c",
+    "public/levantamiento/c10-88-data.js": "a080426f30e7554df3911f9096a02ce9cacedd30228f5b804ee51b578653633f"
+  },
+  "preserved": "P1–P6 y dictámenes anteriores se conservan; PRACTICO-2 no convierte fidelidad en PASA."
+}

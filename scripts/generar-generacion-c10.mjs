@@ -10,7 +10,7 @@ for(let i=2;i<process.argv.length;i+=2){
  if(key==='--evidencia')options.evidence.push(value);
  else {assert(['--etapa','--nombre','--anterior-ref','--historico-repo'].includes(key),'Opción desconocida '+key);assert(!(key in options),'Opción repetida '+key);options[key]=value;}
 }
-const stage=Number(options['--etapa']);assert([85,86,87].includes(stage),'--etapa 85|86|87');
+const stage=Number(options['--etapa']);assert([85,86,87,88].includes(stage),'--etapa 85|86|87|88');
 const path=manifestPath(C10_ROOT+'/'+options['--nombre']+'/manifest.json');
 assert(path.startsWith(C10_ROOT+'/20261030-practico'+stage),'Nombre y etapa deben coincidir');
 if(options['--anterior-ref'])assert.match(options['--anterior-ref'],/^[a-f0-9]{40}$/,'Usar SHA completo de las fuentes anteriores');

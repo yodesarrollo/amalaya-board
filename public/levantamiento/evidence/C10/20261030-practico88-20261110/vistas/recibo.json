@@ -1,0 +1,32 @@
+{
+  "kind": "inspeccion-cpu-no-caminata",
+  "sources": {
+    "world.js": "79df72fd856c81b7a3200e2ac1384b399b6b5856585848247bce0e6ef48e839a",
+    "sheet-plan-data.js": "9ae568697dde4a4c780a54b0e76ff3255ecadd9ca6b2605fe0f01b53aacaf30f",
+    "ajuste-visual-data.js": "c3c433261b271213e7d7657f33ae75d1210ceb21a61178d0c0cf0d6713da8a5d",
+    "paramento-refinement.js": "77c718ed7afd915f1b8047950c427d2bf3b54922cb66560b76dd318f176d662f",
+    "cuadra-detail-data.js": "2bb92bfcfb03470e6c7df0c7e04efdd49a72a5bf458bdcfe9fcf6799e5d2531a",
+    "c10-88-data.js": "a080426f30e7554df3911f9096a02ce9cacedd30228f5b804ee51b578653633f"
+  },
+  "captures": {
+    "frontal": {
+      "path": "88-frontal-GENERICO-3d.jpg",
+      "sha256": "42c9061fa04cbd54ef33aecc79772d7942e6ccfcbfa2c77c489eef0439da5fda",
+      "kind": "Render CPU de triángulos reales; iluminación simplificada, no WebGL ni caminata"
+    },
+    "oblicua": {
+      "path": "88-oblicua-GENERICO-3d.jpg",
+      "sha256": "3892fce1bb780de663be4efbd95f6893b1a25ed91253cf28e66dd9ab0a5c8747",
+      "kind": "Render CPU de triángulos reales; iluminación simplificada, no WebGL ni caminata"
+    },
+    "aerea": {
+      "path": "88-aerea-GENERICO-3d.jpg",
+      "sha256": "a527d2e4d227d3beb2632e7ce77b48e9b395c52deddb1b89c1a4fd16a7bac4be",
+      "kind": "Render CPU de triángulos reales; iluminación simplificada, no WebGL ni caminata"
+    }
+  },
+  "cameras": "camaras88.json · aérea con la misma cámara que la ficha «antes» de D2-02 (30-oct): 29.07458, -110.95549, rumbo0, fov60, -90, altura55",
+  "limitations": "No WebGL, no selección comprobada, no rendimiento. Frontal desde Felipe Salido a3.5 m; oblicua desde el sureste a18 m. Genérico aceptado, no fachada observada.",
+  "scene_export_sha256": "c0e3e1ec72e787e46daccf34010bae4b922e368ffdc16ec499858d3a29322952",
+  "scene_triangles": 24851
+}

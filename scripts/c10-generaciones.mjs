@@ -12,7 +12,7 @@ const ANCHORS={
 };
 const BASE_SOURCES=['c10-84-data.js','cuadra-detail-data.js','paramento-refinement.js','sheet-plan-refinement.js','world.js','visor/assets/index-RoPA5goG.js','visor/index.html','modelo-ligero.bin','modelo-ligero.json'].map(p=>'public/levantamiento/'+p);
 export const digest=bytes=>createHash('sha256').update(bytes).digest('hex');
-export const sourcePaths=stage=>[...BASE_SOURCES,...(stage>=85?['public/levantamiento/c10-85-data.js']:[]),...(stage>=86?['public/levantamiento/c10-86-data.js']:[]),...(stage>=87?['public/levantamiento/c10-87-data.js']:[])];
+export const sourcePaths=stage=>[...BASE_SOURCES,...(stage>=85?['public/levantamiento/c10-85-data.js']:[]),...(stage>=86?['public/levantamiento/c10-86-data.js']:[]),...(stage>=87?['public/levantamiento/c10-87-data.js']:[]),...(stage>=88?['public/levantamiento/c10-88-data.js']:[])];
 function relative(path){
  assert(typeof path==='string'&&path.split('/').every(s=>/^[A-Za-z0-9_][A-Za-z0-9_.-]*$/.test(s)&&!s.includes('..')&&s.toLowerCase()!=='privado'),'C10: ruta fuera de alcance '+path);
 }
@@ -24,7 +24,7 @@ export async function safePath(path){
 }
 export async function safeRead(path){return readFile(await safePath(path));}
 export function manifestPath(path){
- assert(typeof path==='string'&&/^public\/levantamiento\/evidence\/C10\/20261030-practico(?:85|86|87)(?:-[a-z0-9]+)*\/manifest\.json$/.test(path),'C10: ruta de manifiesto fuera de alcance '+path);
+ assert(typeof path==='string'&&/^public\/levantamiento\/evidence\/C10\/20261030-practico(?:85|86|87|88)(?:-[a-z0-9]+)*\/manifest\.json$/.test(path),'C10: ruta de manifiesto fuera de alcance '+path);
  return path;
 }
 export function evidencePath(path){
@@ -65,11 +65,11 @@ export async function verifyC10Generations({candidate}={}){
   const {manifest:m,path}=chain[i];
   hashMap(m.sourceHashes,'C10: mapa de fuentes inválido');
   if(i>=2){
-   assert.equal(m.schemaVersion,1);assert([85,86,87].includes(m.stage),'C10: etapa inválida');
+   assert.equal(m.schemaVersion,1);assert([85,86,87,88].includes(m.stage),'C10: etapa inválida');
    assert(path.startsWith(C10_ROOT+'/20261030-practico'+m.stage),'C10: etapa/ruta inconsistente');
    assert.equal(m.publication,false,'C10: recibo técnico, no acredita publicación');
    const prior=chain[i-1].manifest.stage;
-   assert(prior?(m.stage===prior||m.stage===prior+1):m.stage===85,'C10: orden obligatorio sin saltar etapas 85→86→87');
+   assert(prior?(m.stage===prior||m.stage===prior+1):m.stage===85,'C10: orden obligatorio sin saltar etapas 85→86→87→88');
   }
   assert.deepEqual(Object.keys(m.sourceHashes).sort(),sourcePaths(i>=2?m.stage:84).sort(),'C10: conservar cobertura de fuentes actuales');
  }

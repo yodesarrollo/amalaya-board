@@ -10,6 +10,7 @@ Leer [revisión con Jev y método convencional](docs/JEV-REVISION-OPERATIVA.md) 
 - Para casos semejantes al frente21, tomar GPT conjunto como punto de partida: el piloto Jev90/95 no evitó ninguna revisión GPT. No equiparar confianza con porcentaje de acierto ni afirmar aceleración causal desde dos repeticiones.
 - Exigir ancla y dimensiones verificadas antes de aplicar geometría. Conservar las observaciones aunque la aplicación esté bloqueada; no marcar la etapa terminada por una etiqueta.
 - Conservar manifiestos, etiquetas congeladas, respuestas y fallos históricos. Una prueba nueva usa otro protocolo y recibos; no reiniciar slots ni cambiar resultados para que parezcan mejores.
+- Criterio del propietario (10-nov-2026): el objetivo es un mundo virtual terminado, no necesariamente perfecto. Sin foto específica del lugar, levantar un genérico rotulado y darlo por bueno; la foto queda para después. Ver [C10 · criterio del propietario](docs/C10-PRACTICO-PUBLICACION.md#criterio-del-propietario--10-nov-2026--mundo-terminado).
 - Mantener datos de negocio, audio, claves y evidencias privadas en sus sistemas autorizados. Los cambios de instrucciones no habilitan nuevos permisos ni despliegan servicios.
 
 Para código y publicación, seguir los verificadores existentes y comprobar el resultado real. Para MD, verificar enlaces y coherencia con los contratos antes de integrar. Registrar cambios en el Buzón con evidencia y respetar reservas ajenas.

@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "stage": 88,
+  "publication": false,
+  "scope": "PRACTICO-2; trazabilidad técnica, no dictamen de fidelidad ni recibo de publicación.",
+  "previousManifestPath": "public/levantamiento/evidence/C10/20261030-practico87-20261105-r3/manifest.json",
+  "previousManifestSha256": "a14cce1bc9f90f3cf41a4099448dcff6aa8a9bdcbcafed7d0dc3b8ff0b96b816",
+  "sourceHashes": {
+    "public/levantamiento/c10-84-data.js": "eac898b15b51dec1633b69860d009d092f18f74acec4b0b3bbd66b5ba99f7744",
+    "public/levantamiento/cuadra-detail-data.js": "2bb92bfcfb03470e6c7df0c7e04efdd49a72a5bf458bdcfe9fcf6799e5d2531a",
+    "public/levantamiento/paramento-refinement.js": "77c718ed7afd915f1b8047950c427d2bf3b54922cb66560b76dd318f176d662f",
+    "public/levantamiento/sheet-plan-refinement.js": "477cc2e81bd269ee5c08a73dc75936e9ad80f5a8f0ca21e8b5c3e2c8e9ff47e0",
+    "public/levantamiento/world.js": "79df72fd856c81b7a3200e2ac1384b399b6b5856585848247bce0e6ef48e839a",
+    "public/levantamiento/visor/assets/index-RoPA5goG.js": "1ef9fa55af87658c366e234799028121151ce2352c8a930deafb48b69b4578a1",
+    "public/levantamiento/visor/index.html": "be14b5cfe57b710946141fa5546679f40e7db7522d1ce0a3bdd15ff7f213c292",
+    "public/levantamiento/modelo-ligero.bin": "b5ab9c9e7ae77099dda0db6935bcf9d8e0c3039ce4217caf868191d6020c6924",
+    "public/levantamiento/modelo-ligero.json": "0062877abb0aee2afd07b93e549af89ae8d50f48b0983b803ab3bad8dbdcd7cb",
+    "public/levantamiento/c10-85-data.js": "dc70a8b0a7a0b83171e17b3617a176ffd6283b941fa6b3b0864113d4ddad032e",
+    "public/levantamiento/c10-86-data.js": "12963b0dd4457e237716904f4ae50a8e1374b08282b1719e7f1de3f2fdf64462",
+    "public/levantamiento/c10-87-data.js": "88b083a06801fa32b6a618359a859ebea016eccfac16f4c1c1559c1d2977610c",
+    "public/levantamiento/c10-88-data.js": "a080426f30e7554df3911f9096a02ce9cacedd30228f5b804ee51b578653633f"
+  },
+  "historicalC10Snapshots": {
+    "public/levantamiento/c10-84-data.js@eac898b15b51dec1633b69860d009d092f18f74acec4b0b3bbd66b5ba99f7744": "docs/historico-c10/eac898b15b51dec1633b69860d009d092f18f74acec4b0b3bbd66b5ba99f7744-c10-84-data.js",
+    "public/levantamiento/cuadra-detail-data.js@5bf3832920ef39e9ebc7bf2affa57c5213e5ed65f2416be7f81dbb7ce575a97f": "docs/historico-c10/5bf3832920ef39e9ebc7bf2affa57c5213e5ed65f2416be7f81dbb7ce575a97f-cuadra-detail-data.js",
+    "public/levantamiento/paramento-refinement.js@459a0afc5f06c6c399c2aad7e356860e79a256b1e22da93db25ae062cc643e29": "docs/historico-c10/459a0afc5f06c6c399c2aad7e356860e79a256b1e22da93db25ae062cc643e29-paramento-refinement.js",
+    "public/levantamiento/sheet-plan-refinement.js@f71136dbe94c5a9e3f993dd37ee947be613327086e4643e2652f9432a57d0e1a": "docs/historico-c10/f71136dbe94c5a9e3f993dd37ee947be613327086e4643e2652f9432a57d0e1a-sheet-plan-refinement.js",
+    "public/levantamiento/world.js@1169ce6f283756b36d2c125f96715fb6557b1fe89f4bc31eb7349d8611dfc48e": "docs/historico-c10/1169ce6f283756b36d2c125f96715fb6557b1fe89f4bc31eb7349d8611dfc48e-world.js",
+    "public/levantamiento/visor/assets/index-RoPA5goG.js@b2dd1c883468ceb4b12c4c31fd5300d144514aef59d7a61151a5dcf42d099a65": "docs/historico-c10/b2dd1c883468ceb4b12c4c31fd5300d144514aef59d7a61151a5dcf42d099a65-index-RoPA5goG.js",
+    "public/levantamiento/visor/index.html@db6d69848f9de1902f5259fbcddbf77d627409a7485f9efbc7e90870958eacc1": "docs/historico-c10/db6d69848f9de1902f5259fbcddbf77d627409a7485f9efbc7e90870958eacc1-index.html",
+    "public/levantamiento/modelo-ligero.bin@b3cd92723bb3a4b265446a2a939ad134bd3f3562f35ed30143a293fcfa61f117": "docs/historico-c10/b3cd92723bb3a4b265446a2a939ad134bd3f3562f35ed30143a293fcfa61f117-modelo-ligero.bin",
+    "public/levantamiento/modelo-ligero.json@fed2a96ed30067673ff4bab967ff6dcadc25676ac8f2a4e15a7b54806edaad88": "docs/historico-c10/fed2a96ed30067673ff4bab967ff6dcadc25676ac8f2a4e15a7b54806edaad88-modelo-ligero.json",
+    "public/levantamiento/c10-85-data.js@dc70a8b0a7a0b83171e17b3617a176ffd6283b941fa6b3b0864113d4ddad032e": "docs/historico-c10/dc70a8b0a7a0b83171e17b3617a176ffd6283b941fa6b3b0864113d4ddad032e-c10-85-data.js",
+    "public/levantamiento/c10-86-data.js@12963b0dd4457e237716904f4ae50a8e1374b08282b1719e7f1de3f2fdf64462": "docs/historico-c10/12963b0dd4457e237716904f4ae50a8e1374b08282b1719e7f1de3f2fdf64462-c10-86-data.js",
+    "public/levantamiento/c10-87-data.js@88b083a06801fa32b6a618359a859ebea016eccfac16f4c1c1559c1d2977610c": "docs/historico-c10/88b083a06801fa32b6a618359a859ebea016eccfac16f4c1c1559c1d2977610c-c10-87-data.js"
+  },
+  "evidenceFiles": {
+    "public/levantamiento/evidence/C10/20261030-practico88-20261110/vistas/88-aerea-GENERICO-3d.jpg": "a527d2e4d227d3beb2632e7ce77b48e9b395c52deddb1b89c1a4fd16a7bac4be",
+    "public/levantamiento/evidence/C10/20261030-practico88-20261110/vistas/88-frontal-GENERICO-3d.jpg": "42c9061fa04cbd54ef33aecc79772d7942e6ccfcbfa2c77c489eef0439da5fda",
+    "public/levantamiento/evidence/C10/20261030-practico88-20261110/vistas/88-oblicua-GENERICO-3d.jpg": "3892fce1bb780de663be4efbd95f6893b1a25ed91253cf28e66dd9ab0a5c8747",
+    "public/levantamiento/evidence/C10/20261030-practico88-20261110/vistas/camaras88.json": "29c6f5560433cb7361e408589bc382866c819d22194dc30bdac80dda292186cf",
+    "public/levantamiento/evidence/C10/20261030-practico88-20261110/vistas/recibo.json": "6b3341f82fb2c3287b9fb6875d852aa4e26728da1e2131c1a74f0c524d3cd479",
+    "public/levantamiento/evidence/C10/20261030-practico88-20261110/decision-propietario.json": "baad5aaa29624a82fd6be896a22a12facbc9f728d70c7e1d92f1dfcea80954d5",
+    "public/levantamiento/evidence/C10/20261030-practico88-20261110/recibo-trazabilidad.json": "ded256b1f75cc4d7d099a8895540297364e2f903f1adb89045e340b3de84a64c"
+  },
+  "limits": [
+    "P1–P6 y dictámenes históricos sin cambio.",
+    "Evidencia externa recibida por hash; su auditoría semántica corresponde al integrador."
+  ]
+}
