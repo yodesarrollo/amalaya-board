@@ -62,6 +62,7 @@ import {C18_136} from './c18-136-data.js?v=e8de0c0a61ef';
 import {C18_137} from './c18-137-data.js?v=3ae03e723ae4';
 import {C18_138} from './c18-138-data.js?v=671077fee1f0';
 import {C18_139} from './c18-139-data.js?v=b304afa3c989';
+import {C17_118} from './c17-118-data.js?v=f040917b6991';
 
 // Historic photo-based packets and explicitly labelled modelling hypotheses.
 // Dimensions are approximate; each packet documents its own evidence and limits.
@@ -121,6 +122,8 @@ CUADRA_DETAILS.push(C16_116,C16_117);
 // C18 · cuadra 33 (10-nov-2026): franja al pie del cerro, aérea + fábrica de fachadas; frente de
 // Sufragio y D3-01 retrazados a ±1 m sobre la aérea; edificios sobre el suelo actual (pendiente anotada).
 CUADRA_DETAILS.push(C18_119,C18_120,C18_121,C18_122,C18_123,C18_124,C18_125,C18_126,C18_127,C18_128,C18_129,C18_130,C18_131,C18_132,C18_133,C18_134,C18_135,C18_136,C18_137,C18_138,C18_139);
+// C17 · cuadra 32 (10-nov-2026): aérea + fábrica de fachadas; 118 en la punta norte del cerro.
+CUADRA_DETAILS.push(C17_118);
 
 CUADRA_DETAILS.push(C02_APROXIMADA);
 CUADRA_DETAILS.push(...SERDAN_APROXIMADO);
