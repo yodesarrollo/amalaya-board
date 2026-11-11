@@ -37,6 +37,27 @@ import {C19_110} from './c19-110-data.js?v=81691e5c2e95';
 import {C19_111} from './c19-111-data.js?v=7574dbb3270c';
 import {C16_116} from './c16-116-data.js?v=d723b435ba9a';
 import {C16_117} from './c16-117-data.js?v=207b2dd40ee4';
+import {C18_119} from './c18-119-data.js?v=eae0e7e05a5a';
+import {C18_120} from './c18-120-data.js?v=167bfbb2cde8';
+import {C18_121} from './c18-121-data.js?v=f91960e8a34c';
+import {C18_122} from './c18-122-data.js?v=1f181b41b441';
+import {C18_123} from './c18-123-data.js?v=ca0266c50bd5';
+import {C18_124} from './c18-124-data.js?v=c4fff59ea294';
+import {C18_125} from './c18-125-data.js?v=18fd52957af9';
+import {C18_126} from './c18-126-data.js?v=66eab282ec1e';
+import {C18_127} from './c18-127-data.js?v=81f57d4b607c';
+import {C18_128} from './c18-128-data.js?v=a0c21f4ae3e9';
+import {C18_129} from './c18-129-data.js?v=86435bfbe1b0';
+import {C18_130} from './c18-130-data.js?v=8010c95285a0';
+import {C18_131} from './c18-131-data.js?v=c70bad502956';
+import {C18_132} from './c18-132-data.js?v=394b23526ef4';
+import {C18_133} from './c18-133-data.js?v=0b06cf0847f0';
+import {C18_134} from './c18-134-data.js?v=850b35e1b2bd';
+import {C18_135} from './c18-135-data.js?v=45556b6acbeb';
+import {C18_136} from './c18-136-data.js?v=e8de0c0a61ef';
+import {C18_137} from './c18-137-data.js?v=3ae03e723ae4';
+import {C18_138} from './c18-138-data.js?v=671077fee1f0';
+import {C18_139} from './c18-139-data.js?v=b304afa3c989';
 
 // Historic photo-based packets and explicitly labelled modelling hypotheses.
 // Dimensions are approximate; each packet documents its own evidence and limits.
@@ -107,6 +128,9 @@ CUADRA_DETAILS.push(C15_112,C15_113,C15_114,C15_115);
 CUADRA_DETAILS.push(C19_103,C19_104,C19_105,C19_106,C19_107,C19_108,C19_109,C19_110,C19_111);
 // C16 · cuadra 31 (10-nov-2026): aérea + fábrica de fachadas; patio en 116, 117 por secciones.
 CUADRA_DETAILS.push(C16_116,C16_117);
+// C18 · cuadra 33 (10-nov-2026): franja al pie del cerro, aérea + fábrica de fachadas; frente de
+// Sufragio y D3-01 retrazados a ±1 m sobre la aérea; edificios sobre el suelo actual (pendiente anotada).
+CUADRA_DETAILS.push(C18_119,C18_120,C18_121,C18_122,C18_123,C18_124,C18_125,C18_126,C18_127,C18_128,C18_129,C18_130,C18_131,C18_132,C18_133,C18_134,C18_135,C18_136,C18_137,C18_138,C18_139);
 
 CUADRA_DETAILS.push(C02_APROXIMADA);
 CUADRA_DETAILS.push(...SERDAN_APROXIMADO);
