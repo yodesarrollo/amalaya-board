@@ -53,86 +53,22 @@
    "resultado": "no disponible en el repositorio; Street View inaccesible desde la nube; el propietario no pidió abrir su navegador"
   }
  ],
- "sombras": {
-  "metodo": "perfil de luminancia en columnas N–S de la aérea; sombra proyectada al norte sobre Felipe Salido; calibración con el 89 (6.2 m) en la misma imagen",
-  "calibracion89": {
-   "columnas_x": [
-    -122,
-    -116,
-    -110,
-    -104
-   ],
-   "sombra_m": [
-    6.75,
-    6.75,
-    6.0,
-    6.0
-   ],
-   "altura_m": 6.2,
-   "razon_sombra_altura": 1.04
-  },
-  "mediciones": [
-   {
-    "id": "D2-16",
-    "x": -52,
-    "sombra_m": 5.0,
-    "altura_m": 4.8
+ "alturas": {
+  "criterio": "tipológico: 4.0 m en todos los cuerpos = mediana de los frentes de un nivel del centro estimados con Street View (HEIGHT_REVIEWS: 3.3, 3.5, 3.6, 3.8, 3.8, 3.9, 4.0, 4.2, 4.6, 4.6, 5.3 m)",
+  "incertidumbre_m": 0.7,
+  "correccion": {
+   "fecha": "2026-11-10",
+   "error": "La primera versión (PR #122) estimó alturas por la banda oscura al norte de los cuerpos (Felipe Salido), calibrada con la del 89. Esa banda es asfalto, no sombra.",
+   "evidencia": "Al medir la franja exterior de 0.5–1.5 m de 124 aristas de C14 y C09 por orientación, sólo las caras al poniente tienen suelo oscuro (mediana 90 de luminancia, 13 de 26); norte 163, oriente 171, sur 172. En esta aérea el sol viene del este y las sombras caen al poniente.",
+   "descartado": {
+    "D2-16": 4.8,
+    "D2-17": 4.2,
+    "D2-18": 4.2,
+    "D2-19": 3.8,
+    "D2-20": "4.4 / 4.2 y 5.2 en naves / 3.0 y 2.8 en cuerpos orientales"
    },
-   {
-    "id": "D2-17",
-    "x": [
-     -44,
-     -38
-    ],
-    "sombra_m": [
-     4.25,
-     4.5
-    ],
-    "altura_m": 4.2
-   },
-   {
-    "id": "D2-18",
-    "x": [
-     -21,
-     -16
-    ],
-    "sombra_m": [
-     4.5,
-     4.25
-    ],
-    "altura_m": 4.2
-   },
-   {
-    "id": "D2-19",
-    "x": -7,
-    "sombra_m": 3.75,
-    "altura_m": 3.8
-   },
-   {
-    "id": "D2-20 barra este",
-    "x": [
-     -20,
-     -15
-    ],
-    "sombra_m": [
-     2.5,
-     3.0
-    ],
-    "altura_m": 3.0
-   },
-   {
-    "id": "D2-20 este bajo",
-    "sombra_m": 2.0,
-    "altura_m": 2.8,
-    "nota": "sombra corta: cuerpo bajo o techumbre"
-   },
-   {
-    "id": "D2-20 naves",
-    "sombra_m": 1.0,
-    "nota": "línea de sombra entre naves: escalón de ~1 m (4.2 → 5.2 m)"
-   }
-  ],
-  "incertidumbre_m": "±0.8 a ±1.0"
+   "intento_sombra_poniente": "Las sombras al poniente de once edificios con altura de Street View dan razones sombra/altura de 0.4 a 1.2 (asfalto, árboles y desplazamiento oblicuo): no sirven como medida en esta imagen."
+  }
  },
  "pasos": [
   {
@@ -148,7 +84,7 @@
   {
    "paso": 3,
    "nombre": "Alturas",
-   "resultado": "Por sombra calibrada con el 89 (ver sombras)."
+   "resultado": "Tipológicas: 4.0 m en todos los cuerpos (ver alturas, con la corrección de la primera versión)."
   },
   {
    "paso": 4,
@@ -169,13 +105,13 @@
  "limites": [
   "Sin foto de calle: vanos, puertas y colores de muro son tipológicos, no observados.",
   "Cubiertas visibles fuera del inventario (entre 91 y 92, y al sur de 92) quedan fuera del conteo de 139.",
-  "Alturas por sombra dependen de la altura estimada del 89.",
+  "Alturas tipológicas, sin medición: la aérea no da una medida de altura confiable.",
   "Contornos de 94 a ±1 m; sin medición en sitio.",
   "El suelo gris de las vistas de Blender es un fondo de render, no geometría del modelo."
  ],
  "vistaLigera": {
   "bytes": 983200,
-  "gzip": 318496,
+  "gzip": 318283,
   "triangulos": 49160,
   "lod": {
    "walls": 90,
@@ -192,17 +128,17 @@
   "npm run pruebas",
   "npm run verificar:publicacion"
  ],
- "worldSha256": "9016b6905ecdb60a021c6d57c51576a5e35577ae5f2456e31731dcc85b54dba9",
+ "worldSha256": "accf5fa60eccc2ba05985110df6b0e6fe6d8b2e178ccb828d218b5fed167eaff",
  "archivos": {
-  "blender-esquina-noroeste.jpg": "b39e9f7670e60c8cd402711bb632d1b511f018ebf4c6904f7c9ca5231f82c977",
-  "blender-esquina-noreste.jpg": "6032ae27d6886afa849ea115d74347455634bd5f74a28b79cc4b0a5de8c094a6",
-  "blender-bavispe.jpg": "e4f70f8824e92a3fcd41dba16ad885f53eec91a0ab5ded6e690649305cd30bd7",
-  "blender-esquina-sureste.jpg": "55389a61df2549d11964f05ecea3017295a8d9cbbc9381c91f5f407412d68335",
-  "blender-aerea.jpg": "a8c226c71e2389a7e1a46afe1c2f85b5c405070b0c392cbd5d93897a655ac367",
-  "blender-aerea-sureste.jpg": "bc84f4e3edad98bd4eb3cf0cc9639c4d01f429d303d0ce5e90d1b14adb095ce5",
+  "blender-esquina-noroeste.jpg": "fd45c40414095ad580f193a1884171486a06d90593bb407196f7ac91353401af",
+  "blender-esquina-noreste.jpg": "b762d31ef4dd7f979cb0812c8b003b31e761bdc495941eda3c519c014b96fa32",
+  "blender-bavispe.jpg": "7228031e94ce0067bfb90c19b665dc4db64c528dd931a5e37ee8850d47aea80c",
+  "blender-esquina-sureste.jpg": "4532791aa4f66f4ef81feb1017417a0a51e918a5acf661a5fe8f73159f23a799",
+  "blender-aerea.jpg": "3d31173f0f9a142d6b27ce0cdae8f4cc7f8ad625c14d9b0e8be9272d7b08e55f",
+  "blender-aerea-sureste.jpg": "d91242427b1f15464701f9004f58f306768a9b50a5972b942435fc30a55ff09f",
   "aerea-trazo.jpg": "909ef537a6a9213f2bbe365400e041a187e96bf340845c7a3eb87709a16a49f0",
-  "antes-despues.jpg": "8e5417dff90c2481bf07f7fe6a51d1981ef1127e9761e9c2e4cf4191c06ce504",
+  "antes-despues.jpg": "e80e54159eceb344284e4e460a1d82df4abb5327d746478d5696bbc7de0ac085",
   "camaras.json": "6d310e92468b90618f3f419886b827c98258474768ddedda82f2cd2a552ac886",
-  "C14-90-94.glb": "3dc85ef795764496d38d271138f7748c88264ab3740a5aa1f57c197ba425a7c7"
+  "C14-90-94.glb": "87138d055f1d999c0b50347373475acacd7e6d822729cf8a17ea7e10602102c4"
  }
 }
