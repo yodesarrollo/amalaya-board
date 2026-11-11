@@ -56,26 +56,26 @@ No editar pruebas, techos, el constructor (`paramento-refinement.js`, `fabrica-f
 
 ## 8. Cuadras, oleadas y filas del Buzón
 
-Horas de Hermosillo del 10 al 11 de noviembre. Tres o cuatro cuadras por oleada, cada 2.5 h; 17, 18 y 19 van en oleadas distintas porque comparten `bloque1-serdan-20261026.js`. «Panorámicas» cuenta los puntos del recorrido a menos de 22 m de la cuadra; «Banqueta» dice si tiene anillo interior o es abierta.
+Horas de Hermosillo: la oleada 1 empieza el 10-nov a las 23:07 y las demás el 11-nov. La fila 568 del Buzón es la de la programación. Tres o cuatro cuadras por oleada, cada 2.5 h; 17, 18 y 19 van en oleadas distintas porque comparten `bloque1-serdan-20261026.js`. «Panorámicas» cuenta los puntos del recorrido a menos de 22 m de la cuadra; «Banqueta» dice si tiene anillo interior o es abierta.
 
 | Oleada · hora | Cuadra | Bloque | Edificios | Previo | Panorámicas | Banqueta | Fila |
 |---|---|---|---|---|---|---|---|
-| 1 · 23:37 | 2 | C07 · Calle Obregón / Centro | 6 C1-11 | frente revisado en paramento-data.js (C1-11) | 1 (R-001) | anillo | 568 |
-| 1 · 23:37 | 4 | C02 · Calle Pino Suárez / Calle Rosales | 10 B1-01, 11 B1-02, 12 B1-03, 13 B1-04 | paquete con foto cuadra-c02-aproximada.js (B1-01…B1-04); frente de B1-03 en paramento-data.js | 0 | abierta | 569 |
-| 1 · 23:37 | 5 | C05 · Calle Rosales / Pino Suarez | 14 C1-01, 15 C1-02, 16 C1-03, 17 C1-04, 18 C1-05, 19 C1-06, 20 C1-07 | paquete con foto cuadra-c05-aproximada.js (C1-04…C1-07); frentes de C1-01…C1-03 en paramento-data.js | 0 | abierta | 570 |
-| 2 · 02:07 | 6 | C04 · Calle Pedro Moreno / Calle Rosales | 21 C1-08, 22 C1-09, 23 C1-10, 24 D1-01, 25 D1-02 | frentes de C1-08 y C1-09 en paramento-data.js | 0 | anillo | 571 |
-| 2 · 02:07 | 7 | C03 · Calle Rosales / Calle Pedro Moreno | 26 B1-08, 27 B1-09 | frentes de B1-08 y B1-09 en paramento-data.js | 0 | abierta | 572 |
-| 2 · 02:07 | 8 | C30 · Calle Obregón / Serdán | 34 ISC-58, 33 CH-YG-BIB, 32 CH-YG-BBVA, 28 A2-05, 29 A2-06, 30 B2-01, 31 B2-02 | paquete C30 con fotos en el literal inicial de cuadra-detail-data.js (6 edificios, evidence/c30-cierre-20261008); ISC-58 con módulo propio isc58-refinement.js (no rehacer) | 18 (R-000/R-001/R-002/R-003) | anillo | 573 |
-| 3 · 04:37 | 9 | C20 · Surfragio Efectivo / Calle Obregón | 35 C2-04, 36 C2-05, 37 C2-06, 38 C2-07, 39 C2-08 | C2-04 en corredor-obregon-20261026.js; C2-06 y C2-07 en obregon-aproximado-data.js; frentes en paramento-data.js | 8 (R-001/R-002) | abierta | 574 |
-| 3 · 04:37 | 10 | C21 · Chihuahua / Garmendia | 42 EB-SW, 41 EB-NW, 40 B3-01 | paquete C21 en cuadra-detail-data.js (EB-NW, B3-01; recorrido R002); EB-SW con módulo propio ebsw-refinement.js (no rehacer) | 13 (R-001/R-002/R-003) | abierta | 575 |
-| 3 · 04:37 | 11 | C22 · Surfragio Efectivo / Calle Obregón | 46 OB-21, 43 C3-01, 44 C3-02, 45 C3-03 | frentes de C3-01…C3-03 en paramento-data.js | 9 (R-001/R-002) | anillo | 576 |
-| 4 · 07:07 | 12 | C23 · Chihuahua / Calle Obregón | 49 EB-NE, 50 EB-SE, 47 B3-02, 48 B3-03 | lote abierto (openLots) del paquete C23 en cuadra-detail-data.js; frentes de EB-SE, B3-02 y B3-03 en paramento-data.js | 10 (R-001/R-002) | abierta | 577 |
-| 4 · 07:07 | 13 | C28 · Chihuahua / No Releccion | 51 B3-05 | — | 3 (R-001/R-002) | anillo | 578 |
-| 4 · 07:07 | 19 | C31 · Serdán / Plutarco Elías Calles | 70 SER-BLEY, 71 SER-SANT, 66 A2-01, 67 A2-02, 68 A2-03, 69 A2-04 | SER-BLEY en bloque1-serdan-20261026.js (compartido) | 4 (R-000/R-003) | anillo | 579 |
-| 5 · 09:37 | 14 | C29 · Angel Flores / No Releccion | 52 C3-10, 53 C3-11 | — | 2 (R-001) | abierta | 580 |
-| 5 · 09:37 | 15 | C27 · Chihuahua / Serdán | 54 A3-09, 55 B3-04 | — | 1 (R-002) | anillo | 581 |
-| 5 · 09:37 | 16 | C26 · Serdán / Plutarco Elias Calles | 56 A3-02 | — | 1 (R-000) | abierta | 582 |
-| 5 · 09:37 | 17 | C25 · Plutarco Elías Calles / Serdán | 58 SER-HSBC, 57 A3-01 | SER-HSBC y A3-01 en bloque1-serdan-20261026.js (compartido con 18 y 19) | 9 (R-000/R-003) | abierta | 583 |
-| 6 · 12:07 | 18 | C24 · Serdán / Chihuahua | 65 CH-GA-OXXO, 59 A3-03, 60 A3-04, 61 A3-05, 62 A3-06, 63 A3-07, 64 A3-08 | A3-03…A3-06 en serdan-aproximado-data.js; CH-GA-OXXO en bloque1-serdan-20261026.js (compartido); frente de A3-08 en paramento-data.js | 19 (R-000/R-002/R-003) | anillo | 584 |
-| 6 · 12:07 | 20 | C32 · Yañez / Calle Pino Suárez | 72 A1-02, 73 A1-03 | — | 0 | abierta | 585 |
-| 6 · 12:07 | 21 | C33 · Calle Rosales / Calle Pino Suárez | 74 A1-01, 75 A1-04 | — | 0 | abierta | 586 |
+| 1 · 23:07 | 2 | C07 · Calle Obregón / Centro | 6 C1-11 | frente revisado en paramento-data.js (C1-11) | 1 (R-001) | anillo | 569 |
+| 1 · 23:07 | 4 | C02 · Calle Pino Suárez / Calle Rosales | 10 B1-01, 11 B1-02, 12 B1-03, 13 B1-04 | paquete con foto cuadra-c02-aproximada.js (B1-01…B1-04); frente de B1-03 en paramento-data.js | 0 | abierta | 570 |
+| 1 · 23:07 | 5 | C05 · Calle Rosales / Pino Suarez | 14 C1-01, 15 C1-02, 16 C1-03, 17 C1-04, 18 C1-05, 19 C1-06, 20 C1-07 | paquete con foto cuadra-c05-aproximada.js (C1-04…C1-07); frentes de C1-01…C1-03 en paramento-data.js | 0 | abierta | 571 |
+| 2 · 01:37 | 6 | C04 · Calle Pedro Moreno / Calle Rosales | 21 C1-08, 22 C1-09, 23 C1-10, 24 D1-01, 25 D1-02 | frentes de C1-08 y C1-09 en paramento-data.js | 0 | anillo | 572 |
+| 2 · 01:37 | 7 | C03 · Calle Rosales / Calle Pedro Moreno | 26 B1-08, 27 B1-09 | frentes de B1-08 y B1-09 en paramento-data.js | 0 | abierta | 573 |
+| 2 · 01:37 | 8 | C30 · Calle Obregón / Serdán | 34 ISC-58, 33 CH-YG-BIB, 32 CH-YG-BBVA, 28 A2-05, 29 A2-06, 30 B2-01, 31 B2-02 | paquete C30 con fotos en el literal inicial de cuadra-detail-data.js (6 edificios, evidence/c30-cierre-20261008); ISC-58 con módulo propio isc58-refinement.js (no rehacer) | 18 (R-000/R-001/R-002/R-003) | anillo | 574 |
+| 3 · 04:07 | 9 | C20 · Surfragio Efectivo / Calle Obregón | 35 C2-04, 36 C2-05, 37 C2-06, 38 C2-07, 39 C2-08 | C2-04 en corredor-obregon-20261026.js; C2-06 y C2-07 en obregon-aproximado-data.js; frentes en paramento-data.js | 8 (R-001/R-002) | abierta | 575 |
+| 3 · 04:07 | 10 | C21 · Chihuahua / Garmendia | 42 EB-SW, 41 EB-NW, 40 B3-01 | paquete C21 en cuadra-detail-data.js (EB-NW, B3-01; recorrido R002); EB-SW con módulo propio ebsw-refinement.js (no rehacer) | 13 (R-001/R-002/R-003) | abierta | 576 |
+| 3 · 04:07 | 11 | C22 · Surfragio Efectivo / Calle Obregón | 46 OB-21, 43 C3-01, 44 C3-02, 45 C3-03 | frentes de C3-01…C3-03 en paramento-data.js | 9 (R-001/R-002) | anillo | 577 |
+| 4 · 06:37 | 12 | C23 · Chihuahua / Calle Obregón | 49 EB-NE, 50 EB-SE, 47 B3-02, 48 B3-03 | lote abierto (openLots) del paquete C23 en cuadra-detail-data.js; frentes de EB-SE, B3-02 y B3-03 en paramento-data.js | 10 (R-001/R-002) | abierta | 578 |
+| 4 · 06:37 | 13 | C28 · Chihuahua / No Releccion | 51 B3-05 | — | 3 (R-001/R-002) | anillo | 579 |
+| 4 · 06:37 | 19 | C31 · Serdán / Plutarco Elías Calles | 70 SER-BLEY, 71 SER-SANT, 66 A2-01, 67 A2-02, 68 A2-03, 69 A2-04 | SER-BLEY en bloque1-serdan-20261026.js (compartido) | 4 (R-000/R-003) | anillo | 580 |
+| 5 · 09:07 | 14 | C29 · Angel Flores / No Releccion | 52 C3-10, 53 C3-11 | — | 2 (R-001) | abierta | 581 |
+| 5 · 09:07 | 15 | C27 · Chihuahua / Serdán | 54 A3-09, 55 B3-04 | — | 1 (R-002) | anillo | 582 |
+| 5 · 09:07 | 16 | C26 · Serdán / Plutarco Elias Calles | 56 A3-02 | — | 1 (R-000) | abierta | 583 |
+| 5 · 09:07 | 17 | C25 · Plutarco Elías Calles / Serdán | 58 SER-HSBC, 57 A3-01 | SER-HSBC y A3-01 en bloque1-serdan-20261026.js (compartido con 18 y 19) | 9 (R-000/R-003) | abierta | 584 |
+| 6 · 11:37 | 18 | C24 · Serdán / Chihuahua | 65 CH-GA-OXXO, 59 A3-03, 60 A3-04, 61 A3-05, 62 A3-06, 63 A3-07, 64 A3-08 | A3-03…A3-06 en serdan-aproximado-data.js; CH-GA-OXXO en bloque1-serdan-20261026.js (compartido); frente de A3-08 en paramento-data.js | 19 (R-000/R-002/R-003) | anillo | 585 |
+| 6 · 11:37 | 20 | C32 · Yañez / Calle Pino Suárez | 72 A1-02, 73 A1-03 | — | 0 | abierta | 586 |
+| 6 · 11:37 | 21 | C33 · Calle Rosales / Calle Pino Suárez | 74 A1-01, 75 A1-04 | — | 0 | abierta | 587 |
