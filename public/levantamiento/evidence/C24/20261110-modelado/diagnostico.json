@@ -1,0 +1,174 @@
+{
+ "id": "C24",
+ "cuadra": 18,
+ "nombre": "Serdán / Chihuahua (calles Serdán, Garmendia, Chihuahua y Abasolo)",
+ "fecha": "2026-11-10",
+ "base": "main@524e1e9077cc97bda6afcd658c03747c3c9ff3f5 (diagnóstico); integrado sobre main@43ba95259a5ccfc4cf53fcc99c882d1926228852 (con C07, cuadra 2)",
+ "criterio": "Con foto se modela lo observado (vanos, rasgos, colores, altura) como el 89; donde no hay foto se completa con la fábrica de fachadas en las caras a la calle o a menos de 4 m de la banqueta y se declara lo estimado en hypothesis. Los edificios del paquete que se modifican llevan fabrica y liteLod. Altura: la de la foto o la de HEIGHT_REVIEWS; si no hay, 4.0 m por tipología. Lo que cae fuera del sistema de paquetes se explica antes de tocarlo.",
+ "metodo": "Caras a la calle con scripts/frentes-calle-lib.mjs (2.6 m y 4.0 m) sobre la línea de fachada de C24; 22 panorámicas del recorrido a menos de 22 m (R-000, R-002, R-003 y puntos «Serdán N m»), reproyectadas en vistas en perspectiva y en elevaciones rectificadas de cada paramento (línea de fachada, cámara a 2.5 m); aérea calco/referencia.webp; paquetes serdan-aproximado-data.js y bloque1-serdan-20261026.js, constructor de A3-08 y firmas de colisión leídos en main.",
+ "edificios": [
+  {
+   "numero": 59,
+   "id": "A3-03",
+   "previo": "serdan-aproximado-data.js (26-oct): tres cortinas y remate, 5.2 m",
+   "fotos": [
+    "Cf-Fao4eemggYJRuetSx3w",
+    "xKQNROLj9VMiBGpjotie5A",
+    "tpv4y1ErCEndgDHFQBOV6w"
+   ],
+   "carasCalle": {
+    "a26m": [],
+    "a4m": [
+     0
+    ]
+   },
+   "falta": [
+    "fabrica, liteLod e hypothesis",
+    "locales observados: dos con arco y remate rosa, uno con faldón café («Calle Serdán #107»)"
+   ],
+   "accion": "módulo c24-59-data.js sobre la planta de inventario"
+  },
+  {
+   "numero": 60,
+   "id": "A3-04",
+   "previo": "serdan-aproximado-data.js: tres cortinas y dos ventanas altas, 7.2 m",
+   "fotos": [
+    "tpv4y1ErCEndgDHFQBOV6w",
+    "hLX5pkq4RdjBOs5Vqpw-Fw",
+    "h7Ur5HsLG4Jz2V7_ePx7zQ"
+   ],
+   "carasCalle": {
+    "a26m": [
+     0
+    ],
+    "a4m": [
+     0
+    ]
+   },
+   "falta": [
+    "registro",
+    "«Comida China» de dos niveles, «Doña Mía» en rojo, locales con cortina"
+   ],
+   "accion": "módulo c24-60-data.js sobre la planta de inventario"
+  },
+  {
+   "numero": 61,
+   "id": "A3-05",
+   "previo": "serdan-aproximado-data.js: seis vanos, 7.6 m",
+   "fotos": [
+    "h7Ur5HsLG4Jz2V7_ePx7zQ",
+    "dhZr59FbZyCQKcSB4CJb5w",
+    "hLX5pkq4RdjBOs5Vqpw-Fw"
+   ],
+   "carasCalle": {
+    "a26m": [],
+    "a4m": [
+     0
+    ]
+   },
+   "falta": [
+    "registro",
+    "local con toldo, pasaje al estacionamiento interior y edificio blanco con rótulo verde"
+   ],
+   "accion": "módulo c24-61-data.js sobre la planta de inventario"
+  },
+  {
+   "numero": 62,
+   "id": "A3-06",
+   "previo": "serdan-aproximado-data.js: dos accesos oscuros, 7.0 m",
+   "fotos": [
+    "dhZr59FbZyCQKcSB4CJb5w",
+    "TgahlLYkg_dqqZBDqpEYNQ",
+    "Qr8oDbAjuVbJnIJg-alGgQ"
+   ],
+   "carasCalle": {
+    "a26m": [],
+    "a4m": [
+     0
+    ]
+   },
+   "falta": [
+    "registro",
+    "Súper del Norte Express: acceso acristalado, rótulos y cartelones"
+   ],
+   "accion": "módulo c24-62-data.js sobre la planta de inventario"
+  },
+  {
+   "numero": 63,
+   "id": "A3-07",
+   "previo": "volumen de inventario de 6.2 m sin fachada",
+   "fotos": [
+    "Qr8oDbAjuVbJnIJg-alGgQ",
+    "TgahlLYkg_dqqZBDqpEYNQ"
+   ],
+   "carasCalle": {
+    "a26m": [],
+    "a4m": [
+     1
+    ]
+   },
+   "falta": [
+    "registro",
+    "frente bancario observado en Serdán",
+    "fábrica en la cara a Abasolo (sin foto, a menos de 4 m)",
+    "altura de la foto (≈7 m)"
+   ],
+   "accion": "módulo c24-63-data.js sobre la planta de inventario"
+  },
+  {
+   "numero": 64,
+   "id": "A3-08",
+   "previo": "constructor propio «Chihuahua 66» en paramento-refinement.js (cinco vanos de la panorámica R-002 punto 2, 3.8 m de HEIGHT_REVIEWS, patio conservado)",
+   "fotos": [
+    "77G-ooH2G6Dx2QbnJ20OAQ"
+   ],
+   "carasCalle": {
+    "a26m": [],
+    "a4m": [
+     1,
+     2
+    ]
+   },
+   "falta": [
+    "fachada de la cara a Abasolo (a menos de 4 m)"
+   ],
+   "accion": "sin cambio: el constructor corre después de los paquetes y exige la malla original; cualquier paquete de A3-08 lo rompe y agregar la cara cae fuera del sistema de paquetes (se explica al propietario)"
+  },
+  {
+   "numero": 65,
+   "id": "CH-GA-OXXO",
+   "previo": "entrada C24 de bloque1-serdan-20261026.js: huella OSM 499760720, 5.5 m, frente con franja roja en Serdán",
+   "fotos": [
+    "Kuwk3mZuIWZ2RDonhuaV9A",
+    "Szfjj9vwKLVdbw6QT5xtjw",
+    "2MNg6Xk9_yV3lqEALqRg4Q",
+    "MRytS_xq5CoXCsOT5hEbPw",
+    "GXCIvmIJXDdWRJaeI9vlXQ"
+   ],
+   "carasCalle": {
+    "a26m": [
+     4
+    ],
+    "a4m": [
+     1,
+     4
+    ]
+   },
+   "falta": [
+    "altura y cuerpos observados: esquina de tres niveles con voladizo, edificio blanco de cuatro niveles en Garmendia; el OXXO real está en el hueco del inventario frente a Serdán"
+   ],
+   "accion": "sin cambio: su dueño es la huella OSM (pruebas-fabrica exige planta del paramento para la marca de fábrica) y sin la marca su firma de colisión congelada impide cambiar alturas o planta; cae fuera del sistema de paquetes (se explica al propietario)"
+  }
+ ],
+ "aerea": {
+  "colorCubiertaMediano": {
+   "A3-03": "#e1ded1",
+   "A3-04": "#d7d6c8",
+   "A3-05": "#a5a391",
+   "A3-06": "#f0ede1",
+   "A3-07": "#f5f2e7"
+  },
+  "nota": "Medianas sin los píxeles de vegetación. El centro de la manzana son dos estacionamientos abiertos y el sur son lotes con barda; nada de eso tiene registro en el inventario."
+ },
+ "paralaje": "Las plantas de Serdán quedan 2.0–4.7 m detrás de la línea de fachada y algunos frentes salen dos veces en la elevación rectificada: la posición de los vanos es de ±2 m."
+}

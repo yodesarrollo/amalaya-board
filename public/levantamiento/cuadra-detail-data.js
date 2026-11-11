@@ -1,4 +1,3 @@
-import {SERDAN_APROXIMADO} from './serdan-aproximado-data.js?v=0bbe41f3555a';
 import {C05_APROXIMADA} from './cuadra-c05-aproximada.js?v=5b91975adb8a';
 import {CORREDOR_OBREGON_20261026} from './corredor-obregon-20261026.js?v=0b3a3165be8d';
 import {BLOQUE1_SERDAN} from './bloque1-serdan-20261026.js?v=25a7d7b95b21';
@@ -84,6 +83,11 @@ import {C30_33} from './c30-33-data.js?v=796774d18351';
 import {C21_40} from './c21-40-data.js?v=b128d2344d63';
 import {C21_41} from './c21-41-data.js?v=de409ccb0805';
 import {C07_06} from './c07-06-data.js?v=27015ceb0329';
+import {C24_59} from './c24-59-data.js?v=9691937a6aa3';
+import {C24_60} from './c24-60-data.js?v=3ef53b1cf229';
+import {C24_61} from './c24-61-data.js?v=8f0e61805f5b';
+import {C24_62} from './c24-62-data.js?v=b389144344fb';
+import {C24_63} from './c24-63-data.js?v=57d086d996df';
 
 // Historic photo-based packets and explicitly labelled modelling hypotheses.
 // Dimensions are approximate; each packet documents its own evidence and limits.
@@ -144,8 +148,11 @@ CUADRA_DETAILS.push(C03_26,C03_27);
 CUADRA_DETAILS.push(C04_23,C04_24,C04_25);
 // C07 · cuadra 2 (10-nov-2026): foto de calle + aérea; 6 en cinco cuerpos con patio central.
 CUADRA_DETAILS.push(C07_06);
+// C24 · cuadra 18 (10-nov-2026): fotos del recorrido sobre Serdán; 59–63 sobre su planta de inventario.
+// 64/A3-08 (constructor propio en paramento-refinement.js) y 65/CH-GA-OXXO (huella OSM con firma de colisión
+// congelada, en bloque1-serdan-20261026.js) quedan sin cambio. Sustituye a serdan-aproximado-data.js (registro).
+CUADRA_DETAILS.push(C24_59,C24_60,C24_61,C24_62,C24_63);
 
-CUADRA_DETAILS.push(...SERDAN_APROXIMADO);
 CUADRA_DETAILS.push(C05_APROXIMADA);
 CUADRA_DETAILS.push(...CORREDOR_OBREGON_20261026);
 CUADRA_DETAILS.push(...BLOQUE1_SERDAN);

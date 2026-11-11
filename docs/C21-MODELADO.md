@@ -51,10 +51,10 @@ Se conserva el modelo con foto de octubre. No se retraza porque su dueño no es 
 
 | | Bytes | Gzip | Triángulos | Techo (edificios de fábrica) |
 |---|---|---|---|---|
-| main antes (43ba952, con C30, C02 y C07) | 985,320 | 332,641 | 49,266 | 1,091,000 / 364,500 (70) |
-| con C21 | 978,440 | 330,549 | 48,922 | 1,094,500 / 365,750 (71) |
+| main antes (013e9f0, con C30, C02, C07 y C24) | 986,120 | 333,092 | 49,306 | 1,108,500 / 370,750 (75) |
+| con C21 | 979,240 | 331,274 | 48,962 | 1,112,000 / 372,000 (76) |
 
-La cuadra baja 6,880 bytes, 2,092 bytes comprimidos y 344 triángulos: las dos cajas viejas de B3-01 se sustituyen por el LOD de sus secciones.
+La cuadra baja 6,880 bytes, 1,818 bytes comprimidos y 344 triángulos: las dos cajas viejas de B3-01 se sustituyen por el LOD de sus secciones.
 
 ## Evidencia
 
