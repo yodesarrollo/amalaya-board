@@ -1,0 +1,148 @@
+{
+ "id": "C09",
+ "cuadra": 28,
+ "edificios": {
+  "95": "D2-03",
+  "96": "D2-04",
+  "97": "D2-05",
+  "98": "D2-06",
+  "99": "D2-07",
+  "100": "D2-08",
+  "101": "D2-09",
+  "102": "D2-10"
+ },
+ "fecha": "2026-11-10",
+ "autor": "Claude (Opus 5.5), sesión https://claude.ai/code/session_01BCpvedUsk4bjLk1t29Zdqy",
+ "criterio": "Alejandro Puebla (propietario), 10-nov-2026 18:36 HMO: «más que genérico, una versión aceptable a la realidad según las fotos, lo que muestre»; aprobado el modelo ligero para celular.",
+ "fuentes": [
+  {
+   "path": "public/levantamiento/calco/referencia.webp",
+   "sha256": "ef453bbe2db667f3916e718133b81210e7ff53a51b67c412941a613f5288a074",
+   "tipo": "aérea Esri World Imagery z19 (recuperada 2026-10-07), georreferenciada, 0.26 m/píxel"
+  },
+  {
+   "path": "public/levantamiento/ajuste-visual/C09.jpg",
+   "sha256": "c1b6ea25c66d649678b9d414ca39638478b9543050e8bbc8e030dcd722f43ff1",
+   "tipo": "recorte aéreo de la cuadra"
+  },
+  {
+   "path": "public/levantamiento/evidence/D2-03/20261006-01-cierre.json",
+   "sha256": "2a0e3801270386968eecf9896f302634263fc5573f95d76c9125fd0902d11ba2",
+   "tipo": "planta de inventario ±3 m"
+  },
+  {
+   "path": "public/levantamiento/evidence/D2-04/20261006-01-cierre.json",
+   "sha256": "d180f448aeb4d55fb8817d9ac70e6ee76498c5d13f47ad99ed9a6a147370f0f9",
+   "tipo": "planta de inventario ±3 m"
+  },
+  {
+   "path": "public/levantamiento/evidence/D2-05/20261006-01-cierre.json",
+   "sha256": "4264defb861becb00a664f3f8122d8db227423369e712e1e3e5893cb2e6a46a8",
+   "tipo": "planta de inventario ±3 m"
+  },
+  {
+   "path": "public/levantamiento/evidence/D2-06/20261006-01-cierre.json",
+   "sha256": "475ab1fb03a01212d0da94243dd8193e6490c895ae11a58e2e89da52cf5729c7",
+   "tipo": "planta de inventario ±3 m"
+  },
+  {
+   "path": "public/levantamiento/evidence/D2-07/20261006-01-cierre.json",
+   "sha256": "f950516809f75a38bae0e5131769abed413267bafe064a6401c69415b9e11a2e",
+   "tipo": "planta de inventario ±3 m"
+  },
+  {
+   "path": "public/levantamiento/evidence/D2-08/20261006-01-cierre.json",
+   "sha256": "935d187e91e06fd0f41c7935dfb92041d6a4889e0a187acd036b452dcc7ea324",
+   "tipo": "planta de inventario ±3 m"
+  },
+  {
+   "path": "public/levantamiento/evidence/D2-09/20261006-01-cierre.json",
+   "sha256": "668203b3278f3b9aed1f26b947920e5761af1e5384f1ee0230889a07eb97fb9a",
+   "tipo": "planta de inventario ±3 m"
+  },
+  {
+   "path": "public/levantamiento/evidence/D2-10/20261006-01-cierre.json",
+   "sha256": "e128877d5917ad4bcd747d0a56cc1b275d2b7fa330c46f28a01a0699ed67e9e7",
+   "tipo": "planta de inventario ±3 m"
+  },
+  {
+   "path": null,
+   "tipo": "foto de calle",
+   "resultado": "no disponible en el repositorio; Street View inaccesible desde la nube"
+  }
+ ],
+ "alturas": {
+  "criterio": "tipológico: 4.0 m (mediana de los frentes de un nivel del centro estimados con Street View, 3.3–5.3 m); 3.2 m en 100/D2-08, registrado como «cuerpo interior bajo» en el inventario",
+  "incertidumbre_m": 0.7,
+  "nota": "En esta aérea el sol viene del este: las bandas oscuras sobre Sufragio Efectivo y Felipe Salido son asfalto, no sombras; no se usan como medida."
+ },
+ "pasos": [
+  {
+   "paso": 1,
+   "nombre": "Identidad y evidencia",
+   "resultado": "Ocho registros de C09 (95–102) con su número; sólo aérea; sin foto de calle."
+  },
+  {
+   "paso": 2,
+   "nombre": "Forma",
+   "resultado": "Plantas de inventario; en 95/D2-03 se abre el patio con alberca que la planta cubría (±1 m) y la alberca queda como superficie de agua."
+  },
+  {
+   "paso": 3,
+   "nombre": "Alturas",
+   "resultado": "Tipológicas (ver alturas)."
+  },
+  {
+   "paso": 4,
+   "nombre": "Fachada",
+   "resultado": "Fábrica de fachadas: casa de un nivel en las caras a la calle y en las que quedan a menos de 4 m de la banqueta; barda con acceso en 100/D2-08; 101/D2-09 interior sin vanos."
+  },
+  {
+   "paso": 5,
+   "nombre": "Material y azotea",
+   "resultado": "Color de techo mediano medido en la aérea por edificio; color de muro estimado; pretiles; 4 tinacos y 1 calentador solar vistos en 102/D2-10."
+  },
+  {
+   "paso": 6,
+   "nombre": "Conjunto, ligero y comparación",
+   "resultado": "Vecinos idénticos por firma de colisiones; vanos alcanzados desde la calle; patio de la alberca abierto; LOD en la vista ligera (y en los paquetes anteriores salvo 76–83 y 87); mismas cámaras antes y después; vistas de Blender y GLB de la cuadra."
+  }
+ ],
+ "limites": [
+  "Sin foto de calle: vanos, puertas, colores de muro y alturas son tipológicos.",
+  "Plantas de inventario ±3 m salvo el patio de la alberca (±1 m).",
+  "El suelo gris de las vistas de Blender es un fondo de render, no geometría del modelo."
+ ],
+ "vistaLigera": {
+  "bytes": 880420,
+  "gzip": 289571,
+  "triangulos": 44021,
+  "lod": {
+   "walls": 318,
+   "openings": 287
+  },
+  "techo": "1 MB / 325 KB gzip"
+ },
+ "pruebas": [
+  "scripts/pruebas-fabrica.mjs (incluye patio abierto)",
+  "scripts/pruebas-lod-ligero.mjs",
+  "scripts/pruebas-vista-ligera.mjs",
+  "scripts/pruebas-c1-13-enjambre.mjs (firmas por edificio)",
+  "npm run pruebas",
+  "npm run verificar:publicacion"
+ ],
+ "worldSha256": "5229b7e9f45bc4679089f9f9753d5855762ee92f52ff860681b0d30b2e193b8e",
+ "archivos": {
+  "blender-esquina-noroeste.jpg": "98362757e09833700d2dda3073599a304853ddc8797b1971c4826f02c93da79e",
+  "blender-esquina-noreste.jpg": "aeae80ddbb58c1058f4da1f7cd242c830733b3353c3edd3b8fecc2c106408378",
+  "blender-mina.jpg": "22ad467d9223644b5dd0aedd45fa425ae9ffa3e047b82b9c9fdedf8ddaaaf741",
+  "blender-juan-alvarez.jpg": "552f1859a8ffbadc4913326d9bed50d1b954d28406541faf31b06dd420bc415f",
+  "blender-felipe-salido.jpg": "31c1b8fe5988d9cb4fbb278c41d674517a11dd35429ce5a02a59378ccc3fe7ab",
+  "blender-aerea.jpg": "735f39fec754da70ac7c36ae5dad118e8a04a870cd04acd8116f7c01af238cd0",
+  "blender-aerea-suroeste.jpg": "342e906fed1e59a889153cbb2e9a82490264fa53592cbf963f64df71a5354c84",
+  "aerea-trazo.jpg": "34dc182ec521ef9b6c5fb9411f82ceb7c6da168316ec9c4d146286f6626d07fc",
+  "antes-despues.jpg": "f99c41f4a34ba212ed07350a888bc12a436098a85cd6561a0a84335375a788e3",
+  "camaras.json": "b00860263f63bb2889b6e7a573b28732451a1dd8967821a2bdd3b0ecf4d91add",
+  "C09-95-102.glb": "57070aeb5baaf8b1ed75d007efcbc7f67e1a0f38a82b2558973cfdfc9a57dba0"
+ }
+}

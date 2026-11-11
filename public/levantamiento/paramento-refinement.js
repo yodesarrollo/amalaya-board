@@ -1,7 +1,7 @@
 import {FRONT_BUILDINGS,ROUND2_BUILDINGS,HEIGHT_REVIEWS,COURTYARD_REVIEWS,JOIN_REVIEWS,PARAMENTO_VERSION} from './paramento-data.js?v=5cc1cd6d1d7a';
 import {PARAMENTO_SIDEWALKS} from './paramento-sidewalks.js?v=8ee470fed0ad';
 import {footprintColliderCells} from './isc58-refinement.js?v=76eca0365d35';
-import {CUADRA_DETAILS} from './cuadra-detail-data.js?v=3c735fd9a686';
+import {CUADRA_DETAILS} from './cuadra-detail-data.js?v=61f97798c7ad';
 import {applyObregonApprox} from './obregon-aproximado-data.js?v=9a20c956e9de';
 import {addC113SouthRail} from './c1-13-barandal.js';
 import {fachada as fachadaFabrica} from './fabrica-fachadas.js?v=3b7f2a768403';
@@ -345,7 +345,10 @@ export function applyParamento(world,colliders,R){
   const entry={block:packet.block,buildings:[],equipment:[],batches:[]};
   for(const item of packet.buildings){
    const prefix=item.ownerPrefix||'Planta física · '+item.id;let owner;world.traverse(o=>{if(!owner&&o.name.startsWith(prefix))owner=o});if(!owner)throw Error('Cuadra: missing '+item.id);
-   const ownerName=owner.name,plan=item.points?{points:item.points,holes:[]}:owner.userData.fittedPlan||{points:ring(owner.geometry.parameters.shapes),holes:owner.geometry.parameters.shapes.holes.map(ring)};
+   const ownerName=owner.name,registered=item.points?{points:item.points,holes:[]}:owner.userData.fittedPlan||{points:ring(owner.geometry.parameters.shapes),holes:owner.geometry.parameters.shapes.holes.map(ring)};
+   // Opt-in patios seen in the aerial (e.g. a pool courtyard the inventory covered):
+   // `holes` replaces the registered holes; points stay those of the registered plan.
+   const plan=item.holes?{points:registered.points,holes:item.holes}:registered;
    const p=item.id==='C1-13'?registro82({...item,points:plan.points}):item;
    // normalizeSections: each section is its own solid (patios are the gaps between
    // sections), so the registered footprint keeps its holes as inventory record only.
