@@ -1,7 +1,6 @@
 import {C02_APROXIMADA} from './cuadra-c02-aproximada.js?v=762653c8bba5';
 import {SERDAN_APROXIMADO} from './serdan-aproximado-data.js?v=0bbe41f3555a';
 import {C05_APROXIMADA} from './cuadra-c05-aproximada.js?v=5b91975adb8a';
-import {CORREDOR_OBREGON_20261026} from './corredor-obregon-20261026.js?v=0b3a3165be8d';
 import {BLOQUE1_SERDAN} from './bloque1-serdan-20261026.js?v=25a7d7b95b21';
 // C08 · cuadra 1 (10-nov-2026): fotos de calle de dic-2023 + aérea; un módulo por edificio.
 import {C08_1} from './c08-01-data.js?v=4ba633a613bc';
@@ -68,6 +67,10 @@ import {C01_08} from './c01-08-data.js?v=3cc1cea1d590';
 import {C01_09} from './c01-09-data.js?v=5642db3526cf';
 import {C03_26} from './c03-26-data.js?v=832a30fce669';
 import {C03_27} from './c03-27-data.js?v=a36090be3a83';
+// C20 · cuadra 9 (10-nov-2026): panoramas R-001 de Obregón + aérea; un módulo por edificio.
+import {C20_35} from './c20-35-data.js?v=c88f5eca631a';
+import {C20_36} from './c20-36-data.js?v=f3b639770a97';
+import {C20_39} from './c20-39-data.js?v=e841e5acaaa3';
 
 // Historic photo-based packets and explicitly labelled modelling hypotheses.
 // Dimensions are approximate; each packet documents its own evidence and limits.
@@ -134,11 +137,13 @@ CUADRA_DETAILS.push(C01_07,C01_08,C01_09);
 // C03 · cuadra 7 (10-nov-2026): fotos de calle H01/H04 sobre las plantas y alturas de la ronda 2;
 // cada paquete toma el frente de ROUND2_BUILDINGS como dueño y lo reconstruye (paramento-data.js sin cambios).
 CUADRA_DETAILS.push(C03_26,C03_27);
+// C20 · cuadra 9 (10-nov-2026): 35 con fotos de Obregón (sustituye al paquete del corredor de Obregón
+// del 26-oct, que queda como registro); 36 y 39 con aérea y fábrica de fachadas.
+CUADRA_DETAILS.push(C20_35,C20_36,C20_39);
 
 CUADRA_DETAILS.push(C02_APROXIMADA);
 CUADRA_DETAILS.push(...SERDAN_APROXIMADO);
 CUADRA_DETAILS.push(C05_APROXIMADA);
-CUADRA_DETAILS.push(...CORREDOR_OBREGON_20261026);
 CUADRA_DETAILS.push(...BLOQUE1_SERDAN);
 
 // Chihuahua: the panorama and the aerial footprint show distinct fronts. All
