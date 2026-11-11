@@ -23,7 +23,7 @@ Detalle, mediciones y hashes en [ficha.json](../public/levantamiento/evidence/C2
 | 3. Alturas | 35: pretil a 7.8 m ±0.8 por razón de ángulos en P05 (el pretil mide 2.9 veces la altura de cámara; cámara de 2.8 m calibrada con un peatón de 1.7 m y la distancia al frente). 36 y 39: 4.0 m por tipología. Ver [alzado-p05.jpg](../public/levantamiento/evidence/C20/20261110-modelado/alzado-p05.jpg). |
 | 4. Fachada | 35 en Obregón: portón de arco con hojas verdes y abanico, pilastras, dos ventanas altas con reja, marco blanco y frontón (escalonado), entablamento, cornisa y pretil blancos. En Juan Álvarez, sin foto, el mismo orden con una ventana por tramo largo. 36 y 39: fábrica (casa). |
 | 5. Material y azotea | Techos medidos en la aérea (35 #e7e7dc; 36 blanco; 39 tapado por la fronda, color típico). Colores de muro de los alzados en sombra corregidos contra el blanco de las pilastras. 4 tinacos y 5 equipos en las posiciones vistas. |
-| 6. Conjunto y ligero | Firmas de colisión ajenas idénticas; los 11 vanos se alcanzan desde la calle; anclas de los cinco registros sobre cubierta. Vista ligera 963,120 bytes / 322,553 gzip sobre main 6fa0cc3 (antes 958,120 / 321,028). Foto contra modelo con la misma cámara en [foto-modelo-p05.jpg](../public/levantamiento/evidence/C20/20261110-modelado/foto-modelo-p05.jpg). |
+| 6. Conjunto y ligero | Firmas de colisión ajenas idénticas; los 11 vanos se alcanzan desde la calle; anclas de los cinco registros sobre cubierta. Vista ligera 991,120 bytes / 335,442 gzip sobre main 013e9f0 (antes 986,120 / 333,092; techo con 78 edificios de fábrica: 1,119,000 / 374,500). Foto contra modelo con la misma cámara en [foto-modelo-p05.jpg](../public/levantamiento/evidence/C20/20261110-modelado/foto-modelo-p05.jpg). |
 
 El archivo 3D de la cuadra es [C20-35-39.glb](../public/levantamiento/evidence/C20/20261110-modelado/C20-35-39.glb) (37 y 38 tal como están en main).
 
@@ -38,7 +38,7 @@ Los frentes están observados y los módulos listos, pero reconstruirlos toca do
 1. `scripts/pruebas-paramento.mjs` lee la malla de lámina de 37 y 38 (`m.geometry`) para comprobar que su patio no tiene techo. Un paquete los convierte en grupo; la comprobación tendría que recorrer las mallas del grupo, con la misma intención.
 2. `scripts/firmas-colisiones-base.json` congela 7 postes de colisión sin malla (0.34 × 0.44 × 7.65 m, cada 6.37 m en z ≈ 23.2) que el frente genérico de octubre dejó sobre la banqueta de Obregón. Al reconstruir 37 y 38, `removeOwner` los quita porque caen en su caja: es correcto (son obstáculos invisibles), pero cambia la firma congelada del grupo sin dueño (157 → 150).
 
-Además habría que quitar las entradas de 37 y 38 de `obregon-aproximado-data.js` (el paño claro con portón que se atribuyó a 37 es el local blanco de 38). Con esos cambios, en una prueba local pasan `pruebas-fabrica` y `pruebas-paramento`, y la vista ligera queda en 966,760 bytes / 324,318 gzip.
+Además habría que quitar las entradas de 37 y 38 de `obregon-aproximado-data.js` (el paño claro con portón que se atribuyó a 37 es el local blanco de 38). Con esos cambios, en una prueba local pasan `pruebas-fabrica` y `pruebas-paramento`, y la vista ligera sumaba unos 3,600 bytes / 1,800 gzip (medido sobre main 6fa0cc3).
 
 Lo observado para entonces:
 

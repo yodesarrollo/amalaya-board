@@ -208,16 +208,16 @@
   "El suelo gris de las vistas de Blender es un fondo de render; las aristas negras son del render, como en C02, C09 y C16."
  ],
  "vistaLigera": {
-  "bytes": 963120,
-  "gzip": 322553,
-  "triangulos": 48156,
+  "bytes": 991120,
+  "gzip": 335442,
+  "triangulos": 49556,
   "lod": {
-   "walls": 688,
-   "openings": 508
+   "walls": 762,
+   "openings": 631
   },
-  "version": "6d0d7fde5be3",
-  "techo": "1 MB / 325 KB gzip",
-  "nota": "main 6fa0cc3: 958,120 / 321,028; con 37 y 38 reconstruidos (prueba local) sería 966,760 / 324,318"
+  "version": "6d92439c44d7",
+  "techo": "846,000 + 3,500 y 277,000 + 1,250 gzip por edificio de fábrica (mínimo 1 MB / 325 KB)",
+  "nota": "main 013e9f0: 986,120 / 333,092; techo con 78 edificios de fábrica 1,119,000 / 374,500 (pruebas-vista-ligera); 37 y 38 reconstruidos sumaban ~3,600 / 1,800 en la prueba local sobre 6fa0cc3"
  },
  "camaras": "camaras.json: [nombre, lat, lng, rumbo, fov, cabeceo, altura]; las de calle van sobre la calzada a 1.6 m, la de P05 a 2.8 m como el panorama; mismas cámaras antes y después",
  "pruebas": [
@@ -234,12 +234,12 @@
   "npm run build",
   "git diff --check"
  ],
- "worldSha256": "ddf8ffd51e8698d3c32bc66e54879dce7311cc83bb7de9d83c3d458d578fd9c9",
+ "worldSha256": "5e47299b2e0ca6a56ad1896ad84fbfdc5024064a748e87aa986df25d6217c84b",
  "archivos": {
   "C20-35-39.glb": "8fd913c6da8f8086e906953d15eb572e661bbc5ea939292a456bb89e13fa3063",
   "aerea-trazo.jpg": "a60a38ac1aaf092b172b60df90cbe58c8c26b2cd63f5feed869e435875fe1dda",
   "alzado-p05.jpg": "73599dc83d445b0fbf877a919906dd0ad07eb33a2cb2852aea7a293593227712",
-  "antes-despues.jpg": "710ccaefa042e3a0df8b9c76000b84aa8c88cb4c6ab9e525a98f8e141fbb11ed",
+  "antes-despues.jpg": "c40d337de05ede2bceaffc3de83a9c48ae3da5e6ad1a6ee5a2c72208a68bbf02",
   "blender-aerea-noroeste.jpg": "6cda16810cae11e3314ed52d395689bea5566dbcf4f673a540008779d09cf3a3",
   "blender-aerea.jpg": "56640500e69abb2384966f3d017d80de2a1066002aa1684c7f027fb69442faf3",
   "blender-esquina-noroeste.jpg": "4cea5c7f09371904cd3ce5fd3d2c65e0a035275ff2b4e1c266d6279d5d90d23c",
