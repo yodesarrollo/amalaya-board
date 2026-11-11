@@ -1,0 +1,652 @@
+{
+ "id": "C22",
+ "cuadra": 11,
+ "edificios": {
+  "43": "C3-01",
+  "44": "C3-02",
+  "45": "C3-03",
+  "46": "OB-21"
+ },
+ "fecha": "2026-11-11",
+ "autor": "Claude (Opus 5.5), sesión https://claude.ai/code/session_01BCpvebkU4G13HBygdQvhdv",
+ "criterio": "Alejandro Puebla (propietario), 10-nov-2026: «más que genérico, una versión aceptable a la realidad según las fotos»; con foto se modela lo observado y lo demás por tipología, rotulado como estimado; nunca se empeora un modelo que ya se hizo con foto. Pedido: «Continúan cuadra 11» (10-nov 23:15 HMO, en la sesión programada de la cuadra 4), leído como la cuadra 11 de la numeración del tablero (C22), igual que las cuadras que otros chats tomaron «ahora».",
+ "base": {
+  "commit": "e3f94e6",
+  "nota": "main con C04 (#137), la preparación de las oleadas (#132), C02 (#133), C30 (#138), C07 (#131), C24 (#140), C21 (#141), C05 (#143) y C28 (#142); sólo archivos propios. La primera versión se midió sobre 1785401 y se rehízo sobre e3f94e6 antes de fusionar."
+ },
+ "fuentes": [
+  {
+   "path": "public/recorrido/mxEvNEtgLgOSxKsRFwCiHg.jpg",
+   "sha256": "b60eb6d29725e39f826acf1a6d48267207865b82a039a4c264931c293917ecd7",
+   "tipo": "panorama 360° del recorrido (Street View; P09 dic-2023 según la revisión de octubre; fecha de las demás no verificada). R-001 P08 / R-002 P10, esquina Garmendia–Obregón (rumbo 150°): costado poniente de 43/C3-01"
+  },
+  {
+   "path": "public/recorrido/lKsrvsfkAzaSnxEQUwrxfA.jpg",
+   "sha256": "0af11e82fda2fc2bb2530d3b793a17e2a6cc66653d738c0c86ac9b52d2c9b63f",
+   "tipo": "panorama 360° del recorrido (Street View; P09 dic-2023 según la revisión de octubre; fecha de las demás no verificada). R-001 P09 (rumbos 135°, 180°, 215°): frente de 43/C3-01, quiosco y lámina"
+  },
+  {
+   "path": "public/recorrido/lYkbkN5HLT-6YQS4vIsd2g.jpg",
+   "sha256": "fd5c259b6ad5771a699f4eb3f5dfaef288d499024519e5654bcb5580d2416d67",
+   "tipo": "panorama 360° del recorrido (Street View; P09 dic-2023 según la revisión de octubre; fecha de las demás no verificada). R-001 P10 (rumbos 150°, 180°): lámina de 43/C3-01, frente de 46/OB-21 y arranque de 44/C3-02"
+  },
+  {
+   "path": "public/recorrido/MtTpU1NWETczZgzdClblwg.jpg",
+   "sha256": "f78bb949207e552589b9438e51187868edb36bee875ad336368e1103f3cbcc51",
+   "tipo": "panorama 360° del recorrido (Street View; P09 dic-2023 según la revisión de octubre; fecha de las demás no verificada). R-001 P11 (rumbos 140°, 180°, 220°): tramos crema y casa amarilla de 44/C3-02"
+  },
+  {
+   "path": "public/recorrido/5FAUCdPN0bi6PQuYj_IQOA.jpg",
+   "sha256": "095150ea0b3780b48045beb1d6d887deb872e6e344e5693f5f1a41dd4b0e764f",
+   "tipo": "panorama 360° del recorrido (Street View; P09 dic-2023 según la revisión de octubre; fecha de las demás no verificada). R-001 P12 (rumbos 140°, 180°, 222°): local de 44/C3-02, casa blanca y turquesa alta de 45/C3-03"
+  },
+  {
+   "path": "public/recorrido/c_zMMTJvaks8XyIRT6mJCQ.jpg",
+   "sha256": "13cdee6f5fb0a0ac7a478430b10a93138ee986cf801784fdcfa62f55cabf7c02",
+   "tipo": "panorama 360° del recorrido (Street View; P09 dic-2023 según la revisión de octubre; fecha de las demás no verificada). R-001 P13 (rumbo 205°): turquesa baja, porche y torreón de 45/C3-03"
+  },
+  {
+   "path": "public/recorrido/ywXPe_aoOm7HUa9l5NTdfg.jpg",
+   "sha256": "730bc04e01a7737813b3c45ed9ac14a82581cb178a0e3eb4f8e5771655e2c6e3",
+   "tipo": "panorama 360° del recorrido (Street View; P09 dic-2023 según la revisión de octubre; fecha de las demás no verificada). R-001 P14 (rumbo 235°): torreón desde la plaza del cruce con Abasolo"
+  },
+  {
+   "path": "public/recorrido/alYsfrD3GsmusqDduOPDog.jpg",
+   "sha256": "9d71e8b6283237f1ed4777eae46f88c95d86256a3ed0cd55a65e1da449f970f7",
+   "tipo": "panorama 360° del recorrido (Street View; P09 dic-2023 según la revisión de octubre; fecha de las demás no verificada). R-002 P09: sólo contexto de la esquina (a 15.9 m de la cuadra)"
+  },
+  {
+   "path": "public/recorrido/rutas.json",
+   "sha256": "23fff937e208d67c5a59b9d960ee1aadbcd7207346eaf16f27918b6812b9676f",
+   "tipo": "posición de los panoramas (lat/lng)"
+  },
+  {
+   "path": "public/recorrido/roll.json",
+   "sha256": "78022ba59f4e2df2608bde92cf4a37afcfcc9bda33dc70ef4a2f9c5ffca48b46",
+   "tipo": "inclinación de los panoramas (no se aplicó: sin ella el horizonte encaja mejor con el modelo)"
+  },
+  {
+   "path": "public/levantamiento/calco/referencia.webp",
+   "sha256": "ef453bbe2db667f3916e718133b81210e7ff53a51b67c412941a613f5288a074",
+   "tipo": "aérea Esri World Imagery z19 (recuperada 2026-10-07), georreferenciada, 0.26 m/píxel"
+  },
+  {
+   "path": "public/levantamiento/ajuste-visual/C22.jpg",
+   "sha256": "4a4af9f74263d0ceacca077eaf915f85d07ae47e952c165e7372323bacaa2908",
+   "tipo": "recorte aéreo de la cuadra"
+  },
+  {
+   "path": "public/levantamiento/ajuste-visual/C22-modelo.jpg",
+   "sha256": "979997c19fb826a4ac998841364f60cde46980efcd1576eec1ab77dd4dbac955",
+   "tipo": "encaje visual de octubre"
+  },
+  {
+   "path": "public/levantamiento/cuadras/C22-inventario.jpg",
+   "sha256": "3d4411a6dbdeb10d773b03ecb8b4ee2098a2bfd14aa02e824e9924b2af67e763",
+   "tipo": "límite de inventario de la cuadra (INEGI / Esri)"
+  },
+  {
+   "path": "public/levantamiento/ajuste-visual/cuadras.json",
+   "sha256": "a931062a2b6de0755592719c1e3f628734729e761e1a437f31b5dc0af1a2316e",
+   "tipo": "banqueta de C22 (anillo interior = línea de fachada y lote)"
+  },
+  {
+   "path": "public/levantamiento/evidence/C3-01/20261006-01-cierre.json",
+   "sha256": "ed3d0d71235c95506dd9d0a057b6d6b428ed6d62994db016e7e5798bb47fd987",
+   "tipo": "planta de inventario ±3 m"
+  },
+  {
+   "path": "public/levantamiento/evidence/C3-02/20261006-01-cierre.json",
+   "sha256": "b274aedfb7a007eedf5c78f18b6cab94ee0b3000e7d5f98847d6113d5a6bc529",
+   "tipo": "planta de inventario ±3 m"
+  },
+  {
+   "path": "public/levantamiento/evidence/C3-03/20261006-01-cierre.json",
+   "sha256": "b84fdb1f222f1de91b7678ffe3603ce620e3c56b4a23df5b94678fc5482ceb9c",
+   "tipo": "planta de inventario ±3 m"
+  },
+  {
+   "path": "public/levantamiento/evidence/OB-21/20261006-01-cierre.json",
+   "sha256": "890b2bd45479f1b461b44e45e4def8d4b89c51b16ba128d4b638e151823c0c6f",
+   "tipo": "registro de OB-21 (envolvente 13.47 × 7.92 m, ±5 m)"
+  },
+  {
+   "path": "public/levantamiento/paramento-data.js",
+   "sha256": "5cc1cd6d1d7afe221bb96edbbfa6990a7e446a487014ba4ae0bc8df76d359d93",
+   "tipo": "frente estructura-sur de C3-01 y HEIGHT_REVIEWS de C3-02/C3-03 (sin editar)"
+  },
+  {
+   "path": "public/levantamiento/evidence/paramento-20261007/revision.json",
+   "sha256": "f4fb8affefea214ff649cbc38071d1fab5935353dca6ee7b2ff2917b9eab3f65",
+   "tipo": "revisión de octubre del paramento de Obregón (P09, dic-2023)"
+  }
+ ],
+ "medicion": {
+  "metodo": "Vistas rectilíneas de los panoramas (u=0.5 = norte, rumbo horario; sin la inclinación de roll.json) con rejilla de píxeles; cada columna se intersecta con la recta del paño de su sección en planta (marco local x este, z sur).",
+  "registro": {
+   "P11": "coincide con la aérea (fin de la casa amarilla 140.4 frente a 140.1 de P12 registrado)",
+   "P13": "coincide con la aérea (cambio de alero 157.05 frente a 157.07 de P12 registrado)",
+   "P12": "+0.9 m al oriente: lindero poniente de la casa blanca en 143.48 contra 144.3–144.5 en la aérea (sombra sobre el local y quiebre de la banqueta)",
+   "P09 y P10": "sin ancla en la aérea; se toman como P11"
+  },
+  "alturas": "visuales ±0.5 m: la altura de la cámara y la distancia al paño no están calibradas (zoclos y puertas dan correcciones de −0.25 a +0.6 m según el panorama)."
+ },
+ "alturas": {
+  "C3-01": {
+   "valor_m": 5.4,
+   "metodo": "altura del paramento de octubre (foto P07–P09), conservada"
+  },
+  "C3-02": {
+   "c302-oeste": 3.9,
+   "c302-alta": 4.5,
+   "c302-amarilla": 3.6,
+   "c302-local": 3.0,
+   "incertidumbre_m": 0.5,
+   "metodo": "visual en P11/P12; relación entre tramos medida en la foto (escalón de cornisa ~0.55 m)"
+  },
+  "C3-03": {
+   "c303-blanca-oeste": 3.95,
+   "c303-blanca": 4.45,
+   "c303-turquesa-alta": 4.4,
+   "c303-turquesa-baja": 4.0,
+   "c303-torreon": 5.6,
+   "incertidumbre_m": 0.5,
+   "metodo": "visual en P12/P13 (losa de la terraza ~4.2–4.6 m, pretil de piedra hasta ~5.5 m)"
+  },
+  "sinCambio": {
+   "OB-21": 4.4
+  },
+  "nota": "En la aérea el sol viene del este; las sombras no se usan como medida."
+ },
+ "trazado": {
+  "metodo": "Secciones (normalizeSections) trazadas a ±1 m sobre la aérea con cuadrícula de 1 m; caras a Obregón a 0.25 m del borde interior de la banqueta; plantas de inventario conservadas como registro.",
+  "bordeSur": "La azotea de C3-02 termina en una línea oscura (z 28.0 en x 119.5 → 24.4 en x 132.5) y la de C3-03 en una línea de z 21.9 (x 144.35) a 17.6 (x 167); entre ellas y la banqueta de Sufragio Efectivo hay autos estacionados. El inventario metía C3-02 en esa franja.",
+  "linderos": {
+   "C3-02/C3-03": "x 144.2–144.3: sombra de la casa blanca sobre el local, quiebre de la banqueta y límite del inventario",
+   "torreon": "x 165.6–171.5; curva del pretil vista en la aérea (ápice en x 171.5); 0.8 m detrás del frente turquesa, como la banqueta"
+  }
+ },
+ "edificiosModelados": [
+  {
+   "numero": 43,
+   "id": "C3-01",
+   "modulo": "public/levantamiento/c22-43-data.js",
+   "marcaFabrica": false,
+   "altura_m": 5.4,
+   "planta": "registrada del paramento (frente estructura-sur), sin points propios",
+   "puntos": [
+    [
+     99.947,
+     17.871
+    ],
+    [
+     75.3348554,
+     20.9391593
+    ],
+    [
+     76.2589761,
+     25.8278854
+    ],
+    [
+     80.394,
+     40.754
+    ],
+    [
+     105.0542661,
+     36.6839911
+    ],
+    [
+     116.3720963,
+     33.5010527
+    ],
+    [
+     114.286,
+     23.331
+    ],
+    [
+     100.468,
+     24.112
+    ]
+   ],
+   "fachadas": "Obregón: banda de lámina con rejilla (x 99.95–96.2), quiosco acristalado (2 paños) con hueco abierto encima, 4 vanos abiertos con murete de 0.6 m; Garmendia: 3 vanos abiertos; Sufragio: barda con un acceso (tipología muro); borde de cubierta con plafón gris y remate rojo ladrillo.",
+   "techo": {
+    "usado": "#e4dccc",
+    "medianaAerea": "#e4dccc"
+   },
+   "colisiones": {
+    "n": 118,
+    "identicas": true,
+    "nota": "misma planta y altura que el paramento; pruebas-c1-13-enjambre las compara con firmas-colisiones-base.json"
+   },
+   "porQueSinMarca": "Vanos abiertos sin cierre: la prueba de la fábrica exige modelo detrás de cada vano; sin marca, la lámina fija su altura exacta (sin equipos de azotea)."
+  },
+  {
+   "numero": 44,
+   "id": "C3-02",
+   "modulo": "public/levantamiento/c22-44-data.js",
+   "marcaFabrica": true,
+   "altura_m": 4.5,
+   "secciones": [
+    {
+     "part": "c302-oeste",
+     "puntos": [
+      [
+       114.5,
+       15.735
+      ],
+      [
+       125.5,
+       15.107
+      ],
+      [
+       125.5,
+       26.338
+      ],
+      [
+       115.65,
+       29.066
+      ],
+      [
+       114.5,
+       23.45
+      ]
+     ],
+     "distanciaMinimaLote_m": 0.25
+    },
+    {
+     "part": "c302-alta",
+     "puntos": [
+      [
+       125.5,
+       15.107
+      ],
+      [
+       128.55,
+       14.933
+      ],
+      [
+       128.55,
+       25.493
+      ],
+      [
+       125.5,
+       26.338
+      ]
+     ],
+     "distanciaMinimaLote_m": 0.25
+    },
+    {
+     "part": "c302-amarilla",
+     "puntos": [
+      [
+       128.55,
+       14.933
+      ],
+      [
+       140.2,
+       14.018
+      ],
+      [
+       140.2,
+       24.6
+      ],
+      [
+       132.5,
+       24.4
+      ],
+      [
+       128.55,
+       25.493
+      ]
+     ],
+     "distanciaMinimaLote_m": 0.25
+    },
+    {
+     "part": "c302-local",
+     "puntos": [
+      [
+       140.2,
+       14.018
+      ],
+      [
+       144.2,
+       14.13
+      ],
+      [
+       144.2,
+       24.4
+      ],
+      [
+       140.2,
+       24.6
+      ]
+     ],
+     "distanciaMinimaLote_m": 0.25
+    }
+   ],
+   "alturas": {
+    "c302-oeste": 3.9,
+    "c302-alta": 4.5,
+    "c302-amarilla": 3.6,
+    "c302-local": 3.0
+   },
+   "techo": {
+    "usado": "#e6e2d6",
+    "medianaAerea": "#f4f1e4 a #fcf9ef (blanco, tope #e6e2d6 como C09/C14/C15/C19)"
+   },
+   "pruebaFabrica": {
+    "secciones": 4,
+    "frentesCalle": 6,
+    "vanos": 15,
+    "rayos": 15,
+    "colisiones": 238
+   }
+  },
+  {
+   "numero": 45,
+   "id": "C3-03",
+   "modulo": "public/levantamiento/c22-45-data.js",
+   "marcaFabrica": true,
+   "altura_m": 5.6,
+   "secciones": [
+    {
+     "part": "c303-blanca-oeste",
+     "puntos": [
+      [
+       144.3,
+       14.1
+      ],
+      [
+       144.45,
+       13.302
+      ],
+      [
+       146.63,
+       13.044
+      ],
+      [
+       146.63,
+       21.606
+      ],
+      [
+       144.3,
+       21.906
+      ]
+     ],
+     "distanciaMinimaLote_m": 0.25
+    },
+    {
+     "part": "c303-blanca",
+     "puntos": [
+      [
+       146.63,
+       13.044
+      ],
+      [
+       149.86,
+       12.852
+      ],
+      [
+       149.86,
+       21.19
+      ],
+      [
+       146.63,
+       21.606
+      ]
+     ],
+     "distanciaMinimaLote_m": 0.25
+    },
+    {
+     "part": "c303-turquesa-alta",
+     "puntos": [
+      [
+       149.86,
+       12.852
+      ],
+      [
+       157.07,
+       12.44
+      ],
+      [
+       157.07,
+       20.128
+      ],
+      [
+       149.86,
+       21.19
+      ]
+     ],
+     "distanciaMinimaLote_m": 0.25
+    },
+    {
+     "part": "c303-turquesa-baja",
+     "puntos": [
+      [
+       157.07,
+       12.44
+      ],
+      [
+       165.6,
+       11.952
+      ],
+      [
+       165.6,
+       17.957
+      ],
+      [
+       157.07,
+       20.128
+      ]
+     ],
+     "distanciaMinimaLote_m": 0.25
+    },
+    {
+     "part": "c303-torreon",
+     "puntos": [
+      [
+       165.6,
+       12.72
+      ],
+      [
+       169.1,
+       12.72
+      ],
+      [
+       170.79,
+       13.42
+      ],
+      [
+       171.49,
+       15.11
+      ],
+      [
+       170.79,
+       16.8
+      ],
+      [
+       169.1,
+       17.5
+      ],
+      [
+       165.6,
+       17.5
+      ]
+     ],
+     "distanciaMinimaLote_m": 0.35
+    }
+   ],
+   "alturas": {
+    "c303-blanca-oeste": 3.95,
+    "c303-blanca": 4.45,
+    "c303-turquesa-alta": 4.4,
+    "c303-turquesa-baja": 4.0,
+    "c303-torreon": 5.6
+   },
+   "techo": {
+    "usado": "#e6e2d6 (terraza del torreón #d5d1b9)",
+    "medianaAerea": "#f3f0e8 a #f8f6ed; terraza #d5d1b9"
+   },
+   "pruebaFabrica": {
+    "secciones": 5,
+    "frentesCalle": 8,
+    "vanos": 18,
+    "rayos": 18,
+    "colisiones": 197
+   }
+  }
+ ],
+ "sinCambio": [
+  {
+   "numero": 46,
+   "id": "OB-21",
+   "motivo": "Constructor propio del modelo publicado («21 Av. Obregón · fachada de un nivel, estuco claro, remate azul y basamento pétreo · huella provisional», alzado procedural con placa del 21). La foto P10 sitúa su fachada (aplanado crema, remate azul moldurado, ventana y puerta de marco azul con reja blanca) en x 107.6–116.2, unos 7 m al oriente de su huella provisional (x 100.6–114.3), que hoy ocupa el tramo de lámina de C3-01. No se corrige aquí: su dueño no es una planta física de la lámina (pruebas-fabrica no lo reconoce) y sus 36 colisiones están congeladas en firmas-colisiones-base.json; moverlo exige cambiar pruebas o el constructor, fuera de lo autorizado para las oleadas. Queda como decisión pendiente."
+  },
+  {
+   "numero": 43,
+   "id": "C3-01",
+   "motivo": "Planta y altura del paramento de octubre conservadas (sólo cambian fachadas y colores): la planta queda 1.6–3.2 m detrás del borde de la cubierta que muestra la aérea."
+  }
+ ],
+ "noModelado": [
+  {
+   "que": "pliegues de la cubierta y columnas inclinadas de C3-01",
+   "motivo": "la cubierta se representa plana a 5.4 m; las columnas inclinadas y el barandal negro no tienen pieza en el constructor sin costo alto en la vista ligera"
+  },
+  {
+   "que": "letreros (Kamy Sushi House, Sastrería Thomé), murales con figuras y adornos de talavera",
+   "motivo": "no se reproducen marcas ni figuras; los murales quedan como paños de color"
+  },
+  {
+   "que": "terraza abierta del torreón",
+   "motivo": "se modela sólida hasta el remate del pretil; desde la calle sólo se ve el pretil"
+  },
+  {
+   "que": "caras a Sufragio Efectivo",
+   "motivo": "sin foto: casa de un nivel por tipología (C3-02, C3-03) y barda con un acceso (C3-01)"
+  },
+  {
+   "que": "equipos de azotea de C3-01",
+   "motivo": "sin marca de fábrica, pruebas-lamina exige la altura exacta del dueño"
+  }
+ ],
+ "vecinos": {
+  "metodo": "Triángulos reales de la escena exportada (scripts/exportar-escena-c08.mjs C22) cuyo centroide queda fuera del lote de C22 más 0.8 m, antes (main e3f94e6) y después; huella = sha1 (16 hex) de los triángulos redondeados a milímetros y ordenados.",
+  "antes": {
+   "n": 30765,
+   "sha": "cf0b72b36d3abd0a"
+  },
+  "despues": {
+   "n": 30765,
+   "sha": "cf0b72b36d3abd0a"
+  },
+  "identicos": true,
+  "nota": "Sobre 1785401 eran 28,131, también idénticos; el aumento viene de las cuadras vecinas fusionadas después.",
+  "colisiones": "pruebas-c1-13-enjambre en verde: C3-01 conserva sus 118 cajas y OB-21 sus 36; C3-02 (238) y C3-03 (197) se revisan por pruebas-fabrica."
+ },
+ "pasos": [
+  {
+   "paso": 1,
+   "nombre": "Identidad y evidencia",
+   "resultado": "43/C3-01 espacio abierto de mesas bajo cubiertas plegadas (Obregón–Garmendia); 46/OB-21 casa de remate azul (sin cambio); 44/C3-02 cuatro frentes de un nivel; 45/C3-03 casa blanca, frente turquesa y torreón del cruce con Abasolo. Fotos R-001 P08–P14 y aérea."
+  },
+  {
+   "paso": 2,
+   "nombre": "Forma",
+   "resultado": "C3-01 en su planta del paramento; C3-02 en 4 secciones y C3-03 en 5 (torreón en medio octágono) trazadas a ±1 m; borde sur en la línea de la azotea, con el estacionamiento de Sufragio abierto; plaza del cruce abierta."
+  },
+  {
+   "paso": 3,
+   "nombre": "Alturas",
+   "resultado": "5.4 m (C3-01, paramento); 3.0–4.5 m en C3-02 y 3.95–5.6 m en C3-03, visuales ±0.5 m."
+  },
+  {
+   "paso": 4,
+   "nombre": "Fachada",
+   "resultado": "Vanos observados en Obregón y en el torreón (33 vanos con prueba de rayo en C3-02/C3-03; 13 en C3-01: 7 abiertos sobre murete, el hueco sobre el quiosco y 5 cerrados); tipología casa o muro en las caras a Sufragio."
+  },
+  {
+   "paso": 5,
+   "nombre": "Material y azotea",
+   "resultado": "Colores de la foto a media luz (crema, amarillo, blanco con zoclo azul, turquesa con zoclo verde, remate rojo ladrillo, pretil de piedra); techos medidos en la aérea; 6 tinacos y 3 calentadores."
+  },
+  {
+   "paso": 6,
+   "nombre": "Conjunto y ligero",
+   "resultado": "Vecinos idénticos; secciones dentro del lote y sin enciman; LOD en la vista ligera; mismas cámaras antes/después, foto contra modelo, vistas de Blender y GLB de la cuadra."
+  }
+ ],
+ "limites": [
+  "Vanos a ±0.5 m y alturas a ±0.5 m: pose de los panoramas aproximada (P12 registrado +0.9 m con la aérea).",
+  "Contornos a ±1 m; el borde sur de C3-02 y C3-03 sale de la línea de la azotea, no de una foto de Sufragio Efectivo.",
+  "C3-01 conserva la planta del paramento de octubre, 1.6–3.2 m detrás del borde de su cubierta; la cubierta plegada se representa plana.",
+  "OB-21 sigue en su huella provisional (x 100.6–114.3), corrida ~7 m al poniente de su fachada en la foto; el tramo de lámina de C3-01 x 100.6–107.6 queda tapado por ella y C3-02 cierra el frente desde x 114.5.",
+  "Caras a Sufragio Efectivo por tipología (sin foto).",
+  "Colores tomados de fotos con dominante azul a media luz: aproximados.",
+  "El suelo gris de las vistas de Blender es un fondo de render, no geometría del modelo."
+ ],
+ "vistaLigera": {
+  "antes": {
+   "commit": "e3f94e6",
+   "bytes": 994660,
+   "gzip": 337316,
+   "edificiosFabrica": 84,
+   "techo": [
+    1140000,
+    382000
+   ]
+  },
+  "despues": {
+   "bytes": 1002220,
+   "gzip": 339621,
+   "triangulos": 50111,
+   "edificiosFabrica": 86,
+   "techo": [
+    1147000,
+    384500
+   ]
+  },
+  "diferencia": {
+   "bytes": 7560,
+   "gzip": 2305,
+   "nota": "tres edificios reconstruidos (+378 caras); el techo sube 7,000 bytes y 2,500 gzip por las dos marcas de fábrica: en gzip la cuadra cabe en lo que suma y en bytes usa 560 del margen común, que queda en 144,780 bytes y 44,879 gzip."
+  }
+ },
+ "pruebas": [
+  "node scripts/preparar-paramento.mjs",
+  "node scripts/generar-vista-ligera.mjs",
+  "node scripts/pruebas-fabrica.mjs",
+  "node scripts/pruebas-lod-ligero.mjs",
+  "node scripts/pruebas-vista-ligera.mjs",
+  "node scripts/pruebas-identificacion.mjs",
+  "node scripts/pruebas-lamina.mjs",
+  "node scripts/pruebas-paramento.mjs",
+  "node scripts/pruebas-c1-13-enjambre.mjs --detalles",
+  "npm run pruebas",
+  "python3 scripts/pruebas-puente.py",
+  "npm run verificar:publicacion",
+  "npm run build",
+  "git diff --check"
+ ],
+ "worldSha256": "8aa8d1a18356d2393b96beee03c10ffd290489b10d6d50e42cdf2489079abe90",
+ "comandos": [
+  "node scripts/exportar-escena-c08.mjs /tmp/escena-c22.json C22",
+  "python3 scripts/renderizar-evidencia-paramento.py /tmp/escena-c22.json /tmp/vistas-c22 public/levantamiento/evidence/C22/20261111-modelado/camaras.json",
+  "python3 scripts/renderizar-evidencia-paramento.py /tmp/escena-c22.json /tmp/vistas-c22 public/levantamiento/evidence/C22/20261111-modelado/camaras-foto.json",
+  "python3 herramientas/blender/render-revision.py /tmp/escena-c22.json public/levantamiento/evidence/C22/20261111-modelado/camaras-blender.json /tmp/blender-c22 --glb /tmp/C22-43-46.glb --poligono \"$(cat public/levantamiento/evidence/C22/20261111-modelado/poligono-glb.txt)\""
+ ],
+ "archivos": {
+  "C22-43-46.glb": "63929af73c8bcb854c7d7db69794732b0043657d1e645d87a6f935dcdf06bd1f",
+  "aerea-trazo.jpg": "03c562d001a4d33fbe8ef188d40c54a8587d70754d31dd865e4e6c2d777e16f7",
+  "antes-despues.jpg": "ce5acc98b255d871c0687d0a3ab08db94a91eba04f37dce74151bed3fa56076d",
+  "blender-aerea-noreste.jpg": "6628e5a4172d114e5a5e2408a6464f71d814abd5d6715f95e5aea239f4aba3cd",
+  "blender-aerea-suroeste.jpg": "23a9c80b25ef25258aadd8dc89cd1086c23b7b5422e8c3b62199fe2d586cfb27",
+  "blender-obregon-poniente.jpg": "210e9ce74c50cdb7ef7cb674965fd06ee6276a3cf364a925fdd212a6ae0dbaa3",
+  "blender-torreon-obregon.jpg": "b1dbbc0e88881fab10a528708f4678cc1d2a19ae1bddbbb45bcc43cd50f1f9a9",
+  "camaras-blender.json": "8e67e48e90c9756794b520d0a47c4548228c5bb96e6f661ca5212096e7179ea2",
+  "camaras-foto.json": "193de8f7c1e8cb4fb951bc879cbcaafa153f1f522326fa949b71445a32824fda",
+  "camaras.json": "8ac04a3437a646782edf2cff9874af47f594a3ca6068b00de0de9b47a076125b",
+  "foto-modelo.jpg": "50f073d95a75d52b4f15f7c71cb250b545ce6aa88cb219f348c62a6e9cc8223d",
+  "poligono-glb.txt": "1af58523abad807cd000718a3423289c8eb99ca2bc0fc31f78ada302704dd17f"
+ }
+}
