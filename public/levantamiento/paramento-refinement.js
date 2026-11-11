@@ -1,7 +1,7 @@
 import {FRONT_BUILDINGS,ROUND2_BUILDINGS,HEIGHT_REVIEWS,COURTYARD_REVIEWS,JOIN_REVIEWS,PARAMENTO_VERSION} from './paramento-data.js?v=5cc1cd6d1d7a';
 import {PARAMENTO_SIDEWALKS} from './paramento-sidewalks.js?v=8ee470fed0ad';
 import {footprintColliderCells} from './isc58-refinement.js?v=76eca0365d35';
-import {CUADRA_DETAILS} from './cuadra-detail-data.js?v=99d4671a6648';
+import {CUADRA_DETAILS} from './cuadra-detail-data.js?v=98ac7b218006';
 import {applyObregonApprox} from './obregon-aproximado-data.js?v=9a20c956e9de';
 import {addC113SouthRail} from './c1-13-barandal.js';
 import {fachada as fachadaFabrica} from './fabrica-fachadas.js?v=3b7f2a768403';
