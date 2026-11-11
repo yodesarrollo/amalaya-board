@@ -1,0 +1,217 @@
+{
+ "id": "C16",
+ "cuadra": 31,
+ "nombre": "Profesor Enrique Quijada / Garmendia",
+ "calles": [
+  "Profesor Enrique Quijada",
+  "Garmendia",
+  "Felipe Salido",
+  "Bavispe"
+ ],
+ "edificios": {
+  "116": "D3-16",
+  "117": "D3-17"
+ },
+ "fecha": "2026-11-10",
+ "autor": "Claude (Opus 5.5), sesión https://claude.ai/code/session_01BCpvee4cGGCfPdCjMMhQGm",
+ "criterio": "Alejandro Puebla (propietario), 10-nov-2026 18:36 HMO: «más que genérico, una versión aceptable a la realidad según las fotos, lo que muestre»; aprobado el modelo ligero para celular. 10-nov-2026 20:36 HMO: C16 en paralelo con C15 y C19, sólo con archivos propios.",
+ "fuentes": [
+  {
+   "path": "public/levantamiento/calco/referencia.webp",
+   "sha256": "ef453bbe2db667f3916e718133b81210e7ff53a51b67c412941a613f5288a074",
+   "tipo": "aérea Esri World Imagery z19 (recuperada 2026-10-07), georreferenciada, 0.26 m/píxel"
+  },
+  {
+   "path": "public/levantamiento/ajuste-visual/C16.jpg",
+   "sha256": "8c4d0252ecff9753af22523f360e919a008cc2284033d7877c6bcadedc506e5c",
+   "tipo": "recorte aéreo de la cuadra"
+  },
+  {
+   "path": "public/levantamiento/cuadras/C16-inventario.jpg",
+   "sha256": "c724fa4f9636227c80abb4df7601ecf1faa28c62973c674354efd28eb63aa686",
+   "tipo": "límite de inventario INEGI / Esri"
+  },
+  {
+   "path": "public/levantamiento/evidence/D3-16/20261006-01-cierre.json",
+   "sha256": "69c43c1891186f3d48d134a743650b85a69e0b6ca897ff2d83f212c897e330a0",
+   "tipo": "planta de inventario ±3 m («casa de patio»)"
+  },
+  {
+   "path": "public/levantamiento/evidence/D3-17/20261006-01-cierre.json",
+   "sha256": "8a7aa632a5b344c142655aea824200d1ecd7a251058947e19ee8e5e527199d9e",
+   "tipo": "planta de inventario ±3 m («cuerpo occidental»)"
+  },
+  {
+   "path": null,
+   "tipo": "foto de calle",
+   "resultado": "no disponible en el repositorio; Street View inaccesible desde la nube"
+  }
+ ],
+ "georreferencia": {
+  "local": "x=(lng+110.9547151)*97200, z=(29.076115−lat)*110950",
+  "pixel": "Web Mercator z19 menos tileBounds×256 (ajuste-visual/cuadras.json → reference)"
+ },
+ "alturas": {
+  "criterio": "tipológico: 4.0 m en 116 y en las tres secciones de 117 (mediana de los frentes de un nivel del centro estimados con Street View, 3.3–5.3 m); el inventario no registra «cuerpo bajo» en D3-16 ni en D3-17",
+  "incertidumbre_m": 0.7,
+  "antes_m": 6.2,
+  "nota": "En esta aérea el sol viene del este: las bandas oscuras al norte (Felipe Salido, luminancia mediana 45) y la calzada de Garmendia (40) son asfalto o sombra al poniente, no medidas de altura; no se usan."
+ },
+ "mediciones": {
+  "metodo": "medianas de color y manchas oscuras con contraste local sobre calco/referencia.webp, a resolución original, dentro de polígonos locales",
+  "techos": {
+   "116 azotea blanca": "#faf8ef",
+   "116 ala oriente crema": "#f7f2e8",
+   "116 franja poniente tostada": "#c3b5a2",
+   "117 azotea blanca (L)": "#eceade",
+   "117 cuerpo beige": "#ccc6b2",
+   "117 losa gris": "#c1c9bf",
+   "color usado para los blancos": "#e6e2d6 (como 94 y 102, para no saturar)"
+  },
+  "patio116": {
+   "mediana": "#77867c",
+   "lectura": "verde grisáceo, vegetación; no es alberca (azul en 95)",
+   "contorno": "trazado a ±1 m; el hueco de inventario quedaba ~1 m al poniente y 2 m corto al norte"
+  },
+  "noCubierta117": {
+   "árboles al poniente": "#606850",
+   "copa al sureste": "#242f26"
+  },
+  "equipos": {
+   "116": {
+    "tinacos": [
+     [
+      69.8,
+      181.1
+     ],
+     [
+      65.3,
+      190.8
+     ]
+    ],
+    "equipos grises (ventila)": [
+     [
+      64.3,
+      189.6
+     ],
+     [
+      63.0,
+      181.2
+     ],
+     [
+      69.4,
+      192.7
+     ]
+    ]
+   },
+   "117": {
+    "tinacos azotea": [
+     [
+      85.8,
+      178.2
+     ],
+     [
+      85.4,
+      181.2
+     ],
+     [
+      88.95,
+      181.0
+     ]
+    ],
+    "tinacos cuerpo beige": [
+     [
+      87.2,
+      184.5
+     ],
+     [
+      85.6,
+      185.9
+     ]
+    ]
+   }
+  },
+  "frentes": {
+   "criterio": "scripts/frentes-calle-lib.mjs contra la banqueta de C16 (≤ 2.6 m y ≤ 25° = calle) y caras a menos de 4 m de la banqueta",
+   "116": "aristas 5 y 6 a Garmendia (0.6 y 1.1 m); arista 0 a Felipe Salido a 4.8 m: la planta de inventario queda retranqueada y la aérea muestra la cubierta a unos 2 m, por eso se trata como cara visible",
+   "117": "azotea: arista 1 a Enrique Quijada (0.3 m) y arista 0 a Felipe Salido (2.4 m); cuerpo beige: aristas 1 (2.3 m) y 2 (3.6 m) hacia Enrique Quijada; losa gris sin cara a la calle (≥ 9.6 m)"
+  }
+ },
+ "pasos": [
+  {
+   "paso": 1,
+   "nombre": "Identidad y evidencia",
+   "resultado": "116/D3-16 esquina Garmendia–Felipe Salido («casa de patio»); 117/D3-17 hacia la esquina Felipe Salido–Enrique Quijada («cuerpo occidental»). Sólo aérea; sin foto de calle."
+  },
+  {
+   "paso": 2,
+   "nombre": "Forma",
+   "resultado": "116 conserva su planta de inventario con el patio trazado a ±1 m sobre la aérea y piso de vegetación. 117 pasa de un contorno de inventario que cubría árboles al poniente y una copa al sureste a tres secciones trazadas a ±1 m: azotea blanca en L, cuerpo beige y losa gris; árboles y patios quedan abiertos."
+  },
+  {
+   "paso": 3,
+   "nombre": "Alturas",
+   "resultado": "Tipológicas, 4.0 m (ver alturas); antes 6.2 m provisionales."
+  },
+  {
+   "paso": 4,
+   "nombre": "Fachada",
+   "resultado": "Fábrica de fachadas, casa de un nivel: 116 en Garmendia y en la cara norte visible desde Felipe Salido (9 vanos); 117 en Enrique Quijada y en la cara norte de la azotea (5 vanos). Caras interiores lisas."
+  },
+  {
+   "paso": 5,
+   "nombre": "Material y azotea",
+   "resultado": "Colores de techo medidos (ver mediciones); color de muro estimado; pretiles; 7 tinacos y 3 equipos pequeños en las posiciones vistas en la aérea; superficie mate."
+  },
+  {
+   "paso": 6,
+   "nombre": "Conjunto, ligero y comparación",
+   "resultado": "Vecinos idénticos por firma de colisiones; 14 vanos alcanzados desde la calle; patio de 116 abierto y sin colisión; secciones de 117 dentro del lote y sin enciman; LOD en la vista ligera; mismas cámaras antes y después sobre la calle; vistas de Blender y GLB de la cuadra."
+  }
+ ],
+ "limites": [
+  "Sin foto de calle: vanos, puertas, colores de muro y alturas son tipológicos, no observados.",
+  "Planta de 116 de inventario (±3 m): su cara norte queda unos 2.5 m al sur de la cubierta que muestra la aérea; patio y secciones de 117 a ±1 m.",
+  "La franja tostada al poniente de 116 no se separa como cuerpo propio.",
+  "La losa gris de 117 se lee como cubierta, igual que en el inventario; bajo los árboles no se ve si hay techo.",
+  "Cubiertas visibles al sur de 116 y 117 (resto de la manzana) quedan fuera del conteo de 139, igual que en el inventario de octubre.",
+  "El suelo gris de las vistas de Blender es un fondo de render; las aristas negras en bordes de patio y esquinas de sección son del render, como en C09 y C14."
+ ],
+ "vistaLigera": {
+  "bytes": 924060,
+  "gzip": 305831,
+  "triangulos": 46203,
+  "lod": {
+   "walls": 512,
+   "openings": 378
+  },
+  "version": "cf9ef05cc7d7",
+  "techo": "1 MB / 325 KB gzip"
+ },
+ "camaras": "camaras.json: [nombre, lat, lng, rumbo, fov, cabeceo, altura]; las de calle van sobre la calzada a 1.6 m; mismas cámaras antes y después",
+ "pruebas": [
+  "scripts/pruebas-fabrica.mjs (secciones, patio abierto, vanos alcanzados)",
+  "scripts/pruebas-lod-ligero.mjs",
+  "scripts/pruebas-vista-ligera.mjs",
+  "scripts/pruebas-c1-13-enjambre.mjs (firmas por edificio)",
+  "npm run pruebas",
+  "python3 scripts/pruebas-puente.py",
+  "npm run verificar:publicacion",
+  "npm run build",
+  "git diff --check"
+ ],
+ "worldSha256": "64c01c78a51b5d051fbff1a1c1ebb98eb75e3e400665ae0d8b5bad9f4341de9f",
+ "archivos": {
+  "C16-116-117.glb": "5151d53a0b562281c07dbdcd334d4514350e428aa29588e856dedf95e0e888ba",
+  "aerea-trazo.jpg": "f5feded9b381c84347d410e57c28f96b5933300b04d154691e27c7cc08e3451b",
+  "antes-despues.jpg": "a13aaf821f6d0323fb8d090a5d0a2cf5b6a0bda878a3633c8a247496b4cc1a14",
+  "blender-aerea-noroeste.jpg": "8279ab6669d46347e5473f821d91c0a22d17891f4f52cf654537cf450e57b830",
+  "blender-aerea.jpg": "15ed783df795a6d2fd30625d517975465cbd31de47a7ee58dbbcb6816a22ce4e",
+  "blender-enrique-quijada.jpg": "ba62b8e4edebc4b2cbca1aa8568491a288feabaa52fbc76b13fb1c0c42619257",
+  "blender-esquina-noreste.jpg": "ab9bc0df94d7ccb8b47800edca11fa2f7fe8871621b2673b36831b183bb6d4a7",
+  "blender-esquina-noroeste.jpg": "341c1751f699bfea93a77d0ac3d96bae75dbcaa0f6d549f07b4ff60c3f6a3673",
+  "blender-felipe-salido.jpg": "95dce093c122a6850db947280abe14976d9c4e76d92eb0009a50818f202b5f6b",
+  "blender-garmendia.jpg": "6ffeb49dbaeca8a9c1425b7c008c0305cc02ca1578607efd6c3f036c22cde292",
+  "camaras.json": "caae5fc24d4b77e951e4f31aeacedaa2449aa0a13010a1225854bf91f3903bd6"
+ }
+}

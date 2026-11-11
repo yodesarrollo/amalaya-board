@@ -35,6 +35,8 @@ import {C19_108} from './c19-108-data.js?v=a39226909fcb';
 import {C19_109} from './c19-109-data.js?v=d24c84b3f676';
 import {C19_110} from './c19-110-data.js?v=81691e5c2e95';
 import {C19_111} from './c19-111-data.js?v=7574dbb3270c';
+import {C16_116} from './c16-116-data.js?v=d723b435ba9a';
+import {C16_117} from './c16-117-data.js?v=207b2dd40ee4';
 
 // Historic photo-based packets and explicitly labelled modelling hypotheses.
 // Dimensions are approximate; each packet documents its own evidence and limits.
@@ -103,6 +105,8 @@ CUADRA_DETAILS.push(C09_95,C09_96,C09_97,C09_98,C09_99,C09_100,C09_101,C09_102);
 CUADRA_DETAILS.push(C15_112,C15_113,C15_114,C15_115);
 // C19 · cuadra 29 (10-nov-2026): aérea + fábrica de fachadas; frentes y C2-12 por secciones.
 CUADRA_DETAILS.push(C19_103,C19_104,C19_105,C19_106,C19_107,C19_108,C19_109,C19_110,C19_111);
+// C16 · cuadra 31 (10-nov-2026): aérea + fábrica de fachadas; patio en 116, 117 por secciones.
+CUADRA_DETAILS.push(C16_116,C16_117);
 
 CUADRA_DETAILS.push(C02_APROXIMADA);
 CUADRA_DETAILS.push(...SERDAN_APROXIMADO);
