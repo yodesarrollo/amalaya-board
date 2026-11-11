@@ -1,0 +1,280 @@
+{
+ "id": "C24",
+ "cuadra": 18,
+ "edificios": {
+  "59": "A3-03",
+  "60": "A3-04",
+  "61": "A3-05",
+  "62": "A3-06",
+  "63": "A3-07",
+  "64": "A3-08",
+  "65": "CH-GA-OXXO"
+ },
+ "fecha": "2026-11-10",
+ "autor": "Claude (Opus 5.5), sesión https://claude.ai/code/session_01BCpved7JUFsofpAs769fba",
+ "criterio": "Alejandro Puebla (propietario), 10-nov-2026: «más que genérico, una versión aceptable a la realidad según las fotos». Con foto se modela lo observado; sin foto, fábrica de fachadas en caras a la calle o a menos de 4 m de la banqueta, declarado en hypothesis; lo que cae fuera del sistema de paquetes se explica antes de tocarlo.",
+ "base": "main@43ba95259a5ccfc4cf53fcc99c882d1926228852",
+ "diagnostico": "diagnostico.json",
+ "fuentes": [
+  {
+   "path": "public/recorrido/Kuwk3mZuIWZ2RDonhuaV9A.jpg",
+   "sha256": "059713e7398d020fb70869fe7bc72f40485a0931c4b4d22f87c5347caa997aa6",
+   "tipo": "panorámica del recorrido sobre Serdán, alineada al norte"
+  },
+  {
+   "path": "public/recorrido/Cf-Fao4eemggYJRuetSx3w.jpg",
+   "sha256": "5e877c88ba6c8e6cc5c8a2fa8f9900361076e3e08eb735f67c739331baa00245",
+   "tipo": "panorámica del recorrido sobre Serdán, alineada al norte"
+  },
+  {
+   "path": "public/recorrido/xKQNROLj9VMiBGpjotie5A.jpg",
+   "sha256": "023f4143a51c50ec75356d5024e048857960bec1fe9e8a0b71ea0aa69bbb8536",
+   "tipo": "panorámica del recorrido sobre Serdán, alineada al norte"
+  },
+  {
+   "path": "public/recorrido/tpv4y1ErCEndgDHFQBOV6w.jpg",
+   "sha256": "b8b3db5f296d03882a03a8cc59bcb3bbda0b3c26d8e84d32e341953a8616cd43",
+   "tipo": "panorámica del recorrido sobre Serdán, alineada al norte"
+  },
+  {
+   "path": "public/recorrido/hLX5pkq4RdjBOs5Vqpw-Fw.jpg",
+   "sha256": "97e1d5c9d0696cffdc4e0dfc440eb5c6126285788d7d72a63e60ad2e07483b23",
+   "tipo": "panorámica del recorrido sobre Serdán, alineada al norte"
+  },
+  {
+   "path": "public/recorrido/h7Ur5HsLG4Jz2V7_ePx7zQ.jpg",
+   "sha256": "a1e1ed31da1b1636e2b9e4616a4f67ff048ed6ff15b56dcd2eb4be37012f9acb",
+   "tipo": "panorámica del recorrido sobre Serdán, alineada al norte"
+  },
+  {
+   "path": "public/recorrido/dhZr59FbZyCQKcSB4CJb5w.jpg",
+   "sha256": "94c6eae92de9288ec24221ecc4c95bcc5d842424c7635646a7fe03dcaaf56d4c",
+   "tipo": "panorámica del recorrido sobre Serdán, alineada al norte"
+  },
+  {
+   "path": "public/recorrido/TgahlLYkg_dqqZBDqpEYNQ.jpg",
+   "sha256": "bb2ab6d73c80d1aeaab30af6f3ef9e0b02c300ddc7f99c740fcfac169c38a57a",
+   "tipo": "panorámica del recorrido sobre Serdán, alineada al norte"
+  },
+  {
+   "path": "public/recorrido/Qr8oDbAjuVbJnIJg-alGgQ.jpg",
+   "sha256": "ecd0d894e0fa48d8f48b1687d756964f8eb95fde5be08ea81d3291ce5b240a39",
+   "tipo": "panorámica del recorrido sobre Serdán, alineada al norte"
+  },
+  {
+   "path": "public/recorrido/Szfjj9vwKLVdbw6QT5xtjw.jpg",
+   "sha256": "d2e75f8734f9787720333118f4c66e313901be6085da07e9ebc1e925b27143c0",
+   "tipo": "panorámica del recorrido sobre Serdán, alineada al norte"
+  },
+  {
+   "path": "public/recorrido/2MNg6Xk9_yV3lqEALqRg4Q.jpg",
+   "sha256": "711338f5bb73993855919073f171c088a0d4ab55fc510c19415417cdc43a7228",
+   "tipo": "panorámica del recorrido sobre Garmendia o Chihuahua, alineada al norte"
+  },
+  {
+   "path": "public/recorrido/MRytS_xq5CoXCsOT5hEbPw.jpg",
+   "sha256": "154b949284bbb00bb2f3edb94fb881b23d0afa5151e26f533a60e412400a3fd0",
+   "tipo": "panorámica del recorrido sobre Garmendia o Chihuahua, alineada al norte"
+  },
+  {
+   "path": "public/recorrido/GXCIvmIJXDdWRJaeI9vlXQ.jpg",
+   "sha256": "4e5f244e2881abd0c75346d6b4169b56baa6c4bf70b0a3466fbdc03c7009b869",
+   "tipo": "panorámica del recorrido sobre Garmendia o Chihuahua, alineada al norte"
+  },
+  {
+   "path": "public/recorrido/77G-ooH2G6Dx2QbnJ20OAQ.jpg",
+   "sha256": "81975e2f7b1d38e72c339dc2b95a83ab9f5abf68572f52ea9eb1f8bbb415c83b",
+   "tipo": "panorámica del recorrido sobre Garmendia o Chihuahua, alineada al norte"
+  },
+  {
+   "path": "public/levantamiento/calco/referencia.webp",
+   "sha256": "ef453bbe2db667f3916e718133b81210e7ff53a51b67c412941a613f5288a074",
+   "tipo": "aérea Esri World Imagery z19 (recuperada 2026-10-07), georreferenciada, 0.26 m/píxel"
+  },
+  {
+   "path": "public/levantamiento/ajuste-visual/C24.jpg",
+   "sha256": "6a0bbcfe83c6b3ea24a6bc93c24b400e02d3733f5e26037a3438dc4d5366c020",
+   "tipo": "recorte aéreo de la cuadra"
+  },
+  {
+   "path": "public/levantamiento/serdan-aproximado-data.js",
+   "sha256": "0bbe41f3555a82dc209d58f3907380667a61126556bd2007de7d3a5fe96e5ab3",
+   "tipo": "paquete aproximado del 26-oct (registro; ya no se carga)"
+  },
+  {
+   "path": "public/levantamiento/bloque1-serdan-20261026.js",
+   "sha256": "25a7d7b95b2169eea8ae3ba3a2b55ad9bff0cec4b24c0787cee1201b0e4e9c77",
+   "tipo": "paquete compartido con CH-GA-OXXO (sin cambio)"
+  }
+ ],
+ "mediciones": {
+  "metodo": "Elevaciones rectificadas de cada paramento a partir de las panorámicas (línea de fachada de frentes-calle-lib, cámara a 2.5 m, panorámicas alineadas al norte, la más cercana con ángulo de hasta 62°); posiciones de locales medidas en metros sobre la línea y pasadas a cada arista de inventario (x = s − inicio de la arista). ±2 m por paralaje: las plantas quedan 2.0–4.7 m detrás de la línea.",
+  "serdan": {
+   "A3-03": {
+    "s": [
+     22.35,
+     38.61
+    ]
+   },
+   "A3-04": {
+    "s": [
+     41.11,
+     57.63
+    ]
+   },
+   "A3-05": {
+    "s": [
+     61.72,
+     80.53
+    ]
+   },
+   "A3-06": {
+    "s": [
+     82.37,
+     103.54
+    ]
+   },
+   "A3-07": {
+    "s": [
+     105.17,
+     117.04
+    ]
+   },
+   "OXXO (hueco del inventario)": {
+    "s": [
+     17,
+     24
+    ]
+   }
+  },
+  "aerea": {
+   "colorCubiertaMediano": {
+    "A3-03": "#e1ded1",
+    "A3-04": "#d7d6c8",
+    "A3-05": "#a5a391",
+    "A3-06": "#f0ede1",
+    "A3-07": "#f5f2e7"
+   },
+   "nota": "Medianas sin píxeles de vegetación. Sol del este."
+  }
+ },
+ "alturas": {
+  "A3-03": {
+   "m": 5.2,
+   "fuente": "paquete del 26-oct"
+  },
+  "A3-04": {
+   "m": 7.2,
+   "fuente": "paquete del 26-oct"
+  },
+  "A3-05": {
+   "m": 7.6,
+   "fuente": "paquete del 26-oct"
+  },
+  "A3-06": {
+   "m": 7.0,
+   "fuente": "paquete del 26-oct"
+  },
+  "A3-07": {
+   "m": 7.0,
+   "fuente": "foto R-000 punto 6 (inventario 6.2 m)"
+  }
+ },
+ "pasos": [
+  {
+   "paso": 1,
+   "nombre": "Identidad y evidencia",
+   "resultado": "Frente comercial continuo sobre Serdán; 22 panorámicas a menos de 22 m; el centro y el sur de la manzana son estacionamientos y lotes con barda sin registro."
+  },
+  {
+   "paso": 2,
+   "nombre": "Forma",
+   "resultado": "Plantas de inventario conservadas; pasaje de 61 como vano oscuro hundido."
+  },
+  {
+   "paso": 3,
+   "nombre": "Alturas",
+   "resultado": "Las del paquete de octubre; 63 a 7.0 m por la foto."
+  },
+  {
+   "paso": 4,
+   "nombre": "Fachada",
+   "resultado": "Locales observados en Serdán para 59–63 (30 vanos y franjas de rótulos); Abasolo de 63 por tipología comercio."
+  },
+  {
+   "paso": 5,
+   "nombre": "Material y azotea",
+   "resultado": "Colores de la foto; cubiertas medidas en la aérea; equipos no ubicados; superficie mate."
+  },
+  {
+   "paso": 6,
+   "nombre": "Conjunto, ligero y comparación",
+   "resultado": "Firmas de colisión ajenas idénticas; vanos alcanzados desde la calle; LOD en la vista ligera; mismas cámaras antes y después; foto frente a modelo; elevaciones rectificadas; dos vistas de Blender y GLB de 59–63."
+  }
+ ],
+ "pendientes": {
+  "A3-08": "constructor propio en paramento-refinement.js: la cara a Abasolo (a menos de 4 m) no tiene fachada y agregarla exige tocar el constructor",
+  "CH-GA-OXXO": "huella OSM con firma de colisión congelada: modelar la esquina de tres niveles, el edificio blanco de cuatro y el OXXO exige una planta del paramento o actualizar scripts/firmas-colisiones-base.json"
+ },
+ "limites": [
+  "Medidas visuales, no métricas: vanos a ±2 m por paralaje.",
+  "Alturas del paquete de octubre salvo 63; el edificio blanco de 61 parece de tres niveles.",
+  "Cara de 63 a Abasolo por tipología (sin foto).",
+  "A3-08 y CH-GA-OXXO sin cambio (fuera del sistema de paquetes).",
+  "Estacionamientos, lotes con barda y la cubierta del OXXO fuera del inventario de 139 no se modelan.",
+  "El suelo gris de las vistas de Blender es un fondo de render, no geometría del modelo."
+ ],
+ "vistaLigera": {
+  "bytes": 986120,
+  "gzip": 333092,
+  "triangulos": 49306,
+  "lod": {
+   "walls": 754,
+   "openings": 623
+  },
+  "antes": {
+   "bytes": 985320,
+   "gzip": 332641,
+   "triangulos": 49266
+  },
+  "techo": "por edificio de fábrica (scripts/pruebas-vista-ligera.mjs)"
+ },
+ "glb": {
+  "archivo": "C24-59-63.glb",
+  "edificios": [
+   "A3-03",
+   "A3-04",
+   "A3-05",
+   "A3-06",
+   "A3-07"
+  ],
+  "poligono": "90.78,-119.36;90.87,-118.83;72.62,-114.95;75.76,-82.20;96.26,-87.10;96.49,-85.78;116.45,-91.81;115.75,-95.05;117.27,-95.38;118.22,-91.23;134.09,-96.50;134.65,-89.89;159.44,-93.35;160.28,-87.63;174.53,-88.92;168.95,-130.12;155.23,-129.53;155.04,-130.54;132.47,-126.61;132.47,-126.67;109.79,-122.53;109.62,-123.30"
+ },
+ "pruebas": [
+  "scripts/pruebas-fabrica.mjs",
+  "scripts/pruebas-lod-ligero.mjs",
+  "scripts/pruebas-vista-ligera.mjs",
+  "scripts/pruebas-lamina.mjs",
+  "scripts/pruebas-paramento.mjs",
+  "scripts/pruebas-c1-13-enjambre.mjs (firmas por edificio)",
+  "scripts/pruebas-identificacion.mjs",
+  "npm run pruebas",
+  "python3 scripts/pruebas-puente.py",
+  "npm run verificar:publicacion",
+  "npm run build"
+ ],
+ "worldSha256": "db49a52a7e92c4e711dc600d51484fab7875ace67a79015d6e79a473bbadd3ae",
+ "archivos": {
+  "C24-59-63.glb": "d40fc51ef84242b70409ce838d7667c63c1f585d75fc216c1c0dd5a811a2444c",
+  "aerea-trazo.jpg": "588bacebd2962c1f2aa30f667c738fca14ec380cd6037190a8f88a6a0bd431a3",
+  "antes-despues.jpg": "ea0da94ebe3c89d86d01292103c46e5399d99db1813fccf8d80d87499cdb6473",
+  "blender-aerea-noroeste.jpg": "771375a7985c9129e10fd8b09f3c3175e187c571985e651ddcd0d8c37615b86a",
+  "blender-esquina-serdan-abasolo.jpg": "27203290a37cd082e7bb53fef777b5d71fed529e3ebc41ad5c5e8b6292dce863",
+  "camaras-blender.json": "d73da482eb6fbe1ee2ff8cec57f7543dd24aeb3df88ec3920a5f0ed4ff29b84c",
+  "camaras.json": "9ced48c951b53ea8153a447ca081e89de849ec1bfbf10d087f8cb228432ff833",
+  "diagnostico.json": "121cd33066b553c64d034586d12f2824f85e21ae86168026b10c411395ba1685",
+  "elevacion-serdan.jpg": "e657addef544de898c79bae56fb63d6397d53f96101872997a0ea0f63a395ef1",
+  "elevaciones-garmendia-chihuahua.jpg": "d862a5b7c7b214c2fe43145aef66a66b3201f469ba8c481867046850123a644a",
+  "foto-modelo.jpg": "d34b0a52fca25e9f7d5f218fac37504c4fe3972bebc614f4cdabc5708dbaf24e"
+ }
+}
