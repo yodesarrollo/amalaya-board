@@ -1,5 +1,3 @@
-import {C02_APROXIMADA} from './cuadra-c02-aproximada.js?v=762653c8bba5';
-import {SERDAN_APROXIMADO} from './serdan-aproximado-data.js?v=0bbe41f3555a';
 import {C05_APROXIMADA} from './cuadra-c05-aproximada.js?v=5b91975adb8a';
 import {BLOQUE1_SERDAN} from './bloque1-serdan-20261026.js?v=25a7d7b95b21';
 // C08 · cuadra 1 (10-nov-2026): fotos de calle de dic-2023 + aérea; un módulo por edificio.
@@ -61,12 +59,32 @@ import {C18_136} from './c18-136-data.js?v=e8de0c0a61ef';
 import {C18_137} from './c18-137-data.js?v=3ae03e723ae4';
 import {C18_138} from './c18-138-data.js?v=671077fee1f0';
 import {C18_139} from './c18-139-data.js?v=b304afa3c989';
+import {C02_10} from './c02-10-data.js?v=88b577b4a48a';
+import {C02_11} from './c02-11-data.js?v=da9f3fff7c00';
+import {C02_12} from './c02-12-data.js?v=12c2e20e1850';
+import {C02_13} from './c02-13-data.js?v=a6b87447272f';
 import {C17_118} from './c17-118-data.js?v=f040917b6991';
 import {C01_07} from './c01-07-data.js?v=8519f8d51b8b';
 import {C01_08} from './c01-08-data.js?v=3cc1cea1d590';
 import {C01_09} from './c01-09-data.js?v=5642db3526cf';
 import {C03_26} from './c03-26-data.js?v=832a30fce669';
 import {C03_27} from './c03-27-data.js?v=a36090be3a83';
+import {C04_23} from './c04-23-data.js?v=3bc67a6de40a';
+import {C04_24} from './c04-24-data.js?v=917bd824a2a5';
+import {C04_25} from './c04-25-data.js?v=c43f3c476337';
+// C30 · cuadra 8 (10-nov-2026): fotos de calle de dic-2023 + aérea; un módulo por edificio (ISC-58 propio).
+import {C30_28} from './c30-28-data.js?v=328b67f2accf';
+import {C30_29} from './c30-29-data.js?v=1f209db6c48a';
+import {C30_30} from './c30-30-data.js?v=ee5053a4ff7d';
+import {C30_31} from './c30-31-data.js?v=2d65a19d6f01';
+import {C30_32} from './c30-32-data.js?v=0c8418117d7e';
+import {C30_33} from './c30-33-data.js?v=796774d18351';
+import {C07_06} from './c07-06-data.js?v=27015ceb0329';
+import {C24_59} from './c24-59-data.js?v=9691937a6aa3';
+import {C24_60} from './c24-60-data.js?v=3ef53b1cf229';
+import {C24_61} from './c24-61-data.js?v=8f0e61805f5b';
+import {C24_62} from './c24-62-data.js?v=b389144344fb';
+import {C24_63} from './c24-63-data.js?v=57d086d996df';
 // C20 · cuadra 9 (10-nov-2026): panoramas R-001 de Obregón + aérea; un módulo por edificio.
 import {C20_35} from './c20-35-data.js?v=c88f5eca631a';
 import {C20_36} from './c20-36-data.js?v=f3b639770a97';
@@ -94,24 +112,11 @@ export const CUADRA_DETAILS = [{
    sources:['c08-sw-foto.jpg','c08-sur-cerramiento-20261008.jpg'],note:'Fachada histórica conservada como muro, con acceso abierto al estacionamiento; sin techo ni relleno del patio.'},
   {id:'oeste-sur',a:[-88.8,91],b:[-89.5,76.5],height:3.65,color:'#c8cfc2',bays:[],sources:['c08-oeste-foto.jpg']}
  ]
-},{block:'C30',orderLabel:8,evidence:'c30-cierre-20261008',buildings:[
- {id:'CH-YG-BIB',ownerPrefix:'Huella OSM 1533334038',points:[[9.12708,-99.045067],[-3.68388,-96.704018],[3.33396,-59.313869],[17.53488,-65.105461]],height:9.6,color:'#bbbdb5',uncertainty:1.5,
-  sources:['c30-serdan-biblioteca-20261008.jpg','https://www.colson.edu.mx/nota.aspx?nx=7106','https://www.elimparcial.com/son/hermosillo/2025/05/27/biblioteca-gerardo-cornejo-culmina-mayo-con-actividades-culturales-y-literarias/'],
-  facades:[{edge:0,plain:true,bays:[{x:2.8,w:3.6,h:2.9,b:.1,rect:true,noBars:true,fillColor:'#344044'},{x:8.3,w:4.4,h:2.9,b:.1,rect:true,noBars:true,fillColor:'#354446'},...[3.45,6.55].flatMap(b=>[3.0,9.0].map(x=>({x,w:4.5,h:2.25,b,rect:true,noBars:true,fillColor:'#455758'})))],bands:[{y:3.23,h:.24,d:.22,color:'#aaa8a0'},{y:6.35,h:.24,d:.22,color:'#aaa8a0'},{x:7.8,w:5.8,y:3.35,h:.64,d:.15,color:'#96563f'},{y:9.36,h:.2,d:.28,color:'#bcbab0'}],fins:[.6,1.25,1.9,2.55,3.2,3.85,4.5,5.15,5.8,6.45,7.1,7.75,8.4,9.05,9.7,10.35,11].map(x=>({x,b:6.6,h:2.05,w:.07,d:.12,color:'#343d3b'}))}],
-  note:'Biblioteca terminada: la foto de 2023 mostraba obra y la referencia de 2025 muestra una fachada cerrada con vidrio, panel rojizo y elementos oscuros. Interpretación visual aproximada, sin dimensiones medidas.'},
- {id:'CH-YG-BBVA',ownerPrefix:'Huella OSM 499759374',points:[[-34.04916,-90.00264],[-75.495239,-82.424751],[-68.341316,-43.492401],[-26.895241,-51.070286]],height:6.2,color:'#e2e4df',uncertainty:1.2,
-  sources:['c30-yanez-banco-20261008.jpg','c30-serdan-biblioteca-20261008.jpg'],
-  facades:[{edge:0,plain:true,bays:[{x:22,w:4.4,h:2.8,b:.05,rect:true,noBars:true,fillColor:'#536777'}],bands:[{x:22,w:13,y:4.5,h:.7,d:.18,color:'#315678'}]},
-   {edge:1,plain:true,fins:[4,9,14,19,24,29,34].map(x=>({x,b:.2,h:3.4,w:.26,d:.2,color:'#d1d4cc'}))}],
-  note:'Volumen y huella conservados; frente blanco, acceso retranqueado y paños verticales. No se reproducen marcas ni anuncios como texturas.'},
- {id:'A2-05',height:7.2,color:'#ddd9cc',uncertainty:1.2,sources:['c30-serdan-centro-20261008.jpg'],
-  facades:[{edge:0,plain:true,bays:[{x:6.1,w:9.6,h:2.8,b:.1,rect:true,noBars:true,fillColor:'#58615b'}],bands:[{y:3.25,h:.32,d:.3,color:'#c8c5b8'},{y:6.9,h:.18,d:.2,color:'#cfcec2'}]}],note:'Frente de dos niveles con paño superior ciego y acceso amplio; cota visual aproximada.'},
- {id:'A2-06',height:6.2,color:'#807468',uncertainty:1.2,sources:['c30-garmendia-norte-20261008.jpg','c30-serdan-centro-20261008.jpg'],
-  facades:[{edge:1,plain:true,bands:[{y:2.4,h:.035,d:.04,color:'#514b43'},{y:4.75,h:.035,d:.04,color:'#514b43'}]}],note:'Paño lateral pardo continuo observado en Garmendia; sin añadir ventanas donde la fotografía muestra muro.'},
- {id:'B2-01',height:4.6,color:'#76b7ab',uncertainty:.9,sources:['c30-garmendia-medio-20261008.jpg'],
-  facades:[{edge:1,plain:true,bays:[{x:1.5,w:1,h:2.45,b:0,rect:true,door:true,frameColor:'#618a7c'},{x:4.5,w:2.8,h:1.8,b:.65,rect:true,frameColor:'#bbad79'},{x:9,w:3.7,h:2.7,b:0,rect:true,noBars:true,fillColor:'#414842',shutter:true},{x:5,w:.8,h:.7,b:3.25,rect:true,frameColor:'#bdad79'}],bands:[{y:2.88,h:.17,d:.45,color:'#846d68'},{y:4.5,h:.17,d:.16,color:'#977b72'}]}],note:'Cuerpo turquesa bajo, cortina, ventana y puerta diferenciadas; pequeño vano alto observado.'},
- {id:'B2-02',height:3.6,color:'#62a8bf',uncertainty:.8,sources:['c30-garmendia-sur-20261008.jpg'],
-  facades:[{edge:3,plain:true,bays:[{x:.8,w:1,h:1.2,b:.8,rect:true,frameColor:'#c9b65c'},{x:2.45,w:.9,h:2.2,b:0,rect:true,door:true,frameColor:'#c9b65c'},{x:4.05,w:1,h:1.2,b:.8,rect:true,frameColor:'#c9b65c'}],bands:[{y:3.3,h:.12,d:.14,color:'#8d8081'}]}],note:'Frente azul bajo con dos ventanas y puerta; no se reproduce el mural ni se llena el patio lateral.'}
+},{block:'C30',orderLabel:8,evidence:'c30-cierre-20261008',
+ // Edificios 28–33 (A2-05, A2-06, B2-01, B2-02, CH-YG-BBVA, CH-YG-BIB) en sus módulos c30-NN-data.js
+ // (10-nov-2026); 34/ISC-58 conserva su módulo propio (isc58-refinement.js). Peldaños y fachada
+ // patrimonial del Instituto Sonorense de Cultura abajo, sin cambio.
+ buildings:[C30_33,C30_32,C30_28,C30_29,C30_30,C30_31
  ],access:{building:'CH-YG-BBVA',edge:0,center:22,steps:3,rise:.12,tread:.28,width:3.2,source:'c30-yanez-banco-20261008.jpg'},heritage:{ownerPrefix:'PH-01 · Instituto Sonorense de Cultura · fachada patrimonial interpretada',a:[-56.9592,-.166425],b:[34.54488,-8.066065],westEndX:-25,redStartX:2,height:7.45,westHeight:10.2,source:'c30-obregon-isc-20261008.jpg',note:'Tres frentes distintos: poniente de dos niveles, pórtico central de cuatro arcos visibles y paño rojo oriental con pilastras. El ala este previa se conserva. Proporciones estimadas, no medidas.'}
 }];
 CUADRA_DETAILS.push(C10_84,C10_85,C10_86,C10_87,C10_88);
@@ -130,6 +135,9 @@ CUADRA_DETAILS.push(C16_116,C16_117);
 // C18 · cuadra 33 (10-nov-2026): franja al pie del cerro, aérea + fábrica de fachadas; frente de
 // Sufragio y D3-01 retrazados a ±1 m sobre la aérea; edificios sobre el suelo actual (pendiente anotada).
 CUADRA_DETAILS.push(C18_119,C18_120,C18_121,C18_122,C18_123,C18_124,C18_125,C18_126,C18_127,C18_128,C18_129,C18_130,C18_131,C18_132,C18_133,C18_134,C18_135,C18_136,C18_137,C18_138,C18_139);
+// C02 · cuadra 4 (10-nov-2026): sustituye al paquete aproximado de octubre de C02 (archivo conservado
+// como registro); frentes observados de 10 y 12, fábrica de fachadas y 11 por sección.
+CUADRA_DETAILS.push(C02_10,C02_11,C02_12,C02_13);
 // C17 · cuadra 32 (10-nov-2026): aérea + fábrica de fachadas; 118 en la punta norte del cerro.
 CUADRA_DETAILS.push(C17_118);
 // C01 · cuadra 3 (10-nov-2026): aérea + fábrica de fachadas; banco por secciones y estacionamiento abierto en B1-07.
@@ -137,12 +145,18 @@ CUADRA_DETAILS.push(C01_07,C01_08,C01_09);
 // C03 · cuadra 7 (10-nov-2026): fotos de calle H01/H04 sobre las plantas y alturas de la ronda 2;
 // cada paquete toma el frente de ROUND2_BUILDINGS como dueño y lo reconstruye (paramento-data.js sin cambios).
 CUADRA_DETAILS.push(C03_26,C03_27);
+// C04 · cuadra 6 (10-nov-2026): aérea + fábrica de fachadas; 23–25 por secciones, patios en 24 y 25.
+CUADRA_DETAILS.push(C04_23,C04_24,C04_25);
+// C07 · cuadra 2 (10-nov-2026): foto de calle + aérea; 6 en cinco cuerpos con patio central.
+CUADRA_DETAILS.push(C07_06);
+// C24 · cuadra 18 (10-nov-2026): fotos del recorrido sobre Serdán; 59–63 sobre su planta de inventario.
+// 64/A3-08 (constructor propio en paramento-refinement.js) y 65/CH-GA-OXXO (huella OSM con firma de colisión
+// congelada, en bloque1-serdan-20261026.js) quedan sin cambio. Sustituye a serdan-aproximado-data.js (registro).
+CUADRA_DETAILS.push(C24_59,C24_60,C24_61,C24_62,C24_63);
 // C20 · cuadra 9 (10-nov-2026): 35 con fotos de Obregón (sustituye al paquete del corredor de Obregón
 // del 26-oct, que queda como registro); 36 y 39 con aérea y fábrica de fachadas.
 CUADRA_DETAILS.push(C20_35,C20_36,C20_39);
 
-CUADRA_DETAILS.push(C02_APROXIMADA);
-CUADRA_DETAILS.push(...SERDAN_APROXIMADO);
 CUADRA_DETAILS.push(C05_APROXIMADA);
 CUADRA_DETAILS.push(...BLOQUE1_SERDAN);
 

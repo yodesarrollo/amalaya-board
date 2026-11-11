@@ -1,0 +1,712 @@
+{
+ "id": "C30",
+ "cuadra": 8,
+ "nombre": "Calle Obregón / Serdán",
+ "edificios": {
+  "28": "A2-05",
+  "29": "A2-06",
+  "30": "B2-01",
+  "31": "B2-02",
+  "32": "CH-YG-BBVA",
+  "33": "CH-YG-BIB",
+  "34": "ISC-58"
+ },
+ "fecha": "2026-11-10",
+ "autor": "Claude (Opus 5.5), sesión https://claude.ai/code/session_01BCpvebiKaRGYRQCeF5HfeW",
+ "criterio": "Alejandro Puebla (propietario), 10-nov-2026: «más que genérico, una versión aceptable a la realidad según las fotos, lo que muestre»; nunca se empeora lo que ya se modeló con foto (docs/OLEADAS-CUADRAS.md).",
+ "fuentes": [
+  {
+   "path": "public/levantamiento/evidence/c30-cierre-20261008/c30-serdan-centro-20261008.jpg",
+   "sha256": "58116bff4a9378413cf6cc16e9d4ec7b864f0ea02bebee6d2f121c3da4db5e48",
+   "tipo": "Street View dic-2023 desde Serdán, rumbo 180 (28/A2-05; 29 y 33 a los lados)"
+  },
+  {
+   "path": "public/levantamiento/evidence/c30-cierre-20261008/c30-serdan-biblioteca-20261008.jpg",
+   "sha256": "96acc58bb301a02cc6eaad543ddb96bb100eeaf556decba0beefd8be9035c41d",
+   "tipo": "Street View dic-2023 desde Serdán (33/CH-YG-BIB en obra; 32 al fondo)"
+  },
+  {
+   "path": "public/levantamiento/evidence/c30-cierre-20261008/c30-yanez-banco-20261008.jpg",
+   "sha256": "68373d85a8265abfac2a98c3c0f051fb3331ec979ff0fb2f8f9a69bd51b80f94",
+   "tipo": "Street View dic-2023 desde la esquina Serdán–Yáñez, rumbo 100 (32/CH-YG-BBVA)"
+  },
+  {
+   "path": "public/levantamiento/evidence/c30-cierre-20261008/c30-garmendia-norte-20261008.jpg",
+   "sha256": "4cbe0b75ad1f0a4bd8f7be5f0ec7aecec3dd78d6a1d911fd042ecafe8d2a0083",
+   "tipo": "Street View dic-2023 desde Garmendia, rumbo 270 (29/A2-06, muro pardo)"
+  },
+  {
+   "path": "public/levantamiento/evidence/c30-cierre-20261008/c30-garmendia-medio-20261008.jpg",
+   "sha256": "7d7542d959dc355fce11f8e38dc7a3097eb89f679339e416797048e156a2cd22",
+   "tipo": "Street View dic-2023 desde Garmendia, rumbo 270 (30/B2-01)"
+  },
+  {
+   "path": "public/levantamiento/evidence/c30-cierre-20261008/c30-garmendia-sur-20261008.jpg",
+   "sha256": "b8535391190084801b403f515277266528d0c2f46764236e20040fbae68831ac",
+   "tipo": "Street View dic-2023 desde Garmendia, rumbo 270 (31/B2-02)"
+  },
+  {
+   "path": "public/levantamiento/evidence/c30-cierre-20261008/c30-obregon-isc-20261008.jpg",
+   "sha256": "0a50236a7c6d2923e6cc87637b0bcf907c691eb19fc02e45c507eb35198589a8",
+   "tipo": "Street View dic-2023 desde Obregón, rumbo 350 (34/ISC-58, fachada patrimonial)"
+  },
+  {
+   "path": "public/recorrido/2MNg6Xk9_yV3lqEALqRg4Q.jpg",
+   "sha256": "711338f5bb73993855919073f171c088a0d4ab55fc510c19415417cdc43a7228",
+   "tipo": "panorama del recorrido R-000 punto 1 (esquina Serdán–Garmendia); recortes a 200°, 235° y 265° en esta carpeta (centro de la imagen = norte, comprobado con el panorama MRytS de Garmendia norte)"
+  },
+  {
+   "path": "public/levantamiento/calco/referencia.webp",
+   "sha256": "ef453bbe2db667f3916e718133b81210e7ff53a51b67c412941a613f5288a074",
+   "tipo": "aérea Esri World Imagery z19, georreferenciada, 0.26 m/píxel (fecha no verificada; muestra la biblioteca en obra)"
+  },
+  {
+   "path": "public/levantamiento/ajuste-visual/C30.jpg",
+   "sha256": "ccbbc66f1f5c1ad7a08cbe5d291b493ba2299ae0301ce6be5f8662659e2876a0",
+   "tipo": "recorte aéreo de la cuadra"
+  },
+  {
+   "path": "public/levantamiento/evidence/c30-cierre-20261008/registro.json",
+   "sha256": "691c90d67a35a87bdee0b951b1d6af5ab24caa851c2665c29cd1cd50bb001fc0",
+   "tipo": "registro del paquete C30 del 8-oct (fotos, revisión y límites); se conserva íntegro"
+  },
+  {
+   "path": null,
+   "tipo": "referencia de 2025 de la biblioteca",
+   "resultado": "El Colegio de Sonora (colson.edu.mx/nota.aspx?nx=7106) y El Imparcial (27-may-2025), citadas por el paquete"
+  }
+ ],
+ "diagnostico": [
+  {
+   "id": "A2-05",
+   "antes": "paquete C30 con foto (fachada de Serdán, 7.2 m), sin registro de fábrica",
+   "despues": "módulo c30-28 con fachada conservada, cubierta medida, un equipo, marca de fábrica e hipótesis"
+  },
+  {
+   "id": "A2-06",
+   "antes": "paquete C30 con foto sólo en Garmendia (muro pardo); Serdán sin fachada",
+   "despues": "módulo c30-29: frente de Serdán con escaparates, pilares y faldón (panorama R-000), faldón en la esquina de Garmendia, muro de Garmendia ciego; cubierta medida, un equipo, marca de fábrica e hipótesis"
+  },
+  {
+   "id": "B2-01",
+   "antes": "paquete C30 con foto (fachada de Garmendia, 4.6 m)",
+   "despues": "módulo c30-30 con fachada conservada, cubierta medida, tres ventilas, marca de fábrica e hipótesis"
+  },
+  {
+   "id": "B2-02",
+   "antes": "paquete C30 con foto (fachada de Garmendia, 3.6 m)",
+   "despues": "módulo c30-31 con fachada conservada, cubierta medida, dos equipos, marca de fábrica e hipótesis"
+  },
+  {
+   "id": "CH-YG-BBVA",
+   "antes": "paquete C30 con foto sobre huella OSM (Serdán y Yáñez, 6.2 m), cubierta beige por omisión",
+   "despues": "módulo c30-32 con fachadas y peldaños conservados, cubierta terracota medida, diez equipos e hipótesis (sin marca de fábrica: huella OSM)"
+  },
+  {
+   "id": "CH-YG-BIB",
+   "antes": "paquete C30 con referencia de 2025 sobre huella OSM (9.6 m provisional)",
+   "despues": "módulo c30-33 con fachada conservada, cubierta clara estimada e hipótesis (sin marca de fábrica: huella OSM; sin equipos porque la aérea es de la obra)"
+  },
+  {
+   "id": "ISC-58",
+   "antes": "módulo propio isc58-refinement.js y fachada patrimonial del paquete",
+   "despues": "sin cambio; revisado (pruebas-isc58 en verde)"
+  }
+ ],
+ "alturas": {
+  "criterio": "las del paquete C30 con foto (niveles × ~3.3 m más pretil) y la del módulo propio de ISC-58; nada se cambia",
+  "valores": {
+   "A2-05": 7.2,
+   "A2-06": 6.2,
+   "B2-01": 4.6,
+   "B2-02": 3.6,
+   "CH-YG-BBVA": 6.2,
+   "CH-YG-BIB": 9.6,
+   "ISC-58": 7.45
+  }
+ },
+ "plantas": {
+  "CH-YG-BIB": {
+   "dueño": "Huella OSM 1533334038 · altura provisional, sin fachada restituida",
+   "puntos": [
+    [
+     9.12708,
+     -99.045067
+    ],
+    [
+     -3.68388,
+     -96.704018
+    ],
+    [
+     3.33396,
+     -59.313869
+    ],
+    [
+     17.53488,
+     -65.105461
+    ]
+   ],
+   "area_m2": 513.1,
+   "altura_m": 9.6,
+   "techo": "#e6e2d6",
+   "marcaFabrica": false
+  },
+  "CH-YG-BBVA": {
+   "dueño": "Huella OSM 499759374 · altura provisional, sin fachada restituida",
+   "puntos": [
+    [
+     -34.04916,
+     -90.00264
+    ],
+    [
+     -75.495239,
+     -82.424751
+    ],
+    [
+     -68.341316,
+     -43.492401
+    ],
+    [
+     -26.895241,
+     -51.070286
+    ]
+   ],
+   "area_m2": 1667.8,
+   "altura_m": 6.2,
+   "techo": "#ad8774",
+   "marcaFabrica": false
+  },
+  "A2-05": {
+   "dueño": "Planta física · A2-05",
+   "puntos": [
+    [
+     12.68,
+     -100.062
+    ],
+    [
+     24.673,
+     -103.183
+    ],
+    [
+     30.669,
+     -70.418
+    ],
+    [
+     18.416,
+     -67.817
+    ]
+   ],
+   "area_m2": 410.8,
+   "altura_m": 7.2,
+   "techo": "#e6e2d6",
+   "marcaFabrica": true
+  },
+  "A2-06": {
+   "dueño": "Planta física · A2-06",
+   "puntos": [
+    [
+     26.758,
+     -104.223
+    ],
+    [
+     41.098,
+     -106.043
+    ],
+    [
+     46.312,
+     -79.259
+    ],
+    [
+     34.84,
+     -74.839
+    ],
+    [
+     35.362,
+     -68.598
+    ],
+    [
+     31.451,
+     -67.817
+    ]
+   ],
+   "area_m2": 473.8,
+   "altura_m": 6.2,
+   "techo": "#e6e2d6",
+   "marcaFabrica": true
+  },
+  "B2-01": {
+   "dueño": "Planta física · B2-01",
+   "puntos": [
+    [
+     36.144,
+     -63.454
+    ],
+    [
+     50.483,
+     -65.534
+    ],
+    [
+     53.09,
+     -53.052
+    ],
+    [
+     37.969,
+     -49.932
+    ]
+   ],
+   "area_m2": 197.3,
+   "altura_m": 4.6,
+   "techo": "#e6e2d6",
+   "marcaFabrica": true
+  },
+  "B2-02": {
+   "dueño": "Planta física · B2-02",
+   "puntos": [
+    [
+     25.716,
+     -47.851
+    ],
+    [
+     40.837,
+     -48.892
+    ],
+    [
+     44.487,
+     -44.471
+    ],
+    [
+     53.612,
+     -46.551
+    ],
+    [
+     54.915,
+     -41.87
+    ],
+    [
+     44.226,
+     -39.27
+    ],
+    [
+     40.315,
+     -43.431
+    ],
+    [
+     25.716,
+     -41.61
+    ]
+   ],
+   "area_m2": 158.6,
+   "altura_m": 3.6,
+   "techo": "#dddccf",
+   "marcaFabrica": true
+  }
+ },
+ "coloresMedidos": {
+  "A2-05": {
+   "mediana": "#fdfbf5",
+   "percentilesLuminancia": [
+    203,
+    247,
+    251,
+    253,
+    254
+   ]
+  },
+  "A2-06": {
+   "mediana": "#fcfaf4",
+   "percentilesLuminancia": [
+    144,
+    194,
+    250,
+    250,
+    253
+   ]
+  },
+  "B2-01": {
+   "mediana": "#91958a",
+   "percentilesLuminancia": [
+    46,
+    67,
+    148,
+    239,
+    247
+   ]
+  },
+  "B2-02": {
+   "mediana": "#a4a492",
+   "percentilesLuminancia": [
+    55,
+    80,
+    162,
+    227,
+    245
+   ]
+  },
+  "CH-YG-BIB": {
+   "mediana": "#818f8a",
+   "percentilesLuminancia": [
+    51,
+    81,
+    139,
+    248,
+    252
+   ]
+  },
+  "CH-YG-BBVA": {
+   "mediana": "#a7836f",
+   "percentilesLuminancia": [
+    62,
+    107,
+    137,
+    150,
+    171
+   ]
+  }
+ },
+ "reglaColores": "Mediana dentro de la planta con margen de 0.7 m; en plantas mixtas (B2-01, B2-02, CH-YG-BIB) se usa el tono claro (luminancia >185). Luminancia ≥240 → #e6e2d6; entre 226 y 240 se escala a 220. La cubierta de la biblioteca es estimada: la aérea es de la obra.",
+ "frentesCalle": [
+  {
+   "id": "CH-YG-BIB",
+   "arista": 0,
+   "longitud": 13.02,
+   "distanciaBanqueta": 2.53,
+   "angulo": 0.1,
+   "calle": true,
+   "vanos": 6,
+   "aletas": 17,
+   "bandas": 4,
+   "ciega": false,
+   "origen": "foto",
+   "motivo": "cara a la calle (≤2.6 m de la banqueta)"
+  },
+  {
+   "id": "CH-YG-BBVA",
+   "arista": 0,
+   "longitud": 42.13,
+   "distanciaBanqueta": 3.56,
+   "angulo": 0.1,
+   "calle": false,
+   "vanos": 1,
+   "aletas": 0,
+   "bandas": 1,
+   "ciega": false,
+   "origen": "foto",
+   "motivo": "a menos de 4 m de la banqueta"
+  },
+  {
+   "id": "CH-YG-BBVA",
+   "arista": 1,
+   "longitud": 39.58,
+   "distanciaBanqueta": 11.02,
+   "angulo": 20.9,
+   "calle": false,
+   "vanos": 0,
+   "aletas": 7,
+   "bandas": 0,
+   "ciega": false,
+   "origen": "foto",
+   "motivo": "cara vista desde la calle"
+  },
+  {
+   "id": "A2-05",
+   "arista": 0,
+   "longitud": 12.39,
+   "distanciaBanqueta": 1.75,
+   "angulo": 4.1,
+   "calle": true,
+   "vanos": 1,
+   "aletas": 0,
+   "bandas": 2,
+   "ciega": false,
+   "origen": "foto",
+   "motivo": "cara a la calle (≤2.6 m de la banqueta)"
+  },
+  {
+   "id": "A2-06",
+   "arista": 0,
+   "longitud": 14.46,
+   "distanciaBanqueta": 1.06,
+   "angulo": 3.2,
+   "calle": true,
+   "vanos": 2,
+   "aletas": 3,
+   "bandas": 1,
+   "ciega": false,
+   "origen": "foto",
+   "motivo": "cara a la calle (≤2.6 m de la banqueta)"
+  },
+  {
+   "id": "A2-06",
+   "arista": 1,
+   "longitud": 27.29,
+   "distanciaBanqueta": 1.77,
+   "angulo": 1.1,
+   "calle": true,
+   "vanos": 0,
+   "aletas": 0,
+   "bandas": 3,
+   "ciega": true,
+   "origen": "foto",
+   "motivo": "cara a la calle (≤2.6 m de la banqueta)"
+  },
+  {
+   "id": "B2-01",
+   "arista": 1,
+   "longitud": 12.75,
+   "distanciaBanqueta": 0.12,
+   "angulo": 0,
+   "calle": true,
+   "vanos": 4,
+   "aletas": 0,
+   "bandas": 2,
+   "ciega": false,
+   "origen": "foto",
+   "motivo": "cara a la calle (≤2.6 m de la banqueta)"
+  },
+  {
+   "id": "B2-02",
+   "arista": 3,
+   "longitud": 4.86,
+   "distanciaBanqueta": 0.12,
+   "angulo": 0,
+   "calle": true,
+   "vanos": 3,
+   "aletas": 0,
+   "bandas": 1,
+   "ciega": false,
+   "origen": "foto",
+   "motivo": "cara a la calle (≤2.6 m de la banqueta)"
+  }
+ ],
+ "equipos": {
+  "CH-YG-BIB": [],
+  "CH-YG-BBVA": [
+   {
+    "tipo": "equipo grande",
+    "x": -36.1,
+    "z": -87.5
+   },
+   {
+    "tipo": "aire acondicionado",
+    "x": -68.5,
+    "z": -82.3
+   },
+   {
+    "tipo": "aire acondicionado",
+    "x": -72.7,
+    "z": -81.5
+   },
+   {
+    "tipo": "aire acondicionado",
+    "x": -60.4,
+    "z": -80.7
+   },
+   {
+    "tipo": "aire acondicionado",
+    "x": -61.9,
+    "z": -80.3
+   },
+   {
+    "tipo": "aire acondicionado",
+    "x": -52.6,
+    "z": -72.1
+   },
+   {
+    "tipo": "aire acondicionado",
+    "x": -51.1,
+    "z": -69.9
+   },
+   {
+    "tipo": "aire acondicionado",
+    "x": -61.5,
+    "z": -56.4
+   },
+   {
+    "tipo": "equipo grande",
+    "x": -56.4,
+    "z": -50.3
+   },
+   {
+    "tipo": "equipo grande",
+    "x": -51.6,
+    "z": -49.2
+   }
+  ],
+  "A2-05": [
+   {
+    "tipo": "aire acondicionado",
+    "x": 20.9,
+    "z": -85.7
+   }
+  ],
+  "A2-06": [
+   {
+    "tipo": "aire acondicionado",
+    "x": 36.5,
+    "z": -78.8
+   }
+  ],
+  "B2-01": [
+   {
+    "tipo": "ventila",
+    "x": 39.2,
+    "z": -62.7
+   },
+   {
+    "tipo": "ventila",
+    "x": 42.9,
+    "z": -62.6
+   },
+   {
+    "tipo": "ventila",
+    "x": 39.7,
+    "z": -60.3
+   }
+  ],
+  "B2-02": [
+   {
+    "tipo": "equipo grande",
+    "x": 27.2,
+    "z": -43.5
+   },
+   {
+    "tipo": "aire acondicionado",
+    "x": 32.1,
+    "z": -46.9
+   }
+  ]
+ },
+ "anclasRegistro": {
+  "CH-YG-BIB": {
+   "punto": [
+    6.45124,
+    -80.90474
+   ],
+   "dentroDeLaPlanta": true,
+   "origen": "cuadras/asignaciones.json"
+  },
+  "CH-YG-BBVA": {
+   "punto": [
+    -51.19524,
+    -66.74752
+   ],
+   "dentroDeLaPlanta": true,
+   "origen": "cuadras/asignaciones.json"
+  },
+  "A2-05": {
+   "punto": [
+    21.63661,
+    -85.24
+   ],
+   "dentroDeLaPlanta": true,
+   "origen": "cuadras/asignaciones.json"
+  },
+  "A2-06": {
+   "punto": [
+    36.12458,
+    -91.741
+   ],
+   "dentroDeLaPlanta": true,
+   "origen": "cuadras/asignaciones.json"
+  },
+  "B2-01": {
+   "punto": [
+    44.42483,
+    -58.253
+   ],
+   "dentroDeLaPlanta": true,
+   "origen": "cuadras/asignaciones.json"
+  },
+  "B2-02": {
+   "punto": [
+    40.02587,
+    -43.951
+   ],
+   "dentroDeLaPlanta": true,
+   "origen": "cuadras/asignaciones.json"
+  }
+ },
+ "pasos": [
+  {
+   "paso": 1,
+   "nombre": "Identidad y evidencia",
+   "resultado": "Siete registros de C30 con su número (28–34), todos con foto de calle (Street View dic-2023 del paquete) y un panorama del recorrido para el frente de la farmacia."
+  },
+  {
+   "paso": 2,
+   "nombre": "Forma",
+   "resultado": "Plantas conservadas (cuatro del paramento y dos huellas OSM); las juntas de azotea de la aérea no alcanzan para retrazar. Un módulo por edificio; el paquete conserva peldaños y fachada patrimonial."
+  },
+  {
+   "paso": 3,
+   "nombre": "Alturas",
+   "resultado": "Las del paquete con foto; sin cambio."
+  },
+  {
+   "paso": 4,
+   "nombre": "Fachada",
+   "resultado": "Fachadas de foto conservadas; nuevo frente de Serdán de la farmacia (2 escaparates, 3 pilares, faldón) y muro ciego en Garmendia. 17 vanos (10 con marca de fábrica). Sin letreros, marcas ni mural."
+  },
+  {
+   "paso": 5,
+   "nombre": "Material y azotea",
+   "resultado": "Colores de cubierta medidos (blancas, clara mixta y terracota del banco); 17 equipos en las manchas vistas."
+  },
+  {
+   "paso": 6,
+   "nombre": "Conjunto, ligero y comparación",
+   "resultado": "Firmas de colisión del banco, la biblioteca y vecinos sin cambio; 10 vanos de fábrica alcanzados desde fuera; anclas sobre cubierta; mismas cámaras antes y después sobre la calle; cuatro vistas de Blender y GLB de la cuadra."
+  }
+ ],
+ "limites": [
+  "Fotos de dic-2023 y aérea de fecha no verificada; la biblioteca estaba en obra en ambas: su fachada terminada viene de la referencia de 2025 y su cubierta es estimada.",
+  "La azotea blanca del frente de Serdán muestra divisiones que no coinciden del todo con los límites de 33, 28 y 29 (una junta oscura unos 5 m al oriente del borde poniente de 28 y una franja gris entre 28 y 29); las fotos ubican la escuela y la farmacia y las plantas se conservan (±3 m).",
+  "B2-01 y B2-02 tienen partes oscuras en la aérea (árbol, patio o sombra) que no se distinguen; se conserva la cubierta continua con el tono claro.",
+  "CH-YG-BBVA y CH-YG-BIB se construyen sobre huella OSM: llevan registro e hipótesis pero no la marca de fábrica (pruebas-fabrica exige planta del paramento).",
+  "Cubiertas fuera del inventario de octubre (por ejemplo el cuerpo blanco del extremo sureste, Garmendia–Obregón) siguen fuera del conteo de 139.",
+  "El suelo gris de las vistas de Blender es un fondo de render, no geometría del modelo."
+ ],
+ "vistaLigera": {
+  "bytes": 972260,
+  "gzip": 326284,
+  "triangulos": 48613,
+  "lod": {
+   "walls": 723,
+   "openings": 529
+  },
+  "antes": {
+   "bytes": 968220,
+   "gzip": 324762,
+   "base": "main@1785401 (con C04 y el techo por edificio del PR #132)"
+  },
+  "techo": "1,073,500 B / 358,250 gzip con 65 edificios de fábrica (pruebas-vista-ligera, PR #132)"
+ },
+ "pruebas": [
+  "scripts/pruebas-fabrica.mjs (65 edificios de fábrica)",
+  "scripts/pruebas-lod-ligero.mjs",
+  "scripts/pruebas-vista-ligera.mjs",
+  "scripts/pruebas-identificacion.mjs",
+  "scripts/pruebas-isc58.mjs",
+  "scripts/pruebas-c1-13-enjambre.mjs (firmas por edificio)",
+  "npm run pruebas",
+  "python3 scripts/pruebas-puente.py",
+  "npm run verificar:publicacion",
+  "npm run build",
+  "git diff --check"
+ ],
+ "worldSha256": "6da0a6c0f687d3fa3a952df3f1f40094ed6a20f25bdf03045b4da5c7b66ea17d",
+ "archivos": {
+  "C30-28-34.glb": "f8aa74f07e477ffad8ba90c350a1a51db15ad6917b07cd6bdc85817887cb0fa8",
+  "aerea-trazo.jpg": "1e47f3724c948e1b3def30c67b86a2e101f49687ef9a9515270013e5b52aa46b",
+  "antes-despues.jpg": "76a0993e8a1691b26040e4d2d68090d49c7f6066a138a375e1ec5abf5cf31c4d",
+  "blender-aerea-noreste.jpg": "249cca7b83ce4c707098a894e5779f17dd992cfc9bf66eda048572d08be4f4db",
+  "blender-aerea-noroeste.jpg": "2667b275b90c27cf5e0a4a202bd538258ab20ce633f85a4da86cc0c700e292b8",
+  "blender-esquina-serdan-garmendia.jpg": "af030ee119134d35ead0e899df95a694d3027b191ffb655596d8aecfed2b3ab6",
+  "blender-serdan-banco.jpg": "c974dcf5e8bcd69d26cb32191533592d388f256827ad85fb7e4c5ef4efec0d24",
+  "camaras-blender.json": "c55f6ef0be5d575f063e888dc56326f1b5c6ac0371d451ff1f3837c4da416723",
+  "camaras.json": "c561ab6a58af7d4e3dfa78f486067cb589eca7435451cc5edb7d079d3fdda450",
+  "panorama-r000-p1-200.jpg": "448e61b3a4b4b01e720e539c725ac47efb0aea40c23ef2efde9db83ee19aa1c6",
+  "panorama-r000-p1-235.jpg": "5cc12b3c6efa06caa416449ef2c8966eb4bd19e1b7b21948c7c7f0c18117a784",
+  "panorama-r000-p1-265.jpg": "e273fabe7e534ade2321e1875f0372b6e9af2e1f63028c475d3c8d94148416e0"
+ }
+}
