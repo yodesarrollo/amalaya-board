@@ -1,0 +1,486 @@
+{
+ "id": "C28",
+ "cuadra": 13,
+ "edificios": {
+  "51": "B3-05"
+ },
+ "fecha": "2026-11-10",
+ "autor": "Claude (Opus 5.5), sesión https://claude.ai/code/session_01BCpveb64VrkB7X3QnjWHVN",
+ "criterio": "Alejandro Puebla (propietario), 10-nov-2026: con al menos una foto se modela el edificio con lo observado donde se vio y su tipología por continuidad; «más que genérico, una versión aceptable a la realidad según las fotos». Pedido: «Continuar cuadra 13 y tienes todos mis ok para aquí ya delante» (23:17 HMO).",
+ "base": {
+  "commit": "b50f486eb5de56515c45c8c7b4fc61cc4124abe3"
+ },
+ "calles": {
+  "poniente": "Abasolo (calzada AB-E)",
+  "sur": "Obregón (ruta R-001; registro «Obregón–Abasolo»)",
+  "nota": "El nombre de la cuadra en cuadras.json («Chihuahua / No Releccion») corresponde a sus otros frentes."
+ },
+ "fuentes": [
+  {
+   "path": "public/recorrido/ywXPe_aoOm7HUa9l5NTdfg.jpg",
+   "tipo": "panorama Street View de la ruta R-001 (Obregón), punto 14, al poniente de Abasolo; fecha de captura sin verificar",
+   "posicion": {
+    "x": 177.8,
+    "z": 6.9
+   },
+   "orientacion": "u=0.5 = norte; horizonte corregido con roll.json (roll 0.0885, eje 3.1074)",
+   "sha256": "730bc04e01a7737813b3c45ed9ac14a82581cb178a0e3eb4f8e5771655e2c6e3"
+  },
+  {
+   "path": "public/recorrido/TMvGKzSUcJSVhkTRRxjHIA.jpg",
+   "tipo": "panorama de la ruta R-002, punto 1, en Abasolo al norte de la cuadra",
+   "posicion": {
+    "x": 179.2,
+    "z": -47
+   },
+   "orientacion": "roll 0.1456, eje 1.5604",
+   "sha256": "5790a4f2a7878e2ced6a1d0efc424b648eda7b41d84603a7a8f4ba550cb889d6"
+  },
+  {
+   "path": "public/levantamiento/calco/referencia.webp",
+   "tipo": "aérea Esri World Imagery z19 (recuperada 2026-10-07), georreferenciada, 0.26 m/píxel",
+   "sha256": "ef453bbe2db667f3916e718133b81210e7ff53a51b67c412941a613f5288a074"
+  },
+  {
+   "path": "public/levantamiento/ajuste-visual/C28.jpg",
+   "tipo": "recorte aéreo de la cuadra",
+   "sha256": "0934786f85ee783a8c74e7ead84311f6695cd63c3ec90708688bc0520648d0ed"
+  },
+  {
+   "path": "public/levantamiento/cuadras/C28-inventario.jpg",
+   "tipo": "límite de inventario de la cuadra (INEGI / Esri)",
+   "sha256": "a9126fee80da32ec5fe742b19a65a9fae331306f6446851c7c29a9b4e553c70a"
+  },
+  {
+   "path": "public/levantamiento/evidence/B3-05/20261006-01-cierre.json",
+   "tipo": "planta de inventario ±3 m («Obregón–Abasolo · cuerpo del borde oriental»)",
+   "sha256": "385b069b0c84dcafc0e6240917c26a99bd969ce899eba27a20e5ee073ed28f02"
+  },
+  {
+   "path": "public/levantamiento/street-round.json",
+   "tipo": "calzada AB-E «Abasolo · calzada en tramo OSM del bloque oriental» (nombre de la calle poniente)",
+   "sha256": "79eef792599ed1baeafa380bab9ea202879a001523876e41a7de9e0ab42ede4b"
+  }
+ ],
+ "alturas": {
+  "esquina": {
+   "valor_m": 4.3,
+   "incertidumbre_m": 0.4,
+   "metodo": "remate en la esquina a 9.0° sobre el horizonte en el panorama R-001 14, a 11.2 m, cámara a 2.5 m"
+  },
+  "obregon": {
+   "valor_m": 3.6,
+   "incertidumbre_m": 0.4,
+   "metodo": "remate del cuerpo beige a 4.5° sobre el horizonte a 14.1 m, cámara a 2.5 m"
+  },
+  "cuarto": {
+   "valor_m": 6.5,
+   "incertidumbre_m": 0.6,
+   "metodo": "cuarto gris de la azotea ≈2.2 m sobre la cubierta, por proporción con el frente en la foto"
+  },
+  "blanco": {
+   "valor_m": 4,
+   "metodo": "tipología; no se ve desde la calle"
+  },
+  "nota": "En la aérea el sol viene del este; las sombras no se usan como medida."
+ },
+ "trazado": {
+  "metodo": "Cuatro secciones (normalizeSections) a ±1 m: la esquina gris con su frente a Abasolo sobre la línea de lote (la foto pone la esquina en el vértice suroeste del lote), el cuerpo beige de Obregón en la franja que la aérea muestra junto a la banqueta, el cuerpo blanco al norte y oriente hasta la franja oscura de x≈211 que lo separa del vecino, y el cuarto de azotea. La planta de inventario (corrida 2–3 m al noreste) queda como registro.",
+  "colorTecho": "medianas de la aérea; blancos sobreexpuestos (luminancia ≥ 239) fijados en #e6e2d6; la cubierta de la esquina queda bajo los árboles de Abasolo y se toma blanca como su parte visible (#faf4e9), con el piso de terracota medido (#c39579).",
+  "colorMuro": "gris pizarra #5b6663, puerta #86b4dd, marcos #dcdbd5 y piedra #948a7b estimados a pleno sol desde la foto a la sombra (muro medido #465767–#6b7275, puerta #6294d1, marco #8e949b); beige #d3c7b2 desde #b8afa0.",
+  "secciones": [
+   {
+    "part": "51-esquina",
+    "puntos": [
+     [
+      188.42,
+      2
+     ],
+     [
+      186.79,
+      -23.5
+     ],
+     [
+      190.2,
+      -23.5
+     ],
+     [
+      190.2,
+      -20.3
+     ],
+     [
+      194.1,
+      -20.3
+     ],
+     [
+      194.1,
+      -23.5
+     ],
+     [
+      197.7,
+      -23.5
+     ],
+     [
+      197.7,
+      -15
+     ],
+     [
+      204.2,
+      -15
+     ],
+     [
+      204.2,
+      -1.3
+     ],
+     [
+      189.55,
+      -1.3
+     ],
+     [
+      189.55,
+      1.92
+     ]
+    ],
+    "altura": 4.3,
+    "muro": "#5b6663",
+    "techo": {
+     "usado": "#e6e2d6",
+     "medianaAerea": "#616556",
+     "luminanciaMediana": 94,
+     "muestras": 15577
+    },
+    "distanciaMinimaLote_m": 0.25
+   },
+   {
+    "part": "51-cuarto",
+    "puntos": [
+     [
+      190.2,
+      -23.5
+     ],
+     [
+      194.1,
+      -23.5
+     ],
+     [
+      194.1,
+      -20.3
+     ],
+     [
+      190.2,
+      -20.3
+     ]
+    ],
+    "altura": 6.5,
+    "muro": "#6b706c",
+    "techo": {
+     "usado": "#e6e2d6",
+     "medianaAerea": "#f5f6ee",
+     "luminanciaMediana": 243,
+     "muestras": 391
+    },
+    "distanciaMinimaLote_m": 3.45
+   },
+   {
+    "part": "51-obregon",
+    "puntos": [
+     [
+      189.55,
+      -1.3
+     ],
+     [
+      210.3,
+      -1.3
+     ],
+     [
+      210.3,
+      0.58
+     ],
+     [
+      189.55,
+      1.92
+     ]
+    ],
+    "altura": 3.6,
+    "muro": "#d3c7b2",
+    "techo": {
+     "usado": "#ccc4b1",
+     "medianaAerea": "#ccc4b1",
+     "luminanciaMediana": 193,
+     "muestras": 1869
+    },
+    "distanciaMinimaLote_m": 0.26
+   },
+   {
+    "part": "51-blanco",
+    "puntos": [
+     [
+      197.7,
+      -23.5
+     ],
+     [
+      210.3,
+      -24.3
+     ],
+     [
+      210.3,
+      -1.3
+     ],
+     [
+      204.2,
+      -1.3
+     ],
+     [
+      204.2,
+      -15
+     ],
+     [
+      197.7,
+      -15
+     ]
+    ],
+    "altura": 4,
+    "muro": "#d8cdb3",
+    "techo": {
+     "usado": "#e6e2d6",
+     "medianaAerea": "#f9f4e9",
+     "luminanciaMediana": 242,
+     "muestras": 9694
+    },
+    "distanciaMinimaLote_m": 2.13
+   }
+  ]
+ },
+ "frentesCalle": [
+  {
+   "part": "51-esquina",
+   "arista": 0,
+   "longitud": 25.55,
+   "distanciaBanqueta": 0.26,
+   "calle": true,
+   "fachada": {
+    "vanos": 4,
+    "origen": "observado en la foto R-001 14 (la última ventana por continuidad)"
+   }
+  },
+  {
+   "part": "51-obregon",
+   "arista": 2,
+   "longitud": 20.79,
+   "distanciaBanqueta": 0.27,
+   "calle": true,
+   "fachada": {
+    "tipo": "casa",
+    "puertas": [
+     "inicio",
+     "centro"
+    ],
+    "origen": "tipología casa en beige (vista rasante en la foto R-001 14)"
+   }
+  },
+  {
+   "part": "51-blanco",
+   "arista": 2,
+   "longitud": 6.1,
+   "distanciaBanqueta": 2.33,
+   "calle": true,
+   "fachada": {
+    "ciega": true,
+    "origen": "detrás del cuerpo beige de Obregón"
+   }
+  }
+ ],
+ "equipos": [
+  {
+   "tipo": "piso de terraza",
+   "x": 199.2,
+   "z": -8.7,
+   "ancho": 9.8,
+   "fondo": 5.6,
+   "alto": 0.06,
+   "seccion": "51-esquina"
+  },
+  {
+   "tipo": "maceta",
+   "x": 193,
+   "z": -12,
+   "ancho": 0.9,
+   "fondo": 0.9,
+   "alto": 0.8,
+   "seccion": "51-esquina"
+  },
+  {
+   "tipo": "maceta",
+   "x": 194.2,
+   "z": -14,
+   "ancho": 0.9,
+   "fondo": 0.9,
+   "alto": 0.8,
+   "seccion": "51-esquina"
+  },
+  {
+   "tipo": "maceta",
+   "x": 196,
+   "z": -3.9,
+   "ancho": 0.9,
+   "fondo": 0.9,
+   "alto": 0.8,
+   "seccion": "51-esquina"
+  },
+  {
+   "tipo": "maceta",
+   "x": 197.9,
+   "z": -4,
+   "ancho": 0.9,
+   "fondo": 0.9,
+   "alto": 0.8,
+   "seccion": "51-esquina"
+  },
+  {
+   "tipo": "maceta",
+   "x": 199.5,
+   "z": -4,
+   "ancho": 0.9,
+   "fondo": 0.9,
+   "alto": 0.8,
+   "seccion": "51-esquina"
+  },
+  {
+   "tipo": "maceta",
+   "x": 201.4,
+   "z": -4.2,
+   "ancho": 0.9,
+   "fondo": 0.9,
+   "alto": 0.8,
+   "seccion": "51-esquina"
+  },
+  {
+   "tipo": "tinaco",
+   "x": 203.2,
+   "z": -20.3,
+   "ancho": 1.05,
+   "fondo": 1.05,
+   "alto": 1.25,
+   "seccion": "51-blanco"
+  },
+  {
+   "tipo": "tinaco",
+   "x": 205.6,
+   "z": -21.2,
+   "ancho": 1.05,
+   "fondo": 1.05,
+   "alto": 1.25,
+   "seccion": "51-blanco"
+  },
+  {
+   "tipo": "tinaco",
+   "x": 208.5,
+   "z": -23,
+   "ancho": 1.05,
+   "fondo": 1.05,
+   "alto": 1.25,
+   "seccion": "51-blanco"
+  }
+ ],
+ "anclaRegistro": {
+  "punto": [
+   199.52689,
+   -11.836
+  ],
+  "seccion": "51-esquina"
+ },
+ "vecinos": {
+  "metodo": "Triángulos reales de la escena exportada (scripts/exportar-escena-c08.mjs C28) fuera de la zona de 51, antes (main) y después.",
+  "antes": {
+   "n": 3789,
+   "sha": "6113e52c2bae7b31"
+  },
+  "despues": {
+   "n": 3789,
+   "sha": "6113e52c2bae7b31"
+  },
+  "identicos": true
+ },
+ "noModelado": [
+  "Resto de la cuadra C28 al oriente y al norte (fuera del inventario de 139): sin volumen, como en C14 y C15.",
+  "Lámparas, placa, rejilla de ventilación, cadenas de focos y el mural de la acera de enfrente."
+ ],
+ "pasos": [
+  {
+   "paso": 1,
+   "nombre": "Identidad y evidencia",
+   "resultado": "51/B3-05, único registro de la cuadra 13 (C28), esquina Obregón–Abasolo; panoramas R-001 14 y R-002 1 y aérea."
+  },
+  {
+   "paso": 2,
+   "nombre": "Forma",
+   "resultado": "Esquina gris de un nivel con frente a Abasolo y terraza en la azotea, cuerpo beige más bajo sobre Obregón, cuerpo blanco al norte y oriente y cuarto de azotea."
+  },
+  {
+   "paso": 3,
+   "nombre": "Alturas",
+   "resultado": "4.3 m y 3.6 m medidos por ángulo en la foto; cuarto ≈6.5 m; 4.0 m por tipología en el cuerpo blanco."
+  },
+  {
+   "paso": 4,
+   "nombre": "Fachada",
+   "resultado": "Observado en Abasolo: portal de piedra con puerta azul clara, dos ventanas altas de marco blanco con reja y remate claro; tercera ventana por continuidad; Obregón por tipología casa en beige; muro ciego detrás del cuerpo beige."
+  },
+  {
+   "paso": 5,
+   "nombre": "Material y azotea",
+   "resultado": "Piso de terracota, seis macetas, tres tinacos en las manchas de la aérea, cubiertas medidas y pretiles."
+  },
+  {
+   "paso": 6,
+   "nombre": "Conjunto, ligero y comparación",
+   "resultado": "Secciones dentro del lote; vecinos idénticos por firma de triángulos; vanos alcanzados desde la calle; ancla sobre cubierta; LOD; foto frente al modelo desde la misma cámara (las ventanas, la puerta y la esquina caen en las mismas columnas); antes y después; Blender y GLB."
+  }
+ ],
+ "limites": [
+  "Posiciones de vanos a ±1 m: la foto ve el frente de Abasolo en ángulo rasante.",
+  "La fachada de Obregón sólo se ve rasante; vanos por tipología.",
+  "El cuerpo blanco del norte y oriente no se ve desde la calle; altura por tipología.",
+  "Colores de muro corregidos de una foto a la sombra.",
+  "El suelo gris de las vistas de Blender es un fondo de render, no geometría del modelo."
+ ],
+ "vistaLigera": {
+  "bytes": 994660,
+  "gzip": 337316,
+  "triangulos": 49733,
+  "lod": {
+   "walls": 812,
+   "openings": 683
+  }
+ },
+ "pruebas": [
+  "scripts/pruebas-fabrica.mjs",
+  "scripts/pruebas-lod-ligero.mjs",
+  "scripts/pruebas-vista-ligera.mjs",
+  "scripts/pruebas-identificacion.mjs",
+  "scripts/pruebas-lamina.mjs",
+  "npm run pruebas",
+  "python3 scripts/pruebas-puente.py",
+  "npm run verificar:publicacion",
+  "npm run build",
+  "git diff --check"
+ ],
+ "worldSha256": "4aa64cd4d75cec21c90b531512d5f41b539773749a53d1c0d011ac76cf4a8403",
+ "archivos": {
+  "C28-51.glb": "c73f94563876380ba81fbc7b1bef56ffd8a40cb1f59354b7d45e19e3f655b8c3",
+  "aerea-trazo.jpg": "45b4867ff2c621e25ef09458174f16b3ead78b50e3769e8c6368dd1648b3ab1f",
+  "antes-despues.jpg": "af6a99a00ff47312d065cbf5fc34cdeb3e4b08a8ea857b4c5bfdf1cc0d9695e4",
+  "blender-abasolo.jpg": "63dd6b6ccf8a91515278c5ec5d96c0f8b37d41f0d5aad96ac3ba8270a43dd157",
+  "blender-aerea-suroeste.jpg": "5de11bbf85311367c37efef341f3b172c1b4e4af0c4fc7208226c4a1968ae3b4",
+  "blender-aerea.jpg": "a19e9bc53f76af3c40c1d3da5040c27c2bbd7c5f79a0fe1e1ac335edf6cb450b",
+  "blender-esquina.jpg": "c0ef52a3c6b4c8841ad4bbd6a5366413f1643582b4900682f37a7247b7ed0416",
+  "blender-foto-r001-14.jpg": "15813031128df8c723b1314576555c7d355fb2177f001d43ce1ba35d6200fb51",
+  "blender-foto-r002-1.jpg": "cfe405bf6deaf53a52f5de16af43045d7ca32819e62b188bcaa3c5f05dd90e77",
+  "blender-obregon-oriente.jpg": "3bed913f54180a59fc714496771ce0101ca0d2d97df39d794004ea72fcf2e71c",
+  "blender-obregon.jpg": "8e3c0d06abe53d55b0438af506c7e08aad5e00541dce64e69b585b7fa090fde9",
+  "camaras.json": "10238b9217a5915b5cd71a01c998a2b743e54263f572b7c4bbbb2ebec85d62e9",
+  "foto-vs-modelo.jpg": "f822af26c401f23a6f994f050cb39e7f20695a4c77e3aed4bbacb98efbb80239",
+  "panorama-foto-r001-14.jpg": "83ae19f643c159925b8025744a65c5d5cf12e26ffb7c90732779d871c95279fc",
+  "panorama-foto-r002-1.jpg": "0e710734dfd949569fb37bb4d629c848f7725b854ba276b8312ee0aa876b362a"
+ }
+}

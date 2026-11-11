@@ -95,6 +95,7 @@ import {C05_17} from './c05-17-data.js?v=5a7557a54c05';
 import {C05_18} from './c05-18-data.js?v=cad6ab3c7d40';
 import {C05_19} from './c05-19-data.js?v=e3157ab99a4e';
 import {C05_20} from './c05-20-data.js?v=d530f5d3e92d';
+import {C28_51} from './c28-51-data.js?v=8f391d95a0bb';
 
 // Historic photo-based packets and explicitly labelled modelling hypotheses.
 // Dimensions are approximate; each packet documents its own evidence and limits.
@@ -155,6 +156,8 @@ CUADRA_DETAILS.push(C03_26,C03_27);
 CUADRA_DETAILS.push(C04_23,C04_24,C04_25);
 // C07 · cuadra 2 (10-nov-2026): foto de calle + aérea; 6 en cinco cuerpos con patio central.
 CUADRA_DETAILS.push(C07_06);
+// C28 · cuadra 13 (10-nov-2026): foto de calle R-001 + aérea; 51 en tres cuerpos con terraza en la azotea.
+CUADRA_DETAILS.push(C28_51);
 // C24 · cuadra 18 (10-nov-2026): fotos del recorrido sobre Serdán; 59–63 sobre su planta de inventario.
 // 64/A3-08 (constructor propio en paramento-refinement.js) y 65/CH-GA-OXXO (huella OSM con firma de colisión
 // congelada, en bloque1-serdan-20261026.js) quedan sin cambio. Sustituye a serdan-aproximado-data.js (registro).
