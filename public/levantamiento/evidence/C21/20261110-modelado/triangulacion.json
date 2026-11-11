@@ -1,0 +1,73 @@
+{
+ "vistas": {
+  "kwpq-108": [
+   "kwpq",
+   108,
+   1,
+   44
+  ],
+  "kwpq-128": [
+   "kwpq",
+   128,
+   6,
+   80
+  ],
+  "qU0X-262": [
+   "qU0X",
+   262,
+   1,
+   28
+  ],
+  "qU0X-232": [
+   "qU0X",
+   232,
+   4,
+   80
+  ]
+ },
+ "bordes": [
+  {
+   "borde": "verde/rojo (pilastra blanca)",
+   "x": 80.57,
+   "z": -38.73,
+   "dz_vs_lote_mas_0.2": -0.11
+  },
+  {
+   "borde": "puerta roja, jamba oriente",
+   "x": 87.54,
+   "z": -39.34,
+   "dz_vs_lote_mas_0.2": -0.38
+  },
+  {
+   "borde": "puerta roja, jamba poniente",
+   "x": 85.95,
+   "z": -39.28,
+   "dz_vs_lote_mas_0.2": -0.41
+  },
+  {
+   "borde": "marco puerta roja, oriente",
+   "x": 88.57,
+   "z": -39.33,
+   "dz_vs_lote_mas_0.2": -0.33
+  },
+  {
+   "borde": "marco puerta roja, poniente",
+   "x": 85.48,
+   "z": -39.16,
+   "dz_vs_lote_mas_0.2": -0.31
+  },
+  {
+   "borde": "ventana roja oriente, borde poniente",
+   "x": 89.52,
+   "z": -39.47,
+   "dz_vs_lote_mas_0.2": -0.43
+  },
+  {
+   "borde": "rojo/blanco",
+   "x": 91.78,
+   "z": -39.56,
+   "dz_vs_lote_mas_0.2": -0.41
+  }
+ ],
+ "mediana_dz": -0.38
+}

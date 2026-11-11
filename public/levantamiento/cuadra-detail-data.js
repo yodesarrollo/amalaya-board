@@ -80,6 +80,8 @@ import {C30_30} from './c30-30-data.js?v=ee5053a4ff7d';
 import {C30_31} from './c30-31-data.js?v=2d65a19d6f01';
 import {C30_32} from './c30-32-data.js?v=0c8418117d7e';
 import {C30_33} from './c30-33-data.js?v=796774d18351';
+import {C21_40} from './c21-40-data.js?v=b128d2344d63';
+import {C21_41} from './c21-41-data.js?v=de409ccb0805';
 import {C07_06} from './c07-06-data.js?v=27015ceb0329';
 import {C24_59} from './c24-59-data.js?v=9691937a6aa3';
 import {C24_60} from './c24-60-data.js?v=3ef53b1cf229';
@@ -155,20 +157,9 @@ CUADRA_DETAILS.push(C05_APROXIMADA);
 CUADRA_DETAILS.push(...CORREDOR_OBREGON_20261026);
 CUADRA_DETAILS.push(...BLOQUE1_SERDAN);
 
-// Chihuahua: the panorama and the aerial footprint show distinct fronts. All
-// heights and the internal split are visual estimates, not parcel boundaries.
-CUADRA_DETAILS.push({block:'C21',evidence:'recorrido-R002-P05-P07',buildings:[
- {id:'EB-NW',ownerPrefix:'ESQUINA NOROESTE',points:[[65.48577,-36.82626],[80.48021,-37.82364],[82.88317,-22.9738],[67.88873,-21.97642]],height:4.4,color:'#789465',uncertainty:2.0,
-  sources:['recorrido/cjTHuFQqgbHlqPDeYtUDaQ.jpg','recorrido/kwpqUP9tZmmjDfiFDIJbsg.jpg'],
-  facades:[{edge:0,plain:true,bays:[3,8,12].map(x=>({x,w:1.35,h:2.15,b:.55,rect:true,frameColor:'#ece9dd'})),bands:[{y:4.23,h:.18,d:.20,color:'#eeeae0'}]},
-   {edge:3,plain:true,bays:[3.5,8.5,12.5].map(x=>({x,w:1.2,h:2.1,b:.55,rect:true,frameColor:'#ece9dd'})),bands:[{y:4.23,h:.18,d:.20,color:'#eeeae0'}]}],
-  note:'Esquina verde de un nivel en Garmendia y Chihuahua, con rejas y marcos claros; anchuras y altura estimadas.'},
- {id:'B3-01',points:[[84.044,-37.19],[84.044,-21.327],[91.083,-20.547],[101.251,-21.587],[101.251,-22.628],[112.17399,-24.12317],[110.27508,-38.82501]],height:4.4,color:'#f2f0e7',uncertainty:2.5,
-  sources:['recorrido/qU0XiVpeIHZyTixjEBUfgg.jpg','recorrido/kwpqUP9tZmmjDfiFDIJbsg.jpg'],facades:[],sections:[
-   {part:'frente-rojo',points:[[84.044,-37.19],[84.044,-21.327],[91.083,-20.547],[92,-20.64079],[92,-37.68597]],height:4.2,color:'#a95345',facades:[{edge:4,plain:true,bays:[{x:1.5,w:1.05,h:2,b:.55,rect:true,frameColor:'#dbd4c9'},{x:4,w:1.1,h:2.5,b:.08,rect:true,door:true,frameColor:'#d8d1c6'},{x:6.3,w:1.0,h:2,b:.55,rect:true,frameColor:'#d8d1c6'}],bands:[{y:4,h:.16,d:.18,color:'#dfd7c8'}]}]},
-   {part:'frente-blanco',points:[[92,-37.68597],[92,-20.64079],[101.251,-21.587],[101.251,-22.628],[112.17399,-24.12317],[110.27508,-38.82501]],height:4.4,color:'#e8e8df',facades:[{edge:5,plain:true,bays:[{x:2.8,w:2.3,h:2.8,b:.05,door:true},{x:7,w:2.8,h:2.9,b:.05,rect:true,door:true,fillColor:'#3b3734'},{x:11.5,w:1.35,h:2.0,b:.55,rect:true,frameColor:'#dedbd1'},{x:15.2,w:1.5,h:2.6,b:.1,door:true}],bands:[{y:4.25,h:.16,d:.2,color:'#f1eee3'}]}]}
-  ],note:'Cuerpos rojo y blanco sobre Chihuahua, diferenciados por panoramas contiguos; la división interior y el fondo son aproximados.'}
-]});
+// C21 · cuadra 10 (10-nov-2026): fotos del recorrido R-002 y aérea; 40 B3-01 retrazado por secciones
+// (rojo, blanco y amarillo sobre Chihuahua) y 41 EB-NW con su modelo de octubre más techo y equipos.
+CUADRA_DETAILS.push(C21_40,C21_41);
 
 // In this corner the available panorama shows cars behind masonry and grilles;
 // the capture date is unknown.
