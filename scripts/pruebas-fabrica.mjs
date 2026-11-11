@@ -61,6 +61,10 @@ for(const {block,b} of factory){
   }
  }
  const own=world.userData.navigationColliders.filter(c=>c.buildingId===b.id);assert(own.length>0,b.id+': sólido para caminar');
+ // Patios opened from the aerial (`holes`) stay walkable: no own collider at their centre.
+ for(const hole of b.holes||[]){const cx=hole.reduce((t,p)=>t+p[0],0)/hole.length,cz=hole.reduce((t,p)=>t+p[1],0)/hole.length;
+  assert(inside(cx,cz,hole)&&!own.some(c=>cx>c.min.x&&cx<c.max.x&&cz>c.min.z&&cz<c.max.z),b.id+': patio abierto en '+cx.toFixed(1)+','+cz.toFixed(1));
+  assert(b.holes.every(h=>h.every(p=>inside(p[0],p[1],owner.userData.fittedPlan.points))),b.id+': patio dentro de la planta');}
  const tops=parts.map(p=>p.height+.05);for(const c of own)assert(tops.some(t=>Math.abs(c.max.y-t)<.01),b.id+': colisión a la altura de su sección');
  report.push({id:b.id,secciones:parts.length,frentesCalle:frentes,vanos,rayos,colisiones:own.length});
 }

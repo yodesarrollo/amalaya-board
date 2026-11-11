@@ -25,6 +25,8 @@ assert((await readFile('public/seguimiento-ligero.json')).length<100000,'resumen
 // LOD de vista ligera (D3, 10-nov-2026; scripts/lod-ligero.mjs, pruebas-lod-ligero.mjs): el 89
 // pasa de 2,348 a 456 triángulos; total 969,040 bytes / 312,329 gzip, 48,452 triángulos.
 // Techo de 1 MB / 325 KB: deja lugar a las cuadras siguientes si cada edificio nuevo usa liteLod.
+// C09 (cuadra 28) y LOD en los paquetes anteriores salvo 76–83 y 87 (firmas auditadas):
+// 880,420 bytes / 289,571 gzip, 44,021 triángulos.
 assert(bytes.length<1000000,'geometría completa bajo 1 MB');
 assert(gzipSync(bytes).length<325000,'geometría comprimida bajo 325 KB');
 console.log('Vista ligera: todos los IDs y estados conservados; geometría válida y presupuestos de carga cumplidos.');

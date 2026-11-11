@@ -25,6 +25,7 @@ export const C14_91={block:'C14',evidence:'C14/20261110-modelado',buildings:[{
 - Una fachada con `tipo` y sin `bays` se expande sobre la longitud real de su arista (`fabrica-fachadas.js`): `casa` (puerta y ventanas enrejadas), `comercio` (cortinas), `muro` (barda con un acceso). Opciones: `puertas:['centro'|'inicio'|'fin'|índice]`, `sinPuerta`, `modulo`, `margen`.
 - Conjuntos de varios cuerpos: `sections:[{part,points,height,roofColor,facades,roofDetails}]` con `normalizeSections:true`; cada sección es un sólido y los patios son los huecos entre secciones.
 - Equipos de azotea vistos en la aérea: `tinaco(x,z)`, `ventila(x,z)`, `calentador(x,z)`.
+- Patio visto en la aérea que la planta de inventario cubría: `holes:[[[x,z],…]]` (sustituye los huecos registrados; la prueba exige que quede sin colisión) y, si hay agua o piso propio, `yardSurface:{points,color}` (alberca de 95/D2-03).
 
 ## Caras a la calle
 
@@ -32,7 +33,7 @@ export const C14_91={block:'C14',evidence:'C14/20261110-modelado',buildings:[{
 
 ## Vista ligera (LOD)
 
-Con `liteLod:true`, el recorrido conserva los vanos perforados y la vista del celular recibe: cara exterior de cada muro y cada vano como panel plano 6 cm al frente, sólo la tapa superior de las cubiertas, sin losas de piso ocultas, y pretiles y equipos sin fondo ni cantos mínimos (`scripts/lod-ligero.mjs`, `pruebas-lod-ligero.mjs`). Techo de la vista: 1 MB / 325 KB gzip.
+Con `liteLod:true` (todos los edificios de la fábrica y, desde la cuadra 28, los paquetes anteriores salvo 76–83 y 87, cuyas firmas auditadas se conservan; ver el final de `cuadra-detail-data.js`), el recorrido conserva los vanos perforados y la vista del celular recibe: cara exterior de cada muro y cada vano como panel plano 6 cm al frente, sólo la tapa superior de las cubiertas, sin losas de piso ocultas, y pretiles y equipos sin fondo ni cantos mínimos (`scripts/lod-ligero.mjs`, `pruebas-lod-ligero.mjs`). Techo de la vista: 1 MB / 325 KB gzip; con la cuadra 28 queda en 880 KB / 290 KB.
 
 ## Vecinos intactos
 

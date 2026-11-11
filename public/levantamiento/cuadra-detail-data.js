@@ -14,6 +14,14 @@ import {C14_91} from './c14-91-data.js?v=6db41f02496b';
 import {C14_92} from './c14-92-data.js?v=19a80efa7f83';
 import {C14_93} from './c14-93-data.js?v=93b364039ce4';
 import {C14_94} from './c14-94-data.js?v=f7704305ae58';
+import {C09_95} from './c09-95-data.js?v=36ef871f1ecf';
+import {C09_96} from './c09-96-data.js?v=1f4fbbc7f211';
+import {C09_97} from './c09-97-data.js?v=7382e856dbd8';
+import {C09_98} from './c09-98-data.js?v=08cd1a8a3e4d';
+import {C09_99} from './c09-99-data.js?v=5dc3a88daff2';
+import {C09_100} from './c09-100-data.js?v=3e9068dc173b';
+import {C09_101} from './c09-101-data.js?v=784150729763';
+import {C09_102} from './c09-102-data.js?v=d7218de2b18c';
 
 // Historic photo-based packets and explicitly labelled modelling hypotheses.
 // Dimensions are approximate; each packet documents its own evidence and limits.
@@ -76,6 +84,8 @@ CUADRA_DETAILS.push(C10_84,C10_85,C10_86,C10_87,C10_88);
 CUADRA_DETAILS.push(C11_89);
 // C14 · cuadra 27 (10-nov-2026): aérea + fábrica de fachadas; 94 por secciones.
 CUADRA_DETAILS.push(C14_90,C14_91,C14_92,C14_93,C14_94);
+// C09 · cuadra 28 (10-nov-2026): aérea + fábrica de fachadas; patio de alberca en 95.
+CUADRA_DETAILS.push(C09_95,C09_96,C09_97,C09_98,C09_99,C09_100,C09_101,C09_102);
 
 CUADRA_DETAILS.push(C02_APROXIMADA);
 CUADRA_DETAILS.push(...SERDAN_APROXIMADO);
@@ -239,3 +249,9 @@ CUADRA_DETAILS.push({block:'C23',evidence:'recorrido-R002-P01-P02',buildings:[],
   note:'82/C1-13: masa turquesa con zócalo y cornisas morados, esquina suroriental redondeada hacia dentro de la huella histórica. Contorno de cinco puntos ajustado a calle, altura nominal 6.2 m e incertidumbre ±3 m conservadas; radios y bandas estimados visualmente, no medidos. Lateral este visto parcialmente: ubicación de detalles y cubierta posterior sin verificar; sin inferir predio ni interior.'
  }]});
 }
+// Al final, después de todos los paquetes. Vista ligera del celular (D3, aprobada el 10-nov-2026): LOD también para los paquetes
+// anteriores. El recorrido 3D no cambia; sólo la vista ligera dibuja muros y vanos planos.
+// Quedan fuera 76–83 (firmas de geometría auditadas de 82 y sus siete vecinos) y 87 (su
+// binario se compara cara a cara).
+const SIN_LOD=['D1-05','D1-06','D1-07','D1-03','D1-04','C1-12','C1-13','D1-08','D2-01'];
+for(const k of CUADRA_DETAILS)for(const b of k.buildings)if(!b.liteLod&&!SIN_LOD.includes(b.id))b.liteLod=true;
