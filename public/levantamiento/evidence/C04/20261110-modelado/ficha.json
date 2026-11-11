@@ -1,0 +1,786 @@
+{
+ "id": "C04",
+ "cuadra": 6,
+ "edificios": {
+  "21": "C1-08",
+  "22": "C1-09",
+  "23": "C1-10",
+  "24": "D1-01",
+  "25": "D1-02"
+ },
+ "fecha": "2026-11-10",
+ "autor": "Claude (Opus 5.5), sesión https://claude.ai/code/session_01BCpveb64VrkB7X3QnjWHVN",
+ "criterio": "Alejandro Puebla (propietario), 10-nov-2026: «más que genérico, una versión aceptable a la realidad según las fotos»; con al menos una foto se modelan las formas observadas y la tipología por continuidad; sólo con aérea, volúmenes, patios, techos y equipos de la aérea y fachadas por tipología. Pedido: «Adelante cuadra 6» (22:17 HMO), leído como la cuadra 6 de la numeración del tablero (C04).",
+ "base": {
+  "commit": "6fa0cc30caa35e603e0771973d4a1099dee3eb3c",
+  "nota": "main tras el rebase (ya con C17 #134, C01 #135 y C03 #136); trabajo en paralelo con otras cuadras, sólo archivos propios."
+ },
+ "fuentes": [
+  {
+   "path": "public/levantamiento/calco/referencia.webp",
+   "sha256": "ef453bbe2db667f3916e718133b81210e7ff53a51b67c412941a613f5288a074",
+   "tipo": "aérea Esri World Imagery z19 (recuperada 2026-10-07), georreferenciada, 0.26 m/píxel"
+  },
+  {
+   "path": "public/levantamiento/ajuste-visual/C04.jpg",
+   "sha256": "8dcce1908dfafb8bd9471481d6727639160bfb577b3877f94738b1cdcee11bf9",
+   "tipo": "recorte aéreo de la cuadra"
+  },
+  {
+   "path": "public/levantamiento/cuadras/C04-inventario.jpg",
+   "sha256": "415f481950a0f4c698a8dfe1adf8304e5588046c33c7c6bf517438517e88c5ce",
+   "tipo": "límite de inventario de la cuadra (INEGI / Esri)"
+  },
+  {
+   "path": "public/levantamiento/evidence/C1-10/20261006-01-cierre.json",
+   "tipo": "planta de inventario ±3 m",
+   "sha256": "74e9c579ea7b28e996076524e1a2f041c0d5397143a16dbb7d25432f0c6473a3"
+  },
+  {
+   "path": "public/levantamiento/evidence/D1-01/20261006-01-cierre.json",
+   "tipo": "planta de inventario ±3 m",
+   "sha256": "3a057e8b340501332874baec7fbd895d59f23c9b25e6e8d0927d762c153d4926"
+  },
+  {
+   "path": "public/levantamiento/evidence/D1-02/20261006-01-cierre.json",
+   "tipo": "planta de inventario ±3 m",
+   "sha256": "eaf902e0e33c2b55dd432c77db4286d46e02afb2876d9f906ef3cb34d0197fd5"
+  },
+  {
+   "path": "public/levantamiento/evidence/paramento-ronda2-20261008/H02-foto.jpg",
+   "tipo": "Street View dic-2023 desde Hidalgo (rumbo 170°): locales 21 y 22, estacionamiento abierto al poniente",
+   "sha256": "0cd333a0770461d83516c1cd3ee3be1fad6a2830c84288064cde4f63a0d887cd"
+  },
+  {
+   "path": "public/levantamiento/evidence/paramento-ronda2-20261008/H03-foto.jpg",
+   "tipo": "Street View dic-2023 desde Hidalgo cerca de Rosales (rumbo 220°): local 22, letrero Hidalgo–Rosales",
+   "sha256": "cf9775a7f9da17958dca544a8ee90338be469a478ddc9f8c7915aa53033c052b"
+  }
+ ],
+ "alturas": {
+  "C1-10": {
+   "valor_m": 4,
+   "incertidumbre_m": 0.7,
+   "metodo": "tipología: mediana de frentes de un nivel del centro con Street View"
+  },
+  "D1-01": {
+   "valor_m": 4,
+   "incertidumbre_m": 0.7,
+   "metodo": "tipología"
+  },
+  "D1-02": {
+   "valor_m": 3.2,
+   "incertidumbre_m": 0.7,
+   "metodo": "registro de inventario: «conjunto de cubierta baja»"
+  },
+  "sinCambio": {
+   "C1-08": 3.8,
+   "C1-09": 3.3,
+   "metodo": "altura visual de la foto H02 (ronda 2)"
+  },
+  "nota": "En la aérea el sol viene del este; las sombras no se usan como medida."
+ },
+ "trazado": {
+  "metodo": "Secciones (normalizeSections) trazadas a ±1 m sobre la aérea georreferenciada con cuadrícula de 1 m; las plantas de inventario se conservan como registro.",
+  "motivo": "Las plantas de inventario de 23–25 eran cajas de 6.2 m que llenaban patios, el terreno abierto del poniente y la masa de árboles.",
+  "limiteOriente": "Sobre Rosales la aérea pone los techos de 23 y 24 entre 0.4 y 2.5 m más al oriente que la línea de lote del ajuste visual; las secciones no salen del lote (vértices a ≥ 0.24 m) y el patio grande de 24 se recorre ~1.2 m al poniente para dejar una crujía de 1–1.4 m.",
+  "colorTecho": "mediana de la aérea dentro de cada sección (0.5 m hacia dentro, sin patios); azoteas blancas sobreexpuestas (luminancia mediana ≥ 239) fijadas en #e6e2d6 como en C09, C14 y C15.",
+  "colorMuro": "#d8cdb3 estimado (tipología), pretiles #ddd5c2."
+ },
+ "edificiosModelados": [
+  {
+   "numero": 23,
+   "id": "C1-10",
+   "modulo": "public/levantamiento/c04-23-data.js",
+   "altura_m": 4,
+   "secciones": [
+    {
+     "part": "23-oeste",
+     "puntos": [
+      [
+       -226.1,
+       68.8
+      ],
+      [
+       -223.1,
+       68.5
+      ],
+      [
+       -222.9,
+       77.2
+      ],
+      [
+       -225.9,
+       77.4
+      ]
+     ],
+     "altura": 4,
+     "muro": "#d8cdb3",
+     "techo": {
+      "usado": "#d8daca",
+      "medianaAerea": "#d8daca",
+      "luminanciaMediana": 212,
+      "muestras": 904
+     },
+     "distanciaMinimaLote_m": 9.35
+    },
+    {
+     "part": "23-oriente",
+     "puntos": [
+      [
+       -221.7,
+       67.2
+      ],
+      [
+       -214.11,
+       67
+      ],
+      [
+       -212.57,
+       78.2
+      ],
+      [
+       -219.5,
+       78.6
+      ],
+      [
+       -219.6,
+       74.8
+      ],
+      [
+       -221.4,
+       74.8
+      ]
+     ],
+     "altura": 4,
+     "muro": "#d8cdb3",
+     "techo": {
+      "usado": "#d2d1c2",
+      "medianaAerea": "#d2d1c2",
+      "luminanciaMediana": 205,
+      "muestras": 3983
+     },
+     "distanciaMinimaLote_m": 0.24
+    }
+   ],
+   "frentesCalle": [
+    {
+     "part": "23-oriente",
+     "arista": 1,
+     "longitud": 11.31,
+     "distanciaBanqueta": 0.24,
+     "calle": true,
+     "fachada": {
+      "tipo": "casa",
+      "puertas": [
+       "centro"
+      ],
+      "origen": "tipología casa de un nivel (sin foto de calle)"
+     }
+    }
+   ],
+   "equipos": [
+    {
+     "tipo": "tinaco",
+     "x": -217.4,
+     "z": 73.4,
+     "ancho": 1.05,
+     "fondo": 1.05,
+     "seccion": "23-oriente"
+    },
+    {
+     "tipo": "equipo bajo",
+     "x": -215,
+     "z": 77.2,
+     "ancho": 1.6,
+     "fondo": 0.7,
+     "seccion": "23-oriente"
+    }
+   ],
+   "anclaRegistro": {
+    "punto": [
+     -219.09978,
+     76.3795
+    ],
+    "seccion": "23-oriente"
+   },
+   "hipotesis": {
+    "id": "H23-01",
+    "status": "modelado con aérea en dos cuerpos y fachada tipológica sobre Rosales",
+    "measured": false,
+    "photoreal": false,
+    "generic": false,
+    "observed": "Dos techos claros separados por un pasillo oscuro de 1.4 m: cuerpo angosto al poniente (mediana #d8daca) y cuerpo mayor sobre Rosales (mediana #d2d1c2, moteado al norte) con una mancha oscura redonda y una franja oscura en su borde sur; terreno oscuro (patio o sombra) entre este cuerpo y el ala norte de D1-01; colores medidos en la aérea.",
+    "estimated": "Altura de 4.0 m por tipología, contornos a ±1 m, frente a Rosales recortado a 0.25 m de la línea de lote del ajuste visual, tinaco y equipo de azotea en las manchas oscuras con medidas típicas, vanos por tipología casa de un nivel sobre Rosales y color de muro.",
+    "unchanged": "Planta de inventario conservada como registro; registro individual de C1-10; locales 21 y 22 (foto de Hidalgo, ronda 2) y demás vecinos sin cambio.",
+    "decision": {
+     "by": "Alejandro Puebla (propietario)",
+     "date": "2026-11-10",
+     "text": "Más que genérico, una versión aceptable a la realidad según lo que muestren las fotos."
+    }
+   }
+  },
+  {
+   "numero": 24,
+   "id": "D1-01",
+   "modulo": "public/levantamiento/c04-24-data.js",
+   "altura_m": 4,
+   "secciones": [
+    {
+     "part": "24-principal",
+     "puntos": [
+      [
+       -231,
+       82.2
+      ],
+      [
+       -212.44,
+       79.1
+      ],
+      [
+       -208.35,
+       113.3
+      ],
+      [
+       -217.5,
+       114.7
+      ],
+      [
+       -220.1,
+       110.2
+      ],
+      [
+       -220.2,
+       103.3
+      ],
+      [
+       -233.3,
+       103.2
+      ],
+      [
+       -234.1,
+       95.3
+      ],
+      [
+       -229.6,
+       95
+      ]
+     ],
+     "patios": [
+      [
+       [
+        -219.4,
+        87.5
+       ],
+       [
+        -212.6,
+        86.5
+       ],
+       [
+        -211.4,
+        99.4
+       ],
+       [
+        -218.2,
+        100.4
+       ]
+      ],
+      [
+       [
+        -215.3,
+        104.7
+       ],
+       [
+        -210.5,
+        104
+       ],
+       [
+        -210.1,
+        112.2
+       ],
+       [
+        -214.9,
+        112.9
+       ]
+      ]
+     ],
+     "altura": 4,
+     "muro": "#d8cdb3",
+     "techo": {
+      "usado": "#e6e2d6",
+      "medianaAerea": "#f4f2e7",
+      "luminanciaMediana": 239,
+      "muestras": 22019
+     },
+     "distanciaMinimaLote_m": 0.24
+    }
+   ],
+   "pisoPatio": {
+    "puntos": [
+     [
+      -219.4,
+      87.5
+     ],
+     [
+      -212.6,
+      86.5
+     ],
+     [
+      -211.4,
+      99.4
+     ],
+     [
+      -218.2,
+      100.4
+     ]
+    ],
+    "color": "#d0ccbc"
+   },
+   "patiosMedidos": [
+    {
+     "nombre": "patio grande",
+     "mediana": "#d0ccbc",
+     "nota": "piso claro; bandas oscuras al norte y al poniente (corredor o sombra) dentro del patio abierto"
+    },
+    {
+     "nombre": "patio del sureste",
+     "mediana": "#a49d8c"
+    }
+   ],
+   "frentesCalle": [
+    {
+     "part": "24-principal",
+     "arista": 1,
+     "longitud": 34.44,
+     "distanciaBanqueta": 0.64,
+     "calle": true,
+     "fachada": {
+      "tipo": "casa",
+      "puertas": [
+       3,
+       9
+      ],
+      "origen": "tipología casa de un nivel (sin foto de calle)"
+     }
+    }
+   ],
+   "equipos": [
+    {
+     "tipo": "equipo bajo",
+     "x": -227,
+     "z": 90,
+     "ancho": 1.6,
+     "fondo": 1.2,
+     "seccion": "24-principal"
+    },
+    {
+     "tipo": "equipo bajo",
+     "x": -222.6,
+     "z": 91,
+     "ancho": 3,
+     "fondo": 1.6,
+     "seccion": "24-principal"
+    },
+    {
+     "tipo": "tinaco",
+     "x": -226.4,
+     "z": 95.5,
+     "ancho": 1.05,
+     "fondo": 1.05,
+     "seccion": "24-principal"
+    },
+    {
+     "tipo": "tinaco",
+     "x": -226.7,
+     "z": 100.3,
+     "ancho": 1.05,
+     "fondo": 1.05,
+     "seccion": "24-principal"
+    }
+   ],
+   "anclaRegistro": {
+    "punto": [
+     -225.5369,
+     100.636
+    ],
+    "seccion": "24-principal"
+   },
+   "hipotesis": {
+    "id": "H24-01",
+    "status": "modelado con aérea en una sección con dos patios abiertos y fachada tipológica sobre Rosales",
+    "measured": false,
+    "photoreal": false,
+    "generic": false,
+    "observed": "Conjunto blanco continuo (mediana #f4f2e7): ala norte, masa central con dos tinacos y equipos, crujía sobre Rosales y casa al sureste; patio grande de piso claro (#d0ccbc) con bandas oscuras al norte y al poniente, patio menor al sureste (#a49d8c); cuerpo blanco rectangular adosado al poniente tras una línea de pretil; terreno claro abierto y árboles entre el conjunto y Pedro Moreno; colores medidos en la aérea.",
+    "estimated": "Altura de 4.0 m por tipología, contornos y patios a ±1 m, cuerpo poniente en la misma sección (sin su línea de pretil), frente a Rosales dentro de la línea de lote del ajuste visual (la aérea lo pone hasta 2.5 m más al oriente), patio grande recorrido ~1.2 m al poniente, bandas oscuras del patio tratadas como parte abierta, equipos de azotea con medidas típicas, vanos por tipología casa de un nivel sobre Rosales con dos puertas y color de muro.",
+    "unchanged": "Planta de inventario conservada como registro; registro individual de D1-01; cubierta clara del noroeste y mancha oscura al sur sin modelar; vecinos sin cambio.",
+    "decision": {
+     "by": "Alejandro Puebla (propietario)",
+     "date": "2026-11-10",
+     "text": "Más que genérico, una versión aceptable a la realidad según lo que muestren las fotos."
+    }
+   }
+  },
+  {
+   "numero": 25,
+   "id": "D1-02",
+   "modulo": "public/levantamiento/c04-25-data.js",
+   "altura_m": 3.2,
+   "secciones": [
+    {
+     "part": "25-principal",
+     "puntos": [
+      [
+       -236.7,
+       121.9
+      ],
+      [
+       -219.1,
+       119.3
+      ],
+      [
+       -214.6,
+       118.7
+      ],
+      [
+       -214.5,
+       123.1
+      ],
+      [
+       -218.4,
+       123.4
+      ],
+      [
+       -217.6,
+       134.9
+      ],
+      [
+       -238.6,
+       138.9
+      ],
+      [
+       -236.2,
+       135.5
+      ]
+     ],
+     "altura": 3.2,
+     "muro": "#d8cdb3",
+     "techo": {
+      "usado": "#e6e2d6",
+      "medianaAerea": "#f5f1e6",
+      "luminanciaMediana": 239,
+      "muestras": 16441
+     },
+     "distanciaMinimaLote_m": 2.01
+    },
+    {
+     "part": "25-oriente",
+     "puntos": [
+      [
+       -214.6,
+       126.6
+      ],
+      [
+       -210.6,
+       126.2
+      ],
+      [
+       -210.4,
+       124.1
+      ],
+      [
+       -206,
+       123.9
+      ],
+      [
+       -204.7,
+       132.3
+      ],
+      [
+       -217.6,
+       134.9
+      ],
+      [
+       -217.76,
+       132.6
+      ],
+      [
+       -214.5,
+       132.4
+      ]
+     ],
+     "altura": 3.2,
+     "muro": "#d8cdb3",
+     "techo": {
+      "usado": "#e6e2d6",
+      "medianaAerea": "#faf8ef",
+      "luminanciaMediana": 245,
+      "muestras": 3692
+     },
+     "distanciaMinimaLote_m": 0.29
+    }
+   ],
+   "frentesCalle": [
+    {
+     "part": "25-principal",
+     "arista": 5,
+     "longitud": 21.38,
+     "distanciaBanqueta": 9.28,
+     "calle": false,
+     "fachada": {
+      "tipo": "casa",
+      "puertas": [
+       "centro"
+      ],
+      "origen": "tipología; cara visible desde Paliza a través de la explanada"
+     }
+    },
+    {
+     "part": "25-oriente",
+     "arista": 3,
+     "longitud": 8.5,
+     "distanciaBanqueta": 0.31,
+     "calle": true,
+     "fachada": {
+      "tipo": "casa",
+      "puertas": [
+       "centro"
+      ],
+      "origen": "tipología casa de un nivel (sin foto de calle)"
+     }
+    },
+    {
+     "part": "25-oriente",
+     "arista": 4,
+     "longitud": 13.16,
+     "distanciaBanqueta": 6.86,
+     "calle": false,
+     "fachada": {
+      "tipo": "casa",
+      "puertas": [
+       "centro"
+      ],
+      "origen": "tipología; cara visible desde Paliza a través de la explanada"
+     }
+    }
+   ],
+   "equipos": [
+    {
+     "tipo": "tinaco",
+     "x": -233.9,
+     "z": 122.6,
+     "ancho": 1.05,
+     "fondo": 1.05,
+     "seccion": "25-principal"
+    },
+    {
+     "tipo": "equipo bajo",
+     "x": -228.5,
+     "z": 125.5,
+     "ancho": 1,
+     "fondo": 0.8,
+     "seccion": "25-principal"
+    },
+    {
+     "tipo": "equipo bajo",
+     "x": -227.6,
+     "z": 128.4,
+     "ancho": 1,
+     "fondo": 0.8,
+     "seccion": "25-principal"
+    }
+   ],
+   "anclaRegistro": {
+    "punto": [
+     -222.87044,
+     129.7605
+    ],
+    "seccion": "25-principal"
+   },
+   "hipotesis": {
+    "id": "H25-01",
+    "status": "modelado con aérea en dos cuerpos bajos y fachadas tipológicas",
+    "measured": false,
+    "photoreal": false,
+    "generic": false,
+    "observed": "Dos cuerpos blancos (medianas #f5f1e6 y #faf8ef): el poniente con un saliente al norte, un tinaco y equipos; el de Rosales separado por una franja oscura de 4 m (patio en sombra) y con un patio oscuro al norte abierto a Rosales; franja de techo al sur con una hilera de manchas sobre el borde sur de la planta de inventario; explanada abierta hacia Paliza; colores medidos en la aérea.",
+    "estimated": "Altura de 3.2 m por la cubierta baja del inventario, contornos a ±1 m, franja sur del mismo nivel que los cuerpos, patios tratados como abiertos, frente a Rosales a 0.3 m de la línea de lote del ajuste visual, equipos de azotea con medidas típicas, vanos por tipología casa de un nivel sobre Rosales y en las caras sur y color de muro.",
+    "unchanged": "Planta de inventario conservada como registro; registro individual de D1-02; explanada de acceso abierta; saliente norte de 3 × 4 m y tinacos a su pie sin modelar (presupuesto de la vista ligera); vecinos sin cambio.",
+    "decision": {
+     "by": "Alejandro Puebla (propietario)",
+     "date": "2026-11-10",
+     "text": "Más que genérico, una versión aceptable a la realidad según lo que muestren las fotos."
+    }
+   }
+  }
+ ],
+ "sinCambio": [
+  {
+   "numero": 21,
+   "id": "C1-08",
+   "motivo": "frente de la foto H02/H03 (ronda 2, paramento-data.js): local azul de 3.8 m con puerta, ventana y tejadillo; el resto de su planta de inventario es estacionamiento abierto (foto H02)."
+  },
+  {
+   "numero": 22,
+   "id": "C1-09",
+   "motivo": "frente de la foto H02/H03 (ronda 2): local blanco de 3.3 m con dos ventanas; la aérea muestra su techo unos 2 m más al oriente y 3 m más al sur, anotado sin cambio porque vive en un archivo compartido."
+  }
+ ],
+ "noModelado": [
+  {
+   "que": "cubierta clara del noroeste",
+   "donde": {
+    "x": [
+     -243.1,
+     -233.8
+    ],
+    "z": [
+     83.7,
+     89.9
+    ]
+   },
+   "mediana": "#d1d4c5",
+   "motivo": "fuera de toda planta de inventario, entre 21 y 24; posible estacionamiento techado; sin registro al cual asignarla."
+  },
+  {
+   "que": "mancha gris oscura al sur de la masa central de 24",
+   "donde": {
+    "x": [
+     -223,
+     -220.4
+    ],
+    "z": [
+     107.2,
+     111.2
+    ]
+   },
+   "mediana": "#494b3a",
+   "motivo": "árbol o sombra; sin forma segura de techo."
+  },
+  {
+   "que": "saliente de 3 × 4 m al norte de 25 y tinacos a su pie",
+   "donde": {
+    "x": [
+     -226.5,
+     -219.1
+    ],
+    "z": [
+     115.4,
+     119.7
+    ]
+   },
+   "motivo": "se omite para que la cuadra quepa en el techo fijo de la vista ligera; altura de la base de los tinacos desconocida."
+  }
+ ],
+ "vecinos": {
+  "metodo": "Triángulos reales de la escena exportada (scripts/exportar-escena-c08.mjs C04) cuyo centroide queda fuera de la zona de 23–25, antes (main) y después.",
+  "antes": {
+   "n": 16646,
+   "sha": "633a99dd85b22a61"
+  },
+  "despues": {
+   "n": 16646,
+   "sha": "633a99dd85b22a61"
+  },
+  "identicos": true,
+  "frentes21y22": {
+   "antes": "0a6f84779f97d3c1",
+   "despues": "0a6f84779f97d3c1",
+   "nota": "Locales de Hidalgo (ronda 2): misma geometría."
+  }
+ },
+ "pasos": [
+  {
+   "paso": 1,
+   "nombre": "Identidad y evidencia",
+   "resultado": "21/C1-08 y 22/C1-09 en Hidalgo con foto (ronda 2); 23/C1-10, 24/D1-01 y 25/D1-02 sobre Rosales y Paliza, sólo con aérea. Rosales es el oriente (letrero de la foto H03)."
+  },
+  {
+   "paso": 2,
+   "nombre": "Forma",
+   "resultado": "23 en dos cuerpos con pasillo; 24 en una sección con dos patios abiertos (cuerpo poniente incluido); 25 en dos cuerpos con patio en sombra, franja sur y explanada de Paliza abierta; 21 y 22 sin cambio."
+  },
+  {
+   "paso": 3,
+   "nombre": "Alturas",
+   "resultado": "4.0 m tipológicos en 23 y 24; 3.2 m en 25 por la cubierta baja del inventario; 21 y 22 con la altura visual de la foto."
+  },
+  {
+   "paso": 4,
+   "nombre": "Fachada",
+   "resultado": "Casa de un nivel en las tres caras a Rosales y en las dos caras sur de 25 visibles desde Paliza; 27 vanos; caras interiores lisas."
+  },
+  {
+   "paso": 5,
+   "nombre": "Material y azotea",
+   "resultado": "Colores de techo medidos; piso del patio grande con su color; cuatro tinacos y cinco equipos bajos en las manchas oscuras; pretiles."
+  },
+  {
+   "paso": 6,
+   "nombre": "Conjunto, ligero y comparación",
+   "resultado": "Secciones dentro del lote y sin encimarse; vecinos idénticos por firma de triángulos; vanos alcanzados desde la calle; anclas de los cinco registros sobre cubierta; LOD en la vista ligera; mismas cámaras de calle antes y después; vistas de Blender y GLB."
+  }
+ ],
+ "limites": [
+  "Sin foto de calle de 23–25: vanos, puertas, colores de muro y alturas son tipológicos.",
+  "Contornos a ±1 m; frente a Rosales recortado a la línea de lote del ajuste visual.",
+  "Las bandas oscuras del patio grande de 24 y los patios de 25 se tratan como abiertos; podrían ser corredores techados.",
+  "La franja sur de 25 se modela cerrada al mismo nivel; podría ser un portal abierto.",
+  "El suelo gris de las vistas de Blender es un fondo de render, no geometría del modelo."
+ ],
+ "vistaLigera": {
+  "bytes": 968220,
+  "gzip": 324762,
+  "triangulos": 48411,
+  "lod": {
+   "walls": 723,
+   "openings": 527
+  },
+  "antes": {
+   "commit": "6fa0cc3",
+   "bytes": 958120,
+   "gzip": 321028
+  },
+  "techoFijo": {
+   "valor": "1 MB / 325 KB gzip (main)",
+   "cumple": true,
+   "nota": "La primera versión rebasaba el techo fijo (969,460 / 325,427 sobre 6fa0cc3); se simplificó la cuadra sin tocar el techo: cuerpo poniente de 24 en la sección principal, sin el saliente norte de 25 y dos equipos contiguos de 24 en uno. Cualquier otra cuadra que entre antes lo vuelve a rebasar."
+  },
+  "techoPorEdificio": {
+   "pr": 132,
+   "edificiosFabrica": 61,
+   "techo": 1059500,
+   "techoGzip": 353250,
+   "cumple": true,
+   "nota": "regla del PR #132 (846,000 + 3,500 y 277,000 + 1,250 por edificio de fábrica), aún no en main."
+  }
+ },
+ "pruebas": [
+  "scripts/pruebas-fabrica.mjs",
+  "scripts/pruebas-lod-ligero.mjs",
+  "scripts/pruebas-vista-ligera.mjs",
+  "scripts/pruebas-identificacion.mjs",
+  "scripts/pruebas-lamina.mjs",
+  "npm run pruebas",
+  "python3 scripts/pruebas-puente.py",
+  "npm run verificar:publicacion",
+  "npm run build",
+  "git diff --check"
+ ],
+ "worldSha256": "c57165aeaeb41c3bd7a1ec3f9a55565e65f3eac123f09f1b3717de02866e7df7",
+ "archivos": {
+  "C04-23-25.glb": "ac3b48c94b319ca53416dd444cac9255a3606ecfccd65d98c86f99def4878b26",
+  "aerea-trazo.jpg": "f90ab807625027733e4bbfa2bdc3174d9eeccd1cb59c48bc324809316d5b9418",
+  "antes-despues.jpg": "fb71e3c5800a8233dd974cd8bc6f705c08e1ab772a2308e9ba177bfca128d37c",
+  "blender-aerea-noreste.jpg": "27c0c6f24d5027e602934514e17757a477195674398e1d29bbebff9f8949b6f0",
+  "blender-aerea.jpg": "69f24a09120219be6c83f6b6db81a3782ba709f8189b7be105f43dce54ea1685",
+  "blender-hidalgo-h03.jpg": "572563d7de492d4defa726ed7bb918a394bcb24eb54c4cd36d62989faefceb18",
+  "blender-paliza.jpg": "d7de21c9055c0110f9dfb7ef78f4c7e05128c3f53de04672d401f43d0976de0c",
+  "blender-pedro-moreno.jpg": "f7c092a71cf42cdbbbbf5817ff59474eb962af89528b7c00e7b249e3bcc64a2c",
+  "blender-rosales-centro.jpg": "0e58ac83e7d672bf255091d7f1bdca4bc702928f40457c1589e153c03c662065",
+  "blender-rosales-norte.jpg": "7afa4159d4fd4e13b99e85c5f7a60359e8622a07e9ffbcc2338955fa38d85bbc",
+  "blender-rosales-sur.jpg": "9262adfd6f6cb5dd6b35a869c43560bcef018985e216413f110dc432a9c3b7b5",
+  "camaras.json": "a422af8e43f7a5b0296c0a172ac1969ef6138a0709d2f6a99e96016872ef43e4",
+  "foto-vs-modelo.jpg": "dd61f437c2125c27e0f708760eb51ab533317b21c7818d4d8a38ec5fbda52942"
+ }
+}
