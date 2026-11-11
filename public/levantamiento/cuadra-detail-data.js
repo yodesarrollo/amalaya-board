@@ -63,6 +63,9 @@ import {C18_137} from './c18-137-data.js?v=3ae03e723ae4';
 import {C18_138} from './c18-138-data.js?v=671077fee1f0';
 import {C18_139} from './c18-139-data.js?v=b304afa3c989';
 import {C17_118} from './c17-118-data.js?v=f040917b6991';
+import {C01_07} from './c01-07-data.js?v=8519f8d51b8b';
+import {C01_08} from './c01-08-data.js?v=3cc1cea1d590';
+import {C01_09} from './c01-09-data.js?v=5642db3526cf';
 
 // Historic photo-based packets and explicitly labelled modelling hypotheses.
 // Dimensions are approximate; each packet documents its own evidence and limits.
@@ -124,6 +127,8 @@ CUADRA_DETAILS.push(C16_116,C16_117);
 CUADRA_DETAILS.push(C18_119,C18_120,C18_121,C18_122,C18_123,C18_124,C18_125,C18_126,C18_127,C18_128,C18_129,C18_130,C18_131,C18_132,C18_133,C18_134,C18_135,C18_136,C18_137,C18_138,C18_139);
 // C17 · cuadra 32 (10-nov-2026): aérea + fábrica de fachadas; 118 en la punta norte del cerro.
 CUADRA_DETAILS.push(C17_118);
+// C01 · cuadra 3 (10-nov-2026): aérea + fábrica de fachadas; banco por secciones y estacionamiento abierto en B1-07.
+CUADRA_DETAILS.push(C01_07,C01_08,C01_09);
 
 CUADRA_DETAILS.push(C02_APROXIMADA);
 CUADRA_DETAILS.push(...SERDAN_APROXIMADO);
