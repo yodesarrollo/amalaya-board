@@ -1,0 +1,542 @@
+{
+ "id": "C05",
+ "cuadra": 5,
+ "nombre": "Calle Rosales / Pino Suárez",
+ "edificios": {
+  "14": "C1-01",
+  "15": "C1-02",
+  "16": "C1-03",
+  "17": "C1-04",
+  "18": "C1-05",
+  "19": "C1-06",
+  "20": "C1-07"
+ },
+ "fecha": "2026-11-10",
+ "autor": "Claude (Opus 5.5), sesión https://claude.ai/code/session_01BCpveZWpUBfTrEPNJMtMQ6",
+ "criterio": "Alejandro Puebla (propietario), 10-nov-2026: «más que genérico, una versión aceptable a la realidad según las fotos». Con foto se modela lo observado (vanos, rasgos, colores, alturas por proporción); sin foto se conserva lo anterior y se declara.",
+ "fuentes": [
+  {
+   "path": "public/levantamiento/evidence/C05/20261110-modelado/fotos.json",
+   "tipo": "18 vistas de Google Street View: Obregón dic-2023 (N1–N3), Rosales mar-2025 (E1–E8), Pino Suárez ene-2026 (W1–W7); panorama, fecha, cámara y rumbo"
+  },
+  {
+   "path": "public/levantamiento/evidence/paramento-ronda2-20261008/W02-foto.jpg",
+   "sha256": "0a8f2d2a53512b434ed61f672dc2e3932d97c05f325bb128009be5c2a01d3700",
+   "tipo": "foto W02 de la ronda 2 (dic-2023), base de los vanos del cuerpo oscuro de C1-02"
+  },
+  {
+   "path": "public/levantamiento/calco/referencia.webp",
+   "sha256": "ef453bbe2db667f3916e718133b81210e7ff53a51b67c412941a613f5288a074",
+   "tipo": "aérea Esri World Imagery z19, georreferenciada, 0.26 m/píxel"
+  },
+  {
+   "path": "public/levantamiento/ajuste-visual/C05.jpg",
+   "sha256": "5c354af02f34cfaedb8572ccedb0332e8f002fe50250e91570aa7f2eb7b2c316",
+   "tipo": "recorte aéreo de la cuadra"
+  },
+  {
+   "path": "public/levantamiento/evidence/C1-01/20261006-01-cierre.json",
+   "sha256": "fba72a61bc5d8a9f9446bedd1da58bdd5fd0baeea1982a3e871b510f39eea579",
+   "tipo": "planta de inventario ±3 m"
+  },
+  {
+   "path": "public/levantamiento/evidence/C1-02/20261006-01-cierre.json",
+   "sha256": "73f0f90d69f62ab06c080f1a4a2f74a8d957aead33e24d0914952c48732a0754",
+   "tipo": "planta de inventario ±3 m"
+  },
+  {
+   "path": "public/levantamiento/evidence/C1-03/20261006-01-cierre.json",
+   "sha256": "cef634e3e01323cef98801cabc3405603fde06ef606c37536f48cad56a693405",
+   "tipo": "planta de inventario ±3 m"
+  },
+  {
+   "path": "public/levantamiento/evidence/C1-04/20261006-01-cierre.json",
+   "sha256": "2aaf788ccf83d96f4311378c6d7baea0567657931067f5eeb0aef4c17cf631fa",
+   "tipo": "planta de inventario ±3 m"
+  },
+  {
+   "path": "public/levantamiento/evidence/C1-05/20261006-01-cierre.json",
+   "sha256": "6b43860b19d1710b7be33f5c64d7ae578fb978195d54b875ca79a68543f21825",
+   "tipo": "planta de inventario ±3 m"
+  },
+  {
+   "path": "public/levantamiento/evidence/C1-06/20261006-01-cierre.json",
+   "sha256": "b0c628367b8abc47dae8b9bb219a426d1667af84598da8524035bbf8bf0f5a9a",
+   "tipo": "planta de inventario ±3 m"
+  },
+  {
+   "path": "public/levantamiento/evidence/C1-07/20261006-01-cierre.json",
+   "sha256": "c954627f5b1e5aafd29a11a6e42388567fcd66e960ec7c89b3ba1fe2c556f0ba",
+   "tipo": "planta de inventario ±3 m"
+  }
+ ],
+ "captura": {
+  "metodo": "Miniaturas estáticas de Street View (streetviewpixels thumbnail) abiertas en el navegador del propietario (Claude in Chrome); panorama, fecha y posición leídos de los metadatos de Maps (photometa).",
+  "campo": "~90° horizontal, 1024×682",
+  "camara_m": "posición ±1–2 m; altura supuesta ~2.2 m"
+ },
+ "edificiosDetalle": {
+  "14": {
+   "id": "C1-01",
+   "geometria": {
+    "plan": [
+     [
+      -198.947,
+      44.915
+     ],
+     [
+      -187.997,
+      44.135
+     ],
+     [
+      -185.39,
+      59.477
+     ],
+     [
+      -197.643,
+      61.037
+     ]
+    ]
+   },
+   "fotos": [
+    "N1",
+    "W1",
+    "W2"
+   ],
+   "altura_m": 3.5,
+   "antes": 3.5,
+   "vanos": 5,
+   "frentesCalle": 2,
+   "secciones": 1,
+   "colisiones": 83
+  },
+  "15": {
+   "id": "C1-02",
+   "geometria": {
+    "oeste": [
+     [
+      -168.3,
+      41.655
+     ],
+     [
+      -174.961,
+      42.2
+     ],
+     [
+      -172.615,
+      57.397
+     ],
+     [
+      -165.95,
+      55.637
+     ]
+    ],
+    "ladrillo": [
+     [
+      -157.233,
+      40.75
+     ],
+     [
+      -168.3,
+      41.655
+     ],
+     [
+      -168.233,
+      42.054
+     ],
+     [
+      -157.155,
+      41.147
+     ]
+    ],
+    "blanco": [
+     [
+      -157.155,
+      41.147
+     ],
+     [
+      -168.233,
+      42.054
+     ],
+     [
+      -166.254,
+      53.83
+     ],
+     [
+      -155.222,
+      51.0
+     ]
+    ],
+    "bar": [
+     [
+      -155.211,
+      51.06
+     ],
+     [
+      -161.467,
+      52.666
+     ],
+     [
+      -160.53,
+      57.41
+     ],
+     [
+      -154.35,
+      56.339
+     ]
+    ]
+   },
+   "fotos": [
+    "N2",
+    "N3",
+    "E1",
+    "E2"
+   ],
+   "secciones_m": {
+    "oeste-dos-niveles": 6.5,
+    "oriente-pretil-ladrillo": 5.4,
+    "oriente-blanco": 4.3,
+    "bar-la-verbena": 4.6
+   },
+   "antes": {
+    "obregon-dos-alturas": 7.2,
+    "este-un-nivel": 4.3
+   },
+   "vanos": 10,
+   "frentesCalle": 5,
+   "secciones": 4,
+   "colisiones": 178
+  },
+  "16": {
+   "id": "C1-03",
+   "geometria": {
+    "pergola": [
+     [
+      -183.043,
+      79.76
+     ],
+     [
+      -172.354,
+      76.639
+     ],
+     [
+      -173.9,
+      63.0
+     ],
+     [
+      -181.9,
+      64.3
+     ]
+    ]
+   },
+   "fotos": [
+    "N1",
+    "N2"
+   ],
+   "altura_m": 3.0,
+   "antes": 6.2,
+   "vanos": 0,
+   "frentesCalle": 0,
+   "secciones": 1,
+   "colisiones": 6
+  },
+  "17": {
+   "id": "C1-04",
+   "geometria": {
+    "frente-1912": [
+     [
+      -165.927,
+      58.407
+     ],
+     [
+      -154.2,
+      56.373
+     ],
+     [
+      -151.33,
+      81.45
+     ],
+     [
+      -163.049,
+      83.691
+     ]
+    ],
+    "trasero": [
+     [
+      -172.093,
+      59.477
+     ],
+     [
+      -165.927,
+      58.407
+     ],
+     [
+      -163.049,
+      83.691
+     ],
+     [
+      -168.704,
+      84.701
+     ]
+    ]
+   },
+   "fotos": [
+    "E1",
+    "E3",
+    "E4",
+    "E5",
+    "E6"
+   ],
+   "secciones_m": {
+    "frente-1912": 9.6,
+    "balaustrada": 10.3,
+    "trasero": 5.3
+   },
+   "antes": 5.3,
+   "vanos": 17,
+   "frentesCalle": 1,
+   "secciones": 2,
+   "colisiones": 269
+  },
+  "18": {
+   "id": "C1-05",
+   "geometria": {
+    "plan": [
+     [
+      -197.643,
+      63.637
+     ],
+     [
+      -188.258,
+      62.597
+     ],
+     [
+      -184.608,
+      81.06
+     ],
+     [
+      -192.95,
+      83.92
+     ]
+    ]
+   },
+   "fotos": [
+    "W3",
+    "W4"
+   ],
+   "altura_m": 4.4,
+   "antes": 4.2,
+   "vanos": 5,
+   "frentesCalle": 1,
+   "secciones": 1,
+   "colisiones": 107
+  },
+  "19": {
+   "id": "C1-06",
+   "geometria": {
+    "principal": [
+     [
+      -191.386,
+      86.261
+     ],
+     [
+      -171.051,
+      82.62
+     ],
+     [
+      -168.965,
+      95.362
+     ],
+     [
+      -165.261,
+      114.902
+     ],
+     [
+      -185.911,
+      119.806
+     ]
+    ],
+    "oriente": [
+     [
+      -168.965,
+      95.362
+     ],
+     [
+      -162.186,
+      94.062
+     ],
+     [
+      -158.536,
+      113.305
+     ],
+     [
+      -165.261,
+      114.902
+     ]
+    ]
+   },
+   "fotos": [
+    "W5",
+    "W6",
+    "W7"
+   ],
+   "secciones_m": {
+    "principal": 6.0,
+    "oriente-lamina": 5.4
+   },
+   "antes": {
+    "cubierta-sur-poniente": 6.0,
+    "cubierta-sur-oriente": 5.4
+   },
+   "vanos": 5,
+   "frentesCalle": 0,
+   "secciones": 2,
+   "colisiones": 289
+  },
+  "20": {
+   "id": "C1-07",
+   "geometria": {
+    "marquesina-norte": [
+     [
+      -150.277,
+      93.4
+     ],
+     [
+      -151.55,
+      83.66
+     ],
+     [
+      -168.183,
+      85.221
+     ],
+     [
+      -168.183,
+      94.3
+     ]
+    ],
+    "marquesina-oriente": [
+     [
+      -157.493,
+      113.565
+     ],
+     [
+      -148.03,
+      110.6
+     ],
+     [
+      -150.268,
+      93.47
+     ],
+     [
+      -161.0,
+      94.1
+     ]
+    ]
+   },
+   "fotos": [
+    "E6",
+    "E7",
+    "E8"
+   ],
+   "secciones_m": {
+    "marquesina (abierta)": 4.6
+   },
+   "antes": 5.0,
+   "vanos": 0,
+   "frentesCalle": 2,
+   "secciones": 2,
+   "colisiones": 12
+  }
+ },
+ "decisiones": [
+  "C1-02: frente adelantado 1.5–2 m (aérea y foto NE de mar-2025); cuerpo oscuro 7.2→6.5 m con vanos de la ronda 2 escalados ×0.903; pretil de ladrillo 5.4 m; cuerpo blanco 4.3 m; Bar La Verbena agregado en el hueco de 3.7 m de Rosales.",
+  "C1-03: de cuerpo cerrado de 6.2 m a cubierta ligera abierta de 2.8 m (estimada): desde Obregón no asoma nada de 6 m detrás del patio de mesas y la aérea muestra mesas también ahí.",
+  "C1-04: edificio de 1912 de dos niveles (cornisa 9.6 m, balaustrada ~10.3 m) con 12 m de fondo; cuerpo trasero 5.3 m sin cambio.",
+  "C1-07: lote de autos con dos cubiertas abiertas de 4.6 m que siguen la planta en L; malla y faldón no modelados.",
+  "Se retira cuadra-c05-aproximada.js (sus cuatro edificios pasan a módulos); paramento-data.js no se edita; pruebas-paramento 39/67/68 se conservan."
+ ],
+ "vistaLigera": {
+  "bytes": 987300,
+  "gzipZlib": 334959,
+  "triangulos": 49365,
+  "techo": "1,136,500 bytes / 380,750 gzip con 83 edificios de fábrica (techo por edificio del PR #132; zlib, pruebas-vista-ligera.mjs)",
+  "antes": {
+   "bytes": 979240,
+   "gzip": 331274,
+   "base": "main@85fa3f0"
+  },
+  "aporteC05": {
+   "bytes": 8060,
+   "gzip": 3685
+  },
+  "medidas": "liteLod en todos los muros; la ronda 2 de C1-02 (vanos recortados sin LOD) pasa a paneles planos; bandas y molduras en tramos de cara < 0.9 m² (la caminata las muestra y la vista ligera las omite como detalle)."
+ },
+ "limites": [
+  "Fotos de 2023, 2025 y 2026: letreros cambiantes; la cara de Obregón de C1-01 es de 2023.",
+  "Alturas y vanos por proporción en la foto (±0.5 m); posiciones de cámara ±1–2 m.",
+  "Plantas registradas (±3 m) salvo el frente de C1-02, el Bar La Verbena y la separación de 0.2 m de la banqueta en C1-04 y C1-07.",
+  "Cuerpo trasero de C1-04 y franja de lámina de C1-06 sin foto: altura anterior.",
+  "Volumen gris de dos niveles visto desde Obregón detrás de C1-02 sin modelar (posición no resuelta, fuera del inventario).",
+  "C1-07: malla, faldón y anuncio «JM» observados y no modelados (colisiones de cerca a otra altura que sus secciones; grupo de colisión nuevo no admitido por las firmas); tampoco la malla del patio de C1-03.",
+  "Postes de la terraza de C1-05 y anuncio de azotea de C1-02 acortados a 1.2 m (pruebas-lamina acota los equipos a 1.3 m sobre la cubierta).",
+  "El suelo gris de las vistas de Blender es un fondo de render, no geometría del modelo."
+ ],
+ "pruebas": [
+  "scripts/pruebas-fabrica.mjs",
+  "scripts/pruebas-paramento.mjs",
+  "scripts/pruebas-identificacion.mjs",
+  "scripts/pruebas-vista-ligera.mjs",
+  "scripts/pruebas-lod-ligero.mjs",
+  "scripts/pruebas-c1-13-enjambre.mjs --detalles",
+  "npm run pruebas",
+  "npm run build",
+  "git diff --check"
+ ],
+ "comandos": {
+  "escena": "node scripts/exportar-escena-c08.mjs /tmp/c05-despues.json C05",
+  "blender": "python3 herramientas/blender/render-revision.py /tmp/c05-despues.json public/levantamiento/evidence/C05/20261110-modelado/camaras-blender.json /tmp/c05-blender-despues --glb /tmp/C05-14-20.glb --poligono \"$(cat public/levantamiento/evidence/C05/20261110-modelado/poligono-glb.txt)\""
+ },
+ "worldSha256": "6dc8e0b7b287f471284978fe3905f9157345739e6f826e01e7e7281ef541a47a",
+ "baseVistas": "Renders antes = main@1785401 y después = esa base con C05; tras los rebases hasta main@85fa3f0 la geometría de C05 es idéntica (15,749 triángulos dentro del polígono de la cuadra en la escena exportada); los vecinos de fondo pueden diferir. Ficha, hashes y vista ligera regenerados sobre main@85fa3f0.",
+ "archivos": {
+  "C05-14-20.glb": "cd2ce5ff78bfeb323d839b856b68f09e5ddce0b3f2176e621465f2a8009987d3",
+  "aerea-trazo.jpg": "433aa762a68159b91be849e8241a29d1d64c9bab1f747604bf688272b531d2b5",
+  "antes-despues.jpg": "dc464fa169785dca4247a6a10af3bf1e1a9a6604a563f45ae28a0b46d303f1b9",
+  "blender-E1-3cKC-224.jpg": "0957a3766bad9ccb26b839a3c748b146f8427f03ed290fc31bbcc057e6d4177b",
+  "blender-E2-2UUS-258.jpg": "61e389643b6696308fde8389c1559b05e20adbd318944513ffba2ef66022deed",
+  "blender-E4-2u7_-264.jpg": "c0d627ace9851c858fe3e3fa2f08b7f25a9bd3aba70d07ab7064c8ce67ad630d",
+  "blender-E6-xwTl-305.jpg": "37bb6d78a20502ad2c5c23c1bcc82dc38d7c695d2b82aa0a9c7e0974a084ae1e",
+  "blender-E7-R5MD-262.jpg": "0afb6d5526a6afb0241bf91f14e1dae6d40500020b7df9574b1ea04fc3eaed27",
+  "blender-N2-oKG8-150.jpg": "242715512aa3edbcaff0f7d19e4f09fce0aa7f93e9f8fae4ffa8f4942b40057a",
+  "blender-N3-SlP1-172.jpg": "fa1f4ee24ee8197d6767b96fbd5b2db60173b2cc17b31c9538e0217f4f8180a6",
+  "blender-W2-_SAM-080.jpg": "79799d53f0894655552568ea3b00d4b78a9f3942a38b60014f5faeb4d7d4c96a",
+  "blender-W3-zkr1-080.jpg": "4e3f320747cbcd5af8d53dd725994cbc256dfa5822e271c46b94750fbcf27f12",
+  "blender-W6-6lgT-082.jpg": "caa473bd253923542c2b41271ee162cb6e145c27993602da339fbf93ed48302d",
+  "blender-aerea-noreste.jpg": "4f46e33b4c7d432c7fa44f2a1239ca282f1d78ca260e8b96bcf6697f50be48d0",
+  "blender-aerea-norte.jpg": "02ae74153b58d2e6e1ccf59a40f3f3cc8b06806257a6cd42cea4779c9cef255a",
+  "blender-aerea-suroeste.jpg": "aad9fc15bbe7f420be1f943e42e88ccab878e2e7831994bf3c81fa5243ec3ab3",
+  "camaras-blender.json": "db42005431ddf13c21f17823b12fa784efd9f64ff0b7903390005fdb88966b79",
+  "camaras.json": "db42005431ddf13c21f17823b12fa784efd9f64ff0b7903390005fdb88966b79",
+  "foto-E1-3cKC-224.jpg": "5a6469cb95eeb48ceb9b9f1dea9389756004aee979249760ddeaea5c3a5dc495",
+  "foto-E2-2UUS-258.jpg": "49d6fe326b251d838891d62a0da96f46ac5a2263fb5ed7955eeaecc0c2c02866",
+  "foto-E3-2sN0-262.jpg": "c1d15a29a77c8b0a614fe3056349e1dd37beaaed5a9e5cc9ad3f653d95fd07dd",
+  "foto-E4-2u7_-264.jpg": "1498567c3a41174b32bdeaf6acd66bb703522c11d7ca28daa8f2ffe041de34a1",
+  "foto-E5-2u7_-264b.jpg": "9defbde66a91f1927fefc82eaf80723ea44f68edcbc78b87ea1044713f5f017c",
+  "foto-E6-xwTl-305.jpg": "a576aa76004e0b4fd6623d5da057cb184aaa98a233c43033cc5a38500f549602",
+  "foto-E7-R5MD-262.jpg": "d116c86b073dd9997a8a65076f37b5868b753c27bc2bd4f86f31cd1915687fea",
+  "foto-E8-Gtxm-262.jpg": "6d1aebd4217942b49b7be886932c1b4d04e64909a8ba92316703ccaa2924f764",
+  "foto-N1-oKG8-184.jpg": "4633f7568f9582eaca88878f0d5fd79f86592ffd459ea0b4b2d1996eea0c96a5",
+  "foto-N2-oKG8-150.jpg": "5f4ccaabbc8464f817e95e18d2487f82579bd52273d64acd833aefdd0e1f88f5",
+  "foto-N3-SlP1-172.jpg": "699ba8ad5ef7e890aba1912784c4b6118101e2e9e2979677833eb1d099b60fe0",
+  "foto-W1-uVxg-112.jpg": "fb2ab98d35e7b2eb39ca663056d60f31ad6b29cb5f179b1219f3132f4356b01f",
+  "foto-W2-_SAM-080.jpg": "fd7ac3d8f41d029248ed166cd79ac10d39623194ee990a3f37b4687831dc575f",
+  "foto-W3-zkr1-080.jpg": "014b68d86043b66bc93535d27e82098e5a8b2cde4c18cca73d73304a940c3ebd",
+  "foto-W4-15N5-062.jpg": "3615a33e3440ecec6cc33b0003461a190500d67ce37178a6331a3c853e203b90",
+  "foto-W5-CTBD-078.jpg": "5b84b357be1c0ff8ebcb0ea29a1e5f7e22b8a454039f1c95145e4b2b0a9a1400",
+  "foto-W6-6lgT-082.jpg": "1d8b45bf4f8f00f33f970b3039bfd6fb80a85b18c42cc91b33bb17e21e8b25f7",
+  "foto-W7-HnAl-070.jpg": "79cb39fc9cf64deb4eec908a720eb13d1512ec30cc8bdfd1f2f483160362ebf4",
+  "foto-vs-modelo.jpg": "76250e59f411e21ed787073fd42f4c07d0d23bc04e5c0aaa75191e9a54436e32",
+  "fotos.json": "245187dee67e5bea748ba04a95072e3b08e5216f9586f3c027686f207b1fc7b6",
+  "poligono-glb.txt": "896a4c0e00189e7eb3e3b8d687f342904c82dc284b566f1b5ab1ff3f9817c421"
+ }
+}
