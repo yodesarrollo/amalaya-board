@@ -3,6 +3,10 @@ import {SERDAN_APROXIMADO} from './serdan-aproximado-data.js?v=0bbe41f3555a';
 import {C05_APROXIMADA} from './cuadra-c05-aproximada.js?v=5b91975adb8a';
 import {CORREDOR_OBREGON_20261026} from './corredor-obregon-20261026.js?v=0b3a3165be8d';
 import {BLOQUE1_SERDAN} from './bloque1-serdan-20261026.js?v=25a7d7b95b21';
+// C08 · cuadra 1 (10-nov-2026): fotos de calle de dic-2023 + aérea; un módulo por edificio.
+import {C08_1} from './c08-01-data.js?v=4ba633a613bc';
+import {C08_2} from './c08-02-data.js?v=5693528c66b2';
+import {C08_3} from './c08-03-data.js?v=60a9add4a027';
 import {C10_84} from './c10-84-data.js?v=eac898b15b51';
 import {C10_85} from './c10-85-data.js?v=dc70a8b0a7a0';
 import {C10_86} from './c10-86-data.js?v=12963b0dd445';
@@ -64,23 +68,9 @@ import {C18_139} from './c18-139-data.js?v=b304afa3c989';
 // Existing fitted footprints are read from the scene, never retraced by this layer.
 export const CUADRA_DETAILS = [{
  block:'C08', orderLabel:1, evidence:'c08-punto2-20261008',
- buildings:[
-  {id:'C2-01',height:4.6,color:'#c5c4bf',uncertainty:0.8,
-   sources:['c08-ne-foto.jpg'],
-   facades:[
-    {edge:0,plain:true,bays:[4.4,11.4].map(x=>({x,w:1.75,h:2.8,b:.25,rect:true,frameColor:'#99786b'})),bands:[{y:.45,h:.8,d:.07,color:'#96796d'},{y:4.4,h:.18,d:.25,color:'#967367'}]},
-    {edge:1,plain:true,bays:[{x:2,w:1.65,h:2.8,b:.2,rect:true,frameColor:'#99786b'},{x:6.1,w:1.65,h:3.0,b:0,rect:true,door:true,frameColor:'#99786b'},{x:9.7,w:1.15,h:2.65,b:.25,rect:true,frameColor:'#99786b'}],bands:[{y:.45,h:.8,d:.07,color:'#96796d'},{y:4.4,h:.18,d:.25,color:'#967367'}]}
-   ],note:'Un nivel, paños grises y marcos pardos; norte y corredor oriental visibles. Reversos sin vanos supuestos.'},
-  {id:'C2-02',height:5.3,color:'#c6dadd',uncertainty:1,
-   sources:['c08-se-foto.jpg','c08-ne-foto.jpg'],
-   facades:[
-    {edge:2,plain:true,bays:[{x:2.8,w:1.7,h:2.75,b:.25,rect:true,frameColor:'#dfe4dd'},{x:6.9,w:1.7,h:2.75,b:.25,rect:true,frameColor:'#dfe4dd'},{x:11,w:2.3,h:3.9,b:.05,rect:true,door:true,wood:true,frameColor:'#e1e0d5'},{x:15.9,w:1.7,h:2.75,b:.25,rect:true,frameColor:'#dfe4dd'}],bands:[{y:4.62,h:.12,d:.18,color:'#b8c6c1'},{y:5.02,h:.17,d:.26,color:'#d9ded3'}]},
-    {edge:1,plain:true,bays:[4.6,10.1,15.6,20].map(x=>({x,w:1.55,h:2.55,b:.25,rect:true,frameColor:'#d8ded7'})),bands:[{y:5.02,h:.17,d:.26,color:'#d9ded3'}]}
-   ],note:'Frente azul claro en Sufragio y retorno al corredor; puerta central de madera y ventanas enrejadas. Proporciones aproximadas.'},
-  {id:'C2-03',height:4.2,color:'#d4d5cb',uncertainty:1.2,
-   sources:['c08-porton-foto.jpg','c08-oeste-foto.jpg'],facades:[],
-   note:'Cuerpo interior de servicio detrás del estacionamiento. Cubierta y paños neutros; sin reproducir ventanas ocultas ni asignarle la fachada de la esquina suroeste.'}
- ],
+ // Edificios 1–3 (C2-01, C2-02, C2-03) en sus módulos c08-0N-data.js (10-nov-2026); OB-01 y
+ // OB-02 conservan sus constructores propios. Rampa, cerramiento y muros del punto 2 abajo.
+ buildings:[C08_1,C08_2,C08_3],
  // The blue handrail follows the already reviewed ramp. End at its foot remains open.
  rail:{building:'C2-01',a:[-20.9522,28.3762],b:[-19.3874,35.2414],offset:1.05,height:.92,color:'#28659a'},
  fence:{id:'C08-cerramiento-oeste',points:[[-89.2,34.1],[-90.7,62.9],[-89.5,76.5]],baseHeight:.48,height:2.15,color:'#a6a89e',sources:['c08-nw-foto.jpg','c08-porton-foto.jpg']},
