@@ -1,4 +1,3 @@
-import {C02_APROXIMADA} from './cuadra-c02-aproximada.js?v=762653c8bba5';
 import {SERDAN_APROXIMADO} from './serdan-aproximado-data.js?v=0bbe41f3555a';
 import {C05_APROXIMADA} from './cuadra-c05-aproximada.js?v=5b91975adb8a';
 import {CORREDOR_OBREGON_20261026} from './corredor-obregon-20261026.js?v=0b3a3165be8d';
@@ -58,6 +57,10 @@ import {C18_136} from './c18-136-data.js?v=e8de0c0a61ef';
 import {C18_137} from './c18-137-data.js?v=3ae03e723ae4';
 import {C18_138} from './c18-138-data.js?v=671077fee1f0';
 import {C18_139} from './c18-139-data.js?v=b304afa3c989';
+import {C02_10} from './c02-10-data.js?v=88b577b4a48a';
+import {C02_11} from './c02-11-data.js?v=da9f3fff7c00';
+import {C02_12} from './c02-12-data.js?v=12c2e20e1850';
+import {C02_13} from './c02-13-data.js?v=a6b87447272f';
 
 // Historic photo-based packets and explicitly labelled modelling hypotheses.
 // Dimensions are approximate; each packet documents its own evidence and limits.
@@ -131,8 +134,10 @@ CUADRA_DETAILS.push(C16_116,C16_117);
 // C18 · cuadra 33 (10-nov-2026): franja al pie del cerro, aérea + fábrica de fachadas; frente de
 // Sufragio y D3-01 retrazados a ±1 m sobre la aérea; edificios sobre el suelo actual (pendiente anotada).
 CUADRA_DETAILS.push(C18_119,C18_120,C18_121,C18_122,C18_123,C18_124,C18_125,C18_126,C18_127,C18_128,C18_129,C18_130,C18_131,C18_132,C18_133,C18_134,C18_135,C18_136,C18_137,C18_138,C18_139);
+// C02 · cuadra 4 (10-nov-2026): sustituye al paquete aproximado de octubre (cuadra-c02-aproximada.js?v=762653c8bba5,
+// conservado como registro); frentes observados de 10 y 12, fábrica de fachadas y 11 por sección.
+CUADRA_DETAILS.push(C02_10,C02_11,C02_12,C02_13);
 
-CUADRA_DETAILS.push(C02_APROXIMADA);
 CUADRA_DETAILS.push(...SERDAN_APROXIMADO);
 CUADRA_DETAILS.push(C05_APROXIMADA);
 CUADRA_DETAILS.push(...CORREDOR_OBREGON_20261026);
