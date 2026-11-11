@@ -1,0 +1,253 @@
+{
+ "id": "C20",
+ "cuadra": 9,
+ "nombre": "Surfragio Efectivo / Calle Obregón",
+ "calles": [
+  "Álvaro Obregón (norte)",
+  "Juan Álvarez (poniente)",
+  "Sufragio Efectivo (sur)",
+  "Garmendia (oriente)"
+ ],
+ "edificios": {
+  "35": "C2-04",
+  "36": "C2-05",
+  "37": "C2-06",
+  "38": "C2-07",
+  "39": "C2-08"
+ },
+ "enEstePR": [
+  "35",
+  "36",
+  "39"
+ ],
+ "pendientes": {
+  "37/C2-06 y 38/C2-07": "frentes observados y módulos listos, sin reconstruir: scripts/pruebas-paramento.mjs lee la malla de lámina de ambos (m.geometry) y scripts/firmas-colisiones-base.json congela 7 postes de colisión invisibles (0.34×0.44×7.65 m, sin malla) que el frente genérico de octubre dejó sobre la banqueta de Obregón y que removeOwner quitaría al reconstruirlos. Ambos son archivos compartidos: requieren autorización."
+ },
+ "fecha": "2026-11-10",
+ "autor": "Claude (Opus 5.5), sesión https://claude.ai/code/session_01BCpvee4cGGCfPdCjMMhQGm",
+ "criterio": "Alejandro Puebla (propietario), 10-nov-2026 18:36 HMO: «más que genérico, una versión aceptable a la realidad según las fotos, lo que muestre». 22:57 HMO: «Cuadra 9 ahora por favor».",
+ "fuentes": [
+  {
+   "path": "public/recorrido/133OIriRrcYkbV0Y2VCPng.jpg",
+   "sha256": "17771531734d50aa78b9167a68fa21969ebd3f8c2bb03cdd46b9f329e4ea87cf",
+   "tipo": "panorama R-001 P05 (Street View, 2048×1024; posición de rutas.json en (5.7, 18.2) local): frente a Obregón de 35 de frente a 6 m y de 37; medición de alturas"
+  },
+  {
+   "path": "public/recorrido/rgjklAAPPcOxEB4RX95K1w.jpg",
+   "sha256": "1dde0979b494c622b3a63797241765a0244d7ac2bb24bb1365aab88665a0530b",
+   "tipo": "panorama R-001 P06 (Street View, 2048×1024; posición de rutas.json en (25.4, 16.4) local): frentes de 37 y 38 (local blanco y casa clásica)"
+  },
+  {
+   "path": "public/recorrido/kvThuvZHnPY0bB-quNNqWg.jpg",
+   "sha256": "5d589f931189bdb4ee939c88eb627930d4b25460f6b6e02998e919d05e753b6c",
+   "tipo": "panorama R-001 P07 (Street View, 2048×1024; posición de rutas.json en (45.0, 14.8) local): frente de 38 (restaurante salmón y casa clásica)"
+  },
+  {
+   "path": "public/recorrido/h45BeWMtTog-TgjPTSYn6g.jpg",
+   "sha256": "7cc232bdf2ad46a9b6379e0e5aa530c02d5a5da4f55fc27e92d612b346d15546",
+   "tipo": "panorama R-001 P04 (Street View, 2048×1024; posición de rutas.json en (-24.9, 20.8) local): contraste desde el poniente (el edificio rojo de celosía está al poniente de Juan Álvarez)"
+  },
+  {
+   "path": "public/recorrido/rutas.json",
+   "sha256": "23fff937e208d67c5a59b9d960ee1aadbcd7207346eaf16f27918b6812b9676f",
+   "tipo": "posiciones de los panoramas"
+  },
+  {
+   "path": "public/recorrido/roll.json",
+   "sha256": "78022ba59f4e2df2608bde92cf4a37afcfcc9bda33dc70ef4a2f9c5ffca48b46",
+   "tipo": "nivelación de los panoramas; en P05 se descartó (ver mediciones.alturas)"
+  },
+  {
+   "path": "public/levantamiento/calco/referencia.webp",
+   "sha256": "ef453bbe2db667f3916e718133b81210e7ff53a51b67c412941a613f5288a074",
+   "tipo": "aérea Esri World Imagery z19 (recuperada 2026-10-07), georreferenciada, 0.26 m/píxel"
+  },
+  {
+   "path": "public/levantamiento/ajuste-visual/C20.jpg",
+   "sha256": "90a4d84aab0e32caedcf0a40afbce7e762050ef9d54da45161a0a30769482cdf",
+   "tipo": "recorte aéreo de la cuadra"
+  },
+  {
+   "path": "public/levantamiento/cuadras/C20-inventario.jpg",
+   "sha256": "e9bdd05784397824eb7648417111ad8736845585322e5fcb25d638d201661b78",
+   "tipo": "límite de inventario INEGI / Esri"
+  },
+  {
+   "path": "public/levantamiento/corredor-obregon-20261026.js",
+   "sha256": "0b3a3165be8db1e25f79130a79bffd86031afc86e6ce7526895ef55548fe0f17",
+   "tipo": "paquete del 26-oct (sustituido y conservado como registro): frente de 35/C2-04 a 5.3 m con la entrada central y dos vanos"
+  },
+  {
+   "path": "public/levantamiento/obregon-aproximado-data.js",
+   "sha256": "9a20c956e9deafd3c80a64d0eb5ce74eeef98a1ee088dbeabe770f758217d40f",
+   "tipo": "paños de octubre sobre 37/C2-06 y 38/C2-07 (sin cambio en este PR; describen al vecino blanco como 37)"
+  }
+ ],
+ "sustituye": "CORREDOR_OBREGON_20261026 deja de registrarse en cuadra-detail-data.js (su único edificio era 35/C2-04); el archivo se conserva sin cambios como registro",
+ "alturas": {
+  "35/C2-04": "7.8 m al pretil (antes 5.3 m del 26-oct): razón de ángulos en P05 sin roll, pretil 2.9 veces la altura de cámara; cámara de 2.8 m calibrada con un peatón de 1.7 m y la distancia al frente. ±0.8 m",
+  "36/C2-05": "4.0 m por tipología (antes 6.2 m de la forma nativa); sin foto",
+  "39/C2-08": "4.0 m por tipología (antes 6.2 m de la forma nativa); sin foto",
+  "37/C2-06 (sin cambio)": "queda en 3.6 m; los panoramas dan pretil de 7.8 m (P05 2.89 veces la cámara, P06 2.95 veces)",
+  "38/C2-07 (sin cambio)": "queda en 4.6 m; los panoramas dan 6.2–7.5 m según el paño",
+  "nota": "En esta aérea el sol viene del este: la franja oscura al poniente de 35 es su sombra sobre Juan Álvarez y no se usa como medida."
+ },
+ "mediciones": {
+  "metodo": "vistas en perspectiva, proyección cilíndrica y alzados rectificados de los panoramas (u=0.5 al norte, como el visor); posiciones sobre la arista registrada; medianas de color y manchas oscuras con contraste local sobre calco/referencia.webp",
+  "nivelacion": "P05: con roll.json (13.6° alrededor de un eje al este) las verticales del frente sur se abren en abanico; sin la corrección salen rectas y la altura coincide con P06 (2.89 contra 2.95 veces la cámara). P06 y P07 se usan con su corrección (2–3°).",
+  "juntasObregon": {
+   "esquina con Juan Álvarez": -9.8,
+   "A|B (35|37)": 3.4,
+   "B|C (37|local blanco de 38)": 19.3,
+   "C|D": 26.4,
+   "D|E": 38.3,
+   "fin de 38": 45.0,
+   "nota": "x local sobre la línea de fachada; vértices de inventario 35|37 en 1.6 y 37|38 en 21.54 (se conservan)"
+  },
+  "techos": {
+   "35": "#e7e7dc",
+   "36": "#fbf8f0 (usado #ece9df)",
+   "37": "#899486 (gris verdoso)",
+   "38": "#eeebdf",
+   "39": "#627556 (fronda; usado #d9d5c8)"
+  },
+  "equipos": {
+   "35": {
+    "tinacos": [
+     [
+      0.3,
+      39.1
+     ],
+     [
+      1.3,
+      30.6
+     ]
+    ],
+    "equipos": [
+     [
+      2.0,
+      32.7
+     ],
+     [
+      1.3,
+      26.4
+     ],
+     [
+      -5.6,
+      31.4
+     ],
+     [
+      -4.7,
+      39.4
+     ],
+     [
+      -2.9,
+      41.0
+     ]
+    ]
+   },
+   "36": {
+    "tinacos": [
+     [
+      1.8,
+      51.3
+     ],
+     [
+      1.3,
+      57.1
+     ]
+    ]
+   },
+   "39": "no se distinguen bajo la fronda"
+  },
+  "coloresFachada": "medianas de los alzados rectificados en sombra, corregidas contra el blanco de pilastras: muro #d3d0c2, molduras #ebe8df, portón #4f6656",
+  "frentes": {
+   "criterio": "scripts/frentes-calle-lib.mjs y caras a menos de 4 m de la banqueta",
+   "35": "Obregón (arista 2) y Juan Álvarez (3, 4, 5 y 7; 6 con bandas)",
+   "36": "Juan Álvarez (arista 3)",
+   "39": "Sufragio Efectivo a 3.1 m (arista 2)"
+  }
+ },
+ "pasos": [
+  {
+   "paso": 1,
+   "nombre": "Identidad y evidencia",
+   "resultado": "35/C2-04 esquina Obregón–Juan Álvarez (edificio clásico de un nivel alto con portón de arco verde); 36/C2-05 sobre Juan Álvarez; 37/C2-06 segundo paño clásico de Obregón; 38/C2-07 local blanco, casa clásica camello y restaurante salmón; 39/C2-08 al fondo, hacia Sufragio. Panoramas R-001 P04–P07 y aérea."
+  },
+  {
+   "paso": 2,
+   "nombre": "Forma",
+   "resultado": "Plantas registradas sin cambio (fittedPlan con JOIN_REVIEWS en 35; forma nativa en 36 y 39)."
+  },
+  {
+   "paso": 3,
+   "nombre": "Alturas",
+   "resultado": "Ver alturas."
+  },
+  {
+   "paso": 4,
+   "nombre": "Fachada",
+   "resultado": "35 observada en Obregón: portón de arco verde, pilastras, dos ventanas con frontón (escalonado) y reja, entablamento, cornisa y pretil; Juan Álvarez estimada con el mismo orden. 36 y 39: fábrica (casa)."
+  },
+  {
+   "paso": 5,
+   "nombre": "Material y azotea",
+   "resultado": "Colores de techo medidos; colores de muro corregidos de sombra; 4 tinacos y 5 equipos en las posiciones vistas; superficie mate."
+  },
+  {
+   "paso": 6,
+   "nombre": "Conjunto, ligero y comparación",
+   "resultado": "Firmas de colisión ajenas idénticas; vanos alcanzados desde la calle; anclas de los cinco registros sobre cubierta; LOD en la vista ligera; foto contra modelo con la misma cámara de P05."
+  }
+ ],
+ "limites": [
+  "Medidas visuales, no métricas: vanos ±0.5 m sobre la arista registrada, altura de 35 ±0.8 m.",
+  "Las juntas de paño no caen en los vértices de inventario (35|37 se vio 1.8 m al oriente; 37|38, 2.2 m al poniente): se conservan los vértices y el portón de 35 se corrió 1.4 m al poniente para caber en su arista.",
+  "Cara de 35 a Juan Álvarez, 36 y 39 sin foto: vanos y alturas estimados.",
+  "37 y 38 no se reconstruyen en este PR (ver pendientes); sus frentes observados están descritos en docs/C20-MODELADO.md.",
+  "El suelo gris de las vistas de Blender es un fondo de render; las aristas negras son del render, como en C02, C09 y C16."
+ ],
+ "vistaLigera": {
+  "bytes": 984240,
+  "gzip": 333618,
+  "triangulos": 49212,
+  "lod": {
+   "walls": 777,
+   "openings": 638
+  },
+  "version": "d7ced50afcfb",
+  "techo": "846,000 + 3,500 y 277,000 + 1,250 gzip por edificio de fábrica (mínimo 1 MB / 325 KB)",
+  "nota": "main 85fa3f0: 979,240 / 331,274; techo con 79 edificios de fábrica 1,122,500 / 375,750 (pruebas-vista-ligera); 37 y 38 reconstruidos sumaban ~3,600 / 1,800 en la prueba local sobre 6fa0cc3"
+ },
+ "camaras": "camaras.json: [nombre, lat, lng, rumbo, fov, cabeceo, altura]; las de calle van sobre la calzada a 1.6 m, la de P05 a 2.8 m como el panorama; mismas cámaras antes y después",
+ "pruebas": [
+  "scripts/pruebas-fabrica.mjs",
+  "scripts/pruebas-lod-ligero.mjs",
+  "scripts/pruebas-vista-ligera.mjs",
+  "scripts/pruebas-identificacion.mjs",
+  "scripts/pruebas-paramento.mjs",
+  "scripts/pruebas-lamina.mjs",
+  "scripts/pruebas-c1-13-enjambre.mjs (firmas por edificio)",
+  "npm run pruebas",
+  "python3 scripts/pruebas-puente.py",
+  "npm run verificar:publicacion",
+  "npm run build",
+  "git diff --check"
+ ],
+ "worldSha256": "76eb05d991e62544965a913e016515c38b47373e818aeae45cd2b357d2a2caa2",
+ "archivos": {
+  "C20-35-39.glb": "8fd913c6da8f8086e906953d15eb572e661bbc5ea939292a456bb89e13fa3063",
+  "aerea-trazo.jpg": "a60a38ac1aaf092b172b60df90cbe58c8c26b2cd63f5feed869e435875fe1dda",
+  "alzado-p05.jpg": "73599dc83d445b0fbf877a919906dd0ad07eb33a2cb2852aea7a293593227712",
+  "antes-despues.jpg": "dc4a9f8877bbaa6b72c68fef5c08b39db2eb9ffaf3fd32665ede8e7bbfb9338f",
+  "blender-aerea-noroeste.jpg": "6cda16810cae11e3314ed52d395689bea5566dbcf4f673a540008779d09cf3a3",
+  "blender-aerea.jpg": "56640500e69abb2384966f3d017d80de2a1066002aa1684c7f027fb69442faf3",
+  "blender-esquina-noroeste.jpg": "4cea5c7f09371904cd3ce5fd3d2c65e0a035275ff2b4e1c266d6279d5d90d23c",
+  "blender-juan-alvarez.jpg": "dd6ffe61147e66d77183aebb467f48cfa4832f4870a14cf41413ff1558f0370a",
+  "blender-obregon-p05.jpg": "02f0ec28e0ce0ab3e0217c3e69bc815ddae08da7c68d2993db81addea69778d6",
+  "blender-obregon-p07.jpg": "9de651de49a8252c5cd66c9dac5028d7836ff4b5ddb8053336f113d93d27f0b0",
+  "blender-sufragio.jpg": "50d740ac4fb6b476fb73f2c3eb628273d72df87b7241374d721edc362fe7869b",
+  "camaras.json": "e03455a2e16bde14037195b15f9ad382c61804e2d826871c0d73c4385bbb7b42",
+  "foto-modelo-p05.jpg": "7f983c196c4eb4e4b5a5d27b160addc5b20e548160d5c70ca093b7051e0b87e0"
+ }
+}

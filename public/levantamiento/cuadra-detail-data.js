@@ -1,5 +1,4 @@
 import {C05_APROXIMADA} from './cuadra-c05-aproximada.js?v=5b91975adb8a';
-import {CORREDOR_OBREGON_20261026} from './corredor-obregon-20261026.js?v=0b3a3165be8d';
 import {BLOQUE1_SERDAN} from './bloque1-serdan-20261026.js?v=25a7d7b95b21';
 // C08 · cuadra 1 (10-nov-2026): fotos de calle de dic-2023 + aérea; un módulo por edificio.
 import {C08_1} from './c08-01-data.js?v=4ba633a613bc';
@@ -88,6 +87,10 @@ import {C24_60} from './c24-60-data.js?v=3ef53b1cf229';
 import {C24_61} from './c24-61-data.js?v=8f0e61805f5b';
 import {C24_62} from './c24-62-data.js?v=b389144344fb';
 import {C24_63} from './c24-63-data.js?v=57d086d996df';
+// C20 · cuadra 9 (10-nov-2026): panoramas R-001 de Obregón + aérea; un módulo por edificio.
+import {C20_35} from './c20-35-data.js?v=c88f5eca631a';
+import {C20_36} from './c20-36-data.js?v=f3b639770a97';
+import {C20_39} from './c20-39-data.js?v=e841e5acaaa3';
 
 // Historic photo-based packets and explicitly labelled modelling hypotheses.
 // Dimensions are approximate; each packet documents its own evidence and limits.
@@ -152,9 +155,11 @@ CUADRA_DETAILS.push(C07_06);
 // 64/A3-08 (constructor propio en paramento-refinement.js) y 65/CH-GA-OXXO (huella OSM con firma de colisión
 // congelada, en bloque1-serdan-20261026.js) quedan sin cambio. Sustituye a serdan-aproximado-data.js (registro).
 CUADRA_DETAILS.push(C24_59,C24_60,C24_61,C24_62,C24_63);
+// C20 · cuadra 9 (10-nov-2026): 35 con fotos de Obregón (sustituye al paquete del corredor de Obregón
+// del 26-oct, que queda como registro); 36 y 39 con aérea y fábrica de fachadas.
+CUADRA_DETAILS.push(C20_35,C20_36,C20_39);
 
 CUADRA_DETAILS.push(C05_APROXIMADA);
-CUADRA_DETAILS.push(...CORREDOR_OBREGON_20261026);
 CUADRA_DETAILS.push(...BLOQUE1_SERDAN);
 
 // C21 · cuadra 10 (10-nov-2026): fotos del recorrido R-002 y aérea; 40 B3-01 retrazado por secciones
