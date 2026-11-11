@@ -283,16 +283,16 @@
   "El suelo y el cielo de las vistas son fondos de render."
  ],
  "vistaLigera": {
-  "bytes": 961340,
-  "gzip": 322919,
-  "triangulos": 48067,
-  "techo": "1,063,000 / 354,500 gzip (62 edificios de fábrica)",
+  "bytes": 966080,
+  "gzip": 325599,
+  "triangulos": 48304,
+  "techo": "1,091,000 / 364,500 gzip (70 edificios de fábrica)",
   "antes": {
-   "base": "origin/main 1785401",
-   "bytes": 968220,
-   "gzip": 324762,
-   "triangulos": 48411,
-   "techo": "1,059,500 / 353,250 gzip (61 edificios de fábrica)"
+   "base": "origin/main 524e1e9",
+   "bytes": 972960,
+   "gzip": 327426,
+   "triangulos": 48648,
+   "techo": "1,087,500 / 363,250 gzip (69 edificios de fábrica)"
   }
  },
  "pruebas": [
@@ -307,18 +307,18 @@
   "npm run build",
   "git diff --check"
  ],
- "worldSha256": "520972b37a9aa9edeeac941119baa24966a08fe07b0dd199101458b920181f93",
+ "worldSha256": "9ff6f5304c61c599269889576b1202850153ec5886c0eca8ab984f00bec91d52",
  "archivos": {
   "aerea-trazo.jpg": "71f2ad113a7abdc548ad689d107ec3add9f6d7d8fa505773e5fda062f62cdeb9",
-  "antes-despues.jpg": "bb0d501836093fa64072a609a2b1e66f628665f86b48ad9ea7a66b0879b18073",
-  "blender-aerea-noreste.jpg": "b0681357f7d2c7fbe1166973c6d1b3e997f4cb2c8d7a653290a8d136e8d3b2c5",
-  "blender-aerea.jpg": "d8559e250a2658eab15d43633e8c3a40f3ebeec0f366803b84be24e32bf1eb3d",
-  "blender-kwpq-rojo.jpg": "3d45c327dad4027e051f5adb920391bedc8d2938188b30243a9d2a4553559385",
-  "blender-qU0X-frente.jpg": "ed1e95a9fc4a38d7a50a8a173e1a7553d5b6238bb010dedee13022aa4d2a0a91",
-  "blender-wgpw-oeste.jpg": "fe013037c61824a8952cf08ea926f07f175eac3aa863d3df7c622147974778c7",
+  "antes-despues.jpg": "590c41ca8a3b3f921aedb552118b85154832d7e35b8155eb25db84c6930abc5e",
+  "blender-aerea-noreste.jpg": "e30489a0b69551af4d526ce47f1baec4509412538602d031bfa14eccae59c308",
+  "blender-aerea.jpg": "acb247c436d8e9d830468e3bdf06ea6e44eb0d4457cbd149c71051f90a016265",
+  "blender-kwpq-rojo.jpg": "f9a3e44e8fa4c0903d54228193cb93da87b3954659398ad668fe3c4f2b8b6ca4",
+  "blender-qU0X-frente.jpg": "a6444df987fbc8e235bc1b7f73224abc0651248db0cc4c39023a69c552e920a3",
+  "blender-wgpw-oeste.jpg": "765f312d9f4443a27adc30881ef60aea8af47e5be52483aa9b9b7e9cdc75acfe",
   "camaras.json": "9fa085437f1b0447ab94d034bf6e5fc333213b88beef84b10ff91958f8fa1771",
   "cuadra10-C21.glb": "f408a1a4d36d83e7aa3a2fe32a3935c91d0597692503538f47d1795dfc3ce6e4",
-  "foto-vs-modelo.jpg": "bdd9ee35032afa17f9f0ae6e920d363be5cdb0c29b24fb82e6e6cca9e3396ead",
+  "foto-vs-modelo.jpg": "54a36bf9199cbc3ecac00529521446dec44f29212dcb8574b3fdda57551a8762",
   "medidas-aerea.json": "87f2e25feef6d4223699771c340006ff114c1abfddddfeaf525b561f3662b630",
   "medir-aerea.py": "2bec7ee0dc5df71b820ad743aa952d980b0fd471ffa10dbcd5d6c30bbe4acbed",
   "secciones.json": "e3663776553cb1ba3455c089574bf78c16d4c2ba4f0be970f104cf46f369efdf",
