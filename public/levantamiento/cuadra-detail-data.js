@@ -1,4 +1,3 @@
-import {C05_APROXIMADA} from './cuadra-c05-aproximada.js?v=5b91975adb8a';
 import {CORREDOR_OBREGON_20261026} from './corredor-obregon-20261026.js?v=0b3a3165be8d';
 import {BLOQUE1_SERDAN} from './bloque1-serdan-20261026.js?v=25a7d7b95b21';
 // C08 · cuadra 1 (10-nov-2026): fotos de calle de dic-2023 + aérea; un módulo por edificio.
@@ -88,6 +87,14 @@ import {C24_60} from './c24-60-data.js?v=3ef53b1cf229';
 import {C24_61} from './c24-61-data.js?v=8f0e61805f5b';
 import {C24_62} from './c24-62-data.js?v=b389144344fb';
 import {C24_63} from './c24-63-data.js?v=57d086d996df';
+// C05 · cuadra 5 (10-nov-2026): fotos de calle (dic-2023, mar-2025, ene-2026) + aérea; un módulo por edificio.
+import {C05_14} from './c05-14-data.js?v=3dced30dfec7';
+import {C05_15} from './c05-15-data.js?v=2a027db61b80';
+import {C05_16} from './c05-16-data.js?v=e0ff4a8321ab';
+import {C05_17} from './c05-17-data.js?v=5a7557a54c05';
+import {C05_18} from './c05-18-data.js?v=cad6ab3c7d40';
+import {C05_19} from './c05-19-data.js?v=e3157ab99a4e';
+import {C05_20} from './c05-20-data.js?v=d530f5d3e92d';
 
 // Historic photo-based packets and explicitly labelled modelling hypotheses.
 // Dimensions are approximate; each packet documents its own evidence and limits.
@@ -153,13 +160,16 @@ CUADRA_DETAILS.push(C07_06);
 // congelada, en bloque1-serdan-20261026.js) quedan sin cambio. Sustituye a serdan-aproximado-data.js (registro).
 CUADRA_DETAILS.push(C24_59,C24_60,C24_61,C24_62,C24_63);
 
-CUADRA_DETAILS.push(C05_APROXIMADA);
 CUADRA_DETAILS.push(...CORREDOR_OBREGON_20261026);
 CUADRA_DETAILS.push(...BLOQUE1_SERDAN);
 
 // C21 · cuadra 10 (10-nov-2026): fotos del recorrido R-002 y aérea; 40 B3-01 retrazado por secciones
 // (rojo, blanco y amarillo sobre Chihuahua) y 41 EB-NW con su modelo de octubre más techo y equipos.
 CUADRA_DETAILS.push(C21_40,C21_41);
+// C05 · cuadra 5 (10-nov-2026): 18 fotos de Street View de Obregón, Rosales y Pino Suárez + aérea;
+// sustituye el paquete aproximado de C05 (cuadra-c05-aproximada.js, conservado como registro) y la
+// construcción de ronda 2 de C1-02 (frente adelantado, Bar La Verbena); 1912 de dos niveles en C1-04.
+CUADRA_DETAILS.push({block:'C05',evidence:'C05/20261110-modelado',buildings:[C05_14,C05_15,C05_16,C05_17,C05_18,C05_19,C05_20]});
 
 // In this corner the available panorama shows cars behind masonry and grilles;
 // the capture date is unknown.
