@@ -1,0 +1,328 @@
+{
+ "id": "C21",
+ "cuadra": 10,
+ "edificios": {
+  "40": "B3-01",
+  "41": "EB-NW",
+  "42": "EB-SW (sin cambio, módulo propio ebsw-refinement.js)"
+ },
+ "fecha": "2026-11-10",
+ "autor": "Claude (Opus 5.5), sesión https://claude.ai/code/session_01BCpvee7brhDsj3BBaJQuHa",
+ "criterio": "Alejandro Puebla (propietario), 10-nov-2026: «más que genérico, una versión aceptable a la realidad según las fotos»; pedido de este chat a las 22:58 HMO: «cuadra 10 ahora».",
+ "fuentes": [
+  {
+   "path": "public/recorrido/qU0XiVpeIHZyTixjEBUfgg.jpg",
+   "sha256": "da1cded1a8158f5ae52b0e6870e9b4cbb52928c8c82bd0250d9f63718cb5b4df",
+   "tipo": "panorámica 360° del recorrido R-002, punto 5 (frente al portón blanco)"
+  },
+  {
+   "path": "public/recorrido/kwpqUP9tZmmjDfiFDIJbsg.jpg",
+   "sha256": "d285265c062063e2141173dda0cf5a32c914db73f3d71664d05809fc24ac08aa",
+   "tipo": "panorámica 360° del recorrido R-002, punto 6 (frente a la esquina verde)"
+  },
+  {
+   "path": "public/recorrido/wgpwXS6VA0MdLRF6oSqDBA.jpg",
+   "sha256": "cbd63ed1a0a930379d4794073206a00b8915fd10ca21ede2de6f3b4328a6a2f9",
+   "tipo": "panorámica 360° del recorrido R-002, punto 4 (esquina oriente)"
+  },
+  {
+   "path": "public/recorrido/cjTHuFQqgbHlqPDeYtUDaQ.jpg",
+   "sha256": "62708c4a15b07825f5fd939424f627791a5af6afa48fa36195c8ce23c087e54b",
+   "tipo": "panorámica 360° del recorrido R-002, punto 7 (Garmendia y Chihuahua)"
+  },
+  {
+   "path": "public/recorrido/rutas.json",
+   "sha256": "23fff937e208d67c5a59b9d960ee1aadbcd7207346eaf16f27918b6812b9676f",
+   "tipo": "posición de las panorámicas (lat/lng)"
+  },
+  {
+   "path": "public/recorrido/roll.json",
+   "sha256": "78022ba59f4e2df2608bde92cf4a37afcfcc9bda33dc70ef4a2f9c5ffca48b46",
+   "tipo": "nivelación de las panorámicas (la misma del visor)"
+  },
+  {
+   "path": "public/levantamiento/calco/referencia.webp",
+   "sha256": "ef453bbe2db667f3916e718133b81210e7ff53a51b67c412941a613f5288a074",
+   "tipo": "aérea Esri World Imagery z19, georreferenciada, 0.26 m/píxel"
+  },
+  {
+   "path": "public/levantamiento/ajuste-visual/C21.jpg",
+   "sha256": "b558e5cc57126355086e2fd61968bb6fb113287d7008c745578c2d8650b6b3fa",
+   "tipo": "recorte aéreo de la cuadra"
+  },
+  {
+   "path": "public/levantamiento/ajuste-visual/cuadras.json",
+   "sha256": "a931062a2b6de0755592719c1e3f628734729e761e1a437f31b5dc0af1a2316e",
+   "tipo": "banqueta de C21: tira abierta en «C» sin anillo interior"
+  },
+  {
+   "path": "public/levantamiento/cuadras.json",
+   "sha256": "ae35907f3c2d34a8383b9dba51f5b68dc6e4d86fcf4d132b3b354b0126025a83",
+   "tipo": "límite INEGI de la manzana (lote para las secciones)"
+  }
+ ],
+ "mediciones": {
+  "aerea": {
+   "script": "medir-aerea.py",
+   "resultado": "medidas-aerea.json",
+   "desplazamiento_relieve_z_m": -1.3,
+   "secciones": {
+    "rojo": {
+     "mediana": "#caa08e",
+     "pixeles": 665,
+     "oscuro_pct": 9.3,
+     "area_m2": 45.13
+    },
+    "rojo-fondo": {
+     "mediana": "#b9b9af",
+     "pixeles": 1663,
+     "oscuro_pct": 12.7,
+     "area_m2": 111.16
+    },
+    "blanco": {
+     "mediana": "#f3ede5",
+     "pixeles": 795,
+     "oscuro_pct": 2.3,
+     "area_m2": 54.18
+    },
+    "blanco-fondo": {
+     "mediana": "#bbc3bc",
+     "pixeles": 2715,
+     "oscuro_pct": 6.5,
+     "area_m2": 184.62
+    },
+    "amarillo": {
+     "mediana": "#f6f3e7",
+     "pixeles": 1400,
+     "oscuro_pct": 3.6,
+     "area_m2": 94.98
+    }
+   },
+   "EB-NW": {
+    "mediana": "#e2dccd",
+    "pixeles": 3317,
+    "oscuro_pct": 26.0,
+    "area_m2": 225.06
+   }
+  },
+  "fotos": {
+   "script": "triangular-fotos.py",
+   "resultado": "triangulacion.json",
+   "mediana_paño_al_norte_m": 0.38
+  }
+ },
+ "forma": {
+  "criterio": "B3-01 retrazado por secciones (normalizeSections): frentes rojo, blanco y amarillo sobre la línea de lote + 0.2 m de Chihuahua, 4.1 m de fondo para los dos primeros (franja de enladrillado de la aérea) y cuerpos de fondo hasta la línea trasera de octubre; la planta de octubre queda como registro",
+  "secciones": {
+   "rojo": [
+    [
+     80.62,
+     -38.629
+    ],
+    [
+     91.8,
+     -39.151
+    ],
+    [
+     91.991,
+     -35.055
+    ],
+    [
+     81.15,
+     -34.56
+    ]
+   ],
+   "rojo-fondo": [
+    [
+     84.04,
+     -34.692
+    ],
+    [
+     91.991,
+     -35.055
+    ],
+    [
+     92.0,
+     -20.641
+    ],
+    [
+     91.083,
+     -20.547
+    ],
+    [
+     84.044,
+     -21.327
+    ]
+   ],
+   "blanco": [
+    [
+     91.8,
+     -39.151
+    ],
+    [
+     105.0,
+     -39.767
+    ],
+    [
+     105.191,
+     -35.671
+    ],
+    [
+     91.991,
+     -35.055
+    ]
+   ],
+   "blanco-fondo": [
+    [
+     91.991,
+     -35.055
+    ],
+    [
+     105.191,
+     -35.671
+    ],
+    [
+     105.771,
+     -23.247
+    ],
+    [
+     101.251,
+     -22.628
+    ],
+    [
+     101.251,
+     -21.587
+    ],
+    [
+     92.0,
+     -20.641
+    ]
+   ],
+   "amarillo": [
+    [
+     105.0,
+     -39.767
+    ],
+    [
+     110.23,
+     -40.011
+    ],
+    [
+     112.17,
+     -24.123
+    ],
+    [
+     105.771,
+     -23.247
+    ],
+    [
+     105.191,
+     -35.671
+    ]
+   ]
+  },
+  "tolerancia_m": 0.6,
+  "EB-NW": "planta de octubre sin cambio (dueño ESQUINA NOROESTE, colisiones congeladas)"
+ },
+ "alturas": {
+  "rojo": "4.6 m + pretil 0.26 (cornisa gris a ~4.1–4.5 m en kwpq)",
+  "blanco": "4.75 m + pretil (~5.0 m en qU0X)",
+  "amarillo": "4.75 m + pretil (pretil blanco perforado ~4.2–5.0 m en qU0X y wgpw)",
+  "fondos": "4.2 m sin foto",
+  "EB-NW": "4.4 m de octubre",
+  "incertidumbre_m": 0.3,
+  "nota": "Alturas de foto con ojo de cámara a 2.5 m; la aérea no da altura (el sol viene del este)."
+ },
+ "fachadas": {
+  "calle": "aristas 0 de rojo, blanco y amarillo (Chihuahua); la cara oriente del amarillo no cuenta como calle",
+  "vanos": {
+   "rojo": "ventana con reja y postigos grises, puerta con marco gris y ventana con reja; cornisa gris",
+   "blanco": "ventanal enrejado de ~3.1 m, zaguán de arco y portón de madera de ~3.9 × 3.0 m; dos lámparas",
+   "amarillo": "puerta de arco con marco blanco ancho; cornisa y banda blanca del pretil"
+  },
+  "origen": "observados en foto (no tipológicos)"
+ },
+ "pasos": [
+  {
+   "paso": 1,
+   "nombre": "Identidad y evidencia",
+   "resultado": "C21 tiene 40 B3-01, 41 EB-NW y 42 EB-SW. B3-01 y EB-NW vivían en el paquete C21 de octubre; EB-SW tiene módulo propio y no se rehace. Cuatro panorámicas del recorrido R-002 ven el frente de Chihuahua; aérea para techos."
+  },
+  {
+   "paso": 2,
+   "nombre": "Forma",
+   "resultado": "B3-01 en cinco secciones: el rojo llega a la pilastra de la esquina verde (x 80.6) y los frentes quedan sobre la banqueta (antes 1–1.5 m detrás); el amarillo se detiene en el límite INEGI (x≈110.3) aunque sigue hasta x≈116. EB-NW sin cambio de planta."
+  },
+  {
+   "paso": 3,
+   "nombre": "Alturas",
+   "resultado": "De foto: rojo 4.6 m más pretil con cornisa gris, blanco y amarillo ~5.0 m con pretil; fondos 4.2 m sin foto."
+  },
+  {
+   "paso": 4,
+   "nombre": "Fachada",
+   "resultado": "Siete vanos observados en las tres caras a la calle, triangulados entre kwpq y qU0X (paño ~0.38 m al norte del dibujado) y tomados de vistas casi de frente; cornisas, banda del pretil y lámparas."
+  },
+  {
+   "paso": 5,
+   "nombre": "Material y azotea",
+   "resultado": "Colores de foto a media luz; techos medidos en la aérea corrida 1.3 m al norte: enladrillado #caa08e, fondos #b9b9af y #bbc3bc, blancos con tono #e6e2d6; un tinaco y una ventila en B3-01, un tinaco y cuatro piezas oscuras en EB-NW."
+  },
+  {
+   "paso": 6,
+   "nombre": "Conjunto, ligero y comparación",
+   "resultado": "pruebas-fabrica: 5 secciones, 3 caras a la calle, 7 vanos alcanzados, 279 colisiones a la altura de cada sección; EB-NW y vecinos con sus firmas; vista ligera más chica que antes; foto frente a modelo y antes/después con las mismas cámaras; vistas de Blender y GLB de la cuadra."
+  }
+ ],
+ "limites": [
+  "El amarillo sigue al oriente hasta x≈116 (ventanal de arco y esquina a un andador techado), fuera del lote INEGI que termina en x≈110.3; su cara oriente queda como muro ciego de 16 m. Corregirlo requiere mover datos compartidos (manzana o banqueta): decisión pendiente del propietario.",
+  "Sin modelar: barandal y macetas de la terraza roja, bloque de pretil sobre el zaguán, malla y poste de luz sobre el amarillo, mancha verde-azulada tras el portón y posibles patios con árboles del fondo del rojo.",
+  "Arco del zaguán de medio punto (el constructor no hace arcos rebajados); clave a 3.15 m con el ancho medido.",
+  "Posiciones de vanos a ±0.6 m y alturas a ±0.3 m; cuerpos de fondo a 4.2 m sin foto.",
+  "EB-NW: frente ~1 m detrás de la banqueta, hueco hasta la pilastra blanca y patio techado por la caja, sin corregir para conservar su firma de colisiones.",
+  "El suelo y el cielo de las vistas son fondos de render."
+ ],
+ "vistaLigera": {
+  "bytes": 961340,
+  "gzip": 322919,
+  "triangulos": 48067,
+  "techo": "1,063,000 / 354,500 gzip (62 edificios de fábrica)",
+  "antes": {
+   "base": "origin/main 1785401",
+   "bytes": 968220,
+   "gzip": 324762,
+   "triangulos": 48411,
+   "techo": "1,059,500 / 353,250 gzip (61 edificios de fábrica)"
+  }
+ },
+ "pruebas": [
+  "scripts/pruebas-fabrica.mjs",
+  "scripts/pruebas-lod-ligero.mjs",
+  "scripts/pruebas-vista-ligera.mjs",
+  "scripts/pruebas-identificacion.mjs",
+  "scripts/pruebas-c1-13-enjambre.mjs (firmas por edificio)",
+  "npm run pruebas",
+  "python3 scripts/pruebas-puente.py",
+  "npm run verificar:publicacion",
+  "npm run build",
+  "git diff --check"
+ ],
+ "worldSha256": "520972b37a9aa9edeeac941119baa24966a08fe07b0dd199101458b920181f93",
+ "archivos": {
+  "aerea-trazo.jpg": "71f2ad113a7abdc548ad689d107ec3add9f6d7d8fa505773e5fda062f62cdeb9",
+  "antes-despues.jpg": "bb0d501836093fa64072a609a2b1e66f628665f86b48ad9ea7a66b0879b18073",
+  "blender-aerea-noreste.jpg": "b0681357f7d2c7fbe1166973c6d1b3e997f4cb2c8d7a653290a8d136e8d3b2c5",
+  "blender-aerea.jpg": "d8559e250a2658eab15d43633e8c3a40f3ebeec0f366803b84be24e32bf1eb3d",
+  "blender-kwpq-rojo.jpg": "3d45c327dad4027e051f5adb920391bedc8d2938188b30243a9d2a4553559385",
+  "blender-qU0X-frente.jpg": "ed1e95a9fc4a38d7a50a8a173e1a7553d5b6238bb010dedee13022aa4d2a0a91",
+  "blender-wgpw-oeste.jpg": "fe013037c61824a8952cf08ea926f07f175eac3aa863d3df7c622147974778c7",
+  "camaras.json": "9fa085437f1b0447ab94d034bf6e5fc333213b88beef84b10ff91958f8fa1771",
+  "cuadra10-C21.glb": "f408a1a4d36d83e7aa3a2fe32a3935c91d0597692503538f47d1795dfc3ce6e4",
+  "foto-vs-modelo.jpg": "bdd9ee35032afa17f9f0ae6e920d363be5cdb0c29b24fb82e6e6cca9e3396ead",
+  "medidas-aerea.json": "87f2e25feef6d4223699771c340006ff114c1abfddddfeaf525b561f3662b630",
+  "medir-aerea.py": "2bec7ee0dc5df71b820ad743aa952d980b0fd471ffa10dbcd5d6c30bbe4acbed",
+  "secciones.json": "e3663776553cb1ba3455c089574bf78c16d4c2ba4f0be970f104cf46f369efdf",
+  "triangulacion.json": "9eaba88bcf5e9c33b66e5cb7ec69f46fe6199e8f9c91584c90c3b9d7973542a9",
+  "triangular-fotos.py": "6ed03a73e07165a9861d80189ccd916c0fb7db2563852f3a7cab6908d43e0b4f"
+ }
+}
