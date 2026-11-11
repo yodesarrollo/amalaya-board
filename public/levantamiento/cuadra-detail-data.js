@@ -66,6 +66,8 @@ import {C17_118} from './c17-118-data.js?v=f040917b6991';
 import {C01_07} from './c01-07-data.js?v=8519f8d51b8b';
 import {C01_08} from './c01-08-data.js?v=3cc1cea1d590';
 import {C01_09} from './c01-09-data.js?v=5642db3526cf';
+import {C03_26} from './c03-26-data.js?v=832a30fce669';
+import {C03_27} from './c03-27-data.js?v=a36090be3a83';
 
 // Historic photo-based packets and explicitly labelled modelling hypotheses.
 // Dimensions are approximate; each packet documents its own evidence and limits.
@@ -129,6 +131,9 @@ CUADRA_DETAILS.push(C18_119,C18_120,C18_121,C18_122,C18_123,C18_124,C18_125,C18_
 CUADRA_DETAILS.push(C17_118);
 // C01 · cuadra 3 (10-nov-2026): aérea + fábrica de fachadas; banco por secciones y estacionamiento abierto en B1-07.
 CUADRA_DETAILS.push(C01_07,C01_08,C01_09);
+// C03 · cuadra 7 (10-nov-2026): fotos de calle H01/H04 sobre las plantas y alturas de la ronda 2;
+// cada paquete toma el frente de ROUND2_BUILDINGS como dueño y lo reconstruye (paramento-data.js sin cambios).
+CUADRA_DETAILS.push(C03_26,C03_27);
 
 CUADRA_DETAILS.push(C02_APROXIMADA);
 CUADRA_DETAILS.push(...SERDAN_APROXIMADO);
