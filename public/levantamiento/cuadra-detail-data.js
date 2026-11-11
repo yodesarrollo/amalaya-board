@@ -65,6 +65,7 @@ import {C02_10} from './c02-10-data.js?v=88b577b4a48a';
 import {C02_11} from './c02-11-data.js?v=da9f3fff7c00';
 import {C02_12} from './c02-12-data.js?v=12c2e20e1850';
 import {C02_13} from './c02-13-data.js?v=a6b87447272f';
+import {C17_118} from './c17-118-data.js?v=f040917b6991';
 
 // Historic photo-based packets and explicitly labelled modelling hypotheses.
 // Dimensions are approximate; each packet documents its own evidence and limits.
@@ -124,9 +125,11 @@ CUADRA_DETAILS.push(C16_116,C16_117);
 // C18 · cuadra 33 (10-nov-2026): franja al pie del cerro, aérea + fábrica de fachadas; frente de
 // Sufragio y D3-01 retrazados a ±1 m sobre la aérea; edificios sobre el suelo actual (pendiente anotada).
 CUADRA_DETAILS.push(C18_119,C18_120,C18_121,C18_122,C18_123,C18_124,C18_125,C18_126,C18_127,C18_128,C18_129,C18_130,C18_131,C18_132,C18_133,C18_134,C18_135,C18_136,C18_137,C18_138,C18_139);
-// C02 · cuadra 4 (10-nov-2026): sustituye al paquete aproximado de octubre (cuadra-c02-aproximada.js?v=762653c8bba5,
-// conservado como registro); frentes observados de 10 y 12, fábrica de fachadas y 11 por sección.
+// C02 · cuadra 4 (10-nov-2026): sustituye al paquete aproximado de octubre de C02 (archivo conservado
+// como registro); frentes observados de 10 y 12, fábrica de fachadas y 11 por sección.
 CUADRA_DETAILS.push(C02_10,C02_11,C02_12,C02_13);
+// C17 · cuadra 32 (10-nov-2026): aérea + fábrica de fachadas; 118 en la punta norte del cerro.
+CUADRA_DETAILS.push(C17_118);
 
 CUADRA_DETAILS.push(...SERDAN_APROXIMADO);
 CUADRA_DETAILS.push(C05_APROXIMADA);

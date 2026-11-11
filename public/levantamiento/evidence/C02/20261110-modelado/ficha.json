@@ -238,14 +238,14 @@
   "El suelo gris de las vistas de Blender es un fondo de render; las aristas negras en bordes y esquinas de sección son del render, como en C09, C14 y C16."
  ],
  "vistaLigera": {
-  "bytes": 955100,
-  "gzip": 319813,
-  "triangulos": 47755,
+  "bytes": 956300,
+  "gzip": 320291,
+  "triangulos": 47815,
   "lod": {
-   "walls": 642,
-   "openings": 496
+   "walls": 646,
+   "openings": 501
   },
-  "version": "bb539597ebbf",
+  "version": "6672a34a65e3",
   "techo": "1 MB / 325 KB gzip",
   "nota": "B1-01 deja keepDetails (sus ~40 marcos subían la vista ligera a 326 KB gzip); B1-03 lo conserva por la prueba de su pórtico"
  },
@@ -264,7 +264,7 @@
   "npm run build",
   "git diff --check"
  ],
- "worldSha256": "51d3d665fc072da0749ac303a09bd456ed4b8594066be58699ae47e96dde50c2",
+ "worldSha256": "f0d5e952ab877c0b9b3d32e386fc6b69a7e39dd85558a7d4904a21fb4284f593",
  "archivos": {
   "C02-10-13.glb": "ac95b7e8887acf3239715a3708fdc1d9f86727f702c112cd6eb9b5f9fa1cc8f2",
   "aerea-trazo.jpg": "28b9e75e3ec1d2620dcc88b076fe6e5bb36b7bcd92a313974462e7f42f0b067e",

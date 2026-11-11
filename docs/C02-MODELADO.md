@@ -23,7 +23,7 @@ Ficha con fuentes, mediciones, límites y hashes: [ficha.json](../public/levanta
 
 ## Vista ligera
 
-B1-01 deja `keepDetails`: con sus ~40 vanos nuevos los marcos subían la vista ligera a 326 KB gzip. Sin él, sus vanos van como paneles planos (LOD), igual que en el resto de la fábrica, y la vista ligera queda en 955,100 bytes / 319,813 gzip (main con C08 y C18: 954,400 / 319,037). B1-03 lo conserva por la prueba de su pórtico. Queda poco margen bajo el techo de 325 KB para las cuadras 1–21.
+B1-01 deja `keepDetails`: con sus ~40 vanos nuevos los marcos subían la vista ligera a 326 KB gzip. Sin él, sus vanos van como paneles planos (LOD), igual que en el resto de la fábrica, y la vista ligera queda en 956,300 bytes / 320,291 gzip (main con C08, C17 y C18: 955,600 / 319,430). B1-03 lo conserva por la prueba de su pórtico. Queda poco margen bajo el techo de 325 KB para las cuadras 1–21.
 
 ## Límites
 
