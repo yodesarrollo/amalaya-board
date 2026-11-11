@@ -1,0 +1,206 @@
+{
+ "id": "C17",
+ "cuadra": 32,
+ "edificios": {
+  "118": "D3-18"
+ },
+ "fecha": "2026-11-10",
+ "autor": "Claude (Opus 5.5), sesión https://claude.ai/code/session_01BCpvee7brhDsj3BBaJQuHa",
+ "criterio": "Alejandro Puebla (propietario), 10-nov-2026 18:36 HMO: «más que genérico, una versión aceptable a la realidad según las fotos, lo que muestre»; aprobado el modelo ligero para celular.",
+ "fuentes": [
+  {
+   "path": "public/levantamiento/calco/referencia.webp",
+   "sha256": "ef453bbe2db667f3916e718133b81210e7ff53a51b67c412941a613f5288a074",
+   "tipo": "aérea Esri World Imagery z19 (recuperada 2026-10-07), georreferenciada, 0.26 m/píxel"
+  },
+  {
+   "path": "public/levantamiento/ajuste-visual/C17.jpg",
+   "sha256": "91843bdece7703d5437933b79aa413cd4e543fea29eaca9f4db2fe7f5f7af392",
+   "tipo": "recorte aéreo de la cuadra"
+  },
+  {
+   "path": "public/levantamiento/evidence/D3-18/20261006-01-cierre.json",
+   "sha256": "c3f017d50f2fb10123633eabe4a21e241d6bcfd5a2ae6e45b761797eb002aec5",
+   "tipo": "planta de inventario ±3 m («Enrique Quijada · cuerpo oriental de borde sur»)"
+  },
+  {
+   "path": "public/levantamiento/ajuste-visual/cuadras.json",
+   "sha256": "a931062a2b6de0755592719c1e3f628734729e761e1a437f31b5dc0af1a2316e",
+   "tipo": "banqueta de C17: tres tiras abiertas sin anillo interior; revisión C17: manzana irregular junto al cerro, oriente como colindancia natural"
+  },
+  {
+   "path": null,
+   "tipo": "foto de calle",
+   "resultado": "no disponible en el repositorio; Street View inaccesible desde la nube"
+  }
+ ],
+ "mediciones": {
+  "script": "medir-aerea.py",
+  "resultado": {
+   "metrosPorPixel": [
+    0.2607,
+    0.2601
+   ],
+   "techo": {
+    "pixeles": 599,
+    "mediana": "#fcf7ec",
+    "luminancia": {
+     "min": 210.0,
+     "p05": 228.7,
+     "p50": 245.3
+    }
+   },
+   "franjaOriental": {
+    "pixeles": 208,
+    "mediana": "#a69d86",
+    "luminanciaMediana": 151.2
+   },
+   "areas_m2": {
+    "inventario": 73.96,
+    "seccion": 55.55
+   }
+  }
+ },
+ "forma": {
+  "criterio": "la planta de inventario cubría al oriente una franja de terreno rocoso; el cuerpo de azotea blanca se traza como una sección (normalizeSections) y la franja queda abierta; la planta de inventario se conserva como registro",
+  "seccion": [
+   [
+    97.9,
+    188.9
+   ],
+   [
+    103.5,
+    188.4
+   ],
+   [
+    103.4,
+    199.9
+   ],
+   [
+    99.7,
+    201.0
+   ]
+  ],
+  "tolerancia_m": 0.5,
+  "inventario": [
+   [
+    97.601,
+    189.439
+   ],
+   [
+    103.597,
+    188.399
+   ],
+   [
+    106.204,
+    199.321
+   ],
+   [
+    99.947,
+    201.401
+   ]
+  ],
+  "area_m2": {
+   "inventario": 73.96,
+   "seccion": 55.55
+  },
+  "franjaAbierta": "hasta 2.6 m de ancho en el extremo sur"
+ },
+ "alturas": {
+  "criterio": "tipológico: 4.0 m (mediana de los frentes de un nivel del centro estimados con Street View, 3.3–5.3 m); el inventario no registra a D3-18 como cuerpo bajo (altura provisional de inventario 6.2 m, sin medir)",
+  "incertidumbre_m": 0.7,
+  "nota": "En esta aérea el sol viene del este: la banda oscura al poniente del cuerpo es calle y sombra, no una medida de altura."
+ },
+ "fachadas": {
+  "calle": "arista 3 (poniente, Profesor Enrique Quijada): frentes-calle-lib.mjs la marca como calle con las tiras de banqueta (0.54 m, 6.1°) y con el límite de manzana (1.62 m)",
+  "aMenosDe4m": "arista 0 (norte): 3.12 m en promedio de la banqueta",
+  "sinVanos": "arista 1 (oriente, terreno del cerro) y arista 2 (sur, interior de la manzana)",
+  "tipologia": "casa de un nivel: 4 módulos con puerta central en la cara poniente; una ventana en la norte; 5 vanos"
+ },
+ "pasos": [
+  {
+   "paso": 1,
+   "nombre": "Identidad y evidencia",
+   "resultado": "118/D3-18, único registro de C17, en la punta norte de la manzana; cara poniente sobre Profesor Enrique Quijada. Sólo aérea; sin foto de calle."
+  },
+  {
+   "paso": 2,
+   "nombre": "Forma",
+   "resultado": "Una sección a ±0.5 m sobre el techo blanco (55.6 m² frente a 74.0 m² del inventario); franja oriental de terreno rocoso abierta; sin patios ni alberca."
+  },
+  {
+   "paso": 3,
+   "nombre": "Alturas",
+   "resultado": "Tipológica, 4.0 m ±0.7 (ver alturas)."
+  },
+  {
+   "paso": 4,
+   "nombre": "Fachada",
+   "resultado": "Fábrica de fachadas, casa de un nivel en la cara a la calle (poniente) y en la norte, a menos de 4 m de la banqueta; oriente y sur sin vanos."
+  },
+  {
+   "paso": 5,
+   "nombre": "Material y azotea",
+   "resultado": "Techo blanco (mediana #fcf7ec; color del modelo #e6e2d6, el de las azoteas blancas de C09/C14); pretil; color de muro estimado; sin tinacos ni equipos visibles (luminancia mínima del techo 210.0, mediana 245.3)."
+  },
+  {
+   "paso": 6,
+   "nombre": "Conjunto, ligero y comparación",
+   "resultado": "Vecinos idénticos por firma de colisiones; 5 vanos alcanzados desde fuera; colisiones a la altura de la sección (4.05 m); LOD en la vista ligera; mismas cámaras antes y después; vistas de Blender y GLB del edificio."
+  }
+ ],
+ "limites": [
+  "Sin foto de calle: vanos, puerta, color de muro y altura son tipológicos.",
+  "Contorno de la sección a ±0.5 m sobre una aérea de 0.26 m/píxel; sin medición en sitio. La planta de inventario (±3 m) se conserva como registro.",
+  "Al norte, sobre la misma banqueta, la aérea muestra otra cubierta blanca angosta fuera del inventario de 139; se mantiene fuera del conteo, como en C14.",
+  "La cara norte puede colindar en su mitad poniente con esa cubierta; la ventana tipológica queda centrada (±0.5 m).",
+  "El suelo gris de las vistas de Blender es un fondo de render, no geometría del modelo; el terreno del cerro no está modelado."
+ ],
+ "vistaLigera": {
+  "bytes": 917600,
+  "gzip": 303615,
+  "triangulos": 45880,
+  "lod": {
+   "walls": 483,
+   "openings": 369
+  },
+  "antes": {
+   "bytes": 916400,
+   "gzip": 303199,
+   "triangulos": 45820,
+   "base": "main f47f9fa (con C15 y C19)"
+  },
+  "techo": "1 MB / 325 KB gzip"
+ },
+ "pruebas": [
+  "scripts/pruebas-fabrica.mjs",
+  "scripts/pruebas-lod-ligero.mjs",
+  "scripts/pruebas-vista-ligera.mjs",
+  "scripts/pruebas-c1-13-enjambre.mjs (firmas por edificio)",
+  "scripts/pruebas-lamina.mjs",
+  "npm run pruebas",
+  "python3 scripts/pruebas-puente.py",
+  "npm run verificar:publicacion",
+  "npm run build",
+  "git diff --check"
+ ],
+ "integracion": {
+  "pruebaFabrica": "scripts/pruebas-fabrica.mjs toma la línea de fachada del anillo interior de la banqueta; la de C17 (como la de C18) son tiras abiertas sin anillo y la prueba se detiene. Con la línea tomada de las tiras y el lote de la manzana INEGI, 118 cumple: 1 sección, 1 cara a la calle, 5 vanos alcanzados, 62 colisiones a la altura de la sección.",
+  "decision": "Alejandro Puebla (propietario), 10-nov-2026: esperar el arreglo compartido del chat de C18 y fusionar C17 después, sin editar pruebas compartidas desde C17.",
+  "estado": "pendiente del arreglo de C18"
+ },
+ "worldSha256": "5cd945122e8483e769f9a3bb56cfc50c3ac6fe7a485047800df887ad2e0d05c5",
+ "archivos": {
+  "118-D3-18.glb": "736ade90d85c875a4151ab78dad737ecee5957edd7f4d212b695d0eda2d37445",
+  "aerea-trazo.jpg": "8d27be38b2f70f4684bb8762417e5f729bceaa453f99bf99dbd3c63f89437f88",
+  "antes-despues.jpg": "3ef20d4999e7341a17ce0b1d954432c15ffdfc3b930a494285bde3b51081da07",
+  "blender-aerea-suroeste.jpg": "d2886f3083d679307fbd8971e94d8fd50493f79f0a4c9f3ceef53fe4f1ce6b33",
+  "blender-aerea.jpg": "6a25ff96405b51eb3eda137bbbd40d92fc459a828ab0a904e4ed3e1f0b37fc11",
+  "blender-enrique-quijada-frente.jpg": "e0a39b173ff7c2b9ed192b17bfc2bd2eeb2f26081169d157bdfb53b2d71b66e3",
+  "blender-enrique-quijada-norte.jpg": "32519998bdc96e067aa6effc825fa3315e875dd8e001e941a19de4846389d116",
+  "blender-enrique-quijada-sur.jpg": "fbd1039a6e0cdfbbbb582af7fba72640f02e3071dd1d6a72f40a771d274963d4",
+  "blender-noreste.jpg": "8284ea67501257e62ace2b7eb323acb03149838b85e6a1e94f5a3d1c3891f1c5",
+  "camaras.json": "a988cd9f7b30e6d3d8c607feb8790f2b8338c6831c743cecedbb86767b06ddf3",
+  "medir-aerea.py": "5b3ea6f4b920bd276cc880f49fd309359b0a2ab03187fb368776ef1d2c10ba8d"
+ }
+}
