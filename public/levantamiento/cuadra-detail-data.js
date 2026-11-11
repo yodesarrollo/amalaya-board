@@ -9,11 +9,11 @@ import {C10_86} from './c10-86-data.js?v=12963b0dd445';
 import {C10_87} from './c10-87-data.js?v=88b083a06801';
 import {C10_88} from './c10-88-data.js?v=a080426f30e7';
 import {C11_89} from './c11-89-data.js?v=be483411c276';
-import {C14_90} from './c14-90-data.js?v=c33a68c6ee1b';
-import {C14_91} from './c14-91-data.js?v=8d052b60bf3c';
-import {C14_92} from './c14-92-data.js?v=460e06aaeadd';
-import {C14_93} from './c14-93-data.js?v=cbf5321dd72c';
-import {C14_94} from './c14-94-data.js?v=913330d14494';
+import {C14_90} from './c14-90-data.js?v=b04f6d6ff9ce';
+import {C14_91} from './c14-91-data.js?v=6db41f02496b';
+import {C14_92} from './c14-92-data.js?v=19a80efa7f83';
+import {C14_93} from './c14-93-data.js?v=93b364039ce4';
+import {C14_94} from './c14-94-data.js?v=f7704305ae58';
 
 // Historic photo-based packets and explicitly labelled modelling hypotheses.
 // Dimensions are approximate; each packet documents its own evidence and limits.
