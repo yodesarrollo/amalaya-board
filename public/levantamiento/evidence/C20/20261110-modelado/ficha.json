@@ -208,16 +208,16 @@
   "El suelo gris de las vistas de Blender es un fondo de render; las aristas negras son del render, como en C02, C09 y C16."
  ],
  "vistaLigera": {
-  "bytes": 991120,
-  "gzip": 335442,
-  "triangulos": 49556,
+  "bytes": 984240,
+  "gzip": 333618,
+  "triangulos": 49212,
   "lod": {
-   "walls": 762,
-   "openings": 631
+   "walls": 777,
+   "openings": 638
   },
-  "version": "6d92439c44d7",
+  "version": "d7ced50afcfb",
   "techo": "846,000 + 3,500 y 277,000 + 1,250 gzip por edificio de fábrica (mínimo 1 MB / 325 KB)",
-  "nota": "main 013e9f0: 986,120 / 333,092; techo con 78 edificios de fábrica 1,119,000 / 374,500 (pruebas-vista-ligera); 37 y 38 reconstruidos sumaban ~3,600 / 1,800 en la prueba local sobre 6fa0cc3"
+  "nota": "main 85fa3f0: 979,240 / 331,274; techo con 79 edificios de fábrica 1,122,500 / 375,750 (pruebas-vista-ligera); 37 y 38 reconstruidos sumaban ~3,600 / 1,800 en la prueba local sobre 6fa0cc3"
  },
  "camaras": "camaras.json: [nombre, lat, lng, rumbo, fov, cabeceo, altura]; las de calle van sobre la calzada a 1.6 m, la de P05 a 2.8 m como el panorama; mismas cámaras antes y después",
  "pruebas": [
@@ -234,12 +234,12 @@
   "npm run build",
   "git diff --check"
  ],
- "worldSha256": "5e47299b2e0ca6a56ad1896ad84fbfdc5024064a748e87aa986df25d6217c84b",
+ "worldSha256": "76eb05d991e62544965a913e016515c38b47373e818aeae45cd2b357d2a2caa2",
  "archivos": {
   "C20-35-39.glb": "8fd913c6da8f8086e906953d15eb572e661bbc5ea939292a456bb89e13fa3063",
   "aerea-trazo.jpg": "a60a38ac1aaf092b172b60df90cbe58c8c26b2cd63f5feed869e435875fe1dda",
   "alzado-p05.jpg": "73599dc83d445b0fbf877a919906dd0ad07eb33a2cb2852aea7a293593227712",
-  "antes-despues.jpg": "c40d337de05ede2bceaffc3de83a9c48ae3da5e6ad1a6ee5a2c72208a68bbf02",
+  "antes-despues.jpg": "dc4a9f8877bbaa6b72c68fef5c08b39db2eb9ffaf3fd32665ede8e7bbfb9338f",
   "blender-aerea-noroeste.jpg": "6cda16810cae11e3314ed52d395689bea5566dbcf4f673a540008779d09cf3a3",
   "blender-aerea.jpg": "56640500e69abb2384966f3d017d80de2a1066002aa1684c7f027fb69442faf3",
   "blender-esquina-noroeste.jpg": "4cea5c7f09371904cd3ce5fd3d2c65e0a035275ff2b4e1c266d6279d5d90d23c",

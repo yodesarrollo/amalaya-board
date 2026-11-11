@@ -1,0 +1,73 @@
+{
+ "desplazamiento_z": -1.3,
+ "secciones": {
+  "rojo": {
+   "mediana": "#caa08e",
+   "pixeles": 665,
+   "oscuro_pct": 9.3,
+   "area_m2": 45.13
+  },
+  "rojo-fondo": {
+   "mediana": "#b9b9af",
+   "pixeles": 1663,
+   "oscuro_pct": 12.7,
+   "area_m2": 111.16
+  },
+  "blanco": {
+   "mediana": "#f3ede5",
+   "pixeles": 795,
+   "oscuro_pct": 2.3,
+   "area_m2": 54.18
+  },
+  "blanco-fondo": {
+   "mediana": "#bbc3bc",
+   "pixeles": 2715,
+   "oscuro_pct": 6.5,
+   "area_m2": 184.62
+  },
+  "amarillo": {
+   "mediana": "#f6f3e7",
+   "pixeles": 1400,
+   "oscuro_pct": 3.6,
+   "area_m2": 94.98
+  }
+ },
+ "EB-NW": {
+  "mediana": "#e2dccd",
+  "pixeles": 3317,
+  "oscuro_pct": 26.0,
+  "area_m2": 225.06
+ },
+ "franjas": {
+  "enladrillado frente rojo": {
+   "mediana": "#ce9f8e",
+   "pixeles": 465,
+   "oscuro_pct": 8.0,
+   "area_m2": 31.98
+  },
+  "gris-azul fondo": {
+   "mediana": "#b3bdb6",
+   "pixeles": 1440,
+   "oscuro_pct": 5.3,
+   "area_m2": 95.88
+  },
+  "mancha verde-azul": {
+   "mediana": "#647e72",
+   "pixeles": 247,
+   "oscuro_pct": 9.7,
+   "area_m2": 16.8
+  },
+  "blanco frente oriente": {
+   "mediana": "#fdfbf3",
+   "pixeles": 378,
+   "oscuro_pct": 0.0,
+   "area_m2": 25.2
+  },
+  "blanco esquina NE (fuera de INEGI)": {
+   "mediana": "#f4eee3",
+   "pixeles": 1368,
+   "oscuro_pct": 1.5,
+   "area_m2": 93.0
+  }
+ }
+}
