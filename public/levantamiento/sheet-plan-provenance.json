@@ -9,10 +9,10 @@
     "visor": "a293ff5b0562649401b8449301d289042fcd8ed828e49d7dc8a5f86f277f1099"
   },
   "hashes": {
-    "world": "123e79df9e2ba1d613f696ef15ebae29dd8756ea3c0d666fcd0d1adb1b971423",
-    "visor": "06e0211a3a2e7182f53cd4c71bf470efefde6a391643497a072cec6c94a86b3e"
+    "world": "db49a52a7e92c4e711dc600d51484fab7875ace67a79015d6e79a473bbadd3ae",
+    "visor": "ca8e6cd9ad2c30614b9074cad0263220a09b6a0ab480d7b7abc05df0ac29b0f3"
   },
-  "moduleSha256": "3e0ff30af67a97fd05ccf07d3ac7848de81f1bf55bdd358f85875968ed2a0d9b",
+  "moduleSha256": "1a582178b3143943d06a35e19668eef9b585a298a4cd56932a7de065c6e1073f",
   "dataSha256": "9ae568697dde4a4c780a54b0e76ff3255ecadd9ca6b2605fe0f01b53aacaf30f",
   "newOrIndividualizedPolygons": 127,
   "scope": "whole calibrated sheet including intersecting edge bodies",
