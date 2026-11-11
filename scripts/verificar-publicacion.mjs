@@ -95,6 +95,11 @@ const olaEvidenceFiles=new Map([
  ['D1-09',['aerea-3d.jpg','calle-norte-3d.jpg','esquina-noreste-3d.jpg','camaras.json','paquete.json']],
  ['D1-12',['aerea-3d.jpg','calle-3d.jpg','esquina-3d.jpg','camaras.json','escena.json','paquete.json']]
 ].map(([id,names])=>[root+'/evidence/'+id+'/20261029-ola1',new Set(names)]));
+// 89/D1-12 (10-nov-2026): modelado con foto documentada y formas estimadas.
+// La ficha fija el inventario exacto de la carpeta y el hash de cada archivo.
+{const dir=root+'/evidence/D1-12/20261110-modelado',ficha=JSON.parse(await readFile(dir+'/ficha.json','utf8'));
+ olaEvidenceFiles.set(dir,new Set(['ficha.json',...Object.keys(ficha.archivos)]));
+ for(const [name,hash] of Object.entries(ficha.archivos))assert.equal(sha256(await readFile(dir+'/'+name)),hash,'89: conservar evidencia '+name);}
 const swarm82Root=root+'/evidence/C1-13/20261029-enjambre';
 // C10 changes shared imports legitimately. Keep 82 receipts immutable and verify
 // their exact historical bytes separately from the current C10 artifact.

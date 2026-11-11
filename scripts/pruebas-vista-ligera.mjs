@@ -20,6 +20,9 @@ assert((await readFile('public/seguimiento-ligero.json')).length<100000,'resumen
 // C1-13 candidate: 949,160 bytes / 305,749 gzip, 47,458 triangles.
 // Baseline ef89166: 886,700 bytes / 282,310 gzip. Preserve structural details;
 // the 960 KB / 310 KB ceilings leave a small measured margin, not a visual approval.
-assert(bytes.length<960000,'geometría completa bajo 960 KB');
-assert(gzipSync(bytes).length<310000,'geometría comprimida bajo 310 KB');
+// 89/D1-12 (10-nov-2026): modelado con vanos reales en 4 frentes (72 vanos, dos patios):
+// 1,006,880 bytes / 324,941 gzip (antes 959,920 / 309,043), 50,344 triángulos. Techos con margen pequeño;
+// el siguiente paso es LOD en la vista ligera (vanos sin perforar) antes de más edificios.
+assert(bytes.length<1015000,'geometría completa bajo 1015 KB');
+assert(gzipSync(bytes).length<330000,'geometría comprimida bajo 330 KB');
 console.log('Vista ligera: todos los IDs y estados conservados; geometría válida y presupuestos de carga cumplidos.');

@@ -1,0 +1,69 @@
+{
+ "id": "D1-12",
+ "numero": 89,
+ "cuadra": "C11",
+ "cuadraVisible": 26,
+ "fecha": "2026-11-10",
+ "autor": "Claude (Opus 5.5)",
+ "worldSha256": "ecd153be0c7f4c1012b9e90551f596f178a63377130e6e32fa3b0ac7f228373c",
+ "nivel": "medio exterior aproximado: frente sur con foto; poniente y norte estimados por continuidad",
+ "criterio": {
+  "fuente": "Alejandro Puebla, chat 10-nov-2026 16:40 HMO",
+  "texto": "Lo genérico es sólo para lo que no tiene ni una foto; con foto se modela. Sin Chrome: usar la foto documentada y la aérea; el resto como estimado."
+ },
+ "fuentes": [
+  {
+   "ruta": "public/levantamiento/ajuste-visual/C11.jpg",
+   "lado": "aérea",
+   "fecha": "desconocida",
+   "uso": "planta, dos patios, techos claros y pretiles"
+  },
+  {
+   "pano": "wCAjZTaNz6Qt4POhDordqw",
+   "url": "https://www.google.com/maps/@29.0740423,-110.9557832,207a,90y,90t/data=!3m7!1e1!3m5!1swCAjZTaNz6Qt4POhDordqw!2e0!7i16384!8i8192",
+   "fecha": "2023-12",
+   "lado": "frente sur desde Bavispe, mirando al norte",
+   "registro": "docs/OLA-C11-20261029.md y evidence/D1-12/20261029-ola1/paquete.json",
+   "captura": "no conservada; observación textual de la ola 1"
+  }
+ ],
+ "pasos": {
+  "P1 identidad": "D1-12, número 89, cuadra C11/26; conjunto alrededor de dos patios. Tres rasgos: muro amarillo, ventana baja con reja saliente bajo vano alto enrejado, nichos cuadrados. La cámara proyecta en la arista 5 a 18.92 m de la esquina suroeste, a 3.5 m del paño: tramo visto ~7 m (14.5–22.4 m) hasta ~4.9 m de altura.",
+  "P2 forma": "Planta efectiva de seis vértices y dos patios sin cambio; altura provisional 6.2 m; pretil perimetral y techo claro según aérea.",
+  "P3 fachada": "Sur: módulo observado y su repetición estimada cada 4.4 m (10 módulos). Poniente: 7 módulos cada 5 m; norte: 5 y 4 módulos cada 4.6 m; misma tipología sin nichos (estimado). Oriente: colindancia sin vanos. Sin accesos inventados.",
+  "P4 material": "Aplanado amarillo, marcos y remate crema, nichos en sombra, rejas de hierro; superficie no metálica (rugosidad 0.95).",
+  "P5 conjunto": "Colisiones y geometría ajenas idénticas; patios abiertos; 72 vanos visibles desde la calle (prueba de rayos). Vista ligera 1,006,880 bytes / 324,941 gzip (antes 959,920 / 309,043).",
+  "P6 comparación": "Mismas cámaras de la ola 1 (calle, esquina, aérea) antes y después; vista desde la posición de la foto con Blender; frente suroeste y aérea en Blender."
+ },
+ "observado": "Frente sur 14.5–22.4 m: muro amarillo, ventana baja con reja saliente, vano alto enrejado, nichos cuadrados.",
+ "estimado": "Repetición del módulo en el resto del frente sur; tipología en poniente y norte; cotas, color exacto, remate y pretil.",
+ "limites": [
+  "Sin medición en sitio: dimensiones visuales, altura provisional.",
+  "La captura de la foto no se conservó: el módulo se apoya en la descripción registrada el 29-oct.",
+  "Poniente y norte sin foto propia: tipología estimada por continuidad del conjunto.",
+  "Colindancia oriente expuesta en el modelo porque los vecinos de la manzana no están en el inventario."
+ ],
+ "pruebas": [
+  "node scripts/pruebas-modelo89.mjs",
+  "npm run pruebas",
+  "python3 scripts/pruebas-puente.py",
+  "npm run verificar:publicacion",
+  "npm run build"
+ ],
+ "herramientas": {
+  "blender": "bpy 5.3.0 (Cycles CPU, 40 muestras) con herramientas/blender/render-revision.py sobre la escena exportada por scripts/exportar-escena-c08.mjs",
+  "repo": "scripts/renderizar-evidencia-paramento.py"
+ },
+ "archivos": {
+  "89-D1-12.glb": "c86a307d4d15cac98aeec11318412d7d57ef3ce6d1f773dd8ab42f9cca3b2eb4",
+  "aerea-3d.jpg": "4edb8be308a34f19f70b635b944d425b1a62138186f3c1ca6f13075c68daa8bb",
+  "blender-aerea.jpg": "c40d2d82ceb86907618d320824ac78ca9a54b6a1d4fcfa3329163bd060350ba1",
+  "blender-calle.jpg": "16016e3329a9281ddbde3a445cc8663dd28650e0d5a9d42e445f76189124b691",
+  "blender-esquina.jpg": "2dccf4fecd85fbe6cd9f3b38ab3669f1df27f52043492d426ecdea932f75fd3d",
+  "blender-foto-streetview.jpg": "7ad8f262a3fd72065ffe502b809bdb87577e2174568e47174a035cde850301d9",
+  "blender-suroeste.jpg": "f2fade0dff5de939745400eb66dfa10330c6440ab74af27e072870cbd9f377af",
+  "calle-3d.jpg": "81d98b927e02ce25af2c8647b2de616b7a1f48ceaa4ad4d952b121bf3c0af97e",
+  "camaras.json": "99f389c1a5981be00154515f3da3e5ae9fc9446f0115636265aabecb29a61498",
+  "esquina-3d.jpg": "847d6c15521fe328c9971908ed89dd08bb30829c35b0002d4a193f97d48c4e32"
+ }
+}

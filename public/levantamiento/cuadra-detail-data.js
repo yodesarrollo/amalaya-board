@@ -8,6 +8,7 @@ import {C10_85} from './c10-85-data.js?v=dc70a8b0a7a0';
 import {C10_86} from './c10-86-data.js?v=12963b0dd445';
 import {C10_87} from './c10-87-data.js?v=88b083a06801';
 import {C10_88} from './c10-88-data.js?v=a080426f30e7';
+import {C11_89} from './c11-89-data.js?v=bd91b194e23f';
 
 // Historic photo-based packets and explicitly labelled modelling hypotheses.
 // Dimensions are approximate; each packet documents its own evidence and limits.
@@ -66,6 +67,8 @@ export const CUADRA_DETAILS = [{
  ],access:{building:'CH-YG-BBVA',edge:0,center:22,steps:3,rise:.12,tread:.28,width:3.2,source:'c30-yanez-banco-20261008.jpg'},heritage:{ownerPrefix:'PH-01 · Instituto Sonorense de Cultura · fachada patrimonial interpretada',a:[-56.9592,-.166425],b:[34.54488,-8.066065],westEndX:-25,redStartX:2,height:7.45,westHeight:10.2,source:'c30-obregon-isc-20261008.jpg',note:'Tres frentes distintos: poniente de dos niveles, pórtico central de cuatro arcos visibles y paño rojo oriental con pilastras. El ala este previa se conserva. Proporciones estimadas, no medidas.'}
 }];
 CUADRA_DETAILS.push(C10_84,C10_85,C10_86,C10_87,C10_88);
+// 89/D1-12 · cuadra 26: modelado con foto documentada y formas estimadas (10-nov-2026).
+CUADRA_DETAILS.push(C11_89);
 
 CUADRA_DETAILS.push(C02_APROXIMADA);
 CUADRA_DETAILS.push(...SERDAN_APROXIMADO);

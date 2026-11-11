@@ -74,7 +74,27 @@ export async function verifyC10Generations({candidate}={}){
   assert.deepEqual(Object.keys(m.sourceHashes).sort(),sourcePaths(i>=2?m.stage:84).sort(),'C10: conservar cobertura de fuentes actuales');
  }
  const latest=chain.at(-1).manifest;
- for(const [path,hash] of Object.entries(latest.sourceHashes))assert.equal(digest(await safeRead(path)),hash,'C10: artefacto actual '+path);
+ // Cierre práctico de C10 (etapa88 con decisión del propietario, 10-nov-2026): desde ahí
+ // los archivos compartidos (registro, refinamientos, mundo, visor, vista ligera) cambian
+ // legítimamente por otras cuadras (89/C11 en adelante). Los módulos propios de C10 siguen
+ // congelados por hash y deben seguir importados con ese mismo contenido en el registro.
+ const own=path=>/\/c10-\d{2}-data\.js$/.test(path);
+ let closed=false;
+ if(latest.stage===88&&chain.length>2){
+  const dir=chain.at(-1).path.slice(0,chain.at(-1).path.lastIndexOf('/'));
+  try{const d=JSON.parse(await safeRead(dir+'/decision-propietario.json'));closed=Array.isArray(d.decisions)&&d.decisions.length>0&&JSON.stringify(d.block).includes('C10');}catch(error){if(error.code!=='ENOENT')throw error;}
+ }
+ for(const [path,hash] of Object.entries(latest.sourceHashes)){
+  if(closed&&!own(path))continue;
+  assert.equal(digest(await safeRead(path)),hash,'C10: artefacto actual '+path);
+ }
+ if(closed){
+  const registry=(await safeRead('public/levantamiento/cuadra-detail-data.js')).toString();
+  for(const [path,hash] of Object.entries(latest.sourceHashes).filter(([path])=>own(path))){
+   const file=path.slice(path.lastIndexOf('/')+1);
+   assert(registry.includes(`'./${file}?v=${hash.slice(0,12)}'`),'C10: módulo cerrado importado sin cambios '+file);
+  }
+ }
  if(latest.stage===85){
   assert(!(await readdir('public/levantamiento')).includes('c10-86-data.js'),'C10: etapa85 exige módulo86 AUSENTE');
   assert(!(await safeRead('public/levantamiento/cuadra-detail-data.js')).includes('c10-86-data.js'),'C10: etapa85 exige import86 AUSENTE');
