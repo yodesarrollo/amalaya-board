@@ -30,8 +30,20 @@ export function frentesDeCalle(points,rings,opts=FRENTE){
 }
 
 // Inner rings of a block's sidewalk surface = the frontage line seen from the lots.
+// Open sidewalks (strips with no inner ring, e.g. C17/C18 at the foot of the hill):
+// the strip outline is the frontage line; its curb side is farther from the lots.
 export function lineaDeFachada(ajusteVisual,block){
  const s=ajusteVisual.surfaces.find(s=>s.id===block&&s.kind==='sidewalk');
  if(!s)throw Error('Sin banqueta para '+block);
- return s.polygons.flatMap(p=>p.holes||[]);
+ const rings=s.polygons.flatMap(p=>p.holes||[]);
+ return rings.length?rings:s.polygons.map(p=>p.points);
+}
+
+// Lot ring for section checks: the largest inner ring of the sidewalk; with an open
+// sidewalk, the INEGI block boundary of cuadras.json (inventory limit, not a measured curb).
+export function loteDeCuadra(ajusteVisual,cuadras,block){
+ const s=ajusteVisual.surfaces.find(s=>s.id===block&&s.kind==='sidewalk');
+ const inner=s?s.polygons.flatMap(p=>p.holes||[]):[];
+ const rings=inner.length?inner:cuadras.blocks.find(k=>k.id===block).boundaryLocal.coordinates.map(p=>p[0]);
+ return rings.reduce((a,r)=>Math.abs(signedArea(r))>Math.abs(signedArea(a))?r:a);
 }

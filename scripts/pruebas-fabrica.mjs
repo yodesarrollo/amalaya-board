@@ -7,7 +7,7 @@ import {readFile} from 'node:fs/promises';
 import {Raycaster,Vector3} from 'three';
 import {CUADRA_DETAILS} from '../public/levantamiento/cuadra-detail-data.js';
 import {fachada} from '../public/levantamiento/fabrica-fachadas.js';
-import {frentesDeCalle,lineaDeFachada,signedArea} from './frentes-calle-lib.mjs';
+import {frentesDeCalle,lineaDeFachada,loteDeCuadra,signedArea} from './frentes-calle-lib.mjs';
 import {crearMundoLigero} from './mundo-ligero.mjs';
 const root='public/levantamiento';
 const av=JSON.parse(await readFile(root+'/ajuste-visual/cuadras.json','utf8')),cuadras=JSON.parse(await readFile(root+'/cuadras.json','utf8'));
@@ -29,7 +29,8 @@ for(const {block,b} of factory){
  assert(h&&h.measured===false&&h.generic===false&&h.observed&&h.estimated&&h.unchanged&&h.decision?.by,b.id+': registro de lo observado y lo estimado');
  assert(b.liteLod===true,b.id+': LOD en la vista ligera');assert(typeof b.fabrica.fotoCalle==='boolean'&&b.fabrica.fecha,b.id+': ficha de fábrica');
  const owner=plans.get(b.id);assert(owner?.userData.frontageId,b.id+': edificio construido por el paramento');
- const rings=lineaDeFachada(av,block),lot=rings.reduce((a,r)=>Math.abs(signedArea(r))>Math.abs(signedArea(a))?r:a);
+ // Open sidewalks (C17, C18): strips as frontage line and the INEGI block as lot.
+ const rings=lineaDeFachada(av,block),lot=loteDeCuadra(av,cuadras,block);
  const parts=b.sections?b.sections.map(s=>({part:s.part,points:s.points,height:s.height,facades:s.facades||[]})):[{part:b.id,points:owner.userData.fittedPlan.points,height:b.height,facades:b.facades}];
  const belongs=o=>{for(let p=o;p;p=p.parent)if(p===owner)return true;return false;};
  let vanos=0,rayos=0,frentes=0;
