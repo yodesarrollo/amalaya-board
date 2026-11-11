@@ -29,11 +29,11 @@ export const C14_91={block:'C14',evidence:'C14/20261110-modelado',buildings:[{
 
 ## Caras a la calle
 
-`scripts/frentes-calle-lib.mjs` compara cada arista con el borde interior de la banqueta de su cuadra (distancia ≤ 2.6 m, ángulo ≤ 25°, normal hacia la calle). `pruebas-fabrica.mjs` exige fachada en cada cara a la calle, secciones dentro del lote y sin enciman, vanos dentro del paño y alcanzados desde fuera, y colisiones a la altura de cada sección.
+`scripts/frentes-calle-lib.mjs` compara cada arista con el borde interior de la banqueta de su cuadra (con banqueta abierta, el contorno de las tiras, y como lote el borde INEGI de la cuadra; PR #129) (distancia ≤ 2.6 m, ángulo ≤ 25°, normal hacia la calle). `pruebas-fabrica.mjs` exige fachada en cada cara a la calle, secciones dentro del lote y sin enciman, vanos dentro del paño y alcanzados desde fuera, y colisiones a la altura de cada sección.
 
 ## Vista ligera (LOD)
 
-Con `liteLod:true` (todos los edificios de la fábrica y, desde la cuadra 28, los paquetes anteriores salvo 76–83 y 87, cuyas firmas auditadas se conservan; ver el final de `cuadra-detail-data.js`), el recorrido conserva los vanos perforados y la vista del celular recibe: cara exterior de cada muro y cada vano como panel plano 6 cm al frente, sólo la tapa superior de las cubiertas, sin losas de piso ocultas, y pretiles y equipos sin fondo ni cantos mínimos (`scripts/lod-ligero.mjs`, `pruebas-lod-ligero.mjs`). Techo de la vista: 1 MB / 325 KB gzip; con la cuadra 28 queda en 880 KB / 290 KB.
+Con `liteLod:true` (todos los edificios de la fábrica y, desde la cuadra 28, los paquetes anteriores salvo 76–83 y 87, cuyas firmas auditadas se conservan; ver el final de `cuadra-detail-data.js`), el recorrido conserva los vanos perforados y la vista del celular recibe: cara exterior de cada muro y cada vano como panel plano 6 cm al frente, sólo la tapa superior de las cubiertas, sin losas de piso ocultas, y pretiles y equipos sin fondo ni cantos mínimos (`scripts/lod-ligero.mjs`, `pruebas-lod-ligero.mjs`). Techo de la vista por edificio de fábrica (10-nov-2026): cada edificio con `fabrica` suma 3.5 KB / 1.25 KB gzip, sin bajar de 1 MB / 325 KB ni pasar de 1.35 MB / 450 KB (`pruebas-vista-ligera.mjs`); con C18 (49 edificios de fábrica) la vista mide 950 KB / 318 KB. Si una cuadra se pasa, se simplifica la cuadra, no el techo.
 
 ## Vecinos intactos
 
