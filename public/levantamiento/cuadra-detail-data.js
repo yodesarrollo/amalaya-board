@@ -96,6 +96,10 @@ import {C05_18} from './c05-18-data.js?v=cad6ab3c7d40';
 import {C05_19} from './c05-19-data.js?v=e3157ab99a4e';
 import {C05_20} from './c05-20-data.js?v=d530f5d3e92d';
 import {C28_51} from './c28-51-data.js?v=8f391d95a0bb';
+// C22 · cuadra 11 (11-nov-2026): fotos de calle R-001 P08–P14 + aérea; OB-21 conserva su constructor propio.
+import {C22_43} from './c22-43-data.js?v=2d2964dfa8a3';
+import {C22_44} from './c22-44-data.js?v=7d5cd5dba731';
+import {C22_45} from './c22-45-data.js?v=c8a0bd4d6eb8';
 
 // Historic photo-based packets and explicitly labelled modelling hypotheses.
 // Dimensions are approximate; each packet documents its own evidence and limits.
@@ -162,6 +166,10 @@ CUADRA_DETAILS.push(C28_51);
 // 64/A3-08 (constructor propio en paramento-refinement.js) y 65/CH-GA-OXXO (huella OSM con firma de colisión
 // congelada, en bloque1-serdan-20261026.js) quedan sin cambio. Sustituye a serdan-aproximado-data.js (registro).
 CUADRA_DETAILS.push(C24_59,C24_60,C24_61,C24_62,C24_63);
+// C22 · cuadra 11 (11-nov-2026): fotos de calle R-001 P08–P14 + aérea. 43/C3-01 sobre la planta y altura
+// del paramento (mismas colisiones, sin marca de fábrica por sus vanos abiertos); 44/C3-02 y 45/C3-03 por
+// secciones con torreón redondo en el cruce; 46/OB-21 sin cambio (constructor propio, huella provisional).
+CUADRA_DETAILS.push(C22_43,C22_44,C22_45);
 
 CUADRA_DETAILS.push(...CORREDOR_OBREGON_20261026);
 CUADRA_DETAILS.push(...BLOQUE1_SERDAN);
