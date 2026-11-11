@@ -66,6 +66,14 @@ import {C02_11} from './c02-11-data.js?v=da9f3fff7c00';
 import {C02_12} from './c02-12-data.js?v=12c2e20e1850';
 import {C02_13} from './c02-13-data.js?v=a6b87447272f';
 import {C17_118} from './c17-118-data.js?v=f040917b6991';
+import {C01_07} from './c01-07-data.js?v=8519f8d51b8b';
+import {C01_08} from './c01-08-data.js?v=3cc1cea1d590';
+import {C01_09} from './c01-09-data.js?v=5642db3526cf';
+import {C03_26} from './c03-26-data.js?v=832a30fce669';
+import {C03_27} from './c03-27-data.js?v=a36090be3a83';
+import {C04_23} from './c04-23-data.js?v=3bc67a6de40a';
+import {C04_24} from './c04-24-data.js?v=917bd824a2a5';
+import {C04_25} from './c04-25-data.js?v=c43f3c476337';
 
 // Historic photo-based packets and explicitly labelled modelling hypotheses.
 // Dimensions are approximate; each packet documents its own evidence and limits.
@@ -130,6 +138,13 @@ CUADRA_DETAILS.push(C18_119,C18_120,C18_121,C18_122,C18_123,C18_124,C18_125,C18_
 CUADRA_DETAILS.push(C02_10,C02_11,C02_12,C02_13);
 // C17 · cuadra 32 (10-nov-2026): aérea + fábrica de fachadas; 118 en la punta norte del cerro.
 CUADRA_DETAILS.push(C17_118);
+// C01 · cuadra 3 (10-nov-2026): aérea + fábrica de fachadas; banco por secciones y estacionamiento abierto en B1-07.
+CUADRA_DETAILS.push(C01_07,C01_08,C01_09);
+// C03 · cuadra 7 (10-nov-2026): fotos de calle H01/H04 sobre las plantas y alturas de la ronda 2;
+// cada paquete toma el frente de ROUND2_BUILDINGS como dueño y lo reconstruye (paramento-data.js sin cambios).
+CUADRA_DETAILS.push(C03_26,C03_27);
+// C04 · cuadra 6 (10-nov-2026): aérea + fábrica de fachadas; 23–25 por secciones, patios en 24 y 25.
+CUADRA_DETAILS.push(C04_23,C04_24,C04_25);
 
 CUADRA_DETAILS.push(...SERDAN_APROXIMADO);
 CUADRA_DETAILS.push(C05_APROXIMADA);

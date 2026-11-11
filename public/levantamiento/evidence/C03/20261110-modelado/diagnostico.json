@@ -1,0 +1,88 @@
+{
+ "id": "C03",
+ "cuadra": 7,
+ "nombre": "Calle Rosales / Calle Pedro Moreno (frente a Blvd. Miguel Hidalgo)",
+ "fecha": "2026-11-10",
+ "base": "main@f5d10ece839cb6cee8fae0d65f2c7d04ba6b9c27 (diagnóstico); integrado sobre main@a0610c3a0ce0b33d2f0c5c3b5613827bbca1fa21 (con C01, cuadra 3)",
+ "criterio": "Con foto se modela lo observado (vanos, rasgos, colores, altura) como el 89; donde no hay foto se completa con la fábrica de fachadas en las caras a la calle o a menos de 4 m de la banqueta y se declara lo estimado en hypothesis. Los edificios del paquete que se modifican llevan fabrica y liteLod. Altura: la de la foto o la de HEIGHT_REVIEWS; si no hay, 4.0 m por tipología.",
+ "metodo": "Caras a la calle con scripts/frentes-calle-lib.mjs (2.6 m) y la misma función con 4.0 m sobre la línea de fachada de C03; fotos Street View de dic-2023 H01, H01 inclinada 25° y H04 (ronda 2 del 8-oct); aérea calco/referencia.webp; ROUND2_BUILDINGS y HEIGHT_REVIEWS leídos en main (paramento-data.js sin editar).",
+ "construccionPrevia": "Los dos edificios salían de ROUND2_BUILDINGS (paramento-data.js): removeOwner + addFront con nombre 'Planta física · B1-0N'. El paquete de cuadra encuentra ese grupo por el mismo prefijo, lo retira con sus colisiones y lo reconstruye con la misma planta: no hay muros duplicados.",
+ "edificios": [
+  {
+   "numero": 26,
+   "id": "B1-08",
+   "fotos": [
+    "evidence/paramento-20261007/H01-foto.jpg",
+    "evidence/paramento-ronda2-20261008/H01-torre-foto.jpg",
+    "evidence/paramento-ronda2-20261008/H04-foto.jpg"
+   ],
+   "altura": {
+    "m": 4.2,
+    "fuente": "HEIGHT_REVIEWS (Hidalgo P-H01)",
+    "cumple": true
+   },
+   "carasCalle": {
+    "a26m": [],
+    "a4m": [],
+    "nota": "explanada de ~9 m entre la cara sur y la banqueta de Blvd. Hidalgo"
+   },
+   "registro": {
+    "fabrica": false,
+    "liteLod": "no (frente de ronda 2, fuera de CUADRA_DETAILS)",
+    "hypothesis": false
+   },
+   "falta": [
+    "fabrica, liteLod y hypothesis",
+    "lámparas de muro sobre las ventanitas",
+    "marcos rojos gruesos de los portones y colores de la foto",
+    "remate rojo en la cara oriente (H04)",
+    "cajas grises de ductos en la azotea al pie de la torre (foto y aérea)"
+   ],
+   "accion": "modelar en un paquete de cuadra (c03-26-data.js) con la planta y altura registradas"
+  },
+  {
+   "numero": 27,
+   "id": "B1-09",
+   "fotos": [
+    "evidence/paramento-ronda2-20261008/H01-torre-foto.jpg",
+    "evidence/paramento-20261007/H01-foto.jpg",
+    "evidence/paramento-ronda2-20261008/H04-foto.jpg"
+   ],
+   "altura": {
+    "m": 22.0,
+    "fuente": "HEIGHT_REVIEWS (proporción visual, no medida)",
+    "cumple": true
+   },
+   "carasCalle": {
+    "a26m": [],
+    "a4m": [],
+    "nota": "torre detrás del cuerpo bajo; caras a 8–14 m de la banqueta"
+   },
+   "registro": {
+    "fabrica": false,
+    "liteLod": "no (frente de ronda 2, fuera de CUADRA_DETAILS)",
+    "hypothesis": false
+   },
+   "falta": [
+    "fabrica, liteLod y hypothesis",
+    "11 aletas observadas en la foto inclinada (la ronda 2 tenía 9)",
+    "bandas de 4 lamas entre hileras y vidrio reducido a lo visible",
+    "columna de vanos hundidos junto a la esquina noreste de la cara oriente (H04)",
+    "color de piedra clara y de azotea"
+   ],
+   "accion": "modelar en un paquete de cuadra (c03-27-data.js) con la planta y altura registradas"
+  }
+ ],
+ "aerea": {
+  "colorCubiertaMediano": {
+   "B1-08 (fuera de la torre)": "#f3f0e5",
+   "B1-09 (techo desplazado)": "#dadbd3 / #eae7de"
+  },
+  "nota": "La torre aparece desplazada ~15 m al noreste por la inclinación de la toma: la cara sur con los parasoles se ve en escorzo al norte del cuerpo bajo y su azotea sobre la esquina noreste. El color se toma del techo desplazado; los equipos de la torre no se ubican. En esta aérea el sol viene del este: la mancha oscura al poniente es sombra y arbolado, no medida de altura."
+ },
+ "fueraDeAlcance": [
+  "antena de celosía de la azotea (rebasa el límite de 1.3 m de equipos de azotea de pruebas-lamina)",
+  "celosía de ladrillo al noreste de la torre (posición no fijable con H04)",
+  "explanada, reja y pilares de ladrillo frente al cuerpo bajo (fuera de la planta)"
+ ]
+}
