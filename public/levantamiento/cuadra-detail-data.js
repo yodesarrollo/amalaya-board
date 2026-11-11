@@ -81,6 +81,7 @@ import {C30_30} from './c30-30-data.js?v=ee5053a4ff7d';
 import {C30_31} from './c30-31-data.js?v=2d65a19d6f01';
 import {C30_32} from './c30-32-data.js?v=0c8418117d7e';
 import {C30_33} from './c30-33-data.js?v=796774d18351';
+import {C07_06} from './c07-06-data.js?v=27015ceb0329';
 
 // Historic photo-based packets and explicitly labelled modelling hypotheses.
 // Dimensions are approximate; each packet documents its own evidence and limits.
@@ -139,6 +140,8 @@ CUADRA_DETAILS.push(C01_07,C01_08,C01_09);
 CUADRA_DETAILS.push(C03_26,C03_27);
 // C04 · cuadra 6 (10-nov-2026): aérea + fábrica de fachadas; 23–25 por secciones, patios en 24 y 25.
 CUADRA_DETAILS.push(C04_23,C04_24,C04_25);
+// C07 · cuadra 2 (10-nov-2026): foto de calle + aérea; 6 en cinco cuerpos con patio central.
+CUADRA_DETAILS.push(C07_06);
 
 CUADRA_DETAILS.push(...SERDAN_APROXIMADO);
 CUADRA_DETAILS.push(C05_APROXIMADA);
