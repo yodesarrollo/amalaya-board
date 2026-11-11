@@ -1,6 +1,6 @@
-# Oleadas de cuadras 2 y 4–21 · instrucciones para las sesiones programadas
+# Oleadas de cuadras 4–21 · instrucciones para las sesiones programadas
 
-Pedido de Alejandro Puebla (Dirección), 10-nov-2026 21:36 HMO: agendar los prompts de las cuadras que faltan hasta la 21. Cada cuadra corre en una sesión programada nueva (sin memoria de chats anteriores) que sigue este documento al pie de la letra. Las cuadras 1 (C08, PR #130), 3 (C01, fila 564) y 32 (C17, PR #127) las llevan otros chats; la 2 (C07) no tenía rama, PR ni fila y entra en la oleada 1.
+Pedido de Alejandro Puebla (Dirección), 10-nov-2026 21:36 HMO: agendar los prompts de las cuadras que faltan hasta la 21. Cada cuadra corre en una sesión programada nueva (sin memoria de chats anteriores) que sigue este documento al pie de la letra. Las cuadras 1 (C08, PR #130), 2 (C07, PR #131), 3 (C01, fila 564) y 32 (C17, PR #127) las llevan otros chats; aquí quedan las cuadras 4–21.
 
 Criterio del propietario (AGENTS.md): «más que genérico, una versión aceptable a la realidad según las fotos». Con foto, se modela lo observado y lo demás por tipología, rotulado como estimado; sólo aérea, volumen, patios, techos y equipos según la aérea y fachadas por tipología. Nunca se empeora un modelo que ya se hizo con foto.
 
@@ -8,7 +8,7 @@ Criterio del propietario (AGENTS.md): «más que genérico, una versión aceptab
 
 1. Jev primero (preferencia de Alejandro): `jev_triage` del conector jev-yod antes de leer GitHub o el Buzón; si falla, seguir sin él.
 2. Repo `yodesarrollo/amalaya-board`. Si la sesión no lo tiene, agregarlo con `add_repo` (acceso push) y clonarlo como indique la herramienta. Para la API de GitHub usar `curl` con `$GH_TOKEN` (el CLI `gh` no es confiable aquí). No abrir github.io: el despliegue se comprueba por la API.
-3. No duplicar: buscar rama `claude/<bloque>-cuadra<N>-*`, PR abierto o fusionado con «cuadra N» o el bloque en el título, y la fila de la cuadra en el Buzón. Si ya está fusionada, avisar «ya estaba» y terminar. Si hay rama o PR de una corrida anterior, continuarla (rebase sobre `origin/main`) en vez de empezar otra.
+3. No duplicar. Las sesiones programadas usan siempre la rama `claude/oleada-<bloque en minúsculas>-cuadra<N>` (sin fecha). Si esa rama o su PR existen, son de una corrida anterior de esta misma tarea: continuarlos (rebase sobre `origin/main`). Cualquier otra rama o PR de la cuadra (por ejemplo `claude/c07-6-20261110`, PR #131) es de otro chat que sigue trabajando: no tocarlo; anotar en la fila «la lleva otro chat (PR #N)» y terminar. Si la cuadra ya está fusionada en main, avisar «ya estaba» y terminar.
 4. Leer: `AGENTS.md`, `docs/FABRICA-FACHADAS.md`, `docs/C09-MODELADO.md`, `docs/C14-MODELADO.md` (incluida la corrección de alturas), `docs/C19-MODELADO.md` (retrazo por secciones), `docs/C18-MODELADO.md` (banqueta abierta y terreno), `docs/EDIFICIO-89-MODELADO.md` (modelado con foto) y, si existe, `docs/C08-MODELADO.md` (fotos de calle de la cuadra 1).
 
 ## 2. Fuentes, en este orden
@@ -43,7 +43,7 @@ No editar pruebas, techos, el constructor (`paramento-refinement.js`, `fabrica-f
 
 ## 6. Integración y fusión
 
-1. Rama `claude/<bloque en minúsculas>-cuadra<N>-<aaaammdd>`; commits y PR con las líneas de atribución que indique la sesión.
+1. Rama `claude/oleada-<bloque en minúsculas>-cuadra<N>`; título del PR «Oleada · cuadra N (bloque) …»; commits y PR con las líneas de atribución que indique la sesión.
 2. Antes de fusionar: `git fetch` y rebase sobre `origin/main`. En `cuadra-detail-data.js` conservar las líneas de todos; los generados (`modelo-ligero.*`, versiones de `world.js`, `visor/`, `src/*-version.js`, `sheet-plan-*`, `asignaciones.json`, `ground-audit.json`) se toman de main y se regeneran con los dos scripts. Repetir las pruebas.
 3. Alejandro autoriza fusionar el PR propio por la API sólo con el CI «construir» en verde, las pruebas locales en verde y sin conflictos. Si main se movió durante el CI, volver al paso 2 (máximo tres veces).
 4. Confirmar por la API que la corrida de Pages y el despliegue terminaron en verde sobre el merge.
@@ -56,11 +56,10 @@ No editar pruebas, techos, el constructor (`paramento-refinement.js`, `fabrica-f
 
 ## 8. Cuadras, oleadas y filas del Buzón
 
-Horas de Hermosillo: la oleada 1 empieza el 10-nov a las 23:07 y las demás el 11-nov. La fila 568 del Buzón es la de la programación. Tres o cuatro cuadras por oleada, cada 2.5 h; 17, 18 y 19 van en oleadas distintas porque comparten `bloque1-serdan-20261026.js`. «Panorámicas» cuenta los puntos del recorrido a menos de 22 m de la cuadra; «Banqueta» dice si tiene anillo interior o es abierta.
+Horas de Hermosillo: la oleada 1 empieza el 10-nov a las 23:07 y las demás el 11-nov. La fila 568 del Buzón es la de la programación; la 569 (cuadra 2) quedó cancelada porque la lleva otro chat (PR #131). Una cuadra cuya tarea programada no exista se puede correr pegando en un chat nuevo el mismo pedido de las tareas programadas. Tres o cuatro cuadras por oleada, cada 2.5 h; 17, 18 y 19 van en oleadas distintas porque comparten `bloque1-serdan-20261026.js`. «Panorámicas» cuenta los puntos del recorrido a menos de 22 m de la cuadra; «Banqueta» dice si tiene anillo interior o es abierta.
 
 | Oleada · hora | Cuadra | Bloque | Edificios | Previo | Panorámicas | Banqueta | Fila |
 |---|---|---|---|---|---|---|---|
-| 1 · 23:07 | 2 | C07 · Calle Obregón / Centro | 6 C1-11 | frente revisado en paramento-data.js (C1-11) | 1 (R-001) | anillo | 569 |
 | 1 · 23:07 | 4 | C02 · Calle Pino Suárez / Calle Rosales | 10 B1-01, 11 B1-02, 12 B1-03, 13 B1-04 | paquete con foto cuadra-c02-aproximada.js (B1-01…B1-04); frente de B1-03 en paramento-data.js | 0 | abierta | 570 |
 | 1 · 23:07 | 5 | C05 · Calle Rosales / Pino Suarez | 14 C1-01, 15 C1-02, 16 C1-03, 17 C1-04, 18 C1-05, 19 C1-06, 20 C1-07 | paquete con foto cuadra-c05-aproximada.js (C1-04…C1-07); frentes de C1-01…C1-03 en paramento-data.js | 0 | abierta | 571 |
 | 2 · 01:37 | 6 | C04 · Calle Pedro Moreno / Calle Rosales | 21 C1-08, 22 C1-09, 23 C1-10, 24 D1-01, 25 D1-02 | frentes de C1-08 y C1-09 en paramento-data.js | 0 | anillo | 572 |
