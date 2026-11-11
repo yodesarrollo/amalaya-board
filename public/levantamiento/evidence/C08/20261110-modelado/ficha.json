@@ -1,0 +1,331 @@
+{
+ "id": "C08",
+ "cuadra": 1,
+ "edificios": {
+  "1": "C2-01",
+  "2": "C2-02",
+  "3": "C2-03",
+  "4": "OB-01",
+  "5": "OB-02"
+ },
+ "fecha": "2026-11-10",
+ "autor": "Claude (Opus 5.5), sesión https://claude.ai/code/session_01BCpved7JUFsofpAs769fba",
+ "criterio": "Alejandro Puebla (propietario), 10-nov-2026: «más que genérico, una versión aceptable a la realidad según las fotos». Con foto se modela lo observado (vanos, rasgos, colores, altura) como el 89; sin foto, fábrica de fachadas en caras a la calle o a menos de 4 m de la banqueta, declarado en hypothesis.",
+ "base": "main@202d4d6f13c8910d69dc7d43a7414864642b73b9",
+ "diagnostico": "diagnostico.json",
+ "fuentes": [
+  {
+   "path": "public/levantamiento/evidence/c08-cierre-20261008/c08-ne-foto.jpg",
+   "sha256": "332dd5da61ab1c62b9e33c5c52d89d48f3c97568dddb4e1bcf1cf9153012e3e6",
+   "tipo": "Street View dic-2023, esquina Obregón–Juan Álvarez (C2-01, C2-02 al fondo, OB-02)"
+  },
+  {
+   "path": "public/levantamiento/evidence/c08-cierre-20261008/c08-se-foto.jpg",
+   "sha256": "3043da70089e35707cb9690021cac76099ddcf0fdf43693ee66d0e592b73b8de",
+   "tipo": "Street View dic-2023, esquina Sufragio Efectivo–Juan Álvarez (C2-02)"
+  },
+  {
+   "path": "public/levantamiento/evidence/c08-cierre-20261008/c08-porton-foto.jpg",
+   "sha256": "3003650ffd70b08e7ff85128e505686aec2994418ac159774122b5707fc56401",
+   "tipo": "Street View dic-2023 desde Yáñez (C2-03 y su cobertizo)"
+  },
+  {
+   "path": "public/levantamiento/evidence/c08-cierre-20261008/c08-acceso-foto.jpg",
+   "sha256": "c0766feb77abbc19a5006fc476612e94485601d21e3d54267a9d4d57af82512b",
+   "tipo": "Street View dic-2023, esquina Obregón–Yáñez (OB-01, cobertizo de C2-03)"
+  },
+  {
+   "path": "public/recorrido/h45BeWMtTog-TgjPTSYn6g.jpg",
+   "sha256": "7cc232bdf2ad46a9b6379e0e5aa530c02d5a5da4f55fc27e92d612b346d15546",
+   "tipo": "panorama R-001 P04 (Obregón frente a C2-01)"
+  },
+  {
+   "path": "public/recorrido/G5UapkZfu_gIeRoydqjPBw.jpg",
+   "sha256": "f700783aa83547ddfb7697b2e15bde7ae571bd211cf82740104ee3914e04fb85",
+   "tipo": "panorama R-001 P01 (OB-01)"
+  },
+  {
+   "path": "public/recorrido/XLuGJnj_XmtAuKd4eXeTDw.jpg",
+   "sha256": "371c799d09c090cc1be4360528ddccf32ac6987d94cd9d6cea3780df45fc4f43",
+   "tipo": "panorama R-001 P02 (OB-01)"
+  },
+  {
+   "path": "public/recorrido/Apyr0uKeZr_XWmfLfLeBjQ.jpg",
+   "sha256": "647926706b3597bedb0f32b615fd22c1225116cfc4b93a8aa14343fde0d50802",
+   "tipo": "panorama R-001 P03 (OB-02)"
+  },
+  {
+   "path": "public/levantamiento/calco/referencia.webp",
+   "sha256": "ef453bbe2db667f3916e718133b81210e7ff53a51b67c412941a613f5288a074",
+   "tipo": "aérea Esri World Imagery z19 (recuperada 2026-10-07), georreferenciada, 0.26 m/píxel"
+  },
+  {
+   "path": "public/levantamiento/ajuste-visual/C08.jpg",
+   "sha256": "04116a846c000bb1b07e517eae8b0189aa187bef67b4090198556d8ae2915932",
+   "tipo": "recorte aéreo de la cuadra"
+  },
+  {
+   "path": "public/levantamiento/evidence/c08-cierre-20261008/registro-3.json",
+   "sha256": "db93e63633e02b1a422d51bcce60f3fb8aa22c376490655eb86cf369734004a5",
+   "tipo": "alturas visuales de C2-02 y C2-03 (8-oct)"
+  },
+  {
+   "path": "public/levantamiento/evidence/c08-punto2-20261008/registro.json",
+   "sha256": "f2ea63f0eb4067f5ef9f345e4b8bff37f25d1f0c234e0a48966a0125ddcbaf0f",
+   "tipo": "rampa, barandal, cerramiento y muros conservados (punto 2)"
+  },
+  {
+   "path": "public/levantamiento/evidence/OB-01/manifest.json",
+   "sha256": "5e5503a9e98cc5c75c4123298a69e950d190d178d6420f0a33f07c42fa6ca993",
+   "tipo": "evidencia del constructor propio de OB-01 (sin cambios)"
+  },
+  {
+   "path": "public/levantamiento/evidence/OB-02/manifest.json",
+   "sha256": "029cb0675d3920417e8bdb04edc113212510eaf08573dca226102591b8ab5ab5",
+   "tipo": "evidencia del constructor propio de OB-02 (sin cambios)"
+  }
+ ],
+ "mediciones": {
+  "metodo": "Pose de cámara ajustada por mínimos cuadrados (FOV 111.04°, cabeceo −20° de la URL) a esquinas y extremos de la planta registrada; los vanos se proyectan sobre la arista. Posiciones ±0.5 m; no es levantamiento métrico.",
+  "NE": {
+   "foto": "c08-ne-foto.jpg",
+   "poseAjustada": {
+    "x": -13.18,
+    "z": 22.09,
+    "rumbo": 234.7,
+    "ojo": 2.19
+   },
+   "rmsPx": 7.2,
+   "obregonCentros_m": [
+    4.1,
+    8.3,
+    12.5
+   ],
+   "juanAlvarezCentros_m": [
+    2.4,
+    7.1,
+    10.2
+   ],
+   "ventanaSurAntepecho_m": 1.05,
+   "alturaCornisa_m": {
+    "medida": "4.75–5.15",
+    "adoptada": 4.6,
+    "motivo": "la pose es aproximada; se conserva HEIGHT_REVIEWS"
+   }
+  },
+  "SE": {
+   "foto": "c08-se-foto.jpg",
+   "poseAjustada": {
+    "x": -11.13,
+    "z": 76.93,
+    "rumbo": 330.7,
+    "ojo": 2.5
+   },
+   "rmsPx": 8.3,
+   "sufragioCentros_m": [
+    2.4,
+    4.9,
+    7.9,
+    11.9,
+    14.8
+   ],
+   "faroles_m": [
+    6.75,
+    9.05
+   ],
+   "alturaCornisa_m": {
+    "medida": "4.4–4.8",
+    "adoptada": 5.3,
+    "motivo": "la pose es aproximada; se conserva la altura de la foto del 8-oct"
+   }
+  },
+  "aerea": {
+   "colorCubiertaMediano": {
+    "C2-01": "#faf6f0",
+    "C2-02": "#f2ebdf",
+    "C2-03": "#e1e2d8"
+   },
+   "equipos": {
+    "C2-01": 5,
+    "C2-02": 3,
+    "C2-03": 0
+   },
+   "nota": "Manchas oscuras dentro de cada cubierta (luminancia < 62 % de la mediana, 3–60 píxeles). En esta aérea el sol viene del este: la banda oscura al poniente de C2-03 coincide con el cobertizo de las fotos y con su sombra; no se usa como medida."
+  }
+ },
+ "alturas": {
+  "C2-01": {
+   "m": 4.6,
+   "fuente": "HEIGHT_REVIEWS (Obregón P04)"
+  },
+  "C2-02": {
+   "m": 5.3,
+   "fuente": "foto SE (8-oct)"
+  },
+  "C2-03": {
+   "m": 4.2,
+   "fuente": "fotos portón/oeste (8-oct)"
+  },
+  "C2-03 cobertizo": {
+   "m": 3.2,
+   "fuente": "estimada"
+  },
+  "OB-01": {
+   "m": "3.25–4.05",
+   "fuente": "constructor propio"
+  },
+  "OB-02": {
+   "m": "4.65–5.35",
+   "fuente": "constructor propio"
+  },
+  "incertidumbre_m": {
+   "C2-01": 0.8,
+   "C2-02": 1.0,
+   "C2-03": 1.2
+  }
+ },
+ "pasos": [
+  {
+   "paso": 1,
+   "nombre": "Identidad y evidencia",
+   "resultado": "Cinco registros con su número (1 C2-01, 2 C2-02, 3 C2-03, 4 OB-01, 5 OB-02); fotos de calle de dic-2023 para los tres del paquete y panoramas R-001 para OB-01/OB-02."
+  },
+  {
+   "paso": 2,
+   "nombre": "Forma",
+   "resultado": "Plantas registradas sin cambios. C2-03 suma el cobertizo poniente visto en dos fotos (sección abierta de 3 m, 6 cm separada del muro). Estacionamiento y accesos abiertos."
+  },
+  {
+   "paso": 3,
+   "nombre": "Alturas",
+   "resultado": "Las registradas por foto o HEIGHT_REVIEWS (4.6, 5.3, 4.2 m); cobertizo 3.2 m estimado."
+  },
+  {
+   "paso": 4,
+   "nombre": "Fachada",
+   "resultado": "C2-01: tres vanos altos con reja en Obregón, dos puertas y una ventana con reja en Juan Álvarez, pilastras, cornisa y zoclo rojizos. C2-02: cinco vanos en Sufragio (puerta de madera entre faroles y cuatro ventanas con reja saliente); corredor con cuatro ventanas estimadas. C2-03 sin vanos supuestos."
+  },
+  {
+   "paso": 5,
+   "nombre": "Material y azotea",
+   "resultado": "Colores de muro según foto; colores de cubierta medidos en la aérea; un tinaco, un calentador y seis equipos menores en las posiciones vistas; lámina oscura en el cobertizo. Superficie mate."
+  },
+  {
+   "paso": 6,
+   "nombre": "Conjunto, ligero y comparación",
+   "resultado": "Vecinos idénticos por firma de colisiones (OB-01 y OB-02 incluidos); vanos alcanzados desde la calle; LOD en la vista ligera; mismas cámaras antes y después sobre la calle; foto frente a modelo; dos vistas de Blender y GLB de los edificios 1–3."
+  }
+ ],
+ "rasgos": {
+  "C2-01": [
+   {
+    "rasgo": "pilastras rojizas de esquina y extremos",
+    "resultado": "corregido"
+   },
+   {
+    "rasgo": "tres vanos altos con marco rojizo en Obregón",
+    "resultado": "corregido"
+   },
+   {
+    "rasgo": "cornisa y zoclo rojizos",
+    "resultado": "corregido"
+   }
+  ],
+  "C2-02": [
+   {
+    "rasgo": "puerta central de madera entre faroles",
+    "resultado": "corregido"
+   },
+   {
+    "rasgo": "cuatro ventanas con reja saliente en Sufragio",
+    "resultado": "corregido"
+   },
+   {
+    "rasgo": "muro blanco azulado con cornisa blanca",
+    "resultado": "corregido"
+   }
+  ],
+  "C2-03": [
+   {
+    "rasgo": "cobertizo oscuro sobre postes al poniente",
+    "resultado": "corregido"
+   },
+   {
+    "rasgo": "cuerpo claro de un nivel",
+    "resultado": "conservado"
+   },
+   {
+    "rasgo": "vanos",
+    "resultado": "sin evidencia (muro lejano y en sombra)"
+   }
+  ],
+  "OB-01": [
+   {
+    "rasgo": "cubierta de dos aguas sobre estructura abierta",
+    "resultado": "conservado"
+   }
+  ],
+  "OB-02": [
+   {
+    "rasgo": "siete vanos con arcos, pilastras y balaustrada",
+    "resultado": "conservado"
+   }
+  ]
+ },
+ "limites": [
+  "Medidas visuales, no métricas: pose de cámara aproximada (±0.5 m en vanos).",
+  "La cara de C2-02 al corredor de Juan Álvarez no tiene foto: ventanas estimadas (8-oct).",
+  "El cobertizo de C2-03: fondo, altura y separación de postes estimados.",
+  "Las cubiertas fuera del inventario (entre C2-01 y C2-02 y junto al corredor) siguen fuera, como en el inventario de octubre.",
+  "OB-01 y OB-02 no cambian: sus pendientes del método de once acciones (medidas exactas) no forman parte del criterio actual.",
+  "El suelo gris de las vistas de Blender es un fondo de render, no geometría del modelo."
+ ],
+ "vistaLigera": {
+  "bytes": 954400,
+  "gzip": 319037,
+  "triangulos": 47720,
+  "lod": {
+   "walls": 638,
+   "openings": 452
+  },
+  "antes": {
+   "bytes": 949520,
+   "gzip": 317524,
+   "triangulos": 47476
+  },
+  "techo": "1 MB / 325 KB gzip"
+ },
+ "glb": {
+  "archivo": "C08-1-3.glb",
+  "edificios": [
+   "C2-01",
+   "C2-02",
+   "C2-03"
+  ],
+  "poligono": "-34.58,35.94;-34.78,36.20;-34.72,36.77;-35.72,36.88;-35.73,37.45;-35.87,37.64;-36.09,37.74;-46.26,38.84;-46.47,42.23;-60.33,43.80;-60.30,44.19;-63.35,44.46;-62.31,56.32;-59.27,56.05;-59.23,56.45;-35.07,54.31;-35.59,48.55;-33.37,48.05;-33.03,48.05;-29.85,71.62;-11.67,66.75;-16.78,44.51;-32.78,47.70;-32.95,47.48;-33.29,47.47;-34.08,36.70;-34.19,36.16;-28.55,34.94;-27.77,41.46;-18.19,38.93;-20.94,26.87;-36.55,27.58;-36.38,27.92;-36.13,31.32"
+ },
+ "pruebas": [
+  "scripts/pruebas-fabrica.mjs",
+  "scripts/pruebas-lod-ligero.mjs",
+  "scripts/pruebas-vista-ligera.mjs",
+  "scripts/pruebas-c1-13-enjambre.mjs (firmas por edificio)",
+  "scripts/pruebas-paramento.mjs (estacionamiento de C08 libre)",
+  "scripts/pruebas-secciones-cuadra.mjs (evidencia histórica de C08 íntegra)",
+  "npm run pruebas",
+  "python3 scripts/pruebas-puente.py",
+  "npm run verificar:publicacion",
+  "npm run build"
+ ],
+ "worldSha256": "94aa0f85b2ef95390427da8383c913acd7d878d8cb7e5b09e42e617d93610fd4",
+ "archivos": {
+  "C08-1-3.glb": "9c15b31c727f72fed5f1f9bd6cd0d17fc379e2cc62360b95df739fd9113d054a",
+  "aerea-trazo.jpg": "2c0b14c92e4bc0ff081cc0a084233fee23899c2133ae13b03241d0f1e4c18576",
+  "antes-despues.jpg": "83ec73bdbd25bd33e3b8f674e16becf0711922432c0e780dbd06e1d9a124273d",
+  "blender-aerea-sureste.jpg": "e3116eeb60e3401807b1f25615754eab6a302a4b4b100edb1243d53027b07411",
+  "blender-esquina-noreste.jpg": "be16f82278810bb44fe6b77e85f1de63f07bbaaad336c4878b0f260e39451a86",
+  "camaras-blender.json": "cdeba93f361e41fed638f7f30f72d54c62fcf832ba9319a510cf572c1000c33f",
+  "camaras.json": "b59cb3152157d47881d50595b96821f6c7bccfe2ae4ea216e52122bab2a162e3",
+  "diagnostico.json": "7f1d8aead37672c659bdb664083768b00ae3f4a61632d3f404ae662ba2ba4cd9",
+  "foto-modelo.jpg": "f43dd3911c578e9e5975738a4abbab499f6afdd8fd829c6172bded82d2dea63c"
+ }
+}

@@ -1,0 +1,650 @@
+{
+ "id": "C01",
+ "cuadra": 3,
+ "nombre": "Banco y estacionamiento · sector B1",
+ "edificios": {
+  "7": "B1-05",
+  "8": "B1-06",
+  "9": "B1-07"
+ },
+ "fecha": "2026-11-10",
+ "autor": "Claude (Opus 5.5), sesión https://claude.ai/code/session_01BCpvebiKaRGYRQCeF5HfeW",
+ "criterio": "Alejandro Puebla (propietario), 10-nov-2026: «más que genérico, una versión aceptable a la realidad según las fotos, lo que muestre»; mismo método que C09, C14, C15, C16, C18 y C19.",
+ "fuentes": [
+  {
+   "path": "public/levantamiento/calco/referencia.webp",
+   "sha256": "ef453bbe2db667f3916e718133b81210e7ff53a51b67c412941a613f5288a074",
+   "tipo": "aérea Esri World Imagery z19 (recuperada 2026-10-07), georreferenciada, 0.26 m/píxel"
+  },
+  {
+   "path": "public/levantamiento/ajuste-visual/C01.jpg",
+   "sha256": "2eab56c90d9df965061539d31ee517c82e0810502b7207befa57da20141da02a",
+   "tipo": "recorte aéreo de la cuadra"
+  },
+  {
+   "path": "public/levantamiento/cuadras/C01-inventario.jpg",
+   "sha256": "5af325a907221ead3de265b5060fb2049d956c6e4c23a5be06bba38d3bb6e70e",
+   "tipo": "límite de inventario INEGI / Esri"
+  },
+  {
+   "path": "public/levantamiento/evidence/B1-05/20261006-01-cierre.json",
+   "sha256": "b0f4b7fabc5cb98acd3bc79cf953c15d4f3156ce01395f47bb696c8482bcc3f1",
+   "tipo": "planta de inventario ±3 m (otra imagen satelital, fecha no verificada)"
+  },
+  {
+   "path": "public/levantamiento/evidence/B1-06/20261006-01-cierre.json",
+   "sha256": "168714f29ce65d1f0dca744cd2ec81ddee2eac0ff47285da9948e8dec4343f71",
+   "tipo": "planta de inventario ±3 m (otra imagen satelital, fecha no verificada)"
+  },
+  {
+   "path": "public/levantamiento/evidence/B1-07/20261006-01-cierre.json",
+   "sha256": "f9e6a719157397e8ffc2bce654f03ebf2945a72fd9079f2ca8ad240f5b6ae0bf",
+   "tipo": "planta de inventario ±3 m (otra imagen satelital, fecha no verificada) · «cuerpo de gran cubierta con entrantes»"
+  },
+  {
+   "path": null,
+   "tipo": "foto de calle",
+   "resultado": "no disponible en el repositorio (sin panorama del recorrido dentro de C01); Street View inaccesible desde la nube"
+  }
+ ],
+ "alturas": {
+  "criterio": "tipológico: 4.0 m en los cuerpos y casetas (ningún registro de C01 se inventarió como «cuerpo bajo»); barda norte de 2.4 m",
+  "incertidumbre_m": 0.7,
+  "nota": "Las bandas oscuras al poniente y al norte de los cuerpos y de la barda se leen como sombra o arbolado; no se usan como medida."
+ },
+ "trazado": {
+  "metodo": "Secciones (normalizeSections, como 94/D2-20) trazadas a ±1 m sobre el recorte georreferenciado con cuadrícula de 1 m y perfiles de luminancia (x=(lng+110.9547151)*97200, z=(29.076115−lat)*110950; píxel = Web Mercator z19 menos tileBounds×256); las plantas de inventario (±3 m) se conservan como registro.",
+  "motivo": "La planta de B1-05 se corría 3–4 m al poniente sobre la banda oscura junto al estacionamiento; la de B1-06 cubría la franja entre los dos cuerpos y no seguía la azotea; la de B1-07 («gran cubierta con entrantes») dibujaba como techo un estacionamiento que en la aérea vigente está a cielo abierto, con unos veinte autos.",
+  "abiertos": [
+   "franja oscura con arbolado entre 7/B1-05 y la banqueta de Serdán",
+   "estacionamiento poniente (Pino Suárez) y patio entre el banco y el estacionamiento",
+   "piso del estacionamiento de B1-07 (a cielo abierto)",
+   "acceso entre las casetas sobre Obregón"
+  ],
+  "secciones": {
+   "B1-05": [
+    {
+     "part": "07-cuerpo",
+     "puntos": [
+      [
+       -137.3,
+       -67.3
+      ],
+      [
+       -118.35,
+       -69.9
+      ],
+      [
+       -116.5,
+       -51.1
+      ],
+      [
+       -134.7,
+       -48.7
+      ]
+     ],
+     "area_m2": 352.9,
+     "altura_m": 4,
+     "techo": "#e6e2d6",
+     "pretil": true
+    }
+   ],
+   "B1-06": [
+    {
+     "part": "08-cuerpo",
+     "puntos": [
+      [
+       -114.6,
+       -77.1
+      ],
+      [
+       -98.86,
+       -79.78
+      ],
+      [
+       -94.56,
+       -54.5
+      ],
+      [
+       -109.8,
+       -53.2
+      ],
+      [
+       -110.8,
+       -60.2
+      ]
+     ],
+     "area_m2": 385.1,
+     "altura_m": 4,
+     "techo": "#e6e2d6",
+     "pretil": true
+    },
+    {
+     "part": "08-gris",
+     "puntos": [
+      [
+       -118.25,
+       -71
+      ],
+      [
+       -113.45,
+       -71
+      ],
+      [
+       -110.95,
+       -60.2
+      ],
+      [
+       -110,
+       -53.4
+      ],
+      [
+       -116.55,
+       -52.3
+      ]
+     ],
+     "area_m2": 107.8,
+     "altura_m": 4,
+     "techo": "#8c998b",
+     "pretil": true
+    }
+   ],
+   "B1-07": [
+    {
+     "part": "09-barda-norte",
+     "puntos": [
+      [
+       -120.8,
+       -13.85
+      ],
+      [
+       -92.6,
+       -22.3
+      ],
+      [
+       -92.51,
+       -22.01
+      ],
+      [
+       -120.71,
+       -13.56
+      ]
+     ],
+     "area_m2": 8.9,
+     "altura_m": 2.4,
+     "techo": "#e6e2d6",
+     "pretil": false
+    },
+    {
+     "part": "09-caseta-poniente",
+     "puntos": [
+      [
+       -111,
+       8.9
+      ],
+      [
+       -106.7,
+       8.6
+      ],
+      [
+       -106.6,
+       11.3
+      ],
+      [
+       -111,
+       11.6
+      ]
+     ],
+     "area_m2": 11.8,
+     "altura_m": 4,
+     "techo": "#e6e2d6",
+     "pretil": true
+    },
+    {
+     "part": "09-caseta-blanca",
+     "puntos": [
+      [
+       -100.2,
+       2.9
+      ],
+      [
+       -97.5,
+       2.6
+      ],
+      [
+       -97.4,
+       9
+      ],
+      [
+       -100,
+       9.2
+      ]
+     ],
+     "area_m2": 16.9,
+     "altura_m": 4,
+     "techo": "#dfddcd",
+     "pretil": true
+    },
+    {
+     "part": "09-caseta-cafe",
+     "puntos": [
+      [
+       -97.5,
+       2.6
+      ],
+      [
+       -89.4,
+       1.6
+      ],
+      [
+       -89.4,
+       8.9
+      ],
+      [
+       -97.4,
+       9
+      ]
+     ],
+     "area_m2": 55.2,
+     "altura_m": 4,
+     "techo": "#87725b",
+     "pretil": true
+    }
+   ]
+  },
+  "coloresMedidos": {
+   "07-cuerpo": "#fdfbf7",
+   "08-cuerpo": "#f8f7ef",
+   "08-gris": "#8c998b",
+   "09-barda-norte": "#edead6",
+   "09-caseta-poniente": "#f3f3e8",
+   "09-caseta-blanca": "#e5e3d3",
+   "09-caseta-cafe": "#87725b"
+  },
+  "reglaBlancos": "Medianas con luminancia ≥240 se escriben #e6e2d6 (como C09, C14, C15 y C19); entre 226 y 240 se escalan a luminancia 220 para conservar el orden de tonos."
+ },
+ "banqueta": {
+  "tipo": "franja abierta (sin anillo interior) en Serdán, Yáñez y parte de Pino Suárez; sin banqueta trazada en Obregón",
+  "frentes": "Con el arreglo de C18 (#129), scripts/frentes-calle-lib.mjs toma el contorno de la franja como línea de fachada (lineaDeFachada) y el límite INEGI de cuadras.json como lote (loteDeCuadra); las caras a la calle de C01 se midieron así.",
+  "prueba": "scripts/pruebas-fabrica.mjs pasa en C01 con ese arreglo. Antes de que entrara, se verificó además con una copia local que exige que ningún vértice quede dentro de la franja ni a menos de 0.15 m de ella: también pasa.",
+  "desfase": "La banqueta oriente de C01 quedó trazada 3–4 m dentro de la cubierta de 8/B1-06 y, más al sur, sobre la franja oscura junto al estacionamiento; la azotea de B1-06 se modela sólo hasta la banqueta trazada."
+ },
+ "frentesCalle": [
+  {
+   "id": "B1-05",
+   "part": "07-cuerpo",
+   "arista": 0,
+   "longitud": 19.13,
+   "distanciaBanqueta": 6.73,
+   "angulo": 4.3,
+   "calle": false,
+   "fachada": {
+    "tipo": "comercio"
+   },
+   "motivo": "cara visible desde la calle a través de un espacio abierto (estacionamiento o franja arbolada)"
+  },
+  {
+   "id": "B1-05",
+   "part": "07-cuerpo",
+   "arista": 3,
+   "longitud": 18.78,
+   "distanciaBanqueta": 12.4,
+   "angulo": 35.5,
+   "calle": false,
+   "fachada": {
+    "tipo": "casa",
+    "puertas": [
+     "centro"
+    ]
+   },
+   "motivo": "cara visible desde la calle a través de un espacio abierto (estacionamiento o franja arbolada)"
+  },
+  {
+   "id": "B1-06",
+   "part": "08-cuerpo",
+   "arista": 0,
+   "longitud": 15.97,
+   "distanciaBanqueta": 1.54,
+   "angulo": 2.4,
+   "calle": true,
+   "fachada": {
+    "tipo": "comercio"
+   },
+   "motivo": "cara a la calle (≤2.6 m de la banqueta)"
+  },
+  {
+   "id": "B1-06",
+   "part": "08-cuerpo",
+   "arista": 1,
+   "longitud": 25.64,
+   "distanciaBanqueta": 0.35,
+   "angulo": 0,
+   "calle": true,
+   "fachada": {
+    "tipo": "comercio"
+   },
+   "motivo": "cara a la calle (≤2.6 m de la banqueta)"
+  },
+  {
+   "id": "B1-06",
+   "part": "08-gris",
+   "arista": 0,
+   "longitud": 4.8,
+   "distanciaBanqueta": 6.9,
+   "angulo": 12.1,
+   "calle": false,
+   "fachada": {
+    "tipo": "casa",
+    "puertas": [
+     "centro"
+    ]
+   },
+   "motivo": "cara visible desde la calle a través de un espacio abierto (estacionamiento o franja arbolada)"
+  },
+  {
+   "id": "B1-07",
+   "part": "09-caseta-poniente",
+   "arista": 2,
+   "longitud": 4.41,
+   "distanciaBanqueta": 15.86,
+   "angulo": 64,
+   "calle": false,
+   "fachada": {
+    "tipo": "casa",
+    "puertas": [
+     "centro"
+    ]
+   },
+   "motivo": "cara visible desde la calle a través de un espacio abierto (estacionamiento o franja arbolada)"
+  },
+  {
+   "id": "B1-07",
+   "part": "09-caseta-blanca",
+   "arista": 2,
+   "longitud": 2.61,
+   "distanciaBanqueta": 6.87,
+   "angulo": 19.4,
+   "calle": false,
+   "fachada": {
+    "tipo": "casa",
+    "sinPuerta": true
+   },
+   "motivo": "cara visible desde la calle a través de un espacio abierto (estacionamiento o franja arbolada)"
+  },
+  {
+   "id": "B1-07",
+   "part": "09-caseta-cafe",
+   "arista": 1,
+   "longitud": 7.3,
+   "distanciaBanqueta": 0.53,
+   "angulo": 2.5,
+   "calle": true,
+   "fachada": {
+    "tipo": "casa",
+    "puertas": [
+     "centro"
+    ]
+   },
+   "motivo": "cara a la calle (≤2.6 m de la banqueta)"
+  },
+  {
+   "id": "B1-07",
+   "part": "09-caseta-cafe",
+   "arista": 2,
+   "longitud": 8,
+   "distanciaBanqueta": 3.58,
+   "angulo": 28.2,
+   "calle": false,
+   "fachada": {
+    "tipo": "casa",
+    "sinPuerta": true
+   },
+   "motivo": "cara visible desde la calle a través de un espacio abierto (estacionamiento o franja arbolada)"
+  }
+ ],
+ "equipos": {
+  "B1-05": [
+   {
+    "tipo": "aire acondicionado",
+    "x": -120.4,
+    "z": -57.6,
+    "seccion": "07-cuerpo"
+   },
+   {
+    "tipo": "aire acondicionado",
+    "x": -118.6,
+    "z": -57.8,
+    "seccion": "07-cuerpo"
+   },
+   {
+    "tipo": "aire acondicionado",
+    "x": -119,
+    "z": -51.8,
+    "seccion": "07-cuerpo"
+   },
+   {
+    "tipo": "aire acondicionado",
+    "x": -123,
+    "z": -51.7,
+    "seccion": "07-cuerpo"
+   },
+   {
+    "tipo": "aire acondicionado",
+    "x": -124.4,
+    "z": -51.6,
+    "seccion": "07-cuerpo"
+   },
+   {
+    "tipo": "aire acondicionado",
+    "x": -125.6,
+    "z": -51.2,
+    "seccion": "07-cuerpo"
+   },
+   {
+    "tipo": "aire acondicionado",
+    "x": -130.8,
+    "z": -50.5,
+    "seccion": "07-cuerpo"
+   },
+   {
+    "tipo": "aire acondicionado",
+    "x": -132,
+    "z": -50.2,
+    "seccion": "07-cuerpo"
+   }
+  ],
+  "B1-06": [
+   {
+    "tipo": "ventila",
+    "x": -109.6,
+    "z": -74.4,
+    "seccion": "08-cuerpo"
+   },
+   {
+    "tipo": "ventila",
+    "x": -99.9,
+    "z": -76.2,
+    "seccion": "08-cuerpo"
+   },
+   {
+    "tipo": "ventila",
+    "x": -99.2,
+    "z": -72,
+    "seccion": "08-cuerpo"
+   },
+   {
+    "tipo": "ventila",
+    "x": -108.9,
+    "z": -70.2,
+    "seccion": "08-cuerpo"
+   },
+   {
+    "tipo": "ventila",
+    "x": -98.4,
+    "z": -67.9,
+    "seccion": "08-cuerpo"
+   },
+   {
+    "tipo": "ventila",
+    "x": -97.7,
+    "z": -63.6,
+    "seccion": "08-cuerpo"
+   },
+   {
+    "tipo": "aire acondicionado",
+    "x": -111,
+    "z": -67.2,
+    "seccion": "08-cuerpo"
+   },
+   {
+    "tipo": "equipo grande",
+    "x": -106.3,
+    "z": -61.7,
+    "seccion": "08-cuerpo"
+   },
+   {
+    "tipo": "equipo grande",
+    "x": -102.3,
+    "z": -62.8,
+    "seccion": "08-cuerpo"
+   },
+   {
+    "tipo": "aire acondicionado",
+    "x": -101.8,
+    "z": -57.4,
+    "seccion": "08-cuerpo"
+   }
+  ],
+  "B1-07": [
+   {
+    "tipo": "tinaco",
+    "x": -98.3,
+    "z": 3.4,
+    "seccion": "09-caseta-blanca"
+   },
+   {
+    "tipo": "tinaco",
+    "x": -98,
+    "z": 8.3,
+    "seccion": "09-caseta-blanca"
+   },
+   {
+    "tipo": "tinaco",
+    "x": -95.9,
+    "z": 4.5,
+    "seccion": "09-caseta-cafe"
+   }
+  ]
+ },
+ "anclasRegistro": {
+  "nota": "Ancla de cada registro sobre una cubierta del modelo; scripts/pruebas-identificacion.mjs la verifica en la vista ligera. En B1-07 el punto de inventario caía en el piso abierto del estacionamiento: se registra un ancla en la caseta café (09-caseta-cafe) en anclas-geometria-actual.json (mecanismo de «geometría vigente por ID»).",
+  "B1-05": {
+   "punto": [
+    -129.79338,
+    -59.4235
+   ],
+   "seccion": "07-cuerpo",
+   "origen": "cuadras/asignaciones.json"
+  },
+  "B1-06": {
+   "punto": [
+    -108.03802,
+    -62.2835
+   ],
+   "seccion": "08-cuerpo",
+   "origen": "cuadras/asignaciones.json"
+  },
+  "B1-07": {
+   "punto": [
+    -93.5,
+    5.25
+   ],
+   "seccion": "09-caseta-cafe",
+   "origen": "anclas-geometria-actual.json",
+   "inventario": [
+    -107.33767,
+    -6.895
+   ]
+  }
+ },
+ "pasos": [
+  {
+   "paso": 1,
+   "nombre": "Identidad y evidencia",
+   "resultado": "Tres registros de C01 con su número: 7/B1-05 cuerpo poniente del conjunto bancario de Serdán–Yáñez; 8/B1-06 cuerpo oriente en la esquina Serdán–Yáñez; 9/B1-07 estacionamiento de Yáñez–Obregón. Sólo aérea; sin foto de calle."
+  },
+  {
+   "paso": 2,
+   "nombre": "Forma",
+   "resultado": "Siete secciones a ±1 m: 7 en una (azotea vista); 8 en dos (cuerpo blanco y cubierta gris entre los dos cuerpos del banco), con el borde oriente limitado a la banqueta trazada; 9 en cuatro (barda norte y casetas poniente, blanca y café en el borde de Obregón). El piso del estacionamiento, la franja arbolada de Serdán y el patio interior quedan abiertos. Las plantas de inventario quedan como registro."
+  },
+  {
+   "paso": 3,
+   "nombre": "Alturas",
+   "resultado": "Tipológicas (ver alturas)."
+  },
+  {
+   "paso": 4,
+   "nombre": "Fachada",
+   "resultado": "Fábrica de fachadas: comercio de un nivel (cortinas) en las caras del banco a Serdán y a Yáñez y en la cara de 7 que mira a Serdán a través de la franja arbolada; casa con puerta en la cara poniente de 7 hacia el estacionamiento y en la cubierta gris; casa de un nivel en las caras de las casetas a Yáñez y a Obregón; barda lisa. 27 vanos."
+  },
+  {
+   "paso": 5,
+   "nombre": "Material y azotea",
+   "resultado": "Color de techo mediano medido en la aérea por sección (ver trazado.coloresMedidos); color de muro estimado; pretiles en las azoteas planas, sin pretil en la barda; 21 equipos en los puntos vistos: 8 condensadores en 7; 6 ventilas, 2 equipos grandes y 2 condensadores en 8; 3 tinacos en las casetas de 9."
+  },
+  {
+   "paso": 6,
+   "nombre": "Conjunto, ligero y comparación",
+   "resultado": "Secciones dentro del lote, fuera de la franja de banqueta y sin enciman; 27 vanos alcanzados desde fuera; anclas de los tres registros sobre cubierta (B1-07 en anclas-geometria-actual.json); LOD en la vista ligera; mismas cámaras antes y después sobre la calle; cuatro vistas de Blender y GLB de la cuadra."
+  }
+ ],
+ "limites": [
+  "Sin foto de calle: vanos, puertas, colores de muro y alturas son tipológicos.",
+  "Contornos a ±1 m. La azotea de 8/B1-06 rebasa 3–4 m al oriente la banqueta trazada de Yáñez y el límite INEGI: el cuerpo se modela hasta la banqueta trazada y la corrección de esa banqueta queda pendiente de la calle, fuera de esta cuadra.",
+  "B1-07: la planta de inventario dibujaba una cubierta sobre el estacionamiento; la aérea vigente lo muestra a cielo abierto. Si la imagen del inventario mostraba una techumbre que ya no existe, no se puede saber con esta evidencia.",
+  "Al oriente y al poniente del estacionamiento, entre los autos y la banqueta, franjas oscuras con borde claro: jardinera, arbolado o sombra de una barda; no se distingue y no se modela barda ahí.",
+  "Entre el banco y el estacionamiento, fuera de las plantas de inventario, la aérea muestra una franja clara alargada de unos 5 × 22 m (x −127…−120, z −48…−26) con banda oscura al poniente (cubierta con su sombra o andador con jardinera), un bloque claro de unos 10 × 5 m (x −105…−95, z −27…−22) con bandas oscuras al norte y al poniente (parece una cubierta) y un elemento blanco pequeño junto a Yáñez (≈ −91, −27). Quedan fuera del inventario de octubre y del conteo de 139, como el cobertizo de C19.",
+  "Las secciones se asignan a su registro por contigüidad con su planta de inventario; no se afirma propiedad ni división predial.",
+  "El suelo gris de las vistas de Blender es un fondo de render, no geometría del modelo."
+ ],
+ "vistaLigera": {
+  "bytes": 965760,
+  "gzip": 322511,
+  "triangulos": 48288,
+  "lod": {
+   "walls": 672,
+   "openings": 484
+  },
+  "antes": {
+   "bytes": 955600,
+   "gzip": 319430,
+   "base": "main@f5d10ec (con C18, C08 y C17)"
+  },
+  "techo": "1 MB / 325 KB gzip"
+ },
+ "pruebas": [
+  "scripts/pruebas-fabrica.mjs (secciones, frentes, vanos y colisiones; banqueta en franja con el arreglo de C18)",
+  "scripts/pruebas-lod-ligero.mjs",
+  "scripts/pruebas-vista-ligera.mjs",
+  "scripts/pruebas-identificacion.mjs (anclas sobre cubierta)",
+  "scripts/pruebas-c1-13-enjambre.mjs (firmas por edificio)",
+  "npm run pruebas",
+  "python3 scripts/pruebas-puente.py",
+  "npm run verificar:publicacion",
+  "npm run build",
+  "git diff --check"
+ ],
+ "worldSha256": "bb3d56cbf66bc9757cad8ab1f03da6c2dd3d005e03d227e74ef9b252f1e7c460",
+ "archivos": {
+  "C01-07-09.glb": "cbc7431d5097ef94fb9d3c8c8a48aeb0a23040a987e00cb423f95e139c02ee64",
+  "aerea-trazo.jpg": "014ff5c50c22ddb3b349e2aadd979e76a74a0a9ea7348f5c12d5d75686266a5c",
+  "antes-despues.jpg": "30caaae9455411cbd451dcc9b4d0860ca2e3b2574fc9c342609728f960a04b7c",
+  "blender-aerea-noreste.jpg": "8ae47b1271f3c5fcd9a13250dd124b5b6c43c7eacb1c432ad017dcb4909ad727",
+  "blender-aerea-suroeste.jpg": "83a8608c6e2bf41c591b027a922f69481604d1c7e66868c20f8c700f58da6003",
+  "blender-esquina-serdan-yanez.jpg": "ea191cbbbab5b3d804c077e5ae2f2ea7c98989efae02814355ec03878df7a6dd",
+  "blender-esquina-yanez-obregon.jpg": "8820645527fe08e6bce1b5322483687ec29e93c4ee00cf82da027f0cc46bc514",
+  "camaras-blender.json": "658e0801e9462dacc339b027b1be0246911f8d1302cbfcc5c6dbe2f59acc814c",
+  "camaras.json": "9b36ed073693f75d11b85f8b6b0e4e6e01e4bbeb305a2cd6ae99c50c007d9595"
+ }
+}
