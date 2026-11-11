@@ -27,6 +27,17 @@ assert((await readFile('public/seguimiento-ligero.json')).length<100000,'resumen
 // Techo de 1 MB / 325 KB: deja lugar a las cuadras siguientes si cada edificio nuevo usa liteLod.
 // C09 (cuadra 28) y LOD en los paquetes anteriores salvo 76–83 y 87 (firmas auditadas):
 // 880,420 bytes / 289,571 gzip, 44,021 triángulos.
-assert(bytes.length<1000000,'geometría completa bajo 1 MB');
-assert(gzipSync(bytes).length<325000,'geometría comprimida bajo 325 KB');
+// Presupuesto por edificio de fábrica (oleadas de cuadras 4–21, 10-nov-2026): cada edificio
+// con `fabrica` suma 3.5 KB / 1.25 KB comprimidos al techo, que nunca baja del 1 MB / 325 KB
+// anterior ni pasa de 1.35 MB / 450 KB. Medido: 15 edificios de C15, C19 y C16 costaron
+// 2.9 KB / 0.96 KB cada uno; con los 139 edificios el techo previsto es ~1.28 MB / 433 KB.
+// Main 73f9658: 924,060 bytes / 305,831 gzip con 28 edificios de fábrica; main 202d4d6 (con C18):
+// 949,520 bytes / 317,524 gzip con 49 (C18 costó 25,460 / 11,693 por 21 edificios).
+// Si una cuadra se pasa, se simplifica la cuadra (vanos en caras cortas, secciones); no se sube el techo.
+const {CUADRA_DETAILS}=await import('../public/levantamiento/cuadra-detail-data.js');
+const fabrica=CUADRA_DETAILS.flatMap(k=>k.buildings).filter(b=>b.fabrica).length;
+const techo=Math.min(1350000,Math.max(1000000,846000+3500*fabrica)),techoGzip=Math.min(450000,Math.max(325000,277000+1250*fabrica)),gz=gzipSync(bytes).length;
+assert(bytes.length<techo,`geometría completa ${bytes.length} bajo ${techo} (${fabrica} edificios de fábrica)`);
+assert(gz<techoGzip,`geometría comprimida ${gz} bajo ${techoGzip} (${fabrica} edificios de fábrica)`);
+console.log(`Vista ligera: ${bytes.length}/${techo} bytes, ${gz}/${techoGzip} gzip, ${fabrica} edificios de fábrica.`);
 console.log('Vista ligera: todos los IDs y estados conservados; geometría válida y presupuestos de carga cumplidos.');
