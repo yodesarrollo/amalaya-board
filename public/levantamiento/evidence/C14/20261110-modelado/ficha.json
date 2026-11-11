@@ -1,0 +1,208 @@
+{
+ "id": "C14",
+ "cuadra": 27,
+ "edificios": {
+  "90": "D2-16",
+  "91": "D2-17",
+  "92": "D2-18",
+  "93": "D2-19",
+  "94": "D2-20"
+ },
+ "fecha": "2026-11-10",
+ "autor": "Claude (Opus 5.5), sesión https://claude.ai/code/session_01BCpvedUsk4bjLk1t29Zdqy",
+ "criterio": "Alejandro Puebla (propietario), 10-nov-2026 18:36 HMO: «más que genérico, una versión aceptable a la realidad según las fotos, lo que muestre»; aprobado el modelo ligero para celular.",
+ "fuentes": [
+  {
+   "path": "public/levantamiento/calco/referencia.webp",
+   "sha256": "ef453bbe2db667f3916e718133b81210e7ff53a51b67c412941a613f5288a074",
+   "tipo": "aérea Esri World Imagery z19 (recuperada 2026-10-07), georreferenciada, 0.26 m/píxel"
+  },
+  {
+   "path": "public/levantamiento/ajuste-visual/C14.jpg",
+   "sha256": "0ac269eebb7337abc6645739ff969ce7e05a9c1812c073554c69aded02c2b27d",
+   "tipo": "recorte aéreo de la cuadra"
+  },
+  {
+   "path": "public/levantamiento/evidence/D2-16/20261006-01-cierre.json",
+   "sha256": "81ce99d9a4786293829f48d62e74efbd45b8b41317d22e8921820dd236b94688",
+   "tipo": "planta de inventario ±3 m"
+  },
+  {
+   "path": "public/levantamiento/evidence/D2-17/20261006-01-cierre.json",
+   "sha256": "101a8a20aa141e138d8f976fdfb45aaa3e7258580f4e364cee077c00be28c148",
+   "tipo": "planta de inventario ±3 m"
+  },
+  {
+   "path": "public/levantamiento/evidence/D2-18/20261006-01-cierre.json",
+   "sha256": "dd7daa3478dbbb4d71a4ca3ea4c484477473d18cd3718c26dc260dc917c384f8",
+   "tipo": "planta de inventario ±3 m"
+  },
+  {
+   "path": "public/levantamiento/evidence/D2-19/20261006-01-cierre.json",
+   "sha256": "e98a47d8d5a94dadd44228b7296f7c66d558dc605625a204d6def54839069c5c",
+   "tipo": "planta de inventario ±3 m"
+  },
+  {
+   "path": "public/levantamiento/evidence/D2-20/20261006-01-cierre.json",
+   "sha256": "cb9817affefd631dd6dcff5eeb68671ca3553b4829acb61079839cc94643ca95",
+   "tipo": "planta de inventario ±3 m"
+  },
+  {
+   "path": null,
+   "tipo": "foto de calle",
+   "resultado": "no disponible en el repositorio; Street View inaccesible desde la nube; el propietario no pidió abrir su navegador"
+  }
+ ],
+ "sombras": {
+  "metodo": "perfil de luminancia en columnas N–S de la aérea; sombra proyectada al norte sobre Felipe Salido; calibración con el 89 (6.2 m) en la misma imagen",
+  "calibracion89": {
+   "columnas_x": [
+    -122,
+    -116,
+    -110,
+    -104
+   ],
+   "sombra_m": [
+    6.75,
+    6.75,
+    6.0,
+    6.0
+   ],
+   "altura_m": 6.2,
+   "razon_sombra_altura": 1.04
+  },
+  "mediciones": [
+   {
+    "id": "D2-16",
+    "x": -52,
+    "sombra_m": 5.0,
+    "altura_m": 4.8
+   },
+   {
+    "id": "D2-17",
+    "x": [
+     -44,
+     -38
+    ],
+    "sombra_m": [
+     4.25,
+     4.5
+    ],
+    "altura_m": 4.2
+   },
+   {
+    "id": "D2-18",
+    "x": [
+     -21,
+     -16
+    ],
+    "sombra_m": [
+     4.5,
+     4.25
+    ],
+    "altura_m": 4.2
+   },
+   {
+    "id": "D2-19",
+    "x": -7,
+    "sombra_m": 3.75,
+    "altura_m": 3.8
+   },
+   {
+    "id": "D2-20 barra este",
+    "x": [
+     -20,
+     -15
+    ],
+    "sombra_m": [
+     2.5,
+     3.0
+    ],
+    "altura_m": 3.0
+   },
+   {
+    "id": "D2-20 este bajo",
+    "sombra_m": 2.0,
+    "altura_m": 2.8,
+    "nota": "sombra corta: cuerpo bajo o techumbre"
+   },
+   {
+    "id": "D2-20 naves",
+    "sombra_m": 1.0,
+    "nota": "línea de sombra entre naves: escalón de ~1 m (4.2 → 5.2 m)"
+   }
+  ],
+  "incertidumbre_m": "±0.8 a ±1.0"
+ },
+ "pasos": [
+  {
+   "paso": 1,
+   "nombre": "Identidad y evidencia",
+   "resultado": "Cinco registros de C14 con su número; sólo aérea; sin foto de calle."
+  },
+  {
+   "paso": 2,
+   "nombre": "Forma",
+   "resultado": "90–93 con planta de inventario; 94 en diez secciones trazadas a ±1 m sobre la aérea, jardín y patios abiertos; planta de inventario conservada como registro."
+  },
+  {
+   "paso": 3,
+   "nombre": "Alturas",
+   "resultado": "Por sombra calibrada con el 89 (ver sombras)."
+  },
+  {
+   "paso": 4,
+   "nombre": "Fachada",
+   "resultado": "Fábrica de fachadas, tipología casa de un nivel, en caras a la calle y caras visibles detrás de jardines; 46 vanos; caras al jardín lisas."
+  },
+  {
+   "paso": 5,
+   "nombre": "Material y azotea",
+   "resultado": "Color de techo mediano medido en la aérea por sección; color de muro estimado; pretiles; 10 tinacos, 4 ventilas y 1 calentador solar en posiciones vistas."
+  },
+  {
+   "paso": 6,
+   "nombre": "Conjunto, ligero y comparación",
+   "resultado": "Vecinos idénticos por firma de colisiones; vanos alcanzados desde la calle; LOD en la vista ligera; mismas cámaras antes y después; vistas de Blender y GLB de la cuadra."
+  }
+ ],
+ "limites": [
+  "Sin foto de calle: vanos, puertas y colores de muro son tipológicos, no observados.",
+  "Cubiertas visibles fuera del inventario (entre 91 y 92, y al sur de 92) quedan fuera del conteo de 139.",
+  "Alturas por sombra dependen de la altura estimada del 89.",
+  "Contornos de 94 a ±1 m; sin medición en sitio.",
+  "El suelo gris de las vistas de Blender es un fondo de render, no geometría del modelo."
+ ],
+ "vistaLigera": {
+  "bytes": 983200,
+  "gzip": 318496,
+  "triangulos": 49160,
+  "lod": {
+   "walls": 90,
+   "openings": 118
+  },
+  "techo": "1 MB / 325 KB gzip"
+ },
+ "pruebas": [
+  "scripts/pruebas-fabrica.mjs",
+  "scripts/pruebas-lod-ligero.mjs",
+  "scripts/pruebas-vista-ligera.mjs",
+  "scripts/pruebas-c1-13-enjambre.mjs (firmas por edificio)",
+  "scripts/pruebas-lamina.mjs",
+  "npm run pruebas",
+  "npm run verificar:publicacion"
+ ],
+ "worldSha256": "9016b6905ecdb60a021c6d57c51576a5e35577ae5f2456e31731dcc85b54dba9",
+ "archivos": {
+  "blender-esquina-noroeste.jpg": "b39e9f7670e60c8cd402711bb632d1b511f018ebf4c6904f7c9ca5231f82c977",
+  "blender-esquina-noreste.jpg": "6032ae27d6886afa849ea115d74347455634bd5f74a28b79cc4b0a5de8c094a6",
+  "blender-bavispe.jpg": "e4f70f8824e92a3fcd41dba16ad885f53eec91a0ab5ded6e690649305cd30bd7",
+  "blender-esquina-sureste.jpg": "55389a61df2549d11964f05ecea3017295a8d9cbbc9381c91f5f407412d68335",
+  "blender-aerea.jpg": "a8c226c71e2389a7e1a46afe1c2f85b5c405070b0c392cbd5d93897a655ac367",
+  "blender-aerea-sureste.jpg": "bc84f4e3edad98bd4eb3cf0cc9639c4d01f429d303d0ce5e90d1b14adb095ce5",
+  "aerea-trazo.jpg": "909ef537a6a9213f2bbe365400e041a187e96bf340845c7a3eb87709a16a49f0",
+  "antes-despues.jpg": "8e5417dff90c2481bf07f7fe6a51d1981ef1127e9761e9c2e4cf4191c06ce504",
+  "camaras.json": "6d310e92468b90618f3f419886b827c98258474768ddedda82f2cd2a552ac886",
+  "C14-90-94.glb": "3dc85ef795764496d38d271138f7748c88264ab3740a5aa1f57c197ba425a7c7"
+ }
+}

@@ -36,6 +36,9 @@ export const OBSERVADO_89={edge:5,x:18.92,ancho:7.1,pano:'wCAjZTaNz6Qt4POhDordqw
 export const C11_89={block:'C11',evidence:'D1-12/20261110-modelado',buildings:[{
  id:'D1-12',height:6.2,color:yellow,roofColor:'#cdc5b0',uncertainty:3,parapet:true,parapetColor:'#e3d7ad',
  surfaceMaterial:{metalness:0,roughness:.95},
+ // Vista ligera del celular (D3, 10-nov-2026): muro y vanos como paneles planos;
+ // el recorrido 3D conserva los vanos perforados reales.
+ liteLod:true,
  sources:['ajuste-visual/C11.jpg','evidence/D1-12/20261029-ola1/paquete.json'],
  facades:[
   // Arista 0: colindancia oriente dentro de la manzana; sin vanos ni remate.

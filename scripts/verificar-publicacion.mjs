@@ -95,11 +95,22 @@ const olaEvidenceFiles=new Map([
  ['D1-09',['aerea-3d.jpg','calle-norte-3d.jpg','esquina-noreste-3d.jpg','camaras.json','paquete.json']],
  ['D1-12',['aerea-3d.jpg','calle-3d.jpg','esquina-3d.jpg','camaras.json','escena.json','paquete.json']]
 ].map(([id,names])=>[root+'/evidence/'+id+'/20261029-ola1',new Set(names)]));
-// 89/D1-12 (10-nov-2026): modelado con foto documentada y formas estimadas.
-// La ficha fija el inventario exacto de la carpeta y el hash de cada archivo.
-{const dir=root+'/evidence/D1-12/20261110-modelado',ficha=JSON.parse(await readFile(dir+'/ficha.json','utf8'));
- olaEvidenceFiles.set(dir,new Set(['ficha.json',...Object.keys(ficha.archivos)]));
- for(const [name,hash] of Object.entries(ficha.archivos))assert.equal(sha256(await readFile(dir+'/'+name)),hash,'89: conservar evidencia '+name);}
+// Fichas de modelado (89/D1-12 y C14 desde el 10-nov-2026): cada carpeta
+// evidence/<edificio o cuadra>/<AAAAMMDD>-modelado/ficha.json fija el inventario
+// exacto de la carpeta y el hash de cada archivo.
+const modeladoDirs=new Set();
+for(const top of await readdir(root+'/evidence',{withFileTypes:true})){
+ if(!top.isDirectory())continue;
+ for(const sub of await readdir(root+'/evidence/'+top.name,{withFileTypes:true})){
+  if(!sub.isDirectory()||!/^\d{8}-modelado$/.test(sub.name))continue;
+  const dir=root+'/evidence/'+top.name+'/'+sub.name,ficha=JSON.parse(await readFile(dir+'/ficha.json','utf8'));
+  assert(ficha.archivos&&Object.keys(ficha.archivos).length,'Ficha de modelado sin inventario: '+dir);
+  olaEvidenceFiles.set(dir,new Set(['ficha.json',...Object.keys(ficha.archivos)]));modeladoDirs.add(dir);
+  if(!olaEvidenceFiles.has(root+'/evidence/'+top.name))olaEvidenceFiles.set(root+'/evidence/'+top.name,new Set());
+  for(const [name,hash] of Object.entries(ficha.archivos))assert.equal(sha256(await readFile(dir+'/'+name)),hash,'Ficha de modelado: conservar evidencia '+dir+'/'+name);
+ }
+}
+assert(modeladoDirs.has(root+'/evidence/D1-12/20261110-modelado'),'89: ficha de modelado presente');
 const swarm82Root=root+'/evidence/C1-13/20261029-enjambre';
 // C10 changes shared imports legitimately. Keep 82 receipts immutable and verify
 // their exact historical bytes separately from the current C10 artifact.
@@ -172,6 +183,7 @@ async function check(dir){
     assert(!item.isSymbolicLink(),`No se permiten enlaces: ${path}`)
     if(item.isDirectory()){const allowed=olaEvidenceFiles.has(path)||(dir===root&&['cuadras','calco','ajuste-visual','jev-pilot-v1','sidewalk-real-v1'].includes(item.name))||([pilotDir,realDir].includes(dir)&&item.name==='images')||['data','visor','assets','fonts','evidence'].includes(item.name)||(dir===`${root}/evidence`&&(['c08-cierre-20261008','c30-cierre-20261008','c08-punto1-20261008','c08-punto2-20261008','paramento-20261007','paramento-ronda2-20261008','OB-01','OB-02','ISC-58','EB-SW','EB-NW','EB-NE','EB-SE','CH-GA-OXXO','CH-YG-BBVA','CH-YG-BIB','SER-BLEY','SER-HSBC','OB-21','SER-SANT','PL-GA'].includes(item.name)||/^[ABCD][123]-\d{2}$/.test(item.name)));assert(allowed,`Carpeta inesperada: ${path}`);await check(path);continue}
     if(path.startsWith(root+'/evidence/C10/')||path.startsWith(root+'/revision-practica/'))assert(olaEvidenceFiles.get(dir)?.has(item.name),'C10: evidencia fuera de manifiesto '+path)
+    if(modeladoDirs.has(dir))assert(olaEvidenceFiles.get(dir).has(item.name),'Ficha de modelado: archivo fuera de inventario '+path)
     if(dir===pilotDir||dir===pilotDir+'/images')assert(pilotFiles.has(path.slice(pilotDir.length+1)),'Piloto: archivo fuera de manifiesto')
     if(dir===realDir||dir===realDir+'/images')assert(realFiles.has(path.slice(realDir.length+1)),'Banqueta real: archivo fuera de inventario')
     if(batchDirs.has(dir)){assert(batchDirs.get(dir).has(item.name),'Evidencia de tanda no revisada: '+path);if(item.name==='index.html')assert(!/<script|<iframe|\bon[a-z]+\s*=|(?:src|href)=["']https?:/i.test(await readFile(path,'utf8')),'Comparación estática y autónoma');}

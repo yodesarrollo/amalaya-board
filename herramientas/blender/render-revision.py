@@ -84,6 +84,14 @@ def malla(nombre, grupos, coleccion):
 
 malla('mundo', por_color, sc.collection)
 
+# Fondo de suelo sólo para el render: los lotes no tienen superficie propia en la escena
+# y sin él se vería el cielo bajo el horizonte. No es geometría del modelo ni va al GLB.
+if '--sin-suelo' not in sys.argv:
+    me = bpy.data.meshes.new('suelo-render')
+    me.from_pydata([(-3000, -3000, -0.03), (3000, -3000, -0.03), (3000, 3000, -0.03), (-3000, 3000, -0.03)], [], [(0, 1, 2, 3)])
+    me.materials.append(material('bab4a4'))
+    sc.collection.objects.link(bpy.data.objects.new('suelo-render', me))
+
 # Sol de Hermosillo (29.07 N) a media tarde de noviembre: azimut ~225°, elevación ~36°.
 az, el = math.radians(225), math.radians(36)
 sol = bpy.data.lights.new('sol', 'SUN')
