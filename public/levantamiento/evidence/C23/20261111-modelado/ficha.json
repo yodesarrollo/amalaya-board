@@ -1,0 +1,318 @@
+{
+ "id": "C23",
+ "cuadra": 12,
+ "edificios": {
+  "47": "B3-02",
+  "48": "B3-03",
+  "49": "EB-NE",
+  "50": "EB-SE"
+ },
+ "fecha": "2026-11-11",
+ "autor": "Claude (Opus 5.5), sesión https://claude.ai/code/session_01BCpvectpcx82yoUydkG9PM",
+ "pedido": "Alejandro Puebla en vivo, 10-nov-2026 23:13 HMO («Continúa cuadra 12»), en la sesión programada de la cuadra 2; eligió fusionar antes la preparación #132 (la fusionó él, merge 1785401). Fila 578 del Buzón.",
+ "criterio": "Alejandro Puebla (propietario), 10-nov-2026: «más que genérico, una versión aceptable a la realidad según las fotos». Con foto se modela lo observado y lo demás por tipología, rotulado como estimado; nunca se empeora un modelo que ya se hizo con foto (docs/OLEADAS-CUADRAS.md).",
+ "base": "main@e3f94e67eaa67f08da48e50ff5e2072b2a5a6942",
+ "diagnostico": [
+  {
+   "n": 47,
+   "id": "B3-02",
+   "foto": "R2 P03–P05, R1 P10–P11",
+   "hoy": "malla de inventario de 6.2 m con el patio del estacionamiento abierto (COURTYARD_REVIEWS)",
+   "accion": "sin cambio: pruebas-paramento.mjs exige que «Planta física · B3-02» siga siendo esa malla con un hueco; un módulo la sustituiría por un grupo"
+  },
+  {
+   "n": 48,
+   "id": "B3-03",
+   "foto": "R1 P11 y P12",
+   "hoy": "caja techada de 5.8 m con seis vanos abiertos (estacionamiento-frente)",
+   "accion": "paquete c23-48-data.js: arcada-barda por secciones y cubierta del estacionamiento"
+  },
+  {
+   "n": 49,
+   "id": "EB-NE",
+   "foto": "R2 P01 y P02",
+   "hoy": "recinto abierto de octubre con muro de block de 3.0 m y rejas",
+   "accion": "sin cambio: pruebas-paramento exige el recinto sin cubierta y la firma detalle:EB-NE congela sus muros; las dos fotos no coinciden lo bastante en la posición de los vanos"
+  },
+  {
+   "n": 50,
+   "id": "EB-SE",
+   "foto": "R1 P12–P14",
+   "hoy": "frente almacen-esquina de 9.5 m, liso, con una puerta de 4.3 m",
+   "accion": "paquete c23-50-data.js: misma planta y altura (firma congelada), portón en tres partes y rejilla según la foto"
+  }
+ ],
+ "fuentes": [
+  {
+   "path": "public/recorrido/MtTpU1NWETczZgzdClblwg.jpg",
+   "sha256": "f78bb949207e552589b9438e51187868edb36bee875ad336368e1103f3cbcc51",
+   "tipo": "Panorámica del recorrido R-001 P11 (Street View, dic-2023), Obregón frente al portal y los tres arcos de B3-03"
+  },
+  {
+   "path": "public/recorrido/5FAUCdPN0bi6PQuYj_IQOA.jpg",
+   "sha256": "095150ea0b3780b48045beb1d6d887deb872e6e344e5693f5f1a41dd4b0e764f",
+   "tipo": "Panorámica R-001 P12, Obregón: tramo oriente de la arcada (puerta en arco y ventanal) y esquina poniente del cuerpo alto de EB-SE"
+  },
+  {
+   "path": "public/recorrido/c_zMMTJvaks8XyIRT6mJCQ.jpg",
+   "sha256": "13cdee6f5fb0a0ac7a478430b10a93138ee986cf801784fdcfa62f55cabf7c02",
+   "tipo": "Panorámica R-001 P13, Obregón frente al portón de cochera y el mural de EB-SE"
+  },
+  {
+   "path": "public/recorrido/ywXPe_aoOm7HUa9l5NTdfg.jpg",
+   "sha256": "730bc04e01a7737813b3c45ed9ac14a82581cb178a0e3eb4f8e5771655e2c6e3",
+   "tipo": "Panorámica R-001 P14, esquina Obregón–Abasolo (tramo oriente y ochave de EB-SE)"
+  },
+  {
+   "path": "public/recorrido/lYkbkN5HLT-6YQS4vIsd2g.jpg",
+   "sha256": "fd5c259b6ad5771a699f4eb3f5dfaef288d499024519e5654bcb5580d2416d67",
+   "tipo": "Panorámica R-001 P10, Obregón al poniente de la cuadra (barda de block y callejón)"
+  },
+  {
+   "path": "public/recorrido/TMvGKzSUcJSVhkTRRxjHIA.jpg",
+   "sha256": "5790a4f2a7878e2ced6a1d0efc424b648eda7b41d84603a7a8f4ba550cb889d6",
+   "tipo": "Panorámica R-002 P01, esquina Chihuahua–Abasolo (recinto EB-NE)"
+  },
+  {
+   "path": "public/recorrido/77G-ooH2G6Dx2QbnJ20OAQ.jpg",
+   "sha256": "81975e2f7b1d38e72c339dc2b95a83ab9f5abf68572f52ea9eb1f8bbb415c83b",
+   "tipo": "Panorámica R-002 P02, Chihuahua frente al muro de block del recinto EB-NE"
+  },
+  {
+   "path": "public/recorrido/Q-1EPMRJQAS7noIGDzpR4A.jpg",
+   "sha256": "6667d11bfca620ed4bb636e2fb5708ed5a5197ab4cdb1ee683c8017484195f69",
+   "tipo": "Panorámica R-002 P03, Chihuahua frente al ala norte rosa de B3-02"
+  },
+  {
+   "path": "public/recorrido/wgpwXS6VA0MdLRF6oSqDBA.jpg",
+   "sha256": "cbd63ed1a0a930379d4794073206a00b8915fd10ca21ede2de6f3b4328a6a2f9",
+   "tipo": "Panorámica R-002 P04, esquina noroeste (casa antigua de B3-02 y callejón peatonal)"
+  },
+  {
+   "path": "public/recorrido/qU0XiVpeIHZyTixjEBUfgg.jpg",
+   "sha256": "da1cded1a8158f5ae52b0e6870e9b4cbb52928c8c82bd0250d9f63718cb5b4df",
+   "tipo": "Panorámica R-002 P05, Chihuahua al poniente"
+  },
+  {
+   "path": "public/recorrido/rutas.json",
+   "sha256": "23fff937e208d67c5a59b9d960ee1aadbcd7207346eaf16f27918b6812b9676f",
+   "tipo": "Posiciones de las panorámicas (lat/lng); u=0.5 de la equirectangular = norte"
+  },
+  {
+   "path": "public/levantamiento/calco/referencia.webp",
+   "sha256": "ef453bbe2db667f3916e718133b81210e7ff53a51b67c412941a613f5288a074",
+   "tipo": "Aérea Esri World Imagery z19 (recuperada 2026-10-07), georreferenciada, 0.26 m/píxel"
+  },
+  {
+   "path": "public/levantamiento/ajuste-visual/C23.jpg",
+   "sha256": "bd0f079f02260da1fe656151a1336c1bee696ddc3160d4637957019299caf14e",
+   "tipo": "Recorte aéreo de la cuadra"
+  },
+  {
+   "path": "public/levantamiento/evidence/B3-03/20261006-01-cierre.json",
+   "sha256": "d66537ff429044fbd1ca3e2b56c6c83b5482e1a846219d4ce5c4d52329be0673",
+   "tipo": "Registro de inventario de B3-03 (ala baja de cubierta, ±3 m)"
+  },
+  {
+   "path": "public/levantamiento/evidence/EB-SE/20261006-01-cierre.json",
+   "sha256": "d96ca3b65239dc38511e6e5da94f9b58b3384028f2cac73ea04222a645bc1441",
+   "tipo": "Registro de inventario de EB-SE (huella 27.33 × 25.71 m)"
+  },
+  {
+   "path": "public/levantamiento/paramento-data.js",
+   "sha256": "5cc1cd6d1d7afe221bb96edbbfa6990a7e446a487014ba4ae0bc8df76d359d93",
+   "tipo": "Frentes de octubre estacionamiento-frente (B3-03) y almacen-esquina (EB-SE), y patio de B3-02 (sin editar)"
+  }
+ ],
+ "mediciones": {
+  "metodo": "Panorámicas equirectangulares (u=0.5 = norte) sin la corrección de roll.json: ya vienen niveladas (verticales verticales en P13 y R2 P02). Cada fachada se rectificó sobre su plano con la cámara a 2.45 m; posiciones a lo largo de la arista y alturas por los ángulos de base y remate: H = 2.45·(1 + tan(remate)/tan(base)). En P11, P12 y R2 P03 la distancia que da el ángulo de la base coincide con rutas.json a ±0.2 m; P13 queda ~1.2 m más cerca del muro.",
+  "B3-03": {
+   "frente": "línea de octubre (129.147, 2.336)–(151.568, 0.776), prolongada al poniente",
+   "tramos_x": {
+    "barda": [
+     123.7,
+     127.4
+    ],
+    "portal": [
+     127.4,
+     132.4
+    ],
+    "arcos": [
+     132.4,
+     142.4
+    ],
+    "oriente": [
+     142.4,
+     151.35
+    ]
+   },
+   "vanos_x": {
+    "portal": 130.1,
+    "arcos": [
+     133.9,
+     137.4,
+     140.9
+    ],
+    "puertaArco": 143.6,
+    "ventanal": 148.7
+   },
+   "vanos_m": {
+    "portal": "2.4 × 4.4, rectangular con reja",
+    "arcos": "2.4 × 4.9, reja y encuentro de hojas",
+    "puertaArco": "1.6 × 3.6",
+    "ventanal": "2.56 × 4.3, antepecho 0.25 (barrote en el eje)"
+   },
+   "cubierta": "franja clara de la aérea, 2.4–6.0 m detrás de la fachada, x 132.2–149.2, 2.9 m",
+   "nota": "P11 y P12 dan centros de arco que difieren 0.6–2.4 m hacia el oriente (escala de la rectificación); se toma el promedio, ±0.6 m."
+  },
+  "EB-SE": {
+   "porton_x": [
+    166.8,
+    174.9
+   ],
+   "porton_partes": "hoja 2.9 m · puerta abierta 1.8 m · hoja 3.1 m, alto 4.8 m",
+   "rejilla": "x 158.9–160.1, a 4.9–5.8 m (otra a 8.5–9.4 m sin modelar)",
+   "remate_m": {
+    "P13 al centro (letrero)": 14.0,
+    "P14 tramo oriente": 12.35,
+    "P14 junto a la ochave": 12.6
+   },
+   "esquinaPoniente_x": "155–157 (rayos de P12 y P13 con poses aproximadas; la aérea muestra el techo alto desplazado ~4 m al oriente)"
+  },
+  "B3-02": {
+   "alaNorte_m": {
+    "cornisa": 4.6,
+    "escalones": [
+     4.9,
+     5.9
+    ],
+    "zoclo": 0.75
+   },
+   "vanos": "puerta de reja 1.9 × 2.7 y ventana con reja, marcos ocres",
+   "esquinaNoroeste": "casa antigua blanca con puerta en arco y ventanas con reja; callejón peatonal con pérgola al poniente"
+  },
+  "colores": {
+   "crema": "#e9dccd",
+   "ocre": "#c4904f",
+   "block": "#b3a38f",
+   "ladrillo": "#b9805f",
+   "laminaPorton": "#a7aba8",
+   "nota": "colores de la foto a media luz (las medianas crudas salen azuladas por la sombra)"
+  }
+ },
+ "alturas": {
+  "B3-03": {
+   "barda": 3.4,
+   "portal": 8.2,
+   "arcos": 7.2,
+   "oriente": 5.5,
+   "cubierta": 2.9,
+   "fuente": "ángulos de base y remate en P11 y P12, cámara a 2.45 m",
+   "incertidumbre": "±8 %"
+  },
+  "EB-SE": {
+   "m": 9.5,
+   "fuente": "frente de octubre (congelado); observado 12.5–14 m sin aplicar"
+  }
+ },
+ "pasos": [
+  {
+   "paso": 1,
+   "nombre": "Identidad y evidencia",
+   "resultado": "Diez panorámicas a menos de 22 m (R-001 P10–P14, R-002 P01–P05); fachadas rectificadas sobre su plano; aérea z19."
+  },
+  {
+   "paso": 2,
+   "nombre": "Forma",
+   "resultado": "B3-03 deja de ser una caja techada: arcada-barda de estacionamiento en cuatro tramos de 0.5 m de fondo y cubierta ligera detrás. EB-SE, EB-NE y B3-02 conservan su planta."
+  },
+  {
+   "paso": 3,
+   "nombre": "Alturas",
+   "resultado": "B3-03 3.4/8.2/7.2/5.5 m y cubierta 2.9 m por ángulos; EB-SE 9.5 m congelado (observado 12.5–14 m)."
+  },
+  {
+   "paso": 4,
+   "nombre": "Fachada",
+   "resultado": "B3-03: portal con reja, tres arcos con reja, puerta en arco y ventanal, pilastras, impostas y zoclo ocres; barda de block con marco de ladrillo. EB-SE: portón de cochera en tres partes y rejilla."
+  },
+  {
+   "paso": 5,
+   "nombre": "Material y azotea",
+   "resultado": "Colores de la foto a media luz; cubierta de lámina clara sobre postes; superficie mate."
+  },
+  {
+   "paso": 6,
+   "nombre": "Conjunto, ligero y comparación",
+   "resultado": "Firmas de colisión ajenas idénticas (EB-SE conserva sus 125 cajas); 12 vanos de B3-03 alcanzados desde fuera; LOD en B3-03 y EB-SE; mismas cámaras antes y después; foto frente a modelo; tres vistas de Blender y GLB de la cuadra."
+  }
+ ],
+ "limites": [
+  "Medidas visuales, no métricas: vanos de B3-03 ±0.6 m, de EB-SE ±1 m (poses de cámara aproximadas); alturas ±8 %.",
+  "EB-SE: el muro de Obregón remata a ~12.5–14 m y el cuerpo alto empieza hacia x 155–157, pero su firma de colisiones está congelada (pruebas-c1-13-enjambre) y no puede llevar fabrica (pruebas-fabrica pide dueño «Planta física»); se conservan la planta y los 9.5 m de octubre. Por eso la arcada de B3-03 termina en x 151.35 y su último tramo (arco grande y puerta en arco junto a la esquina) queda dentro del volumen de EB-SE; la rejilla alta (8.5 m) no se modela.",
+  "B3-02 sin cambio: pruebas-paramento fija su malla de inventario con el patio; lo observado (ala norte rosa con cornisa escalonada, casa antigua en la esquina noroeste, callejón peatonal) queda registrado.",
+  "EB-NE sin cambio: muro y altura congelados por la firma detalle:EB-NE; la foto muestra un muro de block más alto y con más vanos que el de octubre.",
+  "La barda de block empieza en x 123.7 (la foto la muestra desde ~121) para no entrar en la banqueta ni salir del lote INEGI.",
+  "Abanicos de los arcos como reja de barrotes; mural y letreros de EB-SE no se reproducen.",
+  "En esta aérea el sol viene del este: la banda oscura al poniente del techo de EB-SE es su muro poniente en sombra; el techo alto se ve desplazado ~4 m al oriente.",
+  "El suelo gris de las vistas de Blender es un fondo de render, no geometría del modelo."
+ ],
+ "vistaLigera": {
+  "bytes": 983280,
+  "gzip": 334048,
+  "triangulos": 49164,
+  "lod": {
+   "walls": 833,
+   "openings": 699
+  },
+  "edificiosFabrica": 85,
+  "techo": {
+   "bytes": 1143500,
+   "gzip": 383250
+  },
+  "antes": {
+   "base": "main@e3f94e6 (ya con C30, C07, C24, C21, C05 y C28)",
+   "bytes": 994660,
+   "gzip": 337316,
+   "edificiosFabrica": 84,
+   "techo": {
+    "bytes": 1140000,
+    "gzip": 382000
+   }
+  },
+  "nota": "Baja 11,380 bytes / 3,268 gzip porque B3-03 y EB-SE pasan a LOD."
+ },
+ "glb": {
+  "archivo": "C23-47-50.glb",
+  "triangulos": 6968,
+  "poligono": "152.8,5.43;122.92,6.9;116.66,-41.56;179.37,-44.36;182.68,3.96",
+  "nota": "triángulos del mundo publicado dentro del límite INEGI de C23"
+ },
+ "pruebas": [
+  "scripts/pruebas-fabrica.mjs (B3-03: 5 secciones, 12 vanos, 12 rayos)",
+  "scripts/pruebas-lod-ligero.mjs",
+  "scripts/pruebas-vista-ligera.mjs",
+  "scripts/pruebas-identificacion.mjs",
+  "scripts/pruebas-paramento.mjs (patio de B3-02 y recinto EB-NE)",
+  "scripts/pruebas-c1-13-enjambre.mjs --detalles (firmas por edificio)",
+  "scripts/pruebas-lamina.mjs",
+  "npm run pruebas",
+  "python3 scripts/pruebas-puente.py",
+  "npm run verificar:publicacion",
+  "npm run build",
+  "git diff --check"
+ ],
+ "worldSha256": "0c2b8c5fcbe8e4d0bea73ab63f1d16f22ebc8cf805102a58e681d9bf956d4dba",
+ "archivos": {
+  "C23-47-50.glb": "542fe92ed32729e06b417615bfe890913073c0fdbbe278d6c8f3ba8e64d2d0ef",
+  "aerea-trazo.jpg": "416c21376dd0881a5c257aea16b6f8e7f1ffe73ee0cc516afd34a67b6cc83b07",
+  "antes-despues.jpg": "60ca8ffbcfab52194cdce5c19828d70380d1399012e7be75a67fd6c0d71fcb85",
+  "blender-aerea-suroeste.jpg": "87957075e8bd3fd515874a46c221886c4e92f113bca63bd3243c42aa958579d9",
+  "blender-obregon-esquina-abasolo.jpg": "6ee4c5bf66e5daef21fe21012dbcc1deaf61491d66839079621c71f57beffaf2",
+  "blender-obregon-portal.jpg": "66149c7f402b673c81d3a2799a09c73adf2deab958a2855c79b6220bd4d58625",
+  "camaras-blender.json": "74b64b070a956582fe5675abfd717cabd7b1522b444a9be7f0f8b6717950b0b1",
+  "camaras.json": "dd2a41e2565767c5f81e930970569f5f4b1a568511bc29c536a8d6723261c866",
+  "foto-modelo.jpg": "3d51f14c479d83cc347b01e38751e7e29e67cadd4a85de7b7c882b0a65c9414c",
+  "poligono-glb.txt": "6377a57ae1adcf73fa56f9f323c12c9e77d1676a9454e3fb4fa2e0a9a0d94241"
+ }
+}

@@ -96,6 +96,8 @@ import {C05_18} from './c05-18-data.js?v=cad6ab3c7d40';
 import {C05_19} from './c05-19-data.js?v=e3157ab99a4e';
 import {C05_20} from './c05-20-data.js?v=d530f5d3e92d';
 import {C28_51} from './c28-51-data.js?v=8f391d95a0bb';
+import {C23_48} from './c23-48-data.js?v=bdeabdee8790';
+import {C23_50} from './c23-50-data.js?v=ba0b960c2218';
 
 // Historic photo-based packets and explicitly labelled modelling hypotheses.
 // Dimensions are approximate; each packet documents its own evidence and limits.
@@ -162,6 +164,10 @@ CUADRA_DETAILS.push(C28_51);
 // 64/A3-08 (constructor propio en paramento-refinement.js) y 65/CH-GA-OXXO (huella OSM con firma de colisión
 // congelada, en bloque1-serdan-20261026.js) quedan sin cambio. Sustituye a serdan-aproximado-data.js (registro).
 CUADRA_DETAILS.push(C24_59,C24_60,C24_61,C24_62,C24_63);
+// C23 · cuadra 12 (11-nov-2026): fotos de calle R-001 P11–P14; 48/B3-03 arcada del estacionamiento por
+// secciones con su cubierta; 50/EB-SE vanos del portón sobre el volumen de octubre (firma congelada).
+// 49/EB-NE sigue como recinto abierto (abajo) y 47/B3-02 sin cambio (pruebas-paramento fija su malla).
+CUADRA_DETAILS.push(C23_48,C23_50);
 
 CUADRA_DETAILS.push(...CORREDOR_OBREGON_20261026);
 CUADRA_DETAILS.push(...BLOQUE1_SERDAN);
