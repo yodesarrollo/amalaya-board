@@ -1,0 +1,247 @@
+{
+ "id": "C03",
+ "cuadra": 7,
+ "edificios": {
+  "26": "B1-08",
+  "27": "B1-09"
+ },
+ "fecha": "2026-11-10",
+ "autor": "Claude (Opus 5.5), sesión https://claude.ai/code/session_01BCpved7JUFsofpAs769fba",
+ "criterio": "Alejandro Puebla (propietario), 10-nov-2026: «más que genérico, una versión aceptable a la realidad según las fotos». Con foto se modela lo observado (vanos, rasgos, colores, altura) como el 89; sin foto, fábrica de fachadas en caras a la calle o a menos de 4 m de la banqueta, declarado en hypothesis.",
+ "base": "main@a0610c3a0ce0b33d2f0c5c3b5613827bbca1fa21",
+ "diagnostico": "diagnostico.json",
+ "fuentes": [
+  {
+   "path": "public/levantamiento/evidence/paramento-20261007/H01-foto.jpg",
+   "sha256": "ed701158bf3f79d7df7342250e666e3cff33de9c79b037319d1faffb53381cc7",
+   "tipo": "Street View dic-2023, Blvd. Miguel Hidalgo frente al cuerpo bajo (B1-08) con la torre detrás"
+  },
+  {
+   "path": "public/levantamiento/evidence/paramento-ronda2-20261008/H01-torre-foto.jpg",
+   "sha256": "a1e7e12ff5ebed9de71e529465590ea998486e02eddedea524cad8d7773189d7",
+   "tipo": "Street View dic-2023, mismo punto con cámara inclinada 25° (retícula de parasoles de B1-09)"
+  },
+  {
+   "path": "public/levantamiento/evidence/paramento-ronda2-20261008/H04-foto.jpg",
+   "sha256": "cb7cf06de162ce8218d6463e0a99f23e610868b1047a8e24c9f0f024fd873cfe",
+   "tipo": "Street View dic-2023 desde la esquina Rosales / Hidalgo (caras sur y oriente de la torre, remate oriente del cuerpo bajo)"
+  },
+  {
+   "path": "public/levantamiento/evidence/paramento-ronda2-20261008/revision.json",
+   "sha256": "31e73f692f1468a86c472168ce9cfd12e4e61620ee86e9a1c60261281053b4ad",
+   "tipo": "cámaras y alcance de la ronda 2 del 8-oct (frentes de origen)"
+  },
+  {
+   "path": "public/levantamiento/calco/referencia.webp",
+   "sha256": "ef453bbe2db667f3916e718133b81210e7ff53a51b67c412941a613f5288a074",
+   "tipo": "aérea Esri World Imagery z19 (recuperada 2026-10-07), georreferenciada, 0.26 m/píxel"
+  },
+  {
+   "path": "public/levantamiento/ajuste-visual/C03.jpg",
+   "sha256": "e58061c17694d5b926aeae23790524750f0945fdf41ee9bcc88572460b35a380",
+   "tipo": "recorte aéreo de la cuadra"
+  },
+  {
+   "path": "public/levantamiento/evidence/B1-08/20261006-02-registro.json",
+   "sha256": "dcc163d90b7ce515e7989d44dd8d9ebf41c0371bab4aa676b379ab81b1626729",
+   "tipo": "registro individual de B1-08 (6-oct)"
+  },
+  {
+   "path": "public/levantamiento/evidence/B1-09/20261006-02-registro.json",
+   "sha256": "78539bcbfc6b99c9ec62d08abbddb30c570ba09efbbac10e9bc7498d78473c53",
+   "tipo": "registro individual de B1-09 (6-oct)"
+  }
+ ],
+ "mediciones": {
+  "metodo": "Fotos frontales de Street View con la cámara de la ronda 2 (H01 rumbo 350°, H04 rumbo 290°); vanos y lámparas medidos a escala sobre el frente de 10.81 m del cuerpo bajo; aletas y lamas contadas en la foto inclinada. Posiciones ±0.25 m en el cuerpo bajo y estimadas en la torre; no es levantamiento métrico.",
+  "B1-08": {
+   "portones_m": [
+    4.05,
+    7.05
+   ],
+   "puertas_m": [
+    1.05,
+    10.1
+   ],
+   "ventanitas_m": [
+    2.05,
+    9.15
+   ],
+   "lamparas_m": [
+    1.37,
+    9.43
+   ],
+   "nota": "centros a lo largo de la arista sur desde la esquina poniente; coinciden con la ronda 2 a ±0.25 m"
+  },
+  "B1-09": {
+   "aletas": {
+    "observadas": 11,
+    "antes": 9,
+    "separacion_m": 1.02
+   },
+   "hileras": 5,
+   "vidrioVisible_m": 1.1,
+   "lamasEntreHileras": 4,
+   "lamasZonaBaja": 6,
+   "caraOriente": "cinco vanos hundidos junto a la esquina noreste (x 16.2 m de 17.24 m)"
+  },
+  "aerea": {
+   "colorCubiertaMediano": {
+    "B1-08": "#f3f0e5 (fuera de la torre)",
+    "B1-09": "#dadbd3 / #eae7de (techo desplazado)"
+   },
+   "equiposModelados": {
+    "B1-08": 3,
+    "B1-09": 0
+   },
+   "nota": "La torre aparece desplazada ~15 m al noreste por la inclinación de la toma; la cara sur con sus parasoles se ve en escorzo al norte del cuerpo bajo. En esta aérea el sol viene del este: la mancha oscura al poniente es sombra y arbolado."
+  }
+ },
+ "alturas": {
+  "B1-08": {
+   "m": 4.2,
+   "fuente": "HEIGHT_REVIEWS (Hidalgo P-H01)"
+  },
+  "B1-09": {
+   "m": 22.0,
+   "fuente": "HEIGHT_REVIEWS, proporción visual"
+  },
+  "incertidumbre_m": {
+   "B1-08": 0.6,
+   "B1-09": 2.0
+  }
+ },
+ "pasos": [
+  {
+   "paso": 1,
+   "nombre": "Identidad y evidencia",
+   "resultado": "26/B1-08 cuerpo bajo de portones frente a Blvd. Hidalgo; 27/B1-09 torre de piedra con parasoles detrás. Tres fotos Street View de dic-2023 (H01, H01 inclinada, H04)."
+  },
+  {
+   "paso": 2,
+   "nombre": "Forma",
+   "resultado": "Plantas registradas de la ronda 2 sin cambios; el paquete reconstruye los frentes de ROUND2_BUILDINGS sin editar paramento-data.js. Traslape heredado de 29 m² entre el cuerpo bajo y el pie de la torre."
+  },
+  {
+   "paso": 3,
+   "nombre": "Alturas",
+   "resultado": "4.2 m y 22 m (HEIGHT_REVIEWS); la foto inclinada muestra cinco hileras y pretil ciego, coherente con 22 m."
+  },
+  {
+   "paso": 4,
+   "nombre": "Fachada",
+   "resultado": "B1-08: portones con marco rojo grueso, puertas y ventanitas con reja, lámparas, remate rojo en tres caras. B1-09: 11 aletas, cinco hileras de vidrio de 1.1 m, 4 lamas entre hileras, zona baja de lamas, vanos hundidos en la cara oriente."
+  },
+  {
+   "paso": 5,
+   "nombre": "Material y azotea",
+   "resultado": "Colores de la foto a media luz; cubiertas por la aérea; dos cajas de ductos y una ventila sobre el cuerpo bajo; superficie mate."
+  },
+  {
+   "paso": 6,
+   "nombre": "Conjunto, ligero y comparación",
+   "resultado": "Firmas de colisión ajenas idénticas; 16 vanos alcanzados desde fuera; LOD en la vista ligera; mismas cámaras antes y después; foto frente a modelo; dos vistas de Blender y GLB de los dos edificios."
+  }
+ ],
+ "rasgos": {
+  "B1-08": [
+   {
+    "rasgo": "portones enrollables con marco rojo grueso",
+    "resultado": "corregido"
+   },
+   {
+    "rasgo": "lámparas de muro",
+    "resultado": "corregido"
+   },
+   {
+    "rasgo": "remate rojo continuo (sur y oriente)",
+    "resultado": "corregido"
+   },
+   {
+    "rasgo": "cajas de ductos al pie de la torre",
+    "resultado": "corregido"
+   },
+   {
+    "rasgo": "puertas y ventanitas con reja",
+    "resultado": "conservado"
+   }
+  ],
+  "B1-09": [
+   {
+    "rasgo": "11 aletas verticales rojizas",
+    "resultado": "corregido"
+   },
+   {
+    "rasgo": "lamas horizontales entre hileras",
+    "resultado": "corregido"
+   },
+   {
+    "rasgo": "cara oriente ciega con columna de vanos hundidos",
+    "resultado": "corregido"
+   },
+   {
+    "rasgo": "piedra clara",
+    "resultado": "corregido"
+   },
+   {
+    "rasgo": "antena de celosía",
+    "resultado": "sin modelar (límite de 1.3 m de equipos de azotea)"
+   }
+  ]
+ },
+ "limites": [
+  "Medidas visuales, no métricas: vanos del cuerpo bajo ±0.25 m; aletas, lamas y vanos de la cara oriente estimados.",
+  "Altura de la torre por proporción visual (±2 m).",
+  "Caras norte y poniente de la torre sin foto: muro ciego.",
+  "En la aérea la torre se ve desplazada ~15 m al noreste: sus equipos de azotea no se ubican y sólo se toma el color.",
+  "Antena y celosía de ladrillo al noreste sin modelar; explanada, reja y pilares fuera de la planta.",
+  "El suelo gris de las vistas de Blender es un fondo de render, no geometría del modelo."
+ ],
+ "vistaLigera": {
+  "bytes": 958120,
+  "gzip": 321028,
+  "triangulos": 47906,
+  "lod": {
+   "walls": 680,
+   "openings": 500
+  },
+  "antes": {
+   "bytes": 965760,
+   "gzip": 322511,
+   "triangulos": 48288
+  },
+  "techo": "1 MB / 325 KB gzip"
+ },
+ "glb": {
+  "archivo": "C03-26-27.glb",
+  "edificios": [
+   "B1-08",
+   "B1-09"
+  ],
+  "poligono": "-244.11,18.08;-242.35,26.82;-230.37,24.45;-232.14,15.68;-230.48,15.35;-234.15,-2.92;-249.52,0.15;-245.85,18.42"
+ },
+ "pruebas": [
+  "scripts/pruebas-fabrica.mjs",
+  "scripts/pruebas-lod-ligero.mjs",
+  "scripts/pruebas-vista-ligera.mjs",
+  "scripts/pruebas-lamina.mjs (equipos de azotea acotados)",
+  "scripts/pruebas-paramento.mjs (torre más de 3 veces el cuerpo bajo)",
+  "scripts/pruebas-c1-13-enjambre.mjs (firmas por edificio)",
+  "npm run pruebas",
+  "python3 scripts/pruebas-puente.py",
+  "npm run verificar:publicacion",
+  "npm run build"
+ ],
+ "worldSha256": "b1b0dbb7b40e75f9654ceb491b893f4e08524ea39bdeceff694e8d30472a2f7c",
+ "archivos": {
+  "C03-26-27.glb": "013c6e58898cfa19b5453b696b98cb04734ae16b47fe57776b0ed4d8b47ae70d",
+  "aerea-trazo.jpg": "d8b697021e33d07dead6f18ba0f423a9d9f2b593f228253c69083f2c33d48040",
+  "antes-despues.jpg": "e82d475ee2c3fb8ab056410a5f32b3926bad3f6654af2a760b00cabb16ddffc8",
+  "blender-aerea-sureste.jpg": "801bebc7022190726a57ac4f4c5dbe9724dda092b47eb2fc8c32c9417fcfffa2",
+  "blender-esquina-sureste.jpg": "a5337c46d3c90652940d4dbdb50d6e881ab53f73189a78bfd6950822e99264f7",
+  "camaras-blender.json": "edac09cabf72aa54c2d74496e3cb04c6de816d00332cd780d889e5a77670fafe",
+  "camaras.json": "4f3de40bc07b305afd1aae93caf8cd4c7f7939a2fca6e8d6b1fbf8c63b4db005",
+  "diagnostico.json": "7ed1f1c5de0167101bd4c70e015c44aceddd66cb52366f83943c63ed9ad430ee",
+  "foto-modelo.jpg": "6c008d987d01c3f5990e04caa6fa40aeb2abf256e301db17c5e74edbf404207d"
+ }
+}
