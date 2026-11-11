@@ -283,16 +283,16 @@
   "El suelo y el cielo de las vistas son fondos de render."
  ],
  "vistaLigera": {
-  "bytes": 966080,
-  "gzip": 325599,
-  "triangulos": 48304,
-  "techo": "1,091,000 / 364,500 gzip (70 edificios de fábrica)",
+  "bytes": 978440,
+  "gzip": 330549,
+  "triangulos": 48922,
+  "techo": "1,094,500 / 365,750 gzip (71 edificios de fábrica)",
   "antes": {
-   "base": "origin/main 524e1e9",
-   "bytes": 972960,
-   "gzip": 327426,
-   "triangulos": 48648,
-   "techo": "1,087,500 / 363,250 gzip (69 edificios de fábrica)"
+   "base": "origin/main 43ba952",
+   "bytes": 985320,
+   "gzip": 332641,
+   "triangulos": 49266,
+   "techo": "1,091,000 / 364,500 gzip (70 edificios de fábrica)"
   }
  },
  "pruebas": [
@@ -307,7 +307,7 @@
   "npm run build",
   "git diff --check"
  ],
- "worldSha256": "9ff6f5304c61c599269889576b1202850153ec5886c0eca8ab984f00bec91d52",
+ "worldSha256": "15e46a8ed8c40a82e342bb43e274bdfb1ee2e2ca654ae43276e3f0a0a939da9d",
  "archivos": {
   "aerea-trazo.jpg": "71f2ad113a7abdc548ad689d107ec3add9f6d7d8fa505773e5fda062f62cdeb9",
   "antes-despues.jpg": "590c41ca8a3b3f921aedb552118b85154832d7e35b8155eb25db84c6930abc5e",

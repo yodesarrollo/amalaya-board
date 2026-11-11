@@ -1,0 +1,524 @@
+{
+ "id": "C07",
+ "cuadra": 2,
+ "edificios": {
+  "6": "C1-11"
+ },
+ "fecha": "2026-11-10",
+ "autor": "Claude (Opus 5.5), sesión https://claude.ai/code/session_01BCpveb64VrkB7X3QnjWHVN",
+ "criterio": "Alejandro Puebla (propietario), 10-nov-2026: con al menos una foto se modela el edificio con formas estimadas, lo observado donde se vio y su tipología por continuidad en el resto (16:40 HMO); «más que genérico, una versión aceptable a la realidad según las fotos» (18:36 HMO). Pedido: «Adelante la cuadra 2» (21:21 HMO), leído como la cuadra 2 de la numeración del tablero.",
+ "fuentes": [
+  {
+   "path": "public/recorrido/G5UapkZfu_gIeRoydqjPBw.jpg",
+   "sha256": "f700783aa83547ddfb7697b2e15bde7ae571bd211cf82740104ee3914e04fb85",
+   "tipo": "panorama Street View de la ruta R-001, punto 1 (Obregón al oriente de la esquina noreste); fecha de captura sin verificar",
+   "posicion": {
+    "x": -85.7,
+    "z": 26.4,
+    "rumboEsquina": "≈236°"
+   }
+  },
+  {
+   "path": "public/levantamiento/evidence/paramento-20261007/revision.json",
+   "sha256": "f4fb8affefea214ff649cbc38071d1fab5935353dca6ee7b2ff2917b9eab3f65",
+   "tipo": "revisión del 7-oct: estación W01 (Street View 2025-03); su nota en paramento-data.js registra un frente de dos niveles en la esquina con Pino Suárez (la foto W01 no está en el repositorio)"
+  },
+  {
+   "path": "public/levantamiento/calco/referencia.webp",
+   "sha256": "ef453bbe2db667f3916e718133b81210e7ff53a51b67c412941a613f5288a074",
+   "tipo": "aérea Esri World Imagery z19 (recuperada 2026-10-07), georreferenciada, 0.26 m/píxel"
+  },
+  {
+   "path": "public/levantamiento/ajuste-visual/C07.jpg",
+   "sha256": "24f0ee6867628e6fa7c50208b75ee3d17d8183d927249ca1524978360309b940",
+   "tipo": "recorte aéreo de la cuadra"
+  },
+  {
+   "path": "public/levantamiento/cuadras/C07-inventario.jpg",
+   "sha256": "599c160b92e7872eb922d40a5883579bcce41b4065e7ca37de516b1945d7adcb",
+   "tipo": "límite de inventario de la cuadra (INEGI / Esri)"
+  },
+  {
+   "path": "public/levantamiento/evidence/C1-11/20261006-01-cierre.json",
+   "sha256": "39786a9389e19c144b2df43eb7ab021e9a09c1afd2caf384ee83e7ab47738289",
+   "tipo": "planta de inventario ±3 m"
+  }
+ ],
+ "alturas": {
+  "frenteNorte": {
+   "valor_m": 5,
+   "incertidumbre_m": 0.5,
+   "metodo": "ángulo del remate en el panorama R-001 (≈9.3° sobre el horizonte) con la cámara a 2.5 m y la esquina a 15–17 m (el pie del muro a ≈8.3° bajo el horizonte da 17 m)"
+  },
+  "noroeste": {
+   "valor_m": 8.5,
+   "metodo": "nota W01 de la revisión del 7-oct (dos niveles, altura visual aproximada)"
+  },
+  "resto": {
+   "valor_m": 5,
+   "metodo": "continuidad con el frente observado; sin foto"
+  },
+  "nota": "En la aérea el sol viene del este; las sombras no se usan como medida."
+ },
+ "trazado": {
+  "metodo": "Cinco secciones (normalizeSections) trazadas a ±1 m sobre la aérea georreferenciada con cuadrícula de 1 m; la planta de inventario se conserva como registro.",
+  "motivo": "La planta de inventario cubría el jardín de Pino Suárez y el patio central y dejaba fuera el extremo oriente de la azotea.",
+  "limiteOriente": "La cubierta llega unos 3 m sobre la banqueta de Yáñez (pórtico de esquina y alero); el muro va 0.3 m dentro de la línea de banqueta porque las secciones no salen del lote.",
+  "colorTecho": "mediana de la aérea dentro de cada sección (0.5 m hacia dentro); azoteas blancas sobreexpuestas (luminancia ≥ 239) fijadas en #e6e2d6 como en C09, C14 y C15.",
+  "colorMuro": "salmón #dca690 y crema #eadfc8 estimados a pleno sol desde la foto a la sombra (salmón medido #94796f, crema #9da7a9; muro blanco al sol #fefdfd)",
+  "secciones": [
+   {
+    "part": "6-noroeste",
+    "puntos": [
+     [
+      -129.8,
+      37.3
+     ],
+     [
+      -122.8,
+      36.8
+     ],
+     [
+      -122.8,
+      47.6
+     ],
+     [
+      -129.8,
+      48
+     ]
+    ],
+    "altura": 8.5,
+    "muro": "#dca690",
+    "techo": {
+     "usado": "#e6e2d6",
+     "medianaAerea": "#f9fbf7",
+     "luminanciaMediana": 250,
+     "muestras": 3523
+    }
+   },
+   {
+    "part": "6-norte",
+    "puntos": [
+     [
+      -122.8,
+      36.4
+     ],
+     [
+      -115.2,
+      35.8
+     ],
+     [
+      -115.2,
+      47.6
+     ],
+     [
+      -122.8,
+      47.6
+     ]
+    ],
+    "altura": 5,
+    "muro": "#dca690",
+    "techo": {
+     "usado": "#d8dcd1",
+     "medianaAerea": "#d8dcd1",
+     "luminanciaMediana": 215,
+     "muestras": 4097
+    }
+   },
+   {
+    "part": "6-noreste",
+    "puntos": [
+     [
+      -115.2,
+      35.8
+     ],
+     [
+      -99.4,
+      33.9
+     ],
+     [
+      -99.76,
+      48
+     ],
+     [
+      -115.2,
+      48
+     ]
+    ],
+    "altura": 5,
+    "muro": "#dca690",
+    "techo": {
+     "usado": "#e6e2d6",
+     "medianaAerea": "#f8f3e9",
+     "luminanciaMediana": 241,
+     "muestras": 10520
+    }
+   },
+   {
+    "part": "6-sureste",
+    "puntos": [
+     [
+      -115.2,
+      48
+     ],
+     [
+      -99.76,
+      48
+     ],
+     [
+      -100.2,
+      60.2
+     ],
+     [
+      -117.2,
+      66.9
+     ],
+     [
+      -123.1,
+      55.6
+     ],
+     [
+      -119.4,
+      55.6
+     ],
+     [
+      -119.4,
+      48
+     ]
+    ],
+    "altura": 5,
+    "muro": "#ebe6d9",
+    "techo": {
+     "usado": "#e6e2d6",
+     "medianaAerea": "#faf5ec",
+     "luminanciaMediana": 244,
+     "muestras": 16671
+    }
+   },
+   {
+    "part": "6-suroeste",
+    "puntos": [
+     [
+      -130.9,
+      55.8
+     ],
+     [
+      -123.1,
+      55.6
+     ],
+     [
+      -117.2,
+      66.9
+     ],
+     [
+      -127.3,
+      70.1
+     ]
+    ],
+    "altura": 5,
+    "muro": "#ebe6d9",
+    "techo": {
+     "usado": "#e6e2d6",
+     "medianaAerea": "#faf3e9",
+     "luminanciaMediana": 242,
+     "muestras": 5958
+    }
+   }
+  ],
+  "patio": {
+   "puntos": [
+    [
+     -129.6,
+     48.2
+    ],
+    [
+     -119.6,
+     47.8
+    ],
+    [
+     -119.6,
+     55.4
+    ],
+    [
+     -129.6,
+     55.6
+    ]
+   ],
+   "piso": "#414638",
+   "nota": "zona oscura con borde irregular (árbol o toldo, mediana #414638) dentro del conjunto: queda abierta, sin colisión, unida al jardín de Pino Suárez."
+  }
+ },
+ "frentesCalle": [
+  {
+   "part": "6-noroeste",
+   "arista": 0,
+   "longitud": 7.02,
+   "distanciaBanqueta": 1.02,
+   "calle": true,
+   "fachada": {
+    "vanos": 8,
+    "origen": "continuidad de lo observado"
+   }
+  },
+  {
+   "part": "6-noroeste",
+   "arista": 3,
+   "longitud": 10.7,
+   "distanciaBanqueta": 5.64,
+   "calle": false,
+   "fachada": {
+    "tipo": "casa",
+    "sinPuerta": true
+   }
+  },
+  {
+   "part": "6-norte",
+   "arista": 0,
+   "longitud": 7.62,
+   "distanciaBanqueta": 0.86,
+   "calle": true,
+   "fachada": {
+    "vanos": 4,
+    "origen": "continuidad de lo observado"
+   }
+  },
+  {
+   "part": "6-noreste",
+   "arista": 0,
+   "longitud": 15.91,
+   "distanciaBanqueta": 0.87,
+   "calle": true,
+   "fachada": {
+    "vanos": 9,
+    "origen": "observado en la foto"
+   }
+  },
+  {
+   "part": "6-noreste",
+   "arista": 1,
+   "longitud": 14.1,
+   "distanciaBanqueta": 0.34,
+   "calle": true,
+   "fachada": {
+    "vanos": 3,
+    "origen": "observado en la foto"
+   }
+  },
+  {
+   "part": "6-sureste",
+   "arista": 1,
+   "longitud": 12.21,
+   "distanciaBanqueta": 0.33,
+   "calle": true,
+   "fachada": {
+    "vanos": 1,
+    "origen": "observado en la foto"
+   }
+  },
+  {
+   "part": "6-sureste",
+   "arista": 2,
+   "longitud": 18.27,
+   "distanciaBanqueta": 0.37,
+   "calle": true,
+   "fachada": {
+    "tipo": "muro"
+   }
+  },
+  {
+   "part": "6-suroeste",
+   "arista": 2,
+   "longitud": 10.59,
+   "distanciaBanqueta": 0.78,
+   "calle": true,
+   "fachada": {
+    "tipo": "casa",
+    "puertas": [
+     "centro"
+    ]
+   }
+  },
+  {
+   "part": "6-suroeste",
+   "arista": 3,
+   "longitud": 14.75,
+   "distanciaBanqueta": 5.83,
+   "calle": false,
+   "fachada": {
+    "tipo": "casa",
+    "sinPuerta": true
+   }
+  }
+ ],
+ "equipos": [
+  {
+   "tipo": "equipo bajo",
+   "x": -127.3,
+   "z": 41.4,
+   "seccion": "6-noroeste"
+  },
+  {
+   "tipo": "equipo bajo",
+   "x": -120.3,
+   "z": 40.2,
+   "seccion": "6-norte"
+  },
+  {
+   "tipo": "equipo bajo",
+   "x": -118.4,
+   "z": 44.4,
+   "seccion": "6-norte"
+  },
+  {
+   "tipo": "tragaluz",
+   "x": -110.1,
+   "z": 45.6,
+   "seccion": "6-noreste"
+  },
+  {
+   "tipo": "equipo bajo",
+   "x": -107.5,
+   "z": 40.1,
+   "seccion": "6-noreste"
+  },
+  {
+   "tipo": "equipo bajo",
+   "x": -100.7,
+   "z": 39.9,
+   "seccion": "6-noreste"
+  },
+  {
+   "tipo": "equipo bajo",
+   "x": -116.8,
+   "z": 55.7,
+   "seccion": "6-sureste"
+  },
+  {
+   "tipo": "equipo bajo",
+   "x": -112.8,
+   "z": 58.6,
+   "seccion": "6-sureste"
+  },
+  {
+   "tipo": "equipo bajo",
+   "x": -110.5,
+   "z": 53,
+   "seccion": "6-sureste"
+  },
+  {
+   "tipo": "tinaco",
+   "x": -106.5,
+   "z": 54.6,
+   "seccion": "6-sureste"
+  },
+  {
+   "tipo": "tinaco",
+   "x": -104.4,
+   "z": 55.4,
+   "seccion": "6-sureste"
+  },
+  {
+   "tipo": "equipo bajo",
+   "x": -103.3,
+   "z": 56.6,
+   "seccion": "6-sureste"
+  }
+ ],
+ "anclaRegistro": {
+  "punto": [
+   -118.28714,
+   49.7255
+  ],
+  "seccion": "6-sureste",
+  "nota": "scripts/pruebas-identificacion.mjs la verifica sobre cubierta en la vista ligera."
+ },
+ "pasos": [
+  {
+   "paso": 1,
+   "nombre": "Identidad y evidencia",
+   "resultado": "6/C1-11, único registro de la cuadra 2 (C07), esquina Obregón–Yáñez; panorama R-001 punto 1 de la esquina noreste, nota W01 de la esquina con Pino Suárez y aérea."
+  },
+  {
+   "paso": 2,
+   "nombre": "Forma",
+   "resultado": "Cinco cuerpos trazados sobre la aérea: noroeste de dos niveles, centro, noreste con tragaluz, sureste de muro blanco y suroeste; patio central y jardín de Pino Suárez abiertos."
+  },
+  {
+   "paso": 3,
+   "nombre": "Alturas",
+   "resultado": "5.0 m medidos con el ángulo del remate en el panorama (±0.5 m), 8.5 m en el cuerpo noroeste por la nota W01 y 5.0 m por continuidad en el resto."
+  },
+  {
+   "paso": 4,
+   "nombre": "Fachada",
+   "resultado": "Observado: arcos ciegos crema sobre muro salmón con cornisa (dos anchos junto a la esquina y angostos sobre Obregón), pórtico de vano recto en la esquina, ventana en arco, paso cubierto de autos y muro blanco con puerta de arco rojizo sobre Yáñez. Por continuidad: arcos en el frente norte de los cuerpos centro y noroeste y ventanas del segundo nivel; por tipología: barda con portón al sur del cuerpo sureste y casa de un nivel en el cuerpo suroeste y hacia el jardín."
+  },
+  {
+   "paso": 5,
+   "nombre": "Material y azotea",
+   "resultado": "Colores de techo medidos; tragaluz gris verdoso (#8b9988); equipos y dos tinacos en las posiciones vistas; pretiles crema; piso del patio con el color medido."
+  },
+  {
+   "paso": 6,
+   "nombre": "Conjunto, ligero y comparación",
+   "resultado": "Secciones dentro del lote y sin enciman; vecinos idénticos por firma de colisiones (incluidos los siete vecinos auditados de 82); vanos alcanzados desde la calle; ancla del registro sobre cubierta; LOD en la vista ligera; mismas cámaras sobre la calle antes y después; comparación con la foto desde su posición; vistas de Blender y GLB."
+  }
+ ],
+ "limites": [
+  "La foto cubre sólo la esquina noreste (frente norte cercano y frente oriente); el resto de las fachadas sigue la continuidad o la tipología.",
+  "La nota W01 (dos niveles en la esquina con Pino Suárez) no tiene foto en el repositorio; el cuerpo noroeste de 8.5 m depende de esa nota.",
+  "No se modelan el alero ni el pórtico sobre la banqueta de Yáñez, los arcos interiores del pórtico ni el mural mencionado en W01.",
+  "Contornos a ±1 m; colores de muro estimados a pleno sol desde una foto a la sombra.",
+  "El suelo gris de las vistas de Blender es un fondo de render, no geometría del modelo."
+ ],
+ "vistaLigera": {
+  "bytes": 985320,
+  "gzip": 332641,
+  "triangulos": 49266,
+  "lod": {
+   "walls": 750,
+   "openings": 610
+  },
+  "antes": {
+   "commit": "524e1e9",
+   "bytes": 972960,
+   "gzip": 327426
+  },
+  "techo": {
+   "regla": "PR #132: 846,000 + 3,500 y 277,000 + 1,250 por edificio de fábrica (piso 1 MB / 325 KB)",
+   "edificiosFabrica": 70,
+   "bytes": 1091000,
+   "gzip": 364500,
+   "cumple": true
+  }
+ },
+ "pruebas": [
+  "scripts/pruebas-fabrica.mjs",
+  "scripts/pruebas-lod-ligero.mjs",
+  "scripts/pruebas-vista-ligera.mjs",
+  "scripts/pruebas-identificacion.mjs",
+  "scripts/pruebas-c1-13-enjambre.mjs --detalles",
+  "scripts/pruebas-paramento.mjs",
+  "npm run pruebas",
+  "python3 scripts/pruebas-puente.py",
+  "npm run verificar:publicacion",
+  "npm run build",
+  "git diff --check"
+ ],
+ "worldSha256": "123e79df9e2ba1d613f696ef15ebae29dd8756ea3c0d666fcd0d1adb1b971423",
+ "archivos": {
+  "C07-6.glb": "e52f1a1af77f0517e0e100f02ccbae87e2fff889abcf1ce1f1ecfce10b81a25c",
+  "aerea-trazo.jpg": "8cf2a4a202a6ac01041ac5ef2b6f02bd342221bfac6a2bd3b28eff68fafb12b2",
+  "antes-despues.jpg": "a39e6d769066940e9ffcab6e497c961ddcc8e75d959ef3b598a8c328e3c34164",
+  "blender-aerea-noreste.jpg": "472936d3c9a7dac6780c918f026d0cb6af75592a94036219ebacbc50e5f72da8",
+  "blender-aerea.jpg": "a5f5f0a0d5f050d6db03697f46ece1c369884574ee1341af02ccc7d17d29b840",
+  "blender-calle-sur.jpg": "d52274f4c75daafda66e6587de3589485d3b76fbde95136a62c08f63b2321aac",
+  "blender-esquina-noreste.jpg": "7bfe520ce29451c4fa41ce7ef736562ee858c61afd758561d47c7b512edb5b63",
+  "blender-esquina-noroeste.jpg": "832efa24de113000600e120c84fdb29ebe8e8297cf174e4956d5601ef48e2a6c",
+  "blender-foto-r001.jpg": "25840cf3c69442b89a8ab02e67a79eef960fd2bdd79bf25f0f70390db6952b03",
+  "blender-obregon.jpg": "730cceda9d92a35df10aa40351d7175589ad4215ca7f4ee5c51fed8fe11872aa",
+  "blender-yanez.jpg": "420d1fd9d85f6456816f4f954427764c1fc60be0874aba062da6658cc7757590",
+  "camaras.json": "f206401524f09e2dacb2cd23f3543b86db2da2dde73e51b69355de8f00faa110",
+  "foto-vs-modelo.jpg": "d37b468272581834db368643d430b6dd051a1bcdaa658401352bdb04d93f0ee4"
+ }
+}
