@@ -1,9 +1,10 @@
 import {FRONT_BUILDINGS,ROUND2_BUILDINGS,HEIGHT_REVIEWS,COURTYARD_REVIEWS,JOIN_REVIEWS,PARAMENTO_VERSION} from './paramento-data.js?v=5cc1cd6d1d7a';
 import {PARAMENTO_SIDEWALKS} from './paramento-sidewalks.js?v=8ee470fed0ad';
 import {footprintColliderCells} from './isc58-refinement.js?v=76eca0365d35';
-import {CUADRA_DETAILS} from './cuadra-detail-data.js?v=fb9d3150ebfc';
+import {CUADRA_DETAILS} from './cuadra-detail-data.js?v=cec98721c15d';
 import {applyObregonApprox} from './obregon-aproximado-data.js?v=9a20c956e9de';
 import {addC113SouthRail} from './c1-13-barandal.js';
+import {fachada as fachadaFabrica} from './fabrica-fachadas.js?v=3b7f2a768403';
 
 // Rounded visual outline stays inside the existing convex surveyed/estimated envelope.
 // Source distances preserve facade identity across the rounded corner; no new parcel anchors.
@@ -175,6 +176,13 @@ export function applyParamento(world,colliders,R){
   if(details.pediment){const p=details.pediment,t=mesh(extrude(shape([[p.x-p.w/2,height],[p.x+p.w/2,height],[p.x,height+p.h]]),.18),color,g,'Paramento · cubierta frontón');t.position.z=-.18;
    for(const sign of [-1,1]){const cap=block(g,p.x+sign*p.w/4,height+p.h/2,.01,Math.hypot(p.w/2,p.h),.12,.25,p.color,'Paramento · cubierta frontón remate');cap.rotation.z=-sign*Math.atan2(p.h,p.w/2);}}
   if(details.canopy){const c=details.canopy,m=block(g,length/2,c.y,c.depth/2-.1,length+.15,.12,c.depth,c.color,'Paramento · marquesina inclinada');m.rotation.x=Math.atan(.25/c.depth);}
+  // Opt-in LOD for the precomputed phone overview only. The walk keeps the real
+  // cut openings; the overview draws the outer face and each opening as flat
+  // panels instead of re-triangulating every hole, reveal and recessed fill.
+  if(details.liteLod){
+   g.traverse(m=>{if(m.isMesh&&/^Paramento · (muro con vanos reales|cierre)/.test(m.name))m.userData.lite='skip';});
+   g.userData.liteLod={length,height,color,bays:bays.map(v=>({x:v.x,w:v.w,h:v.h,b:v.b,rect:!!v.rect,...(v.infillHeight?{infill:v.infillHeight}:{}),color:v.screen?v.screen.color:v.portico||v.blind?(v.fillColor||color):v.open?'#262e32':(v.fillColor||(v.wood?'#59472f':'#262e32'))}))};
+  }
   return g;
  }
  const result={version:PARAMENTO_VERSION,landSurvey:false,positionStatus:'visual estimate; no certified metric tolerance',removedOwners:[],replacedColliderCount:0,frontages:[],heightReviews:[],courtyards:[]};
@@ -198,19 +206,21 @@ export function applyParamento(world,colliders,R){
     const [a,b,c,d]=section.points,mid=(p,q)=>[(p[0]+q[0])/2,(p[1]+q[1])/2],m=mid(a,b),n=mid(d,c),vx=b[0]-a[0],vz=b[1]-a[1],den=vx*vx+vz*vz;
     for(const pts of [[a,m,n,d],[m,b,c,n]]){const roofGeom=extrude(shape(pts.map(([x,z])=>[x,-z])),.12);roofGeom.rotateX(-Math.PI/2);const pos=roofGeom.attributes.position;
      for(let i=0;i<pos.count;i++){const t=((pos.getX(i)-a[0])*vx+(pos.getZ(i)-a[1])*vz)/den;pos.setY(i,pos.getY(i)+section.gableRise*(1-Math.abs(2*t-1)));}roofGeom.computeVertexNormals();const cap=mesh(roofGeom,section.roofColor,g,'Paramento · cubierta inclinada '+section.part);cap.position.y=section.height-.07;}
-   }else{const cap=mesh(geom,section.roofColor||p.roofColor||'#c2b9a4',g,'Paramento · cubierta '+section.part);cap.position.y=section.height-.07;}
+   }else{const cap=mesh(geom,section.roofColor||p.roofColor||'#c2b9a4',g,'Paramento · cubierta '+section.part);cap.position.y=section.height-.07;if(p.liteLod&&!section.openCanopy)cap.userData.lite='top';}
    const floor=mesh(geom.clone(),section.color,g,'Paramento · base '+section.part);floor.position.y=.05;
-   if(!section.openCanopy)for(let i=0;i<section.points.length;i++){const f=section.facades.find(f=>f.edge===i);wall(g,section.points[i],section.points[(i+1)%section.points.length],section.height,section.color,f?.bays||[],f&&!f.plain?(f.cornice||true):false,f||{});}
+   // Overview LOD: a closed section's floor slab is never visible from outside.
+   if(p.liteLod&&!section.openCanopy)floor.userData.lite='skip';
+   if(!section.openCanopy)for(let i=0;i<section.points.length;i++){const f=section.facades.find(f=>f.edge===i);wall(g,section.points[i],section.points[(i+1)%section.points.length],section.height,section.color,f?.bays||[],f&&!f.plain?(f.cornice||true):false,f||(p.liteLod?{liteLod:true}:{}));}
    // Existing courtyard rings remain open. Their unobserved inner walls stay plain.
-   if(!section.openCanopy)for(const hole of section.holes||[])for(let i=0;i<hole.length;i++)wall(g,hole[i],hole[(i+1)%hole.length],section.height,section.color,[],false);
+   if(!section.openCanopy)for(const hole of section.holes||[])for(let i=0;i<hole.length;i++)wall(g,hole[i],hole[(i+1)%hole.length],section.height,section.color,[],false,p.liteLod?{liteLod:true}:{});
    // Low parapets and rooftop equipment are opt-in, interpreted from the
    // corresponding aerial image. They remain small actual meshes in both views.
    if(section.parapet||p.parapet){
     const center=section.points.reduce((s,v)=>[s[0]+v[0]/section.points.length,s[1]+v[1]/section.points.length],[0,0]);
     const inset=section.points.map(([x,z])=>{const dx=center[0]-x,dz=center[1]-z,l=Math.hypot(dx,dz)||1;return [x+dx*.20/l,z+dz*.20/l]});
-    for(let i=0;i<inset.length;i++){const a=inset[i],b=inset[(i+1)%inset.length],dx=b[0]-a[0],dz=b[1]-a[1];const rim=block(g,(a[0]+b[0])/2,section.height+.13,(a[1]+b[1])/2,Math.hypot(dx,dz),.26,.14,section.parapetColor||section.color,'Paramento · cubierta pretil');rim.rotation.y=Math.atan2(-dz,dx);}
+    for(let i=0;i<inset.length;i++){const a=inset[i],b=inset[(i+1)%inset.length],dx=b[0]-a[0],dz=b[1]-a[1];const rim=block(g,(a[0]+b[0])/2,section.height+.13,(a[1]+b[1])/2,Math.hypot(dx,dz),.26,.14,section.parapetColor||section.color,'Paramento · cubierta pretil');rim.rotation.y=Math.atan2(-dz,dx);if(p.liteLod)rim.userData.lite='caras';}
    }
-   for(const d of section.roofDetails||p.roofDetails||[])block(g,d.x,section.height+(d.h||.2)/2,d.z,d.w,d.h||.2,d.d,d.color||'#aaa9a0','Paramento · cubierta detalle');
+   for(const d of section.roofDetails||p.roofDetails||[]){const box=block(g,d.x,section.height+(d.h||.2)/2,d.z,d.w,d.h||.2,d.d,d.color||'#aaa9a0','Paramento · cubierta detalle');if(p.liteLod)box.userData.lite='caras';}
    if(section.openCanopy){
     const mid=(a,b)=>[(a[0]+b[0])/2,(a[1]+b[1])/2],center=section.points.reduce((s,p)=>[s[0]+p[0]/4,s[1]+p[1]/4],[0,0]);
     const pts=[...section.points,mid(section.points[1],section.points[2]),mid(section.points[3],section.points[0])];
@@ -291,16 +301,20 @@ export function applyParamento(world,colliders,R){
    // Keep C1-13's observed features identifiable after batching, also in lite.
    const side=m.parent?.userData?.c113Side;
    const semantic=group.userData.buildingId==='C1-13'?(m.name.includes('barandal')?'barandal':side&&/reja|travesaño de reja/.test(m.name)?'reja '+side:side&&/moldura de arco|cierre retranqueado/.test(m.name)?'arco '+side:side&&m.name.includes('parasol vertical')?'pilastra '+side:side&&m.name.includes('arco pintado')?'arco pintado '+side:''):'';
-   const bucketKey=key+'-'+semantic;
-   if(!buckets.has(bucketKey))buckets.set(bucketKey,{material:m.material,structural,semantic,positions:[],normals:[]});
+   // Overview LOD modes ('skip' replaced, 'top' roof cap only) batch apart so the
+   // flag survives merging; untouched buildings keep their exact buckets.
+   const lite=m.userData.lite,bucketKey=key+'-'+semantic+(lite?'-lite-'+lite:'');
+   if(!buckets.has(bucketKey))buckets.set(bucketKey,{material:m.material,structural,semantic,lite,positions:[],normals:[]});
    const b=buckets.get(bucketKey),g=m.geometry.index?m.geometry.toNonIndexed():m.geometry.clone();g.applyMatrix4(m.matrixWorld);
    b.positions.push(...g.attributes.position.array);b.normals.push(...g.attributes.normal.array);g.dispose();
   });
   let base;world.traverse(m=>{if(!base&&m.geometry?.type==='BufferGeometry')base=m.geometry});
   if(!base)return {before:count,after:count};
   const Attribute=base.attributes.position.constructor;
+  const lods=[];group.traverse(o=>{if(o!==group&&o.userData.liteLod)lods.push({matrix:o.matrixWorld.elements.slice(),...o.userData.liteLod});});
+  if(lods.length)group.userData.liteLod=lods;
   for(const child of [...group.children])group.remove(child);
-  for(const b of buckets.values()){const geo=new base.constructor();geo.setAttribute('position',new Attribute(b.positions,3));geo.setAttribute('normal',new Attribute(b.normals,3));const m=new Mesh(geo,b.material);m.name=b.semantic?'C1-13 · '+b.semantic:b.structural?'Paramento · muro y cubierta agrupados':'Cuadra · detalle agrupado';m.userData.liteStructural=b.structural;m.castShadow=m.receiveShadow=true;group.add(m)}
+  for(const b of buckets.values()){const geo=new base.constructor();geo.setAttribute('position',new Attribute(b.positions,3));geo.setAttribute('normal',new Attribute(b.normals,3));const m=new Mesh(geo,b.material);m.name=b.semantic?'C1-13 · '+b.semantic:b.structural?'Paramento · muro y cubierta agrupados':'Cuadra · detalle agrupado';m.userData.liteStructural=b.structural;if(b.lite)m.userData.lite=b.lite;m.castShadow=m.receiveShadow=true;group.add(m)}
   return {before:count,after:buckets.size};
  }
  function wallColliders(a,b,height,owner,bays=[]){
@@ -333,12 +347,24 @@ export function applyParamento(world,colliders,R){
    const prefix=item.ownerPrefix||'Planta física · '+item.id;let owner;world.traverse(o=>{if(!owner&&o.name.startsWith(prefix))owner=o});if(!owner)throw Error('Cuadra: missing '+item.id);
    const ownerName=owner.name,plan=item.points?{points:item.points,holes:[]}:owner.userData.fittedPlan||{points:ring(owner.geometry.parameters.shapes),holes:owner.geometry.parameters.shapes.holes.map(ring)};
    const p=item.id==='C1-13'?registro82({...item,points:plan.points}):item;
-   if(plan.holes?.length&&(p.sections||p.gableRise))throw Error('Cuadra: courtyard sections require explicit hole support '+p.id);
-   const visual=p.roundCorners?roundedFront(plan.points,p.facades,p.roundCorners):{points:plan.points,facades:p.facades};
-   const n=visual.points.length,reverse=visual.points.reduce((a,p,i)=>a+p[0]*visual.points[(i+1)%n][1]-visual.points[(i+1)%n][0]*p[1],0)>0,points=reverse?[visual.points[0],...visual.points.slice(1).reverse()]:visual.points;
-   const facades=visual.facades.map(f=>{const a=visual.points[f.edge],b=visual.points[(f.edge+1)%n],length=Math.hypot(b[0]-a[0],b[1]-a[1]);return {...f,edge:reverse?n-1-f.edge:f.edge,clipBands:true,bands:f.reverseBands&&reverse?(f.bands||[]).map(v=>v.x===undefined?v:{...v,x:length-v.x}):f.bands,fins:f.reverseFins&&reverse?(f.fins||[]).map(v=>({...v,x:length-v.x})):f.fins,bays:(f.bays||[]).map(v=>({...v,frameLeft:reverse?v.frameRight:v.frameLeft,frameRight:reverse?v.frameLeft:v.frameRight,fullBars:!!v.rect,barColor:p.id==='D1-03'||p.id==='D1-04'||p.id==='C1-13'?v.barColor:p.id==='B2-01'||p.id==='B2-02'?'#bcaa62':undefined,x:reverse?length-v.x:v.x}))}});
+   // normalizeSections: each section is its own solid (patios are the gaps between
+   // sections), so the registered footprint keeps its holes as inventory record only.
+   if(plan.holes?.length&&((p.sections&&!p.normalizeSections)||p.gableRise))throw Error('Cuadra: courtyard sections require explicit hole support '+p.id);
+   // Facade factory: an entry with `tipo` and no `bays` is expanded on the real
+   // edge length of the plan it belongs to (typological estimate, not a photo).
+   const expand=(pts,h,fs)=>(fs||[]).map(f=>f.tipo&&!f.bays?{...f,...fachadaFabrica(pts,f.edge,h,f.tipo,f)}:f);
+   const planFacades=expand(plan.points,p.height,p.facades);
+   const visual=p.roundCorners?roundedFront(plan.points,planFacades,p.roundCorners):{points:plan.points,facades:planFacades};
+   const orient=(vp,vf)=>{
+    const n=vp.length,reverse=vp.reduce((a,p,i)=>a+p[0]*vp[(i+1)%n][1]-vp[(i+1)%n][0]*p[1],0)>0,points=reverse?[vp[0],...vp.slice(1).reverse()]:vp;
+    const facades=vf.map(f=>{const a=vp[f.edge],b=vp[(f.edge+1)%n],length=Math.hypot(b[0]-a[0],b[1]-a[1]);return {...f,...(p.liteLod?{liteLod:true}:{}),edge:reverse?n-1-f.edge:f.edge,clipBands:true,bands:f.reverseBands&&reverse?(f.bands||[]).map(v=>v.x===undefined?v:{...v,x:length-v.x}):f.bands,fins:f.reverseFins&&reverse?(f.fins||[]).map(v=>({...v,x:length-v.x})):f.fins,bays:(f.bays||[]).map(v=>({...v,frameLeft:reverse?v.frameRight:v.frameLeft,frameRight:reverse?v.frameLeft:v.frameRight,fullBars:!!v.rect,barColor:p.id==='D1-03'||p.id==='D1-04'||p.id==='C1-13'?v.barColor:p.id==='B2-01'||p.id==='B2-02'?'#bcaa62':undefined,x:reverse?length-v.x:v.x}))}});
+    return {points,facades};
+   };
+   const {points,facades}=orient(visual.points,visual.facades);
+   // Opt-in: sections get the same winding/edge normalisation as a single plan.
+   const sections=p.normalizeSections?p.sections.map(s=>({...s,...orient(s.points,expand(s.points,s.height,s.facades))})):p.sections;
    if(p.facadeOverlayOnly)overlayFront(owner,p,plan);
-   else{removeOwner(prefix,p.id);addFront({...p,part:'cuadra-'+p.id,owner:ownerName,points,holes:plan.holes||[],facades,evidence:p.sources});}
+   else{removeOwner(prefix,p.id);addFront({...p,...(sections?{sections}:{}),part:'cuadra-'+p.id,owner:ownerName,points,holes:plan.holes||[],facades,evidence:p.sources});}
    const added=world.getObjectByName(ownerName);if(p.id==='C1-13')added.userData.southRail=addC113SouthRail(added,plan.points,p.height,block);added.userData.fittedPlan=plan;if(p.roundCorners)added.userData.visualOutline=visual.points;added.userData.blockReview=packet.block;
    // The preserved viewer and the Node exporter can select different native
    // extrusion templates. Explicit per-building PBR must not inherit metalness

@@ -9,6 +9,8 @@ import {applyEbSw} from '../public/levantamiento/ebsw-refinement.js';
 import {applyPlanRound} from '../public/levantamiento/plantas-refinement.js';
 import {applySidewalkRound} from '../public/levantamiento/banquetas-refinement.js';
 import {intersectionArea} from './encaje-geometry-checks.mjs';
+import {firmas,BASE_FIRMAS} from './firmas-colisiones.mjs';
+import {CUADRA_DETAILS} from '../public/levantamiento/cuadra-detail-data.js';
 import {VISUAL_FIT} from '../public/levantamiento/ajuste-visual-data.js';
 import {applyStreetRound} from '../public/levantamiento/calzadas-refinement.js';
 const root='public/levantamiento', source=await readFile(root+'/world.js','utf8');
@@ -29,8 +31,15 @@ const BASELINE={"worldSha256":"401a29332e4b6335df2246d744593c6d1adea67dba9efb8d3
 // C10/84 and 89/D1-12 changes are reviewed separately (89: scripts/pruebas-modelo89.mjs).
 // Freeze every other collider from the real 99a0490 scene. Without 89 the same frozen
 // set measured at 7b68582 is 16,142 boxes (with 89's 564 native boxes it was 16,706).
-const preservedColliders=colliders.filter(c=>!['C1-13','D1-09','D1-12'].includes(c.buildingId));
-assert.deepEqual({count:preservedColliders.length,sha256:hash(preservedColliders)},{count:16142,sha256:'194713b1ecadadd8269b7c492c5242909a897a47f57fe4e8d6b988b0d77be98d'},'Los colisionadores ajenos al 82/84/89 difieren de 99a0490');
+// Since C14 the freeze is per building (scripts/firmas-colisiones-base.json, main@c5ea33d,
+// whose legacy union reproduces the 16,142-box hash). Buildings of the facade factory
+// are reviewed by their own tests; every other building keeps its exact boxes.
+const base=JSON.parse(await readFile(BASE_FIRMAS,'utf8'));
+assert.deepEqual(base.legacy,{count:16142,sha256:'194713b1ecadadd8269b7c492c5242909a897a47f57fe4e8d6b988b0d77be98d'},'La base por edificio reproduce el congelado de 99a0490');
+const reviewed=new Set(['C1-13','D1-09','D1-12',...CUADRA_DETAILS.flatMap(k=>k.buildings).filter(b=>b.fabrica).map(b=>b.id)]);
+const current=firmas(colliders);
+for(const [k,v] of Object.entries(base.groups))if(!reviewed.has(k))assert.deepEqual(current[k],v,'Los colisionadores ajenos al 82/84/89 y a la fábrica difieren de 99a0490: '+k);
+for(const k of Object.keys(current))assert(k in base.groups||reviewed.has(k),'Grupo de colisión nuevo sin revisión: '+k);
 for(const [x,y,z] of [[-123,1.6,96],[-123,1.6,91],[-124,1.6,86.5]])assert(!world.userData.navigationColliders.some(c=>c.containsPoint(new R.Vector3(x,y,z))),`El acceso o patio del 81 queda bloqueado: ${x},${z}`);
 for(const n of [76,77,78,79,80,81,83])assert.deepEqual(summary.owners[n],BASELINE.owners[n],`Geometría o materiales del edificio ${n} cambiaron`);
 // Project actual 82 faces onto the independently recorded road triangles. This

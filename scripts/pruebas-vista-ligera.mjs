@@ -21,8 +21,10 @@ assert((await readFile('public/seguimiento-ligero.json')).length<100000,'resumen
 // Baseline ef89166: 886,700 bytes / 282,310 gzip. Preserve structural details;
 // the 960 KB / 310 KB ceilings leave a small measured margin, not a visual approval.
 // 89/D1-12 (10-nov-2026): modelado con vanos reales en 4 frentes (72 vanos, dos patios):
-// 1,006,880 bytes / 324,941 gzip (antes 959,920 / 309,043), 50,344 triángulos. Techos con margen pequeño;
-// el siguiente paso es LOD en la vista ligera (vanos sin perforar) antes de más edificios.
-assert(bytes.length<1015000,'geometría completa bajo 1015 KB');
-assert(gzipSync(bytes).length<330000,'geometría comprimida bajo 330 KB');
+// 1,006,880 bytes / 324,941 gzip (antes 959,920 / 309,043), 50,344 triángulos.
+// LOD de vista ligera (D3, 10-nov-2026; scripts/lod-ligero.mjs, pruebas-lod-ligero.mjs): el 89
+// pasa de 2,348 a 456 triángulos; total 969,040 bytes / 312,329 gzip, 48,452 triángulos.
+// Techo de 1 MB / 325 KB: deja lugar a las cuadras siguientes si cada edificio nuevo usa liteLod.
+assert(bytes.length<1000000,'geometría completa bajo 1 MB');
+assert(gzipSync(bytes).length<325000,'geometría comprimida bajo 325 KB');
 console.log('Vista ligera: todos los IDs y estados conservados; geometría válida y presupuestos de carga cumplidos.');

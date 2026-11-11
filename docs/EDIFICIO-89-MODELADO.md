@@ -28,7 +28,7 @@ Ficha con fuentes, límites y hashes: [ficha.json](../public/levantamiento/evide
 
 ## Vista ligera
 
-Los vanos reales suben la vista ligera de 959,920 a 1,006,880 bytes y de 309,043 a 324,941 bytes en gzip (50,344 triángulos). Los techos de la prueba se ajustan a 1,015,000 / 330,000 con margen pequeño. Antes de modelar más edificios con vanos, la vista ligera debe pasar a LOD: vanos dibujados sobre el muro sin perforarlo.
+Los vanos reales suben la vista ligera de 959,920 a 1,006,880 bytes y de 309,043 a 324,941 bytes en gzip (50,344 triángulos). Ese mismo día la vista ligera pasó a LOD ([fábrica de fachadas y LOD](FABRICA-FACHADAS.md)): el 89 queda en vanos dibujados sobre el muro, tapa de cubierta y sin losas ocultas, y el techo vuelve a 1 MB / 325 KB.
 
 ## Blender en el flujo
 
