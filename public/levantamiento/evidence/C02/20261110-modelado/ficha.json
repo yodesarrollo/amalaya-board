@@ -1,0 +1,283 @@
+{
+ "id": "C02",
+ "cuadra": 4,
+ "nombre": "Calle Pino Suárez / Calle Rosales",
+ "calles": [
+  "Aquiles Serdán (norte)",
+  "Pino Suárez (oriente)",
+  "Álvaro Obregón (sur)",
+  "Rosales (poniente)"
+ ],
+ "edificios": {
+  "10": "B1-01",
+  "11": "B1-02",
+  "12": "B1-03",
+  "13": "B1-04"
+ },
+ "fecha": "2026-11-10",
+ "autor": "Claude (Opus 5.5), sesión https://claude.ai/code/session_01BCpvee4cGGCfPdCjMMhQGm",
+ "criterio": "Alejandro Puebla (propietario), 10-nov-2026 18:36 HMO: «más que genérico, una versión aceptable a la realidad según las fotos, lo que muestre». 21:48 HMO: «sigue adelante con la cuadra 4».",
+ "fuentes": [
+  {
+   "path": "public/levantamiento/calco/referencia.webp",
+   "sha256": "ef453bbe2db667f3916e718133b81210e7ff53a51b67c412941a613f5288a074",
+   "tipo": "aérea Esri World Imagery z19 (recuperada 2026-10-07), georreferenciada, 0.26 m/píxel"
+  },
+  {
+   "path": "public/levantamiento/ajuste-visual/C02.jpg",
+   "sha256": "ce9ea445d799eefb6fe9db1eb5483d96ddad98e49c8118c455a47b93f55a4bfe",
+   "tipo": "recorte aéreo de la cuadra"
+  },
+  {
+   "path": "public/levantamiento/cuadras/C02-inventario.jpg",
+   "sha256": "a0dd5f99428eb9d6695f9ffd1466149282e49c68e7f892640e642d14311a98d0",
+   "tipo": "límite de inventario INEGI / Esri"
+  },
+  {
+   "path": "public/levantamiento/cuadra-c02-aproximada.js",
+   "sha256": "762653c8bba5fce25428553c2fa68cf4bffa30cc87225b2835306a1afe49adc1",
+   "tipo": "paquete de octubre (sustituido y conservado como registro): frentes observados en Street View de 10/B1-01 (Rosales) y 12/B1-03 (Rosales y Obregón), alturas estimadas"
+  },
+  {
+   "path": "public/levantamiento/evidence/B1-01/20261006-01-cierre.json",
+   "sha256": "3958f6e557e896634001c8318f3c1adbf4b1c910a84164ea4493242d1c0b77be",
+   "tipo": "planta de inventario ±3 m"
+  },
+  {
+   "path": "public/levantamiento/evidence/B1-02/20261006-01-cierre.json",
+   "sha256": "7c571134ff614e25f9ce9a7f59c38cfacd721f238b8686dc58e0ffc8896926b4",
+   "tipo": "planta de inventario ±3 m"
+  },
+  {
+   "path": "public/levantamiento/evidence/B1-03/20261006-01-cierre.json",
+   "sha256": "0ef43826b97f15bdd72ad214a9b322ad7e220b7093d79cb46319588f2bcd4672",
+   "tipo": "planta de inventario ±3 m"
+  },
+  {
+   "path": "public/levantamiento/evidence/B1-04/20261006-01-cierre.json",
+   "sha256": "7ab3e815bec45d76f59a0f21e64d926e38d61a1a80317ccf85336653c2837bf3",
+   "tipo": "planta de inventario ±3 m"
+  },
+  {
+   "path": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=29.07605%2C-110.95693&heading=90&pitch=0",
+   "tipo": "Street View (enero de 2026) citado por el paquete de octubre; no consultado de nuevo desde la nube"
+  },
+  {
+   "path": "https://www.radiosonora.com.mx/derribo-de-inmueble-dara-paso-a-ampliacion-del-bulevar-hidalgo/",
+   "tipo": "prensa: derribo de inmueble en Rosales y Obregón (posible antigua Procuraduría, 12/B1-03); correspondencia por confirmar (direcciones-referencias.json)"
+  },
+  {
+   "path": null,
+   "tipo": "foto de calle guardada",
+   "resultado": "no hay en el repositorio; los panoramas del recorrido quedan a más de 220 m de C02"
+  }
+ ],
+ "sustituye": "cuadra-c02-aproximada.js (C02_APROXIMADA) deja de registrarse en cuadra-detail-data.js; el archivo se conserva sin cambios como registro y lo sigue leyendo preparar-paramento.mjs",
+ "alturas": {
+  "10/B1-01": "6.0 m (cubierta poniente) y 7.6 m (cubierta oriente), del paquete de octubre: estimación visual, no medida",
+  "11/B1-02": "4.0 m por tipología (antes 5.0 m estimada sin foto)",
+  "12/B1-03": "8.2 m del paquete de octubre con Street View (dos franjas de ventanas); scripts/pruebas-paramento.mjs la fija",
+  "13/B1-04": "4.0 m por tipología (antes 7.2 m estimada sin foto)",
+  "nota": "En esta aérea el sol viene del este: las bandas oscuras al poniente de los cuerpos no se usan como medida."
+ },
+ "mediciones": {
+  "metodo": "medianas de color y manchas oscuras con contraste local sobre calco/referencia.webp, a resolución original, dentro de polígonos locales",
+  "techos": {
+   "10 cubierta poniente (tostada)": "#b7b09e",
+   "10 cubierta oriente (blanca)": "#edeae3",
+   "11 lámina en diente de sierra": "#cdc9b6",
+   "12 azotea": "#f3efe5",
+   "13 azotea": "#f7f4ea",
+   "13 ala norte": "#e9e4d6",
+   "color usado para los blancos": "#e6e2d6 (como en C09, C14 y C16)"
+  },
+  "noCubierta": {
+   "11 mitad sur de la planta (árboles)": "#24382b"
+  },
+  "equipos": {
+   "10": {
+    "tinacos (hilera)": [
+     [
+      -188.3,
+      -52.5
+     ],
+     [
+      -184.9,
+      -53.5
+     ],
+     [
+      -181.1,
+      -54.1
+     ],
+     [
+      -178.6,
+      -54.6
+     ]
+    ],
+    "equipos": [
+     [
+      -175.1,
+      -56.1
+     ],
+     [
+      -171.9,
+      -61.8
+     ],
+     [
+      -171.5,
+      -54.7
+     ],
+     [
+      -186.5,
+      -46.1
+     ],
+     [
+      -171.8,
+      -40.9
+     ],
+     [
+      -204.8,
+      -31.5
+     ]
+    ]
+   },
+   "12": {
+    "equipos": [
+     [
+      -192.3,
+      8.8
+     ],
+     [
+      -190.6,
+      14.5
+     ],
+     [
+      -193.0,
+      16.3
+     ],
+     [
+      -185.7,
+      18.5
+     ],
+     [
+      -183.2,
+      20.8
+     ],
+     [
+      -190.0,
+      19.1
+     ]
+    ]
+   },
+   "13": {
+    "tinaco": [
+     [
+      -172.3,
+      -12.4
+     ]
+    ],
+    "equipos": [
+     [
+      -170.0,
+      -6.4
+     ],
+     [
+      -175.8,
+      -7.1
+     ]
+    ]
+   },
+   "nota": "tinacos de 0.95 m: scripts/pruebas-lamina.mjs acota los equipos de C02 a 1 m sobre la cubierta"
+  },
+  "frentes": {
+   "criterio": "scripts/frentes-calle-lib.mjs con banqueta abierta (tira como línea de fachada y límite INEGI como lote, PR #129) y caras a menos de 4 m",
+   "10": "Serdán (aristas 0 de ambas cubiertas), Pino Suárez (1 y 2 de la cubierta oriente) y Rosales (4 y 5 de la poniente)",
+   "11": "Rosales a 3.4 m (arista 8 de la sección)",
+   "12": "Rosales (arista 4) y Obregón (arista 3; la banqueta sur no está trazada)",
+   "13": "Pino Suárez (arista 3) y chaflán a 2.9 m (arista 2)"
+  }
+ },
+ "pasos": [
+  {
+   "paso": 1,
+   "nombre": "Identidad y evidencia",
+   "resultado": "10/B1-01 esquina Rosales–Serdán; 11/B1-02 sobre Rosales; 12/B1-03 esquina Rosales–Obregón (posible antigua Procuraduría, demolición reportada en 2026); 13/B1-04 sobre Pino Suárez (el inventario la rotula «Yáñez»). Aérea y frentes de Street View registrados en octubre; sin foto guardada."
+  },
+  {
+   "paso": 2,
+   "nombre": "Forma",
+   "resultado": "10 conserva su planta y sus dos cubiertas; 11 pasa a una sección con la lámina y un cuerpo gris, y la mitad sur con árboles queda abierta; 12 y 13 conservan su planta."
+  },
+  {
+   "paso": 3,
+   "nombre": "Alturas",
+   "resultado": "Ver alturas."
+  },
+  {
+   "paso": 4,
+   "nombre": "Fachada",
+   "resultado": "Observadas: paños acristalados de 10 en Rosales y frentes de 12 en Rosales y Obregón (sin cambio). Fábrica: comercio con nivel superior en Serdán y Pino Suárez (10), barda con acceso en Rosales (11) y comercio en Pino Suárez (13). 64 vanos."
+  },
+  {
+   "paso": 5,
+   "nombre": "Material y azotea",
+   "resultado": "Colores de techo medidos; color de muro de octubre; pretiles; 5 tinacos y 14 equipos en las posiciones vistas; líneas de la lámina de 11."
+  },
+  {
+   "paso": 6,
+   "nombre": "Conjunto, ligero y comparación",
+   "resultado": "Vecinos idénticos por firma de colisiones; vanos alcanzados desde la calle; secciones dentro del lote INEGI y sin enciman; anclas de los cuatro registros sobre cubierta; LOD en la vista ligera; mismas cámaras antes y después sobre las cuatro calles; vistas de Blender y GLB."
+  }
+ ],
+ "limites": [
+  "Sin foto de calle guardada: los frentes observados de 10 y 12 vienen de la descripción del paquete de octubre; el resto de vanos, puertas y colores de muro son tipológicos.",
+  "12/B1-03 se conserva como registro histórico: la prensa reporta la demolición del inmueble en 2026 y la aérea de referencia aún muestra la cubierta. Cambiarlo a predio abierto requiere una foto actual y ajustar pruebas compartidas.",
+  "Alturas de 10 del paquete de octubre (estimación visual) y tipológicas en 11 y 13.",
+  "La cubierta poniente de 10 aparece en la aérea hasta 5 m al oriente del borde de inventario (banda oscura al poniente); se conserva la planta de inventario (±3 m).",
+  "Cubiertas entre 10 y 13 y al sur de 13 quedan fuera del conteo de 139, igual que en el inventario de octubre.",
+  "El suelo gris de las vistas de Blender es un fondo de render; las aristas negras en bordes y esquinas de sección son del render, como en C09, C14 y C16."
+ ],
+ "vistaLigera": {
+  "bytes": 956300,
+  "gzip": 320291,
+  "triangulos": 47815,
+  "lod": {
+   "walls": 646,
+   "openings": 501
+  },
+  "version": "6672a34a65e3",
+  "techo": "1 MB / 325 KB gzip",
+  "nota": "B1-01 deja keepDetails (sus ~40 marcos subían la vista ligera a 326 KB gzip); B1-03 lo conserva por la prueba de su pórtico"
+ },
+ "camaras": "camaras.json: [nombre, lat, lng, rumbo, fov, cabeceo, altura]; las de calle van sobre la calzada a 1.6 m; mismas cámaras antes y después",
+ "pruebas": [
+  "scripts/pruebas-fabrica.mjs",
+  "scripts/pruebas-lod-ligero.mjs",
+  "scripts/pruebas-vista-ligera.mjs",
+  "scripts/pruebas-identificacion.mjs",
+  "scripts/pruebas-paramento.mjs (pórtico y 8.2 m de 12/B1-03)",
+  "scripts/pruebas-lamina.mjs",
+  "scripts/pruebas-c1-13-enjambre.mjs (firmas por edificio)",
+  "npm run pruebas",
+  "python3 scripts/pruebas-puente.py",
+  "npm run verificar:publicacion",
+  "npm run build",
+  "git diff --check"
+ ],
+ "worldSha256": "f0d5e952ab877c0b9b3d32e386fc6b69a7e39dd85558a7d4904a21fb4284f593",
+ "archivos": {
+  "C02-10-13.glb": "ac95b7e8887acf3239715a3708fdc1d9f86727f702c112cd6eb9b5f9fa1cc8f2",
+  "aerea-trazo.jpg": "28b9e75e3ec1d2620dcc88b076fe6e5bb36b7bcd92a313974462e7f42f0b067e",
+  "antes-despues.jpg": "2f69f1877d4c0568d9bba84eb54f9f9c4ccba410eb98d78dece9db7071b81239",
+  "blender-aerea-suroeste.jpg": "ce7becf3de6f7612cb0534fd9391a2fe9e8c641c581a8d03d1ffb2ca06e4585a",
+  "blender-aerea.jpg": "31295510f045957592a1b6b2e7e6fc387428d84319939325e2e259cf0dacefa6",
+  "blender-esquina-noreste.jpg": "25e2e85b8c98d39fdcbae043a4f4df19b1c70e8ccf6d4613f66395151e1642b3",
+  "blender-esquina-noroeste.jpg": "ca024d85e4b65001bf97b4fbe8218d2adbbae611012f5032265d0c465b49876e",
+  "blender-obregon.jpg": "d385364c8005af579f556d145118de711272238d635cbedeec145aef9f369b10",
+  "blender-pino-suarez.jpg": "da9ff2fa7d473cf2f1a9fd44374586ec348b5bef80996ba11b774aeb0cb0cfa5",
+  "blender-rosales-norte.jpg": "b49b020af1d574187cf2e3f1267ae470c1cd1323ac2aa5205ed1b125b589c374",
+  "blender-rosales-sur.jpg": "45d1f0ee06a605ab22d1a9d39edd152d2aeb8c9c230acdb55ddf37e60c9d2d92",
+  "blender-serdan.jpg": "c3e1f48f273fcd11c14d261020c51b8bd7cf51b4c6f19a166cdfd5e89350b9a4",
+  "camaras.json": "a66564d6eb04bbb6d64a4734470d3931875ef8cc3581ace04f5b7be76f22ed0c"
+ }
+}
