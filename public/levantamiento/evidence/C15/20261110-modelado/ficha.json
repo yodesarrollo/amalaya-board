@@ -1,0 +1,700 @@
+{
+ "id": "C15",
+ "cuadra": 30,
+ "edificios": {
+  "112": "D2-21",
+  "113": "D2-22",
+  "114": "D2-23",
+  "115": "D2-24"
+ },
+ "fecha": "2026-11-10",
+ "autor": "Claude (Opus 5.5), sesión https://claude.ai/code/session_01BCpveb64VrkB7X3QnjWHVN",
+ "criterio": "Alejandro Puebla (propietario), 10-nov-2026 18:36 HMO: «más que genérico, una versión aceptable a la realidad según las fotos, lo que muestre»; aprobado el modelo ligero para celular.",
+ "fuentes": [
+  {
+   "path": "public/levantamiento/calco/referencia.webp",
+   "sha256": "ef453bbe2db667f3916e718133b81210e7ff53a51b67c412941a613f5288a074",
+   "tipo": "aérea Esri World Imagery z19 (recuperada 2026-10-07), georreferenciada, 0.26 m/píxel"
+  },
+  {
+   "path": "public/levantamiento/ajuste-visual/C15.jpg",
+   "sha256": "01639b71ee5544fb8ee4f41da61afaa2ec1ab5dbb2489615b944a5fe49b89459",
+   "tipo": "recorte aéreo de la cuadra"
+  },
+  {
+   "path": "public/levantamiento/cuadras/C15-inventario.jpg",
+   "sha256": "6a1d215cdbdd70ba3a1630e0f44d7f1f7b939d23bdce8fa44ef5844d465ed05b",
+   "tipo": "límite de inventario de la cuadra (INEGI / Esri)"
+  },
+  {
+   "path": "public/levantamiento/evidence/D2-21/20261006-01-cierre.json",
+   "sha256": "f9a09997afa0834a7d5406b7167e8d5a6d03a0b2516ba62464af2b199993cc66",
+   "tipo": "planta de inventario ±3 m"
+  },
+  {
+   "path": "public/levantamiento/evidence/D2-22/20261006-01-cierre.json",
+   "sha256": "ac90877b912302a4036d50ea8e518ce9552ce4f05dd6add28fe5a15c2035d7f2",
+   "tipo": "planta de inventario ±3 m"
+  },
+  {
+   "path": "public/levantamiento/evidence/D2-23/20261006-01-cierre.json",
+   "sha256": "893a49ab98e36ac507d8061ad5254fcdfc52a04e23c9c6713aea584e6b5495b0",
+   "tipo": "planta de inventario ±3 m"
+  },
+  {
+   "path": "public/levantamiento/evidence/D2-24/20261006-01-cierre.json",
+   "sha256": "6bded04cc9e738b77f34210f02339e684ef2185ccb4a3692114b445007fae8f4",
+   "tipo": "planta de inventario ±3 m"
+  },
+  {
+   "path": null,
+   "tipo": "foto de calle",
+   "resultado": "no disponible en el repositorio; Street View inaccesible desde la nube"
+  }
+ ],
+ "alturas": {
+  "criterio": "tipológico: 4.0 m en todas las secciones (mediana de los frentes de un nivel del centro estimados con Street View, 3.3–5.3 m); ningún registro de C15 se inventarió como «cuerpo bajo»",
+  "incertidumbre_m": 0.7,
+  "nota": "En esta aérea el sol viene del este: las bandas oscuras al norte de los cuerpos, sobre Felipe Salido, son asfalto y arbolado, no sombras; no se usan como medida."
+ },
+ "trazado": {
+  "metodo": "Cada cuerpo visible en la aérea es una sección propia (normalizeSections, como 94/D2-20) trazada a ±1 m sobre el recorte georreferenciado con cuadrícula de 1 m; las plantas de inventario (±3 m) se conservan como registro.",
+  "motivo": "Las plantas de inventario no coinciden con las cubiertas: cubren jardines y patios (sur de 112, poniente de 113, patio delantero de 114, jardín de 115) y dejan fuera partes de azotea (esquina noroeste de 112, extremo oriente de 113, mitad oriente de 115).",
+  "colorTecho": "mediana de la aérea dentro de cada sección (0.5 m hacia dentro); las azoteas blancas sobreexpuestas (luminancia ≥ 239) se fijan en #e6e2d6 como en C09 y C14.",
+  "secciones": [
+   {
+    "edificio": 112,
+    "id": "D2-21",
+    "part": "112-blanco",
+    "puntos": [
+     [
+      7.9,
+      177.5
+     ],
+     [
+      12.5,
+      177.5
+     ],
+     [
+      12.5,
+      178.3
+     ],
+     [
+      14.9,
+      178.3
+     ],
+     [
+      14.9,
+      180.2
+     ],
+     [
+      16.5,
+      184.2
+     ],
+     [
+      18.2,
+      188.9
+     ],
+     [
+      5.9,
+      188.9
+     ],
+     [
+      5.9,
+      184.2
+     ],
+     [
+      7.9,
+      184.2
+     ]
+    ],
+    "huecos": [],
+    "altura": 4,
+    "techo": {
+     "usado": "#e6e2d6",
+     "medianaAerea": "#faf5ec",
+     "luminanciaMediana": 244,
+     "muestras": 4748
+    }
+   },
+   {
+    "edificio": 112,
+    "id": "D2-21",
+    "part": "112-rojo",
+    "puntos": [
+     [
+      14.9,
+      178.3
+     ],
+     [
+      21,
+      178.3
+     ],
+     [
+      21,
+      184.1
+     ],
+     [
+      16.5,
+      184.2
+     ],
+     [
+      14.9,
+      180.2
+     ]
+    ],
+    "huecos": [],
+    "altura": 4,
+    "techo": {
+     "usado": "#d4b8aa",
+     "medianaAerea": "#d4b8aa",
+     "luminanciaMediana": 189,
+     "muestras": 1351
+    }
+   },
+   {
+    "edificio": 112,
+    "id": "D2-21",
+    "part": "112-sureste",
+    "puntos": [
+     [
+      16.5,
+      184.2
+     ],
+     [
+      21.9,
+      184.1
+     ],
+     [
+      21.9,
+      188.3
+     ],
+     [
+      18,
+      188.3
+     ]
+    ],
+    "huecos": [],
+    "altura": 4,
+    "techo": {
+     "usado": "#e3decc",
+     "medianaAerea": "#e3decc",
+     "luminanciaMediana": 217,
+     "muestras": 667
+    }
+   },
+   {
+    "edificio": 112,
+    "id": "D2-21",
+    "part": "112-crema",
+    "puntos": [
+     [
+      18.6,
+      188.6
+     ],
+     [
+      22.6,
+      188.6
+     ],
+     [
+      22.6,
+      191.8
+     ],
+     [
+      18.6,
+      191.8
+     ]
+    ],
+    "huecos": [],
+    "altura": 4,
+    "techo": {
+     "usado": "#dcd2b1",
+     "medianaAerea": "#dcd2b1",
+     "luminanciaMediana": 201,
+     "muestras": 391
+    }
+   },
+   {
+    "edificio": 113,
+    "id": "D2-22",
+    "part": "113-norte",
+    "puntos": [
+     [
+      23.8,
+      177.1
+     ],
+     [
+      36.1,
+      177.1
+     ],
+     [
+      36.1,
+      183.7
+     ],
+     [
+      25.5,
+      182.4
+     ],
+     [
+      23.8,
+      182.4
+     ]
+    ],
+    "huecos": [],
+    "altura": 4,
+    "techo": {
+     "usado": "#e6e2d6",
+     "medianaAerea": "#f8f6eb",
+     "luminanciaMediana": 243,
+     "muestras": 3269
+    }
+   },
+   {
+    "edificio": 113,
+    "id": "D2-22",
+    "part": "113-sur",
+    "puntos": [
+     [
+      25.6,
+      182.41
+     ],
+     [
+      35.8,
+      183.66
+     ],
+     [
+      35.8,
+      188.8
+     ],
+     [
+      25.6,
+      188.8
+     ]
+    ],
+    "huecos": [],
+    "altura": 4,
+    "techo": {
+     "usado": "#e6e2d6",
+     "medianaAerea": "#f5f1e7",
+     "luminanciaMediana": 239,
+     "muestras": 2617
+    }
+   },
+   {
+    "edificio": 114,
+    "id": "D2-23",
+    "part": "114-patio",
+    "puntos": [
+     [
+      36.2,
+      183.4
+     ],
+     [
+      45.28,
+      183.4
+     ],
+     [
+      44.25,
+      190.6
+     ],
+     [
+      36.2,
+      190.6
+     ]
+    ],
+    "huecos": [
+     [
+      [
+       36.5,
+       186.6
+      ],
+      [
+       43.4,
+       186.6
+      ],
+      [
+       43.4,
+       189.6
+      ],
+      [
+       36.5,
+       189.6
+      ]
+     ]
+    ],
+    "altura": 4,
+    "techo": {
+     "usado": "#e6e2d6",
+     "medianaAerea": "#cac6b5",
+     "luminanciaMediana": 194,
+     "muestras": 1215
+    }
+   },
+   {
+    "edificio": 115,
+    "id": "D2-24",
+    "part": "115-blanco",
+    "puntos": [
+     [
+      10,
+      192.3
+     ],
+     [
+      23.8,
+      192.3
+     ],
+     [
+      23.8,
+      200
+     ],
+     [
+      10,
+      200
+     ]
+    ],
+    "huecos": [],
+    "altura": 4,
+    "techo": {
+     "usado": "#e4e0d2",
+     "medianaAerea": "#e4e0d2",
+     "luminanciaMediana": 221,
+     "muestras": 5148
+    }
+   }
+  ],
+  "patio114": {
+   "hueco": [
+    [
+     36.5,
+     186.6
+    ],
+    [
+     43.4,
+     186.6
+    ],
+    [
+     43.4,
+     189.6
+    ],
+    [
+     36.5,
+     189.6
+    ]
+   ],
+   "piso": "#4f533e",
+   "nota": "patio oscuro (vegetación o sombra, mediana #4f533e) cerrado por el ala norte, el muro de Garmendia y el remate sur; sin colisión. El borde norte del ala queda bajo la copa de un árbol y se estima 1.2 m al norte de la banda blanca visible."
+  }
+ },
+ "frentesCalle": [
+  {
+   "id": "D2-21",
+   "part": "112-blanco",
+   "arista": 0,
+   "longitud": 4.6,
+   "distanciaBanqueta": 1.98,
+   "angulo": 2.6,
+   "calle": true,
+   "fachada": {
+    "tipo": "casa",
+    "sinPuerta": true
+   },
+   "motivo": "cara a la calle (≤2.6 m de la banqueta)"
+  },
+  {
+   "id": "D2-21",
+   "part": "112-blanco",
+   "arista": 2,
+   "longitud": 2.4,
+   "distanciaBanqueta": 2.94,
+   "angulo": 2.6,
+   "calle": false,
+   "fachada": {
+    "tipo": "casa",
+    "sinPuerta": true
+   },
+   "motivo": "a menos de 4 m de la banqueta"
+  },
+  {
+   "id": "D2-21",
+   "part": "112-blanco",
+   "arista": 7,
+   "longitud": 4.7,
+   "distanciaBanqueta": 0.33,
+   "angulo": 0.4,
+   "calle": true,
+   "fachada": {
+    "tipo": "casa",
+    "sinPuerta": true
+   },
+   "motivo": "cara a la calle (≤2.6 m de la banqueta)"
+  },
+  {
+   "id": "D2-21",
+   "part": "112-blanco",
+   "arista": 9,
+   "longitud": 6.7,
+   "distanciaBanqueta": 2.28,
+   "angulo": 0.4,
+   "calle": true,
+   "fachada": {
+    "tipo": "casa",
+    "puertas": [
+     "centro"
+    ]
+   },
+   "motivo": "cara a la calle (≤2.6 m de la banqueta)"
+  },
+  {
+   "id": "D2-21",
+   "part": "112-rojo",
+   "arista": 0,
+   "longitud": 6.1,
+   "distanciaBanqueta": 3.13,
+   "angulo": 2.6,
+   "calle": false,
+   "fachada": {
+    "tipo": "casa",
+    "puertas": [
+     "centro"
+    ]
+   },
+   "motivo": "a menos de 4 m de la banqueta"
+  },
+  {
+   "id": "D2-22",
+   "part": "113-norte",
+   "arista": 0,
+   "longitud": 12.3,
+   "distanciaBanqueta": 2.48,
+   "angulo": 2.6,
+   "calle": true,
+   "fachada": {
+    "tipo": "casa",
+    "puertas": [
+     "centro"
+    ]
+   },
+   "motivo": "cara a la calle (≤2.6 m de la banqueta)"
+  },
+  {
+   "id": "D2-23",
+   "part": "114-patio",
+   "arista": 0,
+   "longitud": 9.08,
+   "distanciaBanqueta": 4.79,
+   "angulo": 81.9,
+   "calle": false,
+   "fachada": {
+    "tipo": "casa",
+    "puertas": [
+     "centro"
+    ]
+   },
+   "motivo": "visible desde la calle a través de un patio o jardín"
+  },
+  {
+   "id": "D2-23",
+   "part": "114-patio",
+   "arista": 1,
+   "longitud": 7.27,
+   "distanciaBanqueta": 0.3,
+   "angulo": 0,
+   "calle": true,
+   "fachada": {
+    "tipo": "muro"
+   },
+   "motivo": "cara a la calle (≤2.6 m de la banqueta)"
+  },
+  {
+   "id": "D2-24",
+   "part": "115-blanco",
+   "arista": 3,
+   "longitud": 7.7,
+   "distanciaBanqueta": 4.5,
+   "angulo": 0.4,
+   "calle": false,
+   "fachada": {
+    "tipo": "casa",
+    "puertas": [
+     "centro"
+    ]
+   },
+   "motivo": "visible desde la calle a través de un patio o jardín"
+  }
+ ],
+ "equipos": {
+  "D2-21": [
+   {
+    "tipo": "tinaco",
+    "x": 20.2,
+    "z": 179.3,
+    "seccion": "112-rojo"
+   }
+  ],
+  "D2-22": [
+   {
+    "tipo": "tinaco",
+    "x": 25.5,
+    "z": 180,
+    "seccion": "113-norte"
+   },
+   {
+    "tipo": "tinaco",
+    "x": 34.8,
+    "z": 179.5,
+    "seccion": "113-norte"
+   },
+   {
+    "tipo": "tinaco",
+    "x": 34.5,
+    "z": 182.4,
+    "seccion": "113-norte"
+   }
+  ],
+  "D2-23": [],
+  "D2-24": [
+   {
+    "tipo": "tinaco",
+    "x": 11,
+    "z": 193.8,
+    "seccion": "115-blanco"
+   },
+   {
+    "tipo": "tinaco",
+    "x": 10.9,
+    "z": 197.8,
+    "seccion": "115-blanco"
+   },
+   {
+    "tipo": "tinaco",
+    "x": 15.3,
+    "z": 195.4,
+    "seccion": "115-blanco"
+   },
+   {
+    "tipo": "tinaco",
+    "x": 19.6,
+    "z": 196.8,
+    "seccion": "115-blanco"
+   },
+   {
+    "tipo": "tinaco",
+    "x": 20.7,
+    "z": 198,
+    "seccion": "115-blanco"
+   },
+   {
+    "tipo": "tinaco",
+    "x": 22.9,
+    "z": 193.9,
+    "seccion": "115-blanco"
+   }
+  ]
+ },
+ "anclasRegistro": {
+  "nota": "Ancla de cada registro (cuadras/asignaciones.json) sobre una cubierta del modelo; scripts/pruebas-identificacion.mjs la verifica en la vista ligera.",
+  "D2-21": {
+   "punto": [
+    12.28889,
+    184.7585
+   ],
+   "seccion": "112-blanco"
+  },
+  "D2-22": {
+   "punto": [
+    27.72085,
+    183.3285
+   ],
+   "seccion": "113-sur"
+  },
+  "D2-23": {
+   "punto": [
+    40.72293,
+    183.9785
+   ],
+   "seccion": "114-patio"
+  },
+  "D2-24": {
+   "punto": [
+    12.99105,
+    197.6305
+   ],
+   "seccion": "115-blanco"
+  }
+ },
+ "pasos": [
+  {
+   "paso": 1,
+   "nombre": "Identidad y evidencia",
+   "resultado": "Cuatro registros de C15 (112–115) con su número: 112/D2-21 esquina Felipe Salido–Juan Álvarez, 113/D2-22 centro de Felipe Salido, 114/D2-23 esquina Felipe Salido–Garmendia y 115/D2-24 sobre Juan Álvarez detrás de un jardín; sólo aérea; sin foto de calle."
+  },
+  {
+   "paso": 2,
+   "nombre": "Forma",
+   "resultado": "Ocho secciones trazadas a ±1 m sobre la aérea: 112 en cuatro (azotea blanca en L, cubierta rosada tras un muro diagonal, cubierta clara y anexo crema), 113 en dos (cuerpo sobre la calle y cuerpo posterior separados por un pretil oblicuo), 114 en una con patio abierto de 6.9 × 3.0 m y patio delantero libre, 115 en una detrás del jardín de Juan Álvarez."
+  },
+  {
+   "paso": 3,
+   "nombre": "Alturas",
+   "resultado": "Tipológicas (ver alturas)."
+  },
+  {
+   "paso": 4,
+   "nombre": "Fachada",
+   "resultado": "Fábrica de fachadas: casa de un nivel en las cuatro caras a la calle y en las dos que quedan a menos de 4 m de la banqueta; barda con portón sobre Garmendia en 114; casa de un nivel en las caras visibles a través de patio o jardín (norte de 114 y poniente de 115); caras interiores lisas."
+  },
+  {
+   "paso": 5,
+   "nombre": "Material y azotea",
+   "resultado": "Color de techo mediano medido por sección; color de muro estimado; pretiles; diez tinacos en las posiciones vistas (uno en 112, tres en 113, seis en 115); piso del patio de 114 con el color medido."
+  },
+  {
+   "paso": 6,
+   "nombre": "Conjunto, ligero y comparación",
+   "resultado": "Secciones dentro del lote y sin enciman entre sí ni con los otros registros; vecinos idénticos por firma de colisiones; vanos alcanzados desde la calle; patio de 114 sin colisión; anclas de los cuatro registros sobre cubierta; LOD en la vista ligera; mismas cámaras sobre la calle antes y después; vistas de Blender y GLB de la cuadra."
+  }
+ ],
+ "limites": [
+  "Sin foto de calle: vanos, puertas, colores de muro y alturas son tipológicos.",
+  "Contornos a ±1 m; en 114 el borde norte del ala, oculto por un árbol, es estimado.",
+  "La cubierta rosada, la clara y el anexo crema se asignan a 112 por contigüidad con su planta de inventario; no se afirma propiedad ni división predial.",
+  "La mitad sur de C15 (de z≈200 a Bavispe) muestra cubiertas fuera del inventario de octubre, que en esta cuadra sólo registró cuatro cuerpos: se mantienen fuera del conteo de 139, igual que en C14, y quedan sin volumen hasta que el inventario les asigne registro.",
+  "El suelo gris de las vistas de Blender es un fondo de render, no geometría del modelo."
+ ],
+ "vistaLigera": {
+  "bytes": 891460,
+  "gzip": 293480,
+  "triangulos": 44573,
+  "lod": {
+   "walls": 362,
+   "openings": 304
+  },
+  "techo": "1 MB / 325 KB gzip"
+ },
+ "pruebas": [
+  "scripts/pruebas-fabrica.mjs (secciones, frentes, vanos y colisiones)",
+  "scripts/pruebas-lod-ligero.mjs",
+  "scripts/pruebas-vista-ligera.mjs",
+  "scripts/pruebas-identificacion.mjs (anclas sobre cubierta)",
+  "scripts/pruebas-c1-13-enjambre.mjs (firmas por edificio)",
+  "npm run pruebas",
+  "python3 scripts/pruebas-puente.py",
+  "npm run verificar:publicacion",
+  "npm run build",
+  "git diff --check"
+ ],
+ "worldSha256": "f7fd08c09fc571d80162b2ad003af25901bf86f0618ca4d8a3769c03bdfc3d32",
+ "archivos": {
+  "C15-112-115.glb": "8b339a0f3de02970a70b20bf858e2a6aea620bafe06a20f24afc55f5ce1bf6ca",
+  "aerea-trazo.jpg": "c3cbb185bd5caf08cd72287f0bb9c89d99095bce9d1b6223dabd4919e1d2c545",
+  "antes-despues.jpg": "1749efe6635b4b35e38790a642fce763ed97e916b2866b1d80058dba2e850f93",
+  "blender-aerea-noreste.jpg": "c09a0cacecdcc8f3853f89d6814b8c38acab53016c6a2713a271c1fbdc9589dc",
+  "blender-aerea.jpg": "a9476ac87b8628f177e55d5b309f35351d02f7ebbf7da24c5c022bd7372c8196",
+  "blender-esquina-noreste.jpg": "3c857cf07a079062b83aff2eed223d9a87850f456b1e80afdbdbdf6016858ca0",
+  "blender-esquina-noroeste.jpg": "18b45e86507f051236037a2ed3d36bfdb1e7371ba27dfaaf37a4bcce48aaada0",
+  "blender-felipe-salido.jpg": "ae872f12f3929f908f1caad53d1a453f9f1b273c58ab9af1ba2401c38ebd7e17",
+  "blender-garmendia.jpg": "7b7385a14bde9ed6ef2b3110f4f5a65f39a4d413c4183065de0aafbde45be174",
+  "blender-juan-alvarez.jpg": "0a413210e3604e9205b44ac2b2d523a2b74bced9054097face4c4aea9323b2d8",
+  "camaras.json": "e57d917ebab69242a6493e60d666fc7263ebcafa34b8992991fb3e765fcc192b"
+ }
+}
