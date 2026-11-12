@@ -3,13 +3,13 @@
   "id": "amalaya-board",
   "repository": "yodesarrollo/amalaya-board",
   "package": "@yod/chinches",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "sequenceProtocol": 1,
   "mode": "native-prefix",
   "assets": [
     {
       "path": "chinche/secuencia.js",
-      "sha256": "682df06721e0163f89f0a0a06530d09a55b11cfc38421d4ba087bdd16b129e8a"
+      "sha256": "bb5a4d835e8c1015d26535bd84dc03d0b81bd96fa68d674ccc980b89b3d1bea8"
     },
     {
       "path": "chinche/entrega.js",
@@ -24,8 +24,8 @@
     {
       "path": "public/chinche.js",
       "kind": "prefix",
-      "sha256": "682df06721e0163f89f0a0a06530d09a55b11cfc38421d4ba087bdd16b129e8a",
-      "bytes": 26689
+      "sha256": "bb5a4d835e8c1015d26535bd84dc03d0b81bd96fa68d674ccc980b89b3d1bea8",
+      "bytes": 26756
     }
   ]
 }
